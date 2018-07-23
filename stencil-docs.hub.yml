@@ -326,7 +326,7 @@ pages:
                     - type: text
                       data: '# Stencil Technology Base'
                     - type: text
-                      data: "For complete control over theme development, here is a brief summary of how you would interact with the <NOBR>Stencil CLI</nobr> (command-line interface) framework, while also enabling further theme customization by merchants:<br>\n\n* Local Development\n* Attributes\n* Objects\n* Syntax\n* Event Hooks\n* Design\n* Customization\n* Next Steps\n\n\n## Local Development \n\nStencil is designed to support local development. Stencil CLI runs on the [Node.js](https://nodejs.org/en/) runtime environment. Installing Node.js also provides the required <a href=\"https://www.npmjs.com/\">npm</a> package manager.\n\n## More Info:\n* Node.js and npm prequisites\n* Installing Stencil CLI\n* Stencil CLI options\n\n## Attributes \n\nStencil's storefront template pages support YAML-formatted \"front matter\" to invoke the attributes you need, per page. Here is an example of a pagetop invocation to display a \"new products\" section, while limiting its contents to four products:\n\n```\n---\nproducts:\n    new:\n        limit: 4\n---\n```\n\n## More Info:\n* Attributes invocation overview\n* Attributes reference \n\n\n## Objects \n\nStencil exposes data objects that allow your themes to access various assets across a storefront. Here is an example of a Stencil object &ndash; a very simple one, which nevertheless references a second object:\n\nBrand List Object\n\n\n<H5> More Info: </h5>\n<ul>\n  <li> <a href=\"/docs/stencil-object-model\">Objects reference</a> </li>\n</ul>\n\n<H2> <A NAME=\"Syntax\"></a> Syntax </h2>\n\nTheme pages access Stencil objects using <a href=\"http://handlebarsjs.com/\">Handlebars</a>, a lightweight, open-source templating language. Handlebars allows you to efficiently embed dynamic and conditional logic onto your storefront pages. A Handlebars expression begins with: <span class=\"inline-code\">{{</span> and ends with: <span class=\"inline-code\">}}</span>.<br>\n\n<p></p>Below is a Handlebars <span class=\"inline-code\">if</span> structure that tests for a boolean variable named <span class=\"inline-code\">product.similar_by_views</span>. If its value is <span class=\"inline-code\">true</span>, this snippet inserts a corresponding component &ndash; a carousel display of \"similar products.\" It also specifies a six-column display:<br><br>\n\n<pre>{{#if product.similar_by_views}}\n   {{> components/products/carousel products=product.similar_by_views columns=6}}\n{{/if}}\n</pre>\n\n<H5> More Info: </h5>\n<ul>\n  <li> <a href=\"/docs/developing-with-handlebars\">Handlebars</a> overview\n  </li>\n<li> <a href=\"/docs/basic-designlayout-changes\">Handlebars tutorial</a> (requires Stencil <a href=\"/docs/installing-and-launching-stencil-1\">installation</a>)\n  </li>\n</ul>\n  \n<H2> <A NAME=\"Hooks\"></a> Event Hooks </h2>\n\nYour Stencil themes can access remote objects through data tags and event hooks, using the hooks to trigger defined events based on shopper behavior. To facilitate theme-building, BigCommerce provides the <span class=\"inline-code\">stencil-utils</span> client-side JavaScript library for managing event hooks.<br><br>\n\n<A NAME=\"remote-ex-2\"></a>In the following code example from a Stencil theme, note the <span class=\"inline-code\">cart‑item‑add</span> event. A theme could listen for this  event, to override the default form-submit behavior when a shopper adds product to their cart:<br>\n\n```\n * Import all product-specific js \n */\n[...]\nimport utils from 'bigcommerce/stencil-utils';\n[...]\naddProductToCart() {\n    utils.hooks.on(<b>'cart-item-add'</b>, (event) =&gt; {\n        event.preventDefault();\n    });\n\t}\n```\n\n### More Info:\n* Event hooks reference\n* stencil-utils package introduction stencil-utils\n* API Reference\n\n## Design \n\nStencil supports <a href=\"http://sass-lang.com/documentation/file.SASS_REFERENCE.html\">Sass</a>/SCSS upon installation, with your choice of framework.\n\n### More Info: \n* Components/Design Patterns\n"
+                      data: "For complete control over theme development, here is a brief summary of how you would interact with the Stencil CLI (command-line interface) framework, while also enabling further theme customization by merchants:\n\n* Local Development\n* Attributes\n* Objects\n* Syntax\n* Event Hooks\n* Design\n* Customization\n* Next Steps\n\n\n## Local Development \n\nStencil is designed to support local development. Stencil CLI runs on the [Node.js](https://nodejs.org/en/) runtime environment. Installing Node.js also provides the required <a href=\"https://www.npmjs.com/\">npm</a> package manager.\n\n### More Info:\n* Node.js and npm prequisites\n* Installing Stencil CLI\n* Stencil CLI options\n\n## Attributes \n\nStencil's storefront template pages support YAML-formatted \"front matter\" to invoke the attributes you need, per page. Here is an example of a pagetop invocation to display a \"new products\" section, while limiting its contents to four products:\n\n```\n---\nproducts:\n    new:\n        limit: 4\n---\n```\n\n## More Info:\n* Attributes invocation overview\n* Attributes reference \n\n\n## Objects \n\nStencil exposes data objects that allow your themes to access various assets across a storefront. Here is an example of a Stencil object &ndash; a very simple one, which nevertheless references a second object:\n\nBrand List Object\n\n\n### More Info: \n\n  * Objects reference\n\n## Syntax \n\nTheme pages access Stencil objects using Handlebars, a lightweight, open-source templating language. Handlebars allows you to efficiently embed dynamic and conditional logic onto your storefront pages. A Handlebars expression begins with: {{ and ends with: }}\n\nBelow is a Handlebars if structure that tests for a boolean variable named product.similar_by_views</span>. If its value is true, this snippet inserts a corresponding component &ndash; a carousel display of \"similar products.\" It also specifies a six-column display:\n\n```\n{{#if product.similar_by_views}}\n   {{> components/products/carousel products=product.similar_by_views columns=6}}\n{{/if}}\n```\n\n\n###  More Info: \n<ul>\n  <li> <a href=\"/docs/developing-with-handlebars\">Handlebars</a> overview\n  </li>\n<li> <a href=\"/docs/basic-designlayout-changes\">Handlebars tutorial</a> (requires Stencil <a href=\"/docs/installing-and-launching-stencil-1\">installation</a>)\n  </li>\n</ul>\n  \n## Event Hooks\n\nYour Stencil themes can access remote objects through data tags and event hooks, using the hooks to trigger defined events based on shopper behavior. To facilitate theme-building, BigCommerce provides the <span class=\"inline-code\">stencil-utils</span> client-side JavaScript library for managing event hooks.<br><br>\n\n<A NAME=\"remote-ex-2\"></a>In the following code example from a Stencil theme, note the <span class=\"inline-code\">cart‑item‑add</span> event. A theme could listen for this  event, to override the default form-submit behavior when a shopper adds product to their cart:<br>\n\n```\n * Import all product-specific js \n */\n[...]\nimport utils from 'bigcommerce/stencil-utils';\n[...]\naddProductToCart() {\n    utils.hooks.on(<b>'cart-item-add'</b>, (event) =&gt; {\n        event.preventDefault();\n    });\n\t}\n```\n\n### More Info:\n* Event hooks reference\n* stencil-utils package introduction stencil-utils\n* API Reference\n\n## Design \n\nStencil supports <a href=\"http://sass-lang.com/documentation/file.SASS_REFERENCE.html\">Sass</a>/SCSS upon installation, with your choice of framework.\n\n### More Info: \n* Components/Design Patterns\n"
                     - type: callout
                       data:
                         type: warning
@@ -338,64 +338,6 @@ pages:
                           offer technical assistance on substitutions for, or
                           customized versions of, Stencil's default
                           dependencies.
-                    - type: text
-                      data: >-
-                        <H2> <A NAME="Customize"></a> Customization </h2>
-
-
-                        Merchants can further customize your themes using
-                        Stencil's Theme Editor, a browser-based graphical
-                        interface. You configure which theme features are
-                        available for self-service here, through what GUI
-                        controls, and what options to display for each
-                        feature.<br>
-
-
-                        <p></p>You can grant access to colors, fonts,
-                        display/hiding of page features, and number of
-                        products/entries to display per feature.
-
-
-                        <H5> More Info: </h5>
-
-                        <ul>
-                         <li>Theme Editor <a href="/docs/what-is-theme-editor">overview</a></li>
-                         <li>Theme Editor <a href="/docs/schemajson-metadata-for-theme-editor">configuration reference</a></li>
-                        </ul>
-
-
-
-                        <H2> <A NAME="Next"></a> Next Steps </h2>
-
-                        We invite you to proceed to our:
-
-
-                        <ul>
-                          <li> <a href="/docs/technology-overview">Technology Overview</a> &ndash; a richer introduction. </li>
-
-                        <li> <a
-                        href="/docs/installing-and-launching-stencil-1">Installation
-                        and Launch</a> instructions. </li>
-
-
-                        <li> <a
-                        href="/docs/developing-on-the-stencil-framework-quick-start/">Development
-                        Quick Start</a> tutorial. </li>
-                          
-                        <li> <a href="/using-yaml-front-matter">Front-matter</a>
-                        overview of YAML conventions. </li>
-
-
-                        <li> Front-matter <a
-                        href="/docs/front-matter-variables">attributes</a>
-                        reference. </li>
-
-
-                        <li> <a
-                        href="/docs/developing-with-handlebars">Handlebars</a>
-                        overview. </li>
-                          
-                        </ul>
               - title: Supported Browsers
                 route:
                   path: /supported-browsers
