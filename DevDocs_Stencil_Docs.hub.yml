@@ -1,25 +1,481 @@
-title: Dev Docs Stencil Docs Hub
-header:
-  nav:
-    left: []
-    center: []
-    right:
-      - title: Help
-        path: 'https://docs.stoplight.io'
-pages:
-  /:
-    title: Home
-    data:
-      blocks:
-        - type: text
-          data: >-
-            # Welcome to your new hub. 
-
-
-            Its kind of empty in here - click the **"Design"** button at the top
-            of the editor to switch to edit mode to add new pages, content, and
-            subpages!
-
-
-            Use references to power parts of your Hub with other files in this
-            project (like Modeling/OAS/Swagger files).
+{
+  "title": "BigCommerce",
+  "logo": "https://next.stoplight.io/images/mark-light-bg.png",
+  "header": {
+    "nav": {
+      "left": [
+        {
+          "title": "Current Docs",
+          "path": "https://developer.bigcommerce.com"
+        },
+        {
+          "title": "Changelog",
+          "path": "/changelog"
+        }
+      ],
+      "right": []
+    }
+  },
+  "pages": {
+    "/": {
+      "title": "Welcome",
+      "data": {
+        "blocks": [],
+        "children": [
+          {
+            "title": "Catalog",
+            "route": {
+              "path": "/catalog"
+            },
+            "data": {
+              "blocks": [
+                {
+                  "type": "text",
+                  "data": "“Catalog” refers to the collection of virtual representations of an e-commerce merchant’s saleable products, stored within the BigCommerce platform. The catalog domain consists of this and several related functions which augment the merchant’s ability to communicate the details of products to their shoppers in order to encourage their sale.\n\nThe Catalog domain is in turn consumed downstream by other domains, namely Orders, Cart, Storefront/Merchandising, Omnichannel, Shipping, and Tax. There is overlap with other domains such as Discounts/Promotions, Analytics, and others.\n\n\n[Eventually and Image will go here]"
+                },
+                {
+                  "type": "text",
+                  "data": {
+                    "$ref": "./Product.md"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "title": "Products",
+                  "route": {
+                    "path": "/products"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "text",
+                        "data": "Content"
+                      },
+                      {
+                        "type": "text",
+                        "data": "# Products"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## /catalog/products"
+                      },
+                      {
+                        "type": "html",
+                        "data": "<span id=\"hello\" class=\"hello-again\"></span>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Overview\n\nProducts are the primary catalog entity, and the primary function of the e-commerce platform is to sell products on the storefront and other selling channels.\n\nProducts can either be [Simple](#simple-product) or [Complex](#complex-product). Simple products do not have any options, modifiers, or variants, and therefore cannot be configured or modified before they are added to cart. A simple product is its own variant. Complex products have at least one option and may have modifiers or variants.\n\nProducts can be Physical or Digital. Physical products are typically products that exist in a physical form, have a weight, and are being sold by retailers with the intent of shipping them to customers. Digital products, on the other hand, may not have a physical representation in the real world; this includes downloadable products such as computer software, ebooks, music, images, and other digital media. Alternatively, a digital product may be used to sell services such as spa treatments, consulting, and so forth - which also do not require shipping.",
+                        "header": {
+                          "anchor": "adadfdfasdfdfdsfds"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n\t\"name\": \"BigCommerce Coffee Mug\",\n\t\"price\": \"10.00\",\n\t\"categories\":[\n\t\t\t23,21\n\t\t],\n\t\t\n\t\"weight\": 4,\n\t\"type\": \"physical\"\n}\n",
+                        "header": {
+                          "title": "Create a Simple Product",
+                          "subtitle": "/POST https://api.bigcommerce.com/stores/store_hash/v3/catalog/products",
+                          "anchor": "simple-product"
+                        },
+                        "config": {
+                          "mode": "json"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n\t\"name\": \"BigCommerce Coffee Mug\",\n\t\"price\": \"10.00\",\n\t\"categories\":[\n\t\t\t23,21\n\t\t],\n\t\t\n\t\"weight\": 4,\n\t\"type\": \"physical\",\n\t\"variants\":[\n\t\t{\n\t\t\t\"sku\": \"SKU-BLU\",\n\t\t\t\"option_values\":[\n\t\t\t\t\t{\n\t\t\t\t\t\t\"option_display_name\": \"Mug Color\",\n\t\t\t\t\t\t\"label\": \"Blue\"\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"sku\": \"SKU-GRAY\",\n\t\t\t\"option_values\":[\n\t\t\t\t\t{\n\t\t\t\t\t\t\"option_display_name\": \"Mug Color\",\n\t\t\t\t\t\t\"label\": \"Gray\"\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t}\n\t]\n}\n",
+                        "header": {
+                          "title": "Create a Complex Product",
+                          "subtitle": "/POST https://api.bigcommerce.com/stores/store_hash/v3/catalog/products",
+                          "anchor": "complex-product"
+                        },
+                        "config": {
+                          "mode": "json"
+                        }
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "body": "When options are created, it defaults the `'display_type` to radio buttons unless otherwise specified."
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Product Attributes\n\nBelow is the minimum needed to create a *Product*.\n\n|Term|Definition|\n|--|--|\n|Name|The descriptive name of the saleable entity, such as “iPad”, “Exotic Meats Crate”, or “Maxim Two Piece Suit”. It’s the primary human-readable descriptor of a product.|\n|Price|The price a shopper would expect to pay for the product, absent anything that might modify the price.|\n|Category(s)|A collection of the categories on the product, of which there must be at least one. These are drawn from the store’s configured Categories, and will define the catalog’s navigational hierarchy on the storefront which is a primary means of discovering products.|\n|Weight|The shipping weight of the product, which can be used in shipping calculations, promotions/discounts, and for storefront display. Physical products require a weight, while Digital products do not.|\n|Type|Physical or Digital. Defaults to Physical.|\n\n"
+                      },
+                      {
+                        "type": "text",
+                        "data": "There are numerous other product fields. To see a full list visit the [Catalog API Reference](https://bigcommercecart1.docs.stoplight.io/new-page-b1g4f/v3-api/catalog/getproducts).  \n\n\n\n| Term | Definition |\n| ------ | ----------- |\n| data   | path to data files to supply the data that will be passed into templates. |\n| engine | engine to be used for processing templates. Handlebars is the default. |\n| ext    | extension to be used for dest files. |\n\n(not the actual data, I just didn't feel like making it)"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Webhooks"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "title": "Categories",
+                  "route": {
+                    "path": "/categories"
+                  },
+                  "data": {}
+                }
+              ]
+            }
+          },
+          {
+            "title": "Webhooks",
+            "route": {
+              "path": "/webhooks"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "About Webhooks",
+                  "route": {
+                    "path": "/about-webhooks"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "text",
+                        "data": "## What We'll Cover\n\n* [Events Available](http://)\n* [Authentication](#authentication)\n* [Lightweight Callback Payload](#lightweight-callback-payload)\n* [Request and Response](#request-and-response)\n* [Recieving the Callback](#receiving-the-callback)\n* [Responding to the Callback](#respond-to-webhook-callbacks)\n* [Callback Retry Mechanism](#callback-retry-mechanism)\n* [Webhook Security](#webhook-security)\n* [Tools for Debugging](#tools-for-debugging-and-testing-webhooks)\n\nWebhooks allow app developers to be notified, in near real-time, when specific events occur on a BigCommerce store. For example, your app may need to perform an action when a new order is created, a product’s inventory decreases, or an item is added to a shopper’s cart. When a subscribed event occurs on a store, BigCommerce will POST a payload to your app’s callback URI so your app can take some action based on that event.\n"
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "warning",
+                          "title": "Multiple Events Are Triggered during Bulk Data Imports",
+                          "body": "Bulk data imports will trigger the relevant events for every record affected. For example, if you have a hook on `store/product/created`, when the merchant imports 2,000 products, we will send 2,000 individual callback events."
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Authentication\n\nWebhooks are authenticated using Oauth and support the JSON media type. Basic auth and XML are not supported.\n\nBefore you can begin to send and receive requests, you must have the following:\n\n* A store: You can get a sandbox store by joining the Partner Program.\n* OAuth Client ID: Obtained by creating an API Account.\n* OAuth token: Obtained by creating an API Account.\n* Valid TLS/SSL configuration: Verify your app server’s setup at the following site: [https://sslcheck.globalsign.com](https://sslcheck.globalsign.com)"
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "error",
+                          "title": "Connection Breakers",
+                          "body": "Any one of the following conditions on your app server will cause a connection failure:\n* Hostname/DNS mismatch.\n* Self-signed certificate.\n* Intermediate certificates not loaded.\n"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Lightweight Callback Payload\n\nWhen a subscribed event occurs, we send a light payload with only minimum details regarding the event that’s been triggered. This gives you maximum flexibility as to how you want to handle the notification in your application. For instance, if you subscribe to the `store/order/statusUpdated` event, we’ll send you the order ID when the status is updated. You might want to handle the notification by fetching the full order details via a request to the Orders resource.\n\nAn example payload follows:\n\n```\n{\n \"store_id\":11111,\n \"producer\":\"stores/abcde\",\n \"scope\":\"store/order/statusUpdated\",\n \"data\":{\n         \"type\":\"order\",\n         \"id\":173331\n        },\n \"hash\":\"3f9ea420af83450d7ef9f78b08c8af25b2213637\"\n }\n```\n\n## Request and Response\n\n*Never worked with webhooks before? Check out the tutorial on creating webhooks.*"
+                      },
+                      {
+                        "type": "code",
+                        "data": "curl -X POST \\\n  https://api.bigcommerce.com/stores/store_hash/v2/hooks \\\n  -H 'Accept: application/json' \\\n  -H 'X-Auth-Client: your-client-id \\\n  -H 'X-Auth-Token: your-auth-token \\\n  -d '{\n  \"scope\": \"store/cart/lineItem/*\",\n  \"destination\": \"https://myapp.herokuapp.com/\",\n  \"is_active\": true\n}\n\n// Response 201 Created\n\n    {\n        \"id\": 14270456,\n        \"client_id\": \"your-client-id\",\n        \"store_hash\": \"your_store_hash\",\n        \"scope\": \"store/cart/lineItem/*\",\n        \"destination\": \"https://779aca97.ngrok.io/webhooks\",\n        \"headers\": null,\n        \"is_active\": true,\n        \"created_at\": 1531326542,\n        \"updated_at\": 1531337178\n    }\n\n",
+                        "header": {
+                          "title": "/POST Webhook ",
+                          "subtitle": "Request: https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks"
+                        },
+                        "config": {
+                          "mode": "json"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "An HTTP 201 response indicates that the webhook was set successfully.\n"
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "warning",
+                          "body": "Following the creation of a webhook, it can take up to one minute for BigCommerce to start sending POST requests to your callback URI.",
+                          "title": "One-Minute Timeout"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "//Response 200 OK\n\n[\n    {\n        \"id\": 14270466,\n        \"client_id\": \"your-client-id\",\n        \"store_hash\": \"your_store_hash\",\n        \"scope\": \"store/product/created\",\n        \"destination\": \"https://779aca97.ngrok.io/webhooks\",\n        \"headers\": null,\n        \"is_active\": true,\n        \"created_at\": 1531326542,\n        \"updated_at\": 1531337178\n    },\n    {\n        \"id\": 14270713,\n        \"client_id\": \"your-client-id\",\n        \"store_hash\": \"your_store_hash\",\n        \"scope\": \"store/product/updated\",\n        \"destination\": \"https://779aca97.ngrok.io/webhooks\",\n        \"headers\": null,\n        \"is_active\": false,\n        \"created_at\": 1531338589,\n        \"updated_at\": 1531338589\n    }\n]\n",
+                        "header": {
+                          "title": "/GET All Webhooks",
+                          "subtitle": "Request: https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks"
+                        },
+                        "config": {
+                          "mode": "json"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n    \"id\": 14270466,\n    \"client_id\": \"your-client-id\",\n    \"store_hash\": \"your_store_hash\",\n    \"scope\": \"store/product/created\",\n    \"destination\": \"https://779aca97.ngrok.io/webhooks\",\n    \"headers\": null,\n    \"is_active\": false,\n    \"created_at\": 1531326542,\n    \"updated_at\": 1531337178\n}\n\n",
+                        "header": {
+                          "subtitle": "To get a single webhook use the `id`.  Request: https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks/id",
+                          "title": "/GET a Single Webhook"
+                        },
+                        "config": {
+                          "mode": "json"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n \"scope\": \"store/product/updated\",\n \"destination\": \"https://779aca97.ngrok.io/webhooks\",\n \"is_active\": false\n}\n\n\nResponse 200 OK\n\n{\n    \"id\": 14270466,\n    \"client_id\": \"ejoftto9hv8xlip01cckcg53v7g3lrl\",\n    \"store_hash\": \"jrah6gmn\",\n    \"scope\": \"store/product/created\",\n    \"destination\": \"https://779aca97.ngrok.io/webhooks\",\n    \"headers\": null,\n    \"is_active\": false,\n    \"created_at\": 1531326542,\n    \"updated_at\": 1531337178\n}\n",
+                        "header": {
+                          "title": "/PUT Webhook",
+                          "subtitle": "Update a webhook using the id. Once the webhook is created all the fields below can be changed via an update request. Request: https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks/id"
+                        },
+                        "config": {
+                          "mode": "json"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "Response 200 OK\n{\n    \"id\": 14270466,\n    \"client_id\": \"ejoftto9hv8xlip01cckcg53v7g3lrl\",\n    \"store_hash\": \"jrah6gmn\",\n    \"scope\": \"store/product/created\",\n    \"destination\": \"https://779aca97.ngrok.io/webhooks\",\n    \"headers\": null,\n    \"is_active\": false,\n    \"created_at\": 1531326542,\n    \"updated_at\": 1531337178\n}\n",
+                        "header": {
+                          "title": "/DELETE a Wehbook",
+                          "subtitle": "Request: https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks/id"
+                        },
+                        "config": {
+                          "mode": "json"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "There is not a way to delete all webhooks on a store. Run a GET request for the webhook id, then send a request to the delete URI to remove each one. It returns a 200 OK for the response with the deleted hook. When requesting a list of hook, the hook id is not available.\n\nIf webhooks are no longer being used, either delete them or set is_active:false.\n\n## Receiving the Callback\n\nYou’ll need to build an application and configure your server to receive the callback we send when events are triggered. \n\nNeed to set up a quick destination URL for testing? See Tools for Debugging and Testing Webhooks. \n\n## Respond to Webhook Callbacks\n\nYou’ll need to build an application and configure your server to receive the callback we send when events are triggered.\n\nTo acknowledge that you received the webhook without issue, your server should return a 200 HTTP status code. Any other information you return in the request headers or request body will be ignored. Any response code outside the 200 range, including 3_xx_ codes, will indicate to us that you did not receive the webhook. When a webhook is not received (for whatever reason), we will retry the callback as described below.\n\nNeed to set up a quick destination URL for testing? See Tools for testing webhooks.\n\n## Callback Retry Mechanism\n\nThe webhooks service will do its best to deliver events to your callback URI. If your server indicates that the webhook payload has not been received, the dispatch service will take the following actions:\nIf an app server responds to a webhook payload with anything other than a 2_xx_ response, or times out, the app will be blocked for 60 seconds.\nWebhooks created during that 60-second block will be queued up to send on the next scheduled retry attempt after the block expires, so that webhooks are not lost.\n\nThe webhook dispatcher will then attempt several retries (at increasing intervals) until the maximum retry limit is reached.\n\n### Retry Intervals\n\n60 seconds after the most recent failure  \n180 seconds after the most recent failure  \n180 seconds after the most recent failure  \n300 seconds after the most recent failure  \n600 seconds after the most recent failure  \n900 seconds after the most recent failure  \n1800 seconds after the most recent failure  \n3600 seconds after the most recent failure  \n7200 seconds after the most recent failure  \n21600 seconds after the most recent failure  \n50400 seconds after the most recent failure  \n86400 seconds (24 hours) after the most recent failure\n\nAfter the final retry attempt (cumulatively, 48 hours after the first delivery attempt), the webhook will automatically be deactivated, and we will send an email to the developer’s email address registered on the subscribing app. You can reactivate the webhook by setting the `is_active` flag back to true via a `/PUT` request to the hooks resource.\n\n\n## Webhook Security\nTo ensure that webhook payloads are secure against activity by a malicious actor, we take a three-pronged approach:\n\n* Webhook payloads contain minimal information about the store and event, for example the ID identifying the order or cart. To access potentially sensitive information on a store, a malicious actor would need to be fully authenticated against that store’s API in order to request full details.\n* Webhook payloads are sent over a TLS-encrypted connection.\n* For added security, you can include custom headers in your webhook creation request, and these headers will be sent in the payload when an event you subscribe to occurs. If your app endpoint is secured by basic authentication, you could set your own basic auth headers to authenticate the payload at runtime. \n\n## Troubleshooting\n\n### Why am I not receiving event payloads to my callback URI?\nIf your app does not return an HTTP 2_xx_ to BigCommerce after receiving the webhook event payload, BigCommerce considers it a failure. BigCommerce will keep trying for a little over 48 hours. At the end of that time, BigCommerce sends an email to the email address set during app registration and disables the webhook by setting the is_active flag to false.\n\nYou can proactively check to make sure that everything is OK by periodically making a GET request and checking the is_active flag.\n\nIf you receive an email or discover that the is_active flag has been flipped to false, try the following:\n\nCheck to see if your app is responding to the event payload with something other than HTTP 200.\nCheck to make sure that your server has a valid TLS/SSL setup. One way to do this is by visiting the following website: https://sslcheck.globalsign.com. Any of the following will cause the TLS/SSL handshake to fail:\nSelf-signed certificate.\nHost name of the certificate does not match the server’s DNS.\nYour server’s key or trust store has not been loaded up with the intermediate certificates necessary to establish the chain of trust.\nOnce you have resolved the issue preventing the connection, send a PUT request to flip the is_active flag back to true. This will cause BigCommerce to start sending the event payloads to your callback URI again.\n\n### Why am I not receiving a 201 response after creating a webhook?\nAfter sending a POST request to create a webhook, you should get an HTTP 201 back. If you do not, check your TLS/SSL setup and be sure that your request contains the following headers:\n\n```\n     Accept: application/json\n     Content-Type: application/json\n     X-Auth-Client: <the OAuth client id>\n     X-Auth-Token: <the OAuth token>\n```\n\n\n## Tools for Debugging and Testing Webhooks\n\n**ngrok**  \nAs you are building your integration, you might want to test webhooks on your local dev machines.\n\nWe suggest using ngrok, which you can use to easily set up tunnels between a server running on localhost and a public URL. This will enable you to send our webhooks to your localhost environments via a public URL. No production push is required.  \nNeed help on ngrok and webhooks see our tutorial.\n\n**Webhook Tester**  \n[https://webhook.site/#/](https://webhook.site/#/)\n"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "title": "Testing Webhooks Tutorial",
+                  "route": {
+                    "path": "/testing-webhooks"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "text",
+                        "data": "## Prerequisites\n\n* Node.js is installed\n* NPM is installed\n* Familiar with Command Line\n* Familiar with Postman\n* API Access Token & Client ID with scope set to Information & Settings Read-Only & Products Read-Only.\n* Webhooks Overview\n\n## Create project folder\nOpen the terminal and create a folder that will hold Ngrok and the Node app, then move into that directory.\n```\nBIGCOMMERCE:webhooks your.computer$ mkdir webhooks-test\nBIGCOMMERCE:webhooks your.computer$ cd webhooks-test\n```\n\n## Install Ngrok\nThere are three ways to install Ngrok: \n* Install manually and then set the `$PATH` so Ngrok can be used globally. \n* Download as an [npm module](https://www.npmjs.com/package/ngrok). \n* Download manually and place in the project folder. (Method we are using)\n\n1. Visit [https://ngrok.com/](https://ngrok.com/) and click on download.\n2. Choose the version for your operating system.\n3. Unzip ngrok and place the application in the project folder that you created."
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "success",
+                          "body": "At this point you should have a project folder with ngrok unzipped inside of it. \n"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Create Express App\n\n1. In the terminal run npm init. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js.\n4. Install [Express](https://expressjs.com/) using the terminal in the same project folder.\n\n\t\t     npm install express --save\t\t\t\t "
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "success",
+                          "body": "At this point your project folder should have similar contents:\nindex.js\nnode_modules\npackage.json\nngrok\npackage-lock.json"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "4. Open index.js in a text editor and add this code snippet: \n\n```\nconst express = require('express')\nconst app = express()\napp.post('/webhooks', function (req, res) {\nres.send('OK')\n})\napp.listen(3000, function () {\nconsole.log('Listening for webhooks on port 3000')\n})\n```\n\nThe app is starting a server and listening on port 3000, then returning a response of ok once it receives a `POST` to the `/webhooks` url.\n\n```\napp.post('/webhooks', function (req, res) {\n res.send('OK')\n})\n```\n\n\nFrom [Express Website](https://expressjs.com/en/starter/basic-routing.html):  \n\n`app.METHOD(PATH, HANDLER)`  \n* app is an instance of express.\n* METHOD is an HTTP request method, in lowercase.\n* PATH is a path on the server.\n* HANDLER is the function executed when the route is matched.\n* Res.send is the body parameter that sends the HTTP response. \n\n\n## Start the app and Ngrok\nWe are going to start the app and visit the ngrok url to see the status of our webhooks. \n\n\n1. Open two terminal tabs. They both should be in your project folder. \n2. In one tab run the app. `node index.js`\n3. In the other start ngrok. `ngrok http 3000`"
+                      },
+                      {
+                        "type": "tabs",
+                        "data": {
+                          "children": [
+                            {
+                              "title": "node index.js",
+                              "blocks": [
+                                {
+                                  "type": "text",
+                                  "data": "```\nBIGCOMMERCE:webhooks your.computer$ node index.js\nListening for webhooks on port 3000\n```"
+                                }
+                              ]
+                            },
+                            {
+                              "title": "ngrok http 3000",
+                              "blocks": [
+                                {
+                                  "type": "image",
+                                  "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1531500085650",
+                                  "config": {
+                                    "centered": true
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "Ngrok returns two values we need for webhooks. Web Interface, where you can monitor the hook from a browser. Forwarding is the webhook destination. Make note of the https version. In this example its https://6a35e97b.ngrok.io.\n\nOpen a web browser and copy in your Web Interface URL. `http://127.0.0.1:4040` -  This is where the webhooks will appear when they fire."
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1531500191661"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Create the webhooks\n\nThe webhook we are going to subscribe to is `store/product/updated`. \n\n1. In Postman create a POST request using `https://api.bigcommerce.comstores/{{store_hash}}/v2/hooks`. \n\t2. Replace store_hash with your store.\n3. Create a body request with the webhook we are subscribing to and your forwarding url:\n\n```\n{\n \"scope\": \"store/product/updated\",\n \"destination\": \"https://6a35e97b.ngrok.io/webhooks\",\n \"is_active\": true\n}\n```\n> Don't have Postman. Use the Try it out box below.\n\nThe destination url is the forwarding url from Ngrok and /webhooks,  matching the URL path set in the app POST.  \n\n3. Update the headers to have:\n\n```\n    Accept: application/json\n     Content-Type: application/json\n     X-Auth-Client: {{the OAuth client id}}\n     X-Auth-Token: {{the OAuth token}}\n```"
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1531500381736"
+                      },
+                      {
+                        "type": "http",
+                        "data": {
+                          "method": "post",
+                          "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/hooks",
+                          "headers": {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json",
+                            "X-Auth-Client": "{the OAuth client id}",
+                            "X-Auth-Token": "{the OAuth token}"
+                          },
+                          "body": "{\n\"scope\": \"store/product/updated\",\n \"destination\": \"https://{your-url}.ngrok.io/webhooks\",\n \"is_active\": true\n}\n"
+                        },
+                        "header": {
+                          "title": "Create a Webhook"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "4. Check all the values and then hit `/POST`.\n\nThe response is a 201 Created.\n\n```\n{\n    \"id\": 14263419,\n    \"client_id\": \"your-client-id\",\n    \"store_hash\": \"your-store-hasha\",\n    \"scope\": \"store/product/updated\",\n    \"destination\": \"https://6a35e97b.ngrok.io/webhooks\",\n    \"headers\": null,\n    \"is_active\": true,\n    \"created_at\": 1531256030,\n    \"updated_at\": 1531256030\n}\n```\n\n\n## Fire Webhooks\n\nYou can fire the webhook in two ways. Either the API or the store’s control panel. We are going to cover both.\n\n### Update via the Control Panel\n\n1. From your store’s control panel, navigate to Products > View. Choose a product and change some of the information. In this case, I added the word Hoodie to the product name. Then click save."
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1531500906129"
+                      },
+                      {
+                        "type": "text",
+                        "data": "2. Visit the Ngrok web interface address (in the sample app it’s http://127.0.0.1:4040), and check for a 200 response. "
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1531500945565"
+                      },
+                      {
+                        "type": "text",
+                        "data": "Under Summary you can see the webhook has fired. It returned the text OK. This can be changed. In the original app, res.send(‘OK’). This can be changed to say something different or even post the response to another app.  \n\nThe response will also show in the terminal. "
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1531500989467"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Update via the API\n\nCreate a `/PUT` request to the product that needs to be updated. (link to request article)\n\n`https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/124`\n\nIn this example I am changing the price on `product_id` 124  to 12.99."
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1531501093233"
+                      },
+                      {
+                        "type": "http",
+                        "data": {
+                          "url": "https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}",
+                          "headers": {
+                            "X-Auth-Client": "{Your-X-Auth-Client}",
+                            "X-Auth-Token": "{Your-X-Auth-Token}",
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                          },
+                          "method": "put",
+                          "body": "{\n  \"price\": 12.99\n}"
+                        },
+                        "header": {
+                          "title": "Update a Product"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "After hitting send, check the website. You may have more or less events based on how many times the product has been updated. "
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1531501115256"
+                      },
+                      {
+                        "type": "text",
+                        "data": "That’s it. In this walkthrough you created a webhook, setup a server to accept the response and used Express. Some extra things are to change the text in res.send() to have a custom response, print the response to a webpage or setup a different webhook. "
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "body": "Unless you have paid for Ngrok, the URL is only valid for a few hours. After that, the webhook will stop working. Send a [DELETE](https://bigcommercecart1.docs.stoplight.io/webhooks#request-and-response) request to the specific webhook id. ",
+                          "type": "warning"
+                        }
+                      },
+                      {
+                        "type": "http",
+                        "data": {
+                          "method": "delete",
+                          "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/hooks/{hook_id}",
+                          "headers": {
+                            "X-Auth-Client": "{your-client-id}",
+                            "X-Auth-Token": "{your-auth-token}",
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                          }
+                        },
+                        "header": {
+                          "title": "Delete the webhook",
+                          "subtitle": "Get the hook_id by either getting it from the original /POST response or by sending a /GET request to the hooks resource"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "BigCommerce APIs",
+            "route": {
+              "path": "/new-page-b1g4f"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "V3 API",
+                  "route": {
+                    "path": "/v3-api"
+                  },
+                  "data": {
+                    "$ref": "./V3 API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Server to Server Cart",
+                  "route": {
+                    "path": "/s2s-cart"
+                  },
+                  "data": {
+                    "$ref": "./Cart.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Storefront Cart",
+                  "route": {
+                    "path": "/storefront"
+                  },
+                  "data": {
+                    "$ref": "./Storefront.oas2.yml"
+                  }
+                }
+              ],
+              "blocks": [
+                {
+                  "type": "text",
+                  "data": "Intro to APIS here. Maybe v2 and v3"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "theme": {
+    "secondary": "#6574cd",
+    "texture": "https://www.transparenttextures.com/patterns/cubes.png"
+  }
+}
