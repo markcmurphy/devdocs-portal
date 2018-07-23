@@ -1453,6 +1453,243 @@ pages:
               - title: Configuring Webpack or a Custom Build System
                 route:
                   path: /configuring-webpack
+                data:
+                  blocks:
+                    - type: text
+                      data: '# Configuring Webpack or a Custom Build System'
+                    - type: text
+                      data: >-
+                        ## <span id="jsomething">Webpack, jspm, or Other
+                        JavaScript Managers</span>
+
+
+                        Stencil themes are Node.js applications, and therefore
+                        contain dependencies on other JavaScript libraries. For
+                        Stencil's default Cornerstone theme, we provide the
+                        [Webpack](https://webpack.github.io/docs/) build manager
+                        to handle these dependencies. 
+
+
+                        As you develop a theme based on Cornerstone, you have
+                        options to reconfigure Webpack's watched folders, and to
+                        even substitute a different build system. These options
+                        are explained below.
+
+
+                        All themes currently in the BigCommerce Theme
+                        Marketplace use Webpack. However, older versions of
+                        certain themes used the <a
+                        href="http://jspm.io/">jspm</a> JavaScript dependency
+                        manager instead of Webpack. Please see [this
+                        page](/docs/downloading-and-customizing-marketplace-themes)
+                        to determine (by version number) whether you are
+                        developing based on one of these earlier versions, and
+                        to find the required jspm setup procedures.<p></p>
+                    - type: callout
+                      data:
+                        type: warning
+                        body: >-
+                          BigCommerce does not offer technical assistance on
+                          substitutions for the default dependencies listed in
+                          this documentation.
+                        title: Limited Support
+                    - type: text
+                      data: >-
+                        ## <span id="wpOptions"> Webpack-Specific
+                        Configuration</span>
+
+
+                        The following Webpack configuration options can aid in
+                        troubleshooting.
+
+
+                        ### <span id="wpVerbose"> More-Verbose JavaScript
+                        Diagnostics </span>
+
+
+                        If JavaScript errors in your browser's developer tools
+                        are not reporting filenames and line numbers, try
+                        changing your `webpack.conf.js` file's
+                        [sourcemap](https://webpack.js.org/guides/build-performance/#devtool)
+                        entry from:
+
+
+                        ```
+
+                        devtool: 'source-map'
+
+                        ```
+
+                        to:
+
+
+                        ```
+
+                        devtool: 'eval-source-map'
+
+                        ```
+
+
+                        The `eval-source-map` option is slower, but more
+                        verbose. This [Webpack Devtool
+                        Configuration](https://webpack.js.org/configuration/devtool/)
+                        article provides an overview of all devtool options and
+                        details regarding each.
+
+
+                        <p></p> 
+
+
+                        ## <span id="build_config">Build-System Configuration
+                        File</span>
+
+
+                        To take advantage of automatic JavaScript bundling and
+                        browser refresh, Stencil themes require the
+                        [`stencil.conf.js`](https://github.com/bigcommerce/cornerstone/blob/master/stencil.conf.js)
+                        file. To enable a custom build system, you would need to
+                        edit this file.
+
+
+                        Within `stencil.conf.js`, Stencil CLI looks for the
+                        exported `watchOptions` object, and `development` and
+                        `production` callbacks, shown below. 
+
+
+                        Let's take a closer look at each of these three
+                        references.
+
+
+                        ## <span id="watchOptions">Watched Folders: watchOptions
+                        Object</span>
+
+
+                        The `watchOptions` object defines directories for the
+                        [Browsersync](https://browsersync.io/docs) preview
+                        engine to watch or ignore, in two respective lists. You
+                        are free to edit these lists:
+
+
+                        ```
+
+                        /**
+                         * Watch options for the core watcher
+                         * @type {{files: string[], ignored: string[]}}
+                         */
+                        var watchOptions = {
+                            // If files in these directories change, reload the page.
+                            files: [
+                                '/templates',
+                                '/lang'
+                            ],
+
+                            //Do not watch files in these directories
+                             ignored: [
+                                '/assets/scss',
+                                '/assets/less',
+                                '/assets/css',
+                                '/assets/dist',
+                            ]
+                        };
+
+                        ```
+
+
+                        ## <span id="development">JavaScript Rebundling:
+                        development Function</span>
+
+
+                        Upon the command-line instruction [`stencil
+                        start`](/docs/running-stencil-locally), Stencil CLI will
+                        look for and call the `development` function. 
+
+
+                        In the base Cornerstone theme, we have created a Webpack
+                        watcher to trigger a browser reload whenever theme edits
+                        cause JavaScript to be rebundled to the theme's
+                        `bundle.js` file. This watcher uses options configured
+                        in the [webpack.conf.js
+                        file](https://github.com/bigcommerce/cornerstone/blob/master/webpack.conf.js)
+                        passed by `webpackConfig`. So a JavaScript rebuild will
+                        refresh the browser:
+
+
+                        ```
+
+                        function development() {
+                            webpack(webpackConfig).watch({}, err => {
+                                if (err) {
+                                    console.error(err.message, err.details);
+                                }
+
+                                process.send('reload');
+                            });
+                        }
+
+                        ```
+
+
+                        ## <span id="production">Theme Packaging: production
+                        Function</span>
+
+
+                        When you issue the command-line instruction [`stencil
+                        bundle`](/docs/bundling-submitting#ship-zip-small), to
+                        process and package a completed theme for upload to a
+                        store, Stencil CLI will look for and call the
+                        `production` function. This function passes a callback
+                        as its first argument, to support asynchronous builds. 
+
+
+                        The callback must be invoked somewhere inside the
+                        `production` function, to notify Stencil CLI that the
+                        theme-specific build has completed and is ready to
+                        package:
+
+
+                        ```
+
+                        function production() {
+                            webpackConfig.watch = false;
+                            webpackConfig.devtool = false;
+                            webpackConfig.plugins.push(new webpack.LoaderOptionsPlugin({
+                                minimize: true,
+                            }));
+                            webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
+                                comments: false,
+                                compress: {
+                                    warnings: true,
+                                },
+                                sourceMap: false, // Toggle to turn on source maps.
+                            }));
+
+                            webpack(webpackConfig).run(err => {
+                                if (err) {
+                                    console.error(err.message, err.details);
+                                    throw err;
+                                }
+
+                                process.send('done');
+                            });
+                        }
+
+
+                        if (process.send) {
+                            // running as a forked worker
+                            process.on('message', message => {
+                                if (message === 'development') {
+                                    development();
+                                }
+
+                                if (message === 'production') {
+                                    production();
+                                }
+                            });
+
+                            process.send('ready');
+                        }
+
+                        ```
         - title: Handlebars Syntax and Helpers
           route:
             path: /handlebars-syntax-and-helpers
