@@ -516,548 +516,568 @@ pages:
             blocks:
               - type: text
                 data: ''
-        - title: Navigating Your Setup Scenario
-          route:
-            path: /navigating-your-setup-scenario
-          data:
-            blocks:
-              - type: text
-                data: >-
-                  # Navigating Your Setup Scenario
-
-
-                  Below, each heading identifies one theme-development scenario
-                  and lists the minimum installation steps you will need to
-                  support that scenario:
-
-
-                  * Initial Cornerstone-Based Setup
-
-                  * Cornerstone (or Diamond/Queen) Refresh
-
-                  * Downloaded Marketplace Theme
-
-                  * Custom Build System
-
-                  * Blueprint Store Launched before 1/26/2016
-              - type: callout
+            children:
+              - title: 'Stencil Setup, Illustrated'
+                route:
+                  path: /stencil-setup
                 data:
-                  type: warning
-                  title: Notes
-                  body: >-
-                    * Some steps are optional for some theme-development
-                    workflows. See below to identify the recommended
-                    installation pathway for your own scenario. 
+                  blocks:
+                    - type: text
+                      data: >-
+                        The diagram below looks complex because it shows _all_
+                        currently supported workflows for setting up Stencil.
+                        However, for a typical initial setup – incorporating the
+                        default Cornerstone reference theme – you would just
+                        follow the black arrows straight down from top to
+                        bottom.
 
 
-                    * After successful framework installation (or
-                    reinstallation), all scenarios will link you to the
-                    Preparing Your Store/Tokens Launching Stencil subsections,
-                    to launch your theme locally against a BigCommerce
-                    storefront.
+                        Here are the color codes for each setup scenario, with
+                        links to details about individual steps:
 
 
-                    * Our installation instructions have been tested on Mac OS X
-                    Yosemite, Linux/Ubuntu v.14.04.4, and Windows. Dependencies
-                    for other platforms/releases will be added upon further
-                    testing.
+                        * Black: Basic initial setup, relying on default
+                        Cornerstone theme. 
 
+                        * Purple: Customize a theme downloaded from Theme
+                        Marketplace (_other than_ Cornerstone). 
 
-                    * If you encounter any problems, please see the
-                    Troubleshooting entry.
-              - type: text
-                data: >-
-                  ## Initial Cornerstone-Based Setup 
+                        * Orange: Refresh Cornerstone from Theme Marketplace. 
 
+                        * Green: Configure a custom JavaScript build system, to
+                        avoid dependence on Webpack and jspm.
 
-                  Start developing based on BigCommerce's default Cornerstone
-                  theme. This is a streamlined workflow, using Webpack as its
-                  JavaScript build system. Steps required:
-
-
-                  * Install all prerequisites
-
-                  * Install Stencil CLI
-
-                  * Clone default Cornerstone theme
-
-                  * Install JavaScript utilities with npm
-
-                  * Prepare Store and Tokens
-
-                  * Proceed to Launching Stencil
-              - type: text
-                data: >-
-                  ## Cornerstone Refresh 
-
-
-                  Download and install a new version of Cornerstone from
-                  BigCommerce's Theme Marketplace. Steps required:
-
-
-                  * Assume all prerequisites installed and Stencil CLI installed
-
-                  * Download fresh Cornerstone .zip
-
-                  * Reinstall JavaScript utilities with npm
-
-                  * Repeat Launching Stencil
-              - type: text
-                data: >-
-                  ## Downloaded Marketplace Theme 
-
-
-                  Customize a theme (_other than_ Cornerstone, Diamond, or
-                  Queen) downloaded from BigCommerce's Theme Marketplace. This
-                  workflow requires BitBucket, and some earlier theme versions
-                  require additional steps for the jspm JavaScript build system.
-                  Steps required:
-
-
-                  * Install all prerequisites
-
-                  * Install Stencil CLI
-
-                  * Set up BitBucket, download .zip, and install JavaScript
-                  dependencies
-
-                  * Install JavaScript utilities with npm
-
-                  * Prepare Store and Tokens
-
-                  * Proceed to Launching Stencil
-              - type: text
-                data: >-
-                  ## Custom JavaScript Build System 
-
-
-                  Bypass Webpack (and jspm) by substituting a custom JavaScript
-                  build system. Steps recommended:
-
-
-                  * Install all prerequisites
-
-                  * Install Stencil CLI
-
-                  * Clone default Cornerstone theme
-
-                  * Install JavaScript utilities with npm
-
-                  * Configure your custom build system
-
-                  * Prepare Store and Tokensstore-tokens)
-
-                  * Proceed to Launching Stencil
-              - type: text
-                data: >-
-                  ## Blueprint Store Launched before 1/26/2016 
-
-
-                  Enable Stencil development on a BigCommerce production store
-                  that was launched with a Blueprint theme before Jan. 26, 2016.
-                  Steps required:
-
-                    * Follow the installation path above that corresponds to your development scenario.
-                    * As a separate (and simple) procedure, enable Stencil in the store's control panel.
-        - title: Downloading a Refreshed Copy of Cornerstone
-          route:
-            path: /downloading-a-refreshed-copy-of-cornerstone
-          data:
-            blocks:
-              - type: callout
+                        * Blue: Adds onto any of the preceding four scenarios.
+                        If developing for a BigCommerce Blueprint production
+                        store launched before Jan. 26, 2016, you must add one
+                        extra step to enable Stencil in the store's control
+                        panel.
+                    - type: image
+                      data: >-
+                        //s3.amazonaws.com/user-content.stoplight.io/6116/1532113466661
+              - title: Navigating Your Setup Scenario
+                route:
+                  path: /navigating-your-setup-scenario
                 data:
-                  body: >-
-                    The steps below are required only if you are downloading a
-                    refreshed copy of Stencil's default Cornerstone theme, from
-                    the BigCommerce Theme Marketplace.
+                  blocks:
+                    - type: text
+                      data: >-
+                        # Navigating Your Setup Scenario
 
 
-                    If you are downloading a different Marketplace theme for
-                    customization, you must instead use the workflow outlined at
-                    Downloading and Customizing Marketplace Themes.
+                        Below, each heading identifies one theme-development
+                        scenario and lists the minimum installation steps you
+                        will need to support that scenario:
 
 
-                    (Cornerstone, Diamond, and Queen use a simplified workflow
-                    that bypasses BitBucket requirements, and that replaces jspm
-                    with the Webpack build system. You can configure Webpack's
-                    watched folders, or substitute your own build system. For
-                    details, please see Webpack and Build-System Options)
+                        * Initial Cornerstone-Based Setup
+
+                        * Cornerstone (or Diamond/Queen) Refresh
+
+                        * Downloaded Marketplace Theme
+
+                        * Custom Build System
+
+                        * Blueprint Store Launched before 1/26/2016
+                    - type: callout
+                      data:
+                        type: warning
+                        title: Notes
+                        body: >-
+                          * Some steps are optional for some theme-development
+                          workflows. See below to identify the recommended
+                          installation pathway for your own scenario. 
 
 
-                    To keep any _custom or customized theme updated with the new
-                    features that BigCommerce adds to Cornerstone, please see
-                    our guidelines on Theme Updates and Version Control.
-                  title: Optional Workflow
-              - type: callout
+                          * After successful framework installation (or
+                          reinstallation), all scenarios will link you to the
+                          Preparing Your Store/Tokens Launching Stencil
+                          subsections, to launch your theme locally against a
+                          BigCommerce storefront.
+
+
+                          * Our installation instructions have been tested on
+                          Mac OS X Yosemite, Linux/Ubuntu v.14.04.4, and
+                          Windows. Dependencies for other platforms/releases
+                          will be added upon further testing.
+
+
+                          * If you encounter any problems, please see the
+                          Troubleshooting entry.
+                    - type: text
+                      data: >-
+                        ## Initial Cornerstone-Based Setup 
+
+
+                        Start developing based on BigCommerce's default
+                        Cornerstone theme. This is a streamlined workflow, using
+                        Webpack as its JavaScript build system. Steps required:
+
+
+                        * Install all prerequisites
+
+                        * Install Stencil CLI
+
+                        * Clone default Cornerstone theme
+
+                        * Install JavaScript utilities with npm
+
+                        * Prepare Store and Tokens
+
+                        * Proceed to Launching Stencil
+                    - type: text
+                      data: >-
+                        ## Cornerstone Refresh 
+
+
+                        Download and install a new version of Cornerstone from
+                        BigCommerce's Theme Marketplace. Steps required:
+
+
+                        * Assume all prerequisites installed and Stencil CLI
+                        installed
+
+                        * Download fresh Cornerstone .zip
+
+                        * Reinstall JavaScript utilities with npm
+
+                        * Repeat Launching Stencil
+                    - type: text
+                      data: >-
+                        ## Downloaded Marketplace Theme 
+
+
+                        Customize a theme (_other than_ Cornerstone, Diamond, or
+                        Queen) downloaded from BigCommerce's Theme Marketplace.
+                        This workflow requires BitBucket, and some earlier theme
+                        versions require additional steps for the jspm
+                        JavaScript build system. Steps required:
+
+
+                        * Install all prerequisites
+
+                        * Install Stencil CLI
+
+                        * Set up BitBucket, download .zip, and install
+                        JavaScript dependencies
+
+                        * Install JavaScript utilities with npm
+
+                        * Prepare Store and Tokens
+
+                        * Proceed to Launching Stencil
+                    - type: text
+                      data: >-
+                        ## Custom JavaScript Build System 
+
+
+                        Bypass Webpack (and jspm) by substituting a custom
+                        JavaScript build system. Steps recommended:
+
+
+                        * Install all prerequisites
+
+                        * Install Stencil CLI
+
+                        * Clone default Cornerstone theme
+
+                        * Install JavaScript utilities with npm
+
+                        * Configure your custom build system
+
+                        * Prepare Store and Tokensstore-tokens)
+
+                        * Proceed to Launching Stencil
+                    - type: text
+                      data: >-
+                        ## Blueprint Store Launched before 1/26/2016 
+
+
+                        Enable Stencil development on a BigCommerce production
+                        store that was launched with a Blueprint theme before
+                        Jan. 26, 2016. Steps required:
+
+                          * Follow the installation path above that corresponds to your development scenario.
+                          * As a separate (and simple) procedure, enable Stencil in the store's control panel.
+              - title: Downloading a Refreshed Copy of Cornerstone
+                route:
+                  path: /downloading-a-refreshed-copy-of-cornerstone
                 data:
-                  type: error
-                  title: Back Up Before Reinstalling
-                  body: >-
-                    If you are reinstalling over a base theme on which you have
-                    already begun development, first back up at least your
-                    theme's .stencil file. This file contains your store URL,
-                    your BigCommerce username and access tokens, and other basic
-                    settings. Preserving those settings will speed up
-                    initializing and launching the new version.
+                  blocks:
+                    - type: callout
+                      data:
+                        body: >-
+                          The steps below are required only if you are
+                          downloading a refreshed copy of Stencil's default
+                          Cornerstone theme, from the BigCommerce Theme
+                          Marketplace.
 
 
-                    To allow complete rollback, back up your whole theme-name
-                    directory. (In a current default installation, this
-                    directory is named.../cornerstone/. Prior to March 2017,
-                    this directory's name defaulted to .../stencil/.
-              - type: text
-                data: >-
-                  ## Downloading the Cornerstone .zip 
+                          If you are downloading a different Marketplace theme
+                          for customization, you must instead use the workflow
+                          outlined at Downloading and Customizing Marketplace
+                          Themes.
 
 
-                  Use these steps to download a refreshed version of the
-                  Cornerstone, Diamond, or Queen theme from the store control
-                  panel's Storefront area: 
+                          (Cornerstone, Diamond, and Queen use a simplified
+                          workflow that bypasses BitBucket requirements, and
+                          that replaces jspm with the Webpack build system. You
+                          can configure Webpack's watched folders, or substitute
+                          your own build system. For details, please see Webpack
+                          and Build-System Options)
 
 
-                  * If you have not yet added Cornerstone (or Diamond/Queen) to
-                  your store, start at Themes Marketplace and add the theme.
-                      
-                  Go to Storefront -> My Themes.
+                          To keep any _custom or customized theme updated with
+                          the new features that BigCommerce adds to Cornerstone,
+                          please see our guidelines on Theme Updates and Version
+                          Control.
+                        title: Optional Workflow
+                    - type: callout
+                      data:
+                        type: error
+                        title: Back Up Before Reinstalling
+                        body: >-
+                          If you are reinstalling over a base theme on which you
+                          have already begun development, first back up at least
+                          your theme's .stencil file. This file contains your
+                          store URL, your BigCommerce username and access
+                          tokens, and other basic settings. Preserving those
+                          settings will speed up initializing and launching the
+                          new version.
 
 
-                  Unpack the zipped theme to a working directory.
+                          To allow complete rollback, back up your whole
+                          theme-name directory. (In a current default
+                          installation, this directory is named.../cornerstone/.
+                          Prior to March 2017, this directory's name defaulted
+                          to .../stencil/.
+                    - type: text
+                      data: >-
+                        ## Downloading the Cornerstone .zip 
 
 
-                  (This can be the directory where you have been developing your
-                  theme, or a new directory.)
+                        Use these steps to download a refreshed version of the
+                        Cornerstone, Diamond, or Queen theme from the store
+                        control panel's Storefront area: 
 
 
-                  Reinstalling Dependencies and Relaunching 
+                        * If you have not yet added Cornerstone (or
+                        Diamond/Queen) to your store, start at Themes
+                        Marketplace and add the theme.
+                            
+                        Go to Storefront -> My Themes.
 
 
-                  Ensure that your theme includes all current dependencies, by
-                  repeating JavaScript Utilitiesinstallation.
-                    
-                  Repeat the steps listed in the Launching Stencil subsection
+                        Unpack the zipped theme to a working directory.
 
 
-                  Next, ensure that your theme includes all current dependencies
-                  by re-running npm, as follows:
+                        (This can be the directory where you have been
+                        developing your theme, or a new directory.)
 
 
-                  Navigate to your theme directory. This example assumes that
-                  this target directory has the default name stencil
+                        Reinstalling Dependencies and Relaunching 
 
 
-                  `cd stencil`
+                        Ensure that your theme includes all current
+                        dependencies, by repeating JavaScript
+                        Utilitiesinstallation.
+                          
+                        Repeat the steps listed in the Launching Stencil
+                        subsection
 
 
-                  `npm install`
+                        Next, ensure that your theme includes all current
+                        dependencies by re-running npm, as follows:
 
 
-                  You are now ready to resume development of your theme. Please
-                  proceed to Launching Stencil
+                        Navigate to your theme directory. This example assumes
+                        that this target directory has the default name stencil
 
 
-                  Later, when you are ready to upload your customized theme to a
-                  store, you should follow the zipping and uploading
-                  instructions in Bundling and Submitting a Theme and
-                  Troubleshooting Theme Uploads.
-        - title: Theme Updates and Version Control
-          route:
-            path: /theme-updates-and-version-control
-          data:
-            blocks:
-              - type: text
-                data: >-
-                  This page offers version-control best practices for:
-
-                  * Isolating Customizations for Easier Updates
-
-                  * Synchronizing with Cornerstone Theme Updates
-
-                  * Synchronizing Updates for Multiple Themes
+                        `cd stencil`
 
 
-                  Each section progresses from simpler to more-complex
-                  scenarios.
-              - type: callout
+                        `npm install`
+
+
+                        You are now ready to resume development of your theme.
+                        Please proceed to Launching Stencil
+
+
+                        Later, when you are ready to upload your customized
+                        theme to a store, you should follow the zipping and
+                        uploading instructions in Bundling and Submitting a
+                        Theme and Troubleshooting Theme Uploads.
+              - title: Theme Updates and Version Control
+                route:
+                  path: /theme-updates-and-version-control
                 data:
-                  title: Distributed Version Control via Git
-                  body: >-
-                    Many techniques discussed below rely on GitHub's
-                    _distributed version control_ model and features. For the
-                    underlying principles, please see [Git's own
-                    documentation](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control).
-              - type: text
-                data: >-
-                  Isolating Customizations for Easier Updates
+                  blocks:
+                    - type: text
+                      data: >-
+                        This page offers version-control best practices for:
+
+                        * Isolating Customizations for Easier Updates
+
+                        * Synchronizing with Cornerstone Theme Updates
+
+                        * Synchronizing Updates for Multiple Themes
 
 
-                  How best to set up your customized Stencil theme to smoothly
-                  incorporate future updates in its base theme? We're gratefully
-                  sharing these guidelines from Ken Utting, Web Developer for
-                  BigCommerce client [goruck.com](https://www.goruck.com/). His
-                  scenario (slightly edited here) addresses maintaining a single
-                  custom theme that is based on a third-party Marketplace theme.
-                  But&#160;these guidelines also apply to maintaining one, or
-                  multiple, themes based on Stencil's default Cornerstone theme.
-              - type: text
-                data: "## Best Practices for Handling Theme Updates\n\nWe've made significant changes to our theme, and one principle that I've found successful is isolating my changes as much as possible. I try to put my changes into their own files, whether they're changes to templates, JavaScript, or SCSS. \n\nI also name all my files, CSS classes and identifiers, and JavaScript methods and classes with a `gr-` prefix (as an abbreviation for our company, GORUCK LLC). Also, any changes I make to standard theme files are identified with a comment, such as: \n\n`Go Ruck Customization`\n\t\t\nFor example, I have a file in `assets/scss/` named `gr-theme.scss`. All of the styles I've added to the theme are either in this file, or imported by this file. So for styling, my only changes to the theme itself are in a handful of places where I had to change an existing theme style (identified with a comment), plus this one line in `templates/layout/base.html`:\n\n`{{{stylesheet '/assets/css/gr-theme.css'}}}`\n\nI've found that this approach provides several advantages: \n\n* It makes it easier to distinguish my custom code from code supplied by the default theme.\n* It makes it less likely that my code will get intermingled with the standard theme code. This, in turn, prevents my code from unexpectedly being affected by theme updates.\n* It makes it easier to merge base-theme updates into my theme code.\n\n##### Comparing and Merging Apples to Apples\n\nHaving isolated my changes as much as I can, I identify theme changes by comparing stock (base) themes, rather than by comparing base themes to my customized theme. When a new version of the theme is released, I download the .zip file from the BigCommerce control panel. \n\nI then use a desktop diff tool (Beyond Compare) to \ncompare the new version to the .zip file of the theme's previous release. I ignore changes in the .zip file's\n `meta/` and `parsed/` folders, and to its `manifest.json`, and do a `Compare Contents` on the rest of the files.\n\nUltimately, I need to examine the changes carefully, to identify any changes that might affect, or be affected by, my customizations. And I need to test thoroughly. But comparing the stock themes to each other reduces the number of changes I have to examine. \n\nAlso, because I isolate my changes, most of the theme changes can be copied directly into the corresponding file in my customized theme. In practice, this means that I can limit my testing to the areas affected by changes in the standard theme, rather than having to re-test all my own changes.\n\nI personally find that it is also helpful to migrate *every* theme update into my customized version, as the update is released. If I were to wait, and to allow changes to accumulate and become more substantial, I think it would be more difficult to adequately test – and correctly integrate – the changes. Similarly, I'm grateful to the developer of our base theme (Pixel Union) for updates that have always made small, incremental changes.\n\n##### Dynamic Content Injection\n\nFinally, we've also come up with a variety of techniques for dynamically placing content on a page. For example, we can dynamically add tabs to a product page, using content stored on our WebDAV. Similarly, we can inject content from an external file into the body of a page. This allows us to put something that appears in many places, like a sizing chart, in a single place where it can be easily updated. \n\nOr, we can use the BigCommerce control panel's various HTML editors – for Products, Categories, and Content > Web Pages – to inject content into predefined \"dropzones\" (custom div's). This allows us to generate a wide variety of content pages using a single custom template.\n\nAll of these techniques move content out of the theme, minimizing the complexity of merging base-theme updates into our customized theme. For details on how we use them, please see Dynamic Content Rendering on Stencil Storefronts."
-        - title: Configuring Webpack or a Custom Build System
-          route:
-            path: /configuring-webpack
-          data:
-            blocks:
-              - type: text
-                data: '# Configuring Webpack or a Custom Build System'
-              - type: text
-                data: >-
-                  ## Webpack, jspm, or Other JavaScript Managers
+                        Each section progresses from simpler to more-complex
+                        scenarios.
+                    - type: callout
+                      data:
+                        title: Distributed Version Control via Git
+                        body: >-
+                          Many techniques discussed below rely on GitHub's
+                          _distributed version control_ model and features. For
+                          the underlying principles, please see [Git's own
+                          documentation](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control).
+                    - type: text
+                      data: >-
+                        Isolating Customizations for Easier Updates
 
 
-                  Stencil themes are Node.js applications, and therefore contain
-                  dependencies on other JavaScript libraries. For Stencil's
-                  default Cornerstone theme, we provide the
-                  [Webpack](https://webpack.github.io/docs/) build manager to
-                  handle these dependencies. 
-
-
-                  As you develop a theme based on Cornerstone, you have options
-                  to reconfigure Webpack's watched folders, and to even
-                  substitute a different build system. These options are
-                  explained below.
-
-
-                  All themes currently in the BigCommerce Theme Marketplace use
-                  Webpack. However, older versions of certain themes used the
-                  jspm JavaScript dependency manager instead of Webpack. Please
-                  see this page to determine (by version number) whether you are
-                  developing based on one of these earlier versions, and to find
-                  the required jspm setup procedures.
-              - type: callout
+                        How best to set up your customized Stencil theme to
+                        smoothly incorporate future updates in its base theme?
+                        We're gratefully sharing these guidelines from Ken
+                        Utting, Web Developer for BigCommerce client
+                        [goruck.com](https://www.goruck.com/). His scenario
+                        (slightly edited here) addresses maintaining a single
+                        custom theme that is based on a third-party Marketplace
+                        theme. But&#160;these guidelines also apply to
+                        maintaining one, or multiple, themes based on Stencil's
+                        default Cornerstone theme.
+                    - type: text
+                      data: "## Best Practices for Handling Theme Updates\n\nWe've made significant changes to our theme, and one principle that I've found successful is isolating my changes as much as possible. I try to put my changes into their own files, whether they're changes to templates, JavaScript, or SCSS. \n\nI also name all my files, CSS classes and identifiers, and JavaScript methods and classes with a `gr-` prefix (as an abbreviation for our company, GORUCK LLC). Also, any changes I make to standard theme files are identified with a comment, such as: \n\n`Go Ruck Customization`\n\t\t\nFor example, I have a file in `assets/scss/` named `gr-theme.scss`. All of the styles I've added to the theme are either in this file, or imported by this file. So for styling, my only changes to the theme itself are in a handful of places where I had to change an existing theme style (identified with a comment), plus this one line in `templates/layout/base.html`:\n\n`{{{stylesheet '/assets/css/gr-theme.css'}}}`\n\nI've found that this approach provides several advantages: \n\n* It makes it easier to distinguish my custom code from code supplied by the default theme.\n* It makes it less likely that my code will get intermingled with the standard theme code. This, in turn, prevents my code from unexpectedly being affected by theme updates.\n* It makes it easier to merge base-theme updates into my theme code.\n\n##### Comparing and Merging Apples to Apples\n\nHaving isolated my changes as much as I can, I identify theme changes by comparing stock (base) themes, rather than by comparing base themes to my customized theme. When a new version of the theme is released, I download the .zip file from the BigCommerce control panel. \n\nI then use a desktop diff tool (Beyond Compare) to \ncompare the new version to the .zip file of the theme's previous release. I ignore changes in the .zip file's\n `meta/` and `parsed/` folders, and to its `manifest.json`, and do a `Compare Contents` on the rest of the files.\n\nUltimately, I need to examine the changes carefully, to identify any changes that might affect, or be affected by, my customizations. And I need to test thoroughly. But comparing the stock themes to each other reduces the number of changes I have to examine. \n\nAlso, because I isolate my changes, most of the theme changes can be copied directly into the corresponding file in my customized theme. In practice, this means that I can limit my testing to the areas affected by changes in the standard theme, rather than having to re-test all my own changes.\n\nI personally find that it is also helpful to migrate *every* theme update into my customized version, as the update is released. If I were to wait, and to allow changes to accumulate and become more substantial, I think it would be more difficult to adequately test – and correctly integrate – the changes. Similarly, I'm grateful to the developer of our base theme (Pixel Union) for updates that have always made small, incremental changes.\n\n##### Dynamic Content Injection\n\nFinally, we've also come up with a variety of techniques for dynamically placing content on a page. For example, we can dynamically add tabs to a product page, using content stored on our WebDAV. Similarly, we can inject content from an external file into the body of a page. This allows us to put something that appears in many places, like a sizing chart, in a single place where it can be easily updated. \n\nOr, we can use the BigCommerce control panel's various HTML editors – for Products, Categories, and Content > Web Pages – to inject content into predefined \"dropzones\" (custom div's). This allows us to generate a wide variety of content pages using a single custom template.\n\nAll of these techniques move content out of the theme, minimizing the complexity of merging base-theme updates into our customized theme. For details on how we use them, please see Dynamic Content Rendering on Stencil Storefronts."
+              - title: Configuring Webpack or a Custom Build System
+                route:
+                  path: /configuring-webpack
                 data:
-                  type: warning
-                  body: >-
-                    BigCommerce does not offer technical assistance on
-                    substitutions for the default dependencies listed in this
-                    documentation.
-                  title: Limited Support
-              - type: text
-                data: >-
-                  ## Webpack-Specific Configuration
+                  blocks:
+                    - type: text
+                      data: '# Configuring Webpack or a Custom Build System'
+                    - type: text
+                      data: >-
+                        ## Webpack, jspm, or Other JavaScript Managers
 
 
-                  The following Webpack configuration options can aid in
-                  troubleshooting.
+                        Stencil themes are Node.js applications, and therefore
+                        contain dependencies on other JavaScript libraries. For
+                        Stencil's default Cornerstone theme, we provide the
+                        [Webpack](https://webpack.github.io/docs/) build manager
+                        to handle these dependencies. 
 
 
-                  ### More-Verbose JavaScript Diagnostics
+                        As you develop a theme based on Cornerstone, you have
+                        options to reconfigure Webpack's watched folders, and to
+                        even substitute a different build system. These options
+                        are explained below.
 
 
-                  If JavaScript errors in your browser's developer tools are not
-                  reporting filenames and line numbers, try changing your
-                  `webpack.conf.js` file's
-                  [sourcemap](https://webpack.js.org/guides/build-performance/#devtool)
-                  entry from:
+                        All themes currently in the BigCommerce Theme
+                        Marketplace use Webpack. However, older versions of
+                        certain themes used the jspm JavaScript dependency
+                        manager instead of Webpack. Please see this page to
+                        determine (by version number) whether you are developing
+                        based on one of these earlier versions, and to find the
+                        required jspm setup procedures.
+                    - type: callout
+                      data:
+                        type: warning
+                        body: >-
+                          BigCommerce does not offer technical assistance on
+                          substitutions for the default dependencies listed in
+                          this documentation.
+                        title: Limited Support
+                    - type: text
+                      data: >-
+                        ## Webpack-Specific Configuration
 
 
-                  ```
+                        The following Webpack configuration options can aid in
+                        troubleshooting.
 
-                  devtool: 'source-map'
 
-                  ```
+                        ### More-Verbose JavaScript Diagnostics
 
-                  to:
 
+                        If JavaScript errors in your browser's developer tools
+                        are not reporting filenames and line numbers, try
+                        changing your `webpack.conf.js` file's
+                        [sourcemap](https://webpack.js.org/guides/build-performance/#devtool)
+                        entry from:
 
-                  ```
 
-                  devtool: 'eval-source-map'
+                        ```
 
-                  ```
+                        devtool: 'source-map'
 
+                        ```
 
-                  The `eval-source-map` option is slower, but more verbose. This
-                  [Webpack Devtool
-                  Configuration](https://webpack.js.org/configuration/devtool/)
-                  article provides an overview of all devtool options and
-                  details regarding each.
+                        to:
 
 
+                        ```
 
-                  ## Build-System Configuration File
+                        devtool: 'eval-source-map'
 
+                        ```
 
-                  To take advantage of automatic JavaScript bundling and browser
-                  refresh, Stencil themes require the
-                  [`stencil.conf.js`](https://github.com/bigcommerce/cornerstone/blob/master/stencil.conf.js)
-                  file. To enable a custom build system, you would need to edit
-                  this file.
 
+                        The `eval-source-map` option is slower, but more
+                        verbose. This [Webpack Devtool
+                        Configuration](https://webpack.js.org/configuration/devtool/)
+                        article provides an overview of all devtool options and
+                        details regarding each.
 
-                  Within `stencil.conf.js`, Stencil CLI looks for the exported
-                  `watchOptions` object, and `development` and `production`
-                  callbacks, shown below. 
 
 
-                  Let's take a closer look at each of these three references.
+                        ## Build-System Configuration File
 
 
-                  ## Watched Folders: watchOptions Object
+                        To take advantage of automatic JavaScript bundling and
+                        browser refresh, Stencil themes require the
+                        [`stencil.conf.js`](https://github.com/bigcommerce/cornerstone/blob/master/stencil.conf.js)
+                        file. To enable a custom build system, you would need to
+                        edit this file.
 
 
-                  The `watchOptions` object defines directories for the
-                  [Browsersync](https://browsersync.io/docs) preview engine to
-                  watch or ignore, in two respective lists. You are free to edit
-                  these lists:
+                        Within `stencil.conf.js`, Stencil CLI looks for the
+                        exported `watchOptions` object, and `development` and
+                        `production` callbacks, shown below. 
 
 
-                  ```
+                        Let's take a closer look at each of these three
+                        references.
 
-                  /**
-                   * Watch options for the core watcher
-                   * @type {{files: string[], ignored: string[]}}
-                   */
-                  var watchOptions = {
-                      // If files in these directories change, reload the page.
-                      files: [
-                          '/templates',
-                          '/lang'
-                      ],
 
-                      //Do not watch files in these directories
-                       ignored: [
-                          '/assets/scss',
-                          '/assets/less',
-                          '/assets/css',
-                          '/assets/dist',
-                      ]
-                  };
+                        ## Watched Folders: watchOptions Object
 
-                  ```
 
+                        The `watchOptions` object defines directories for the
+                        [Browsersync](https://browsersync.io/docs) preview
+                        engine to watch or ignore, in two respective lists. You
+                        are free to edit these lists:
 
-                  ## JavaScript Rebundling: development Function
 
+                        ```
 
-                  Upon the command-line instruction `stencil start`, Stencil CLI
-                  will look for and call the `development` function. 
+                        /**
+                         * Watch options for the core watcher
+                         * @type {{files: string[], ignored: string[]}}
+                         */
+                        var watchOptions = {
+                            // If files in these directories change, reload the page.
+                            files: [
+                                '/templates',
+                                '/lang'
+                            ],
 
+                            //Do not watch files in these directories
+                             ignored: [
+                                '/assets/scss',
+                                '/assets/less',
+                                '/assets/css',
+                                '/assets/dist',
+                            ]
+                        };
 
-                  In the base Cornerstone theme, we have created a Webpack
-                  watcher to trigger a browser reload whenever theme edits cause
-                  JavaScript to be rebundled to the theme's `bundle.js` file.
-                  This watcher uses options configured in the webpack.conf.js
-                  file passed by `webpackConfig`. So a JavaScript rebuild will
-                  refresh the browser:
+                        ```
 
 
-                  ```
+                        ## JavaScript Rebundling: development Function
 
-                  function development() {
-                      webpack(webpackConfig).watch({}, err => {
-                          if (err) {
-                              console.error(err.message, err.details);
-                          }
 
-                          process.send('reload');
-                      });
-                  }
+                        Upon the command-line instruction `stencil start`,
+                        Stencil CLI will look for and call the `development`
+                        function. 
 
-                  ```
 
+                        In the base Cornerstone theme, we have created a Webpack
+                        watcher to trigger a browser reload whenever theme edits
+                        cause JavaScript to be rebundled to the theme's
+                        `bundle.js` file. This watcher uses options configured
+                        in the webpack.conf.js file passed by `webpackConfig`.
+                        So a JavaScript rebuild will refresh the browser:
 
-                  ## Theme Packaging: production Function 
 
+                        ```
 
-                  When you issue the command-line instruction `stencil bundle`,
-                  to process and package a completed theme for upload to a
-                  store, Stencil CLI will look for and call the `production`
-                  function. This function passes a callback as its first
-                  argument, to support asynchronous builds. 
+                        function development() {
+                            webpack(webpackConfig).watch({}, err => {
+                                if (err) {
+                                    console.error(err.message, err.details);
+                                }
 
+                                process.send('reload');
+                            });
+                        }
 
-                  The callback must be invoked somewhere inside the `production`
-                  function, to notify Stencil CLI that the theme-specific build
-                  has completed and is ready to package:
+                        ```
 
 
-                  ```
+                        ## Theme Packaging: production Function 
 
-                  function production() {
-                      webpackConfig.watch = false;
-                      webpackConfig.devtool = false;
-                      webpackConfig.plugins.push(new webpack.LoaderOptionsPlugin({
-                          minimize: true,
-                      }));
-                      webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
-                          comments: false,
-                          compress: {
-                              warnings: true,
-                          },
-                          sourceMap: false, // Toggle to turn on source maps.
-                      }));
 
-                      webpack(webpackConfig).run(err => {
-                          if (err) {
-                              console.error(err.message, err.details);
-                              throw err;
-                          }
+                        When you issue the command-line instruction `stencil
+                        bundle`, to process and package a completed theme for
+                        upload to a store, Stencil CLI will look for and call
+                        the `production` function. This function passes a
+                        callback as its first argument, to support asynchronous
+                        builds. 
 
-                          process.send('done');
-                      });
-                  }
 
+                        The callback must be invoked somewhere inside the
+                        `production` function, to notify Stencil CLI that the
+                        theme-specific build has completed and is ready to
+                        package:
 
-                  if (process.send) {
-                      // running as a forked worker
-                      process.on('message', message => {
-                          if (message === 'development') {
-                              development();
-                          }
 
-                          if (message === 'production') {
-                              production();
-                          }
-                      });
+                        ```
 
-                      process.send('ready');
-                  }
+                        function production() {
+                            webpackConfig.watch = false;
+                            webpackConfig.devtool = false;
+                            webpackConfig.plugins.push(new webpack.LoaderOptionsPlugin({
+                                minimize: true,
+                            }));
+                            webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
+                                comments: false,
+                                compress: {
+                                    warnings: true,
+                                },
+                                sourceMap: false, // Toggle to turn on source maps.
+                            }));
 
-                  ```
-        - title: 'Stencil Setup, Illustrated'
-          route:
-            path: /stencil-setup
-          data:
-            blocks:
-              - type: text
-                data: >-
-                  The diagram below looks complex because it shows _all_
-                  currently supported workflows for setting up Stencil. However,
-                  for a typical initial setup – incorporating the default
-                  Cornerstone reference theme – you would just follow the black
-                  arrows straight down from top to bottom.
+                            webpack(webpackConfig).run(err => {
+                                if (err) {
+                                    console.error(err.message, err.details);
+                                    throw err;
+                                }
 
+                                process.send('done');
+                            });
+                        }
 
-                  Here are the color codes for each setup scenario, with links
-                  to details about individual steps:
 
+                        if (process.send) {
+                            // running as a forked worker
+                            process.on('message', message => {
+                                if (message === 'development') {
+                                    development();
+                                }
 
-                  * Black: Basic initial setup, relying on default Cornerstone
-                  theme. 
+                                if (message === 'production') {
+                                    production();
+                                }
+                            });
 
-                  * Purple: Customize a theme downloaded from Theme Marketplace
-                  (_other than_ Cornerstone). 
+                            process.send('ready');
+                        }
 
-                  * Orange: Refresh Cornerstone from Theme Marketplace. 
-
-                  * Green: Configure a custom JavaScript build system, to avoid
-                  dependence on Webpack and jspm.
-
-                  * Blue: Adds onto any of the preceding four scenarios. If
-                  developing for a BigCommerce Blueprint production store
-                  launched before Jan. 26, 2016, you must add one extra step to
-                  enable Stencil in the store's control panel.
-              - type: image
-                data: >-
-                  //s3.amazonaws.com/user-content.stoplight.io/6116/1532113466661
+                        ```
         - title: Handlebars Syntax and Helpers
           route:
             path: /handlebars-syntax-and-helpers
