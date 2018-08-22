@@ -7577,12 +7577,10 @@ definitions:
         minimum: 0
         example: 10
   BulkPricingRule:
-    type: object
     description: Rules that offer price discounts based on quantity breaks.
     allOf:
       - $ref: '#/definitions/BulkPricingRuleBase'
-      - type: object
-        properties:
+      - properties:
           id:
             type: integer
             description: |
@@ -7590,7 +7588,9 @@ definitions:
             minimum: 1
             x-required:
               - put
+            example: 6
     title: Bulk Pricing Rule
+    type: object
   BulkPricingRulePost:
     type: object
     description: |
