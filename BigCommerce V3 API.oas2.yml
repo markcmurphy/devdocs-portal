@@ -5318,6 +5318,7 @@ definitions:
   CategoryBase:
     type: object
     description: Common Category object properties.
+    title: Category Base
     properties:
       parent_id:
         type: integer
@@ -5327,6 +5328,7 @@ definitions:
           catalog.
         x-required:
           - post
+        example: 2
       name:
         type: string
         description: >
@@ -5336,14 +5338,17 @@ definitions:
           - post
         minLength: 1
         maxLength: 50
+        example: Bath
       description:
         type: string
         description: |
           The product description, which can include HTML formatting.
+        example: <p>We offer a wide variety of products perfect for relaxing</p>
       views:
         type: integer
         description: |
           Number of views the category has on the storefront.
+        example: 1050
       sort_order:
         type: integer
         description: >
@@ -5352,6 +5357,7 @@ definitions:
           results the category will be.
         minimum: -2147483648
         maximum: 2147483647
+        example: 3
       page_title:
         type: string
         description: >
@@ -5416,7 +5422,6 @@ definitions:
         x-url: true
       custom_url:
         $ref: '#/definitions/CustomUrlCategory'
-    title: Category Base
   Category:
     type: object
     description: A Category object.
