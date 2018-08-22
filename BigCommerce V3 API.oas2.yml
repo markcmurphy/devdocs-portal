@@ -2264,16 +2264,12 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      tags:
-        - Catalog
-      description: Creates a `Brand` object.
+      description: Create a brand in the store.
       operationId: createBrand
       parameters:
         - name: Brand
           in: body
           required: true
-          description: |
-            A `Brand` object.
           schema:
             $ref: '#/definitions/BrandPost'
       responses:
@@ -2294,6 +2290,13 @@ paths:
             or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Create a Brand
+      tags:
+        - Brands
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: >-
         Delete a brand(s) from the store. At least one filter parameter should
