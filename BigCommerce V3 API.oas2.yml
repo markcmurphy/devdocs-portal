@@ -5248,8 +5248,10 @@ definitions:
     allOf:
       - $ref: '#/definitions/OptionBase'
   CategoryTreeCollectionResponse:
-    description: |
-      Response payload for the BigCommerce API.
+    description: >
+      Returns the categories tree, a nested lineage of the categories with
+      parent->child relationship. The Category objects returned are simplified
+      versions of the category objects returned in the rest of this API.
     type: object
     properties:
       data:
@@ -5258,6 +5260,7 @@ definitions:
           $ref: '#/definitions/CategoryNode'
       meta:
         $ref: '#/definitions/CollectionMeta'
+    title: Category Tree Collection Response
   CategoryNode:
     type: object
     description: >-
