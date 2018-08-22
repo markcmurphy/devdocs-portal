@@ -25,6 +25,7 @@ tags:
     description: BigCommerce Placements API Definition.
   - name: Script
     description: BigCommerce Scripts API Definition.
+  - name: Brands
 schemes:
   - https
 produces:
@@ -2290,10 +2291,9 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     delete:
-      tags:
-        - Catalog
-      description: |
-        Deletes one or more `Brand` objects from the BigCommerce Catalog.
+      description: >-
+        Delete a brand(s) from the store. At least one filter parameter should
+        be passed in so that you're deleting a set of brands discriminately.
       operationId: deleteBrands
       parameters:
         - $ref: '#/parameters/FilterNameParam'
@@ -2306,6 +2306,10 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
         - Accepts: []
+      tags:
+        - Brands
+        - Catalog
+      summary: Delete Brands
   '/catalog/brands/{brand_id}':
     parameters:
       - $ref: '#/parameters/BrandIdParam'
