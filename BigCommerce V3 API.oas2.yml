@@ -2241,10 +2241,8 @@ paths:
             $ref: '#/definitions/CategoryTreeCollectionResponse'
   /catalog/brands:
     get:
-      tags:
-        - Catalog
       description: |
-        Gets `Brand` objects.
+        Get all store brands. Optional filter parameters can be passed in.
       operationId: getBrands
       parameters:
         - $ref: '#/parameters/FilterNameParam'
@@ -2255,10 +2253,16 @@ paths:
         - $ref: '#/parameters/FilterExcludeFieldsParam'
       responses:
         '200':
-          description: |
-            An array of brand objects and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/BrandCollectionResponse'
+      summary: Get All Brands
+      tags:
+        - Brands
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     post:
       tags:
         - Catalog
