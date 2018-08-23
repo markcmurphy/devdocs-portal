@@ -8269,20 +8269,20 @@ definitions:
     title: PriceRecord Batch Item
     type: object
   PriceRecordIdentifiers:
-    type: object
     description: Price Record object used in batch create or update.
     allOf:
-      - type: object
-        properties:
+      - properties:
           price_list_id:
             type: integer
             description: |
               The Price List with which this price set is associated.
+            example: 2
           variant_id:
             type: integer
             description: >
               The variant with which this price set is associated. Either
               variant_id or sku is required.
+            example: 325
           sku:
             type: string
             description: >
@@ -8294,7 +8294,9 @@ definitions:
             description: >
               The 3-letter currency code with which this price set is
               associated.
+            example: usd
     title: Price Record Identifiers
+    type: object
   SuccessBatchResponse:
     type: object
     description: Empty object for Success case for Batch API.
