@@ -2329,9 +2329,7 @@ paths:
     parameters:
       - $ref: '#/parameters/BrandIdParam'
     get:
-      tags:
-        - Catalog
-      description: Gets a `Brand` object.
+      description: Gets a Brand object.
       operationId: getBrandById
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
@@ -2347,11 +2345,12 @@ paths:
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    put:
+      summary: Get a Brand by Id
       tags:
+        - Brands
         - Catalog
-      description: |
-        Updates a `Brand` in the BigCommerce Catalog.
+    put:
+      description: Updates a Brand in the BigCommerce Catalog.
       operationId: updateBrand
       parameters:
         - name: brand
@@ -2384,6 +2383,10 @@ paths:
             fields, or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Update a Brand
+      tags:
+        - Brands
+        - Catalog
     delete:
       description: Deletes a Brand from the BigCommerce Catalog.
       operationId: deleteBrandById
