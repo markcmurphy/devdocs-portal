@@ -8240,29 +8240,31 @@ definitions:
     items:
       $ref: '#/definitions/PriceRecordBatchItem'
   PriceRecordBatchItem:
-    type: object
     description: Price Record object used in batch create or update.
     allOf:
-      - type: object
-        properties:
+      - properties:
           variant_id:
             type: integer
             description: >
               The variant with which this price set is associated. Either
               variant_id or sku is required.
+            example: 331
           sku:
             type: string
             description: >
               The sku for the variant with which this price set is associated. 
               Either sku or variant_id is required.
+            example: SMB-123
           currency:
             type: string
             format: ISO-4217
             description: >
               The 3-letter currency code with which this price set is
               associated.
+            example: usd
       - $ref: '#/definitions/PriceRecordBase'
     title: PriceRecord Batch Item
+    type: object
   PriceRecordIdentifiers:
     type: object
     description: |
