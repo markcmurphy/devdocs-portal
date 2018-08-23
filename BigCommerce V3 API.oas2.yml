@@ -7030,7 +7030,7 @@ definitions:
           Determines whether the field is completely private to the app that
           owns the field (`app_only`), or visible to other API consumers
           (`read`), or completely open for reading and writing to other apps
-          (`write`).
+          (`write`). Required for /POST.
         enum:
           - app_only
           - read
@@ -7041,7 +7041,7 @@ definitions:
         type: string
         description: >
           Namespace for the metafield, for organizational purposes. This is set
-          set by the developer
+          set by the developer. Required for /POST.
         x-required:
           - post
         minLength: 1
@@ -7049,8 +7049,9 @@ definitions:
         example: Warehouse Locations
       key:
         type: string
-        description: |
-          The name of the field, for example: `location_id`, `color`.
+        description: >
+          The name of the field, for example: `location_id`, `color`. Required
+          for /POST.
         x-required:
           - post
         minLength: 1
@@ -7059,7 +7060,7 @@ definitions:
       value:
         type: string
         description: |
-          The value of the field, for example: `1`, `blue`.
+          The value of the field, for example: `1`, `blue`. Required for /POST.
         x-required:
           - post
         minLength: 1
@@ -7094,6 +7095,11 @@ definitions:
         minimum: 0
         maximum: 10000000000
         example: 111
+    required:
+      - permission_set
+      - namespace
+      - key
+      - value
   Metafield:
     description: Allows app partners to write custom data to various resources in the API.
     allOf:
