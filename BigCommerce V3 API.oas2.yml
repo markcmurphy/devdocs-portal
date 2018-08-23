@@ -2467,10 +2467,7 @@ paths:
       - $ref: '#/parameters/MetafieldIdParam'
       - $ref: '#/parameters/BrandIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets a `Metafield`, by `category_id`.
+      description: Get Brand Metafields by Id
       operationId: getBrandMetafieldByBrandId
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
@@ -2486,6 +2483,10 @@ paths:
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get Brand Metafields by Id
+      tags:
+        - Brands
+        - Catalog
     put:
       tags:
         - Catalog
@@ -2511,15 +2512,16 @@ paths:
           schema:
             $ref: '#/definitions/NotFound'
     delete:
-      tags:
-        - Catalog
-      description: |
-        Deletes a `Metafield`.
+      description: Deletes a Brand Metafield.
       operationId: deleteBrandMetafieldById
       responses:
         '204':
           description: |
             An empty response.
+      summary: Delete a Brand Metafield by Id
+      tags:
+        - Brands
+        - Catalog
   '/catalog/brands/{brand_id}/image':
     parameters:
       - $ref: '#/parameters/BrandIdParam'
