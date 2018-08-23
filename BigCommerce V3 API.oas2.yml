@@ -5026,28 +5026,33 @@ definitions:
         items:
           $ref: '#/definitions/ModifierValue'
   Modifier:
-    type: object
     allOf:
       - $ref: '#/definitions/ModifierBase'
-      - type: object
-        properties:
+      - properties:
           id:
             type: integer
             description: |
               The unique numeric ID of the modifier; increments sequentially.
+            example: 12
           product_id:
             type: integer
             description: |
               The unique numeric ID of the product to which the option belongs.
+            example: 77
           name:
             type: string
             description: >
               The unique option name. Auto-generated from the display name, a
               timestamp, and the product ID.
+            example: Insurance
           display_name:
             type: string
             description: |
               The name of the option shown on the storefront.
+            example: Gift Wrapping
+    title: Modifer
+    description: Product Modifier
+    type: object
   ModifierPost:
     type: object
     description: |
