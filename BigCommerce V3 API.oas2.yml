@@ -5364,18 +5364,22 @@ definitions:
     properties:
       parent_id:
         type: integer
-        description: >
+        description: >-
           The unique numeric ID of the category's parent. This field controls
           where the category sits in the tree of categories that organize the
           catalog.
+
+          Required in /POST if creating a child category.
         x-required:
           - post
         example: 2
       name:
         type: string
-        description: >
+        description: >-
           The name displayed for the category. Name is unique with respect to
           the category's siblings.
+
+          Required in /POST.
         x-required:
           - post
         minLength: 1
@@ -5467,6 +5471,9 @@ definitions:
         example: 'https://cdn8.bigcommerce.com/s-123456/product_images/d/fakeimage.png'
       custom_url:
         $ref: '#/definitions/CustomUrlCategory'
+    required:
+      - parent_id
+      - name
   Category:
     type: object
     description: A Category object.
