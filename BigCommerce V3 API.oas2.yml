@@ -7021,8 +7021,8 @@ definitions:
         $ref: '#/definitions/Meta'
   MetafieldBase:
     type: object
-    description: |
-      Common Metafield properties.
+    description: Common Metafield properties.
+    title: Metafield Base
     properties:
       permission_set:
         type: string
@@ -7039,12 +7039,14 @@ definitions:
           - post
       namespace:
         type: string
-        description: |
-          Namespace for the metafield, for organizational purposes.
+        description: >
+          Namespace for the metafield, for organizational purposes. This is set
+          set by the developer
         x-required:
           - post
         minLength: 1
         maxLength: 64
+        example: Warehouse Locations
       key:
         type: string
         description: |
@@ -7053,6 +7055,7 @@ definitions:
           - post
         minLength: 1
         maxLength: 64
+        example: Location
       value:
         type: string
         description: |
@@ -7061,12 +7064,14 @@ definitions:
           - post
         minLength: 1
         maxLength: 65535
+        example: 4HG
       description:
         type: string
         description: |
           Description for the metafields.
         minLength: 0
         maxLength: 255
+        example: Location in the warehouse
       resource_type:
         type: string
         description: |
@@ -7078,6 +7083,7 @@ definitions:
           - variant
         x-required:
           - post
+        example: product
       resource_id:
         type: integer
         description: >
@@ -7087,6 +7093,7 @@ definitions:
           - post
         minimum: 0
         maximum: 10000000000
+        example: 111
   Metafield:
     type: object
     description: Allows app partners to write custom data to various resources in the API.
