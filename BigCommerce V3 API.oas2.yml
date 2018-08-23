@@ -8161,11 +8161,9 @@ definitions:
           The SKU code associated with this `Price Record` if requested and it
           exists.
   PriceRecord:
-    type: object
     description: The Price Record object.
     allOf:
-      - type: object
-        properties:
+      - properties:
           calculated_price:
             type: number
             format: double
@@ -8173,24 +8171,29 @@ definitions:
               The price of the variant as seen on the storefront if a price
               record is in effect. It will be equal to the `sale_price`, if set,
               and the `price` if there is not a `sale_price`.  Read only.
+            example: 24.64
           date_created:
             type: string
             format: date-time
             description: |
               The date on which the Price entry was created.
+            example: '2018-08-23T19:59:23Z'
           date_modified:
             type: string
             format: date-time
             description: |
               The date on which the Price entry was created.
+            example: '2018-08-23T19:59:23Z'
           product_id:
             type: integer
             description: >
               The id of the `Product` this `Price Record`'s variant_id is
               associated with.  Read only.
+            example: 158
       - $ref: '#/definitions/PriceRecordIdentifiers'
       - $ref: '#/definitions/PriceRecordBase'
     title: Price Record
+    type: object
   BulkPricingTier:
     type: object
     title: Bulk Pricing Tier
