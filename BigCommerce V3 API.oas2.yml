@@ -5193,12 +5193,14 @@ definitions:
   OptionBase:
     type: object
     description: Common Option properties.
+    title: Option Base
     properties:
       id:
         type: integer
         description: |
           The unique numerical ID of the option, increments sequentially.
         x-nullable: true
+        example: 55
       product_id:
         type: integer
         description: |
@@ -5206,6 +5208,7 @@ definitions:
         x-required:
           - post
           - put
+        example: 4
       display_name:
         type: string
         description: |
@@ -5215,6 +5218,7 @@ definitions:
           - put
         minLength: 1
         maxLength: 255
+        example: Add-a-$5-Donation1535042499-187
       type:
         type: string
         description: >
@@ -5238,12 +5242,12 @@ definitions:
         $ref: '#/definitions/OptionConfig'
       option_values:
         type: array
-        items:
-          $ref: '#/definitions/OptionValue'
         x-required:
           - post
           - put
         minItems: 1
+        items:
+          $ref: '#/definitions/OptionValue'
   Option:
     allOf:
       - $ref: '#/definitions/OptionBase'
