@@ -8014,8 +8014,7 @@ definitions:
         example: 5
     description: Adjuster for Complex Rules.
   PriceListCollectionResponse:
-    description: |
-      Response payload for the BigCommerce API.
+    description: Get All PriceLists.
     type: object
     properties:
       data:
@@ -8024,6 +8023,7 @@ definitions:
           $ref: '#/definitions/PriceList'
       meta:
         $ref: '#/definitions/CollectionMeta'
+    title: PriceList Collection Response
   PriceListResponse:
     description: |
       Response payload for the BigCommerce API.
@@ -8035,8 +8035,8 @@ definitions:
         $ref: '#/definitions/Meta'
   PriceListBase:
     type: object
-    description: |
-      Common Price List properties.
+    description: Common Price List properties.
+    title: PriceList Base
     properties:
       name:
         type: string
@@ -8044,11 +8044,13 @@ definitions:
           The unique name of the Price List.
         x-required:
           - post
+        example: Wholesale
       active:
         type: boolean
         description: >
           Whether or not this `Price List` and its prices are active.  Defaults
           to `true`.
+        example: true
   PriceList:
     allOf:
       - properties:
