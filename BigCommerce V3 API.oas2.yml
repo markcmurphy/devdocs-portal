@@ -4974,14 +4974,14 @@ definitions:
         $ref: '#/definitions/CollectionMeta'
     title: Modifier Collection Response
   ModifierResponse:
-    description: |
-      Response payload for the BigCommerce API.
+    description: Response payload for the BigCommerce API.
     type: object
     properties:
       data:
         $ref: '#/definitions/Modifier'
       meta:
         $ref: '#/definitions/Meta'
+    title: Modifier Response
   ModifierBase:
     type: object
     description: Common Modifier properties.
@@ -5050,19 +5050,19 @@ definitions:
     description: Product Modifier
     type: object
   ModifierPost:
-    type: object
     description: The model for a POST to create a modifier on a product.
     allOf:
       - $ref: '#/definitions/ModifierBase'
-      - type: object
-        properties:
+      - properties:
           display_name:
             type: string
             description: |
               The name of the option shown on the storefront.
             x-required:
               - post
+            example: Donation
     title: Modifier Post
+    type: object
   ModifierPut:
     type: object
     description: The model for a PUT to update a modifier on a product.
