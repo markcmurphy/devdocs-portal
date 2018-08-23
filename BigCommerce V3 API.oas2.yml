@@ -4997,7 +4997,8 @@ definitions:
           BigCommerce API, which determines how it will display on the
           storefront. Acceptable values: `date`, `checkbox`, `file`, `text`,
           `multi_line_text`, `numbers_only_text`, `radio_buttons`, `rectangles`,
-          `dropdown`, `product_list`, `product_list_with_images`, `swatch`. 
+          `dropdown`, `product_list`, `product_list_with_images`, `swatch`.
+          Required in a /POST.
         enum:
           - date
           - checkbox
@@ -5015,8 +5016,9 @@ definitions:
           - post
       required:
         type: boolean
-        description: |
-          Whether or not this modifer is required or not at checkout.
+        description: >
+          Whether or not this modifer is required or not at checkout. Required
+          in a /POST.
         x-required:
           - post
       config:
@@ -5025,6 +5027,9 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/ModifierValue'
+    required:
+      - type
+      - required
   Modifier:
     allOf:
       - $ref: '#/definitions/ModifierBase'
