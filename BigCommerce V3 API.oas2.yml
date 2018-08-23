@@ -6996,8 +6996,12 @@ definitions:
         example: '2018-08-16'
   MetaFieldCollectionResponse:
     type: object
-    description: |
-      Response payload for the BigCommerce API.
+    description: |-
+      MetaFieldCollectionResponse returns for: 
+      * Get Variant Metafields by Product Id and Variant Id
+      * Get Product Metafields by Product Id
+      * Get Category Metafields by Category Id
+      * Get Brand Metafields by Brand Id
     properties:
       data:
         type: array
@@ -7005,6 +7009,7 @@ definitions:
           $ref: '#/definitions/Metafield'
       meta:
         $ref: '#/definitions/CollectionMeta'
+    title: Meta Field Collection Response
   MetafieldResponse:
     description: |
       Response payload for the BigCommerce API.
@@ -8212,6 +8217,7 @@ definitions:
   Meta:
     type: object
     description: Empty meta object; may be used later.
+    title: Meta
   ErrorResponse:
     allOf:
       - $ref: '#/definitions/BaseError'
