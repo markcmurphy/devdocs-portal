@@ -2402,10 +2402,7 @@ paths:
     parameters:
       - $ref: '#/parameters/BrandIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets a `Metafield` object list, by `brand_id`.
+      description: 'Gets a Metafield object list, by `brand_id`.'
       operationId: getBrandMetafieldsByBrandId
       parameters:
         - $ref: '#/parameters/PageParam'
@@ -2425,9 +2422,11 @@ paths:
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    post:
+      summary: Get Brand Metafields
       tags:
+        - Brands
         - Catalog
+    post:
       description: Creates a product `Metafield`.
       operationId: createBrandMetafield
       parameters:
@@ -2458,6 +2457,10 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Create a Brand Metafield
+      tags:
+        - Brands
+        - Catalog
   '/catalog/brands/{brand_id}/metafields/{metafield_id}':
     parameters:
       - $ref: '#/parameters/MetafieldIdParam'
