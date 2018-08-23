@@ -7833,6 +7833,7 @@ definitions:
         enum:
           - specific
           - all
+        example: specific
       file_types_supported:
         type: array
         description: >
@@ -7840,19 +7841,22 @@ definitions:
           `file_type_option` is set to `specific`. Values:
             `images` - Allows upload of image MIME types (`bmp`, `gif`, `jpg`, `jpeg`, `jpe`, `jif`, `jfif`, `jfi`, `png`, `wbmp`, `xbm`, `tiff`). `documents` - Allows upload of document MIME types (`txt`, `pdf`, `rtf`, `doc`, `docx`, `xls`, `xlsx`, `accdb`, `mdb`, `one`, `pps`, `ppsx`, `ppt`, `pptx`, `pub`, `odt`, `ods`, `odp`, `odg`, `odf`).
             `other` - Allows file types defined in the `file_types_other` array.
+        example: 'images, documents, other'
         items:
           type: string
       file_types_other:
         type: array
         description: |
           (file) A list of other file types allowed with the file upload option.
+        example: pdf
         items:
           type: string
       file_max_size:
         type: integer
         description: >
           (file) The maximum size for a file that can be used with the file
-          upload option.
+          upload option. This will still be limited by the server.
+        example: 5
       text_characters_limited:
         type: boolean
         description: >
