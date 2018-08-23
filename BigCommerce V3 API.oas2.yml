@@ -6022,8 +6022,9 @@ definitions:
           This field is not supported for swatch options/modifiers.
       label:
         type: string
-        description: |
-          The text display identifying the value on the storefront.
+        description: >
+          The text display identifying the value on the storefront. Required in
+          a /POST.
         x-required:
           - post
       sort_order:
@@ -6045,6 +6046,9 @@ definitions:
           `checkbox` type option requires a boolean flag, called
           `checked_value`, to determine which value is considered to be the
           checked state.
+    required:
+      - label
+      - sort_order
   OptionValue:
     type: object
     allOf:
