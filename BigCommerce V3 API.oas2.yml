@@ -7273,8 +7273,7 @@ definitions:
     title: Configurable Field Response - DEPRECATED
   CustomFieldCollectionResponse:
     type: object
-    description: |
-      Response payload for the BigCommerce API.
+    description: Custom Field Collection Response
     properties:
       data:
         type: array
@@ -7282,15 +7281,16 @@ definitions:
           $ref: '#/definitions/CustomField'
       meta:
         $ref: '#/definitions/CollectionMeta'
+    title: Custom Field Collection Response
   CustomFieldResponse:
-    description: |
-      Response payload for the BigCommerce API.
+    description: Custom Field Response
     type: object
     properties:
       data:
         $ref: '#/definitions/CustomField'
       meta:
         $ref: '#/definitions/Meta'
+    title: Custom Field Response
   ConfigurableFieldBase:
     type: object
     description: |-
@@ -7408,8 +7408,8 @@ definitions:
     title: Configurable Field Put - DEPRECATED
   CustomFieldBase:
     type: object
-    description: |
-      Common CustomField properties.
+    description: Common CustomField properties.
+    title: Custom Field Base
     properties:
       name:
         type: string
@@ -7419,6 +7419,7 @@ definitions:
           - post
         minLength: 1
         maxLength: 250
+        example: ISBN
       value:
         type: string
         description: |
@@ -7427,6 +7428,7 @@ definitions:
           - post
         minLength: 1
         maxLength: 250
+        example: '1234567890123'
   CustomField:
     type: object
     description: >-
@@ -7443,21 +7445,23 @@ definitions:
               The unique numeric ID of the custom field; increments
               sequentially.
             minimum: 1
+            example: 6
             x-required:
               - put
+      - type: object
     title: Custom Field
   CustomFieldPost:
     type: object
-    description: |
-      The model for a POST to create a custom field on a product.
+    description: The model for a POST to create a custom field on a product.
     allOf:
       - $ref: '#/definitions/CustomFieldBase'
+    title: Custom Field Post
   CustomFieldPut:
     type: object
-    description: |
-      The model for a PUT to update a custom field on a product.
+    description: The model for a PUT to update a custom field on a product.
     allOf:
       - $ref: '#/definitions/CustomField'
+    title: Custom Field Put
   ComplexRuleConditionBase:
     type: object
     description: Complex Rule Condition properties.
