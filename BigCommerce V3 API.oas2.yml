@@ -7726,27 +7726,33 @@ definitions:
         description: >
           The minimum inclusive quantity of a product to satisfy this rule. Must
           be greater than or equal to zero.
+
+          Required in /POST.
         x-required:
           - post
         minimum: 0
         example: 10
       quantity_max:
         type: integer
-        description: >
+        description: >-
           The maximum inclusive quantity of a product to satisfy this rule. Must
           be greater than the `quantity_min` value – unless this field has a
           value of 0 (zero), in which case there will be no maximum bound for
           this rule.
+
+          Required in /POST.
         x-required:
           - post
         minimum: 0
         example: 50
       type:
         type: string
-        description: >
+        description: >-
           The type of adjustment that is made. Values: `price` - the adjustment
           amount per product; `percent` - the adjustment as a percentage of the
           original price; `fixed` - the adjusted absolute price of the product.
+
+          Required in /POST.
         x-required:
           - post
         enum:
@@ -7757,12 +7763,18 @@ definitions:
       amount:
         type: number
         format: double
-        description: |
+        description: |-
           The value of the adjustment by the bulk pricing rule.
+          Required in /POST.
         x-required:
           - post
         minimum: 0
         example: 10
+    required:
+      - quantity_min
+      - quantity_max
+      - type
+      - amount
   BulkPricingRule:
     description: Rules that offer price discounts based on quantity breaks.
     allOf:
