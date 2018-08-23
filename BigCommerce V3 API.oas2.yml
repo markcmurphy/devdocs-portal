@@ -7133,8 +7133,8 @@ definitions:
         $ref: '#/definitions/Meta'
   ComplexRuleBase:
     type: object
-    description: |
-      Common ComplexRule properties.
+    description: Common ComplexRule properties.
+    title: Complex Rule Base
     properties:
       product_id:
         type: integer
@@ -7145,6 +7145,7 @@ definitions:
         x-required:
           - post
           - put
+        example: 67
       sort_order:
         type: integer
         description: >
@@ -7152,11 +7153,13 @@ definitions:
           properties.
         minimum: -2147483648
         maximum: 2147483647
+        example: 0
       enabled:
         type: boolean
         description: >
           Flag for determining whether the rule is to be used when adjusting a
           product's price, weight, image, or availabilty.
+        example: true
       stop:
         type: boolean
         description: >
@@ -7174,6 +7177,7 @@ definitions:
           purchasing of a product.
         minLength: 0
         maxLength: 255
+        example: This product is not available at this time.
       purchasing_hidden:
         type: boolean
         description: >
