@@ -3743,6 +3743,8 @@ pages:
                         path: /setting-up-webhooks
                       data:
                         blocks:
+                          - type: html
+                            data: <h1>Setting up Webhooks</h1>
                           - type: text
                             data: >-
                               ## Prerequisites
@@ -3763,6 +3765,9 @@ pages:
                               * Webhooks Overview
                           - type: text
                             data: >-
+                              ---
+
+
                               ## Create project folder
 
                               Open the terminal and create a folder that will
@@ -3780,6 +3785,9 @@ pages:
                               ```
                           - type: text
                             data: >-
+                              ---
+
+
                               ## Install Ngrok
 
                               There are three ways to install Ngrok: 
@@ -3809,7 +3817,7 @@ pages:
                                 with ngrok unzipped inside of it. 
                               title: Checkpoint
                           - type: text
-                            data: "## Create Express App\n\n1. In the terminal run npm init. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js.\n4. Install [Express](https://expressjs.com/) using the terminal in the same project folder.\n\n\t\t     npm install express --save\t\t\t\t "
+                            data: "---\n\n## Create Express App\n\n1. In the terminal run npm init. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js.\n4. Install [Express](https://expressjs.com/) using the terminal in the same project folder.\n\n\t\t     npm install express --save\t\t\t\t "
                           - type: callout
                             data:
                               type: success
@@ -3888,6 +3896,9 @@ pages:
                               HTTP response. 
                           - type: text
                             data: >-
+                              ---
+
+
                               ## Start the app and Ngrok
 
                               We are going to start the app and visit the ngrok
@@ -3939,7 +3950,7 @@ pages:
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500191661
                           - type: text
-                            data: "## Create the webhooks\n\nThe webhook we are going to subscribe to is `store/product/updated`. \n\n1. In Postman create a POST request using `https://api.bigcommerce.comstores/{{store_hash}}/v2/hooks`. \n\t2. Replace store_hash with your store.\n3. Create a body request with the webhook we are subscribing to and your forwarding url:\n\n```\n{\n \"scope\": \"store/product/updated\",\n \"destination\": \"https://6a35e97b.ngrok.io/webhooks\",\n \"is_active\": true\n}\n```\n> Don't have Postman. Use the Try it out box below.\n\nThe destination url is the forwarding url from Ngrok and /webhooks,  matching the URL path set in the app POST.  \n\n3. Update the headers to have:\n\n```\n    Accept: application/json\n     Content-Type: application/json\n     X-Auth-Client: {{the OAuth client id}}\n     X-Auth-Token: {{the OAuth token}}\n```"
+                            data: "---\n\n## Create the webhooks\n\nThe webhook we are going to subscribe to is `store/product/updated`. \n\n1. In Postman create a POST request using `https://api.bigcommerce.comstores/{{store_hash}}/v2/hooks`. \n\t2. Replace store_hash with your store.\n3. Create a body request with the webhook we are subscribing to and your forwarding url:\n\n```\n{\n \"scope\": \"store/product/updated\",\n \"destination\": \"https://6a35e97b.ngrok.io/webhooks\",\n \"is_active\": true\n}\n```\n> Don't have Postman. Use the Try it out box below.\n\nThe destination url is the forwarding url from Ngrok and /webhooks,  matching the URL path set in the app POST.  \n\n3. Update the headers to have:\n\n```\n    Accept: application/json\n     Content-Type: application/json\n     X-Auth-Client: {{the OAuth client id}}\n     X-Auth-Token: {{the OAuth token}}\n```"
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500381736
@@ -3982,6 +3993,9 @@ pages:
                               ```
                           - type: text
                             data: >-
+                              ---
+
+
                               ## Fire Webhooks
 
 
@@ -4023,6 +4037,9 @@ pages:
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500989467
                           - type: text
                             data: >-
+                              ---
+
+
                               ## Update via the API
 
 
