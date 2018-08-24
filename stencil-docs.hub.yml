@@ -3132,7 +3132,31 @@ pages:
                     - title: V2 versus V3
                       route:
                         path: /v2-v3
-                      data: {}
+                      data:
+                        blocks:
+                          - type: code
+                            data: >-
+                              <?php
+
+                              namespace Bigcommerce\Unit\Api;
+
+                              use Bigcommerce\Api\ClientError;
+
+                              class ClientErrorTest extends
+                              \PHPUnit_Framework_TestCase
+
+                              {
+                                  public function testStringifyingReturnsTheMessageAndCodeAppropriately()
+                                  {
+                                      $error = new ClientError('message here', 100);
+                                      $this->assertSame('Client Error (100): message here', (string)$error);
+                                  }
+                              }
+                            config:
+                              mode: php
+                              highlightRange:
+                                - from: '1'
+                                  to: '5'
                     - title: Authentication
                       route:
                         path: /authentication
