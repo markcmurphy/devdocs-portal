@@ -4616,6 +4616,7 @@ definitions:
         enum:
           - inactive
           - active
+    title: Placement Post
   PlacementPut:
     properties:
       entity_id:
@@ -4643,11 +4644,13 @@ definitions:
         enum:
           - inactive
           - active
+    title: Placement Put
   PlacementResponse:
     type: object
     properties:
       data:
         $ref: '#/definitions/Placement'
+    title: Placement Response
   PlacementsResponse:
     type: object
     properties:
@@ -4657,6 +4660,7 @@ definitions:
           $ref: '#/definitions/Placement'
       meta:
         $ref: '#/definitions/CollectionMeta'
+    title: Placements Response
   Placement:
     properties:
       uuid:
@@ -6891,14 +6895,12 @@ definitions:
         description: |
           Flag to determine if product image or open graph image is used.
   Product:
-    type: object
-    description: >
+    description: >-
       A BigCommerce Product object describes a single purchasable unit or a
       collection of purchasable units.
     allOf:
       - $ref: '#/definitions/ProductBase'
-      - type: object
-        properties:
+      - properties:
           id:
             type: integer
             description: |
@@ -6910,18 +6912,22 @@ definitions:
               The price of the product as seen on the storefront. It will be
               equal to the `sale_price`, if set, and the `price` if there is not
               a `sale_price`.
+            example: 12.43
           reviews_rating_sum:
             type: integer
             description: |
               The total rating for the product.
+            example: 3.2
           reviews_count:
             type: integer
             description: |
               The number of times the product has been rated.
+            example: 4
           total_sold:
             type: integer
             description: |
               The total quantity of this product sold.
+            example: 80
           custom_fields:
             type: array
             items:
@@ -6935,11 +6941,13 @@ definitions:
             format: date-time
             description: |
               The date on which the product was created.
+            example: '2018-08-15T14:49:05+00:00'
           date_modified:
             type: string
             format: date-time
             description: |
               The date on which the product was modified.
+            example: '2018-08-24T14:41:00+00:00'
           images:
             type: array
             items:
@@ -6957,6 +6965,9 @@ definitions:
             description: >
               The unique identifier of the base variant associated with a simple
               product. This value is null for complex products.
+            example: 363
+    title: Product
+    type: object
   ProductPost:
     type: object
     description: |
