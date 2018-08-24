@@ -6494,8 +6494,8 @@ definitions:
         $ref: '#/definitions/Meta'
   ProductBase:
     type: object
-    description: |
-      Common Product properties.
+    description: Common Product properties.
+    title: Product Base
     properties:
       name:
         type: string
@@ -6505,6 +6505,7 @@ definitions:
           - post
         minLength: 1
         maxLength: 255
+        example: Smith Journal 13
       type:
         type: string
         description: >
@@ -6515,26 +6516,38 @@ definitions:
         enum:
           - physical
           - digital
+        example: physical
       sku:
         type: string
         description: |
           User defined product code/stock keeping unit (SKU).
         minLength: 0
         maxLength: 255
+        example: SM-13
       description:
         type: string
         description: |
           The product description, which can include HTML formatting.
+        example: >-
+          <p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla
+          massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla
+          mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales.
+          Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus.
+          Curabitur libero nunc, interdum ac libero non, tristique porttitor
+          metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis
+          turpis eget.</span></p>
       weight:
         type: number
         format: double
         description: >
           Weight of the product, which can be used when calculating shipping
-          costs.
+          costs. This is based on the unit set on the store
         x-required:
           - post
         minimum: 0
         maximum: 9999999999
+        example: 1
       width:
         type: number
         format: double
@@ -6543,6 +6556,7 @@ definitions:
           costs.
         minimum: 0
         maximum: 9999999999
+        example: 4.5
       depth:
         type: number
         format: double
@@ -6551,6 +6565,7 @@ definitions:
           costs.
         minimum: 0
         maximum: 9999999999
+        example: 2.6
       height:
         type: number
         format: double
@@ -6559,6 +6574,7 @@ definitions:
           costs.
         minimum: 0
         maximum: 9999999999
+        example: 2
       price:
         type: number
         format: double
@@ -6568,6 +6584,7 @@ definitions:
         x-required:
           - post
         minimum: 0
+        example: 25
       cost_price:
         type: number
         format: double
@@ -6615,10 +6632,10 @@ definitions:
           updating a product, if an array of categories is supplied, all product
           categories will be overwritten. Does not accept more than 1,000 ID
           values.
-        items:
-          type: integer
         x-required:
           - post
+        items:
+          type: integer
       brand_id:
         type: integer
         description: |
