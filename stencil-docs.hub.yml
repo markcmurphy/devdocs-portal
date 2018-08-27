@@ -4274,7 +4274,37 @@ pages:
                     - title: Images
                       route:
                         path: /products-images
-                      data: {}
+                      data:
+                        blocks:
+                          - type: text
+                            data: '## /catalog/products/{product_id}/images'
+                          - type: text
+                            data: >-
+                              Product images are used to show shoppers what
+                              they’re buying and merchandise products.
+                          - type: text
+                            data: '## Create a Product Image'
+                          - type: code
+                            data: |-
+                              }
+                               "is_thumbnail": true,
+                                "sort_order": 1,
+                                "description": "Yellow Large Bath Towel",
+                                "image_url": "https://your-custom-image/image_name.png"
+                              }
+                            header:
+                              title: Create a Product Image
+                              subtitle: >-
+                                /POST
+                                https://api.bigcommerce.com/stores/{{store_hash}/v3/catalog/products/id/images
+                              anchor: create-product-image
+                            config:
+                              mode: json
+                          - type: text
+                            data: >-
+                              A product can support multiple images. When adding
+                              images, more than one can be added by expanding
+                              the images array.
                     - title: Custom Fields
                       route:
                         path: /product-custom-fields
