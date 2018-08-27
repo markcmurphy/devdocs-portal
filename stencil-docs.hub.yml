@@ -4370,13 +4370,54 @@ pages:
                               different sizes. |
                             header:
                               anchor: defintion-table
-                    - title: Custom Fields
-                      route:
-                        path: /product-custom-fields
-                      data: {}
                     - title: Videos
                       route:
                         path: /product-videos
+                      data:
+                        blocks:
+                          - type: text
+                            data: >
+                              ## /catalog/products/{product_id}/videos
+
+
+                              Product Videos, in addition to images, can help
+                              shoppers understand what they’re buying and help
+                              sell the product.
+
+
+                              Product videos must be hosted on YouTube. The
+                              video_id corresponds to the “v” parameter in a
+                              video url. 
+
+
+                              Example:
+                              https://www.youtube.com/watch?v=***R12345677***
+                            header:
+                              anchor: product-video-introduction
+                          - type: text
+                            data: '## Create a Product Video'
+                            header:
+                              anchor: create-a-product-video
+                          - type: code
+                            data: |-
+                              {
+                                "title": "BigCommerce Mug Video",
+                                "description": "Video Describing the Mug",
+                                "sort_order": 1,
+                                "type": "youtube",
+                                "video_id": "123345AA"
+                              }
+                            header:
+                              title: Product Video
+                              subtitle: >-
+                                /POST
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/videos
+                              anchor: code-create-product-video
+                            config:
+                              mode: json
+                    - title: Custom Fields
+                      route:
+                        path: /product-custom-fields
                       data: {}
                     - title: Downloadable Files
                       route:
