@@ -4629,7 +4629,7 @@ pages:
                     - type: text
                       data: |-
                         ## What We'll Cover
-                        * JWT
+                        * [JWT](#jwt)
                         * OAuth Scope
                         * Sample Code
                         * Access URL
@@ -4698,10 +4698,44 @@ pages:
                         //s3.amazonaws.com/user-content.stoplight.io/6012/1535391044482
                       header:
                         title: Key
+                        anchor: token-key
                       config:
                         centered: true
                         maxWidth: '400'
                         maxHeight: '400'
+                    - type: text
+                      data: "### Header\n\nThe header specifies the type of token (JWT) and the hashing algorithm.\n\n```\n{\n\t\"typ\": \"JWT\",\n\t\"alg\": \"HS256\" \n}\n```\n\nThe type and algorithm are always JWT and HS256. Those are the only values BigCommerce supports."
+                      header:
+                        anchor: header
+                    - type: text
+                      data: >-
+                        ### Payload
+
+                        The payload contains a series of claims that identify
+                        the application requesting the login, the store, and the
+                        customer to be logged in. Optionally, you can specify a
+                        redirect URL to direct the customer to a page other than
+                        the My Account page after login. 
+
+
+                        Once a request has is made with a given jti, it cannot
+                        be made again. This parameter is used to prevent replay
+                        attacks by malicious actors intercepting the request or
+                        obtaining it after the fact.
+
+
+                        The request_ip field can be used as an additional
+                        security precaution, to prevent a malicious actor from
+                        intercepting the request and making it from another
+                        browser or system before you do. If you supply this
+                        value, BigCommerce checks the incoming request to ensure
+                        that it is being made from the stated IP address
+                        otherwise the request fails. We strongly encourage
+                        setting this IP address value, but doing so is optional,
+                        to support those cases where this information is not
+                        available.
+                      header:
+                        anchor: payload
         - title: Widgets
           route:
             path: /widgets
