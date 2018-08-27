@@ -4630,7 +4630,7 @@ pages:
                       data: |-
                         ## What We'll Cover
                         * [JWT](#jwt)
-                        * OAuth Scope
+                        * [OAuth Scope](#oauth-scope)
                         * Sample Code
                         * Access URL
                         * Troubleshooting
@@ -4736,6 +4736,81 @@ pages:
                         available.
                       header:
                         anchor: payload
+                    - type: code
+                      data: |
+                        {
+                        "iss": "Your app’s Oauth client ID",
+                        "iat": "timestamp for when the token was issued",
+                        "jti": "randomly generated string",
+                        "operation": "customer_login",
+                        "store_hash": "abc123",
+                        "customer_id": 1234,
+                        "redirect_to": "/account.php",
+                        "request_ip": "111.222.333.444"
+                        }
+                      header:
+                        anchor: example-payload
+                        title: Example Payload
+                      config:
+                        mode: json
+                    - type: text
+                      data: >-
+                        | Field Name | Type | Description |
+
+                        | --- | --- | --- |
+
+                        | iss | string | Indicates the token's issuer. This is
+                        your application's client ID, which is obtained during
+                        application registration in Developer Portal. |
+
+                        | iat | integer| Time when the token was generated. This
+                        is a numeric value indicating the number of seconds
+                        since the [Unix
+                        epoch](http://en.wikipedia.org/wiki/Unix_time).|
+
+                        | jti | string | Request ID string that must be unique
+                        across all requests made by your app. A UUID or other
+                        random string would be an appropriate value. Most
+                        libraries contain a method for generating a uuid. |
+
+                        | operation | string | Must contain the string
+                        "customer_login". |
+
+                        | store_hash | string | Store hash identifying the store
+                        you are logging into. |
+
+                        | customer_id | integer | ID of the customer you are
+                        logging in, as obtained through the Customer API. |
+
+                        | redirect_to | string | Optional field containing a
+                        relative path for the shopper's destination after login.
+                        Will default to `/account.php`. |
+
+                        | request_ip | string | Optional field containing the
+                        expected IP address for the request. If provided,
+                        BigCommerce will check that it matches the browser
+                        trying to log in. If there is not a match, it will be
+                        rejected |
+                      header:
+                        anchor: payload-fields
+                    - type: text
+                      data: >
+                        ### Signature
+
+
+                        The signature is created by signing the header and
+                        payload with the hashing algorithm specified in the
+                        header (HS256) and your application’s Client Secret. 
+                      header:
+                        anchor: signature
+                    - type: text
+                      data: >-
+                        ## OAuth Scope
+
+                        Your OAuth API credentials must include the
+                        [customers_login](http://) scope.
+                      header:
+                        anchor: oauth-scope
         - title: Widgets
           route:
             path: /widgets
