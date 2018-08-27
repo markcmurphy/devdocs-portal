@@ -3008,7 +3008,7 @@ pages:
             ## Stencil Development Features and Technology Stack
 
 
-            Stencil's provides the following features which allow BigCommerce
+            Stencil's provides the following features, allowing BigCommerce
             theme developers to create beautiful, dynamic, and powerful
             storefronts.
 
@@ -3021,7 +3021,7 @@ pages:
 
             The Stencil CLI enables developers to locally develop and customize
             on any Stencil theme with no impact on a merchant's live storefront
-            during the development process. when locally developing, you will
+            during the development process. When locally developing, you will
             have access to real-time Browsersync preview and testing across
             desktop, mobile, and tablet devices/viewports.
 
@@ -3049,15 +3049,23 @@ pages:
 
             Stencil's Cornerstone base theme uses a BigCommerce pattern library
             called Citadel, which is built on top of the ZURB Foundation
-            framework, version 5.5.3. 
+            framework, version 5.5.3. Stencil does not support Foundation 6.x,
+            due to breaking changes introduced between versions 5.x and 6.x.
 
 
-            Foundation offers you the framework for creating a responsive theme.
-            You have the option of swapping out Foundation for another
-            framework, although doing so would require significant work.
+            Foundation offers the framework for creating a responsive theme. You
+            have the option of swapping out Foundation for another framework,
+            although doing so would require significant work.
 
 
-            Notes about Citadel:
+            Foundation assets bundled with Cornerstone are located in these
+            subdirectories: 
+
+
+            `Cornerstone/assets/scss/settings/foundation/ `
+
+            `Cornerstone/assets/scss/components/foundation/`
+
 
             Citadel extends Foundation’s mixins and components to provide
             Stencil’s own mixins, extensible components, and utilities. These
@@ -3067,34 +3075,21 @@ pages:
             conventions. Classes are named functionally, rather than based on
             visual presentation or content. Our style guide is published here.
 
-            Citadel assets bundled with Cornerstone are located in these Stencil
-            subdirectories: 
+            Citadel assets bundled with Cornerstone are located in these
+            Cornerstone subdirectories: 
 
-            <theme-name>/assets/scss/settings/citadel/ 
 
-            <theme-name>/assets/scss/components/citadel/
+            Cornerstone/assets/scss/settings/citadel/
 
-            Notes about Foundation:
 
-            Stencil specifically supports version 5.5.3 of Foundation.
-            (Documentation here.)
+            Cornerstone/assets/scss/components/citadel/
 
-            We do not support Foundation 6.x, due to breaking changes introduced
-            between versions 5.x and 6.x.
-
-            Foundation assets bundled with Cornerstone are located in these
-            subdirectories: 
-
-            <theme-name>/assets/scss/settings/foundation/ 
-
-            <theme-name>/assets/scss/components/foundation/
 
             More Info:
 
             For more detailed information about the Citadel and Foundation SCSS
             components, and their naming conventions, please see
             Components/Design Patterns.
-
 
 
             ---
@@ -3132,6 +3127,46 @@ pages:
             BigCommerce theme developers' configuration choices determine which
             theme aspects merchants can customize, and the range of choices for
             each aspect.
+
+
+            Stencil's Theme Editor graphical interface enables merchants and
+            store administrators to make styling changes to the theme currently
+            applied to their storefront. 
+
+
+            As a theme developer, you define which style settings appear here.
+            Two JSON files in your Stencil theme's home directory, config.json
+            and schema.json, govern which settings the theme will expose.
+
+
+            The config.json file's key/value pairs define:
+
+            Global, theme-wide variables
+
+            Theme variations
+
+            Variation-specific variables
+
+
+            The schema.json file specifies which theme settings will be
+            accessible through the Theme Editor GUI. Your entries here also
+            define the graphical controls presented to merchants for each
+            setting.
+
+            Theme Variations
+
+            Each Stencil theme can contain one to four variations. You can
+            optimize individual variations for specific markets, audiences and
+            styles – while still managing and distributing all of these
+            variations as one theme.
+
+            More Info:
+
+            config.json Reference – variations
+
+            schema.json Reference – variations
+
+            config.json–Resource Interactions (hands-on tutorial)
 
 
             ---
