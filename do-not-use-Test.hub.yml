@@ -5003,7 +5003,90 @@ pages:
                         information is signed with your [OAuth client
                         secret](http://).
                     - type: text
-                      data: ''
+                      data: >-
+                        ### Example JavaScript
+
+
+                        Below is example JavaScript that will access this JWT.
+                        To test the JWT functionality, you can install this
+                        JavaScript on your sandbox BigCommerce store. Your
+                        application’s Client ID must be included in the request
+                        (to identify the requesting application):
+                    - type: code
+                      data: |
+                        <script type="text/javascript">
+                        function customerJWT() {  
+                            var appClientId = "**BC_CLIENT_ID**"; // TODO: Fill this in with your app's client ID
+                            var xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange = function() {
+                                if (xmlhttp.readyState == 4 ) {
+                                   if (xmlhttp.status == 200) {
+                                       alert('Customer JWT:\n' + xmlhttp.responseText);
+                                   }
+                                   else if (xmlhttp.status == 404) {
+                                      alert('Not logged in!');
+                                   }
+                                   else {
+                                       alert('Something went wrong');
+                                   }
+                                }
+                            };
+                            xmlhttp.open("GET", "/customer/current.jwt?app_client_id="+appClientId, true);
+                            xmlhttp.send();
+                        }
+                        customerJWT();
+                        </script>
+                      header:
+                        title: Identify Logged In Customers
+                        anchor: identify-customers-script
+                      config:
+                        mode: html
+                    - type: text
+                      data: >-
+                        If you are logged into the storefront with a customer
+                        account, the above JavaScript should alert to the
+                        browser with a JWT token. If no customer is logged in,
+                        BigCommerce will return a 404 response, and you will see
+                        an error message. The JWT returned from this endpoint
+                        (example below) can be decoded on JWT.IO
+                    - type: code
+                      data: |-
+                        {
+                          "customer": {
+                            "id": 4927,
+                            "email": "john.doe@gmail.com",
+                            "group_id": "6"
+                          },
+                          "iss": "bc/apps",
+                          "sub": "abc123",
+                          "iat": 1480831863,
+                          "exp": 1480832763,
+                          "version": 1,
+                          "aud": "6sv16tfx3j5gsopm42ss5dd67g2srvq",
+                          "application_id": "6sv16tasdgr2b5hs5dd67g2srvq",
+                          "store_hash": "abc123",
+                          "operation": "current_customer"
+                        }
+                      header:
+                        title: Logged in Customers Response
+                        anchor: logged-in-customer-response
+                      config:
+                        mode: json
+                    - type: text
+                      data: >-
+                        By design, your application should send this token to
+                        the application’s server, validate it against your
+                        client secret, and then use it as a trusted indication
+                        of the logged-in customer’s identity, before displaying
+                        confidential information to them. 
+
+
+                        An end-to-end example, which displays a customer’s
+                        recently purchased products, is available in our
+                        [Ruby](https://github.com/bigcommerce/hello-world-app-ruby-sinatra/)
+                        and
+                        [PHP](https://github.com/bigcommerce/hello-world-app-php-silex/)
+                        sample apps.
         - title: Widgets
           route:
             path: /widgets
