@@ -4811,6 +4811,38 @@ pages:
                         [customers_login](http://) scope.
                       header:
                         anchor: oauth-scope
+                    - type: text
+                      data: >-
+                        ## Access URL
+
+                        After generating the JWT token, your app should
+                        immediately redirect the shopper’s browser to the
+                        following access point URL to log the customer into
+                        their account: `/login/token/{token}`
+
+
+                        Example:
+
+                        `https://storedomain.com/login/token/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                        .eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9
+                        .TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ`
+                    - type: text
+                      data: >-
+                        ## Logging in a Customer
+
+                        The following tutorial will walk through creating a
+                        login token. We recommend scripting this process since
+                        the iat is invalid after 30 seconds. For the purpose of
+                        illustration, this tutorial will walk through creating a
+                        token manually using the debugger tool at JWT.io,
+                        although doing so can be tricky due to time
+                        constraints.  
+
+
+                        **Prerequisites**:
+
+                        Client ID and Client Secret generated from the store
+                        with the scope set to Customers Login.
         - title: Widgets
           route:
             path: /widgets
