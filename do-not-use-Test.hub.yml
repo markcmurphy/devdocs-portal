@@ -4771,7 +4771,10 @@ pages:
                         | jti | string | Request ID string that must be unique
                         across all requests made by your app. A UUID or other
                         random string would be an appropriate value. Most
-                        libraries contain a method for generating a uuid. |
+                        libraries contain a method for generating a uuid. For
+                        testing a [UUID
+                        generator](https://www.uuidgenerator.net/) can be used,
+                        but it recommended to use built in libraries.|
 
                         | operation | string | Must contain the string
                         "customer_login". |
@@ -4864,6 +4867,114 @@ pages:
                         title: Making a /GET request
                       header:
                         anchor: making-a-get-request
+                    - type: text
+                      data: >-
+                        2. Create the payload by filling in the PAYLOAD:DATA on
+                        jwt.io
+                    - type: code
+                      data: |-
+                        {
+                            "iss": "1234r5t6y7u8i9o0p",
+                            "iat": 1535393113,
+                            "jti": "20b7c03e-00da-4d29-91bf-2aa06a57575b",
+                            "operation": "customer_login",
+                            "store_hash": "{store_hash}",
+                            "customer_id": 2,
+                            "redirect_to": "/account.php"
+                        }
+                      header:
+                        title: Create the Payload
+                        anchor: create-the-paylpad
+                    - type: image
+                      data: >-
+                        //s3.amazonaws.com/user-content.stoplight.io/6012/1535393573638
+                      header:
+                        anchor: jwt-image
+                        subtitle: JTW.io fields
+                      config:
+                        centered: true
+                        maxWidth: '800'
+                        maxHeight: '800'
+                    - type: callout
+                      data:
+                        type: error
+                        title: IAT Claim
+                        body: 'The iat claim is only good for 30 seconds. '
+                      header:
+                        anchor: iat-claim
+                    - type: text
+                      data: >
+                        3.  Add your Client Secret in the Verify Signature
+                        Section. Replace the text `your-256-bit-secret` with the
+                        Client Secret.
+
+                        4. Copy the token from the encoded box and paste at the
+                        end of the login/token url.  
+
+
+                        *https://store-url/login/token/generated-jwt-token*
+
+
+                        **Example**: 
+
+                        https://storedomain.com/login/token/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                        .eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9
+                        .TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+
+
+                        5. Paste the URL into the address bar.
+
+
+                        If the request was successful then you will be logged in
+                        as the customer and directed to /account.php. If it was
+                        unsuccessful there will be a login attempt message and
+                        you will be directed to /login.php
+                    - type: text
+                      data: >-
+                        ## Sample Code
+
+
+                        Code to generate a valid JWT token for a storefront
+                        login request is provided in our API Client Libraries.
+                        The list items below link to the repositories maintained
+                        by BigCommerce:
+
+
+                        * [PHP
+                        Sample](https://github.com/bigcommerce/bigcommerce-api-php/blob/master/src/Bigcommerce/Api/Client.php#L421)
+
+                        * [Python
+                        Sample](https://github.com/bigcommerce/bigcommerce-api-python/blob/master/bigcommerce/customer_login_token.py)
+
+                        * [Ruby
+                        Sample](https://github.com/bigcommerce/bigcommerce-api-ruby/blob/master/examples/customers/customer_login.rb)
+
+
+                        Client libraries in many other languages are at JWT.io.
+                    - type: text
+                      data: >-
+                        ## Troubleshooting
+
+
+                        Tokens are valid for a very short time frame after being
+                        generated, so tokens should not be generated in advance.
+                        Instead, the application should generate the token and
+                        then immediately redirect the user’s browser to
+                        /login/token/{token}. 
+
+
+                        If the server generating the iat is out of sync, the
+                        login token will fail if the timestamp indicates a time
+                        in the future or an expired token.
+
+
+                        The login URL can be visited only once. Once a GET
+                        request is run against the link, the token is
+                        invalidated. 
+
+
+                        Tokens can be validated or generated for testing
+                        purposes using the debugger at https://jwt.io/.
         - title: Widgets
           route:
             path: /widgets
