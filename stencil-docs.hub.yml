@@ -4431,7 +4431,8 @@ pages:
 
                               Product Videos, in addition to images, can help
                               shoppers understand what they’re buying and help
-                              sell the product.
+                              sell the product. A product can have more than one
+                              video.
 
 
                               Product videos must be hosted on YouTube. The
@@ -4464,6 +4465,44 @@ pages:
                               anchor: code-create-product-video
                             config:
                               mode: json
+                          - type: text
+                            data: >-
+                              ## Defintions
+
+                              ### A full list of product video definitions can
+                              be found at the
+                              [/catalog/products/{product_id}/videos](http://)
+                              endpoint.
+
+
+                              | Term | Definition  |
+
+                              |--|--|
+
+                              | title | The title for the video. If left blank,
+                              this will be filled in according to data on a host
+                              site. |
+
+                              | description | The description for the video. If
+                              left blank, this will be filled in according to
+                              data on a host site. |
+
+                              | sort_order | The order in which the video will
+                              be displayed on the product page. Higher integers
+                              give the video a lower priority. When updating, if
+                              the video is given a lower priority, all videos
+                              with a `sort_order` the same as or greater than
+                              the video's new `sort_order` value will have their
+                              `sort_order`s reordered. | 
+
+                              | type | The video type (a short name of a host
+                              site). Currently, only `youtube` is accepted. |
+
+                              | video_id | The ID of the video on a host site.
+                              Such as :
+                              http://www.youtube.com/watch?v=`RY09M9wg1is` |
+                            header:
+                              anchor: defintions
                     - title: Custom Fields
                       route:
                         path: /product-custom-fields
