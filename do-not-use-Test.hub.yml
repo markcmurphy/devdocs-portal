@@ -3839,72 +3839,95 @@ pages:
                         path: /setting-up-webhooks
                       data:
                         blocks:
-                          - type: html
-                            data: <h1>Setting up Webhooks</h1>
+                          - type: text
+                            data: '# Setting Up Webhooks'
                           - type: text
                             data: >-
                               ## Prerequisites
 
 
-                              * Node.js is installed
+                              - NPM is installed (installed automatically with
+                              Node)
 
-                              * NPM is installed
+                              - Familiar with Command Line
 
-                              * Familiar with Command Line
+                              - Familiar with Postman
 
-                              * Familiar with Postman
+                              - [API Access Token & Client
+                              ID](/api/#authenticating-with-oauth) with [scope]
+                              set to Information & Settings Read-Only and
+                              Products Read-Only.
 
-                              * API Access Token & Client ID with scope set to
-                              Information & Settings Read-Only & Products
-                              Read-Only.
-
-                              * Webhooks Overview
+                              - [Webhooks Overview](/api/#webhooks-overview)
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
-                              ---
+                              ## Create Project Folder
 
 
-                              ## Create project folder
-
-                              Open the terminal and create a folder that will
-                              hold Ngrok and the Node app, then move into that
+                              1. Open the terminal and create a folder that will
+                              hold ngrok and the Node app, then move into that
                               directory.
 
+
                               ```
-
-                              BIGCOMMERCE:webhooks your.computer$ mkdir
-                              webhooks-test
-
-                              BIGCOMMERCE:webhooks your.computer$ cd
-                              webhooks-test
-
+                                  mkdir webhooks-test
+                                  cd webhooks-test
                               ```
                           - type: text
+                            data: '---'
+                          - type: text
                             data: >-
-                              ---
+                              ## Install ngrok
 
 
-                              ## Install Ngrok
+                              There are three ways to install ngrok: 
 
-                              There are three ways to install Ngrok: 
+                              - Install manually and then set the $PATH so ngrok
+                              can be used globally. 
 
-                              * Install manually and then set the `$PATH` so
-                              Ngrok can be used globally. 
+                              - Download as an
+                              [npm](https://www.npmjs.com/package/ngrok)
+                              module. 
 
-                              * Download as an [npm
-                              module](https://www.npmjs.com/package/ngrok). 
-
-                              * Download manually and place in the project
+                              - Download manually and place in the project
                               folder. (Method we are using)
 
 
-                              1. Visit [https://ngrok.com/](https://ngrok.com/)
-                              and click on download.
+                              ### Mac/Linux
+
+
+                              1. Visit https://ngrok.com/ and click on download.
 
                               2. Choose the version for your operating system.
 
                               3. Unzip ngrok and place the application in the
                               project folder that you created.
+
+
+                              This can be accomplished in one command:
+
+                              unzip "file_to_unzip" -d  destination
+
+
+                              `unzip
+                              /Users/your-computer/Downloads/ngrok-stable-darwin-amd64.zip
+                              -d /Users/your-computer/Documents/webhooks-test`
+
+
+                              ### Windows
+
+                              1. Visit https://ngrok.com/ and click on download.
+
+                              2. Choose the version for your operating system.
+
+                              3. Unzip ngrok and place the application in the
+                              project folder that you created.
+
+                              4. Make sure the folder is in your PATH
+                              environment variable
+                                  - [What are PATH and other environment variables, and how can I set or use them?](https://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them)
                           - type: callout
                             data:
                               type: success
@@ -3913,7 +3936,9 @@ pages:
                                 with ngrok unzipped inside of it. 
                               title: Checkpoint
                           - type: text
-                            data: "---\n\n## Create Express App\n\n1. In the terminal run npm init. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js.\n4. Install [Express](https://expressjs.com/) using the terminal in the same project folder.\n\n\t\t     npm install express --save\t\t\t\t "
+                            data: '---'
+                          - type: text
+                            data: "## Create Express App\n\n1. In the terminal run `npm init`. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```json\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js. `touch index.js`\n4. Install [Express](https://expressjs.com/en/starter/installing.html) using the terminal in the same project folder. `npm install express --save`\t\t\t "
                           - type: callout
                             data:
                               type: success
@@ -3937,33 +3962,26 @@ pages:
                               code snippet: 
 
 
+
+                              ```javascript
+                                  const express = require('express')
+                                  const app = express()
+                                      app.post('/webhooks', function (req, res) {
+                                      res.send('OK')
+                                  })
+                                  app.listen(3000, function () {
+                                      console.log('Listening for webhooks on port 3000')
+                                  })
                               ```
 
-                              const express = require('express')
-
-                              const app = express()
-
-                              app.post('/webhooks', function (req, res) {
-
-                              res.send('OK')
-
-                              })
-
-                              app.listen(3000, function () {
-
-                              console.log('Listening for webhooks on port 3000')
-
-                              })
-
-                              ```
 
 
                               The app is starting a server and listening on port
                               3000, then returning a response of ok once it
-                              receives a `POST` to the `/webhooks` url.
+                              receives a POST to the /webhooks url.
 
 
-                              ```
+                              ```javascript
 
                               app.post('/webhooks', function (req, res) {
                                res.send('OK')
@@ -3973,33 +3991,33 @@ pages:
 
 
 
-                              From [Express
-                              Website](https://expressjs.com/en/starter/basic-routing.html):  
+                              From Express
+                              [Website](https://expressjs.com/en/starter/basic-routing.html):
 
+                              `app.METHOD(PATH, HANDLER)`
 
-                              `app.METHOD(PATH, HANDLER)`  
+                              - app is an instance of express.
 
-                              * app is an instance of express.
+                              - METHOD is an [HTTP request
+                              method](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods),
+                              in lowercase.
 
-                              * METHOD is an HTTP request method, in lowercase.
+                              - PATH is a path on the server.
 
-                              * PATH is a path on the server.
-
-                              * HANDLER is the function executed when the route
+                              - HANDLER is the function executed when the route
                               is matched.
 
-                              * Res.send is the body parameter that sends the
-                              HTTP response. 
+                              - Res.send is the body parameter that sends the
+                              HTTP response.
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
-                              ---
+                              ## Start the app and ngrok
 
-
-                              ## Start the app and Ngrok
 
                               We are going to start the app and visit the ngrok
                               url to see the status of our webhooks. 
-
 
 
                               1. Open two terminal tabs. They both should be in
@@ -4007,7 +4025,7 @@ pages:
 
                               2. In one tab run the app. `node index.js`
 
-                              3. In the other start ngrok. `ngrok http 3000`
+                              3. In the other start ngrok. `./ngrok http 3000`
                           - type: tabs
                             data:
                               children:
@@ -4030,26 +4048,73 @@ pages:
                                         //s3.amazonaws.com/user-content.stoplight.io/6012/1531500085650
                                       config:
                                         centered: true
+                                      header:
+                                        title: nrgok terminal
                           - type: text
                             data: >-
-                              Ngrok returns two values we need for webhooks. Web
-                              Interface, where you can monitor the hook from a
-                              browser. Forwarding is the webhook destination.
-                              Make note of the https version. In this example
-                              its https://6a35e97b.ngrok.io.
+                              ngrok returns two values we need for webhooks. 
+
+                              - Web Interface: Where you can monitor the hook
+                              from a browser. `https://127.0.0.1:4040`
+
+                              - Forwarding: The webhook destination. Make note
+                              of the https version. In this example its
+                              https://6a35e97b.ngrok.io.
 
 
-                              Open a web browser and copy in your Web Interface
-                              URL. `http://127.0.0.1:4040` -  This is where the
-                              webhooks will appear when they fire.
+                              4. Open a web browser and copy in your Web
+                              Interface URL. `http://127.0.0.1:4040` -  This is
+                              where the webhooks will appear when they fire.
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500191661
+                            header:
+                              title: ngrok Web Interface
                           - type: text
-                            data: "---\n\n## Create the webhooks\n\nThe webhook we are going to subscribe to is `store/product/updated`. \n\n1. In Postman create a POST request using `https://api.bigcommerce.comstores/{{store_hash}}/v2/hooks`. \n\t2. Replace store_hash with your store.\n3. Create a body request with the webhook we are subscribing to and your forwarding url:\n\n```\n{\n \"scope\": \"store/product/updated\",\n \"destination\": \"https://6a35e97b.ngrok.io/webhooks\",\n \"is_active\": true\n}\n```\n> Don't have Postman. Use the Try it out box below.\n\nThe destination url is the forwarding url from Ngrok and /webhooks,  matching the URL path set in the app POST.  \n\n3. Update the headers to have:\n\n```\n    Accept: application/json\n     Content-Type: application/json\n     X-Auth-Client: {{the OAuth client id}}\n     X-Auth-Token: {{the OAuth token}}\n```"
-                          - type: image
+                            data: '---'
+                          - type: text
                             data: >-
-                              //s3.amazonaws.com/user-content.stoplight.io/6012/1531500381736
+                              The webhook we are going to subscribe to is
+                              `store/product/updated`. 
+
+
+                              1. Create a POST request using the try it now box
+                              below or your api enviroment of
+                              choice.`https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks`.
+                              Replace store_hash with your store.
+
+                              2. Create a body request with the webhook we are
+                              subscribing to and your forwarding url:
+
+
+                              ```json
+
+                              {
+                               "scope": "store/product/updated",
+                               "destination": "https://6a35e97b.ngrok.io/webhooks",
+                               "is_active": true
+                              }
+
+                              ```
+
+
+                              The destination url is the forwarding url from
+                              ngrok and /webhooks, matching the URL path set in
+                              the app POST.  
+
+
+                              3. Update the headers to have:
+
+                              ```
+                                  Accept: application/json
+                                  Content-Type: application/json
+                                  X-Auth-Client: {{the OAuth client id}}
+                                  X-Auth-Token: {{the OAuth token}}
+                              ```
+
+                              4. Check all the values and then hit POST. The
+                              response will be 201 Created if headers and scope
+                              are correct.
                           - type: http
                             data:
                               method: post
@@ -4068,13 +4133,8 @@ pages:
                                 }
                             header:
                               title: Create a Webhook
-                          - type: text
+                          - type: code
                             data: |-
-                              4. Check all the values and then hit `/POST`.
-
-                              The response is a 201 Created.
-
-                              ```
                               {
                                   "id": 14263419,
                                   "client_id": "your-client-id",
@@ -4086,27 +4146,10 @@ pages:
                                   "created_at": 1531256030,
                                   "updated_at": 1531256030
                               }
-                              ```
-                          - type: text
-                            data: >-
-                              ---
-
-
-                              ## Fire Webhooks
-
-
-                              You can fire the webhook in two ways. Either the
-                              API or the store’s control panel. We are going to
-                              cover both.
-
-
-                              ### Update via the Control Panel
-
-
-                              1. From your store’s control panel, navigate to
-                              Products > View. Choose a product and change some
-                              of the information. In this case, I added the word
-                              Hoodie to the product name. Then click save.
+                            header:
+                              title: 201 Created Response
+                            config:
+                              mode: json
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500906129
