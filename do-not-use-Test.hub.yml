@@ -5315,6 +5315,20 @@ pages:
                             header:
                               title: Multiple Images
                               anchor: code-create-multiple-images
+                          - type: http
+                            data:
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/images
+                              headers:
+                                Accepts: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{CLIENT ID}'
+                                X-Auth-Token: '{{ACCESS TOKEN}}'
+                              method: put
+                              body: "{\n\"images\":[\n\t\t\t{\n\t\t\t\t\"is_thumbnail\": true,\n\t\t\t\t\"image_url\": \"https://your-custom-image/image_name.png\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"is_thumbnail\": false,\n\t\t\t\t\"image_url\": \"https://your-custom-image/image_name.png\"\n\t\t\t}\n\t\t]\n}"
+                            header:
+                              title: Try it Now
+                              subtitle: Add Multiple Images to a Product
                           - type: text
                             data: '---'
                           - type: text
