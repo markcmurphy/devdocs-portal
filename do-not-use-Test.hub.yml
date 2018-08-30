@@ -5271,13 +5271,33 @@ pages:
                                 "image_url": "https://your-custom-image/image_name.png"
                               }
                             header:
-                              title: Create a Product Image
+                              title: Add image to a Product
                               subtitle: >-
-                                /POST
-                                https://api.bigcommerce.com/stores/{{store_hash}/v3/catalog/products/id/images
+                                /PUT
+                                https://api.bigcommerce.com/stores/{{store_hash}/v3/catalog/products/{{product_id}}/images
                               anchor: code-create-product-image
                             config:
                               mode: json
+                          - type: http
+                            data:
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/images
+                              headers:
+                                Accepts: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{CLIENT ID}'
+                                X-Auth-Token: '{{ACCESS TOKEN}}'
+                              method: put
+                              body: |-
+                                }
+                                 "is_thumbnail": true,
+                                  "sort_order": 1,
+                                  "description": "Yellow Large Bath Towel",
+                                  "image_url": "https://your-custom-image/image_name.png"
+                                }
+                            header:
+                              title: Try it Now
+                              subtitle: Add an Image to a Product
                           - type: text
                             data: '---'
                           - type: text
@@ -5335,9 +5355,6 @@ pages:
                               anchor: code-get-product-images
                             config:
                               mode: json
-                              highlightRange:
-                                - from: '5'
-                                  to: '5'
                           - type: text
                             data: '---'
                           - type: text
