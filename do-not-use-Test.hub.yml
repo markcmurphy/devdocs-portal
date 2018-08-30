@@ -5576,6 +5576,10 @@ pages:
                               * If a product has options that were created using
                               the V2 API, additional options cannot be added
                               using the V3 API.
+
+                              * SKU's in V@ map to variants in V3.
+
+                              * Base variants are not SKU's in V2.
                             header:
                               anchor: option-v2-v3
                           - type: callout
@@ -5699,13 +5703,23 @@ pages:
 
                               |--|--|
 
-                              | price | |
+                              | price | Price can be set per sku(variant) on the
+                              product in addition to being set on the base
+                              product. If not sku price is set, then the base
+                              product price is used.|
 
-                              | sku | |
+                              | sku | Required for non-base variants on a
+                              product.|
 
                               | option_values |  |
 
-                              | calculated_price | |
+                              | calculated_price | Tells you what the variant
+                              will cost, factoring in all the things that can
+                              affect the price such as: Product Price, Product
+                              Sale Price, Variant Price,Variant Sale Price,Rules
+                              that may be affecting the variant. This should be
+                              the price-in-cart for the variant before
+                              cart-level discount rules evaluate. |
 
                               | image_url | |
                     - title: Complex Rules
