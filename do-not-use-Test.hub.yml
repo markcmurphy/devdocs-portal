@@ -4976,6 +4976,30 @@ pages:
                               anchor: create-simple-product
                             config:
                               mode: json
+                          - type: http
+                            data:
+                              headers:
+                                Accepts: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{{CLIENT ID}}'
+                                X-Auth-Token: '{{ACCESS TOKEN}}'
+                              method: post
+                              url: >-
+                                https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products
+                              body: |-
+                                {
+                                  "name": "BigCommerce Coffee Mug",
+                                  "price": "10.00",
+                                  "categories": [
+                                    23,
+                                    21
+                                  ],
+                                  "weight": 4,
+                                  "type": "physical"
+                                }
+                            header:
+                              title: Create a Simple Product
+                              subtitle: Use this to create your own Simple Product
                           - type: callout
                             data:
                               body: >-
