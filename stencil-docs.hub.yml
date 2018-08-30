@@ -3909,7 +3909,7 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: "## Create Express App\n\n1. In the terminal run `npm init`. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```json\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js. `touch index.js`\n4. Install [Express](https://expressjs.com/en/starter/installing.html) using the terminal in the same project folder. `npm install express --save`\t\t\t "
+                            data: "## Create Express App\n\n1. In the terminal run `npm init`. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js. `touch index.js`\n4. Install [Express](https://expressjs.com/en/starter/installing.html) using the terminal in the same project folder. `npm install express --save`\t\t\t "
                           - type: callout
                             data:
                               type: success
@@ -3931,10 +3931,8 @@ pages:
                             data: >-
                               4. Open index.js in a text editor and add this
                               code snippet: 
-
-
-
-                              ```javascript
+                          - type: code
+                            data: |2-
                                   const express = require('express')
                                   const app = express()
                                       app.post('/webhooks', function (req, res) {
@@ -3943,16 +3941,18 @@ pages:
                                   app.listen(3000, function () {
                                       console.log('Listening for webhooks on port 3000')
                                   })
-                              ```
-
-
-
+                            header:
+                              title: index.js
+                            config:
+                              mode: js
+                          - type: text
+                            data: >-
                               The app is starting a server and listening on port
                               3000, then returning a response of ok once it
                               receives a POST to the /webhooks url.
 
 
-                              ```javascript
+                              ```
 
                               app.post('/webhooks', function (req, res) {
                                res.send('OK')
@@ -4064,7 +4064,7 @@ pages:
                               subscribing to and your forwarding url:
 
 
-                              ```json
+                              ```
 
                               {
                                "scope": "store/product/updated",
@@ -4291,7 +4291,7 @@ pages:
                               /PUT request add in:
 
 
-                              ```json
+                              ```
 
                               {
                                 "scope": "store/order/*",
@@ -4314,7 +4314,7 @@ pages:
                               Response:
 
 
-                              ```json
+                              ```
 
                               {
                                   "id": 14422996,
@@ -4342,7 +4342,7 @@ pages:
                               incoming get requests with 'hello'.
 
 
-                              ```javascript
+                              ```
 
                               app.get('/',(req, res)=>{
                                   res.send('Hello!');
