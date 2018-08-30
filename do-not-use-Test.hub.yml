@@ -4,8 +4,6 @@ header:
     left:
       - title: API Docs
         path: /api-docs/getting-started/webhooks/about-webhooks
-      - title: Stencil Docs
-        path: /stencil-docs
       - title: Tools & Resources
         path: ''
       - title: Changelog
@@ -3268,6 +3266,8 @@ pages:
                       data:
                         blocks:
                           - type: text
+                            data: '# About Webhooks'
+                          - type: text
                             data: >-
                               ## What We'll Cover
 
@@ -3324,7 +3324,11 @@ pages:
                                 will send 2,000 individual callback events.
                             header: {}
                           - type: text
+                            data: '---'
+                          - type: text
                             data: >-
+                              ---
+
                               ## Authentication
 
 
@@ -3349,6 +3353,8 @@ pages:
                               * Valid TLS/SSL configuration: Verify your app
                               server’s setup at the following site:
                               [https://sslcheck.globalsign.com](https://sslcheck.globalsign.com)
+                            header:
+                              anchor: authentication
                           - type: callout
                             data:
                               type: error
@@ -3364,6 +3370,8 @@ pages:
                                 * Intermediate certificates not loaded.
                           - type: text
                             data: >-
+                              ---
+
                               ## Lightweight Callback Payload
 
 
@@ -3396,13 +3404,19 @@ pages:
                                "hash":"3f9ea420af83450d7ef9f78b08c8af25b2213637"
                                }
                               ```
+                            header:
+                              anchor: lightweight-callback-payload
                           - type: text
                             data: >-
+                              ---
+
                               ## Request and Response
 
 
                               *Never worked with webhooks before? Check out the
                               tutorial on creating webhooks.*
+                            header:
+                              anchor: request-and-response
                           - type: code
                             data: |+
                               curl -X POST \
@@ -3435,10 +3449,11 @@ pages:
                               subtitle: >-
                                 Request:
                                 https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks
+                              anchor: post-webhooks
                             config:
                               mode: json
                           - type: text
-                            data: >
+                            data: >-
                               An HTTP 201 response indicates that the webhook
                               was set successfully.
                           - type: callout
@@ -3482,6 +3497,7 @@ pages:
                               subtitle: >-
                                 Request:
                                 https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks
+                              anchor: get-all-webhooks
                             config:
                               mode: json
                           - type: code
@@ -3503,6 +3519,7 @@ pages:
                                 To get a single webhook use the `id`.  Request:
                                 https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks/id
                               title: /GET a Single Webhook
+                              anchor: get-a-single-webhook
                             config:
                               mode: json
                           - type: code
@@ -3534,6 +3551,7 @@ pages:
                                 is created all the fields below can be changed
                                 via an update request. Request:
                                 https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks/id
+                              anchor: update-a-webhook
                             config:
                               mode: json
                           - type: code
@@ -5314,8 +5332,6 @@ pages:
     title: Changelog
     data:
       $ref: ./Changelog.html
-  /api-docs/getting-started/webhooks/about-webhooks:
-    title: API Docs
 theme:
   background: '#3550b6'
 logo: >-
