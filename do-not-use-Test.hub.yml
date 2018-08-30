@@ -5995,11 +5995,12 @@ pages:
                       data:
                         blocks:
                           - type: text
-                            data: '## /catalog/products/131/modifiers'
-                          - type: text
                             data: '# Modifier Options'
                           - type: text
                             data: >-
+                              ## /catalog/products/{{product_id}}/modifiers
+
+
                               Modifier options are any choices that the shopper
                               can make that will change the way the merchant
                               fulfills the product. Examples include:
@@ -6062,6 +6063,186 @@ pages:
                               title: Modifiers that have to be created in two steps
                           - type: text
                             data: 'First, a POST to create the modifier. '
+                          - type: code
+                            data: |-
+                              {
+                                "type": "checkbox",
+                                "required": false,
+                                "config": {
+                                  "default_value": "Yes",
+                                  "checked_by_default": false,
+                                  "checkbox_label": "Check for Donation"
+                                },
+                                "display_name": "Add a $5 Donation"
+                              }
+                            header:
+                              anchor: create-modifier
+                              title: Create a Modifer
+                              subtitle: >-
+                                /POST
+                                https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/modifiers
+                            config:
+                              mode: json
+                          - type: text
+                            data: >-
+                              Response: (The adjuster values are null, but there
+                              are two option values created)
+                          - type: code
+                            data: |
+                              {
+                                  "data": [
+                                      {
+                                          "id": 160,
+                                          "product_id": 131,
+                                          "name": "Add-a-$5-Donation1535039590-191",
+                                          "display_name": "Add a $5 Donation",
+                                          "type": "checkbox",
+                                          "required": false,
+                                          "config": {
+                                              "checkbox_label": "Check for Donation",
+                                              "checked_by_default": false
+                                          },
+                                          "option_values": [
+                                              {
+                                                  "id": 149,
+                                                  "option_id": 160,
+                                                  "label": "Yes",
+                                                  "sort_order": 0,
+                                                  "value_data": {
+                                                      "checked_value": true
+                                                  },
+                                                  "is_default": false,
+                                                  "adjusters": {
+                                                      "price": {
+                                                          "adjuster": null,
+                                                          "adjuster_value": null
+                                                      },
+                                                      "weight": null,
+                                                      "image_url": "",
+                                                      "purchasing_disabled": {
+                                                          "status": false,
+                                                          "message": ""
+                                                      }
+                                                  }
+                                              },
+                                              {
+                                                  "id": 150,
+                                                  "option_id": 160,
+                                                  "label": "No",
+                                                  "sort_order": 1,
+                                                  "value_data": {
+                                                      "checked_value": false
+                                                  },
+                                                  "is_default": true,
+                                                  "adjusters": {
+                                                      "price": null,
+                                                      "weight": null,
+                                                      "image_url": "",
+                                                      "purchasing_disabled": {
+                                                          "status": false,
+                                                          "message": ""
+                                                      }
+                                                  }
+                                              }
+                                          ]
+                                      }
+                                  ],
+                                  "meta": {
+                                      "pagination": {
+                                          "total": 1,
+                                          "count": 1,
+                                          "per_page": 50,
+                                          "current_page": 1,
+                                          "total_pages": 1,
+                                          "links": {
+                                              "current": "?page=1&limit=50"
+                                          }
+                                      }
+                                  }
+                              }
+                            header:
+                              title: Response - Create Modifier Option
+                              anchor: response-create-modifier
+                            config:
+                              mode: json
+                          - type: text
+                            data: >-
+                              Then a PUT to update the modifier value created.
+                              This increase the price then the yes modifier is
+                              selected.
+                          - type: code
+                            data: |-
+                              {
+                                "is_default": false,
+                                "adjusters": {
+                                  "price": {
+                                    "adjuster": "relative",
+                                    "adjuster_value": 5
+                                  }
+                                }
+                              }
+                            header:
+                              subtitle: >-
+                                /POST
+                                https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/modifiers/{{modifier_id}}/values
+                              anchor: create-modifer-values
+                              title: Create Modifier Values
+                            config:
+                              mode: json
+                          - type: text
+                            data: >-
+                              ## 422 Error
+
+
+                              ```
+
+                              {
+                                  "status": 422,
+                                  "title": "The product is currently associated with an option set, please remove it before editing an option or modifier.",
+                                  "type": "https://developer.bigcommerce.com/api#api-status-codes",
+                                  "errors": {
+                                      "product_id": "The product is currently associated with an option set, please remove it before editing an option or modifier."
+                                  }
+                              }
+
+                              ```
+
+
+                              To fix this error:
+
+                              * Modify the products using the V2 API
+
+                              * Remove the option set using the V2 API or the
+                              Control Panel, then remake the variants and
+                              modifiers using V3
+                          - type: text
+                            data: >
+                              ## Definitions
+
+
+                              ### A full list of definitions can be found at the
+                              [Modifiers Options] model.
+
+
+                              | Term | Definition  |
+
+                              |--|--|
+
+                              | name | The merchant-facing descriptive name for
+                              this option. Not exposed to storefront. Example
+                              would be “T-Shirt Size”, or “Engraving Text for
+                              phone”|
+
+                              | display_name | The display name for this option
+                              as shown on the storefront, such as “Size” or
+                              “Engraving Text”|
+
+                              |config| The values for config can vary based on
+                              the modifier created. Ex. File Upload has the
+                              config values for `file_types_supported`,
+                              `file_max_size`|
+
+                              |option_values ||
                     - title: Complex Rules
                       route:
                         path: /product-complex-rules
