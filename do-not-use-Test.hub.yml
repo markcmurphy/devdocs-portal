@@ -4908,6 +4908,8 @@ pages:
                       data:
                         blocks:
                           - type: text
+                            data: '# Products Overview'
+                          - type: text
                             data: >-
                               The Catalog refers to a store’s collection of
                               physical and digital products. The Catalog
@@ -4962,6 +4964,8 @@ pages:
                               modifiers, or variants, and therefore cannot be
                               configured or modified before they are added to
                               cart. A simple product is its own variant. 
+                            header:
+                              anchor: simple-product
                           - type: code
                             data: "{\n\t\"name\": \"BigCommerce Coffee Mug\",\n\t\"price\": \"10.00\",\n\t\"categories\":[\n\t\t\t23,21\n\t\t],\n\t\t\n\t\"weight\": 4,\n\t\"type\": \"physical\"\n}\n"
                             header:
@@ -4978,8 +4982,9 @@ pages:
                                 When options are created, it defaults to radio
                                 button as the display_type.
                               title: Creating Options
-                            header:
-                              anchor: info-product-creation
+                            header: {}
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
                               ## Create a Complex Product
@@ -4987,6 +4992,8 @@ pages:
 
                               Complex products have at least one option and may
                               have modifiers or variants.
+                            header:
+                              anchor: create-complex-product
                           - type: code
                             data: "{\n\t\"name\": \"BigCommerce Coffee Mug\",\n\t\"price\": \"10.00\",\n\t\"categories\":[\n\t\t\t23,21\n\t\t],\n\t\t\n\t\"weight\": 4,\n\t\"type\": \"physical\",\n\t\"variants\":[\n\t\t{\n\t\t\t\"sku\": \"SKU-BLU\",\n\t\t\t\"option_values\":[\n\t\t\t\t\t{\n\t\t\t\t\t\t\"option_display_name\": \"Mug Color\",\n\t\t\t\t\t\t\"label\": \"Blue\"\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"sku\": \"SKU-GRAY\",\n\t\t\t\"option_values\":[\n\t\t\t\t\t{\n\t\t\t\t\t\t\"option_display_name\": \"Mug Color\",\n\t\t\t\t\t\t\"label\": \"Gray\"\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t}\n\t]\n}\n"
                             header:
@@ -5001,6 +5008,8 @@ pages:
                             data: >-
                               Using this endpoint multiple variants can be added
                               to the product when being created.
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
                               ## Definitions
@@ -5040,6 +5049,55 @@ pages:
                               |
                             header:
                               anchor: definitions
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Webhooks Available
+
+
+                              | Name | Description |
+
+                              | --- | --- |
+
+                              | store/product/*| Subscribe to all store/product
+                              events |
+
+                              |store/product/deleted| Product is deleted|
+
+                              | store/product/created | A new product is created
+                              |
+
+                              | store/product/updated |Events that fire this
+                              webhook are below: |
+
+                              | _Brand Changed_ | _Product Type_ |
+
+                              | _Category_ | _Inventory_ |
+
+                              | _Number Sold_ | _Availibility_ |
+
+                              | _Thumbnail Changed_ | _Visibility_ |
+
+                              | _Featured_ | _Name_ |
+
+                              | _Description_ | _Sort Order_ |
+
+                              | _Price_ | _Dimensions_ |
+
+                              | _Condition_ | _Tax Price_ |
+
+                              | store/product/inventory/updated| Product
+                              inventory is updated. |
+
+                              | store/product/inventory/order/updated| When an
+                              order is placed and product inventory is changed.
+                              If subscribed the webhook will fire for products
+                              where inventory is being tracked by sku or not. |
+
+
+                              * See [Webhooks Overview]() for more on working
+                              with events.
                     - title: Images
                       route:
                         path: /products-images
