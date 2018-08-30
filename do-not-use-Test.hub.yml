@@ -3451,6 +3451,40 @@ pages:
                               mode: json
                           - type: text
                             data: >-
+                              | Name | Description
+
+                              |--|--|
+
+                              |scope| Value is the event you would like to
+                              listen for. See List of Webhook Events for the
+                              full list of possibilities. **(Required)** |
+
+                              | destination | value is the callback’s fully
+                              qualified URI. This should be an endpoint
+                              configured on your app server to receive webhook
+                              payloads. **(Required)** |
+
+                              | headers |The headers object contains one or more
+                              name-value pairs, both string values. If you
+                              choose to include a headers object, BigCommerce
+                              will include the name-value pair(s) in the HTTP
+                              header of its POST requests to your callback URI
+                              at runtime. While this feature could be used for
+                              any purpose, one is to use it to set a secret
+                              authorization key and check it at runtime. This
+                              provides an additional level of assurance that the
+                              POST request came from BigCommerce instead of some
+                              other party, such as a malicious actor. (Optional)
+                              |
+
+                              |is_active | Value specifies whether a webhook is
+                              active or inactive. By default, new webhooks will
+                              be set to be inactive and will have a blank value.
+                              If you want to create a webhook that should be
+                              active initially, you can pass the following
+                              name-value pair: "is_active": true. (Optional) |
+                          - type: text
+                            data: >-
                               An HTTP 201 response indicates that the webhook
                               was set successfully.
                           - type: callout
@@ -3583,7 +3617,7 @@ pages:
 
 
                               If webhooks are no longer being used, either
-                              delete them or set is_active:false.
+                              delete them or set `is_active:false`.
                           - type: text
                             data: '---'
                           - type: text
@@ -3796,7 +3830,7 @@ pages:
                               ## Tools for Debugging and Testing Webhooks
 
 
-                              **ngrok**  
+                              **[ngrok](https://ngrok.com/)**  
 
                               As you are building your integration, you might
                               want to test webhooks on your local dev machines.
@@ -3815,6 +3849,9 @@ pages:
                               **Webhook Tester**  
 
                               [https://webhook.site/#/](https://webhook.site/#/)
+
+                              This allows for webhooks to be quickly tested or
+                              checked. 
                     - title: Setting up Webhooks
                       route:
                         path: /setting-up-webhooks
