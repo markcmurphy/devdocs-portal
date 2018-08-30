@@ -5107,6 +5107,8 @@ pages:
                       data:
                         blocks:
                           - type: text
+                            data: '# Product Images'
+                          - type: text
                             data: >-
                               ##
                               [/catalog/products/{product_id}/images](http://)
@@ -5246,8 +5248,11 @@ pages:
                       data:
                         blocks:
                           - type: text
+                            data: '# Product Videos'
+                          - type: text
                             data: >
-                              ## /catalog/products/{product_id}/videos
+                              ##
+                              [/catalog/products/{product_id}/videos](http://)
 
 
                               Product Videos, in addition to images, can help
@@ -5265,6 +5270,8 @@ pages:
                               https://www.youtube.com/watch?v=***R12345677***
                             header:
                               anchor: product-video-introduction
+                          - type: text
+                            data: '---'
                           - type: text
                             data: '## Create a Product Video'
                             header:
@@ -5286,6 +5293,8 @@ pages:
                               anchor: code-create-product-video
                             config:
                               mode: json
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
                               ## Defintions
@@ -5327,7 +5336,63 @@ pages:
                     - title: Custom Fields
                       route:
                         path: /product-custom-fields
-                      data: {}
+                      data:
+                        blocks:
+                          - type: text
+                            data: '# Custom Fields'
+                          - type: text
+                            data: >-
+                              ##
+                              [/catalog/products/{product_id}/custom-fields](http://)
+
+
+                              Custom fields are a feature intended for product
+                              specifications, in a key: value arrangement. As an
+                              example, there might be fields indicating
+                              technical specifications about an LED TV  such as
+                              screen size, maximum resolution, HDR support, etc.
+                              Alternatively, if selling wine, I might use Custom
+                              Fields for specifications such as vintage, region,
+                              grape, etc. Custom fields can not be used to add
+                              rules such as changing the weight or price of a
+                              product. 
+                            header:
+                              anchor: custom-fields-overview
+                          - type: callout
+                            data:
+                              body: >-
+                                There is a limit of 250 characters for custom
+                                field values.
+                          - type: text
+                            data: >
+                              Custom Fields are intended to be used in a couple
+                              of contexts:
+
+
+                              * Displaying specifications on the product detail
+                              page and on the product listing pages such as
+                              category and brand pages.
+
+                              * Powering faceted search (searching/filtering by
+                              custom field values)
+                          - type: code
+                            data: "{\n\t\"name\": \"Release Year\",\n\t\"value\": \"2018\"\n}"
+                            header:
+                              title: Create a Custom Field
+                              subtitle: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/custom-fields
+                              anchor: create-custom-field
+                            config:
+                              mode: json
+                          - type: text
+                            data: >+
+                              + `name`: `Release year` (string, optional) - The
+                              name of the field, shown on the storefront,
+                              orders, etc.
+
+                              + `value`: `1987` (string, optional) - The name of
+                              the field, shown on the storefront, orders, etc.
+
                     - title: Downloadable Files
                       route:
                         path: /products-download-files
