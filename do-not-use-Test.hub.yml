@@ -5057,6 +5057,8 @@ pages:
                               title: Create Digital Product
                               anchor: create-digital-product
                           - type: text
+                            data: '---'
+                          - type: text
                             data: >-
                               ## Definitions
 
@@ -5449,7 +5451,70 @@ pages:
                     - title: Bulk Pricing Rules
                       route:
                         path: /product-bulk-pricing
-                      data: {}
+                      data:
+                        blocks:
+                          - type: text
+                            data: '# Bulk Pricing Rules'
+                          - type: text
+                            data: >-
+                              ## catalog/products/product_id/bulk-pricing-rules
+
+
+                              Bulk Pricing Rules are intended for merchants who
+                              want to offer wholesale discounts for buying in
+                              bulk. They apply once products are added to cart,
+                              but they are displayed as a callout on the
+                              storefront to let shoppers know how they can save.
+
+
+                              Bulk Pricing rules in the catalog are on the
+                              product, meaning that they’ll trigger even if
+                              several different variants of the product are in
+                              the cart, as long as the total quantity of those
+                              variants meets one of the quantity breaks. [Price
+                              List bulk pricing](http://) works differently.
+                          - type: code
+                            data: "{\n\t\"name\": \"BigCommerce Coffee Mug\",\n\t\"price\": \"10.00\",\n\t\"categories\":[\n\t\t\t23,21\n\t\t],\n\t\t\n\t\"weight\": 4,\n\t\"type\": \"physical\",\n\t\"images\":[\n\t\t\t{\n\t\t\t\t\"is_thumbnail\": true,\n\t\t\t\t\"image_url\": \"https://your-custom-image/image_name.png\"\n\t\t\t}\n\t\t],\n\t\"videos\":[\n\t\t\t{\n\t\t\t\t\"title\": \"About the mug\",\n\t\t\t\t\"type\": \"youtube\",\n\t\t\t\t\"video_id\": \"12345ABC\"\n\t\t\t}\n\t\t],\n\t\"bulk_pricing_rules\": [\n\t    {\n\t      \"quantity_min\": 10,\n\t      \"quantity_max\": 15,\n\t      \"type\": \"price\",\n\t      \"amount\": 3\n\t    },\n\t    {\n\t      \"quantity_min\": 16,\n\t      \"quantity_max\": 25,\n\t      \"type\": \"price\",\n\t      \"amount\": 5\n\t    }\n\t]\n}\n"
+                            header:
+                              title: Create Bulk Pricing Rule
+                              anchor: create-bulk-pricing-rule
+                              subtitle: >-
+                                /POST
+                                https://api.bigcommerce.com/stores/store_hash/v3/catalog/products/product_id/bulk-pricing-rules
+                            config:
+                              mode: json
+                          - type: text
+                            data: >-
+                              ## Definitions
+
+
+                              ### A full list of definitions can be found at the
+                              [/catalog/products/product_id/bulk-pricing-rules](http://)
+                              endpoint.
+
+
+                              | Term | Definition  |
+
+                              |--|--|
+
+                              | quantity_min | The minimum quantity that must be
+                              met to trigger the rule. This is inclusive, so if
+                              set to 5, a quantity of 5 will satisfy the rule.|
+
+                              | quantity_max | The maximum quantity for a given
+                              rule. This is inclusive, so if set to 10, a
+                              quantity of 10 will satisfy the rule. If this is
+                              the last rule, it can be unspecified (assumed
+                              infinity)|
+
+                              | type | Rule type - can be “percentage” for
+                              something like 10% off, “relative” for something
+                              like “$2 off”, or “fixed” for something like “this
+                              product is $5 per quantity if you buy at least X)|
+
+                              | amount |The amount relating to the discount type
+                              above. If the type is “percent” for example, a
+                              value of “10” would indicate 10% off.|
                     - title: Variants
                       route:
                         path: /product-variants
