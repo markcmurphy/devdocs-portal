@@ -5011,6 +5011,9 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
+                            data: |
+                              ## Digital Products
+                          - type: text
                             data: >-
                               ## Definitions
 
@@ -5117,10 +5120,6 @@ pages:
                               they’re buying and merchandise products.
                             header:
                               anchor: product-image-introduction
-                          - type: text
-                            data: '## Create a Product Image'
-                            header:
-                              anchor: create-product-image
                           - type: code
                             data: |-
                               }
@@ -5137,6 +5136,8 @@ pages:
                               anchor: code-create-product-image
                             config:
                               mode: json
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
                               ## Create Multiple Images
@@ -5259,7 +5260,7 @@ pages:
                               video.
 
 
-                              Product videos must be hosted on YouTube. The
+                              * Product videos must be hosted on YouTube. The
                               video_id corresponds to the “v” parameter in a
                               video url. 
 
@@ -5268,12 +5269,6 @@ pages:
                               https://www.youtube.com/watch?v=***R12345677***
                             header:
                               anchor: product-video-introduction
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: '## Create a Product Video'
-                            header:
-                              anchor: create-a-product-video
                           - type: code
                             data: |-
                               {
@@ -5382,6 +5377,8 @@ pages:
                             config:
                               mode: json
                           - type: text
+                            data: '---'
+                          - type: text
                             data: >-
                               ## Definitions
 
@@ -5409,7 +5406,61 @@ pages:
                     - title: Downloadable Files
                       route:
                         path: /products-download-files
-                      data: {}
+                      data:
+                        blocks:
+                          - type: text
+                            data: |-
+                              # Digital Files
+                              (Digital Products Only)
+                          - type: text
+                            data: >-
+                              ## /catalog/products
+
+
+                              Downloadable product files are intended for
+                              products of the “digital” type, typically for
+                              selling some kind of media file or software. They
+                              don’t have dimensions since an item is never
+                              shipped out.
+
+
+                              Downloadable files must be added to digital
+                              products using the [Control Panel or using
+                              WebDav.](https://support.bigcommerce.com/articles/Public/Creating-Downloadable-Products/#adding-downloadable-product)
+                          - type: code
+                            data: "{\n\t\"name\": \"ebook: A Guide to Coffee\",\n\t\"price\": \"10.00\",\n\t\"categories\":[\n\t\t\t23,21\n\t\t],\n\t\t\n\t\"type\": \"digital\",\n\t\"images\":[\n\t\t\t{\n\t\t\t\t\"is_thumbnail\": true,\n\t\t\t\t\"image_url\": \"https://your-custom-image/image_name.png\"\n\t\t\t}\n\t\t]\n}"
+                            header:
+                              title: Create a Digital Product
+                              subtitle: >-
+                                /POST
+                                https://api.bigcommerce.com/stores/store_hash/v3/catalog/products
+                              anchor: code-create-digital-product
+                            config:
+                              mode: json
+                          - type: text
+                            data: >-
+                              ## Definitions
+
+
+                              ### A full list of product image definitions can
+                              be found at the [/catalog/products](http://)
+                              endpoint.
+
+
+                              | Term | Definition  |
+
+                              |--|--|
+
+                              | name | The descriptive name of the field such as
+                              “Maximum Resolution”. Unique custom field names
+                              will show up as available filters for Product
+                              Filtering.|
+
+                              | price | The field’s value, such as “4K”. If the
+                              field is enabled as a filter for Product
+                              Filtering, unique values will show up as
+                              selections on the faceted search facet for this
+                              field.|
                     - title: Bulk Pricing Rules
                       route:
                         path: /product-bulk-pricing
