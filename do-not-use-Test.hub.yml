@@ -5522,6 +5522,8 @@ pages:
                             data: >-
                               ## Variants
 
+                              ### /catalog/products/product_id/variants
+
 
                               Variants represent an item as it sits on the shelf
                               in the warehouse or a particular saleable product.
@@ -5746,7 +5748,9 @@ pages:
                             config:
                               mode: json
                           - type: text
-                            data: '## Variant Options'
+                            data: |-
+                              ## Variant Options
+                              ### /catalog/products/product_id/options
                           - type: text
                             data: >-
                               Variant options are any choices that the shopper
@@ -5985,6 +5989,79 @@ pages:
                               on the option, such as “S”, “M”, “L”. Option
                               values also have a sort order, and one can be
                               marked as the default value.|
+                    - title: Modifier Options
+                      route:
+                        path: /modifier-options
+                      data:
+                        blocks:
+                          - type: text
+                            data: '## /catalog/products/131/modifiers'
+                          - type: text
+                            data: '# Modifier Options'
+                          - type: text
+                            data: >-
+                              Modifier options are any choices that the shopper
+                              can make that will change the way the merchant
+                              fulfills the product. Examples include:
+
+                              * A checkbox to add shipping insurance
+
+                              * Text to be engraved on the product
+
+                              * A color that an unfinished product is to be
+                              painted before it’s shipped
+                               
+                              Critically, the modifier will not change the
+                              SKU/variant being fulfilled, and you cannot track
+                              inventory against combinations of modifier values.
+                              Modifiers typically would not change which product
+                              is “picked off the shelf” in the warehouse, but
+                              they change what happens to that product before
+                              it’s sent to the shopper, or how it’s sent.
+                               
+                              Modifier options:
+
+                              * May be required or non-required
+
+                              * Support all option types
+
+                              * Cannot be used as part of a variant
+
+                              * 
+
+                              An adjuster can be added to a modifier option to
+                              change things such as adding to the price,
+                              changing the weight or shipping rules.  Adjusters
+                              cannot be applied to all modifiers.
+                          - type: callout
+                            data:
+                              title: Support Adjusters
+                              body: >-
+                                Swatch, radio buttons, rectangle list,
+                                drop-down, product list, product list with
+                                images
+                          - type: text
+                            data: >-
+                              ## Add a modifier to an existing product with
+                              price adjuster
+
+
+                              The following example shows how to add a modifier
+                              - checkbox with a price adjuster - increase price
+                              by five dollars. Checkboxes have to made in two
+                              steps.  The reason is that it creates more than
+                              one modifier. A checkbox is a yes or no which is
+                              listed as two different `option_values`. 
+                            header: {}
+                          - type: callout
+                            data:
+                              body: >-
+                                swatch, radio buttons, drop-down, rectangle
+                                list, product list, product list with images,
+                                and checkbox.
+                              title: Modifiers that have to be created in two steps
+                          - type: text
+                            data: 'First, a POST to create the modifier. '
                     - title: Complex Rules
                       route:
                         path: /product-complex-rules
