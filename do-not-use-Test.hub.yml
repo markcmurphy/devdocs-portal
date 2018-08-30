@@ -5007,11 +5007,47 @@ pages:
                           - type: http
                             data:
                               headers:
-                                '': ''
+                                Accepts: application/json
                                 Content-Type: application/json
+                                X-Auth-Client: '{{CLIENT ID}}'
+                                X-Auth-Token: '{{ACCESS TOKEN}}'
                               method: post
+                              url: >-
+                                https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products
+                              body: |-
+                                {
+                                  "name": "BigCommerce Coffee Mug",
+                                  "price": "10.00",
+                                  "categories": [
+                                    23,
+                                    21
+                                  ],
+                                  "weight": 4,
+                                  "type": "physical",
+                                  "variants": [
+                                    {
+                                      "sku": "SKU-BLU",
+                                      "option_values": [
+                                        {
+                                          "option_display_name": "Mug Color",
+                                          "label": "Blue"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "sku": "SKU-GRAY",
+                                      "option_values": [
+                                        {
+                                          "option_display_name": "Mug Color",
+                                          "label": "Gray"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
                             header:
-                              title: Create a Product
+                              title: Create a Complex Product
+                              subtitle: Use this to create your own Complex Product
                           - type: text
                             data: >-
                               Using this endpoint multiple variants can be added
