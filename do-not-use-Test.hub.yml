@@ -5514,7 +5514,200 @@ pages:
                     - title: Variants
                       route:
                         path: /product-variants
-                      data: {}
+                      data:
+                        blocks:
+                          - type: text
+                            data: '# Variant Options'
+                          - type: text
+                            data: >-
+                              Variant options are any choices that the shopper
+                              needs to make that will result in the selection of
+                              a variant. Color and Size are typical examples of
+                              Variant Options.  A t-shirt can have different
+                              combinations of sizes and colors.  
+
+
+                              Example:
+
+                              * Color is a Variant Option while Red, Orange, and
+                              Green are Variant Option Values
+
+                              * Size is a Variant Option while Small, Medium,
+                              and Large are Variant Option Values
+
+
+                              The combination of Small & Red is what is selected
+                              on the storefront and correlates to a product
+                              variation also called a SKU. 
+                               
+                              **Variant options:**
+
+
+                              * Require the shopper to select a value
+
+                              * Only support “multiple choice” option types
+
+                              * Rectangle
+
+                              * Radio button
+
+                              * Color swatch
+
+                              * Product pick list
+
+                              * Product pick list w/ images
+
+                              * Will automatically generate variants when
+                              created in the CP
+
+                              * Are auto-generated from variants when a product
+                              is created with variants via V3 API Product /POST
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Options created on V2 and V3
+
+
+                              * Variant options created on V3 cannot be cannot
+                              be accessed from the Control Panel. They can only
+                              be accessed via the API.
+
+                              * If a product has options that were created using
+                              the V2 API, additional options cannot be added
+                              using the V3 API.
+                            header:
+                              anchor: option-v2-v3
+                          - type: callout
+                            data:
+                              body: >-
+                                Creating a variant option does not automatically
+                                create SKUs or build out variants. SKUs can be
+                                built out later using the [variants
+                                end-point]().
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Create Variant Options
+
+                              The following request will create options, but the
+                              SKU’s are not updated and they are not a variant
+                              on the product. Variant SKUs must be created with
+                              a separate request. Variant options will show on
+                              the storefront as an option that can be selected
+                              by the customer. A request like this could be used
+                              to add new choices to a variant that has already
+                              been created.
+                          - type: code
+                            data: |-
+                              {
+                                 "product_id": 134,
+                                 "name": "Size Rectangle",
+                                 "display_name": "Size",
+                                 "type": "rectangles",
+                                       "option_values": [
+                                           {
+                                               "label": "S",
+                                               "sort_order": 0,
+                                               "is_default": false
+                                           },
+                                           {
+                                               "label": "M",
+                                               "sort_order": 1,
+                                               "is_default": true
+                                           },
+                                           {
+                                               "label": "L",
+                                               "sort_order": 2,
+                                               "is_default": false
+                                           }
+                                       ]
+                               }
+                            header:
+                              title: Create Size Variant
+                              subtitle: >-
+                                /POST
+                                https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/options
+                              anchor: create-size-variant
+                            config:
+                              mode: json
+                          - type: callout
+                            data:
+                              body: >-
+                                Variants can only be created one at a time using
+                                this endpoint. Use the /catalog/products to add
+                                more than one variant when creating a product.
+                          - type: code
+                            data: |-
+                              {
+                                  "product_id": 134,
+                                 "name": "Colors",
+                                 "display_name": "Color",
+                                 "type": "swatch",
+                                 "sort_order": 1,
+                                 "option_values": [
+                                     {
+                                         "label": "Blue",
+                                         "sort_order": 1,
+                                         "value_data": {
+                                             "colors": [
+                                                 "#123c91"
+                                             ]
+                                         },
+                                         "is_default": false
+                                     },
+                                     {
+                                         "label": "Green",
+                                         "sort_order": 2,
+                                         "value_data": {
+                                             "colors": [
+                                                 "#0f961e"
+                                             ]
+                                         },
+                                         "is_default": false
+                                     },
+                                     {
+                                         "label": "Red",
+                                         "sort_order": 3,
+                                         "value_data": {
+                                             "colors": [
+                                                 "#e60c0c"
+                                             ]
+                                         },
+                                         "is_default": false
+                                     }
+                                 ]
+                              }
+                            header:
+                              title: Create a Color Variant
+                              subtitle: >-
+                                /POST
+                                https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/options
+                              anchor: create-color-variant
+                          - type: text
+                            data: >-
+                              ## Definitions
+
+
+                              ### A full list of definitions can be found at the
+                              [/catalog/products/{{product_id}}/options](http://)
+                              endpoint.
+
+
+                              | Term | Definition  |
+
+                              |--|--|
+
+                              | price | |
+
+                              | sku | |
+
+                              | option_values |  |
+
+                              | calculated_price | |
+
+                              | image_url | |
                     - title: Complex Rules
                       route:
                         path: /product-complex-rules
