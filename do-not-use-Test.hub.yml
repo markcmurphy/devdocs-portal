@@ -5549,7 +5549,7 @@ pages:
                                 There is a limit of 250 characters for custom
                                 field values.
                           - type: text
-                            data: >
+                            data: >-
                               Custom Fields are intended to be used in a couple
                               of contexts:
 
@@ -5569,6 +5569,23 @@ pages:
                               anchor: create-custom-field
                             config:
                               mode: json
+                          - type: http
+                            data:
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/custom-fields
+                              method: put
+                              body: |-
+                                {
+                                  "name": "Release Year",
+                                  "value": "2018"
+                                }
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{CLIENT ID}'
+                                X-Auth-Token: '{ACCESS TOKEN}'
+                            header:
+                              title: Try It Now
                           - type: text
                             data: '---'
                           - type: text
