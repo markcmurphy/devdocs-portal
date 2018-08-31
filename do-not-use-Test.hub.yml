@@ -5412,42 +5412,11 @@ pages:
                               subtitle: Add a Video to a Product
                           - type: text
                             data: '---'
-                          - type: text
-                            data: >-
-                              ## Defintions
-
-                              ### A full list of definitions can be found at the
-                              [Product Videos](http://) Model.
-
-
-                              | Term | Definition  |
-
-                              |--|--|
-
-                              | title | The title for the video. If left blank,
-                              this will be filled in according to data on a host
-                              site. |
-
-                              | description | The description for the video. If
-                              left blank, this will be filled in according to
-                              data on a host site. |
-
-                              | sort_order | The order in which the video will
-                              be displayed on the product page. Higher integers
-                              give the video a lower priority. When updating, if
-                              the video is given a lower priority, all videos
-                              with a `sort_order` the same as or greater than
-                              the video's new `sort_order` value will have their
-                              `sort_order`s reordered. | 
-
-                              | type | The video type (a short name of a host
-                              site). Currently, only `youtube` is accepted. |
-
-                              | video_id | The ID of the video on a host site.
-                              Such as :
-                              http://www.youtube.com/watch?v=`RY09M9wg1is` |
-                            header:
-                              anchor: defintions
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce V3
+                                API.oas2.yml#/definitions/ProductVideoBase
                     - title: Custom Fields
                       route:
                         path: /product-custom-fields
