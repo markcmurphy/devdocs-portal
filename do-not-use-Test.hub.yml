@@ -5226,7 +5226,17 @@ pages:
 
 
                               Product images are used to show shoppers what
-                              they’re buying and merchandise products.
+                              they’re buying and merchandise products. When
+                              creating an image, `image_url` or an `image_file`
+                              can be passed in. 
+
+
+                              If using `image_file` Content-Type needs to be set
+                              to 
+
+                              Content-Type: multipart/form-data. Any other
+                              updates using the /POST or /PUT will be rejected
+                              with the form-data.
                             header:
                               anchor: product-image-introduction
                           - type: code
@@ -5251,7 +5261,6 @@ pages:
                                 https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/images
                               headers:
                                 Accepts: application/json
-                                Content-Type: application/json
                                 X-Auth-Client: '{CLIENT ID}'
                                 X-Auth-Token: '{{ACCESS TOKEN}}'
                               method: put
