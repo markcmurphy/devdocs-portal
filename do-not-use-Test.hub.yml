@@ -5340,48 +5340,11 @@ pages:
                               mode: json
                           - type: text
                             data: '---'
-                          - type: text
-                            data: >-
-                              ## Defintions
-
-                              ### A full list of definitions can be found at the
-                              [Product Images](http://) Model.
-
-
-                              | Term | Definition  |
-
-                              |--|--|
-
-                              | is_thumbnail | Flag for identifying whether the
-                              image is used as the product's thumbnail. If this
-                              is set to true, it will be the primary product
-                              image |
-
-                              | sort_order | The order in which the image will
-                              be displayed on the product page. Higher integers
-                              give the image a lower priority. When updating, if
-                              the image is given a lower priority, all images
-                              with a `sort_order` the same as or greater than
-                              the image's new `sort_order` value will have their
-                              `sort_order`s reordered. | 
-
-                              | description | On the storefront, these
-                              descriptions are embedded in the markup for SEO,
-                              screen-reading, and merchandising purposes. |
-
-                              | image_file | The local path to the original
-                              image file uploaded to BigCommerce. Product images
-                              are served from BigCommerce's storage and the
-                              image_file is a local path.
-                              `/%%SAMPLE%%/stencil/foglinenbeigestripetowel3b.jpg`
-                              |
-
-                              | url_ | url_zoom , url_standard and
-                              url_thumbnail. These are URLs (to the BigCommerce
-                              CDN) that provide versions of the image at
-                              different sizes. |
-                            header:
-                              anchor: defintion-table
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce V3
+                                API.oas2.yml#/definitions/ProductImageBase
                     - title: Videos
                       route:
                         path: /product-videos
