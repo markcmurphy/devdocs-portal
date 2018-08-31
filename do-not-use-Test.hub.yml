@@ -6600,7 +6600,63 @@ pages:
                     - title: Metafields
                       route:
                         path: /product-metafields
-                      data: {}
+                      data:
+                        blocks:
+                          - type: text
+                            data: '## Product Metafields'
+                          - type: text
+                            data: >-
+                              ## [/catalog/products/131/metafields](http://)
+
+
+                              Metafields allow a developer to setup key and
+                              namespace pairs. The data does not appear in the
+                              storefront or the control panel. This is useful
+                              for when information needs to be passed back and
+                              forth between an app and the store. 
+
+
+                              Metafields can be added to variants, products,
+                              categories, and brands.
+                          - type: code
+                            data: |-
+                              {
+                                "permission_set": "read",
+                                "namespace": "Location",
+                                "key": "bin_number",
+                                "value": "#4456",
+                                "description": "location of the product",
+                                "resource_type": "product",
+                                "resource_id": 131
+                              }
+                            header:
+                              title: Create a Product Metafield
+                              subtitle: >-
+                                /PUT
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/metafields
+                          - type: http
+                            data:
+                              headers:
+                                Accepts: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{{CLIENT ID}}'
+                                X-Auth-Token: '{{ACCESS TOKEN}}'
+                              method: put
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/metafields
+                              body: |-
+                                {
+                                  "permission_set": "read",
+                                  "namespace": "Location",
+                                  "key": "bin_number",
+                                  "value": "#4456",
+                                  "description": "location of the product",
+                                  "resource_type": "product",
+                                  "resource_id": 131 //replace with your product_id
+                                }
+                            header:
+                              title: Try It Now
+                              subtitle: Use this to create your own Simple Product
                     - title: Reviews
                       route:
                         path: /product-reviews
