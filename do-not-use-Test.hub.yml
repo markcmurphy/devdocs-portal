@@ -6647,6 +6647,186 @@ pages:
                     - title: Category Tree
                       route:
                         path: /category-tree
+                      data:
+                        blocks:
+                          - type: text
+                            data: '# Category Tree'
+                          - type: text
+                            data: >-
+                              ## /catalog/categories/tree
+
+
+                              The Category Tree returns a simple view of the
+                              parent > child relationship of all categories in
+                              the store. This endpoint can be used to fetch the
+                              categories if building out a custom navigation for
+                              a store.
+                          - type: code
+                            data: |
+                              {
+                                  "data": [
+                                      {
+                                          "id": 33,
+                                          "parent_id": 0,
+                                          "name": "Clothing",
+                                          "is_visible": true,
+                                          "url": "/clothing/",
+                                          "children": []
+                                      },
+                                      {
+                                          "id": 23,
+                                          "parent_id": 0,
+                                          "name": "Shop All",
+                                          "is_visible": true,
+                                          "url": "/shop-all/",
+                                          "children": []
+                                      },
+                                      {
+                                          "id": 25,
+                                          "parent_id": 0,
+                                          "name": "Towels",
+                                          "is_visible": true,
+                                          "url": "/towels/",
+                                          "children": [
+                                              {
+                                                  "id": 26,
+                                                  "parent_id": 25,
+                                                  "name": "Bath Towels",
+                                                  "is_visible": true,
+                                                  "url": "/towels/bath-towels/",
+                                                  "children": [
+                                                      {
+                                                          "id": 30,
+                                                          "parent_id": 26,
+                                                          "name": "Bath Towels",
+                                                          "is_visible": true,
+                                                          "url": "/towels/bath-towels/bath-towels/",
+                                                          "children": []
+                                                      },
+                                                      {
+                                                          "id": 29,
+                                                          "parent_id": 26,
+                                                          "name": "Hand Towels",
+                                                          "is_visible": true,
+                                                          "url": "/towels/bath-towels/hand-towels/",
+                                                          "children": [
+                                                              {
+                                                                  "id": 31,
+                                                                  "parent_id": 29,
+                                                                  "name": "Washcloths",
+                                                                  "is_visible": true,
+                                                                  "url": "/towels/bath-towels/hand-towels/wash-cloths/",
+                                                                  "children": []
+                                                              }
+                                                          ]
+                                                      }
+                                                  ]
+                                              },
+                                              {
+                                                  "id": 28,
+                                                  "parent_id": 25,
+                                                  "name": "Beach Towels",
+                                                  "is_visible": true,
+                                                  "url": "/towels/beach-towels/",
+                                                  "children": []
+                                              },
+                                              {
+                                                  "id": 27,
+                                                  "parent_id": 25,
+                                                  "name": "Kitchen Towels",
+                                                  "is_visible": true,
+                                                  "url": "/towels/kitchen-towels/",
+                                                  "children": []
+                                              }
+                                          ]
+                                      },
+                                      {
+                                          "id": 18,
+                                          "parent_id": 0,
+                                          "name": "Bath",
+                                          "is_visible": true,
+                                          "url": "/bath/",
+                                          "children": [
+                                              {
+                                                  "id": 34,
+                                                  "parent_id": 18,
+                                                  "name": "Shoes",
+                                                  "is_visible": true,
+                                                  "url": null,
+                                                  "children": []
+                                              }
+                                          ]
+                                      },
+                                      {
+                                          "id": 32,
+                                          "parent_id": 0,
+                                          "name": "Hoodies",
+                                          "is_visible": true,
+                                          "url": "/hoodies/",
+                                          "children": []
+                                      },
+                                      {
+                                          "id": 19,
+                                          "parent_id": 0,
+                                          "name": "Garden",
+                                          "is_visible": true,
+                                          "url": "/garden/",
+                                          "children": []
+                                      },
+                                      {
+                                          "id": 21,
+                                          "parent_id": 0,
+                                          "name": "Kitchen",
+                                          "is_visible": true,
+                                          "url": "/kitchen/",
+                                          "children": []
+                                      },
+                                      {
+                                          "id": 20,
+                                          "parent_id": 0,
+                                          "name": "Publications",
+                                          "is_visible": true,
+                                          "url": "/publications/",
+                                          "children": []
+                                      },
+                                      {
+                                          "id": 22,
+                                          "parent_id": 0,
+                                          "name": "Utility",
+                                          "is_visible": true,
+                                          "url": "/utility/",
+                                          "children": []
+                                      }
+                                  ],
+                                  "meta": {}
+                              }
+                            header:
+                              title: Category Tree Response Example
+                              anchor: code-example-get-category-tree
+                          - type: http
+                            data:
+                              headers:
+                                Accepts: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{{CLIENT ID}}'
+                                X-Auth-Token: '{{ACCESS TOKEN}}'
+                              method: get
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/summary
+                              body: |-
+                                {
+                                  "name": "BigCommerce Coffee Mug",
+                                  "price": "10.00",
+                                  "categories": [
+                                    23,
+                                    21
+                                  ],
+                                  "weight": 4,
+                                  "type": "physical"
+                                }
+                            header:
+                              title: 'Try It Now '
+                              subtitle: Get your store's Category Tree
               - title: Brands
                 route:
                   path: /brands
