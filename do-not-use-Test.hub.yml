@@ -5912,14 +5912,6 @@ pages:
                                 variant array and create them at the same time
                                 use the [/catalog/product]() endpoint during
                                 product creation.
-                          - type: code
-                            data: "{\n\t  \"cost_price\": 3,\n\t  \"price\": 12.99,\n\t  \"retail_price\": 15.99,\n\t  \"weight\": 1,\n\t  \"width\": 4,\n\t  \"height\": 14.6,\n\t  \"depth\": 22,\n\t  \"is_free_shipping\": true,\n\t  \"purchasing_disabled\": true,\n\t  \"purchasing_disabled_message\": \"This item not available at this time.\",\n\t  \"product_id\": 134,\n\t  \"sku\": \"SMALL-BLUE\",\n\t  \"option_values\": [\n\t    {\n\t      \"id\": 163,\n\t      \"option_id\": 193\n\t    },\n\t    {\n\t    \t\"id\":166,\n\t    \t\"option_id\": 194\n\t    }\n\t  ]\n\t}\n"
-                            header:
-                              subtitle: >-
-                                /PUT
-                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/variants
-                              title: Create the Variants
-                              anchor: code-create-variants
                           - type: http
                             data:
                               headers:
@@ -5958,9 +5950,9 @@ pages:
                             header:
                               title: Try It Now
                               subtitle: >-
-                                Use this to add Variants to your Product.
+                                Use this to add Variants to your Product .
                                 Replace the test data with your own.
-                              anchor: code-add-variants
+                              anchor: code-create-variants
                           - type: text
                             data: "The option_values array is a combination of Small and Blue. Together they create the SKU SMALL-BLUE. The id in the option_values array is the id from the variant option response option_values > id. The option_id is the id of the option. \n\n```\n {\n            \"id\": 193, //option_id\n            \"product_id\": 134,\n            \"name\": \"Size1533313432-134\",\n            \"display_name\": \"Size\",\n            \"type\": \"rectangles\",\n            \"sort_order\": 0,\n            \"option_values\": [\n                {\n                    \"id\": 163, //id\n                    \"label\": \"S\",\n                    \"sort_order\": 0,\n                    \"value_data\": null,\n                    \"is_default\": false\n                }\n\t\t\t\t\t\t\t\t...\n```"
                           - type: text
@@ -5982,16 +5974,6 @@ pages:
                                 Swatch, Radio Buttons, Rectangle, dropdown,
                                 Product List and Product List with Images. 
                               title: Supported Types
-                          - type: code
-                            data: "{\n\t\"name\": \"BigCommerce Coffee Mug\",\n\t\"price\": \"10.00\",\n\t\"categories\":[\n\t\t\t23,21\n\t\t],\n\t\t\n\t\"weight\": 4,\n\t\"type\": \"physical\",\n\t\"variants\":[\n\t\t{\n\t\t\t\"sku\": \"SKU-BLU\",\n\t\t\t\"option_values\":[\n\t\t\t\t\t{\n\t\t\t\t\t\t\"option_display_name\": \"Mug Color\",\n\t\t\t\t\t\t\"label\": \"Blue\"\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"sku\": \"SKU-GRAY\",\n\t\t\t\"option_values\":[\n\t\t\t\t\t{\n\t\t\t\t\t\t\"option_display_name\": \"Mug Color\",\n\t\t\t\t\t\t\"label\": \"Gray\"\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t}\n\t]\n}"
-                            header:
-                              subtitle: >-
-                                /POST
-                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
-                              title: Create Variants using /products endpoint
-                              anchor: create-variants-using-products-endpoint
-                            config:
-                              mode: json
                           - type: http
                             data:
                               headers:
@@ -6036,8 +6018,10 @@ pages:
                             header:
                               title: Try It Now
                               subtitle: >-
-                                Use this to create your own Product using the .
-                                Replace the test data with your own.
+                                Use this to create your own Product using the
+                                products endpoint . Replace the test data with
+                                your own.
+                              anchor: create-variants-using-products-endpoint
                           - type: text
                             data: '---'
                           - type: jsonSchema
@@ -6120,26 +6104,6 @@ pages:
                               title: Modifiers that have to be created in two steps
                           - type: text
                             data: 'First, a POST to create the modifier. '
-                          - type: code
-                            data: |-
-                              {
-                                "type": "checkbox",
-                                "required": false,
-                                "config": {
-                                  "default_value": "Yes",
-                                  "checked_by_default": false,
-                                  "checkbox_label": "Check for Donation"
-                                },
-                                "display_name": "Add a $5 Donation"
-                              }
-                            header:
-                              anchor: create-modifier
-                              title: Create a Modifer
-                              subtitle: >-
-                                /PUT
-                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers
-                            config:
-                              mode: json
                           - type: http
                             data:
                               headers:
@@ -6166,6 +6130,7 @@ pages:
                               subtitle: >-
                                 Use this to add a Modifier to your Product.
                                 Replace the test data with your own.
+                              anchor: code-create-modifier
                           - type: text
                             data: >-
                               Since this is a checkbox which has two states,
@@ -6246,7 +6211,7 @@ pages:
                               }
                             header:
                               title: Response
-                              anchor: response-create-modifier
+                              anchor: code-response-create-modifier
                               subtitle: Create Modifier Option
                             config:
                               mode: json
@@ -6255,25 +6220,6 @@ pages:
                               Then a PUT to update the modifier value created.
                               This increases the price by $5 when the yes
                               modifier is selected.
-                          - type: code
-                            data: |-
-                              {
-                                "is_default": false,
-                                "adjusters": {
-                                  "price": {
-                                    "adjuster": "relative",
-                                    "adjuster_value": 5
-                                  }
-                                }
-                              }
-                            header:
-                              subtitle: >-
-                                /PUT
-                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers/{modifier_id}/values
-                              anchor: create-modifer-values
-                              title: Create Modifier Values
-                            config:
-                              mode: json
                           - type: http
                             data:
                               headers:
@@ -6299,6 +6245,7 @@ pages:
                               subtitle: >-
                                 Use this to add Modifer Values to your Product.
                                 Replace the test data with your own.
+                              anchor: code-create-modifer-values
                           - type: text
                             data: '---'
                           - type: text
@@ -6393,30 +6340,6 @@ pages:
                               two or more modifiers, such as two checkboxes. The
                               following example will add $10 to the product
                               price when both boxes are checked. 
-                          - type: code
-                            data: |-
-                              {
-                                "product_id": 1200,
-                                "enabled": true,
-                                "price_adjuster": {
-                                  "adjuster_value": 10
-                                },
-                                "conditions": [
-                                  {
-                                    "modifier_id": 506,
-                                    "modifier_value_id": 852
-                                  },
-                                  {
-                                    "modifier_id": 507,
-                                    "modifier_value_id": 854
-                                  }
-                                ]
-                              }
-                            header:
-                              title: Add a Complex Rule to a Modifer
-                              subtitle: >-
-                                /PUT
-                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/complex-rules
                           - type: http
                             data:
                               headers:
@@ -6450,6 +6373,7 @@ pages:
                               subtitle: >-
                                 Use this to add a Complex Rules to a Modifier.
                                 Replace the test data with your own.
+                              anchor: code-add-complex-rule-modifier
                           - type: text
                             data: >
                               Complex rules must consist of multiple conditions
@@ -6495,22 +6419,6 @@ pages:
 
                               Metafields can be added to variants, products,
                               categories, and brands.
-                          - type: code
-                            data: |-
-                              {
-                                "permission_set": "read",
-                                "namespace": "Location",
-                                "key": "bin_number",
-                                "value": "#4456",
-                                "description": "location of the product",
-                                "resource_type": "product",
-                                "resource_id": 131
-                              }
-                            header:
-                              title: Create a Product Metafield
-                              subtitle: >-
-                                /PUT
-                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/metafields
                           - type: http
                             data:
                               headers:
@@ -6536,6 +6444,7 @@ pages:
                               subtitle: >-
                                 Use this to add a Metafield to your Product.
                                 Replace the test data with your own.
+                              anchor: code-add-metafield
                           - type: text
                             data: '---'
                           - type: jsonSchema
@@ -6593,6 +6502,7 @@ pages:
                               subtitle: >-
                                 Use this to create a Product Review. Replace the
                                 test data with your own.
+                              anchor: code-create-product-review
               - title: Categories
                 route:
                   path: /categories
