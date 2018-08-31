@@ -4966,16 +4966,6 @@ pages:
                               cart. A simple product is its own variant. 
                             header:
                               anchor: simple-product
-                          - type: code
-                            data: "{\n\t\"name\": \"BigCommerce Coffee Mug\",\n\t\"price\": \"10.00\",\n\t\"categories\":[\n\t\t\t23,21\n\t\t],\n\t\t\n\t\"weight\": 4,\n\t\"type\": \"physical\"\n}\n"
-                            header:
-                              title: Simple Product
-                              subtitle: >-
-                                /POST
-                                https://api.bigcommerce.com/stores/store_hash/v3/catalog/products
-                              anchor: create-simple-product
-                            config:
-                              mode: json
                           - type: http
                             data:
                               headers:
@@ -4998,7 +4988,7 @@ pages:
                                   "type": "physical"
                                 }
                             header:
-                              title: Try It Now - Create a Simple Product
+                              title: Try It Now
                               subtitle: >-
                                 Use this to create your own Simple Product.
                                 Replace the test data with your own.
@@ -5020,16 +5010,6 @@ pages:
                               have modifiers or variants.
                             header:
                               anchor: create-complex-product
-                          - type: code
-                            data: "{\n\t\"name\": \"BigCommerce Coffee Mug\",\n\t\"price\": \"10.00\",\n\t\"categories\":[\n\t\t\t23,21\n\t\t],\n\t\t\n\t\"weight\": 4,\n\t\"type\": \"physical\",\n\t\"variants\":[\n\t\t{\n\t\t\t\"sku\": \"SKU-BLU\",\n\t\t\t\"option_values\":[\n\t\t\t\t\t{\n\t\t\t\t\t\t\"option_display_name\": \"Mug Color\",\n\t\t\t\t\t\t\"label\": \"Blue\"\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"sku\": \"SKU-GRAY\",\n\t\t\t\"option_values\":[\n\t\t\t\t\t{\n\t\t\t\t\t\t\"option_display_name\": \"Mug Color\",\n\t\t\t\t\t\t\"label\": \"Gray\"\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t}\n\t]\n}\n"
-                            header:
-                              title: Complex Product
-                              subtitle: >-
-                                /POST
-                                https://api.bigcommerce.com/stores/store_hash/v3/catalog/products
-                              anchor: create-complex-product
-                            config:
-                              mode: json
                           - type: http
                             data:
                               headers:
@@ -5108,26 +5088,6 @@ pages:
                               Control Panel.
                             header:
                               anchor: digital-products
-                          - type: code
-                            data: |-
-                              {
-                                "name": "ebook: A Guide to Coffee",
-                                "price": "10.00",
-                                "categories": [
-                                  23,
-                                  21
-                                ],
-                                "type": "digital",
-                                "images": [
-                                  {
-                                    "is_thumbnail": true,
-                                    "image_url": "https://your-custom-image/image_name.png"
-                                  }
-                                ]
-                              }
-                            header:
-                              title: Create Digital Product
-                              anchor: create-digital-product
                           - type: http
                             data:
                               headers:
@@ -5245,22 +5205,6 @@ pages:
                               with the form-data.
                             header:
                               anchor: product-image-introduction
-                          - type: code
-                            data: |-
-                              {
-                               "is_thumbnail": true,
-                                "sort_order": 1,
-                                "description": "Yellow Large Bath Towel",
-                                "image_url": "https://your-custom-image/image_name.png"
-                              }
-                            header:
-                              title: Add image to a Product
-                              subtitle: >-
-                                /PUT
-                                https://api.bigcommerce.com/stores/{{store_hash}/v3/catalog/products/{{product_id}}/images
-                              anchor: code-create-product-image
-                            config:
-                              mode: json
                           - type: http
                             data:
                               url: >-
@@ -5295,13 +5239,6 @@ pages:
                               the images array.
                             header:
                               anchor: create-multiple-images
-                          - type: code
-                            data: "\"images\":[\n\t\t\t{\n\t\t\t\t\"is_thumbnail\": true,\n\t\t\t\t\"image_url\": \"https://your-custom-image/image_name.png\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"is_thumbnail\": false,\n\t\t\t\t\"image_url\": \"https://your-custom-image/image_name.png\"\n\t\t\t}\n\t\t]"
-                            header:
-                              title: Multiple Images
-                              anchor: code-create-multiple-images
-                              subtitle: >-
-                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/images
                           - type: http
                             data:
                               url: >-
