@@ -3181,7 +3181,97 @@ pages:
                       route:
                         path: /v2-v3
                       data:
-                        blocks: []
+                        blocks:
+                          - type: text
+                            data: '# V2 or V3'
+                          - type: text
+                            data: >
+                              ## Advantages of V3 over V2
+
+
+                              There are fewer API calls for most tasks.
+                              Subresources can be included in a resources
+                              response. Such as creating a product with variants
+                              and custom fields in one API call. 
+
+
+                              There are `meta` objects on all resources, so
+                              pagination is easier. 
+
+
+                              Metafields have been added so data can be stored
+                              against each object. This can be specific for your
+                              application or visible to other applications. 
+
+
+                              The V3 API has been optimized for performance.
+                              This allows for data to be synched quickly. 
+                          - type: text
+                            data: >-
+                              ## Products on V3
+
+
+                              ### Variants
+
+
+                              Every purchasable entity in the catalog is now a
+                              variant. Including the product itself. This
+                              enables enhanced flows around inventory
+                              management, such as the ability to solely use the
+                              variants endpoint to manage inventory levels. For
+                              more on variants see [#article-to-be-made].
+
+
+                              In V3 a variant needs to be created for every
+                              combination. In V2 you could create an SKU with a
+                              subset of product options.
+
+
+                              ### Interoperability between V2 and V3
+
+
+                              When a product option is created on V2 and
+                              assigned to a product. Trying to edit the option
+                              using the V3 API returns a 422 error. 
+
+
+                              ```
+
+                              {
+                                  "status": 422,
+                                  "title": "The product is currently associated with an option set, please remove it before editing an option or modifier.",
+                                  "type": "https://developer.bigcommerce.com/api#api-status-codes",
+                                  "errors": {
+                                      "product_id": "The product is currently associated with an option set, please remove it before editing an option or modifier."
+                                  }
+                              }
+
+                              ```
+
+
+                              This happens since options on V2 are created
+                              globally then assigned to the products. The V3 API
+                              has variant options which are assigned at the
+                              product level. The way to fix is to remove the
+                              option in the Control Panel or Delete using the
+                              API, the re-create the options using variants. 
+
+
+                              ### Options and Modifiers
+
+
+                              There is now a clear separation of [options that
+                              define variants](#link), versus [options that are
+                              modifiers of a variant](#link). This enables us to
+                              simplify the creation and management of variant
+                              prices and modifier adjusters. It removes the need
+                              to use complex rules, in all but the most extreme
+                              cases.
+
+
+                              Options and modifiers can also be attached
+                              directly to the product, without the requirement
+                              to create an option set beforehand.
                     - title: Authentication
                       route:
                         path: /authentication
