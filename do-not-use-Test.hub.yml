@@ -6697,7 +6697,53 @@ pages:
                     - title: Reviews
                       route:
                         path: /product-reviews
-                      data: {}
+                      data:
+                        blocks:
+                          - type: text
+                            data: '# Reviews'
+                          - type: text
+                            data: >-
+                              ## [/catalog/products/product_id/reviews](http://)
+
+
+                              A product review is used to give shoppers the
+                              option to rate the products they have purchased.
+                              The reviews are located on the same page as the
+                              product. 
+
+
+                              Reviews are not able to be created in the control
+                              panel, but they can be created via API. Creating
+                              them via API is useful if you are migrating to
+                              BigCommerce and do not want to lose existing
+                              reviews. Product Reviews are native to the
+                              platform but can be turned off in favor of a
+                              custom setup.
+                          - type: http
+                            data:
+                              headers:
+                                Accepts: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{{CLIENT ID}}'
+                                X-Auth-Token: '{{ACCESS TOKEN}}'
+                              method: post
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
+                              body: |
+                                {
+                                  "title": "Great Coffee Mug",
+                                  "text": "This coffee mug kept my liquids hot for several hours.",
+                                  "status": "pending",
+                                  "rating": 5,
+                                  "email": "testing@bigcommerce.com",
+                                  "name": "BigCommerce",
+                                  "date_reviewed": "2018-07-20T17:45:13+00:00"
+                                }
+                            header:
+                              title: Try It Now
+                              subtitle: >-
+                                Use this to create a Product Review. Replace the
+                                test data with your own.
               - title: Categories
                 route:
                   path: /categories
