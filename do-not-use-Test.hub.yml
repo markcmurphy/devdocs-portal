@@ -3227,6 +3227,11 @@ pages:
                               subset of product options.
 
 
+                              It is recommened to create products using V3 as
+                              BigCommerce starts to move operations to the V3
+                              API. 
+
+
                               ### Interoperability between V2 and V3
 
 
@@ -3274,7 +3279,7 @@ pages:
                               to create an option set beforehand.
 
 
-                              Creating Options on V2 has several steps. 
+                              Creating Options on V2 has several steps:
 
                               1. Create the product
 
@@ -3288,12 +3293,77 @@ pages:
                               based on sku.
 
 
-                              Creating Products and Variants on V3
+                              Creating Products and Variants on V3:
 
                               1. Create the product with variant in one call
 
                               2. Add modifiers such as price adjustment based on
                               sku
+
+
+                              Variants can be included with the GET request to
+                              lower the number of API calls being made. 
+                              ?include=variants
+
+
+                              There is an endpoint just for creating a Catalog
+                              Tree. [#link here]
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## What's not in V3
+
+
+                              In v3, you attach options directly to products. So
+                              option sets are not required, and v3 includes no
+                              endpoint to manage options sets. However, v3 will
+                              respect option sets that have been attached via v2
+                              or the control panel.
+
+
+                              Most resources that are available in V3 are not in
+                              V2. 
+
+
+                              ### Complex Rules
+
+
+                              Most of the use cases for complex rules can be
+                              solved by variants and modifier options. We
+                              recommend using variants as best practice.
+
+
+                              ### Product Rules 
+
+                              Any variant created in v3 with non-null core
+                              properties (price, weight, image, purchasability)
+                              will create a rule under the hood. The same goes
+                              for modifier adjusters. These will show in v2 as
+                              product rules, and any edits to them will be
+                              shared across API versions.
+
+
+                              ### Option Sets
+
+                              In our control panel’s Add/Edit Product section,
+                              any products created by v3 will not have an option
+                              set applied, but merchants can still edit the
+                              options. If the merchant edits/chooses an option
+                              set, any variants will be removed from the
+                              product. 
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Recommendations
+
+                              When the resource is available in V3, it is best
+                              to use the V3 endpoint. 
+
+
+                              We created a handy [cheat sheet]() that lists all
+                              the differences between V2 and V3 of the API. 
                     - title: Authentication
                       route:
                         path: /authentication
