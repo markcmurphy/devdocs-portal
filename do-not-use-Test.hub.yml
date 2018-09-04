@@ -4249,8 +4249,11 @@ pages:
 
                         | **509** (Deprecated) | **Bandwidth Limit Exceeded** |
                         Returned to apps using Basic Authentication that have
-                        exceeded their [rate
-                        limits](/api/#rate-limits-basic-auth). |
+                        exceeded their [rate limits](). |
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: "## Troubleshooting\n\n### Why am I getting 4XX/5XX errors from the API?\n* A 401 error indicates that your API call is being received but isn’t properly authenticating with our API. Either credentials are absent from the request, or we are receiving invalid credentials. Steps to resolve this:\n\t* Double-check your Access Token and Client ID.\n\t* If your credentials are valid, try sending a cURL request with the same credentials. This will test whether the problem is something within your application, rather than a credentials issue.\n* For 403 errors , there are 4 common causes:\n\t* Your app lacks the appropriate scopes to make the request that it sent. Resolution: Check the OAuth scopes that you requested, either in control panel > API Accounts or in Developer Portal’s My Apps section.\n\t* The store-owner account has changed on a store that installed your app. Resolution: This might require a reinstall by the new store owner, or a rollback of the store-owner changes.\n\t* Your API request exceeded an enforced platform limit. Among other limits, each store is limited to a maximum of 30,000 brands and 16,000 categories. For more information about these limits, see either the API resource you are using or our support documentation on platform limits.\n* Check your URL paths. An incorrect path can sometimes trigger a 403 error.\n* 500 errors almost always indicate an internal server error on BigCommerce’s side. Steps to resolve these:\n\t* Re-attempt the request three to five times, with increasing delays of at least a minute between attempts.\n\t* Check our status page.\n\t* 500 errors can also be caused by particularly expensive API calls. To avoid these errors on stores with very complex data, try reducing how many objects you are requesting. In the v2 API, you can request fewer objects by using ?limit={count}. In either the v2 or v3 API, you can request fewer objects by excluding certain fields or only requesting certain fields.\n\t* \n### Why am I getting an HTTP 204 or 301/302 response to an API request?\n* Double-check the URL to which you are making an API request. If the response code is 301/302, try the WWW or non-WWW version of the URL."
               - title: Partner Information
                 route:
                   path: /partner
