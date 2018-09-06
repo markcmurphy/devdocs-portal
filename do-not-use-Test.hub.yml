@@ -5459,8 +5459,176 @@ pages:
                               secure place.
                     - title: Types of Apps
                       route:
-                        path: /new-subpage
-                      data: {}
+                        path: /types-of-apps
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              ## Single Click Apps
+
+
+                              Single-Click Apps are listed in our App
+                              Marketplace and are made available for
+                              installation on all BigCommerce stores. The
+                              “single-click” app flow does not mean users
+                              install the app in a single click, but instead,
+                              the app does not require the customer to install
+                              OAuth credentials themselves or configure any
+                              settings for a third party service. 
+
+                              To put an app on the Marketplace, you must first
+                              be a BigCommerce partner and have your app
+                              approved through the App Submission Process. After
+                              becoming a partner and having the app approved you
+                              have the option of charging merchants to use the
+                              app. 
+
+
+                              For a Single-Click App, you will need a Client ID
+                              and Client Secret from the Developer Portal.
+
+                              An OAuth token is obtained in the [single-click
+                              app authentication flow. ](http://)
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Private Apps
+
+
+                              In some cases, you might want to create an API
+                              Account in your store’s control panel, as the
+                              fastest way to establish an API connection to an
+                              individual store and to start running requests. 
+
+
+                              Use Cases:
+
+                              - You are not creating an application for
+                              distribution in the BigCommerce App Marketplace.
+
+                              - You are testing your app before submission, and
+                              it doesn’t need to be distributed to other stores.
+
+
+                              For Private Apps you need Client ID and Client
+                              Secret from the [Developer Portal](http://). Also
+                              a OAuth token from the store’s [control
+                              panel](http://) or you can request a token during
+                              the installation flow. 
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Hidden Marketplace Apps
+
+
+                              [Approved partners](http://) have the option of
+                              uploading “hidden” apps to the App Marketplace. A
+                              hidden app is a published app that does not show
+                              up in the public BigCommerce marketplace. To
+                              create a hidden app you need to be a BigCommerce
+                              Partner. 
+
+                              Use Cases:
+
+                              A partner is beta-testing an integration before a
+                              full Marketplace launch.
+
+                              A BigCommerce user with several stores wants to
+                              install a custom app on all of them. Submitting a
+                              hidden app offers a streamlined alternative to
+                              creating a separate draft or test apps for each
+                              store.
+
+                              To have an app hidden, please contact <a
+                              href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>.
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Scripts
+
+
+                              You can write a script to test an endpoint, check
+                              small portions of app code you are writing, or to
+                              create an application that will not be distributed
+                              in the BigCommerce Marketplace. Scripts do not
+                              have a user interface. To get started with writing
+                              scripts all you need is an API key from the
+                              store’s Control Panel. Learn more about [creating
+                              your first request](http://) with the BigCommerce
+                              API. 
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Connector and Other OAuth Apps
+
+
+                              Some apps qualify to be listed in the BigCommerce
+                              App Marketplace as “Connector” apps. These apps
+                              use manual OAuth token creation instead of the
+                              Single-Click App flow.
+
+                              While we always recommend and prefer the
+                              Single-Click App flow’s programmatic OAuth
+                              exchange, certain use cases might not be
+                              compatible.
+
+
+                              Use Cases:
+
+                              - Customized integrations that vary per store.
+
+                              - Integrations that do not provide any content for
+                              an iframe.
+
+                              - Apps that do not provide Web services for OAuth
+                              exchange. (For example: offline sync apps.)
+
+                              - Apps that do not provide Web or cloud-hosted
+                              components for a dashboard.
+                          - type: callout
+                            data:
+                              body: >-
+                                Manual OAuth tokens require the store owner to
+                                create an API Token in the Control Panel and
+                                then pass those values into the app manually.
+                                The single click installation process is
+                                preferred since it does not require this step.
+                          - type: text
+                            data: >-
+                              To create a Connector app that uses manual OAuth
+                              token creation, make the following selections on
+                              the My Apps Create/Edit flow’s 
+
+
+                              Technical tab:
+
+                              1. Set the App Type option to Connector.
+
+                              2. Enter your app’s Signup URL. This is the URL
+                              where a user would begin to configure the
+                              connection between your service and the
+                              BigCommerce store.
+
+                              4. Under OAuth scopes, select the scopes that your
+                              app requires for BigCommerce review only. Later,
+                              you will need to instruct store users to create a
+                              token with the production scopes your app needs.
+
+
+                              BigCommerce must review and approve your Connector
+                              app proposal before we will accept the app’s
+                              submission to the Marketplace. 
+
+
+                              If you’re interested in submitting your
+                              integration as a Connector app, please contact out
+                              to <a
+                              href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>.
+                              to discuss your plan.
                     - title: Building Apps
                       route:
                         path: /building-apps
@@ -9682,17 +9850,6 @@ pages:
                         and
                         [PHP](https://github.com/bigcommerce/hello-world-app-php-silex/)
                         sample apps.
-        - title: Widgets
-          route:
-            path: /widgets
-          data:
-            blocks:
-              - type: text
-                data: '# Widgets'
-            children:
-              - title: New Subpage
-                route:
-                  path: /new-subpage
         - title: Cart
           route:
             path: /cart
@@ -9723,46 +9880,6 @@ pages:
                 route:
                   path: /checkout-sdk
                 data: {}
-        - title: Orders
-          route:
-            path: /orders
-          data:
-            children:
-              - title: New Subpage
-                route:
-                  path: /new-subpage
-        - title: Shipping
-          route:
-            path: /shipping
-          data:
-            children:
-              - title: New Subpage
-                route:
-                  path: /new-subpage
-        - title: Taxes
-          route:
-            path: /taxes
-          data:
-            children:
-              - title: New Subpage
-                route:
-                  path: /new-subpage
-        - title: Payments
-          route:
-            path: /payments
-          data:
-            children:
-              - title: New Subpage
-                route:
-                  path: /new-subpage
-        - title: Store Information
-          route:
-            path: /store-information
-          data:
-            children:
-              - title: New Subpage
-                route:
-                  path: /new-subpage
         - title: API Reference
           route:
             path: /api-reference
