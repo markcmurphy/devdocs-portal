@@ -5632,7 +5632,199 @@ pages:
                     - title: Building Apps
                       route:
                         path: /building-apps
-                      data: {}
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              ## Request Headers
+
+
+                              Public API requests are authenticated by the
+                              following HTTP headers:
+
+
+                              ```
+
+                              X-Auth-Client: The Client ID of the request app. 
+
+                              X-Auth-Token: Access token authorizing the app the
+                              access resources on behalf of a user
+
+                              ```
+
+
+                              In addition, while not all resources require the
+                              Accept and Content-Type headers, many do. To
+                              ensure that your calls succeed, always include
+                              these headers.
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Managing Users’ Session Timeouts
+
+
+                              We recommend that you add BigCommerce’s JavaScript
+                              SDK to your Single-Click Apps, to protect your
+                              apps’ users from getting logged out of the
+                              BigCommerce control panel after a period of
+                              idleness. To include our SDK, add this script tag
+                              to your Single-Click App:
+
+                              `<script
+                              src="//cdn.bigcommerce.com/jssdk/bc-sdk.js">`
+
+
+
+                              Optionally, you can pass a logout callback
+                              function within the initialization call:
+
+
+                              ```
+
+                              Bigcommerce.init({
+                                    onLogout: callback
+                              });
+
+                              ```
+
+
+
+                              This callback function will run when the user
+                              explicitly logs out of the BigCommerce control
+                              panel, or is automatically logged out. The
+                              callback will allow your app to respond to this
+                              logout.
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## App Installation and Update Sequence
+
+
+                              The purpose of the App Installation sequence is to
+                              obtain an Oauth token for the store installing the
+                              app, using the Client ID and Secret from Dev
+                              Tools.
+
+
+                              A user at a store’s control panel kicks off the
+                              installation or update sequence by clicking the
+                              “Install” button from your app details page, or by
+                              clicking an installed app to update its scopes.
+                              BigCommerce redirects the user to the Auth
+                              Callback URI provided during app registration. The
+                              Auth Callback URI must be publicly available,
+                              fully qualified, and served over TLS.
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1536263813949
+                            header:
+                              title: App Installation Sequence
+                          - type: text
+                            data: >-
+                              ### Handling Requests Securely
+
+
+                              The request comes from the client browser, rather
+                              than directly from BigCommerce. This allows you to
+                              use a non-publicly-available Auth Callback URI
+                              while testing your app.
+
+                              For security, Auth and Load callback should be
+                              handled server-side. If you are building a
+                              client-side application (such as an AngularJS
+                              Single Page App), you should handle Auth and Load
+                              callbacks outside that application. Use a separate
+                              service that accepts the Auth and Load callback
+                              requests, generates tokens, validates requests,
+                              and then redirects the user to your client-side
+                              app’s entry point.
+                          - type: text
+                            data: >-
+                              ## Receiving the GET Request
+
+                              The GET request to your Auth Callback URI contains
+                              a temporary code that you can exchange for a
+                              permanent OAuth token. It also includes a unique
+                              value that identifies the store installing or
+                              updating your app, as well as authorized scopes.
+
+
+                              The following table details the full list of
+                              parameters and values included in the GET request
+                              from BigCommerce to your Auth Callback URI.
+                              BigCommerce passes these within the URI itself as
+                              query parameters.
+                          - type: text
+                            data: >-
+                              | Parameter | Description |
+
+                              | --- | --- |
+
+                              | code | Temporary code to exchange for a
+                              permanent OAuth token. See [Making the POST
+                              request]() below for more information about this
+                              exchange. |
+
+                              | scope | List of scopes authorized by the user.
+                              As a best practice, your app should validate this
+                              list to ensure that it matches the app&#39;s
+                              needs, and fail if it does not. However, at this
+                              time, the user does not have any opportunity to
+                              pick and choose between scopes. The dialog
+                              presented to the user requires the user to approve
+                              all scopes or none. |
+
+                              | context | The store hash: a unique value that
+                              identifies the store on which a logged-in user has
+                              clicked to install or your app. BigCommerce passes
+                              this along with a context path, as follows:
+                              `stores/{store_hash}`. Save the store hash value,
+                              because you will need to pass it in all your
+                              requests to the Stores API. |
+                          - type: text
+                            data: >-
+                              ### Example – Initial Installation
+
+
+                              This example initiates the token exchange, with a
+                              requested scope of store_v2_orders:
+
+
+                              ```
+
+                              GET
+                              /auth?code=qr6h3thvbvag2ffq&scope=store_v2_orders&context=stores/g5cd38
+                              HTTP/1.1  
+
+                              Host: app.example.com
+
+                              ```
+
+
+
+                              Example – Updating Scopes
+
+                              The following example requests a scope of
+                              store_v2_products, in addition to the initially
+                              requested scope of store_v2_orders:
+
+
+                              ```
+
+                              GET
+                              /auth?code=qr6h3thvbvag2ffq&scope=store_v2_orders+store_v2_products&context=stores/g5cd38
+                              HTTP/1.1  
+
+                              Host: app.example.com
+
+                              ```
+                          - type: callout
+                            data:
+                              body: >-
+                                Note that when your app receives a new token,
+                                any previously issued token is invalidated.
               - title: Webhooks
                 route:
                   path: /webhooks
