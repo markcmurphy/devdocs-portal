@@ -4181,217 +4181,204 @@ pages:
                       route:
                         path: /client-libraries
                       data: {}
-                    - title: API Status Codes
-                      route:
-                        path: /api-status-codes
-                      data:
-                        blocks:
-                          - type: text
-                            data: '# API Status Codes '
-                          - type: text
-                            data: >-
-                              The API responds to requests with different HTTP
-                              status codes depending on the result from the
-                              request. Error responses might also include an
-                              error message in the body to assist the client in
-                              resolving the problem.
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >
-                              ## 2xx Success 
+              - title: API Status Codes
+                route:
+                  path: /api-status-codes
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>API Status Codes</h1>
+                    - type: text
+                      data: >-
+                        The API responds to requests with different HTTP status
+                        codes depending on the result from the request. Error
+                        responses might also include an error message in the
+                        body to assist the client in resolving the problem.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >
+                        ## 2xx Success 
 
 
-                              These codes are returned for requests that were
-                              understood and processed successfully.
+                        These codes are returned for requests that were
+                        understood and processed successfully.
 
 
-                              | Code | Definition | Purpose |
+                        | Code | Definition | Purpose |
 
-                              | --- | --- | --- |
+                        | --- | --- | --- |
 
-                              | **200** | **OK** | For successful `GET` and
-                              `PUT` requests. |
+                        | **200** | **OK** | For successful `GET` and `PUT`
+                        requests. |
 
-                              | **201** | **Created** | For a successful `POST`
-                              request. |
+                        | **201** | **Created** | For a successful `POST`
+                        request. |
 
-                              | **202** | **Accepted** | For a request that
-                              resulted in a scheduled task being created to
-                              perform the actual request. |
+                        | **202** | **Accepted** | For a request that resulted
+                        in a scheduled task being created to perform the actual
+                        request. |
 
-                              | **204** | **No Content** | For a successful
-                              request that produced no response (such as
-                              `DELETE` requests). |
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ### 3xx Redirection 
-
-
-                              These codes are returned for requests that require
-                              the client to take further action.
+                        | **204** | **No Content** | For a successful request
+                        that produced no response (such as `DELETE` requests). |
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ### 3xx Redirection 
 
 
-                              | Code | Definition | Purpose |
-
-                              | --- | --- | --- |
-
-                              | **301** | **Moved Permanently** | When the API
-                              routes have changed (unlikely), or if the incoming
-                              request is not secure (`http`), the request will
-                              be redirected to the secure (`https`) version. |
-
-                              | **304** | **Not Modified** | This response will
-                              be sent if the request included an
-                              `If-Modified-Since` header, but the resource has
-                              *not* been modified since the specified date.
-                              Please refer to individual resources'
-                              documentation regarding support for the
-                              `If-Modified-Since` header. |
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ### 4xx Client Error 
+                        These codes are returned for requests that require the
+                        client to take further action.
 
 
-                              These codes are returned for requests that could
-                              not be processed due to problems with the request
-                              or the data.
+                        | Code | Definition | Purpose |
+
+                        | --- | --- | --- |
+
+                        | **301** | **Moved Permanently** | When the API routes
+                        have changed (unlikely), or if the incoming request is
+                        not secure (`http`), the request will be redirected to
+                        the secure (`https`) version. |
+
+                        | **304** | **Not Modified** | This response will be
+                        sent if the request included an `If-Modified-Since`
+                        header, but the resource has *not* been modified since
+                        the specified date. Please refer to individual
+                        resources' documentation regarding support for the
+                        `If-Modified-Since` header. |
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ### 4xx Client Error 
 
 
-                              | Code | Definition | Purpose |
-
-                              | --- | --- | --- |
-
-                              | **400** | **Bad Request** | Issued when a
-                              malformed request was sent. Examples are: |
-
-                              |||*   Invalid syntax
-
-                              |||*   Missing required data
-
-                              |||*   Webhook requests missing `Content-Type` in
-                              the HTTP header.
-
-                              |
-
-                              | **401** | **Unauthorized** | This response is
-                              sent when your client failed to provide
-                              credentials or its credentials were invalid. |
-
-                              | **403** | **Forbidden** | Returned when
-                              permissions do not allow the operation. To
-                              correct:
-
-                              |||*   Check your app in `My Apps` to review the
-                              OAuth scopes you requested, and check whether they
-                              support the request that you made.
-
-                              |||*   Changes to the store owner's account
-                              (including a change to the email address) can also
-                              cause this error. Roll back those changes to
-                              correct it.
-
-                              |||*   This error can also occur when your request
-                              exceeds a limit imposed on the resource in
-                              question. For example, a store cannot exceed
-                              16,000 categories. For more information, see the
-                              corresponding resource's documentation.
-
-                              |
-
-                              | **404** | **Not Found** | When a particular
-                              resource doesn’t exist or couldn’t be found. |
-
-                              | **405** | **Method Not Allowed** | The resource
-                              was found, but doesn’t support the request method.
-                              Issued when either a specific method isn’t yet
-                              implemented on a resource, or the resource doesn’t
-                              support the method at all. For example, a `PUT` on
-                              `/orders` is invalid, but a `PUT` on
-                              `/orders/{_id_}` is valid. |
-
-                              | **406** | **Not Acceptable** | When the client
-                              specifies a response content type in the `Accept`
-                              header that is not supported. |
-
-                              | **409** | **Conflict** | A change requested by
-                              the client is being rejected, due to a condition
-                              imposed by the server. The exact reasons for this
-                              response will vary from one resource to the next.
-                              An example might be attempting to delete a
-                              category whose deletion would cause products to be
-                              orphaned. Additional information about the
-                              conflict, and about how to resolve it, might be
-                              available in the response's `details` section. |
-
-                              | **413** | **Request Entity Too Large** | When
-                              the client requests too many objects. For example,
-                              the `limit` parameter exceeded the maximum. |
-
-                              | **415** | **Unsupported Media Type** | Returned
-                              due to issues with the `Content-Type` header.
-                              Examples of such issues are:
-
-                              |||*   The header specifies an unsupported content
-                              type.
-
-                              |||*   The header is missing (except with the
-                              webhooks resource, which returns a 400 in this
-                              case).
-                               |
-                              | **422** | **Missing or Invalid Data** | The
-                              request cannot be processed either because it
-                              omitted required fields, or because it contained
-                              invalid data. See the response for more details. |
-
-                              | **429** | **Too Many Requests** | When an OAuth
-                              client exceeds the [rate
-                              limit](/api/#rate-limits-oauth) for API requests
-                              to a store. |
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ### 5xx Server Error 
+                        These codes are returned for requests that could not be
+                        processed due to problems with the request or the data.
 
 
-                              These codes are returned for requests that could
-                              not be processed due to an internal error with the
-                              API or server.
+                        | Code | Definition | Purpose |
+
+                        | --- | --- | --- |
+
+                        | **400** | **Bad Request** | Issued when a malformed
+                        request was sent. Examples are: |
+
+                        |||*   Invalid syntax
+
+                        |||*   Missing required data
+
+                        |||*   Webhook requests missing `Content-Type` in the
+                        HTTP header.
+
+                        |
+
+                        | **401** | **Unauthorized** | This response is sent
+                        when your client failed to provide credentials or its
+                        credentials were invalid. |
+
+                        | **403** | **Forbidden** | Returned when permissions do
+                        not allow the operation. To correct:
+
+                        |||*   Check your app in `My Apps` to review the OAuth
+                        scopes you requested, and check whether they support the
+                        request that you made.
+
+                        |||*   Changes to the store owner's account (including a
+                        change to the email address) can also cause this error.
+                        Roll back those changes to correct it.
+
+                        |||*   This error can also occur when your request
+                        exceeds a limit imposed on the resource in question. For
+                        example, a store cannot exceed 16,000 categories. For
+                        more information, see the corresponding resource's
+                        documentation.
+
+                        |
+
+                        | **404** | **Not Found** | When a particular resource
+                        doesn’t exist or couldn’t be found. |
+
+                        | **405** | **Method Not Allowed** | The resource was
+                        found, but doesn’t support the request method. Issued
+                        when either a specific method isn’t yet implemented on a
+                        resource, or the resource doesn’t support the method at
+                        all. For example, a `PUT` on `/orders` is invalid, but a
+                        `PUT` on `/orders/{_id_}` is valid. |
+
+                        | **406** | **Not Acceptable** | When the client
+                        specifies a response content type in the `Accept` header
+                        that is not supported. |
+
+                        | **409** | **Conflict** | A change requested by the
+                        client is being rejected, due to a condition imposed by
+                        the server. The exact reasons for this response will
+                        vary from one resource to the next. An example might be
+                        attempting to delete a category whose deletion would
+                        cause products to be orphaned. Additional information
+                        about the conflict, and about how to resolve it, might
+                        be available in the response's `details` section. |
+
+                        | **413** | **Request Entity Too Large** | When the
+                        client requests too many objects. For example, the
+                        `limit` parameter exceeded the maximum. |
+
+                        | **415** | **Unsupported Media Type** | Returned due to
+                        issues with the `Content-Type` header. Examples of such
+                        issues are:
+
+                        |||*   The header specifies an unsupported content type.
+
+                        |||*   The header is missing (except with the webhooks
+                        resource, which returns a 400 in this case).
+                         |
+                        | **422** | **Missing or Invalid Data** | The request
+                        cannot be processed either because it omitted required
+                        fields, or because it contained invalid data. See the
+                        response for more details. |
+
+                        | **429** | **Too Many Requests** | When an OAuth client
+                        exceeds the [rate limit](/api/#rate-limits-oauth) for
+                        API requests to a store. |
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ### 5xx Server Error 
 
 
-                              | Code | Definition | Purpose |
+                        These codes are returned for requests that could not be
+                        processed due to an internal error with the API or
+                        server.
 
-                              | --- | --- | --- |
 
-                              | **500** | **Internal Server Error** | When an
-                              error has occurred within the API. |
+                        | Code | Definition | Purpose |
 
-                              | **501** | **Not Implemented** | When a request
-                              method is sent that is not supported by the API
-                              (e.g., `TRACE`, `PATCH`). |
+                        | --- | --- | --- |
 
-                              | **503** | **Service Unavailable** | When the
-                              store is marked as “Down for Maintenance,” or the
-                              store is being upgraded to a new version. |
+                        | **500** | **Internal Server Error** | When an error
+                        has occurred within the API. |
 
-                              | **507** | **Insufficient Storage** | When the
-                              store has reached a limitation for the resource,
-                              according to their BigCommerce plan (e.g.,
-                              500-product limit). |
+                        | **501** | **Not Implemented** | When a request method
+                        is sent that is not supported by the API (e.g., `TRACE`,
+                        `PATCH`). |
 
-                              | **509** (Deprecated) | **Bandwidth Limit
-                              Exceeded** | Returned to apps using Basic
-                              Authentication that have exceeded their [rate
-                              limits](). |
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: "## Troubleshooting\n\n### Why am I getting 4XX/5XX errors from the API?\n* A 401 error indicates that your API call is being received but isn’t properly authenticating with our API. Either credentials are absent from the request, or we are receiving invalid credentials. Steps to resolve this:\n\t* Double-check your Access Token and Client ID.\n\t* If your credentials are valid, try sending a cURL request with the same credentials. This will test whether the problem is something within your application, rather than a credentials issue.\n* For 403 errors , there are 4 common causes:\n\t* Your app lacks the appropriate scopes to make the request that it sent. Resolution: Check the OAuth scopes that you requested, either in control panel > API Accounts or in Developer Portal’s My Apps section.\n\t* The store-owner account has changed on a store that installed your app. Resolution: This might require a reinstall by the new store owner, or a rollback of the store-owner changes.\n\t* Your API request exceeded an enforced platform limit. Among other limits, each store is limited to a maximum of 30,000 brands and 16,000 categories. For more information about these limits, see either the API resource you are using or our support documentation on platform limits.\n* Check your URL paths. An incorrect path can sometimes trigger a 403 error.\n* 500 errors almost always indicate an internal server error on BigCommerce’s side. Steps to resolve these:\n\t* Re-attempt the request three to five times, with increasing delays of at least a minute between attempts.\n\t* Check our status page.\n\t* 500 errors can also be caused by particularly expensive API calls. To avoid these errors on stores with very complex data, try reducing how many objects you are requesting. In the v2 API, you can request fewer objects by using ?limit={count}. In either the v2 or v3 API, you can request fewer objects by excluding certain fields or only requesting certain fields.\n\t* \n### Why am I getting an HTTP 204 or 301/302 response to an API request?\n* Double-check the URL to which you are making an API request. If the response code is 301/302, try the WWW or non-WWW version of the URL."
+                        | **503** | **Service Unavailable** | When the store is
+                        marked as “Down for Maintenance,” or the store is being
+                        upgraded to a new version. |
+
+                        | **507** | **Insufficient Storage** | When the store
+                        has reached a limitation for the resource, according to
+                        their BigCommerce plan (e.g., 500-product limit). |
+
+                        | **509** (Deprecated) | **Bandwidth Limit Exceeded** |
+                        Returned to apps using Basic Authentication that have
+                        exceeded their [rate limits](). |
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: "## Troubleshooting\n\n### Why am I getting 4XX/5XX errors from the API?\n* A 401 error indicates that your API call is being received but isn’t properly authenticating with our API. Either credentials are absent from the request, or we are receiving invalid credentials. Steps to resolve this:\n\t* Double-check your Access Token and Client ID.\n\t* If your credentials are valid, try sending a cURL request with the same credentials. This will test whether the problem is something within your application, rather than a credentials issue.\n* For 403 errors , there are 4 common causes:\n\t* Your app lacks the appropriate scopes to make the request that it sent. Resolution: Check the OAuth scopes that you requested, either in control panel > API Accounts or in Developer Portal’s My Apps section.\n\t* The store-owner account has changed on a store that installed your app. Resolution: This might require a reinstall by the new store owner, or a rollback of the store-owner changes.\n\t* Your API request exceeded an enforced platform limit. Among other limits, each store is limited to a maximum of 30,000 brands and 16,000 categories. For more information about these limits, see either the API resource you are using or our support documentation on platform limits.\n* Check your URL paths. An incorrect path can sometimes trigger a 403 error.\n* 500 errors almost always indicate an internal server error on BigCommerce’s side. Steps to resolve these:\n\t* Re-attempt the request three to five times, with increasing delays of at least a minute between attempts.\n\t* Check our status page.\n\t* 500 errors can also be caused by particularly expensive API calls. To avoid these errors on stores with very complex data, try reducing how many objects you are requesting. In the v2 API, you can request fewer objects by using ?limit={count}. In either the v2 or v3 API, you can request fewer objects by excluding certain fields or only requesting certain fields.\n\t* \n### Why am I getting an HTTP 204 or 301/302 response to an API request?\n* Double-check the URL to which you are making an API request. If the response code is 301/302, try the WWW or non-WWW version of the URL."
               - title: Partner Information
                 route:
                   path: /partner
