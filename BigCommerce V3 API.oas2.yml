@@ -2696,20 +2696,66 @@ paths:
             An empty response.
   /catalog/categories/tree:
     get:
-      tags:
-        - Catalog
-      description: >
+      description: >-
         Returns the categories tree, a nested lineage of the categories with
-        parent->child relationship. The `Category` objects returned are
-        simplified versions of the category objects returned in the rest of this
-        API.
+        parent->child relationship. The Category objects returned are simplified
+        versions of the category objects returned in the rest of this API.
       operationId: getCategoryTree
       responses:
         '200':
-          description: |
-            A array of nested category tree objects and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/CategoryTreeCollectionResponse'
+          examples:
+            application/json:
+              data:
+                - id: 23
+                  parent_id: 0
+                  name: Shop All
+                  is_visible: true
+                  url: /shop-all/
+                  children: []
+                - id: 19
+                  parent_id: 0
+                  name: Garden
+                  is_visible: true
+                  url: /garden/
+                  children:
+                    - id: 39
+                      parent_id: 19
+                      name: Bath
+                      is_visible: true
+                      url: /garden/bath/
+                      children: []
+                - id: 21
+                  parent_id: 0
+                  name: Kitchen
+                  is_visible: true
+                  url: /kitchen/
+                  children: []
+                - id: 20
+                  parent_id: 0
+                  name: Publications
+                  is_visible: true
+                  url: /publications/
+                  children: []
+                - id: 22
+                  parent_id: 0
+                  name: Utility
+                  is_visible: true
+                  url: /utility/
+                  children: []
+              meta: {}
+      summary: Get Category Tree
+      tags:
+        - Category
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   /catalog/brands:
     get:
       description: Get all store brands. Optional filter parameters can be passed in.
