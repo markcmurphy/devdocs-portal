@@ -2364,25 +2364,60 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      tags:
-        - Catalog
-      description: |
-        Creates a `Category` in the BigCommerce Catalog.
+      description: Creates a `Category` in the BigCommerce Catalog.
       operationId: createCategory
       parameters:
         - name: category
           in: body
           required: true
-          description: |
-            A BigCommerce `Category` object.
           schema:
             $ref: '#/definitions/CategoryPost'
+          x-examples:
+            application/json:
+              name: Bath
+              description: <p>We offer a wide variety of products perfect for relaxing</p>
+              views: 1050
+              sort_order: 3
+              meta_keywords: []
+              layout_file: category.html
+              is_visible: true
+              default_product_sort: use_store_settings
+              image_url: >-
+                https://cdn8.bigcommerce.com/s-123456/product_images/d/fakeimage.png
+              custom_url:
+                url: /bath/
+                is_customized: false
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A category object.
+          description: ''
           schema:
             $ref: '#/definitions/CategoryResponse'
+          examples:
+            application/json:
+              data:
+                id: 19
+                parent_id: 0
+                name: Garden
+                description: >-
+                  <p>We offer a wide variety of products perfect for
+                  relaxing<</p>
+                views: 0
+                sort_order: 2
+                page_title: page title
+                meta_keywords:
+                  - meta keyword
+                meta_description: meta description
+                layout_file: category.html
+                image_url: ''
+                is_visible: true
+                search_keywords: search keywords
+                default_product_sort: use_store_settings
+                custom_url:
+                  url: /garden/
+                  is_customized: false
+              meta: {}
         '409':
           description: >
             The `Category` was in conflict with another category. This is the
@@ -2395,6 +2430,13 @@ paths:
             fields, or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Create a Category
+      tags:
+        - Category
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: >-
         Deleting the category will also delete all products in that category. If
