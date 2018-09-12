@@ -3603,20 +3603,24 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     put:
-      tags:
-        - Catalog
-      description: >
-        Updates a Product's `BulkPricingRule`, based on the `product_id` and
+      description: >-
+        Updates a bulk pricing rule using the `product_id` and
         `bulk_pricing_rule_id`.
       operationId: updateBulkPricingRule
       parameters:
         - name: BulkPricingRule
           in: body
           required: true
-          description: |
-            `BulkPricingRule` object.
           schema:
             $ref: '#/definitions/BulkPricingRulePut'
+          x-examples:
+            application/json:
+              quantity_min: 10
+              quantity_max: 50
+              type: price
+              amount: 10
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: |
@@ -3642,6 +3646,14 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Update a Bulk Pricing Rule
+      tags:
+        - Bulk Pricing Rules
+        - Products
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: >-
         Deletes a bulk pricing rule using the `product_id` and
