@@ -2599,29 +2599,61 @@ paths:
     parameters:
       - $ref: '#/parameters/CategoryIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets a `Metafield` object list, by category_id.
+      description: >-
+        Get a category metafield by `category_id` and `metafield_id`. Optional
+        parameters can be passed in.
       operationId: getCategoryMetafieldsByCategoryId
       parameters:
         - $ref: '#/parameters/PageParam'
         - $ref: '#/parameters/LimitParam'
         - $ref: '#/parameters/MetafieldKeyParam'
         - $ref: '#/parameters/MetafieldNamespaceParam'
+          description: Filter based on a metafield's key.
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of metafields and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/MetaFieldCollectionResponse'
+          examples:
+            application/json:
+              data:
+                - permission_set: app_only
+                  namespace: Warehouse SKUS
+                  key: Location
+                  value: 4H
+                  description: Location in the warehouse
+                  resource_type: category
+                  resource_id: 111
+                  id: 6
+                  created_at: '2018-05-07T20:14:17+00:00'
+                  updated_at: '2018-05-07T20:14:17+00:00'
+              meta:
+                pagination:
+                  total: 1
+                  count: 1
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    previous: '?page=1&limit=50'
+                    current: '?page=1&limit=50'
+                    next: '?page=1&limit=50'
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get Category Metafield by Id
+      tags:
+        - Category
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     post:
       tags:
         - Catalog
@@ -5383,8 +5415,7 @@ parameters:
   MetafieldNamespaceParam:
     name: namespace
     in: query
-    description: |
-      Filter based on a metafield's key.
+    description: Filter based on a metafield's namespace.
     required: false
     type: string
   ImageFileParam:
