@@ -2469,25 +2469,52 @@ paths:
     parameters:
       - $ref: '#/parameters/CategoryIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Returns a `Category` from the BigCommerce Catalog.
+      description: >-
+        Get a category using the `category_id`. Optional parameters can be
+        passed in.
       operationId: getCategoryById
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
       responses:
         '200':
-          description: |
-            A category object.
+          description: ''
           schema:
             $ref: '#/definitions/CategoryResponse'
+          examples:
+            application/json:
+              data:
+                id: 23
+                parent_id: 0
+                name: Shop All
+                description: ''
+                views: 0
+                sort_order: 0
+                page_title: ''
+                meta_keywords:
+                  - ''
+                meta_description: ''
+                layout_file: category_with_facets.html
+                image_url: ''
+                is_visible: true
+                search_keywords: ''
+                default_product_sort: use_store_settings
+                custom_url:
+                  url: /shop-all/
+                  is_customized: false
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get a Category by Id
+      tags:
+        - Category
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     put:
       tags:
         - Catalog
