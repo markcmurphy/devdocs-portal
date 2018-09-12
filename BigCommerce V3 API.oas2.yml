@@ -4090,6 +4090,14 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+  /new-path:
+    get:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
 parameters:
   TemplateUUID:
     name: uuid
@@ -4714,6 +4722,12 @@ parameters:
     in: query
     description: |
       The query string associated with a widget's name and description.
+  X-Auth-Token:
+    name: X-Auth-Token
+    in: header
+    type: string
+    default: '{X-Auth-Token}'
+    description: 'The X-Auth-Token from your API Credentials. Required for requests. '
 definitions:
   WidgetTemplatePreview:
     properties:
@@ -9237,6 +9251,12 @@ definitions:
       Accepts:
         type: string
         default: application/json
+  new-model:
+    type: object
+    properties: {}
+  new-model-1:
+    type: object
+    properties: {}
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
