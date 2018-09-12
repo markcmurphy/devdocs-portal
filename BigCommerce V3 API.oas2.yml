@@ -3129,12 +3129,17 @@ paths:
       operationId: deleteBrandMetafieldById
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
       summary: Delete a Brand Metafield by Id
       tags:
         - Brands
         - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/brands/{brand_id}/image':
     parameters:
       - $ref: '#/parameters/BrandIdParam'
