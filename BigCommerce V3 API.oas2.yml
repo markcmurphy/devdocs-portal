@@ -2825,10 +2825,24 @@ paths:
         - $ref: '#/parameters/FilterExcludeFieldsParam'
       responses:
         '200':
-          description: |
-            A `Brand` object.
+          description: ''
           schema:
             $ref: '#/definitions/BrandResponse'
+          examples:
+            application/json:
+              data:
+                id: 35
+                name: Sagaform
+                page_title: ''
+                meta_keywords:
+                  - ''
+                meta_description: ''
+                image_url: ''
+                search_keywords: ''
+                custom_url:
+                  url: /brands/Sagaform.html
+                  is_customized: false
+              meta: {}
         '404':
           description: |
             The resource was not found.
@@ -2887,6 +2901,12 @@ paths:
       tags:
         - Brands
         - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/brands/{brand_id}/metafields':
     parameters:
       - $ref: '#/parameters/BrandIdParam'
@@ -9474,11 +9494,6 @@ securityDefinitions:
     type: apiKey
     name: X-Auth-Token
     in: header
-  Accepts:
-    type: apiKey
-    in: header
-    name: Accpets
-    description: application/json
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
