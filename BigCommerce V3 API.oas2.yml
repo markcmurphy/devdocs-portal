@@ -27,6 +27,7 @@ tags:
     description: BigCommerce Placements API Definition.
   - name: Script
     description: BigCommerce Scripts API Definition.
+  - name: Category
 schemes:
   - https
 produces:
@@ -2268,10 +2269,11 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     delete:
-      tags:
-        - Catalog
-      description: |
-        Deletes one or more `Category` objects from the BigCommerce Catalog.
+      description: >-
+        Deleting the category will also delete all products in that category. If
+        you want to keep the products, best practice is to move the products to
+        a new category before deleting. At least one filter parameter should be
+        passed in so that you're deleting a set of categories discriminately.
       operationId: deleteCategories
       parameters:
         - $ref: '#/parameters/FilterNameParam'
@@ -2279,10 +2281,22 @@ paths:
         - $ref: '#/parameters/FilterPageTitleParam'
         - $ref: '#/parameters/FilterKeywordParam'
         - $ref: '#/parameters/FilterIsVisibleParam'
+          description: |-
+            Filter items by is_visible.
+            This filter uses numbers instead. 0 = false and 1 = true.
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '204':
           description: |
             An empty response.
+      summary: Delete Category
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      tags:
+        - Category
+        - Catalog
   '/catalog/categories/{category_id}':
     parameters:
       - $ref: '#/parameters/CategoryIdParam'
