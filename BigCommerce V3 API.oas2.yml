@@ -2864,10 +2864,25 @@ paths:
         - name: brand
           in: body
           required: true
-          description: |
-            Returns a `Brand` from the BigCommerce Catalog.
           schema:
             $ref: '#/definitions/BrandPut'
+          x-examples:
+            application/json:
+              data:
+                id: 35
+                name: Sagaform
+                page_title: ''
+                meta_keywords:
+                  - ''
+                meta_description: ''
+                image_url: ''
+                search_keywords: ''
+                custom_url:
+                  url: /brands/Sagaform.html
+                  is_customized: false
+              meta: {}
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
       responses:
         '200':
           description: |
@@ -2895,6 +2910,9 @@ paths:
       tags:
         - Brands
         - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: Deletes a Brand from the BigCommerce Catalog.
       operationId: deleteBrandById
