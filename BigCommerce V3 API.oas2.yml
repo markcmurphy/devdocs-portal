@@ -2777,29 +2777,66 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     put:
-      tags:
-        - Catalog
-      description: Updates a `Metafield` object.
+      description: >-
+        Update a category metafield using the `category_id` and the
+        `metafield_id`.
       operationId: updateCategoryMetafield
       parameters:
         - name: Metafield
           in: body
           required: true
-          description: |
-            A `Metafield` object.
           schema:
             $ref: '#/definitions/MetafieldPut'
+          x-examples:
+            application/json:
+              permission_set: app_only
+              namespace: Warehouse SKUS
+              key: Location
+              value: 4H
+              description: Location in the warehouse
+              resource_type: category
+              resource_id: 111
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A metafield and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/MetafieldResponse'
+          examples:
+            application/json:
+              data:
+                - id: 7
+                  key: location id
+                  value: 'Shelf 3, Bin 5'
+                  namespace: App Namespace
+                  permission_set: app_only
+                  resource_type: category
+                  resource_id: 37
+                  description: Product Location
+                  date_created: '2018-09-12T15:35:38+00:00'
+                  date_modified: '2018-09-12T15:40:58+00:00'
+              meta:
+                pagination:
+                  total: 1
+                  count: 1
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    current: '?page=1&limit=50'
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Update a Category Metafield
+      tags:
+        - Category
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: >-
         Deletes a cateogory metafield using the `category_id` and the
