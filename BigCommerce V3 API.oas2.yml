@@ -3312,26 +3312,64 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     put:
-      tags:
-        - Catalog
-      description: >
-        Updates a Product's `ComplexRule`, based on the `product_id` and
+      description: >-
+        Updates a products complex rule using the `product_id` and
         `complex_rule_id`.
       operationId: updateComplexRule
       parameters:
         - name: ComplexRule
           in: body
           required: true
-          description: |
-            `ComplexRule` object.
           schema:
             $ref: '#/definitions/ComplexRulePut'
+          x-examples:
+            application/json:
+              product_id: 77
+              sort_order: 0
+              enabled: true
+              stop: false
+              purchasing_disabled: false
+              purchasing_hidden: false
+              price_adjuster:
+                adjuster: relative
+                adjuster_value: 6
+              weight_adjuster:
+                adjuster: relative
+                adjuster_value: 6
+              id: 5
+              conditions:
+                - id: 5
+                  rule_id: 5
+                  modifier_id: 123
+                  modifier_value_id: 104
       responses:
         '200':
-          description: |
-            A `ComplexRule` object.
+          description: ''
           schema:
             $ref: '#/definitions/ComplexRuleResponse'
+          examples:
+            application/json:
+              data:
+                id: 83
+                product_id: 195
+                sort_order: 1
+                enabled: true
+                stop: false
+                price_adjuster: null
+                weight_adjuster:
+                  adjuster: relative
+                  adjuster_value: 3
+                purchasing_disabled: false
+                purchasing_disabled_message: ''
+                purchasing_hidden: false
+                image_url: ''
+                conditions:
+                  - rule_id: 83
+                    modifier_id: 221
+                    modifier_value_id: 174
+                    variant_id: null
+                    combination_id: 0
+              meta: {}
         '409':
           description: >
             The `ComplexRule` was in conflict with another `ComplexRule`. This
@@ -3345,6 +3383,13 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Update a Complex Rule
+      tags:
+        - Complex Rules
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: >-
         Deletes a products complex rule using the `product_id` and
