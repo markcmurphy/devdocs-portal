@@ -2608,18 +2608,20 @@ paths:
           description: >-
             Filter items by page_title.
             /v3/catalog/brands?page_title=BigCommerce
+        - in: header
+          name: ''
+          type: string
       responses:
         '204':
           description: |
             An empty response.
-      security:
-        - X-Auth-Client: []
-        - X-Auth-Token: []
-        - Accepts: []
       tags:
         - Brands
         - Catalog
       summary: Delete Brands
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/catalog/brands/{brand_id}':
     parameters:
       - $ref: '#/parameters/BrandIdParam'
@@ -9224,6 +9226,14 @@ definitions:
               - original
               - last_activated
               - last_created
+  RequestHeaders:
+    type: object
+    description: 'These are the minium request headers needed for BigCommerce. '
+    title: Request Headers
+    properties:
+      X-Auth-Client:
+        type: string
+        example: '{X-Auth-Client}'
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
@@ -9236,7 +9246,8 @@ securityDefinitions:
   Accepts:
     type: apiKey
     in: header
-    name: application/json
+    name: Accpets
+    description: application/json
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
