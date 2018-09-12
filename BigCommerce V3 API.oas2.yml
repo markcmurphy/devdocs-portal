@@ -3566,25 +3566,42 @@ paths:
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/BulkPricingRuleIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets a `BulkPricingRule` by `product_id` and `bulk_pricing_rule_id`.
+      description: >-
+        Get a bulk pricing rule using the `product_id` and
+        `bulk_pricing_rule_id`. Optional parameters can be passed in.
       operationId: getBulkPricingRuleById
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `BulkPricingRule` object.
+          description: ''
           schema:
             $ref: '#/definitions/BulkPricingRuleResponse'
+          examples:
+            application/json:
+              data:
+                id: 53
+                quantity_min: 10
+                quantity_max: 50
+                type: price
+                amount: 1
+              meta: {}
         '404':
           description: |
             The resource or parent resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get a Bulk Pricing Rule by Id
+      tags:
+        - Bulk Pricing Rules
+        - Products
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     put:
       tags:
         - Catalog
@@ -3632,18 +3649,23 @@ paths:
       operationId: deleteBulkPricingRuleById
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
         '404':
           description: |
             The resource or parent resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-      summary: Delete a Bulk Pricing Rule
+      summary: Delete a Bulk Pricing Rule by Id
       tags:
         - Bulk Pricing Rules
         - Products
         - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/products/{product_id}/metafields':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
