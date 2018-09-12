@@ -28,6 +28,7 @@ tags:
     description: BigCommerce Placements API Definition.
   - name: Script
     description: BigCommerce Scripts API Definition.
+  - name: Products
 schemes:
   - https
 produces:
@@ -399,10 +400,10 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     delete:
-      tags:
-        - Catalog
-      description: |
-        Deletes one or more `Product` objects from the BigCommerce Catalog.
+      description: >-
+        Delete a product(s). At least one filter parameter should be passed to
+        control what is being deleted. For example to delete products with the
+        id's of 1,2 and 3, use `DELETE /v3/catalog/products?id:in=1,2,3`
       operationId: deleteProducts
       parameters:
         - $ref: '#/parameters/FilterNameParam'
@@ -420,10 +421,19 @@ paths:
         - $ref: '#/parameters/ProductFilterTypeParam'
         - $ref: '#/parameters/FilterCategoriesParam'
         - $ref: '#/parameters/ProductFilterKeywordParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '204':
           description: |
             An empty response.
+      summary: Delete a Products(s)
+      tags:
+        - Products
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/catalog/products/{product_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
@@ -5122,6 +5132,10 @@ parameters:
     required: false
     in: query
     type: integer
+    enum:
+      - new
+      - used
+      - refurbished
   FilterBrandIdParam:
     name: brand_id
     description: |
