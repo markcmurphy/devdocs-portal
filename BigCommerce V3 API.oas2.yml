@@ -2655,24 +2655,54 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      tags:
-        - Catalog
-      description: Creates a product `Metafield`.
+      description: Creates a category metafield using the `category_id`.
       operationId: createCategoryMetafield
       parameters:
         - name: Metafield
           in: body
           required: true
-          description: |
-            A `Metafield` object.
           schema:
             $ref: '#/definitions/MetafieldPost'
+          x-examples:
+            application/json:
+              permission_set: app_only
+              namespace: App Namespace
+              key: location_id
+              value: 'Shelf 3, Bin 5'
+              description: Where products are located
+              resource_type: category
+              resource_id: 111
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `Metafield` object.
+          description: ''
           schema:
             $ref: '#/definitions/MetafieldResponse'
+          examples:
+            application/json:
+              data:
+                permission_set: app_only
+                namespace: Warehouse SKUS
+                key: Location
+                value: 4H
+                description: location in the warehouse
+                resource_type: category
+                resource_id: 111
+                id: 6
+                created_at: '2018-05-07T20:14:17+00:00'
+                updated_at: '2018-05-07T20:14:17+00:00'
+              meta:
+                pagination:
+                  total: 1
+                  count: 1
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    previous: '?page=1&limit=50'
+                    current: '?page=1&limit=50'
+                    next: '?page=1&limit=50'
         '409':
           description: >
             The `Metafield` was in conflict with another `Metafield`. This can
@@ -2687,6 +2717,13 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Create Category Metafield
+      tags:
+        - Category
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/catalog/categories/{category_id}/metafields/{metafield_id}':
     parameters:
       - $ref: '#/parameters/MetafieldIdParam'
