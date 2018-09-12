@@ -3027,6 +3027,8 @@ paths:
             A `Metafield` object.
           schema:
             $ref: '#/definitions/MetafieldPost'
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
       responses:
         '200':
           description: |
@@ -3051,6 +3053,9 @@ paths:
       tags:
         - Brands
         - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/catalog/brands/{brand_id}/metafields/{metafield_id}':
     parameters:
       - $ref: '#/parameters/MetafieldIdParam'
