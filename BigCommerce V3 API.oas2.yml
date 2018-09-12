@@ -9792,8 +9792,10 @@ definitions:
   ProductPut:
     description: The model for a PUT to update a product.
     allOf:
-      - $ref: '#/definitions/ProductBase'
-      - properties:
+      - type: object
+        $ref: '#/definitions/ProductBase'
+      - type: object
+        properties:
           id:
             type: integer
             description: |
@@ -9812,10 +9814,9 @@ definitions:
             type: array
             items:
               $ref: '#/definitions/VariantProductPut'
-          brand_name:
-            type: string
+      - type: string
+        example: brand_name
     title: Product Put
-    type: object
   CatalogSummaryResponse:
     description: 'Catalog Summary Response '
     type: object
