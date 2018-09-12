@@ -3626,10 +3626,8 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     delete:
-      tags:
-        - Catalog
-      description: >
-        Deletes a Product's `BulkPricingRule`, based on the `product_id` and
+      description: >-
+        Deletes a bulk pricing rule using the `product_id` and
         `bulk_pricing_rule_id`.
       operationId: deleteBulkPricingRuleById
       responses:
@@ -3641,6 +3639,11 @@ paths:
             The resource or parent resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Delete a Bulk Pricing Rule
+      tags:
+        - Bulk Pricing Rules
+        - Products
+        - Catalog
   '/catalog/products/{product_id}/metafields':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
