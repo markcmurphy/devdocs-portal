@@ -2217,8 +2217,9 @@ paths:
     get:
       tags:
         - Catalog
-      description: |
-        Returns a paginated categories collection from the BigCommerce Catalog.
+      description: >-
+        Get all categories from your BigCommerce catalog. Optional parameters
+        maybe passed in.
       operationId: getCategories
       parameters:
         - $ref: '#/parameters/FilterNameParam'
@@ -2232,10 +2233,10 @@ paths:
         - $ref: '#/parameters/FilterExcludeFieldsParam'
       responses:
         '200':
-          description: |
-            An array of category objects and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/CategoryCollectionResponse'
+      summary: Get All Categories
     post:
       tags:
         - Catalog
@@ -4789,8 +4790,7 @@ parameters:
     type: integer
   FilterKeywordParam:
     name: keyword
-    description: |
-      Filter items by keywords.
+    description: 'Filter items by keywords. eg. new, towel, bath'
     required: false
     in: query
     type: string
