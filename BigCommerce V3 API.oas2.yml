@@ -2955,6 +2955,8 @@ paths:
         - $ref: '#/parameters/MetafieldNamespaceParam'
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
       responses:
         '200':
           description: |
@@ -2970,6 +2972,9 @@ paths:
       tags:
         - Brands
         - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     post:
       description: Creates a product `Metafield`.
       operationId: createBrandMetafield
