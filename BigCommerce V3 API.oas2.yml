@@ -3075,40 +3075,61 @@ paths:
       operationId: createBrandImage
       parameters:
         - $ref: '#/parameters/ImageFileParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+        - in: formData
+          name: image_file
+          type: string
+          required: true
+          default: image-url
       consumes:
         - multipart/form-data
       responses:
         '200':
-          description: |
-            A ResourceImage and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/ImageResponse'
+          examples:
+            application/json:
+              data:
+                image_url: >-
+                  https://cdn8.bigcommerce.com/s-your-store-hash/product_images/k/screen%20shot%202018-05-07%20at%2012.24.24%20pm_1525785365__65102.png
+              meta: {}
         '404':
-          description: |
-            The resource was not found.
+          description: The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
         '422':
-          description: >
+          description: >-
             Image was not valid. This is the result of a missing `image_file`
             field, or of an incorrect file type. See the response for more
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+          examples: {}
       summary: Create a Brand Image
       tags:
         - Brands
         - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: Deletes a Brand image from the BigCommerce Catalog.
       operationId: deleteBrandImage
       responses:
         '204':
-          description: Image deleted from the brand.
+          description: ''
       summary: Delete a Brand Image
       tags:
         - Brands
         - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
   /catalog/variants:
     get:
       tags:
