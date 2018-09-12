@@ -9422,8 +9422,9 @@ definitions:
           type: integer
       brand_id:
         type: integer
-        description: |
-          The ID associated with the product's brand.
+        description: >
+          A product can be added to an existing brand during a product /PUT or
+          /POST.
         minimum: 0
         maximum: 1000000000
       inventory_level:
@@ -9695,6 +9696,16 @@ definitions:
         type: boolean
         description: |
           Flag to determine if product image or open graph image is used.
+      brand_name:
+        type: string
+        example: Common Good
+        description: >-
+          The brand can be created during a product /PUT or /POST request. If
+          the brand already exists then the product will be added. If not the
+          brand will be created and the product added. If using `brand_name` it
+          performs a fuzzy match and adds the brand. eg. Common Good and Common
+          good are the same. Brand name does not return as part of a product
+          response. Only the `brand_id`.
   Product:
     description: >-
       A BigCommerce Product object describes a single purchasable unit or a
@@ -9792,10 +9803,8 @@ definitions:
   ProductPut:
     description: The model for a PUT to update a product.
     allOf:
-      - type: object
-        $ref: '#/definitions/ProductBase'
-      - type: object
-        properties:
+      - $ref: '#/definitions/ProductBase'
+      - properties:
           id:
             type: integer
             description: |
@@ -9814,9 +9823,8 @@ definitions:
             type: array
             items:
               $ref: '#/definitions/VariantProductPut'
-      - type: string
-        example: brand_name
     title: Product Put
+    type: object
   CatalogSummaryResponse:
     description: 'Catalog Summary Response '
     type: object
