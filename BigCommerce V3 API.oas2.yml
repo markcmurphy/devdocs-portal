@@ -30,6 +30,7 @@ tags:
     description: BigCommerce Scripts API Definition.
   - name: Products
   - name: Bulk Pricing Rules
+  - name: Complex Rules
 schemes:
   - https
 produces:
@@ -3080,9 +3081,9 @@ paths:
     parameters:
       - $ref: '#/parameters/ProductIdParam'
     get:
-      tags:
-        - Catalog
-      description: Gets an array of `ComplexRule` objects.
+      description: >-
+        Get all complex rules on a product using the `product_id`. Optional
+        parameters can be passed in.
       operationId: getComplexRules
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
@@ -3094,6 +3095,9 @@ paths:
           schema:
             $ref: '#/definitions/ComplexRuleCollectionResponse'
       summary: Get Complex Rules
+      tags:
+        - Complex Rules
+        - Catalog
     post:
       tags:
         - Catalog
