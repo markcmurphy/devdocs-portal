@@ -3028,12 +3028,11 @@ paths:
           x-examples:
             application/json:
               permission_set: app_only
-              namespace: nulla
-              key: irur
-              value: Lorem ul
-              description: aliqu
-              resource_type: product
-              resource_id: 5864317737
+              namespace: App Namespace
+              key: location_id
+              value: 'Shelf 3, Bin 5'
+              description: Product Location
+              resource_type: brand
         - $ref: '#/parameters/Content-Type'
         - $ref: '#/parameters/Accept'
       responses:
@@ -3041,6 +3040,20 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/MetafieldResponse'
+          examples:
+            application/json:
+              data:
+                id: 7
+                key: location_id
+                value: 'Shelf 3, Bin 5'
+                namespace: App Namespace
+                permission_set: app_only
+                resource_type: brand
+                resource_id: 37
+                description: Product Location
+                date_created: '2018-09-12T15:35:38+00:00'
+                date_modified: '2018-09-12T15:35:38+00:00'
+              meta: {}
         '409':
           description: >
             The `Metafield` was in conflict with another `Metafield`. This can
