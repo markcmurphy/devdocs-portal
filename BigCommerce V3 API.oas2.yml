@@ -29,6 +29,7 @@ tags:
   - name: Script
     description: BigCommerce Scripts API Definition.
   - name: Products
+  - name: Bulk Pricing Rules
 schemes:
   - https
 produces:
@@ -3450,24 +3451,57 @@ paths:
       - $ref: '#/parameters/PageParam'
       - $ref: '#/parameters/LimitParam'
     get:
-      tags:
-        - Catalog
-      description: Gets an array of `BulkPricingRule` objects.
+      description: >-
+        Get a products bulk pricing rule using the `product_id`. Optional
+        parameters can be passed in.
       operationId: getBulkPricingRules
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/PageParam'
+        - $ref: '#/parameters/LimitParam'
       responses:
         '200':
-          description: |
-            An array of `BulkPricingRule` objects and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/BulkPricingRuleCollectionResponse'
+          examples:
+            application/json:
+              data:
+                - id: 53
+                  quantity_min: 10
+                  quantity_max: 50
+                  type: price
+                  amount: 1
+                - id: 54
+                  quantity_min: 51
+                  quantity_max: 0
+                  type: price
+                  amount: 2
+              meta:
+                pagination:
+                  total: 2
+                  count: 2
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    current: '?page=1&limit=50'
         '404':
           description: |
             The parent resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get Bulk Pricing Rules
+      tags:
+        - Bulk Pricing Rules
+        - Products
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     post:
       tags:
         - Catalog
