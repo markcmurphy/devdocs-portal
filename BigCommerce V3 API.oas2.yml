@@ -2717,20 +2717,18 @@ paths:
     parameters:
       - $ref: '#/parameters/CategoryIdParam'
     post:
-      tags:
-        - Catalog
       parameters:
         - $ref: '#/parameters/ImageFileParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       consumes:
         - multipart/form-data
-      description: >
-        Creates an image on a category. Publicly accessible URLs and files (form
-        post) are valid parameters.
+        - application/json
+      description: "Creates an image on a category using the `category_id`. Publicly accessible URLs and files (form post) are valid parameters.\nTo pass in a json request:\n\n```\n{\n\t\"image_file\": \"public-url\"\n}"
       operationId: createCategoryImage
       responses:
         '200':
-          description: |
-            A ResourceImage and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/ImageResponse'
         '404':
@@ -2744,16 +2742,29 @@ paths:
             field or an incorrect file type. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
-    delete:
+      summary: Create a Category Image
       tags:
+        - Category
         - Catalog
-      description: |
-        Deletes a `Category` image from the BigCommerce Catalog.
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    delete:
+      description: Deletes a category image using the `category_id`.
       operationId: deleteCategoryImage
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
+      summary: Delete a Category Image
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      tags:
+        - Category
+        - Catalog
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   /catalog/categories/tree:
     get:
       description: >-
