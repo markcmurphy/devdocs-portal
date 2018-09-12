@@ -2868,6 +2868,26 @@ paths:
             $ref: '#/definitions/BrandPut'
           x-examples:
             application/json:
+              name: Common Good
+              meta_keywords:
+                - 'modern, clean, contemporary'
+              search_keywords: 'kitchen, laundry, cart, storage'
+              image_url: >-
+                "https://cdn8.bigcommerce.com/s-12345/product_images/k/your-image-name.png
+            application/json 2:
+              name: Common Good
+          description: >-
+            When updating a `Brand` none of the fields are required. It is
+            possible to pass in just one field to update.
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/BrandResponse'
+          examples:
+            application/json:
               data:
                 id: 35
                 name: Sagaform
@@ -2881,14 +2901,6 @@ paths:
                   url: /brands/Sagaform.html
                   is_customized: false
               meta: {}
-        - $ref: '#/parameters/Content-Type'
-        - $ref: '#/parameters/Accept'
-      responses:
-        '200':
-          description: |
-            A `Brand` object.
-          schema:
-            $ref: '#/definitions/BrandResponse'
         '404':
           description: |
             The resource was not found.
