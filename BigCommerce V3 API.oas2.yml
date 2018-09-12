@@ -40,9 +40,9 @@ paths:
     get:
       tags:
         - Catalog
-      description: >
-        Returns a paginated collection of `Products` objects from the
-        BigCommerce Catalog.
+      description: >-
+        Get all products from your BigCommerce catalog. Optional parameters can
+        be passed in.
       operationId: getProducts
       parameters:
         - $ref: '#/parameters/FilterIdParam'
@@ -76,12 +76,18 @@ paths:
         - $ref: '#/parameters/LimitParam'
         - $ref: '#/parameters/DirectionParam'
         - $ref: '#/parameters/ProductSortParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: |
             An array of products and metadata.
           schema:
             $ref: '#/definitions/ProductCollectionResponse'
+      summary: Get All Products
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     post:
       tags:
         - Catalog
@@ -425,8 +431,7 @@ paths:
         - $ref: '#/parameters/Content-Type'
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
       summary: Delete a Products(s)
       tags:
         - Products
@@ -5255,8 +5260,7 @@ parameters:
     type: string
   ProductFilterKeywordContextParam:
     name: keyword_context
-    description: |
-      Set context for a product search.
+    description: Set context for a product search.
     required: false
     in: query
     type: string
