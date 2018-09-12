@@ -2530,12 +2530,17 @@ paths:
       operationId: deleteCategoryById
       responses:
         '204':
-          description: |
-            An empty response.
-      summary: Delete Category y Id
+          description: ''
+      summary: Delete Category by Id
       tags:
         - Category
         - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/categories/{category_id}/metafields':
     parameters:
       - $ref: '#/parameters/CategoryIdParam'
