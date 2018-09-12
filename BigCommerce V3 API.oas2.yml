@@ -3092,10 +3092,59 @@ paths:
         - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of `ComplexRule` objects and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/ComplexRuleCollectionResponse'
+          examples:
+            application/json:
+              data:
+                - id: 82
+                  product_id: 195
+                  sort_order: 0
+                  enabled: true
+                  stop: false
+                  price_adjuster:
+                    adjuster: relative
+                    adjuster_value: 8
+                  weight_adjuster: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  purchasing_hidden: false
+                  image_url: ''
+                  conditions:
+                    - rule_id: 82
+                      modifier_id: 221
+                      modifier_value_id: 175
+                      variant_id: null
+                      combination_id: 0
+                - id: 83
+                  product_id: 195
+                  sort_order: 1
+                  enabled: true
+                  stop: false
+                  price_adjuster: null
+                  weight_adjuster:
+                    adjuster: relative
+                    adjuster_value: 3
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  purchasing_hidden: false
+                  image_url: ''
+                  conditions:
+                    - rule_id: 83
+                      modifier_id: 221
+                      modifier_value_id: 174
+                      variant_id: null
+                      combination_id: 0
+              meta:
+                pagination:
+                  total: 2
+                  count: 2
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    current: '?page=1&limit=50'
       summary: Get Complex Rules
       tags:
         - Complex Rules
