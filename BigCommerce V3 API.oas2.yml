@@ -1558,19 +1558,56 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      tags:
-        - Catalog
-      description: |
-        Creates a `Product` in the BigCommerce Catalog.
+      description: Create a product. Only one product can be created at a time.
       operationId: createProduct
       parameters:
         - name: product
           in: body
           required: true
-          description: |
-            A BigCommerce `Product` object.
           schema:
             $ref: '#/definitions/ProductPost'
+          x-examples:
+            Simple Product:
+              name: BigCommerce Coffee Mug
+              price: '10.00'
+              categories:
+                - 23
+                - 21
+              weight: 4
+              type: physical
+            Creating a Product with Variants: |-
+              {
+                  "name": "BigCommerce Coffee Mug",
+                  "price": "10.00",
+                  "categories":[
+                          23,21
+                      ],
+                      
+                  "weight": 4,
+                  "type": "physical",
+                  "variants":[
+                      {
+                          "sku": "SKU-BLU",
+                          "option_values":[
+                                  {
+                                      "option_display_name": "Mug Color",
+                                      "label": "Blue"
+                                  }
+                              ]
+                      },
+                      {
+                          "sku": "SKU-GRAY",
+                          "option_values":[
+                                  {
+                                      "option_display_name": "Mug Color",
+                                      "label": "Gray"
+                                  }
+                              ]
+                      }
+                  ]
+              }
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
       responses:
         '200':
           description: |
@@ -1874,6 +1911,13 @@ paths:
             fields, or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Create a Product
+      tags:
+        - Products
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: >-
         Delete a product(s). At least one filter parameter should be passed to
