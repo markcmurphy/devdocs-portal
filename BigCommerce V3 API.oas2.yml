@@ -3503,9 +3503,9 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      tags:
-        - Catalog
-      description: Creates a `BulkPricingRule`.
+      description: >-
+        Creates a bulk pricing rule(s) using the `product_id`. Optional
+        parameters can be passed in.
       operationId: createBulkPricingRule
       parameters:
         - name: BulkPricingRule
@@ -3515,10 +3515,11 @@ paths:
             `BulkPricingRule` object.
           schema:
             $ref: '#/definitions/BulkPricingRulePost'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `BulkPricingRule` object.
+          description: ''
           schema:
             $ref: '#/definitions/BulkPricingRuleResponse'
         '404':
@@ -3540,6 +3541,14 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      summary: Create a Bulk Pricing Rule
+      tags:
+        - Bulk Pricing Rules
+        - Products
+        - Catalog
   '/catalog/products/{product_id}/bulk-pricing-rules/{bulk_pricing_rule_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
