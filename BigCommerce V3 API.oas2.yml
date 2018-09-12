@@ -3316,16 +3316,23 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     delete:
-      tags:
-        - Catalog
-      description: >
-        Deletes a Product's `ComplexRule`, based on the `product_id` and
+      description: >-
+        Deletes a products complex rule using the `product_id` and
         `complex_rule_id`.
       operationId: deleteComplexRuleById
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
+      summary: Delete Complex Rule by Id
+      tags:
+        - Complex Rules
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
   '/catalog/products/{product_id}/configurable-fields':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
