@@ -3503,18 +3503,21 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      description: >-
-        Creates a bulk pricing rule(s) using the `product_id`. Optional
-        parameters can be passed in.
+      description: Creates a bulk pricing rule(s) using the `product_id`.
       operationId: createBulkPricingRule
       parameters:
         - name: BulkPricingRule
           in: body
           required: true
-          description: |
-            `BulkPricingRule` object.
           schema:
             $ref: '#/definitions/BulkPricingRulePost'
+          x-examples:
+            application/json: {}
+            new:
+              quantity_min: 10
+              quantity_max: 50
+              type: price
+              amount: 10
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
       responses:
@@ -3522,6 +3525,15 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/BulkPricingRuleResponse'
+          examples:
+            application/json:
+              data:
+                quantity_min: 10
+                quantity_max: 50
+                type: price
+                amount: 1
+                id: 53
+              meta: {}
         '404':
           description: |
             The parent resource was not found.
