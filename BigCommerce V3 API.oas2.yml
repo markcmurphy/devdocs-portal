@@ -2516,25 +2516,46 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     put:
-      tags:
-        - Catalog
-      description: |
-        Updates a `Category` in the BigCommerce Catalog.
+      description: Updates a category using the `category_id`.
       operationId: updateCategory
       parameters:
         - name: category
           in: body
           required: true
-          description: |
-            A BigCommerce `Category` object.
           schema:
             $ref: '#/definitions/CategoryPut'
+          x-examples:
+            application/json:
+              description: <h1>Browse our full collection</h1>
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A category object.
+          description: ''
           schema:
             $ref: '#/definitions/CategoryResponse'
+          examples:
+            application/json:
+              data:
+                id: 23
+                parent_id: 0
+                name: Shop All
+                description: <h1>Browse our full collection</h1>
+                views: 0
+                sort_order: 0
+                page_title: ''
+                meta_keywords:
+                  - ''
+                meta_description: ''
+                layout_file: category_with_facets.html
+                image_url: ''
+                is_visible: true
+                search_keywords: ''
+                default_product_sort: use_store_settings
+                custom_url:
+                  url: /shop-all/
+                  is_customized: false
+              meta: {}
         '404':
           description: |
             The resource was not found.
@@ -2552,6 +2573,13 @@ paths:
             fields, or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Update a Category
+      tags:
+        - Category
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: Deletes a category using the `category_id`.
       operationId: deleteCategoryById
