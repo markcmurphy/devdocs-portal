@@ -2752,12 +2752,25 @@ paths:
               custom_url:
                 url: /brands/Common-Good.html
                 is_customized: false
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `Brand` object.
+          description: ''
           schema:
             $ref: '#/definitions/BrandResponse'
+          examples:
+            application/json:
+              data:
+                name: Common Good
+                meta_keywords:
+                  - 'modern, clean, contemporary'
+                meta_description: Common Good is a modern brand.
+                search_keywords: 'kitchen, laundry, cart, storage'
+                custom_url:
+                  url: /brands/Common-Good.html
+                  is_customized: false
+                id: 37
         '409':
           description: >
             Brand was in conflict with another brand. This is the result of
