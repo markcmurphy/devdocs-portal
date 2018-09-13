@@ -9231,8 +9231,6 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /pricelists:
     get:
-      tags:
-        - PriceLists
       description: |
         Returns a paginated collection of `Price List` objects from BigCommerce.
       operationId: getPriceListCollection
@@ -9249,9 +9247,9 @@ paths:
             An array of Price Lists and metadata.
           schema:
             $ref: '#/definitions/PriceListCollectionResponse'
-    post:
       tags:
-        - PriceLists
+        - Price Lists
+    post:
       description: |
         Creates a `Price List` in BigCommerce.
       operationId: createPriceList
@@ -9281,9 +9279,9 @@ paths:
             fields, or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
-    delete:
       tags:
-        - PriceLists
+        - Price Lists
+    delete:
       description: >
         Deletes a set of `Price List` objects from BigCommerce using a filter.
         Also removes all associated Price Recordss.
@@ -9295,12 +9293,12 @@ paths:
         '204':
           description: |
             An empty response.
+      tags:
+        - Price Lists
   '/pricelists/{price_list_id}':
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
     get:
-      tags:
-        - PriceLists
       description: |
         Returns a `Price List` object from BigCommerce.
       operationId: getPriceList
@@ -9310,9 +9308,9 @@ paths:
             An array of Price Lists and metadata.
           schema:
             $ref: '#/definitions/PriceListResponse'
-    put:
       tags:
-        - PriceLists
+        - Price Lists
+    put:
       description: |
         Updates a single `Price List` object.
       operationId: updatePriceList
@@ -9347,9 +9345,9 @@ paths:
             fields, or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
-    delete:
       tags:
-        - PriceLists
+        - Price Lists
+    delete:
       description: >
         Deletes one `Price List` object from BigCommerce by its ID. Also removes
         all associated Price Records.
@@ -9358,12 +9356,12 @@ paths:
         '204':
           description: |
             An empty response.
+      tags:
+        - Price Lists
   '/pricelists/{price_list_id}/records':
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
     get:
-      tags:
-        - PriceLists
       description: >
         Fetches the `Price Records` associated with a particular Price List,
         using a filter.
@@ -9389,9 +9387,9 @@ paths:
             An array of prices and metadata.
           schema:
             $ref: '#/definitions/PriceRecordCollectionResponse'
-    put:
       tags:
-        - PriceLists
+        - Price Lists
+    put:
       description: >
         Creates or updates a batch of `Price Records` associated with a
         particular Price List.
@@ -9425,9 +9423,9 @@ paths:
             during partial update in non-strict mode.
           schema:
             $ref: '#/definitions/PriceRecordBatchErrorResponse'
-    delete:
       tags:
-        - PriceLists
+        - Price Lists
+    delete:
       description: >
         Deletes one or more `Price Record` objects from BigCommerce using a
         filter.
@@ -9440,13 +9438,13 @@ paths:
             An empty response.
           schema:
             $ref: '#/definitions/NoContent'
+      tags:
+        - Price Lists
   '/pricelists/{price_list_id}/records/{variant_id}':
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
       - $ref: '#/parameters/VariantIdParam'
     get:
-      tags:
-        - PriceLists
       description: >
         Fetches an array of `Price Records` matching a particular Price List and
         Variant ID. Will contain any set price records by currency.
@@ -9457,9 +9455,9 @@ paths:
             An array of prices and metadata.
           schema:
             $ref: '#/definitions/PriceRecordCollectionResponse'
-    delete:
       tags:
-        - PriceLists
+        - Price Lists
+    delete:
       description: >
         Deletes the collection of `Price Record` objects associated with a
         certain price list and variant ID.
@@ -9468,14 +9466,14 @@ paths:
         '204':
           description: |
             An empty response.
+      tags:
+        - Price Lists
   '/pricelists/{price_list_id}/records/{variant_id}/{currency_code}':
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
       - $ref: '#/parameters/VariantIdParam'
       - $ref: '#/parameters/PriceRecordCurrencyParam'
     get:
-      tags:
-        - PriceLists
       description: |
         Returns a `Price Record` object from BigCommerce.
       operationId: getPriceListRecord
@@ -9487,9 +9485,9 @@ paths:
             An array of prices and metadata.
           schema:
             $ref: '#/definitions/PriceRecordResponse'
-    put:
       tags:
-        - PriceLists
+        - Price Lists
+    put:
       description: |
         Creates or updates a single `Price Record` object.
       operationId: setPriceListRecord
@@ -9524,9 +9522,9 @@ paths:
             fields, or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
-    delete:
       tags:
-        - PriceLists
+        - Price Lists
+    delete:
       description: |
         Deletes one `Price Record` object from BigCommerce, by `variant_id`.
       operationId: deletePriceListRecord
@@ -9534,6 +9532,8 @@ paths:
         '204':
           description: |
             An empty response.
+      tags:
+        - Price Lists
   /content/widget-templates:
     post:
       tags:
@@ -9940,8 +9940,6 @@ paths:
             See the response for more details.
   /content/regions:
     get:
-      tags:
-        - Theme Regions
       summary: Get an ordered list of unique regions defined in a template file.
       operationId: getRegions
       parameters:
@@ -9962,10 +9960,10 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      tags:
+        - Themes
   /content/scripts:
     post:
-      tags:
-        - Script
       summary: Creates a script.
       operationId: createScript
       parameters:
@@ -9986,6 +9984,8 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      tags:
+        - Scripts
     get:
       summary: Gets all scripts.
       operationId: getScripts
@@ -10010,8 +10010,6 @@ paths:
         - Scripts
   '/content/scripts/{uuid}':
     get:
-      tags:
-        - Script
       summary: Gets a script.
       operationId: getScript
       parameters:
@@ -10032,9 +10030,9 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
-    put:
       tags:
-        - Script
+        - Scripts
+    put:
       summary: Updates a script.
       operationId: updateScript
       parameters:
@@ -10060,9 +10058,9 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
-    delete:
       tags:
-        - Script
+        - Scripts
+    delete:
       summary: Deletes a script.
       operationId: deleteScript
       parameters:
@@ -10081,6 +10079,8 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      tags:
+        - Scripts
 parameters:
   TemplateUUID:
     name: uuid
