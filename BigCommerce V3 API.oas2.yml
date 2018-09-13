@@ -34,6 +34,7 @@ tags:
     description: BigCommerce Scripts API Definition.
   - name: PriceLists
   - name: Legacy
+  - name: Modifiers
 schemes:
   - https
 produces:
@@ -2969,21 +2970,79 @@ paths:
     parameters:
       - $ref: '#/parameters/ProductIdParam'
     get:
-      tags:
-        - Catalog
-      description: Gets an array of `Modifier` objects.
+      description: >-
+        Get a product's modifier by `product_id`. Optional parameters can be
+        passed in.
       operationId: getModifiers
       parameters:
         - $ref: '#/parameters/PageParam'
         - $ref: '#/parameters/LimitParam'
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of modifiers and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/ModifierCollectionResponse'
+          examples:
+            application/json:
+              data:
+                - id: 206
+                  product_id: 158
+                  name: Insurance
+                  display_name: Insurace
+                  type: checkbox
+                  required: true
+                  config:
+                    checkbox_label: $5 for insurance
+                    checked_by_default: false
+                  option_values:
+                    - id: 183
+                      option_id: 206
+                      label: 'Yes'
+                      sort_order: 0
+                      value_data:
+                        checked_value: true
+                      is_default: false
+                      adjusters:
+                        price: null
+                        weight: null
+                        image_url: ''
+                        purchasing_disabled:
+                          status: false
+                          message: ''
+                    - id: 184
+                      option_id: 206
+                      label: 'No'
+                      sort_order: 1
+                      value_data:
+                        checked_value: false
+                      is_default: true
+                      adjusters:
+                        price: null
+                        weight: null
+                        image_url: ''
+                        purchasing_disabled:
+                          status: false
+                          message: ''
+              meta:
+                pagination:
+                  total: 1
+                  count: 1
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    current: '?page=1&limit=50'
+      summary: Get All Product Modifiers
+      tags:
+        - Modifiers
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     post:
       tags:
         - Catalog
