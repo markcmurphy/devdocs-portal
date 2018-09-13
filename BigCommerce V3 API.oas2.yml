@@ -3003,29 +3003,55 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     put:
-      tags:
-        - Catalog
       description: Updates a `Metafield` object.
       operationId: updateVariantMetafield
       parameters:
         - name: Metafield
           in: body
           required: true
-          description: |
-            A `Metafield` object.
           schema:
             $ref: '#/definitions/MetafieldPut'
+          x-examples:
+            application/json:
+              permission_set: app_only
+              namespace: Warehouse SKUS
+              key: Location
+              value: 4H
+              description: location in the warehouse
+              resource_type: variant
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A metafield and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/MetafieldResponse'
+          examples:
+            application/json:
+              data:
+                permission_set: app_only
+                namespace: Warehouse SKUS
+                key: Location
+                value: 4H
+                description: location in the warehouse
+                resource_type: variant
+                resource_id: 111
+                id: 6
+                created_at: '2018-05-07T20:14:17+00:00'
+                updated_at: '2018-05-07T20:14:17+00:00'
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Update Product Variant Metafields
+      tags:
+        - Product Variants
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: >-
         Deletes a variant metafield by `product_id`, `variant_id` and
