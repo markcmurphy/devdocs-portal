@@ -2816,8 +2816,6 @@ paths:
         - Variants
         - Catalog
     post:
-      tags:
-        - Catalog
       parameters:
         - name: Option
           in: body
@@ -2826,7 +2824,17 @@ paths:
             An `Option` object.
           schema:
             $ref: '#/definitions/OptionPost'
-      description: Creates an `Option`.
+      description: >-
+        * Only one variant option at a time can be created; individual variant
+        options will contain an array of multiple values. 
+
+        * There are several examples listed below that create options,  but the
+        SKU’s are not updated and they are not a variant on the product. Variant
+        SKUs must be created with a separate request.
+
+        * Variant options will show on the storefront as an option that can be
+        selected by the customer. A request like this could be used to add new
+        choices to a variant that has already been created.
       operationId: createOption
       responses:
         '200':
@@ -2846,6 +2854,10 @@ paths:
             or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Create a Variant Option
+      tags:
+        - Variants
+        - Catalog
   '/catalog/products/{product_id}/options/{option_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
