@@ -39,6 +39,7 @@ tags:
     description: BigCommerce Scripts API Definition.
   - name: PriceLists
   - name: Legacy
+  - name: Product Review
 schemes:
   - https
 produces:
@@ -5165,10 +5166,9 @@ paths:
     parameters:
       - $ref: '#/parameters/ProductIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets all reviews on a product.
+      description: >-
+        Get all reviews on a product using the `product_id`. Optional parameters
+        can be passed in.
       operationId: getProductReviews
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
@@ -5189,6 +5189,7 @@ paths:
             The product ID does not exist.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get Product Reviews
     post:
       tags:
         - Catalog
