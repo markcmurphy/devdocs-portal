@@ -3548,19 +3548,43 @@ paths:
     get:
       tags:
         - Catalog
-      description: Gets an array of `CustomField` objects.
+      description: >-
+        Get all custom fields on a product using the `product_id`. Optional
+        parameters can be passed in.
       operationId: getCustomFields
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
         - $ref: '#/parameters/PageParam'
         - $ref: '#/parameters/LimitParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of `CustomField` objects and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/CustomFieldCollectionResponse'
+          examples:
+            application/json:
+              data:
+                - name: Release year
+                  value: '1987'
+                  id: 1
+              meta:
+                pagination:
+                  total: 1
+                  count: 1
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    previous: '?page=1&limit=50'
+                    current: '?page=1&limit=50'
+                    next: '?page=1&limit=50'
+      summary: Get Custom Fields
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     post:
       tags:
         - Catalog
