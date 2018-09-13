@@ -3672,26 +3672,32 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     put:
-      tags:
-        - Catalog
-      description: >
-        Updates a Product's `CustomField`, based on the `product_id` and
-        `custom_field_id`.
+      description: Updates a custom field using the the `product_id` and `custom_field_id`.
       operationId: updateCustomField
       parameters:
         - name: CustomField
           in: body
           required: true
-          description: |
-            `CustomField` object.
           schema:
             $ref: '#/definitions/CustomFieldPut'
+          x-examples:
+            application/json:
+              name: Release year
+              value: '1987'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `CustomField` object.
+          description: ''
           schema:
             $ref: '#/definitions/CustomFieldResponse'
+          examples:
+            application/json:
+              data:
+                id: 7
+                name: Release Year
+                value: '1976'
+              meta: {}
         '404':
           description: |
             The resource was not found.
@@ -3704,6 +3710,13 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Update a Custom Field
+      tags:
+        - Custom Fields
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: Deletes a custom field using the `product_id` and `custom_field_id`.
       operationId: deleteCustomFieldById
