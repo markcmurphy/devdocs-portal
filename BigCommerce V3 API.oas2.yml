@@ -3158,29 +3158,44 @@ paths:
                   total_pages: 1
                   links:
                     current: '?page=1&limit=50'
-      summary: Get All Option Values
+      summary: Get All Variant Option Values
       tags:
         - Variants
         - Catalog
     post:
-      tags:
-        - Catalog
-      description: Creates a `OptionValue`.
+      description: Creates a variant option value using the `product_id` and `option_id`.
       operationId: createOptionValue
       parameters:
         - name: OptionValue
           in: body
           required: true
-          description: |
-            A `OptionValue` object.
           schema:
             $ref: '#/definitions/OptionValuePost'
+          x-examples:
+            application/json:
+              is_default: true
+              label: Colors
+              sort_order: 2
+              value_data:
+                colors:
+                  - '#123c91, #FFFF00, #397a44'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `OptionValue` object.
+          description: ''
           schema:
             $ref: '#/definitions/OptionValueResponse'
+          examples:
+            application/json:
+              data:
+                id: 44
+                label: Pick a color
+                sort_order: 9
+                value_data:
+                  colors:
+                    - '#123c91, #FFFF00, #397a44'
+                is_default: false
         '422':
           description: >
             The `OptionValue` was not valid. This is the result of missing
@@ -3188,6 +3203,13 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Create Variant Option Value
+      tags:
+        - Variants
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/catalog/products/{product_id}/options/{option_id}/values/{value_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
