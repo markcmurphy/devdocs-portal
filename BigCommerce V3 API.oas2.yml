@@ -37,6 +37,8 @@ tags:
     description: BigCommerce Scripts API Definition.
   - name: PriceLists
   - name: Legacy
+  - name: ca
+  - name: PRO
 schemes:
   - https
 produces:
@@ -3152,47 +3154,170 @@ paths:
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/ModifierIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets a `Modifier` by product_id and modifier_id.
       operationId: getModifierById
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `Modifier` object.
+          description: ''
           schema:
             $ref: '#/definitions/ModifierResponse'
+          examples:
+            application/json:
+              data:
+                id: 206
+                product_id: 158
+                name: Insurance
+                display_name: Insurace
+                type: checkbox
+                required: true
+                config:
+                  checkbox_label: $5 for insurance
+                  checked_by_default: false
+                option_values:
+                  - id: 183
+                    option_id: 206
+                    label: 'Yes'
+                    sort_order: 0
+                    value_data:
+                      checked_value: true
+                    is_default: false
+                    adjusters:
+                      price: null
+                      weight: null
+                      image_url: ''
+                      purchasing_disabled:
+                        status: false
+                        message: ''
+                  - id: 184
+                    option_id: 206
+                    label: 'No'
+                    sort_order: 1
+                    value_data:
+                      checked_value: false
+                    is_default: true
+                    adjusters:
+                      price: null
+                      weight: null
+                      image_url: ''
+                      purchasing_disabled:
+                        status: false
+                        message: ''
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    put:
-      tags:
-        - Catalog
+      summary: Get a Modifier by Id
       description: >-
-        There are two steps to create a modifier. First add the modifier using
-        the [/POST](http://). Then use[/PUT](http://) modifier values to update
-        with the values.
+        Get a modifier by `product_id` and `modifier_id`. Optional parameters
+        can be passed in.
+      tags:
+        - Products
+        - Modifiers
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    put:
+      description: Updates a product's modifier using the `product_id` and `modifier_id`.
       operationId: updateModifier
       parameters:
         - name: modifier
           in: body
           required: true
-          description: |
-            A BigCommerce `Modifier` object.
           schema:
             $ref: '#/definitions/ModifierPut'
+          x-examples:
+            application/json:
+              type: date
+              required: true
+              config:
+                default_value: text
+                checked_by_default: false
+                date_limit_mode: earliest
+                file_types_mode: specific
+                file_types_supported: []
+                file_types_other: []
+                text_min_length: 15
+                text_max_length: 50
+                text_lines_limited: true
+                text_max_lines: 2
+                number_limit_mode: lowest
+                product_list_adjusts_inventory: true
+                product_list_adjusts_pricing: true
+                product_list_shipping_calc: none
+              option_values:
+                - id: 22
+                  is_default: false
+                  label: ''
+                  sort_order: 0
+                  value_data:
+                    colors:
+                      - '#123c91, #FFFF00, #397a44'
+                  adjusters:
+                    price:
+                      adjuster: relative
+                      adjuster_value: 6
+                    weight:
+                      adjuster: relative
+                      adjuster_value: 6
+                    purchasing_disabled:
+                      status: true
+                      message: This product is not available for purchase.
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: |
             A `Modifier` object.
           schema:
             $ref: '#/definitions/ModifierResponse'
+          examples:
+            application/json:
+              data:
+                id: 206
+                product_id: 158
+                name: Insurance
+                display_name: Insurace
+                type: checkbox
+                required: true
+                config:
+                  checkbox_label: $5 for insurance
+                  checked_by_default: false
+                option_values:
+                  - id: 183
+                    option_id: 206
+                    label: 'Yes'
+                    sort_order: 0
+                    value_data:
+                      checked_value: true
+                    is_default: false
+                    adjusters:
+                      price: null
+                      weight: null
+                      image_url: ''
+                      purchasing_disabled:
+                        status: false
+                        message: ''
+                  - id: 184
+                    option_id: 206
+                    label: 'No'
+                    sort_order: 1
+                    value_data:
+                      checked_value: false
+                    is_default: true
+                    adjusters:
+                      price: null
+                      weight: null
+                      image_url: ''
+                      purchasing_disabled:
+                        status: false
+                        message: ''
+              meta: {}
         '409':
           description: >
             The `Modifier` was in conflict with another modifier or option. This
@@ -3205,54 +3330,141 @@ paths:
             fields, or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
-    delete:
+      summary: Update a Modifier by Id
       tags:
+        - Products
         - Catalog
-      description: >
-        Deletes a Product's `Modifier` based on the `product_id` and
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    delete:
+      description: >-
+        Deletes a product's modifier based on the `product_id` and
         `modifier_id`.
       operationId: deleteModifierById
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
+      summary: Delete Modifier by Id
+      tags:
+        - Products
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
   '/catalog/products/{product_id}/modifiers/{modifier_id}/values':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/ModifierIdParam'
     get:
-      tags:
-        - Catalog
-      description: Gets an array of `ModifierValue` objects.
+      description: >-
+        Get a product's modifier values using the `product_id` and the
+        `modifier_id`. Optional parameters can be passed in.
       operationId: getModifierValues
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of modifier values and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/ModifierValueCollectionResponse'
-    post:
+          examples:
+            application/json:
+              data:
+                - id: 190
+                  option_id: 222
+                  label: 'Yes'
+                  sort_order: 0
+                  value_data:
+                    checked_value: true
+                  is_default: false
+                  adjusters:
+                    price:
+                      adjuster: relative
+                      adjuster_value: 5
+                    weight: null
+                    image_url: ''
+                    purchasing_disabled:
+                      status: false
+                      message: ''
+                - id: 191
+                  option_id: 222
+                  label: 'No'
+                  sort_order: 1
+                  value_data:
+                    checked_value: false
+                  is_default: true
+                  adjusters:
+                    price: null
+                    weight: null
+                    image_url: ''
+                    purchasing_disabled:
+                      status: false
+                      message: ''
+              meta:
+                pagination:
+                  total: 2
+                  count: 2
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    current: '?page=1&limit=50'
+      summary: Get Modifier Values
       tags:
+        - Products
         - Catalog
-      description: Creates a `ModifierValue`.
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    post:
+      description: Create a modifier value using the `product_id` and the `modifier_id`.
       operationId: createModifierValue
       parameters:
         - name: ModifierValue
           in: body
           required: true
-          description: |
-            A `ModifierValue` object.
           schema:
             $ref: '#/definitions/ModifierValuePost'
+          x-examples:
+            application/json:
+              is_default: false
+              adjusters:
+                price:
+                  adjuster: relative
+                  adjuster_value: 5
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `ModifierValue` object.
+          description: ''
           schema:
             $ref: '#/definitions/ModifierValueResponse'
+          examples:
+            application/json:
+              data:
+                id: 190
+                option_id: 222
+                label: 'Yes'
+                sort_order: 0
+                value_data: null
+                is_default: false
+                adjusters:
+                  price:
+                    adjuster: relative
+                    adjuster_value: 5
+                  weight: null
+                  image_url: ''
+                  purchasing_disabled:
+                    status: false
+                    message: ''
+              meta: {}
         '422':
           description: >
             The `ModifierValue` was not valid. This is the result of missing
@@ -3260,52 +3472,113 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      tags:
+        - Products
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      summary: Create Modifier Value
   '/catalog/products/{product_id}/modifiers/{modifier_id}/values/{value_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/ModifierIdParam'
       - $ref: '#/parameters/ValueIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets a `ModifierValue` by `product_id`, `modifier_id`, and `value_id`.
+      description: >-
+        Get modifier value by `product_id`, `modifier_id`, and `value_id`.
+        Optional parameters can be passed in.
       operationId: getModifierValueById
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `ModifierValue` object.
+          description: ''
           schema:
             $ref: '#/definitions/ModifierValueResponse'
+          examples:
+            application/json:
+              data:
+                id: 190
+                option_id: 222
+                label: 'Yes'
+                sort_order: 0
+                value_data: null
+                is_default: false
+                adjusters:
+                  price:
+                    adjuster: relative
+                    adjuster_value: 5
+                  weight: null
+                  image_url: ''
+                  purchasing_disabled:
+                    status: false
+                    message: ''
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    put:
+      summary: Get a Modifier Value by Id
       tags:
+        - Products
         - Catalog
-      description: >
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    put:
+      description: >-
         Updates a Product's `ModifierValue` based on the `product_id`,
         `modifier_id`, and `value_id`.
+
+
+        There are two steps to create a modifier. First add the modifier using
+        the [/POST](http://). Then use[/POST](http://) modifier values to update
+        with the values.
       operationId: updateModifierValue
       parameters:
         - name: ModifierValue
           in: body
           required: true
-          description: |
-            A BigCommerce `ModifierValue` object.
           schema:
             $ref: '#/definitions/ModifierValuePut'
+          x-examples:
+            application/json:
+              id: 190
+              adjusters:
+                price:
+                  adjuster: relative
+                  adjuster_value: 6
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `ModifierValue` object.
+          description: ''
           schema:
             $ref: '#/definitions/ModifierValueResponse'
+          examples:
+            application/json:
+              data:
+                id: 190
+                option_id: 222
+                label: 'Yes'
+                sort_order: 0
+                value_data: null
+                is_default: false
+                adjusters:
+                  price:
+                    adjuster: relative
+                    adjuster_value: 6
+                  weight: null
+                  image_url: ''
+                  purchasing_disabled:
+                    status: false
+                    message: ''
+              meta: {}
         '422':
           description: >
             The `ModifierValue` was not valid. This is the result of missing
@@ -3313,17 +3586,31 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
-    delete:
       tags:
+        - Products
         - Catalog
-      description: >
-        Deletes a Product's `ModifierValue` based on the `product_id`,
-        `modifier_id`, and `value_id`.
+      summary: Update a Modifier Value
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    delete:
+      description: >-
+        Deletes a modifier value using the `product_id`, `modifier_id`, and
+        `value_id`.
       operationId: deleteModifierValueById
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
+      summary: Delete Modifier Value by Id
+      tags:
+        - Products
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/products/{product_id}/modifiers/{modifier_id}/values/{value_id}/image':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
