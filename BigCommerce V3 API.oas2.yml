@@ -3022,19 +3022,45 @@ paths:
         - Variants
         - Catalog
     put:
-      tags:
-        - Catalog
-      description: |
-        Updates a Product's `Option`, based on the `product_id` and `option_id`.
+      description: 'Updates a product variant option, based on the product_id and option_id.'
       operationId: updateOption
       parameters:
         - name: option
           in: body
           required: true
-          description: |
-            A BigCommerce `Option` object.
           schema:
             $ref: '#/definitions/OptionPut'
+          x-examples:
+            application/json:
+              id: 22
+              product_id: 77
+              display_name: Colors
+              type: radio_buttons
+              config:
+                default_value: text
+                checked_by_default: false
+                date_limit_mode: earliest
+                file_types_mode: specific
+                file_types_supported: []
+                file_types_other: []
+                text_min_length: 15
+                text_max_length: 50
+                text_lines_limited: true
+                text_max_lines: 2
+                number_limit_mode: lowest
+                product_list_adjusts_inventory: true
+                product_list_adjusts_pricing: true
+                product_list_shipping_calc: none
+              option_values:
+                - id: 44
+                  label: Pick a color
+                  sort_order: 9
+                  value_data:
+                    colors:
+                      - '#123c91, #FFFF00, #397a44'
+                  is_default: false
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: |
@@ -3053,6 +3079,10 @@ paths:
             fields, or of invalid data. See the response for more details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Update a Variant Option
+      tags:
+        - Variants
+        - Catalog
     delete:
       operationId: deleteOptionById
       responses:
