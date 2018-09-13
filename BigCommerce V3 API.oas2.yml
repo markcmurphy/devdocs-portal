@@ -3217,18 +3217,29 @@ paths:
       - $ref: '#/parameters/OptionIdParam'
       - $ref: '#/parameters/ValueIdParam'
     get:
-      description: |
-        Gets a `OptionValue` by `product_id`, `option_id`, and `value_id`.
+      description: >-
+        Get a variant option value by `product_id`, `option_id`, and `value_id`.
+        Optional parameters can be passed in.
       operationId: getOptionValueById
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
       responses:
         '200':
-          description: |
-            A `OptionValue` object.
+          description: ''
           schema:
             $ref: '#/definitions/OptionValueResponse'
+          examples:
+            application/json:
+              data:
+                id: 174
+                label: Beige
+                sort_order: 1
+                value_data:
+                  colors:
+                    - '#FAFAEB'
+                is_default: false
+              meta: {}
         '404':
           description: |
             The resource was not found.
@@ -3237,9 +3248,13 @@ paths:
       tags:
         - Variant Options
         - Catalog
+      summary: Get Variant Option Value by Id
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     put:
-      description: >
-        Updates a Product's `OptionValue` based on the `product_id`,
+      description: >-
+        Updates a product variant option value using the `product_id`,
         `option_id`, and `value_id`.
       operationId: updateOptionValue
       parameters:
@@ -3250,12 +3265,22 @@ paths:
             A BigCommerce `OptionValue` object.
           schema:
             $ref: '#/definitions/OptionValuePut'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `OptionValue` object.
+          description: ''
           schema:
             $ref: '#/definitions/OptionValueResponse'
+          examples:
+            application/json:
+              is_default: false
+              label: Colors
+              sort_order: 2
+              value_data:
+                colors:
+                  - '#123c91, #FFFF00, #397a44'
+              id: 152
         '422':
           description: >
             The `OptionValue` was not valid. This is the result of missing
@@ -3266,18 +3291,28 @@ paths:
       tags:
         - Variant Options
         - Catalog
+      summary: Update a Variant Option Value
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
-      description: >
-        Deletes a Product's `OptionValue` based on the `product_id`,
+      description: >-
+        Delete a product variant option value using the `product_id`,
         `option_id`, and `value_id`.
       operationId: deleteOptionValueById
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
       tags:
         - Variant Options
         - Catalog
+      summary: Delete Variant Option Value y Id
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/products/{product_id}/modifiers':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
