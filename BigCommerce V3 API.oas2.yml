@@ -32,6 +32,7 @@ tags:
   - name: Script
     description: BigCommerce Scripts API Definition.
   - name: PriceLists
+  - name: Legacy
 schemes:
   - https
 produces:
@@ -41,8 +42,6 @@ consumes:
 paths:
   /catalog/products:
     get:
-      tags:
-        - Catalog
       description: >-
         Get all products from your BigCommerce catalog. Optional parameters can
         be passed in.
@@ -1560,6 +1559,9 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
+      tags:
+        - Products
+        - Catalog
     post:
       description: Create a product. Only one product can be created at a time.
       operationId: createProduct
@@ -3414,6 +3416,7 @@ paths:
       - $ref: '#/parameters/ProductIdParam'
     get:
       tags:
+        - Legacy
         - Catalog
       description: Gets an array of `ConfigurableField` objects.
       operationId: getConfigurableFields
@@ -3429,9 +3432,8 @@ paths:
           schema:
             $ref: '#/definitions/ConfigurableFieldCollectionResponse'
       deprecated: true
+      summary: Get Configurable Fields
     post:
-      tags:
-        - Catalog
       description: Creates a `ConfigurableField`.
       operationId: createConfigurableField
       parameters:
@@ -3461,6 +3463,9 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
       deprecated: true
+      tags:
+        - Legacy
+        - Catalog
   '/catalog/products/{product_id}/configurable-fields/{configurable_field_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
@@ -3712,7 +3717,6 @@ paths:
       summary: Get Bulk Pricing Rules
       tags:
         - Bulk Pricing Rules
-        - Products
         - Catalog
       security:
         - X-Auth-Client: []
@@ -3774,7 +3778,6 @@ paths:
       summary: Create a Bulk Pricing Rule
       tags:
         - Bulk Pricing Rules
-        - Products
         - Catalog
   '/catalog/products/{product_id}/bulk-pricing-rules/{bulk_pricing_rule_id}':
     parameters:
@@ -3812,7 +3815,6 @@ paths:
       summary: Get a Bulk Pricing Rule by Id
       tags:
         - Bulk Pricing Rules
-        - Products
         - Catalog
       security:
         - X-Auth-Client: []
@@ -3872,7 +3874,6 @@ paths:
       summary: Update a Bulk Pricing Rule
       tags:
         - Bulk Pricing Rules
-        - Products
         - Catalog
       security:
         - X-Auth-Client: []
@@ -3893,7 +3894,6 @@ paths:
       summary: Delete a Bulk Pricing Rule by Id
       tags:
         - Bulk Pricing Rules
-        - Products
         - Catalog
       security:
         - X-Auth-Client: []
