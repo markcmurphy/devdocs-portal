@@ -38,6 +38,7 @@ tags:
   - name: PriceLists
   - name: Legacy
   - name: Variants
+  - name: Variant Options
 schemes:
   - https
 produces:
@@ -2813,7 +2814,7 @@ paths:
             $ref: '#/definitions/NotFound'
       summary: Get All Product Variant Options
       tags:
-        - Variants
+        - Variant Options
         - Catalog
     post:
       parameters:
@@ -2954,7 +2955,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       summary: Create a Variant Option
       tags:
-        - Variants
+        - Variant Options
         - Catalog
   '/catalog/products/{product_id}/options/{option_id}':
     parameters:
@@ -3160,7 +3161,7 @@ paths:
                     current: '?page=1&limit=50'
       summary: Get All Variant Option Values
       tags:
-        - Variants
+        - Variant Options
         - Catalog
     post:
       description: Creates a variant option value using the `product_id` and `option_id`.
@@ -3204,20 +3205,18 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Create Variant Option Value
-      tags:
-        - Variants
-        - Catalog
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
+      tags:
+        - Variant Options
+        - Catalog
   '/catalog/products/{product_id}/options/{option_id}/values/{value_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/OptionIdParam'
       - $ref: '#/parameters/ValueIdParam'
     get:
-      tags:
-        - Catalog
       description: |
         Gets a `OptionValue` by `product_id`, `option_id`, and `value_id`.
       operationId: getOptionValueById
@@ -3235,9 +3234,10 @@ paths:
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    put:
       tags:
+        - Variant Options
         - Catalog
+    put:
       description: >
         Updates a Product's `OptionValue` based on the `product_id`,
         `option_id`, and `value_id`.
@@ -3263,9 +3263,10 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
-    delete:
       tags:
+        - Variant Options
         - Catalog
+    delete:
       description: >
         Deletes a Product's `OptionValue` based on the `product_id`,
         `option_id`, and `value_id`.
@@ -3274,6 +3275,9 @@ paths:
         '204':
           description: |
             An empty response.
+      tags:
+        - Variant Options
+        - Catalog
   '/catalog/products/{product_id}/modifiers':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
