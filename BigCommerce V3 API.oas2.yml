@@ -2490,51 +2490,221 @@ paths:
     parameters:
       - $ref: '#/parameters/ProductIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Returns a `Variant` object list from the BigCommerce Catalog.
+      description: >-
+        Get all variants on a product by `product_id`. Optional parameters can
+        be passed in.
       operationId: getVariantsByProductId
       parameters:
         - $ref: '#/parameters/PageParam'
         - $ref: '#/parameters/LimitParam'
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of variants and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/VariantCollectionResponse'
+          examples:
+            application/json:
+              data:
+                - id: 382
+                  product_id: 192
+                  sku: SMIT
+                  sku_id: 348
+                  price: 10
+                  calculated_price: 10
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 2
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 174
+                      label: Beige
+                      option_id: 220
+                      option_display_name: Color
+                - id: 383
+                  product_id: 192
+                  sku: SMIT-1
+                  sku_id: 349
+                  price: null
+                  calculated_price: 25
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 1
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: null
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 175
+                      label: Grey
+                      option_id: 220
+                      option_display_name: Color
+                - id: 384
+                  product_id: 192
+                  sku: SMIT-2
+                  sku_id: 350
+                  price: null
+                  calculated_price: 25
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 1
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: null
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 176
+                      label: Black
+                      option_id: 220
+                      option_display_name: Color
+              meta:
+                pagination:
+                  total: 3
+                  count: 3
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    current: '?page=1&limit=50'
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    post:
       tags:
+        - Product Variants
         - Catalog
-      description: Creates a `Variant` object.
+      summary: Get Variants by Product Id
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    post:
+      description: >-
+        Variants need to be created one at a time using this endpoint.To use a
+        variant array and create products and variants in the same call use the
+        /product endpoint during product creation.
       operationId: createVariant
       parameters:
         - name: Variant
           in: body
           required: true
-          description: |
-            `Variant` object.
           schema:
             $ref: '#/definitions/VariantPost'
+          x-examples:
+            application/json:
+              cost_price: 3
+              price: 12.99
+              retail_price: 15.99
+              weight: 1
+              width: 4
+              height: 14.6
+              depth: 22
+              is_free_shipping: true
+              purchasing_disabled: true
+              purchasing_disabled_message: This item not available at this time.
+              product_id: 134
+              sku: SMALL-BLUE
+              option_values:
+                - id: 163
+                  option_id: 193
+                - id: 166
+                  option_id: 194
       responses:
         '200':
-          description: |
-            A variant and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/VariantResponse'
+          examples:
+            application/json:
+              data:
+                cost_price: 12
+                price: 14
+                weight: 22
+                width: 40
+                height: 100
+                depth: 4
+                is_free_shipping: false
+                purchasing_disabled: false
+                inventory_level: 50
+                inventory_warning_level: 10
+                id: 156
+                product_id: 77
+                sku: SMALL-BLUE
+                sku_id: 197
+                option_values:
+                  - option_display_name: Color
+                    label: Color
+                    id: 107
+                    option_id: 124
+                calculated_price: 49.99
+              meta:
+                pagination:
+                  total: 1
+                  count: 1
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    previous: '?page=1&limit=50'
+                    current: '?page=1&limit=50'
+                    next: '?page=1&limit=50'
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      tags:
+        - Product Variants
+        - Catalog
+      summary: Create a Product Variant
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/catalog/products/{product_id}/variants/{variant_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
