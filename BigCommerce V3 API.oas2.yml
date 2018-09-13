@@ -2185,20 +2185,36 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      tags:
-        - Catalog
-      description: >
-        Creates an image on a product. Publicly accessible URLs and files (form
-        post) are valid parameters.
+      description: >-
+        Creates an image on a product using the product_id. Publicly accessible
+        URLs and files (form post) are valid parameters. Must either provide a
+        `image_url` or a `image_file`.
       operationId: createProductImage
       parameters:
         - name: productImage
           in: body
           required: true
-          description: |
-            A BigCommerce `ProductImage` object.
           schema:
             $ref: '#/definitions/ProductImagePost'
+          x-examples:
+            application/json:
+              is_thumbnail: true
+              sort_order: -378222078
+              description: quis est Duis
+              image_url: officia Excepteur nisi exercitation sunt
+            multipart/form-data: |-
+              curl -X POST \
+                https://api.bigcommerce.com/stores/id30h7ohwf/v3/catalog/products/158/images \
+                -H 'Accept: application/json' \
+                -H 'Cache-Control: no-cache' \
+                -H 'Content-Type: application/json' \
+                -H 'Postman-Token: b4ef04f3-38ab-437c-8562-a43c3632609f' \
+                -H 'X-Auth-Client: ton69mmvync8onp1h9nzi3gliia7m52' \
+                -H 'X-Auth-Token: b6f31petykyjxycqu816njvbe53ru2m' \
+                -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+                -F image_file=@/Users/user.name/Documents/docs_images/product-image.png
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: |
@@ -2210,6 +2226,16 @@ paths:
             The product ID does not exist.
           schema:
             $ref: '#/definitions/NotFound'
+      tags:
+        - Products
+        - Catalog
+      summary: Create a Product Image
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      consumes:
+        - application/json
+        - multipart/form-data
   '/catalog/products/{product_id}/images/{image_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
