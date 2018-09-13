@@ -7470,10 +7470,9 @@ paths:
         - $ref: '#/parameters/Accept'
   /catalog/variants:
     get:
-      tags:
-        - Catalog
-      description: |
-        Returns a `Variant` object list from the BigCommerce Catalog.
+      description: >-
+        Get all variants from your catalog. Optional parameters can be passed
+        in.
       operationId: getVariants
       parameters:
         - $ref: '#/parameters/FilterIdParam'
@@ -7482,17 +7481,1516 @@ paths:
         - $ref: '#/parameters/LimitParam'
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of variants and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/VariantCollectionResponse'
+          examples:
+            application/json:
+              data:
+                - id: 364
+                  product_id: 184
+                  sku: SMA-RED
+                  sku_id: 330
+                  price: 15.99
+                  calculated_price: 15.99
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: 15
+                  calculated_weight: 15
+                  width: 4
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 497
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 177
+                      label: Small
+                      option_id: 199
+                      option_display_name: Size
+                    - id: 180
+                      label: Red
+                      option_id: 200
+                      option_display_name: Color
+                - id: 365
+                  product_id: 184
+                  sku: MED-RED
+                  sku_id: 331
+                  price: 555
+                  calculated_price: 555
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 15
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 500
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 178
+                      label: Medium
+                      option_id: 199
+                      option_display_name: Size
+                    - id: 180
+                      label: Red
+                      option_id: 200
+                      option_display_name: Color
+                - id: 366
+                  product_id: 184
+                  sku: LAR-RED
+                  sku_id: 332
+                  price: null
+                  calculated_price: 253.99
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 15
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 500
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 179
+                      label: Large
+                      option_id: 199
+                      option_display_name: Size
+                    - id: 180
+                      label: Red
+                      option_id: 200
+                      option_display_name: Color
+                - id: 367
+                  product_id: 184
+                  sku: SMA-GRE
+                  sku_id: 333
+                  price: null
+                  calculated_price: 249
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 15
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 177
+                      label: Small
+                      option_id: 199
+                      option_display_name: Size
+                    - id: 181
+                      label: Green
+                      option_id: 200
+                      option_display_name: Color
+                - id: 368
+                  product_id: 184
+                  sku: MED-GRE
+                  sku_id: 334
+                  price: null
+                  calculated_price: 249
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 15
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 178
+                      label: Medium
+                      option_id: 199
+                      option_display_name: Size
+                    - id: 181
+                      label: Green
+                      option_id: 200
+                      option_display_name: Color
+                - id: 369
+                  product_id: 184
+                  sku: LAR-GRE
+                  sku_id: 335
+                  price: null
+                  calculated_price: 253.99
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 15
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 179
+                      label: Large
+                      option_id: 199
+                      option_display_name: Size
+                    - id: 181
+                      label: Green
+                      option_id: 200
+                      option_display_name: Color
+                - id: 370
+                  product_id: 184
+                  sku: SMA-BLU
+                  sku_id: 336
+                  price: null
+                  calculated_price: 249
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 15
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 177
+                      label: Small
+                      option_id: 199
+                      option_display_name: Size
+                    - id: 182
+                      label: Blue
+                      option_id: 200
+                      option_display_name: Color
+                - id: 371
+                  product_id: 184
+                  sku: MED-BLU
+                  sku_id: 337
+                  price: null
+                  calculated_price: 249
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 15
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 178
+                      label: Medium
+                      option_id: 199
+                      option_display_name: Size
+                    - id: 182
+                      label: Blue
+                      option_id: 200
+                      option_display_name: Color
+                - id: 372
+                  product_id: 184
+                  sku: LAR-BLU
+                  sku_id: 338
+                  price: null
+                  calculated_price: 253.99
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 15
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 179
+                      label: Large
+                      option_id: 199
+                      option_display_name: Size
+                    - id: 182
+                      label: Blue
+                      option_id: 200
+                      option_display_name: Color
+                - id: 376
+                  product_id: 158
+                  sku: SKU-A0C8A203
+                  sku_id: 342
+                  price: null
+                  calculated_price: 49.99
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 1
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: null
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 174
+                      label: Beige
+                      option_id: 207
+                      option_display_name: Color
+                - id: 377
+                  product_id: 158
+                  sku: SKU-E628145D
+                  sku_id: 343
+                  price: null
+                  calculated_price: 49.99
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 1
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: null
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 175
+                      label: Grey
+                      option_id: 207
+                      option_display_name: Color
+                - id: 378
+                  product_id: 158
+                  sku: SKU-E898ABC0
+                  sku_id: 344
+                  price: null
+                  calculated_price: 49.99
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 1
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: null
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 176
+                      label: Black
+                      option_id: 207
+                      option_display_name: Color
+                - id: 382
+                  product_id: 192
+                  sku: SMIT
+                  sku_id: 348
+                  price: 10
+                  calculated_price: 10
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 2
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 174
+                      label: Beige
+                      option_id: 220
+                      option_display_name: Color
+                - id: 383
+                  product_id: 192
+                  sku: SMIT-1
+                  sku_id: 349
+                  price: null
+                  calculated_price: 25
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 1
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: null
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 175
+                      label: Grey
+                      option_id: 220
+                      option_display_name: Color
+                - id: 384
+                  product_id: 192
+                  sku: SMIT-2
+                  sku_id: 350
+                  price: null
+                  calculated_price: 25
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  weight: null
+                  calculated_weight: 1
+                  width: null
+                  height: null
+                  depth: null
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: null
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: null
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values:
+                    - id: 176
+                      label: Black
+                      option_id: 220
+                      option_display_name: Color
+                - id: 325
+                  product_id: 157
+                  sku: ''
+                  sku_id: null
+                  price: 66
+                  calculated_price: 66
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/157/images/379/showerwhite3_1024x1024_1024x1024__77046__53871.1534344510.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 330
+                  product_id: 159
+                  sku: ''
+                  sku_id: null
+                  price: 34
+                  calculated_price: 34
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/159/images/384/BARRhandcream1_1024x1024_1024x1024__91787__18352.1534344511.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 331
+                  product_id: 160
+                  sku: ''
+                  sku_id: null
+                  price: 28
+                  calculated_price: 28
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/160/images/386/barr_coroomspray_1024x1024__43836__61957.1534344512.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 332
+                  product_id: 161
+                  sku: ''
+                  sku_id: null
+                  price: 109
+                  calculated_price: 109
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/161/images/387/roundterrariumlarge_1024x1024__12432__22764.1534344513.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 333
+                  product_id: 162
+                  sku: ''
+                  sku_id: null
+                  price: 89
+                  calculated_price: 89
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/162/images/389/roundterrariumsmall_1024x1024__05749__31860.1534344513.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 3000
+                  inventory_warning_level: 3
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 334
+                  product_id: 163
+                  sku: ''
+                  sku_id: null
+                  price: 32
+                  calculated_price: 32
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/163/images/391/twinestand3_1024x1024_1024x1024__17689__50909.1534344514.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 335
+                  product_id: 164
+                  sku: ''
+                  sku_id: null
+                  price: 8
+                  calculated_price: 8
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/164/images/395/naturaltwine_1024x1024_1024x1024__72720__85337.1534344514.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 336
+                  product_id: 165
+                  sku: ''
+                  sku_id: null
+                  price: 10.95
+                  calculated_price: 10.95
+                  sale_price: 0
+                  retail_price: 15
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/165/images/396/barrsalve1_1024x1024_1024x1024__06826__26118.1534344515.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 337
+                  product_id: 166
+                  sku: ''
+                  sku_id: null
+                  price: 28
+                  calculated_price: 28
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/166/images/397/livingwithplants_grande__26452__28114.1534344515.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 338
+                  product_id: 167
+                  sku: ''
+                  sku_id: null
+                  price: 225
+                  calculated_price: 225
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 339
+                  product_id: 168
+                  sku: ''
+                  sku_id: null
+                  price: 55
+                  calculated_price: 55
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/168/images/402/chemex6cup_1024x1024_1024x1024__84712__11834.1534344517.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 340
+                  product_id: 169
+                  sku: ''
+                  sku_id: null
+                  price: 44.95
+                  calculated_price: 44.95
+                  sale_price: 0
+                  retail_price: 50
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/169/images/406/3cupchemex5_1024x1024__40463__59678.1534344521.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 341
+                  product_id: 170
+                  sku: ''
+                  sku_id: null
+                  price: 25
+                  calculated_price: 25
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/170/images/411/measuringsquares2_1024x1024__07108__95421.1534344522.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 342
+                  product_id: 171
+                  sku: ''
+                  sku_id: null
+                  price: 70
+                  calculated_price: 70
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/171/images/414/japanesekettle1_1024x1024_1024x1024__83765__86479.1534344523.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 343
+                  product_id: 172
+                  sku: ''
+                  sku_id: null
+                  price: 48
+                  calculated_price: 48
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/172/images/419/thekinfolktablecover_1024x1024__80715__29685.1534344525.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 344
+                  product_id: 173
+                  sku: ''
+                  sku_id: null
+                  price: 18
+                  calculated_price: 18
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/173/images/424/measuringspoons1_1024x1024__22102__55079.1534344525.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 345
+                  product_id: 174
+                  sku: ''
+                  sku_id: null
+                  price: 7.95
+                  calculated_price: 7.95
+                  sale_price: 0
+                  retail_price: 10
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/174/images/425/leparfaitmedium3_1024x1024_1024x1024__37756__81924.1534344526.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 346
+                  product_id: 175
+                  sku: ''
+                  sku_id: null
+                  price: 35
+                  calculated_price: 35
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/175/images/428/oakcheesegrater2_1024x1024__03905__19286.1534344527.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 347
+                  product_id: 176
+                  sku: ''
+                  sku_id: null
+                  price: 59
+                  calculated_price: 59
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/176/images/432/milkandcreamer1_1024x1024__69117__81345.1534344528.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 348
+                  product_id: 177
+                  sku: ''
+                  sku_id: null
+                  price: 7
+                  calculated_price: 7
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/177/images/434/scrubbrush2_1024x1024_1024x1024__81254__82103.1534344529.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 349
+                  product_id: 178
+                  sku: ''
+                  sku_id: null
+                  price: 120
+                  calculated_price: 120
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/178/images/436/tieredbasket_1024x1024__81717__38751.1534344530.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 350
+                  product_id: 179
+                  sku: ''
+                  sku_id: null
+                  price: 30
+                  calculated_price: 30
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/179/images/440/CommonGoodLaundrySoap_1024x1024__31999__28799.1534344531.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 351
+                  product_id: 180
+                  sku: ''
+                  sku_id: null
+                  price: 20
+                  calculated_price: 20
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/180/images/441/CommonGoodFloorCleaner_grande__73674__83339.1534344531.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 352
+                  product_id: 181
+                  sku: ''
+                  sku_id: null
+                  price: 15
+                  calculated_price: 15
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/181/images/442/CommonGoodAllPurposeCleaner_d37aa1e8_e16f_4309_bddd_8fae0d94efc7_1024x1024__40180__66527.1534344531.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 353
+                  product_id: 182
+                  sku: ''
+                  sku_id: null
+                  price: 15
+                  calculated_price: 15
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/182/images/443/CommonGoodHandSoap_1024x1024__94874__52907.1534344532.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 354
+                  product_id: 183
+                  sku: ''
+                  sku_id: null
+                  price: 15
+                  calculated_price: 15
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/183/images/444/CommonGoodDishSoap_1024x1024__74820__62808.1534344532.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 356
+                  product_id: 185
+                  sku: ''
+                  sku_id: null
+                  price: 46
+                  calculated_price: 46
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/185/images/449/utilitybucket1_1024x1024__78563__75042.1534344535.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 498
+                  inventory_warning_level: 3
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 357
+                  product_id: 186
+                  sku: ''
+                  sku_id: null
+                  price: 17
+                  calculated_price: 17
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/186/images/454/SshapedScrubBrush2_1024x1024__94308__40283.1534344536.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 358
+                  product_id: 187
+                  sku: ''
+                  sku_id: null
+                  price: 26
+                  calculated_price: 26
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/187/images/458/featherduster_1024x1024__94858__16221.1534344537.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 359
+                  product_id: 188
+                  sku: ''
+                  sku_id: null
+                  price: 31.95
+                  calculated_price: 31.95
+                  sale_price: 0
+                  retail_price: 35
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/188/images/460/dustpan1_1024x1024_1024x1024__43447__69128.1534344539.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 360
+                  product_id: 189
+                  sku: ''
+                  sku_id: null
+                  price: 18.95
+                  calculated_price: 18.95
+                  sale_price: 0
+                  retail_price: 22
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/189/images/465/gather_1024x1024__17195__82620.1534344540.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 361
+                  product_id: 190
+                  sku: ''
+                  sku_id: null
+                  price: 23
+                  calculated_price: 23
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/190/images/470/kinfolkessentialissue_1024x1024__22507__36871.1534344542.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 362
+                  product_id: 191
+                  sku: ''
+                  sku_id: null
+                  price: 27.95
+                  calculated_price: 27.95
+                  sale_price: 0
+                  retail_price: 30
+                  map_price: 0
+                  weight: 1
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 1
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: >-
+                    https://cdn8.bigcommerce.com/s-id30h7ohwf/products/191/images/475/openhousevol3_1024x1024__59692__16355.1534344544.560.850.jpg?c=2
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 385
+                  product_id: 193
+                  sku: ''
+                  sku_id: null
+                  price: 10
+                  calculated_price: 10
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 4
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 4
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+                - id: 386
+                  product_id: 194
+                  sku: ''
+                  sku_id: null
+                  price: 11
+                  calculated_price: 11
+                  sale_price: 0
+                  retail_price: 0
+                  map_price: 0
+                  weight: 3
+                  width: 0
+                  height: 0
+                  depth: 0
+                  is_free_shipping: false
+                  fixed_cost_shipping_price: 0
+                  calculated_weight: 3
+                  purchasing_disabled: false
+                  purchasing_disabled_message: ''
+                  image_url: ''
+                  cost_price: 0
+                  upc: ''
+                  mpn: ''
+                  gtin: ''
+                  inventory_level: 0
+                  inventory_warning_level: 0
+                  bin_picking_number: ''
+                  option_values: []
+              meta:
+                pagination:
+                  total: 54
+                  count: 50
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 2
+                  links:
+                    next: '?page=2&limit=50'
+                    current: '?page=1&limit=50'
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get All Variants
+      tags:
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   /catalog/summary:
     get:
       tags:
