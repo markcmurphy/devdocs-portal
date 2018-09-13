@@ -34,6 +34,7 @@ tags:
   - name: PriceLists
   - name: Legacy
   - name: Custom Fields
+  - name: Ca
 schemes:
   - https
 produces:
@@ -2265,61 +2266,121 @@ paths:
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/ImageIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets image on a product.
+      description: >-
+        Return image on a product using `product_id` and `image_id`. Optional
+        parameters can be passed in.
       operationId: getProductImageById
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of product images and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/ProductImageResponse'
+          examples:
+            application/json:
+              data:
+                id: 485
+                product_id: 158
+                is_thumbnail: false
+                sort_order: 1
+                description: ''
+                image_file: o/381/product-image__98178.png
+                url_zoom: >-
+                  https://cdn8.bigcommerce.com/s-id30h7ohwf/products/158/images/485/product-image__98178.1536854227.1280.1280.png?c=2
+                url_standard: >-
+                  https://cdn8.bigcommerce.com/s-id30h7ohwf/products/158/images/485/product-image__98178.1536854227.560.850.png?c=2
+                url_thumbnail: >-
+                  https://cdn8.bigcommerce.com/s-id30h7ohwf/products/158/images/485/product-image__98178.1536854227.330.500.png?c=2
+                url_tiny: >-
+                  https://cdn8.bigcommerce.com/s-id30h7ohwf/products/158/images/485/product-image__98178.1536854227.66.100.png?c=2
+                date_modified: '2018-09-13T15:57:07+00:00'
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    put:
+      summary: Get a Product Image by Id
       tags:
+        - Products
         - Catalog
-      description: >
-        Updates an image on a product. Publicly accessible URLs and files (form
-        post) are valid parameters.
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    put:
+      description: >-
+        Update an product image details using the `product_id` and the
+        `image_id`. 
       operationId: updateProductImage
       parameters:
         - name: productImage
           in: body
           required: true
-          description: |
-            A BigCommerce `ProductImage` object.
           schema:
             $ref: '#/definitions/ProductImagePut'
+          x-examples:
+            application/json:
+              is_thumbnail: true
+              sort_order: 1
+              description: Yellow Large Bath Towel
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A product image.
+          description: ''
           schema:
             $ref: '#/definitions/ProductImageResponse'
+          examples:
+            application/json:
+              data:
+                id: 485
+                product_id: 158
+                is_thumbnail: false
+                sort_order: 1
+                description: ''
+                image_file: o/381/product-image__98178.png
+                url_zoom: >-
+                  https://cdn8.bigcommerce.com/s-id30h7ohwf/products/158/images/485/product-image__98178.1536854227.1280.1280.png?c=2
+                url_standard: >-
+                  https://cdn8.bigcommerce.com/s-id30h7ohwf/products/158/images/485/product-image__98178.1536854227.560.850.png?c=2
+                url_thumbnail: >-
+                  https://cdn8.bigcommerce.com/s-id30h7ohwf/products/158/images/485/product-image__98178.1536854227.330.500.png?c=2
+                url_tiny: >-
+                  https://cdn8.bigcommerce.com/s-id30h7ohwf/products/158/images/485/product-image__98178.1536854227.66.100.png?c=2
+                date_modified: '2018-09-13T15:57:07+00:00'
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    delete:
+      summary: Update Product Image
       tags:
+        - Products
         - Catalog
-      description: |
-        Deletes a `ProductImage` in the BigCommerce Catalog.
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    delete:
+      description: Deletes a product image using the `product_id` and the `image_id`.
       operationId: deleteProductImage
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
+      summary: Delete Product Image by Id
+      tags:
+        - Products
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/products/{product_id}/videos':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
