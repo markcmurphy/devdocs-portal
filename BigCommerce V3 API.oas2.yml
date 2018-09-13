@@ -2772,18 +2772,29 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     put:
-      tags:
-        - Catalog
-      description: Updates a `Variant` object.
+      description: Updates a variant using the `product_id` and the `variant_id`.
       operationId: updateVariant
       parameters:
         - name: Variant
           in: body
           required: true
-          description: |
-            A `Variant` object.
           schema:
             $ref: '#/definitions/VariantPut'
+          x-examples:
+            application/json:
+              cost_price: 3
+              price: 50.99
+              sale_price: 45
+              retail_price: 50.99
+              weight: 1
+              width: 4
+              height: 14.6
+              depth: 22
+              is_free_shipping: true
+              purchasing_disabled: true
+              purchasing_disabled_message: This item not available at this time.
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: |
@@ -2795,6 +2806,13 @@ paths:
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Update a Product Variant
+      tags:
+        - Product Variants
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: Deletes a variant using the `product_id` and the `variant_id`.
       operationId: deleteVariantById
