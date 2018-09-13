@@ -3101,19 +3101,64 @@ paths:
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/OptionIdParam'
     get:
-      tags:
-        - Catalog
-      description: Gets an array of `OptionValue` objects.
+      description: >-
+        Returns all variant option values using the `product_id` and
+        `option_id`. Optional parameters can be passed in.
       operationId: getOptionValues
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of option values and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/OptionValueCollectionResponse'
+          examples:
+            application/json:
+              data:
+                - id: 174
+                  label: Beige
+                  sort_order: 1
+                  value_data:
+                    colors:
+                      - '#FAFAEB'
+                  is_default: false
+                - id: 175
+                  label: Grey
+                  sort_order: 2
+                  value_data:
+                    colors:
+                      - '#BDBDBD'
+                  is_default: false
+                - id: 176
+                  label: Black
+                  sort_order: 3
+                  value_data:
+                    colors:
+                      - '#000000'
+                  is_default: false
+                - id: 189
+                  label: Black-Walnut
+                  sort_order: 4
+                  value_data:
+                    colors:
+                      - '#e80ee8'
+                  is_default: false
+              meta:
+                pagination:
+                  total: 4
+                  count: 4
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    current: '?page=1&limit=50'
+      summary: Get All Option Values
+      tags:
+        - Variants
+        - Catalog
     post:
       tags:
         - Catalog
