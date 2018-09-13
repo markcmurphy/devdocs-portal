@@ -2111,10 +2111,9 @@ paths:
     parameters:
       - $ref: '#/parameters/ProductIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets all images on a product.
+      description: >-
+        Returns all images on a product using the `product_id`. Optional
+        parameters can be passed in
       operationId: getProductImages
       parameters:
         - $ref: '#/parameters/PageParam'
@@ -2135,6 +2134,10 @@ paths:
             The product ID does not exist.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get Product Images
+      tags:
+        - Products
+        - Catalog
     post:
       tags:
         - Catalog
