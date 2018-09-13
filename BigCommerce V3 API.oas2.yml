@@ -33,6 +33,7 @@ tags:
     description: BigCommerce Scripts API Definition.
   - name: PriceLists
   - name: Legacy
+  - name: Custom Fields
 schemes:
   - https
 produces:
@@ -3546,8 +3547,6 @@ paths:
     parameters:
       - $ref: '#/parameters/ProductIdParam'
     get:
-      tags:
-        - Catalog
       description: >-
         Get all custom fields on a product using the `product_id`. Optional
         parameters can be passed in.
@@ -3585,25 +3584,36 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
-    post:
       tags:
+        - Custom Fields
         - Catalog
-      description: Creates a `CustomField`.
+    post:
+      description: Create a custom field on a product using the `product_id`.
       operationId: createCustomField
       parameters:
         - name: CustomField
           in: body
           required: true
-          description: |
-            `CustomField` object.
           schema:
             $ref: '#/definitions/CustomFieldPost'
+          x-examples:
+            application/json:
+              name: Reelase Year
+              value: '1976'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `CustomField` object.
+          description: ''
           schema:
             $ref: '#/definitions/CustomFieldResponse'
+          examples:
+            application/json:
+              data:
+                name: Release Year
+                value: '1976'
+                id: 2
+              meta: {}
         '404':
           description: |
             The parent resource was not found.
@@ -3616,6 +3626,13 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Create a Custom Fields
+      tags:
+        - Custom Fields
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/catalog/products/{product_id}/custom-fields/{custom_field_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
