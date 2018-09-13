@@ -2484,30 +2484,62 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      tags:
-        - Catalog
-      description: |
-        Creates a video on a product, using a video ID from a host site.
+      description: >-
+        Creates a video on a product using the product_id. Publicly accessible
+        URLs valid parameters.
+
+
+        * Videos must be loaded through YouTube at this time. 
       operationId: createProductVideo
       parameters:
         - name: productVideo
           in: body
           required: true
-          description: |
-            A BigCommerce `ProductVideo` object.
           schema:
             $ref: '#/definitions/ProductVideoPost'
+          x-examples:
+            application/json:
+              title: Your Video
+              description: Company Values
+              sort_order: 1
+              type: youtube
+              video_id: 123345AA
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A product video.
+          description: ''
           schema:
             $ref: '#/definitions/ProductVideoResponse'
+          examples:
+            application/json:
+              data:
+                id: 6
+                type: youtube
+                video_id: PqBTp23RLhI
+                product_id: 192
+                sort_order: 1
+                title: Creating and Editing Banners | BigCommerce Tutorials
+                description: >-
+                  Learn how to create and edit marketing banners. Marketing
+                  banners are a great way to advertise sales, display coupon
+                  codes, and add design elements. Let’s take a look at how you
+                  can leverage banners to convert your store’s visitors into
+                  paying customers.
+                length: '01:54'
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Create a Product Video
+      tags:
+        - Product Videos
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/catalog/products/{product_id}/videos/{video_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
