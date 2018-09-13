@@ -2820,15 +2820,71 @@ paths:
         - name: Option
           in: body
           required: true
-          description: |
-            An `Option` object.
           schema:
             $ref: '#/definitions/OptionPost'
+          x-examples:
+            Create a Size Variant:
+              product_id: 134
+              name: Size Rectangle
+              display_name: Size
+              type: rectangles
+              option_values:
+                - label: S
+                  sort_order: 0
+                  is_default: false
+                - label: M
+                  sort_order: 1
+                  is_default: true
+                - label: L
+                  sort_order: 2
+                  is_default: false
+            Create a Color Variant: |-
+              {
+                  "product_id": 134,
+                 "name": "Colors",
+                 "display_name": "Color",
+                 "type": "swatch",
+                 "sort_order": 1,
+                 "option_values": [
+                     {
+                         "label": "Blue",
+                         "sort_order": 1,
+                         "value_data": {
+                             "colors": [
+                                 "#123c91"
+                             ]
+                         },
+                         "is_default": false
+                     },
+                     {
+                         "label": "Green",
+                         "sort_order": 2,
+                         "value_data": {
+                             "colors": [
+                                 "#0f961e"
+                             ]
+                         },
+                         "is_default": false
+                     },
+                     {
+                         "label": "Red",
+                         "sort_order": 3,
+                         "value_data": {
+                             "colors": [
+                                 "#e60c0c"
+                             ]
+                         },
+                         "is_default": false
+                     }
+                 ]
+              }
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       description: >-
         * Only one variant option at a time can be created; individual variant
         options will contain an array of multiple values. 
 
-        * There are several examples listed below that create options,  but the
+        * There are several examples listed below that create options, but the
         SKU’s are not updated and they are not a variant on the product. Variant
         SKUs must be created with a separate request.
 
