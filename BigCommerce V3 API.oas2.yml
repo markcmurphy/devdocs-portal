@@ -2545,30 +2545,50 @@ paths:
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/VideoIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets video on a product.
+      description: >-
+        Get a video on a product using the `product_id` and the `video_id`.
+        Optional parameters can be passed in.
       operationId: getProductVideoById
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of product videos and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/ProductVideoResponse'
+          examples:
+            application/json:
+              data:
+                id: 6
+                type: youtube
+                video_id: PqBTp23RLhI
+                product_id: 192
+                sort_order: 1
+                title: Creating and Editing Banners | BigCommerce Tutorials
+                description: >-
+                  Learn how to create and edit marketing banners. Marketing
+                  banners are a great way to advertise sales, display coupon
+                  codes, and add design elements. Let’s take a look at how you
+                  can leverage banners to convert your store’s visitors into
+                  paying customers.
+                length: '01:54'
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    put:
+      summary: Get a Product Video by Id
       tags:
+        - Product Videos
         - Catalog
-      description: |
-        Updates a video on a product.
+      security:
+        - X-Auth-Client: []
+    put:
+      description: Updates a video on a product using the `product_id` and the `video_id`.
       operationId: updateProductVideo
       parameters:
         - name: productVideo
@@ -2578,27 +2598,48 @@ paths:
             A BigCommerce `ProductVideo` object.
           schema:
             $ref: '#/definitions/ProductVideoPut'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A product video.
+          description: ''
           schema:
-            $ref: '#/definitions/ProductVideoResponse'
+            $ref: '#/definitions/ProductVideoPut'
+          examples:
+            application/json:
+              title: string
+              description: string
+              sort_order: 0
+              type: youtube
+              id: 0
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    delete:
+      summary: Update a Product Video
       tags:
+        - Product Videos
         - Catalog
-      description: |
-        Deletes a `ProductVideo` in the BigCommerce Catalog.
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    delete:
       operationId: deleteProductVideo
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
+      summary: Delete a Product Video
+      description: Deletes a product video using the `product_id` and the `video_id`.
+      tags:
+        - Product Videos
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/products/{product_id}/variants':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
