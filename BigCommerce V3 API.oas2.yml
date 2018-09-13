@@ -5242,10 +5242,24 @@ paths:
         - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A product review.
+          description: ''
           schema:
             $ref: '#/definitions/ProductReviewResponse'
+          examples:
+            application/json:
+              data:
+                title: irur
+                text: anim aute
+                status: Lorem ad sed voluptate
+                rating: -39218623
+                email: esse Lorem laborum aute
+                name: 'ut in '
+                date_reviewed: '2011-12-31T13:40:42.971Z'
+                id: 82495037
+                product_id: 22609026
+                date_created: '1985-01-17T07:37:20.439Z'
+                date_modified: '2004-09-28T14:38:21.973Z'
+              meta: {}
         '404':
           description: |
             The product ID does not exist.
@@ -5263,30 +5277,48 @@ paths:
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/ReviewIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets a product review.
+      description: >-
+        Get a product review using the `product_id` and the `review_id`.
+        Optional parameters maybe passed in.
       operationId: getProductReviewById
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of product reviews and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/ProductReviewResponse'
+          examples:
+            application/json:
+              data:
+                title: Great Product
+                text: This product is amazing!!!
+                status: approved
+                rating: 5
+                email: some@email.com
+                name: Jane Doe
+                date_reviewed: '2018-05-07T19:37:13+00:00'
+                id: 5
+                date_created: '2018-05-07T19:37:13+00:00"'
+                date_modified: '2018-05-07T19:38:36+00:00'
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    put:
+      summary: Get a Product Review by Id
       tags:
+        - Product Reviews
         - Catalog
-      description: |
-        Updates a product review.
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    put:
+      description: Update a product review using the `product_id` and the `review_id`.
       operationId: updateProductReview
       parameters:
         - name: productReview
@@ -5296,27 +5328,55 @@ paths:
             A BigCommerce `ProductReview` object.
           schema:
             $ref: '#/definitions/ProductReviewPut'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A product review.
+          description: Update a product review using the product_id and the review_id.
           schema:
             $ref: '#/definitions/ProductReviewResponse'
+          examples:
+            application/json:
+              data:
+                title: Great Product
+                text: This product is amazing!!!
+                status: approved
+                rating: 5
+                email: some@email.com
+                name: Jane Doe
+                date_reviewed: '2018-05-07T19:37:13+00:00'
+                id: 5
+                date_created: '2018-05-07T19:37:13+00:00"'
+                date_modified: '2018-05-07T19:38:36+00:00'
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    delete:
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      summary: Update a Product Review
       tags:
+        - Product Reviews
         - Catalog
-      description: |
-        Deletes a `ProductReview` in the BigCommerce Catalog.
+    delete:
+      description: Deletes a product review using the `product_id` and the `review_id`.
       operationId: deleteProductReview
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
+      summary: Delete a Product Review
+      tags:
+        - Product Reviews
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   /catalog/categories:
     get:
       description: >-
