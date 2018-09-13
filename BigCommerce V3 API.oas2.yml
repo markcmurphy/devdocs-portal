@@ -2753,15 +2753,21 @@ paths:
           schema:
             $ref: '#/definitions/NotFound'
     delete:
-      tags:
-        - Catalog
-      description: |
-        Deletes a `Variant`.
+      description: Deletes a variant using the `product_id` and the `variant_id`.
       operationId: deleteVariantById
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
+      summary: Delete a Product Variant by Id
+      tags:
+        - Product Variants
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/products/{product_id}/variants/{variant_id}/metafields':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
