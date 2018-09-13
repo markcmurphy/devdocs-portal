@@ -37,6 +37,7 @@ tags:
     description: BigCommerce Scripts API Definition.
   - name: PriceLists
   - name: Legacy
+  - name: Variants
 schemes:
   - https
 produces:
@@ -2743,9 +2744,9 @@ paths:
     parameters:
       - $ref: '#/parameters/ProductIdParam'
     get:
-      tags:
-        - Catalog
-      description: Gets an array of `Option` objects.
+      description: >-
+        Return all variant options by `product_id` and `option_id`. Optional
+        parameters can be passed in. 
       operationId: getOptions
       parameters:
         - $ref: '#/parameters/PageParam'
@@ -2754,15 +2755,66 @@ paths:
         - $ref: '#/parameters/FilterExcludeFieldsParam'
       responses:
         '200':
-          description: |
-            An array of options and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/OptionCollectionResponse'
+          examples:
+            application/json:
+              data:
+                - id: 220
+                  product_id: 192
+                  name: Color (Colors only)
+                  display_name: Color
+                  type: swatch
+                  sort_order: 0
+                  option_values:
+                    - id: 174
+                      label: Beige
+                      sort_order: 1
+                      value_data:
+                        colors:
+                          - '#FAFAEB'
+                      is_default: false
+                    - id: 175
+                      label: Grey
+                      sort_order: 2
+                      value_data:
+                        colors:
+                          - '#BDBDBD'
+                      is_default: false
+                    - id: 176
+                      label: Black
+                      sort_order: 3
+                      value_data:
+                        colors:
+                          - '#000000'
+                      is_default: false
+                    - id: 189
+                      label: Black-Walnut
+                      sort_order: 4
+                      value_data:
+                        colors:
+                          - '#e80ee8'
+                      is_default: false
+                  config: []
+              meta:
+                pagination:
+                  total: 1
+                  count: 1
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    current: '?page=1&limit=50'
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get All Product Variant Options
+      tags:
+        - Variants
+        - Catalog
     post:
       tags:
         - Catalog
