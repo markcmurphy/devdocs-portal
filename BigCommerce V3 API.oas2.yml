@@ -5221,19 +5221,25 @@ paths:
         - Product Reviews
         - Catalog
     post:
-      tags:
-        - Catalog
-      description: |
-        Creates a product review.
+      description: Creates a product review using the `product_id`.
       operationId: createProductReview
       parameters:
         - name: productReview
           in: body
           required: true
-          description: |
-            A BigCommerce `ProductReview` object.
           schema:
             $ref: '#/definitions/ProductReviewPost'
+          x-examples:
+            application/json:
+              title: Great Product
+              text: This product is amazing!!!
+              status: approved
+              rating: 5
+              email: janedoe@email.com
+              name: Jane Doe
+              date_reviewed: '2018-05-07T19:37:13+00:00'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: |
@@ -5245,6 +5251,13 @@ paths:
             The product ID does not exist.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Create a Product Review
+      tags:
+        - Product Reviews
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/catalog/products/{product_id}/reviews/{review_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
