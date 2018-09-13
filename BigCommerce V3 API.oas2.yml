@@ -4192,7 +4192,7 @@ paths:
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-      summary: Get Product Metafields
+      summary: Get All Product Metafields
       tags:
         - Products
         - Catalog
@@ -4249,49 +4249,98 @@ paths:
       - $ref: '#/parameters/MetafieldIdParam'
       - $ref: '#/parameters/ProductIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets a `Metafield`, by `product_id`.
+      description: >-
+        Get a product metafield using the `product_id` and `metafield_id`.
+        Optional parameters can be passed in.
       operationId: getProductMetafieldByProductId
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `Metafield` object.
+          description: ''
           schema:
             $ref: '#/definitions/MetafieldResponse'
+          examples:
+            application/json:
+              data:
+                id: 8
+                key: location_id
+                value: 'Shelf 3, Bin 5'
+                namespace: Inventory Namespace
+                permission_set: read
+                resource_type: product
+                resource_id: 158
+                description: Where products are located
+                date_created: '2018-09-13T16:42:37+00:00'
+                date_modified: '2018-09-13T16:42:37+00:00'
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    put:
+      summary: Get a Product Metafield by Id
       tags:
+        - Products
         - Catalog
-      description: Updates a `Metafield` object.
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    put:
+      description: >-
+        Updates a products metafield using the `product_id` and the
+        `metafield_id`.
       operationId: updateProductMetafield
       parameters:
         - name: Metafield
           in: body
           required: true
-          description: |
-            A `Metafield` object.
           schema:
             $ref: '#/definitions/MetafieldPut'
+          x-examples:
+            application/json:
+              permission_set: app_only
+              namespace: Warehouse SKUS
+              key: Location
+              value: 4H
+              description: Location in the warehouse
+              resource_type: product
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A metafield and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/MetafieldResponse'
+          examples:
+            application/json:
+              data:
+                id: 8
+                key: location_id
+                value: 'Shelf 3, Bin 5'
+                namespace: Inventory Namespace
+                permission_set: read
+                resource_type: product
+                resource_id: 158
+                description: Where products are located
+                date_created: '2018-09-13T16:42:37+00:00'
+                date_modified: '2018-09-13T16:42:37+00:00'
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Update a Product Metafield
+      tags:
+        - Products
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: >-
         Delete a products metafield using the `product_id` and the
