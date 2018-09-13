@@ -3598,7 +3598,7 @@ paths:
             $ref: '#/definitions/CustomFieldPost'
           x-examples:
             application/json:
-              name: Reelase Year
+              name: Release Year
               value: '1976'
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
@@ -3638,25 +3638,39 @@ paths:
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/CustomFieldIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets a `CustomField` by `product_id` and `custom_field_id`.
+      description: >-
+        Get a custom field by `product_id` and `custom_field_id`. Optional
+        parameters can be passed in.
       operationId: getCustomFieldById
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `CustomField` object.
+          description: ''
           schema:
             $ref: '#/definitions/CustomFieldResponse'
+          examples:
+            application/json:
+              data:
+                id: 7
+                name: Release Year
+                value: '1976'
+              meta: {}
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get a Custom Field by Id
+      tags:
+        - Custom Fields
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     put:
       tags:
         - Catalog
@@ -3691,21 +3705,26 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     delete:
-      tags:
-        - Catalog
-      description: >
-        Deletes a Product's `CustomField`, based on the `product_id` and
-        `custom_field_id`.
+      description: Deletes a custom field using the `product_id` and `custom_field_id`.
       operationId: deleteCustomFieldById
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Delete Custom Field by Id
+      tags:
+        - Custom Fields
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/products/{product_id}/bulk-pricing-rules':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
