@@ -2889,18 +2889,25 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      tags:
-        - Catalog
-      description: Creates a variant `Metafield`.
+      description: Creates a variant metafield by `product_id` and `variant_id`.
       operationId: createVariantMetafield
       parameters:
         - name: Metafield
           in: body
           required: true
-          description: |
-            A `Metafield` object.
           schema:
             $ref: '#/definitions/MetafieldPost'
+          x-examples:
+            application/json:
+              permission_set: app_only
+              namespace: App Namespace
+              key: location_id
+              value: 'Shelf 3, Bin 5'
+              description: Where products are locationed
+              resource_type: variant
+              resource_id: 111
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: |
@@ -2921,31 +2928,80 @@ paths:
             details.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      summary: Create a Product Variant Metafield
+      tags:
+        - Product Variants
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/catalog/products/{product_id}/variants/{variant_id}/metafields/{metafield_id}':
     parameters:
       - $ref: '#/parameters/MetafieldIdParam'
       - $ref: '#/parameters/ProductIdParam'
       - $ref: '#/parameters/VariantIdParam'
     get:
-      tags:
-        - Catalog
-      description: |
-        Gets a `Metafield`, by `product_id` and `variant_id`.
+      description: >-
+        Get a variant metafield by `product_id` and `variant_id`. Optional
+        parameters can be passed in.
       operationId: getVariantMetafieldByProductIdAndVariantId
       parameters:
         - $ref: '#/parameters/FilterIncludeFieldsParam'
         - $ref: '#/parameters/FilterExcludeFieldsParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `Metafield` object.
+          description: ''
           schema:
             $ref: '#/definitions/MetafieldResponse'
+          examples:
+            application/json: {}
+            new:
+              data:
+                - permission_set: app_only
+                  namespace: Warehouse SKUS
+                  key: Location
+                  value: 4H
+                  description: location in the warehouse
+                  resource_type: variant
+                  resource_id: 111
+                  id: 6
+                  created_at: '2018-05-07T20:14:17+00:00'
+                  updated_at: '2018-05-07T20:14:17+00:00'
+                - permission_set: app_only
+                  namespace: Warehouse SKUS
+                  key: Location
+                  value: 4H
+                  description: location in the warehouse
+                  resource_type: variant
+                  resource_id: 111
+                  id: 6
+                  created_at: '2018-05-07T20:14:17+00:00'
+                  updated_at: '2018-05-07T20:14:17+00:00'
+              meta:
+                pagination:
+                  total: 1
+                  count: 1
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    previous: '?page=1&limit=50'
+                    current: '?page=1&limit=50'
+                    next: '?page=1&limit=50'
         '404':
           description: |
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+      summary: Get All Product Variant Metafields
+      tags:
+        - Product Variants
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     put:
       tags:
         - Catalog
@@ -2971,15 +3027,23 @@ paths:
           schema:
             $ref: '#/definitions/NotFound'
     delete:
-      tags:
-        - Catalog
-      description: |
-        Deletes a `Metafield`.
+      description: >-
+        Deletes a variant metafield by `product_id`, `variant_id` and
+        `metafield_id`.
       operationId: deleteVariantMetafieldById
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
+      summary: Delete Variant Metafield y id
+      tags:
+        - Product Variants
+        - Catalog
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/catalog/products/{product_id}/variants/{variant_id}/image':
     post:
       operationId: createVariantImage
