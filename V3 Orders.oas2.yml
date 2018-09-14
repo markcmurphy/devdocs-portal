@@ -32,7 +32,7 @@ paths:
           schema:
             $ref: '#/definitions/TransactionCollectionResponse'
           examples:
-            application/json:
+            Square Payment Gateway:
               data:
                 - id: 85926313
                   order_id: '121'
@@ -70,6 +70,48 @@ paths:
                   total_pages: 1
                   links:
                     current: '?page=1&limit=50'
+            Pay In Store: |-
+              {
+                  "data": [
+                      {
+                          "id": 100287014,
+                          "order_id": "176",
+                          "event": "pending",
+                          "method": "offline",
+                          "amount": 25,
+                          "currency": "USD",
+                          "gateway": "instore",
+                          "gateway_transaction_id": null,
+                          "status": "ok",
+                          "test": false,
+                          "fraud_review": false,
+                          "reference_transaction_id": null,
+                          "date_created": "2018-09-05T14:02:10+00:00",
+                          "avs_result": null,
+                          "cvv_result": null,
+                          "credit_card": null,
+                          "gift_certificate": null,
+                          "store_credit": null,
+                          "offline": {
+                              "display_name": "Pay in Store"
+                          },
+                          "custom": null,
+                          "payment_instrument_token": null
+                      }
+                  ],
+                  "meta": {
+                      "pagination": {
+                          "total": 1,
+                          "count": 1,
+                          "per_page": 50,
+                          "current_page": 1,
+                          "total_pages": 1,
+                          "links": {
+                              "current": "?page=1&limit=50"
+                          }
+                      }
+                  }
+              }
         '204':
           description: |
             No content found to fulfill request.
