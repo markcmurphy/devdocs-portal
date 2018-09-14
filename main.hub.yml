@@ -10088,6 +10088,7 @@ pages:
               - title: New Subpage
                 route:
                   path: /new-subpage
+                data: {}
         - title: Price Lists
           route:
             path: /price-lists
@@ -10099,6 +10100,7 @@ pages:
               - title: New Subpage
                 route:
                   path: /new-subpage
+                data: {}
         - title: Subscribers & Customers
           route:
             path: /subscribers-customers
@@ -10741,11 +10743,26 @@ pages:
             path: /api-reference
           data:
             children:
-              - title: V3 Catalog API
+              - title: V3 API
                 route:
-                  path: /v3-catalog-api
+                  path: /v3-api
                 data:
-                  $ref: ./V3 Catalog.oas2.yml
+                  children:
+                    - title: V3 Catalog API
+                      route:
+                        path: /v3-catalog-api
+                      data:
+                        $ref: ./V3 Catalog.oas2.yml
+                    - title: V3 Subscribers
+                      route:
+                        path: /v3-customers
+                      data:
+                        $ref: ./V3 Subscribers.oas2.yml
+                    - title: V3 Content
+                      route:
+                        path: /v3-content
+                      data:
+                        $ref: ./V3 Content.oas2.yml
         - title: Legacy
           route:
             path: /legacy
