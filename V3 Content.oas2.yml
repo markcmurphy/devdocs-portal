@@ -1,1919 +1,2388 @@
-swagger: '2.0'
-info:
-  title: BigCommerce API
-  version: 3.0.0b
-  description: A Swagger Document for the BigCommmerce v3 API.
-  termsOfService: 'http://www.bigcommerce.com/terms'
-  license:
-    name: ''
-host: api.bigcommerce.com
-basePath: '/stores/{store_hash}/v3'
-tags:
-  - name: Catalog
-  - name: Brands
-  - name: Category
-  - name: Products
-  - name: Product Metafields
-  - name: Product Bulk Pricing Rules
-  - name: Product Complex Rules
-  - name: Product Custom Fields
-  - name: Product Modifiers
-  - name: Product Variants
-  - name: Product Variants Metafields
-  - name: Product Variant Options
-  - name: Product Reviews
-  - name: Product Videos
-  - name: Product Images
-  - name: Customers
-    description: BigCommerce Customers API Definition.
-  - name: Orders
-    description: BigCommerce Orders API Definition.
-  - name: Price Lists
-    description: BigCommerce Price Lists API Definition.
-  - name: Scripts
-  - name: Themes
-    description: BigCommerce Themes API Definition.
-  - name: Legacy
-  - name: Widget Template
-    description: BigCommerce Widget Templates API Definition.
-  - name: Widget
-    description: BigCommerce Widgets API Definition.
-  - name: Placement
-    description: BigCommerce Placements API Definition.
-schemes:
-  - https
-produces:
-  - application/json
-consumes:
-  - application/json
-paths:
-  /content/widget-templates:
-    post:
-      tags:
-        - Widget Template
-      summary: Creates a widget template.
-      operationId: createWidgetTemplate
-      parameters:
-        - name: templateBody
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/WidgetTemplatePost'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/WidgetTemplateResponse'
-          description: |
-            A widget template.
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-    get:
-      tags:
-        - Widget Template
-      summary: Gets all widget templates.
-      operationId: getWidgetTemplates
-      parameters:
-        - $ref: '#/parameters/PageParam'
-        - $ref: '#/parameters/LimitParam'
-        - $ref: '#/parameters/FilterWidgetTemplateKindParam'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/WidgetTemplatesResponse'
-          description: Success
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-  '/content/widget-templates/{uuid}':
-    get:
-      tags:
-        - Widget Template
-      summary: Gets a widget template.
-      operationId: getWidgetTemplate
-      parameters:
-        - $ref: '#/parameters/TemplateUUID'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/WidgetTemplateResponse'
-          description: Success
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-    put:
-      tags:
-        - Widget Template
-      summary: Updates a widget template.
-      operationId: updateWidgetTemplate
-      parameters:
-        - $ref: '#/parameters/TemplateUUID'
-        - name: templateBody
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/WidgetTemplatePut'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/WidgetTemplateResponse'
-          description: Success
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-    delete:
-      tags:
-        - Widget Template
-      summary: Deletes a widget template.
-      operationId: deleteWidgetTemplate
-      parameters:
-        - $ref: '#/parameters/TemplateUUID'
-      responses:
-        '204':
-          description: An empty response.
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-  '/content/widget-templates/{uuid}/preview':
-    post:
-      tags:
-        - Widget Template
-      summary: Render a widget template and return the widget html.
-      operationId: previewWidget
-      parameters:
-        - $ref: '#/parameters/TemplateUUID'
-        - name: templateBody
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/WidgetTemplatePreview'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/WidgetTemplatePreviewResponse'
-          description: Success
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-  /content/widgets:
-    post:
-      tags:
-        - Widget
-      summary: Creates a widget.
-      operationId: createWidget
-      parameters:
-        - name: widgetBody
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/WidgetPost'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/WidgetResponse'
-          description: Success
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-    get:
-      tags:
-        - Widget
-      summary: Gets all widgets.
-      operationId: getWidgets
-      parameters:
-        - $ref: '#/parameters/PageParam'
-        - $ref: '#/parameters/LimitParam'
-        - $ref: '#/parameters/FilterWidgetTemplateKindParam'
-        - $ref: '#/parameters/FilterWidgetTemplateUUIDParam'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/WidgetsResponse'
-          description: Success
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-  '/content/widgets/{uuid}':
-    get:
-      tags:
-        - Widget
-      summary: Gets a widget.
-      operationId: getWidget
-      parameters:
-        - $ref: '#/parameters/WidgetUUID'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/WidgetResponse'
-          description: Success
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-    put:
-      tags:
-        - Widget
-      summary: Updates a widget.
-      operationId: updateWidget
-      parameters:
-        - $ref: '#/parameters/WidgetUUID'
-        - name: widgetBody
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/WidgetPut'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/WidgetResponse'
-          description: Success
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-    delete:
-      tags:
-        - Widget
-      summary: Deletes a widget.
-      operationId: deleteWidget
-      parameters:
-        - $ref: '#/parameters/WidgetUUID'
-      responses:
-        '204':
-          description: An empty response.
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-  /content/widgets/search:
-    get:
-      tags:
-        - Widget
-      summary: Gets all widgets by search.
-      operationId: searchWidgets
-      parameters:
-        - $ref: '#/parameters/PageParam'
-        - $ref: '#/parameters/LimitParam'
-        - $ref: '#/parameters/QueryWidgetsParam'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/WidgetsResponse'
-          description: Success
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-  /content/placements:
-    post:
-      tags:
-        - Placement
-      summary: Creates a placement.
-      operationId: createPlacement
-      parameters:
-        - name: placementBody
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/PlacementPost'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/PlacementResponse'
-          description: |
-            A placement.
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-    get:
-      tags:
-        - Placement
-      summary: Gets all placements.
-      operationId: getPlacements
-      parameters:
-        - $ref: '#/parameters/PageParam'
-        - $ref: '#/parameters/LimitParam'
-        - $ref: '#/parameters/FilterWidgetTemplateKindParam'
-        - $ref: '#/parameters/FilterTemplateFileParam'
-        - $ref: '#/parameters/FilterWidgetUUIDParam'
-        - $ref: '#/parameters/FilterWidgetTemplateUUIDParam'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/PlacementsResponse'
-          description: Success
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-  '/content/placements/{uuid}':
-    get:
-      tags:
-        - Placement
-      summary: Gets a placement.
-      operationId: getPlacement
-      parameters:
-        - $ref: '#/parameters/PlacementUUID'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/PlacementResponse'
-          description: Success
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-    put:
-      tags:
-        - Placement
-      summary: Updates a placement.
-      operationId: updatePlacement
-      parameters:
-        - $ref: '#/parameters/PlacementUUID'
-        - name: placementBody
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/PlacementPut'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/PlacementResponse'
-          description: Success
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-    delete:
-      tags:
-        - Placement
-      summary: Deletes a placement.
-      operationId: deletePlacement
-      parameters:
-        - $ref: '#/parameters/PlacementUUID'
-      responses:
-        '204':
-          description: An empty response.
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-  /content/regions:
-    get:
-      summary: Get an ordered list of unique regions defined in a template file.
-      operationId: getRegions
-      parameters:
-        - $ref: '#/parameters/RequiredTemplateFile'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/ThemeRegionsResponse'
-          description: Success
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-      tags:
-        - Themes
-  /content/scripts:
-    post:
-      summary: Creates a script.
-      operationId: createScript
-      parameters:
-        - name: scriptBody
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/ScriptPost'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/ScriptResponse'
-          description: |
-            Success.
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-      tags:
-        - Scripts
-    get:
-      summary: Gets all scripts.
-      operationId: getScripts
-      parameters:
-        - $ref: '#/parameters/PageParam'
-        - $ref: '#/parameters/LimitParam'
-        - $ref: '#/parameters/ScriptsSortKeyParam'
-        - $ref: '#/parameters/DirectionParam'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/ScriptsResponse'
-          description: |
-            Success.
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-      tags:
-        - Scripts
-  '/content/scripts/{uuid}':
-    get:
-      summary: Gets a script.
-      operationId: getScript
-      parameters:
-        - $ref: '#/parameters/ScriptUUID'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/ScriptResponse'
-          description: Success
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-      tags:
-        - Scripts
-    put:
-      summary: Updates a script.
-      operationId: updateScript
-      parameters:
-        - $ref: '#/parameters/ScriptUUID'
-        - name: scriptBody
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/ScriptPut'
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/ScriptResponse'
-          description: Success
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-      tags:
-        - Scripts
-    delete:
-      summary: Deletes a script.
-      operationId: deleteScript
-      parameters:
-        - $ref: '#/parameters/ScriptUUID'
-      responses:
-        '204':
-          description: An empty response.
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
-      tags:
-        - Scripts
-parameters:
-  TemplateUUID:
-    name: uuid
-    description: The identifier for a specific template.
-    required: true
-    in: path
-    type: string
-    format: uuid
-  FilterWidgetTemplateUUIDParam:
-    in: query
-    name: widget_template_uuid
-    description: The identifier for a specific widget template.
-    type: string
-    format: uuid
-    required: false
-  FilterWidgetTemplateKindParam:
-    in: query
-    name: widget_template_kind
-    description: The kind of widget template.
-    type: string
-    required: false
-  FilterTemplateFileParam:
-    in: query
-    name: template_file
-    description: 'The template file, for example: `pages/home`.'
-    type: string
-    required: false
-  RequiredTemplateFile:
-    in: query
-    name: templateFile
-    description: 'The template file, for example: `pages/home`.'
-    type: string
-    required: true
-  PlacementUUID:
-    name: uuid
-    description: The identifier for a specific placement.
-    required: true
-    in: path
-    type: string
-    format: uuid
-  WidgetUUID:
-    name: uuid
-    description: The identifier for a specific widget.
-    required: true
-    in: path
-    type: string
-    format: uuid
-  ScriptUUID:
-    name: uuid
-    description: The identifier for a specific script.
-    required: true
-    in: path
-    type: string
-    format: uuid
-  FilterWidgetUUIDParam:
-    name: widget_uuid
-    description: The identifier for a specific widget.
-    in: query
-    type: string
-    format: uuid
-    required: false
-  FilterIdParam:
-    name: id
-    description: |
-      Filter items by id.
-    required: false
-    in: query
-    type: integer
-  FilterSkuParam:
-    name: sku
-    description: |
-      Filter items by sku.
-    required: false
-    in: query
-    type: string
-  FilterNameParam:
-    name: name
-    description: |
-      Filter items by name.
-    required: false
-    in: query
-    type: string
-  FilterEmailParam:
-    name: email
-    description: |
-      Filter items by email.
-    required: false
-    in: query
-    type: string
-  FilterFirstNameParam:
-    name: first_name
-    description: |
-      Filter items by first_name.
-    required: false
-    in: query
-    type: string
-  FilterLastNameParam:
-    name: last_name
-    description: |
-      Filter items by last_name.
-    required: false
-    in: query
-    type: string
-  FilterSourceParam:
-    name: source
-    description: |
-      Filter items by source.
-    required: false
-    in: query
-    type: string
-  FilterOrderIdParam:
-    name: order_id
-    description: |
-      Filter items by order_id.
-    required: false
-    in: query
-    type: integer
-  FilterUpcParam:
-    name: upc
-    description: |
-      Filter items by upc.
-    required: false
-    in: query
-    type: string
-  FilterPriceParam:
-    name: price
-    description: |
-      Filter items by price.
-    required: false
-    in: query
-    type: number
-  FilterSalePriceParam:
-    name: sale_price
-    description: |
-      Filter items by sale_price.
-    required: false
-    in: query
-    type: number
-  FilterRetailPriceParam:
-    name: retail_price
-    description: |
-      Filter items by retail_price.
-    required: false
-    in: query
-    type: number
-  FilterMapPriceParam:
-    name: map_price
-    description: |
-      Filter items by map_price.
-    required: false
-    in: query
-    type: number
-  FilterCalculatedPriceParam:
-    name: calculated_price
-    description: |
-      Filter items by calculated_price.
-    required: false
-    in: query
-    type: number
-  FilterWeightParam:
-    name: weight
-    description: |
-      Filter items by weight.
-    required: false
-    in: query
-    type: number
-  FilterConditionParam:
-    name: condition
-    description: |
-      Filter items by condition.
-    required: false
-    in: query
-    type: integer
-    enum:
-      - new
-      - used
-      - refurbished
-  FilterBrandIdParam:
-    name: brand_id
-    description: |
-      Filter items by brand_id.
-    required: false
-    in: query
-    type: integer
-  FilterDateModifiedParam:
-    name: date_modified
-    description: >-
-      Filter items by date_modified. For example
-      `v3/catalog/products?date_last_imported:min=2018-06-15`
-    required: false
-    in: query
-    type: string
-    format: date-time
-  FilterDateCreatedParam:
-    name: date_created
-    description: |
-      Filter items by date_created.
-    required: false
-    in: query
-    type: string
-    format: date-time
-  FilterDateLastImportedParam:
-    name: date_last_imported
-    description: >-
-      Filter items by date_last_imported. For example
-      `v3/catalog/products?date_modified:min=2018-06-15`
-    required: false
-    in: query
-    type: string
-    format: date-time
-  FilterIsVisibleParam:
-    name: is_visible
-    description: >
-      Filter items by is_visible. This filter uses numbers instead. 0 = false
-      and 1 = true.
-    required: false
-    in: query
-    type: integer
-    enum:
-      - 1
-      - 0
-  FilterIsFeaturedParam:
-    name: is_featured
-    description: |
-      Filter items by is_featured.
-    required: false
-    in: query
-    type: integer
-  FilterIsFreeShippingParam:
-    name: is_free_shipping
-    description: |
-      Filter items by is_free_shipping.
-    required: false
-    in: query
-    type: integer
-  FilterInventoryLevelParam:
-    name: inventory_level
-    description: |
-      Filter items by inventory_level.
-    required: false
-    in: query
-    type: integer
-  FilterInventoryLowParam:
-    name: inventory_low
-    description: |
-      Filter items by inventory_low. Values: 1, 0.
-    required: false
-    in: query
-    type: integer
-  FilterOutOfStockParam:
-    name: out_of_stock
-    description: >
-      Filter items by out_of_stock. To enable the filter, pass
-      `out_of_stock`=`1`.
-    required: false
-    in: query
-    type: integer
-  FilterTotalSoldParam:
-    name: total_sold
-    description: |
-      Filter items by total_sold.
-    required: false
-    in: query
-    type: integer
-  ProductFilterTypeParam:
-    name: type
-    description: 'Filter items by type: `physical` or `digital`.'
-    required: false
-    in: query
-    type: string
-    enum:
-      - digital
-      - physical
-  FilterCategoriesParam:
-    name: categories
-    description: |
-      Filter items by categories.
-    required: false
-    in: query
-    type: integer
-  FilterKeywordParam:
-    name: keyword
-    description: 'Filter items by keywords. eg. new, towel, bath'
-    required: false
-    in: query
-    type: string
-  ProductFilterKeywordParam:
-    name: keyword
-    description: >
-      Filter items by keywords found in the `name`, `description`, or `sku`
-      fields, or in the brand name.
-    required: false
-    in: query
-    type: string
-  ProductFilterKeywordContextParam:
-    name: keyword_context
-    description: Set context for a product search.
-    required: false
-    in: query
-    type: string
-    enum:
-      - shopper
-      - merchant
-  FilterStatusParam:
-    name: status
-    description: |
-      Filter items by status.
-    required: false
-    in: query
-    type: integer
-  FilterIncludeParam:
-    name: include
-    description: >-
-      Sub-resources to include on a product, in a comma-separated list. Valid
-      expansions currently include `variants`, `images`, 'primary_image`,
-      `custom_fields`, and `bulk_pricing_rules`.
-    required: false
-    in: query
-    type: string
-    enum:
-      - variants
-      - images
-      - custom_fields
-      - bulk_pricing_rules
-      - primary_image
-  FilterIncludePriceRecordParam:
-    name: include
-    description: >
-      Sub-resources to include on a price record, in a comma-separated list.
-      Valid expansions currently include `bulk_pricing_tiers` and `sku`.  Other
-      valies will be ignored.
-    required: false
-    in: query
-    type: string
-    enum:
-      - bulk_pricing_tiers
-      - sku
-  FilterIncludeFieldsParam:
-    name: include_fields
-    description: >-
-      Fields to include, in a comma-separated list. The ID and the specified
-      fields will be returned.
-    required: false
-    in: query
-    type: string
-  FilterExcludeFieldsParam:
-    name: exclude_fields
-    description: >-
-      Fields to exclude, in a comma-separated list. The specified fields will be
-      excluded from a response. The ID cannot be excluded.
-    required: false
-    in: query
-    type: string
-  FilterParentIdParam:
-    name: parent_id
-    description: >-
-      Filter items by parent_id. If the category is a child or sub category it
-      can be filtered with the parent_id. 
-    required: false
-    in: query
-    type: integer
-  FilterPageTitleParam:
-    name: page_title
-    description: |
-      Filter items by page_title.
-    required: false
-    in: query
-    type: string
-  FilterAvailabilityParam:
-    name: availability
-    description: |
-      Filter items by availability. Values are: available, disabled, preorder.
-    required: false
-    in: query
-    type: string
-    enum:
-      - available
-      - disabled
-      - preorder
-  FilterPriceListIdParam:
-    name: price_list_id
-    description: |
-      The ID of the `Price List`.
-    required: false
-    in: query
-    type: integer
-  FilterProductIdParam:
-    type: string
-    name: product_id
-    in: query
-    required: false
-    description: |
-      A comma-separated list of ids of `Product`s whose prices were requested.
-  FilterVariantIdParam:
-    type: integer
-    name: variant_id
-    in: query
-    required: false
-    description: |
-      The ID of the `Variant` whose prices were requested.
-  FilterCurrencyParam:
-    name: currency
-    description: |
-      Filter items by currency.
-    required: false
-    in: query
-    type: string
-    format: ISO-4217
-  PageParam:
-    name: page
-    description: Specifies the page number in a limited (paginated) list of products.
-    required: false
-    in: query
-    type: integer
-  LimitParam:
-    name: limit
-    description: >-
-      Controls the number of items per page in a limited (paginated) list of
-      products.
-    required: false
-    in: query
-    type: integer
-  ScriptsSortKeyParam:
-    name: sort
-    description: |
-      Scripts field name to sort by.
-    required: false
-    in: query
-    type: string
-    enum:
-      - name
-      - description
-      - date_created
-      - date_modified
-  DirectionParam:
-    name: direction
-    description: |
-      Sort direction. Acceptable values are: `asc`, `desc`.
-    required: false
-    in: query
-    type: string
-    enum:
-      - asc
-      - desc
-  ProductSortParam:
-    name: sort
-    description: |
-      Field name to sort by.
-    required: false
-    in: query
-    type: string
-    enum:
-      - id
-      - name
-      - sku
-      - price
-      - date_modified
-      - date_last_imported
-      - inventory_level
-      - is_visible
-      - total_sold
-  ProductIdParam:
-    name: product_id
-    in: path
-    description: |
-      The ID of the `Product` to which the resource belongs.
-    required: true
-    type: integer
-  ReviewIdParam:
-    name: review_id
-    description: |
-      The ID of the `review` that is being operated on.
-    required: true
-    in: path
-    type: integer
-  ImageIdParam:
-    name: image_id
-    description: |
-      The ID of the `Image` that is being operated on.
-    required: true
-    in: path
-    type: integer
-  VideoIdParam:
-    name: video_id
-    description: |
-      The ID of the `Video` that is being operated on.
-    required: true
-    in: path
-    type: string
-  ComplexRuleIdParam:
-    name: complex_rule_id
-    description: |
-      The ID of the `ComplexRule`.
-    required: true
-    in: path
-    type: integer
-  ConfigurableFieldIdParam:
-    name: configurable_field_id
-    description: |
-      The ID of the `ConfigurableField`.
-    required: true
-    in: path
-    type: integer
-  CustomFieldIdParam:
-    name: custom_field_id
-    description: |
-      The ID of the `CustomField`.
-    required: true
-    in: path
-    type: integer
-  BulkPricingRuleIdParam:
-    name: bulk_pricing_rule_id
-    description: |
-      The ID of the `BulkPricingRule`.
-    required: true
-    in: path
-    type: integer
-  ModifierIdParam:
-    name: modifier_id
-    description: |
-      The ID of the `Modifier`.
-    required: true
-    in: path
-    type: integer
-  ValueIdParam:
-    name: value_id
-    description: |
-      The ID of the `Modifier/Option Value`.
-    required: true
-    in: path
-    type: integer
-  OptionIdParam:
-    name: option_id
-    description: |
-      The ID of the `Option`.
-    required: true
-    in: path
-    type: integer
-  SubscriberIdParam:
-    name: subscriber_id
-    in: path
-    description: |
-      The ID of the `Subscriber` requested.
-    required: true
-    type: integer
-  VariantIdParam:
-    name: variant_id
-    in: path
-    description: |
-      ID of the variant on a product, or on an associated Price List Record.
-    required: true
-    type: integer
-  CategoryIdParam:
-    name: category_id
-    in: path
-    description: |
-      The ID of the `Category` to which the resource belongs.
-    required: true
-    type: integer
-  BrandIdParam:
-    name: brand_id
-    in: path
-    description: |
-      The ID of the `Brand` to which the resource belongs.
-    required: true
-    type: integer
-  MetafieldIdParam:
-    name: metafield_id
-    in: path
-    description: |
-      The ID of the `Metafield`.
-    required: true
-    type: integer
-  MetafieldKeyParam:
-    name: key
-    in: query
-    description: |
-      Filter based on a metafield's key.
-    required: false
-    type: string
-  MetafieldNamespaceParam:
-    name: namespace
-    in: query
-    description: Filter based on a metafield's namespace.
-    required: false
-    type: string
-  ImageFileParam:
-    name: image_file
-    description: |
-      An image file. Supported MIME types include GIF, JPEG, and PNG.
-    required: true
-    in: formData
-    type: file
-  OrderIdParam:
-    name: order_id
-    in: path
-    description: |
-      The ID of the `Order` to which the transactions belong.
-    required: true
-    type: integer
-  JobIdParam:
-    name: job_id
-    description: The job identifier.
-    in: path
-    type: string
-    required: true
-  ThemeIdParam:
-    name: theme_id
-    description: The theme identifier.
-    in: path
-    type: string
-    required: true
-  PriceListIdParam:
-    type: integer
-    name: price_list_id
-    in: path
-    description: |
-      The ID of the `Price List` requested.
-    required: true
-  PriceRecordCurrencyParam:
-    name: currency_code
-    type: string
-    in: path
-    description: |
-      The currency code associated with the price record being acted upon.
-    required: true
-    format: ISO-4217
-  QueryWidgetsParam:
-    type: string
-    name: query
-    in: query
-    description: |
-      The query string associated with a widget's name and description.
-  Accept:
-    in: header
-    type: string
-    name: Accept
-    default: application/json
-  Content-Type:
-    name: Content-Type
-    in: header
-    type: string
-    default: application/json
-definitions:
-  CollectionMeta:
-    type: object
-    description: 'Data about the response, including pagination and collection totals.'
-    properties:
-      pagination:
-        $ref: '#/definitions/Pagination'
-    title: Collection Meta
-  Pagination:
-    type: object
-    description: 'Data about the response, including pagination and collection totals.'
-    title: Pagination
-    properties:
-      total:
-        type: integer
-        description: |
-          Total number of items in the result set.
-        example: 36
-      count:
-        type: integer
-        description: |
-          Total number of items in the collection response.
-        example: 36
-      per_page:
-        type: integer
-        description: >
-          The amount of items returned in the collection per page, controlled by
-          the limit parameter.
-        example: 50
-      current_page:
-        type: integer
-        description: |
-          The page you are currently on within the collection.
-        example: 1
-      total_pages:
-        type: integer
-        description: |
-          The total number of pages in the collection.
-        example: 1
-      links:
-        type: object
-        description: >
-          Pagination links for the previous and next parts of the whole
-          collection.
-        properties:
-          previous:
-            type: string
-            description: |
-              Link to the previous page returned in the response.
-          current:
-            type: string
-            description: |
-              Link to the current page returned in the response.
-            example: '?page=1&limit=50'
-          next:
-            type: string
-            description: |
-              Link to the next page returned in the response.
-  Meta:
-    type: object
-    description: Empty meta object; may be used later.
-    title: Meta
-  ErrorResponse:
-    allOf:
-      - $ref: '#/definitions/BaseError'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/definitions/DetailedErrors'
-    title: Error Response
-  BaseError:
-    type: object
-    description: |
-      Error payload for the BigCommerce API.
-    properties:
-      status:
-        description: |
-          The HTTP status code.
-        type: integer
-      title:
-        description: |
-          The error title describing the particular error.
-        type: string
-      type:
-        type: string
-      instance:
-        type: string
-    title: Base Error
-  DetailedErrors:
-    type: object
-    additionalProperties:
-      type: string
-    title: DetailedErrors - Remove
-  NotFound:
-    description: Error payload for the BigCommerce API.
-    type: object
-    properties:
-      status:
-        description: |
-          404 HTTP status code.
-        type: integer
-      title:
-        description: The error title describing the particular error.
-        type: string
-      type:
-        type: string
-      instance:
-        type: string
-    title: Not Found
-  NoContent:
-    description: No-content response for the BigCommerce API.
-    type: object
-    properties:
-      status:
-        description: |
-          204 HTTP status code.
-        type: integer
-      title:
-        description: The error title describing the situation.
-        type: string
-      type:
-        type: string
-      instance:
-        type: string
-    title: No Content
-  WidgetTemplatePreview:
-    properties:
-      widget_configuration:
-        type: object
-        description: The JSON data that populates the template.
-        format: json
-  WidgetTemplatePut:
-    properties:
-      name:
-        type: string
-        description: User-friendly name.
-      schema:
-        type: object
-        description: >-
-          The schema for this template. Describes how to build dynamic forms for
-          widget configurations.
-        format: json
-      template:
-        type: string
-        description: Handlebars HTML content. Also has access to Stencil Paper helpers.
-        format: html
-  WidgetTemplatePost:
-    required:
-      - name
-      - template
-    properties:
-      name:
-        type: string
-        description: User friendly name.
-      schema:
-        type: object
-        description: >-
-          The JSON schema of data for this template. Used to validate a
-          configuration.
-        format: json
-      template:
-        type: string
-        description: Handlebars HTML content. Also has access to Stencil Paper helpers.
-        format: html
-  WidgetTemplateResponse:
-    type: object
-    properties:
-      data:
-        $ref: '#/definitions/WidgetTemplate'
-  WidgetTemplatePreviewResponse:
-    type: object
-    properties:
-      data:
-        properties:
-          html:
-            type: string
-            description: The HTML render of the widget template.
-            format: html
-  WidgetTemplatesResponse:
-    type: object
-    properties:
-      data:
-        type: array
-        items:
-          $ref: '#/definitions/WidgetTemplate'
-      meta:
-        $ref: '#/definitions/CollectionMeta'
-  WidgetTemplate:
-    type: object
-    properties:
-      uuid:
-        type: string
-        format: uuid
-        description: The primary identifier.
-      name:
-        type: string
-        description: The user-friendly name.
-      kind:
-        type: string
-        description: The kind of widget template.
-      schema:
-        type: object
-        format: json
-        description: >-
-          The JSON schema of data for this template. Used to validate a
-          configuration.
-      template:
-        type: string
-        format: html
-        description: The widget template HTML. Supports Handlebars and Paper helpers.
-      date_created:
-        type: string
-        format: datetime
-        description: The date on which this object was initially created.
-      date_modified:
-        type: string
-        format: datetime
-        description: The date on which this object was last updated.
-  Widget:
-    type: object
-    properties:
-      uuid:
-        type: string
-        format: uuid
-        description: The primary identifier.
-      name:
-        type: string
-        description: The user-friendly name.
-      description:
-        type: string
-        description: The user-friendly description.
-      widget_configuration:
-        type: object
-        description: The JSON data that populates the template.
-        format: json
-      widget_template:
-        $ref: '#/definitions/WidgetTemplate'
-      date_created:
-        type: string
-        format: datetime
-        description: The date on which this object was initially created.
-      date_modified:
-        type: string
-        format: datetime
-        description: The date on which this object was last updated.
-  WidgetPost:
-    required:
-      - name
-      - widget_template_uuid
-    properties:
-      name:
-        type: string
-        description: User friendly name.
-      description:
-        type: string
-        description: The user-friendly description.
-      widget_configuration:
-        type: object
-        description: The JSON data that populates the template.
-        format: json
-      widget_template_uuid:
-        type: string
-        description: The widget template UUID.
-  WidgetPut:
-    properties:
-      name:
-        type: string
-        description: User-friendly name.
-      description:
-        type: string
-        description: The user-friendly description.
-      widget_configuration:
-        type: object
-        description: The JSON data that populates the template.
-        format: json
-      widget_template_uuid:
-        type: string
-        description: The widget template UUID.
-  WidgetResponse:
-    type: object
-    properties:
-      data:
-        $ref: '#/definitions/Widget'
-  WidgetsResponse:
-    type: object
-    properties:
-      data:
-        type: array
-        items:
-          $ref: '#/definitions/Widget'
-      meta:
-        $ref: '#/definitions/CollectionMeta'
-  PlacementPost:
-    required:
-      - widget_uuid
-      - region
-      - template_file
-    properties:
-      widget_uuid:
-        type: string
-        description: A widget identifier.
-      entity_id:
-        type: string
-        description: The specific instance of a page that you would like to target.
-      sort_order:
-        type: integer
-        description: >-
-          The sort order to control the position of a content widget in a
-          region.
-      region:
-        type: string
-        description: The name of the region in which to insert content widgets.
-      template_file:
-        type: string
-        description: The template file that you would like to target.
-      status:
-        type: string
-        description: Sets the placement as either inactive or active.
-        default: inactive
-        enum:
-          - inactive
-          - active
-    title: Placement Post
-  PlacementPut:
-    properties:
-      entity_id:
-        type: string
-        description: >-
-          Optional. The specific instance of a page that you would like to
-          target.
-      template_file:
-        type: string
-        description: The template file that you would like to target.
-      region:
-        type: string
-        description: The name of the region in which to insert content widgets.
-      sort_order:
-        type: integer
-        description: >-
-          The sort order to control the position of a content widget in a
-          region.
-      widget_uuid:
-        type: string
-        description: A widget identifier.
-      status:
-        type: string
-        description: Sets the placement as either inactive or active.
-        enum:
-          - inactive
-          - active
-    title: Placement Put
-  PlacementResponse:
-    type: object
-    properties:
-      data:
-        $ref: '#/definitions/Placement'
-    title: Placement Response
-  PlacementsResponse:
-    type: object
-    properties:
-      data:
-        type: array
-        items:
-          $ref: '#/definitions/Placement'
-      meta:
-        $ref: '#/definitions/CollectionMeta'
-    title: Placements Response
-  Placement:
-    properties:
-      uuid:
-        type: string
-        format: uuid
-        description: The primary identifier.
-      entity_id:
-        type: string
-        description: The specific instance of a page
-      status:
-        type: string
-        description: Determines whether this placement is `active` or `inactive`.
-        enum:
-          - inactive
-          - active
-      template_file:
-        type: string
-        description: The page template name.
-      region:
-        type: string
-        description: The user-friendly name.
-      sort_order:
-        type: integer
-        description: The sort order to control position of a content widget in a region.
-      widget:
-        $ref: '#/definitions/Widget'
-      date_created:
-        type: string
-        format: datetime
-        description: The date on which this object was initially created.
-      date_modified:
-        type: string
-        format: datetime
-        description: The date on which this object was last updated.
-    title: Placement
-  Script:
-    type: object
-    properties:
-      uuid:
-        type: string
-        format: uuid
-        description: The primary identifier.
-      name:
-        type: string
-        description: The user-friendly name.
-      description:
-        type: string
-        description: The user-friendly description.
-      html:
-        type: string
-        description: >-
-          An html string containing exactly one `script` tag. Only present if
-          `kind` is `script_tag`
-      src:
-        type: string
-        description: >-
-          The `src` attribute of the script to load. Only present if `kind` is
-          `src`.
-      auto_uninstall:
-        type: boolean
-        description: >-
-          Whether to uninstall this script when the app associated with it is
-          removed.
-      load_method:
-        type: string
-        description: >-
-          The load method to use for the script. Values are `default`, `async`,
-          or `defer`.
-        enum:
-          - default
-          - async
-          - defer
-      location:
-        type: string
-        description: Where on the page to place the script. Values are `head` or `footer`.
-        enum:
-          - head
-          - footer
-      visibility:
-        type: string
-        description: >-
-          Which set of pages the script should load on. The values allowed for
-          this parameter are `storefront`, `all_pages`, `checkout` and
-          `order_confirmation`. Please note that you need to have `Checkout
-          content` scope to use `all_pages` and `checkout`.
-        enum:
-          - storefront
-          - all_pages
-          - checkout
-          - order_confirmation
-      kind:
-        type: string
-        description: >-
-          What type of script this is. Values are `src` - a `script` tag will be
-          generated with its `src` attribute set to the value of `src`;
-          `script_tag` - The value of `html` will be injected directly onto the
-          page.
-        enum:
-          - src
-          - script_tag
-      api_client_id:
-        type: string
-        description: >-
-          The client id of the API user that created this script, or blank if
-          created by other means.
-      date_created:
-        type: string
-        format: date-time
-        description: The date on which this object was initially created.
-      date_modified:
-        type: string
-        format: date-time
-        description: The date on which this object was last updated.
-    example:
-      uuid: 2bf40be2-e57a-4bc8-860a-5bf45edd3795
-      name: jQuery
-      description: 'The Write Less, Do More, JavaScript Library.'
-      src: 'https://code.jquery.com/jquery-3.2.1.min.js'
-      auto_uninstall: true
-      load_method: defer
-      location: head
-      visibility: storefront
-      kind: src
-      api_client_id: d1j42k5q76xsm15fa3g8sp2egytoixo
-      date_created: '2017-12-05T23:37:45.506Z'
-      date_modified: '2017-12-05T23:37:45.506Z'
-  ScriptPost:
-    required:
-      - name
-    properties:
-      name:
-        type: string
-        description: The user-friendly name.
-        minLength: 1
-        maxLength: 255
-      description:
-        type: string
-        description: The user-friendly description.
-        maxLength: 255
-      html:
-        type: string
-        description: >-
-          An html string containing exactly one `script` tag. Required if `kind`
-          is `script_tag`.
-        maxLength: 65535
-      src:
-        type: string
-        description: >-
-          The `src` attribute of the script to load. Required if `kind` is
-          `src`. Must be in `https` format.
-        maxLength: 255
-      auto_uninstall:
-        type: boolean
-        description: >-
-          Whether to uninstall this script when the app associated with it is
-          removed.
-        default: true
-      load_method:
-        type: string
-        description: >-
-          The load method to use for the script. Acceptable values are
-          `default`, `async`, or `defer`.
-        default: defer
-        enum:
-          - default
-          - async
-          - defer
-      location:
-        type: string
-        description: >-
-          Where on the page to place the script. Acceptable values are `head` or
-          `footer`.
-        default: footer
-        enum:
-          - head
-          - footer
-      visibility:
-        type: string
-        description: >-
-          Which set of pages the script should load on. The values allowed for
-          this parameter are `storefront`, `all_pages`, `checkout` and
-          `order_confirmation`. Please note that you need to have `Checkout
-          content` scope to use `all_pages` and `checkout`.
-        default: storefront
-        enum:
-          - storefront
-          - all_pages
-          - checkout
-          - order_confirmation
-      kind:
-        type: string
-        description: >-
-          What type of script this is. Acceptable values are `src` - a `script`
-          tag will be generated with its `src` attribute set to the value of
-          `src`; `script_tag` - The value of `html` (which must contain a single
-          `script` tag) will be injected directly onto the page.
-        default: src
-        enum:
-          - src
-          - html
-    example:
-      name: jQuery
-      description: 'The Write Less, Do More, JavaScript Library.'
-      src: 'https://code.jquery.com/jquery-3.2.1.min.js'
-      auto_uninstall: true
-      load_method: defer
-      location: head
-      visibility: storefront
-      kind: src
-  ScriptPut:
-    properties:
-      name:
-        type: string
-        description: The user-friendly name.
-        minLength: 1
-        maxLength: 255
-      description:
-        type: string
-        description: The user-friendly description.
-        maxLength: 255
-      html:
-        type: string
-        description: >-
-          An html string containing exactly one `script` tag. Required if `kind`
-          is included and equal to `script_tag`.
-        maxLength: 65535
-      src:
-        type: string
-        description: >-
-          The `src` attribute of the script to load. Required if `kind` is
-          included and equal to `src`. Must be in `https` format.
-        maxLength: 255
-      auto_uninstall:
-        type: boolean
-        description: >-
-          Whether to uninstall this script when the app associated with it is
-          removed.
-        default: true
-      load_method:
-        type: string
-        description: >-
-          The load method to use for the script. Acceptable values are
-          `default`, `async`, or `defer`.
-        default: defer
-        enum:
-          - default
-          - async
-          - defer
-      location:
-        type: string
-        description: >-
-          Where on the page to place the script. Acceptable values are `head` or
-          `footer`.
-        default: footer
-        enum:
-          - head
-          - footer
-      visibility:
-        type: string
-        description: >-
-          Which set of pages the script should load on. The values allowed for
-          this parameter are `storefront`, `all_pages`, `checkout` and
-          `order_confirmation`. Please note that you need to have `Checkout
-          content` scope to use `all_pages` and `checkout`.
-        default: storefront
-        enum:
-          - storefront
-          - all_pages
-          - checkout
-          - order_confirmation
-      kind:
-        type: string
-        description: >-
-          What type of script this is. Acceptable values are `src` - a `script`
-          tag will be generated with its `src` attribute set to the value of
-          `src`; `script_tag` - The value of `html` (which must contain a single
-          `script` tag) will be injected directly onto the page.
-        default: src
-        enum:
-          - src
-          - html
-    example:
-      name: jQuery
-      description: 'The Write Less, Do More, JavaScript Library.'
-      src: 'https://code.jquery.com/jquery-3.2.1.min.js'
-      auto_uninstall: true
-      load_method: defer
-      location: head
-      visibility: storefront
-      kind: src
-  ScriptResponse:
-    type: object
-    properties:
-      data:
-        $ref: '#/definitions/Script'
-  ScriptsResponse:
-    type: object
-    properties:
-      data:
-        type: array
-        items:
-          $ref: '#/definitions/Script'
-      meta:
-        $ref: '#/definitions/CollectionMeta'
-  securityDefinitions:
-    X-Auth-Client:
-      type: apiKey
-      name: X-Auth-Client
-      in: header
-    X-Auth-Token:
-      type: apiKey
-      name: X-Auth-Token
-      in: header
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "BigCommerce API",
+    "version": "3.0.0b",
+    "description": "A Swagger Document for the BigCommmerce v3 API.",
+    "termsOfService": "http://www.bigcommerce.com/terms",
+    "license": {
+      "name": ""
+    }
+  },
+  "host": "api.bigcommerce.com",
+  "basePath": "/stores/{store_hash}/v3",
+  "tags": [
+    {
+      "name": "Catalog"
+    },
+    {
+      "name": "Brands"
+    },
+    {
+      "name": "Category"
+    },
+    {
+      "name": "Products"
+    },
+    {
+      "name": "Product Metafields"
+    },
+    {
+      "name": "Product Bulk Pricing Rules"
+    },
+    {
+      "name": "Product Complex Rules"
+    },
+    {
+      "name": "Product Custom Fields"
+    },
+    {
+      "name": "Product Modifiers"
+    },
+    {
+      "name": "Product Variants"
+    },
+    {
+      "name": "Product Variants Metafields"
+    },
+    {
+      "name": "Product Variant Options"
+    },
+    {
+      "name": "Product Reviews"
+    },
+    {
+      "name": "Product Videos"
+    },
+    {
+      "name": "Product Images"
+    },
+    {
+      "name": "Customers",
+      "description": "BigCommerce Customers API Definition."
+    },
+    {
+      "name": "Orders",
+      "description": "BigCommerce Orders API Definition."
+    },
+    {
+      "name": "Price Lists",
+      "description": "BigCommerce Price Lists API Definition."
+    },
+    {
+      "name": "Scripts"
+    },
+    {
+      "name": "Themes",
+      "description": "BigCommerce Themes API Definition."
+    },
+    {
+      "name": "Legacy"
+    },
+    {
+      "name": "Widget Template",
+      "description": "BigCommerce Widget Templates API Definition."
+    },
+    {
+      "name": "Widget",
+      "description": "BigCommerce Widgets API Definition."
+    },
+    {
+      "name": "Placement",
+      "description": "BigCommerce Placements API Definition."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/content/widget-templates": {
+      "post": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Creates a widget template.",
+        "operationId": "createWidgetTemplate",
+        "parameters": [
+          {
+            "name": "templateBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplatePost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplateResponse"
+            },
+            "description": "A widget template.\n"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Gets all widget templates.",
+        "operationId": "getWidgetTemplates",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetTemplateKindParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplatesResponse"
+            },
+            "description": "Success"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/widget-templates/{uuid}": {
+      "get": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Gets a widget template.",
+        "operationId": "getWidgetTemplate",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TemplateUUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplateResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Updates a widget template.",
+        "operationId": "updateWidgetTemplate",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TemplateUUID"
+          },
+          {
+            "name": "templateBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplatePut"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplateResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Deletes a widget template.",
+        "operationId": "deleteWidgetTemplate",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TemplateUUID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response."
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/widget-templates/{uuid}/preview": {
+      "post": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Render a widget template and return the widget html.",
+        "operationId": "previewWidget",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TemplateUUID"
+          },
+          {
+            "name": "templateBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplatePreview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplatePreviewResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/widgets": {
+      "post": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Creates a widget.",
+        "operationId": "createWidget",
+        "parameters": [
+          {
+            "name": "widgetBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WidgetPost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetResponse"
+            },
+            "description": "Success"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Gets all widgets.",
+        "operationId": "getWidgets",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetTemplateKindParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetTemplateUUIDParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetsResponse"
+            },
+            "description": "Success"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/widgets/{uuid}": {
+      "get": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Gets a widget.",
+        "operationId": "getWidget",
+        "parameters": [
+          {
+            "$ref": "#/parameters/WidgetUUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Updates a widget.",
+        "operationId": "updateWidget",
+        "parameters": [
+          {
+            "$ref": "#/parameters/WidgetUUID"
+          },
+          {
+            "name": "widgetBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WidgetPut"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Deletes a widget.",
+        "operationId": "deleteWidget",
+        "parameters": [
+          {
+            "$ref": "#/parameters/WidgetUUID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response."
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/widgets/search": {
+      "get": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Gets all widgets by search.",
+        "operationId": "searchWidgets",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/QueryWidgetsParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetsResponse"
+            },
+            "description": "Success"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/placements": {
+      "post": {
+        "tags": [
+          "Placement"
+        ],
+        "summary": "Creates a placement.",
+        "operationId": "createPlacement",
+        "parameters": [
+          {
+            "name": "placementBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PlacementPost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PlacementResponse"
+            },
+            "description": "A placement.\n"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Placement"
+        ],
+        "summary": "Gets all placements.",
+        "operationId": "getPlacements",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetTemplateKindParam"
+          },
+          {
+            "$ref": "#/parameters/FilterTemplateFileParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetUUIDParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetTemplateUUIDParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PlacementsResponse"
+            },
+            "description": "Success"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/placements/{uuid}": {
+      "get": {
+        "tags": [
+          "Placement"
+        ],
+        "summary": "Gets a placement.",
+        "operationId": "getPlacement",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PlacementUUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PlacementResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Placement"
+        ],
+        "summary": "Updates a placement.",
+        "operationId": "updatePlacement",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PlacementUUID"
+          },
+          {
+            "name": "placementBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PlacementPut"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PlacementResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Placement"
+        ],
+        "summary": "Deletes a placement.",
+        "operationId": "deletePlacement",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PlacementUUID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response."
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/regions": {
+      "get": {
+        "summary": "Get an ordered list of unique regions defined in a template file.",
+        "operationId": "getRegions",
+        "parameters": [
+          {
+            "$ref": "#/parameters/RequiredTemplateFile"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ThemeRegionsResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Themes"
+        ]
+      }
+    },
+    "/content/scripts": {
+      "post": {
+        "summary": "Creates a script.",
+        "operationId": "createScript",
+        "parameters": [
+          {
+            "name": "scriptBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ScriptPost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ScriptResponse"
+            },
+            "description": "Success.\n"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Scripts"
+        ]
+      },
+      "get": {
+        "summary": "Gets all scripts.",
+        "operationId": "getScripts",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/ScriptsSortKeyParam"
+          },
+          {
+            "$ref": "#/parameters/DirectionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ScriptsResponse"
+            },
+            "description": "Success.\n"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Scripts"
+        ]
+      }
+    },
+    "/content/scripts/{uuid}": {
+      "get": {
+        "summary": "Gets a script.",
+        "operationId": "getScript",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ScriptUUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ScriptResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Scripts"
+        ]
+      },
+      "put": {
+        "summary": "Updates a script.",
+        "operationId": "updateScript",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ScriptUUID"
+          },
+          {
+            "name": "scriptBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ScriptPut"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ScriptResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Scripts"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes a script.",
+        "operationId": "deleteScript",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ScriptUUID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response."
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Scripts"
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "TemplateUUID": {
+      "name": "uuid",
+      "description": "The identifier for a specific template.",
+      "required": true,
+      "in": "path",
+      "type": "string",
+      "format": "uuid"
+    },
+    "FilterWidgetTemplateUUIDParam": {
+      "in": "query",
+      "name": "widget_template_uuid",
+      "description": "The identifier for a specific widget template.",
+      "type": "string",
+      "format": "uuid",
+      "required": false
+    },
+    "FilterWidgetTemplateKindParam": {
+      "in": "query",
+      "name": "widget_template_kind",
+      "description": "The kind of widget template.",
+      "type": "string",
+      "required": false
+    },
+    "FilterTemplateFileParam": {
+      "in": "query",
+      "name": "template_file",
+      "description": "The template file, for example: `pages/home`.",
+      "type": "string",
+      "required": false
+    },
+    "RequiredTemplateFile": {
+      "in": "query",
+      "name": "templateFile",
+      "description": "The template file, for example: `pages/home`.",
+      "type": "string",
+      "required": true
+    },
+    "PlacementUUID": {
+      "name": "uuid",
+      "description": "The identifier for a specific placement.",
+      "required": true,
+      "in": "path",
+      "type": "string",
+      "format": "uuid"
+    },
+    "WidgetUUID": {
+      "name": "uuid",
+      "description": "The identifier for a specific widget.",
+      "required": true,
+      "in": "path",
+      "type": "string",
+      "format": "uuid"
+    },
+    "ScriptUUID": {
+      "name": "uuid",
+      "description": "The identifier for a specific script.",
+      "required": true,
+      "in": "path",
+      "type": "string",
+      "format": "uuid"
+    },
+    "FilterWidgetUUIDParam": {
+      "name": "widget_uuid",
+      "description": "The identifier for a specific widget.",
+      "in": "query",
+      "type": "string",
+      "format": "uuid",
+      "required": false
+    },
+    "FilterIdParam": {
+      "name": "id",
+      "description": "Filter items by id.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterSkuParam": {
+      "name": "sku",
+      "description": "Filter items by sku.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterNameParam": {
+      "name": "name",
+      "description": "Filter items by name.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterEmailParam": {
+      "name": "email",
+      "description": "Filter items by email.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterFirstNameParam": {
+      "name": "first_name",
+      "description": "Filter items by first_name.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterLastNameParam": {
+      "name": "last_name",
+      "description": "Filter items by last_name.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterSourceParam": {
+      "name": "source",
+      "description": "Filter items by source.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterOrderIdParam": {
+      "name": "order_id",
+      "description": "Filter items by order_id.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterUpcParam": {
+      "name": "upc",
+      "description": "Filter items by upc.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterPriceParam": {
+      "name": "price",
+      "description": "Filter items by price.\n",
+      "required": false,
+      "in": "query",
+      "type": "number"
+    },
+    "FilterSalePriceParam": {
+      "name": "sale_price",
+      "description": "Filter items by sale_price.\n",
+      "required": false,
+      "in": "query",
+      "type": "number"
+    },
+    "FilterRetailPriceParam": {
+      "name": "retail_price",
+      "description": "Filter items by retail_price.\n",
+      "required": false,
+      "in": "query",
+      "type": "number"
+    },
+    "FilterMapPriceParam": {
+      "name": "map_price",
+      "description": "Filter items by map_price.\n",
+      "required": false,
+      "in": "query",
+      "type": "number"
+    },
+    "FilterCalculatedPriceParam": {
+      "name": "calculated_price",
+      "description": "Filter items by calculated_price.\n",
+      "required": false,
+      "in": "query",
+      "type": "number"
+    },
+    "FilterWeightParam": {
+      "name": "weight",
+      "description": "Filter items by weight.\n",
+      "required": false,
+      "in": "query",
+      "type": "number"
+    },
+    "FilterConditionParam": {
+      "name": "condition",
+      "description": "Filter items by condition.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer",
+      "enum": [
+        "new",
+        "used",
+        "refurbished"
+      ]
+    },
+    "FilterBrandIdParam": {
+      "name": "brand_id",
+      "description": "Filter items by brand_id.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterDateModifiedParam": {
+      "name": "date_modified",
+      "description": "Filter items by date_modified. For example `v3/catalog/products?date_last_imported:min=2018-06-15`",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "format": "date-time"
+    },
+    "FilterDateCreatedParam": {
+      "name": "date_created",
+      "description": "Filter items by date_created.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "format": "date-time"
+    },
+    "FilterDateLastImportedParam": {
+      "name": "date_last_imported",
+      "description": "Filter items by date_last_imported. For example `v3/catalog/products?date_modified:min=2018-06-15`",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "format": "date-time"
+    },
+    "FilterIsVisibleParam": {
+      "name": "is_visible",
+      "description": "Filter items by is_visible. This filter uses numbers instead. 0 = false and 1 = true.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer",
+      "enum": [
+        1,
+        0
+      ]
+    },
+    "FilterIsFeaturedParam": {
+      "name": "is_featured",
+      "description": "Filter items by is_featured.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterIsFreeShippingParam": {
+      "name": "is_free_shipping",
+      "description": "Filter items by is_free_shipping.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterInventoryLevelParam": {
+      "name": "inventory_level",
+      "description": "Filter items by inventory_level.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterInventoryLowParam": {
+      "name": "inventory_low",
+      "description": "Filter items by inventory_low. Values: 1, 0.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterOutOfStockParam": {
+      "name": "out_of_stock",
+      "description": "Filter items by out_of_stock. To enable the filter, pass `out_of_stock`=`1`.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterTotalSoldParam": {
+      "name": "total_sold",
+      "description": "Filter items by total_sold.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "ProductFilterTypeParam": {
+      "name": "type",
+      "description": "Filter items by type: `physical` or `digital`.",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "digital",
+        "physical"
+      ]
+    },
+    "FilterCategoriesParam": {
+      "name": "categories",
+      "description": "Filter items by categories.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterKeywordParam": {
+      "name": "keyword",
+      "description": "Filter items by keywords. eg. new, towel, bath",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "ProductFilterKeywordParam": {
+      "name": "keyword",
+      "description": "Filter items by keywords found in the `name`, `description`, or `sku` fields, or in the brand name.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "ProductFilterKeywordContextParam": {
+      "name": "keyword_context",
+      "description": "Set context for a product search.",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "shopper",
+        "merchant"
+      ]
+    },
+    "FilterStatusParam": {
+      "name": "status",
+      "description": "Filter items by status.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterIncludeParam": {
+      "name": "include",
+      "description": "Sub-resources to include on a product, in a comma-separated list. Valid expansions currently include `variants`, `images`, 'primary_image`, `custom_fields`, and `bulk_pricing_rules`.",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "variants",
+        "images",
+        "custom_fields",
+        "bulk_pricing_rules",
+        "primary_image"
+      ]
+    },
+    "FilterIncludePriceRecordParam": {
+      "name": "include",
+      "description": "Sub-resources to include on a price record, in a comma-separated list. Valid expansions currently include `bulk_pricing_tiers` and `sku`.  Other valies will be ignored.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "bulk_pricing_tiers",
+        "sku"
+      ]
+    },
+    "FilterIncludeFieldsParam": {
+      "name": "include_fields",
+      "description": "Fields to include, in a comma-separated list. The ID and the specified fields will be returned.",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterExcludeFieldsParam": {
+      "name": "exclude_fields",
+      "description": "Fields to exclude, in a comma-separated list. The specified fields will be excluded from a response. The ID cannot be excluded.",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterParentIdParam": {
+      "name": "parent_id",
+      "description": "Filter items by parent_id. If the category is a child or sub category it can be filtered with the parent_id. ",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterPageTitleParam": {
+      "name": "page_title",
+      "description": "Filter items by page_title.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterAvailabilityParam": {
+      "name": "availability",
+      "description": "Filter items by availability. Values are: available, disabled, preorder.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "available",
+        "disabled",
+        "preorder"
+      ]
+    },
+    "FilterPriceListIdParam": {
+      "name": "price_list_id",
+      "description": "The ID of the `Price List`.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterProductIdParam": {
+      "type": "string",
+      "name": "product_id",
+      "in": "query",
+      "required": false,
+      "description": "A comma-separated list of ids of `Product`s whose prices were requested.\n"
+    },
+    "FilterVariantIdParam": {
+      "type": "integer",
+      "name": "variant_id",
+      "in": "query",
+      "required": false,
+      "description": "The ID of the `Variant` whose prices were requested.\n"
+    },
+    "FilterCurrencyParam": {
+      "name": "currency",
+      "description": "Filter items by currency.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "format": "ISO-4217"
+    },
+    "PageParam": {
+      "name": "page",
+      "description": "Specifies the page number in a limited (paginated) list of products.",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "LimitParam": {
+      "name": "limit",
+      "description": "Controls the number of items per page in a limited (paginated) list of products.",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "ScriptsSortKeyParam": {
+      "name": "sort",
+      "description": "Scripts field name to sort by.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "name",
+        "description",
+        "date_created",
+        "date_modified"
+      ]
+    },
+    "DirectionParam": {
+      "name": "direction",
+      "description": "Sort direction. Acceptable values are: `asc`, `desc`.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "asc",
+        "desc"
+      ]
+    },
+    "ProductSortParam": {
+      "name": "sort",
+      "description": "Field name to sort by.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "id",
+        "name",
+        "sku",
+        "price",
+        "date_modified",
+        "date_last_imported",
+        "inventory_level",
+        "is_visible",
+        "total_sold"
+      ]
+    },
+    "ProductIdParam": {
+      "name": "product_id",
+      "in": "path",
+      "description": "The ID of the `Product` to which the resource belongs.\n",
+      "required": true,
+      "type": "integer"
+    },
+    "ReviewIdParam": {
+      "name": "review_id",
+      "description": "The ID of the `review` that is being operated on.\n",
+      "required": true,
+      "in": "path",
+      "type": "integer"
+    },
+    "ImageIdParam": {
+      "name": "image_id",
+      "description": "The ID of the `Image` that is being operated on.\n",
+      "required": true,
+      "in": "path",
+      "type": "integer"
+    },
+    "VideoIdParam": {
+      "name": "video_id",
+      "description": "The ID of the `Video` that is being operated on.\n",
+      "required": true,
+      "in": "path",
+      "type": "string"
+    },
+    "ComplexRuleIdParam": {
+      "name": "complex_rule_id",
+      "description": "The ID of the `ComplexRule`.\n",
+      "required": true,
+      "in": "path",
+      "type": "integer"
+    },
+    "ConfigurableFieldIdParam": {
+      "name": "configurable_field_id",
+      "description": "The ID of the `ConfigurableField`.\n",
+      "required": true,
+      "in": "path",
+      "type": "integer"
+    },
+    "CustomFieldIdParam": {
+      "name": "custom_field_id",
+      "description": "The ID of the `CustomField`.\n",
+      "required": true,
+      "in": "path",
+      "type": "integer"
+    },
+    "BulkPricingRuleIdParam": {
+      "name": "bulk_pricing_rule_id",
+      "description": "The ID of the `BulkPricingRule`.\n",
+      "required": true,
+      "in": "path",
+      "type": "integer"
+    },
+    "ModifierIdParam": {
+      "name": "modifier_id",
+      "description": "The ID of the `Modifier`.\n",
+      "required": true,
+      "in": "path",
+      "type": "integer"
+    },
+    "ValueIdParam": {
+      "name": "value_id",
+      "description": "The ID of the `Modifier/Option Value`.\n",
+      "required": true,
+      "in": "path",
+      "type": "integer"
+    },
+    "OptionIdParam": {
+      "name": "option_id",
+      "description": "The ID of the `Option`.\n",
+      "required": true,
+      "in": "path",
+      "type": "integer"
+    },
+    "SubscriberIdParam": {
+      "name": "subscriber_id",
+      "in": "path",
+      "description": "The ID of the `Subscriber` requested.\n",
+      "required": true,
+      "type": "integer"
+    },
+    "VariantIdParam": {
+      "name": "variant_id",
+      "in": "path",
+      "description": "ID of the variant on a product, or on an associated Price List Record.\n",
+      "required": true,
+      "type": "integer"
+    },
+    "CategoryIdParam": {
+      "name": "category_id",
+      "in": "path",
+      "description": "The ID of the `Category` to which the resource belongs.\n",
+      "required": true,
+      "type": "integer"
+    },
+    "BrandIdParam": {
+      "name": "brand_id",
+      "in": "path",
+      "description": "The ID of the `Brand` to which the resource belongs.\n",
+      "required": true,
+      "type": "integer"
+    },
+    "MetafieldIdParam": {
+      "name": "metafield_id",
+      "in": "path",
+      "description": "The ID of the `Metafield`.\n",
+      "required": true,
+      "type": "integer"
+    },
+    "MetafieldKeyParam": {
+      "name": "key",
+      "in": "query",
+      "description": "Filter based on a metafield's key.\n",
+      "required": false,
+      "type": "string"
+    },
+    "MetafieldNamespaceParam": {
+      "name": "namespace",
+      "in": "query",
+      "description": "Filter based on a metafield's namespace.",
+      "required": false,
+      "type": "string"
+    },
+    "ImageFileParam": {
+      "name": "image_file",
+      "description": "An image file. Supported MIME types include GIF, JPEG, and PNG.\n",
+      "required": true,
+      "in": "formData",
+      "type": "file"
+    },
+    "OrderIdParam": {
+      "name": "order_id",
+      "in": "path",
+      "description": "The ID of the `Order` to which the transactions belong.\n",
+      "required": true,
+      "type": "integer"
+    },
+    "JobIdParam": {
+      "name": "job_id",
+      "description": "The job identifier.",
+      "in": "path",
+      "type": "string",
+      "required": true
+    },
+    "ThemeIdParam": {
+      "name": "theme_id",
+      "description": "The theme identifier.",
+      "in": "path",
+      "type": "string",
+      "required": true
+    },
+    "PriceListIdParam": {
+      "type": "integer",
+      "name": "price_list_id",
+      "in": "path",
+      "description": "The ID of the `Price List` requested.\n",
+      "required": true
+    },
+    "PriceRecordCurrencyParam": {
+      "name": "currency_code",
+      "type": "string",
+      "in": "path",
+      "description": "The currency code associated with the price record being acted upon.\n",
+      "required": true,
+      "format": "ISO-4217"
+    },
+    "QueryWidgetsParam": {
+      "type": "string",
+      "name": "query",
+      "in": "query",
+      "description": "The query string associated with a widget's name and description.\n"
+    },
+    "Accept": {
+      "in": "header",
+      "type": "string",
+      "name": "Accept",
+      "default": "application/json"
+    },
+    "Content-Type": {
+      "name": "Content-Type",
+      "in": "header",
+      "type": "string",
+      "default": "application/json"
+    }
+  },
+  "definitions": {
+    "CollectionMeta": {
+      "type": "object",
+      "description": "Data about the response, including pagination and collection totals.",
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/Pagination"
+        }
+      },
+      "title": "Collection Meta"
+    },
+    "Pagination": {
+      "type": "object",
+      "description": "Data about the response, including pagination and collection totals.",
+      "title": "Pagination",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "Total number of items in the result set.\n",
+          "example": 36
+        },
+        "count": {
+          "type": "integer",
+          "description": "Total number of items in the collection response.\n",
+          "example": 36
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The amount of items returned in the collection per page, controlled by the limit parameter.\n",
+          "example": 50
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The page you are currently on within the collection.\n",
+          "example": 1
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages in the collection.\n",
+          "example": 1
+        },
+        "links": {
+          "type": "object",
+          "description": "Pagination links for the previous and next parts of the whole collection.\n",
+          "properties": {
+            "previous": {
+              "type": "string",
+              "description": "Link to the previous page returned in the response.\n"
+            },
+            "current": {
+              "type": "string",
+              "description": "Link to the current page returned in the response.\n",
+              "example": "?page=1&limit=50"
+            },
+            "next": {
+              "type": "string",
+              "description": "Link to the next page returned in the response.\n"
+            }
+          }
+        }
+      }
+    },
+    "Meta": {
+      "type": "object",
+      "description": "Empty meta object; may be used later.",
+      "title": "Meta"
+    },
+    "ErrorResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseError"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "errors": {
+              "$ref": "#/definitions/DetailedErrors"
+            }
+          }
+        }
+      ],
+      "title": "Error Response"
+    },
+    "BaseError": {
+      "type": "object",
+      "description": "Error payload for the BigCommerce API.\n",
+      "properties": {
+        "status": {
+          "description": "The HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the particular error.\n",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "Base Error"
+    },
+    "DetailedErrors": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "DetailedErrors - Remove"
+    },
+    "NotFound": {
+      "description": "Error payload for the BigCommerce API.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "404 HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the particular error.",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "Not Found"
+    },
+    "NoContent": {
+      "description": "No-content response for the BigCommerce API.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "204 HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the situation.",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "No Content"
+    },
+    "WidgetTemplatePreview": {
+      "properties": {
+        "widget_configuration": {
+          "type": "object",
+          "description": "The JSON data that populates the template.",
+          "format": "json"
+        }
+      }
+    },
+    "WidgetTemplatePut": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User-friendly name."
+        },
+        "schema": {
+          "type": "object",
+          "description": "The schema for this template. Describes how to build dynamic forms for widget configurations.",
+          "format": "json"
+        },
+        "template": {
+          "type": "string",
+          "description": "Handlebars HTML content. Also has access to Stencil Paper helpers.",
+          "format": "html"
+        }
+      }
+    },
+    "WidgetTemplatePost": {
+      "required": [
+        "name",
+        "template"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User friendly name."
+        },
+        "schema": {
+          "type": "object",
+          "description": "The JSON schema of data for this template. Used to validate a configuration.",
+          "format": "json"
+        },
+        "template": {
+          "type": "string",
+          "description": "Handlebars HTML content. Also has access to Stencil Paper helpers.",
+          "format": "html"
+        }
+      }
+    },
+    "WidgetTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/WidgetTemplate"
+        }
+      }
+    },
+    "WidgetTemplatePreviewResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "properties": {
+            "html": {
+              "type": "string",
+              "description": "The HTML render of the widget template.",
+              "format": "html"
+            }
+          }
+        }
+      }
+    },
+    "WidgetTemplatesResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WidgetTemplate"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/CollectionMeta"
+        }
+      }
+    },
+    "WidgetTemplate": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The primary identifier."
+        },
+        "name": {
+          "type": "string",
+          "description": "The user-friendly name."
+        },
+        "kind": {
+          "type": "string",
+          "description": "The kind of widget template."
+        },
+        "schema": {
+          "type": "object",
+          "format": "json",
+          "description": "The JSON schema of data for this template. Used to validate a configuration."
+        },
+        "template": {
+          "type": "string",
+          "format": "html",
+          "description": "The widget template HTML. Supports Handlebars and Paper helpers."
+        },
+        "date_created": {
+          "type": "string",
+          "format": "datetime",
+          "description": "The date on which this object was initially created."
+        },
+        "date_modified": {
+          "type": "string",
+          "format": "datetime",
+          "description": "The date on which this object was last updated."
+        }
+      }
+    },
+    "Widget": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The primary identifier."
+        },
+        "name": {
+          "type": "string",
+          "description": "The user-friendly name."
+        },
+        "description": {
+          "type": "string",
+          "description": "The user-friendly description."
+        },
+        "widget_configuration": {
+          "type": "object",
+          "description": "The JSON data that populates the template.",
+          "format": "json"
+        },
+        "widget_template": {
+          "$ref": "#/definitions/WidgetTemplate"
+        },
+        "date_created": {
+          "type": "string",
+          "format": "datetime",
+          "description": "The date on which this object was initially created."
+        },
+        "date_modified": {
+          "type": "string",
+          "format": "datetime",
+          "description": "The date on which this object was last updated."
+        }
+      }
+    },
+    "WidgetPost": {
+      "required": [
+        "name",
+        "widget_template_uuid"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User friendly name."
+        },
+        "description": {
+          "type": "string",
+          "description": "The user-friendly description."
+        },
+        "widget_configuration": {
+          "type": "object",
+          "description": "The JSON data that populates the template.",
+          "format": "json"
+        },
+        "widget_template_uuid": {
+          "type": "string",
+          "description": "The widget template UUID."
+        }
+      }
+    },
+    "WidgetPut": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User-friendly name."
+        },
+        "description": {
+          "type": "string",
+          "description": "The user-friendly description."
+        },
+        "widget_configuration": {
+          "type": "object",
+          "description": "The JSON data that populates the template.",
+          "format": "json"
+        },
+        "widget_template_uuid": {
+          "type": "string",
+          "description": "The widget template UUID."
+        }
+      }
+    },
+    "WidgetResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Widget"
+        }
+      }
+    },
+    "WidgetsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Widget"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/CollectionMeta"
+        }
+      }
+    },
+    "PlacementPost": {
+      "required": [
+        "widget_uuid",
+        "region",
+        "template_file"
+      ],
+      "properties": {
+        "widget_uuid": {
+          "type": "string",
+          "description": "A widget identifier."
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "The specific instance of a page that you would like to target."
+        },
+        "sort_order": {
+          "type": "integer",
+          "description": "The sort order to control the position of a content widget in a region."
+        },
+        "region": {
+          "type": "string",
+          "description": "The name of the region in which to insert content widgets."
+        },
+        "template_file": {
+          "type": "string",
+          "description": "The template file that you would like to target."
+        },
+        "status": {
+          "type": "string",
+          "description": "Sets the placement as either inactive or active.",
+          "default": "inactive",
+          "enum": [
+            "inactive",
+            "active"
+          ]
+        }
+      },
+      "title": "Placement Post"
+    },
+    "PlacementPut": {
+      "properties": {
+        "entity_id": {
+          "type": "string",
+          "description": "Optional. The specific instance of a page that you would like to target."
+        },
+        "template_file": {
+          "type": "string",
+          "description": "The template file that you would like to target."
+        },
+        "region": {
+          "type": "string",
+          "description": "The name of the region in which to insert content widgets."
+        },
+        "sort_order": {
+          "type": "integer",
+          "description": "The sort order to control the position of a content widget in a region."
+        },
+        "widget_uuid": {
+          "type": "string",
+          "description": "A widget identifier."
+        },
+        "status": {
+          "type": "string",
+          "description": "Sets the placement as either inactive or active.",
+          "enum": [
+            "inactive",
+            "active"
+          ]
+        }
+      },
+      "title": "Placement Put"
+    },
+    "PlacementResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Placement"
+        }
+      },
+      "title": "Placement Response"
+    },
+    "PlacementsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Placement"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/CollectionMeta"
+        }
+      },
+      "title": "Placements Response"
+    },
+    "Placement": {
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The primary identifier."
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "The specific instance of a page"
+        },
+        "status": {
+          "type": "string",
+          "description": "Determines whether this placement is `active` or `inactive`.",
+          "enum": [
+            "inactive",
+            "active"
+          ]
+        },
+        "template_file": {
+          "type": "string",
+          "description": "The page template name."
+        },
+        "region": {
+          "type": "string",
+          "description": "The user-friendly name."
+        },
+        "sort_order": {
+          "type": "integer",
+          "description": "The sort order to control position of a content widget in a region."
+        },
+        "widget": {
+          "$ref": "#/definitions/Widget"
+        },
+        "date_created": {
+          "type": "string",
+          "format": "datetime",
+          "description": "The date on which this object was initially created."
+        },
+        "date_modified": {
+          "type": "string",
+          "format": "datetime",
+          "description": "The date on which this object was last updated."
+        }
+      },
+      "title": "Placement"
+    },
+    "Script": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The primary identifier."
+        },
+        "name": {
+          "type": "string",
+          "description": "The user-friendly name."
+        },
+        "description": {
+          "type": "string",
+          "description": "The user-friendly description."
+        },
+        "html": {
+          "type": "string",
+          "description": "An html string containing exactly one `script` tag. Only present if `kind` is `script_tag`"
+        },
+        "src": {
+          "type": "string",
+          "description": "The `src` attribute of the script to load. Only present if `kind` is `src`."
+        },
+        "auto_uninstall": {
+          "type": "boolean",
+          "description": "Whether to uninstall this script when the app associated with it is removed."
+        },
+        "load_method": {
+          "type": "string",
+          "description": "The load method to use for the script. Values are `default`, `async`, or `defer`.",
+          "enum": [
+            "default",
+            "async",
+            "defer"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "Where on the page to place the script. Values are `head` or `footer`.",
+          "enum": [
+            "head",
+            "footer"
+          ]
+        },
+        "visibility": {
+          "type": "string",
+          "description": "Which set of pages the script should load on. The values allowed for this parameter are `storefront`, `all_pages`, `checkout` and `order_confirmation`. Please note that you need to have `Checkout content` scope to use `all_pages` and `checkout`.",
+          "enum": [
+            "storefront",
+            "all_pages",
+            "checkout",
+            "order_confirmation"
+          ]
+        },
+        "kind": {
+          "type": "string",
+          "description": "What type of script this is. Values are `src` - a `script` tag will be generated with its `src` attribute set to the value of `src`; `script_tag` - The value of `html` will be injected directly onto the page.",
+          "enum": [
+            "src",
+            "script_tag"
+          ]
+        },
+        "api_client_id": {
+          "type": "string",
+          "description": "The client id of the API user that created this script, or blank if created by other means."
+        },
+        "date_created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date on which this object was initially created."
+        },
+        "date_modified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date on which this object was last updated."
+        }
+      },
+      "example": {
+        "uuid": "2bf40be2-e57a-4bc8-860a-5bf45edd3795",
+        "name": "jQuery",
+        "description": "The Write Less, Do More, JavaScript Library.",
+        "src": "https://code.jquery.com/jquery-3.2.1.min.js",
+        "auto_uninstall": true,
+        "load_method": "defer",
+        "location": "head",
+        "visibility": "storefront",
+        "kind": "src",
+        "api_client_id": "d1j42k5q76xsm15fa3g8sp2egytoixo",
+        "date_created": "2017-12-05T23:37:45.506Z",
+        "date_modified": "2017-12-05T23:37:45.506Z"
+      }
+    },
+    "ScriptPost": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The user-friendly name.",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "description": {
+          "type": "string",
+          "description": "The user-friendly description.",
+          "maxLength": 255
+        },
+        "html": {
+          "type": "string",
+          "description": "An html string containing exactly one `script` tag. Required if `kind` is `script_tag`.",
+          "maxLength": 65535
+        },
+        "src": {
+          "type": "string",
+          "description": "The `src` attribute of the script to load. Required if `kind` is `src`. Must be in `https` format.",
+          "maxLength": 255
+        },
+        "auto_uninstall": {
+          "type": "boolean",
+          "description": "Whether to uninstall this script when the app associated with it is removed.",
+          "default": true
+        },
+        "load_method": {
+          "type": "string",
+          "description": "The load method to use for the script. Acceptable values are `default`, `async`, or `defer`.",
+          "default": "defer",
+          "enum": [
+            "default",
+            "async",
+            "defer"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "Where on the page to place the script. Acceptable values are `head` or `footer`.",
+          "default": "footer",
+          "enum": [
+            "head",
+            "footer"
+          ]
+        },
+        "visibility": {
+          "type": "string",
+          "description": "Which set of pages the script should load on. The values allowed for this parameter are `storefront`, `all_pages`, `checkout` and `order_confirmation`. Please note that you need to have `Checkout content` scope to use `all_pages` and `checkout`.",
+          "default": "storefront",
+          "enum": [
+            "storefront",
+            "all_pages",
+            "checkout",
+            "order_confirmation"
+          ]
+        },
+        "kind": {
+          "type": "string",
+          "description": "What type of script this is. Acceptable values are `src` - a `script` tag will be generated with its `src` attribute set to the value of `src`; `script_tag` - The value of `html` (which must contain a single `script` tag) will be injected directly onto the page.",
+          "default": "src",
+          "enum": [
+            "src",
+            "html"
+          ]
+        }
+      },
+      "example": {
+        "name": "jQuery",
+        "description": "The Write Less, Do More, JavaScript Library.",
+        "src": "https://code.jquery.com/jquery-3.2.1.min.js",
+        "auto_uninstall": true,
+        "load_method": "defer",
+        "location": "head",
+        "visibility": "storefront",
+        "kind": "src"
+      }
+    },
+    "ScriptPut": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The user-friendly name.",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "description": {
+          "type": "string",
+          "description": "The user-friendly description.",
+          "maxLength": 255
+        },
+        "html": {
+          "type": "string",
+          "description": "An html string containing exactly one `script` tag. Required if `kind` is included and equal to `script_tag`.",
+          "maxLength": 65535
+        },
+        "src": {
+          "type": "string",
+          "description": "The `src` attribute of the script to load. Required if `kind` is included and equal to `src`. Must be in `https` format.",
+          "maxLength": 255
+        },
+        "auto_uninstall": {
+          "type": "boolean",
+          "description": "Whether to uninstall this script when the app associated with it is removed.",
+          "default": true
+        },
+        "load_method": {
+          "type": "string",
+          "description": "The load method to use for the script. Acceptable values are `default`, `async`, or `defer`.",
+          "default": "defer",
+          "enum": [
+            "default",
+            "async",
+            "defer"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "Where on the page to place the script. Acceptable values are `head` or `footer`.",
+          "default": "footer",
+          "enum": [
+            "head",
+            "footer"
+          ]
+        },
+        "visibility": {
+          "type": "string",
+          "description": "Which set of pages the script should load on. The values allowed for this parameter are `storefront`, `all_pages`, `checkout` and `order_confirmation`. Please note that you need to have `Checkout content` scope to use `all_pages` and `checkout`.",
+          "default": "storefront",
+          "enum": [
+            "storefront",
+            "all_pages",
+            "checkout",
+            "order_confirmation"
+          ]
+        },
+        "kind": {
+          "type": "string",
+          "description": "What type of script this is. Acceptable values are `src` - a `script` tag will be generated with its `src` attribute set to the value of `src`; `script_tag` - The value of `html` (which must contain a single `script` tag) will be injected directly onto the page.",
+          "default": "src",
+          "enum": [
+            "src",
+            "html"
+          ]
+        }
+      },
+      "example": {
+        "name": "jQuery",
+        "description": "The Write Less, Do More, JavaScript Library.",
+        "src": "https://code.jquery.com/jquery-3.2.1.min.js",
+        "auto_uninstall": true,
+        "load_method": "defer",
+        "location": "head",
+        "visibility": "storefront",
+        "kind": "src"
+      }
+    },
+    "ScriptResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Script"
+        }
+      }
+    },
+    "ScriptsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Script"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/CollectionMeta"
+        }
+      }
+    },
+    "ThemeRegionsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ThemeRegion"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        }
+      }
+    },
+    "securityDefinitions": {
+      "X-Auth-Client": {
+        "type": "apiKey",
+        "name": "X-Auth-Client",
+        "in": "header"
+      },
+      "X-Auth-Token": {
+        "type": "apiKey",
+        "name": "X-Auth-Token",
+        "in": "header"
+      }
+    }
+  }
+}
