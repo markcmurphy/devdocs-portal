@@ -901,6 +901,21 @@
     }
   },
   "parameters": {
+    "RequestHeaders": {
+      "type": "object",
+      "description": "These are the minium request headers needed for BigCommerce. ",
+      "title": "Request Headers",
+      "properties": {
+        "X-Auth-Client": {
+          "type": "string",
+          "example": "{X-Auth-Client}"
+        },
+        "Accepts": {
+          "type": "string",
+          "default": "application/json"
+        }
+      }
+    },
     "TemplateUUID": {
       "name": "uuid",
       "description": "The identifier for a specific template.",
@@ -2383,6 +2398,18 @@
         "name": "X-Auth-Token",
         "in": "header"
       }
+    }
+  },
+  "securityDefinitions": {
+    "X-Auth-Client": {
+      "type": "apiKey",
+      "name": "X-Auth-Client",
+      "in": "header"
+    },
+    "X-Auth-Token": {
+      "type": "apiKey",
+      "name": "X-Auth-Token",
+      "in": "header"
     }
   }
 }
