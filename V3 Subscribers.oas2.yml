@@ -1,1161 +1,1016 @@
-{
-  "swagger": "2.0",
-  "info": {
-    "title": "V3 Subscribers",
-    "version": "3.0.0b",
-    "description": "A Swagger Document for the BigCommmerce v3 API.",
-    "termsOfService": "http://www.bigcommerce.com/terms",
-    "license": {
-      "name": ""
-    }
-  },
-  "host": "api.bigcommerce.com",
-  "basePath": "/stores/{store_hash}/v3",
-  "tags": [
-    {
-      "name": "Customers",
-      "description": "BigCommerce Customers API Definition."
-    }
-  ],
-  "schemes": [
-    "https"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "paths": {
-    "/customers/subscribers": {
-      "get": {
-        "tags": [
-          "Customers"
-        ],
-        "description": "Returns a paginated Subscribers collection.\n",
-        "operationId": "getSubscribers",
-        "parameters": [
-          {
-            "$ref": "#/parameters/FilterEmailParam"
-          },
-          {
-            "$ref": "#/parameters/FilterFirstNameParam"
-          },
-          {
-            "$ref": "#/parameters/FilterLastNameParam"
-          },
-          {
-            "$ref": "#/parameters/FilterSourceParam"
-          },
-          {
-            "$ref": "#/parameters/FilterOrderIdParam"
-          },
-          {
-            "$ref": "#/parameters/FilterDateCreatedParam"
-          },
-          {
-            "$ref": "#/parameters/FilterDateModifiedParam"
-          },
-          {
-            "$ref": "#/parameters/PageParam"
-          },
-          {
-            "$ref": "#/parameters/LimitParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "An array of subscriber objects and metadata.\n",
-            "schema": {
-              "$ref": "#/definitions/SubscriberCollectionResponse"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Customers"
-        ],
-        "description": "Creates a `Subscriber` object.\n",
-        "operationId": "createSubscriber",
-        "parameters": [
-          {
-            "name": "subscriber",
-            "in": "body",
-            "required": true,
-            "description": "`Subscriber` object.\n",
-            "schema": {
-              "$ref": "#/definitions/SubscriberPost"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A `Subscriber` object.\n",
-            "schema": {
-              "$ref": "#/definitions/SubscriberResponse"
-            }
-          },
-          "409": {
-            "description": "The `Subscriber` was in conflict with another subscriber. This is the result of duplicate unique values, such as email.\n",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "422": {
-            "description": "The `Subscriber` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.\n",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Customers"
-        ],
-        "description": "Deletes a Subscriber or Subscribers from BigCommerce Customers.\n",
-        "operationId": "deleteSubscribers",
-        "parameters": [
-          {
-            "$ref": "#/parameters/FilterEmailParam"
-          },
-          {
-            "$ref": "#/parameters/FilterFirstNameParam"
-          },
-          {
-            "$ref": "#/parameters/FilterLastNameParam"
-          },
-          {
-            "$ref": "#/parameters/FilterSourceParam"
-          },
-          {
-            "$ref": "#/parameters/FilterOrderIdParam"
-          },
-          {
-            "$ref": "#/parameters/FilterDateCreatedParam"
-          },
-          {
-            "$ref": "#/parameters/FilterDateModifiedParam"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "An empty response.\n"
-          }
-        }
-      }
-    },
-    "/customers/subscribers/{subscriber_id}": {
-      "parameters": [
-        {
-          "$ref": "#/parameters/SubscriberIdParam"
-        }
-      ],
-      "get": {
-        "tags": [
-          "Customers"
-        ],
-        "description": "Gets `Subscriber` object.",
-        "operationId": "getSubscriberById",
-        "responses": {
-          "200": {
-            "description": "A `Subscriber` object.\n",
-            "schema": {
-              "$ref": "#/definitions/SubscriberResponse"
-            }
-          },
-          "404": {
-            "description": "The resource was not found.\n",
-            "schema": {
-              "$ref": "#/definitions/NotFound"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Customers"
-        ],
-        "description": "Updates a `Subscriber` object.\n",
-        "operationId": "updateSubscriber",
-        "parameters": [
-          {
-            "name": "subscriber",
-            "in": "body",
-            "required": true,
-            "description": "Returns a `Subscriber` object.\n",
-            "schema": {
-              "$ref": "#/definitions/SubscriberPut"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A `Subscriber` object.\n",
-            "schema": {
-              "$ref": "#/definitions/SubscriberResponse"
-            }
-          },
-          "404": {
-            "description": "The resource was not found.\n",
-            "schema": {
-              "$ref": "#/definitions/NotFound"
-            }
-          },
-          "409": {
-            "description": "The `Subscriber` was in conflict with another subscriber. This is the result of duplicate unique values, such as `email`.\n",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "422": {
-            "description": "The `Subscriber` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.\n",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Customers"
-        ],
-        "description": "Deletes a `Subscriber` object.\n",
-        "operationId": "deleteSubscriberById",
-        "responses": {
-          "204": {
-            "description": "An empty response.\n"
-          }
-        }
-      }
-    }
-  },
-  "parameters": {
-    "TemplateUUID": {
-      "name": "uuid",
-      "description": "The identifier for a specific template.",
-      "required": true,
-      "in": "path",
-      "type": "string",
-      "format": "uuid"
-    },
-    "FilterWidgetTemplateUUIDParam": {
-      "in": "query",
-      "name": "widget_template_uuid",
-      "description": "The identifier for a specific widget template.",
-      "type": "string",
-      "format": "uuid",
-      "required": false
-    },
-    "FilterWidgetTemplateKindParam": {
-      "in": "query",
-      "name": "widget_template_kind",
-      "description": "The kind of widget template.",
-      "type": "string",
-      "required": false
-    },
-    "FilterTemplateFileParam": {
-      "in": "query",
-      "name": "template_file",
-      "description": "The template file, for example: `pages/home`.",
-      "type": "string",
-      "required": false
-    },
-    "RequiredTemplateFile": {
-      "in": "query",
-      "name": "templateFile",
-      "description": "The template file, for example: `pages/home`.",
-      "type": "string",
-      "required": true
-    },
-    "PlacementUUID": {
-      "name": "uuid",
-      "description": "The identifier for a specific placement.",
-      "required": true,
-      "in": "path",
-      "type": "string",
-      "format": "uuid"
-    },
-    "WidgetUUID": {
-      "name": "uuid",
-      "description": "The identifier for a specific widget.",
-      "required": true,
-      "in": "path",
-      "type": "string",
-      "format": "uuid"
-    },
-    "ScriptUUID": {
-      "name": "uuid",
-      "description": "The identifier for a specific script.",
-      "required": true,
-      "in": "path",
-      "type": "string",
-      "format": "uuid"
-    },
-    "FilterWidgetUUIDParam": {
-      "name": "widget_uuid",
-      "description": "The identifier for a specific widget.",
-      "in": "query",
-      "type": "string",
-      "format": "uuid",
-      "required": false
-    },
-    "FilterIdParam": {
-      "name": "id",
-      "description": "Filter items by id.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterSkuParam": {
-      "name": "sku",
-      "description": "Filter items by sku.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterNameParam": {
-      "name": "name",
-      "description": "Filter items by name.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterEmailParam": {
-      "name": "email",
-      "description": "Filter items by email.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterFirstNameParam": {
-      "name": "first_name",
-      "description": "Filter items by first_name.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterLastNameParam": {
-      "name": "last_name",
-      "description": "Filter items by last_name.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterSourceParam": {
-      "name": "source",
-      "description": "Filter items by source.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterOrderIdParam": {
-      "name": "order_id",
-      "description": "Filter items by order_id.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterUpcParam": {
-      "name": "upc",
-      "description": "Filter items by upc.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterPriceParam": {
-      "name": "price",
-      "description": "Filter items by price.\n",
-      "required": false,
-      "in": "query",
-      "type": "number"
-    },
-    "FilterSalePriceParam": {
-      "name": "sale_price",
-      "description": "Filter items by sale_price.\n",
-      "required": false,
-      "in": "query",
-      "type": "number"
-    },
-    "FilterRetailPriceParam": {
-      "name": "retail_price",
-      "description": "Filter items by retail_price.\n",
-      "required": false,
-      "in": "query",
-      "type": "number"
-    },
-    "FilterMapPriceParam": {
-      "name": "map_price",
-      "description": "Filter items by map_price.\n",
-      "required": false,
-      "in": "query",
-      "type": "number"
-    },
-    "FilterCalculatedPriceParam": {
-      "name": "calculated_price",
-      "description": "Filter items by calculated_price.\n",
-      "required": false,
-      "in": "query",
-      "type": "number"
-    },
-    "FilterWeightParam": {
-      "name": "weight",
-      "description": "Filter items by weight.\n",
-      "required": false,
-      "in": "query",
-      "type": "number"
-    },
-    "FilterConditionParam": {
-      "name": "condition",
-      "description": "Filter items by condition.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer",
-      "enum": [
-        "new",
-        "used",
-        "refurbished"
-      ]
-    },
-    "FilterBrandIdParam": {
-      "name": "brand_id",
-      "description": "Filter items by brand_id.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterDateModifiedParam": {
-      "name": "date_modified",
-      "description": "Filter items by date_modified. For example `v3/catalog/products?date_last_imported:min=2018-06-15`",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "format": "date-time"
-    },
-    "FilterDateCreatedParam": {
-      "name": "date_created",
-      "description": "Filter items by date_created.\n",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "format": "date-time"
-    },
-    "FilterDateLastImportedParam": {
-      "name": "date_last_imported",
-      "description": "Filter items by date_last_imported. For example `v3/catalog/products?date_modified:min=2018-06-15`",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "format": "date-time"
-    },
-    "FilterIsVisibleParam": {
-      "name": "is_visible",
-      "description": "Filter items by is_visible. This filter uses numbers instead. 0 = false and 1 = true.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer",
-      "enum": [
-        1,
-        0
-      ]
-    },
-    "FilterIsFeaturedParam": {
-      "name": "is_featured",
-      "description": "Filter items by is_featured.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterIsFreeShippingParam": {
-      "name": "is_free_shipping",
-      "description": "Filter items by is_free_shipping.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterInventoryLevelParam": {
-      "name": "inventory_level",
-      "description": "Filter items by inventory_level.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterInventoryLowParam": {
-      "name": "inventory_low",
-      "description": "Filter items by inventory_low. Values: 1, 0.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterOutOfStockParam": {
-      "name": "out_of_stock",
-      "description": "Filter items by out_of_stock. To enable the filter, pass `out_of_stock`=`1`.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterTotalSoldParam": {
-      "name": "total_sold",
-      "description": "Filter items by total_sold.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "ProductFilterTypeParam": {
-      "name": "type",
-      "description": "Filter items by type: `physical` or `digital`.",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "enum": [
-        "digital",
-        "physical"
-      ]
-    },
-    "FilterCategoriesParam": {
-      "name": "categories",
-      "description": "Filter items by categories.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterKeywordParam": {
-      "name": "keyword",
-      "description": "Filter items by keywords. eg. new, towel, bath",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "ProductFilterKeywordParam": {
-      "name": "keyword",
-      "description": "Filter items by keywords found in the `name`, `description`, or `sku` fields, or in the brand name.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "ProductFilterKeywordContextParam": {
-      "name": "keyword_context",
-      "description": "Set context for a product search.",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "enum": [
-        "shopper",
-        "merchant"
-      ]
-    },
-    "FilterStatusParam": {
-      "name": "status",
-      "description": "Filter items by status.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterIncludeParam": {
-      "name": "include",
-      "description": "Sub-resources to include on a product, in a comma-separated list. Valid expansions currently include `variants`, `images`, 'primary_image`, `custom_fields`, and `bulk_pricing_rules`.",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "enum": [
-        "variants",
-        "images",
-        "custom_fields",
-        "bulk_pricing_rules",
-        "primary_image"
-      ]
-    },
-    "FilterIncludePriceRecordParam": {
-      "name": "include",
-      "description": "Sub-resources to include on a price record, in a comma-separated list. Valid expansions currently include `bulk_pricing_tiers` and `sku`.  Other valies will be ignored.\n",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "enum": [
-        "bulk_pricing_tiers",
-        "sku"
-      ]
-    },
-    "FilterIncludeFieldsParam": {
-      "name": "include_fields",
-      "description": "Fields to include, in a comma-separated list. The ID and the specified fields will be returned.",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterExcludeFieldsParam": {
-      "name": "exclude_fields",
-      "description": "Fields to exclude, in a comma-separated list. The specified fields will be excluded from a response. The ID cannot be excluded.",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterParentIdParam": {
-      "name": "parent_id",
-      "description": "Filter items by parent_id. If the category is a child or sub category it can be filtered with the parent_id. ",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterPageTitleParam": {
-      "name": "page_title",
-      "description": "Filter items by page_title.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterAvailabilityParam": {
-      "name": "availability",
-      "description": "Filter items by availability. Values are: available, disabled, preorder.\n",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "enum": [
-        "available",
-        "disabled",
-        "preorder"
-      ]
-    },
-    "FilterPriceListIdParam": {
-      "name": "price_list_id",
-      "description": "The ID of the `Price List`.\n",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "FilterProductIdParam": {
-      "type": "string",
-      "name": "product_id",
-      "in": "query",
-      "required": false,
-      "description": "A comma-separated list of ids of `Product`s whose prices were requested.\n"
-    },
-    "FilterVariantIdParam": {
-      "type": "integer",
-      "name": "variant_id",
-      "in": "query",
-      "required": false,
-      "description": "The ID of the `Variant` whose prices were requested.\n"
-    },
-    "FilterCurrencyParam": {
-      "name": "currency",
-      "description": "Filter items by currency.\n",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "format": "ISO-4217"
-    },
-    "PageParam": {
-      "name": "page",
-      "description": "Specifies the page number in a limited (paginated) list of products.",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "LimitParam": {
-      "name": "limit",
-      "description": "Controls the number of items per page in a limited (paginated) list of products.",
-      "required": false,
-      "in": "query",
-      "type": "integer"
-    },
-    "ScriptsSortKeyParam": {
-      "name": "sort",
-      "description": "Scripts field name to sort by.\n",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "enum": [
-        "name",
-        "description",
-        "date_created",
-        "date_modified"
-      ]
-    },
-    "DirectionParam": {
-      "name": "direction",
-      "description": "Sort direction. Acceptable values are: `asc`, `desc`.\n",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "enum": [
-        "asc",
-        "desc"
-      ]
-    },
-    "ProductSortParam": {
-      "name": "sort",
-      "description": "Field name to sort by.\n",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "enum": [
-        "id",
-        "name",
-        "sku",
-        "price",
-        "date_modified",
-        "date_last_imported",
-        "inventory_level",
-        "is_visible",
-        "total_sold"
-      ]
-    },
-    "ProductIdParam": {
-      "name": "product_id",
-      "in": "path",
-      "description": "The ID of the `Product` to which the resource belongs.\n",
-      "required": true,
-      "type": "integer"
-    },
-    "ReviewIdParam": {
-      "name": "review_id",
-      "description": "The ID of the `review` that is being operated on.\n",
-      "required": true,
-      "in": "path",
-      "type": "integer"
-    },
-    "ImageIdParam": {
-      "name": "image_id",
-      "description": "The ID of the `Image` that is being operated on.\n",
-      "required": true,
-      "in": "path",
-      "type": "integer"
-    },
-    "VideoIdParam": {
-      "name": "video_id",
-      "description": "The ID of the `Video` that is being operated on.\n",
-      "required": true,
-      "in": "path",
-      "type": "string"
-    },
-    "ComplexRuleIdParam": {
-      "name": "complex_rule_id",
-      "description": "The ID of the `ComplexRule`.\n",
-      "required": true,
-      "in": "path",
-      "type": "integer"
-    },
-    "ConfigurableFieldIdParam": {
-      "name": "configurable_field_id",
-      "description": "The ID of the `ConfigurableField`.\n",
-      "required": true,
-      "in": "path",
-      "type": "integer"
-    },
-    "CustomFieldIdParam": {
-      "name": "custom_field_id",
-      "description": "The ID of the `CustomField`.\n",
-      "required": true,
-      "in": "path",
-      "type": "integer"
-    },
-    "BulkPricingRuleIdParam": {
-      "name": "bulk_pricing_rule_id",
-      "description": "The ID of the `BulkPricingRule`.\n",
-      "required": true,
-      "in": "path",
-      "type": "integer"
-    },
-    "ModifierIdParam": {
-      "name": "modifier_id",
-      "description": "The ID of the `Modifier`.\n",
-      "required": true,
-      "in": "path",
-      "type": "integer"
-    },
-    "ValueIdParam": {
-      "name": "value_id",
-      "description": "The ID of the `Modifier/Option Value`.\n",
-      "required": true,
-      "in": "path",
-      "type": "integer"
-    },
-    "OptionIdParam": {
-      "name": "option_id",
-      "description": "The ID of the `Option`.\n",
-      "required": true,
-      "in": "path",
-      "type": "integer"
-    },
-    "SubscriberIdParam": {
-      "name": "subscriber_id",
-      "in": "path",
-      "description": "The ID of the `Subscriber` requested.\n",
-      "required": true,
-      "type": "integer"
-    },
-    "VariantIdParam": {
-      "name": "variant_id",
-      "in": "path",
-      "description": "ID of the variant on a product, or on an associated Price List Record.\n",
-      "required": true,
-      "type": "integer"
-    },
-    "CategoryIdParam": {
-      "name": "category_id",
-      "in": "path",
-      "description": "The ID of the `Category` to which the resource belongs.\n",
-      "required": true,
-      "type": "integer"
-    },
-    "BrandIdParam": {
-      "name": "brand_id",
-      "in": "path",
-      "description": "The ID of the `Brand` to which the resource belongs.\n",
-      "required": true,
-      "type": "integer"
-    },
-    "MetafieldIdParam": {
-      "name": "metafield_id",
-      "in": "path",
-      "description": "The ID of the `Metafield`.\n",
-      "required": true,
-      "type": "integer"
-    },
-    "MetafieldKeyParam": {
-      "name": "key",
-      "in": "query",
-      "description": "Filter based on a metafield's key.\n",
-      "required": false,
-      "type": "string"
-    },
-    "MetafieldNamespaceParam": {
-      "name": "namespace",
-      "in": "query",
-      "description": "Filter based on a metafield's namespace.",
-      "required": false,
-      "type": "string"
-    },
-    "ImageFileParam": {
-      "name": "image_file",
-      "description": "An image file. Supported MIME types include GIF, JPEG, and PNG.\n",
-      "required": true,
-      "in": "formData",
-      "type": "file"
-    },
-    "OrderIdParam": {
-      "name": "order_id",
-      "in": "path",
-      "description": "The ID of the `Order` to which the transactions belong.\n",
-      "required": true,
-      "type": "integer"
-    },
-    "JobIdParam": {
-      "name": "job_id",
-      "description": "The job identifier.",
-      "in": "path",
-      "type": "string",
-      "required": true
-    },
-    "ThemeIdParam": {
-      "name": "theme_id",
-      "description": "The theme identifier.",
-      "in": "path",
-      "type": "string",
-      "required": true
-    },
-    "PriceListIdParam": {
-      "type": "integer",
-      "name": "price_list_id",
-      "in": "path",
-      "description": "The ID of the `Price List` requested.\n",
-      "required": true
-    },
-    "PriceRecordCurrencyParam": {
-      "name": "currency_code",
-      "type": "string",
-      "in": "path",
-      "description": "The currency code associated with the price record being acted upon.\n",
-      "required": true,
-      "format": "ISO-4217"
-    },
-    "QueryWidgetsParam": {
-      "type": "string",
-      "name": "query",
-      "in": "query",
-      "description": "The query string associated with a widget's name and description.\n"
-    },
-    "Accept": {
-      "in": "header",
-      "type": "string",
-      "name": "Accept",
-      "default": "application/json"
-    },
-    "Content-Type": {
-      "name": "Content-Type",
-      "in": "header",
-      "type": "string",
-      "default": "application/json"
-    }
-  },
-  "definitions": {
-    "SubscriberCollectionResponse": {
-      "description": "Response payload for the BigCommerce API.\n",
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Subscriber"
-          }
-        },
-        "meta": {
-          "$ref": "#/definitions/CollectionMeta"
-        }
-      }
-    },
-    "SubscriberResponse": {
-      "description": "Response payload for the BigCommerce API.\n",
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/Subscriber"
-        },
-        "meta": {
-          "$ref": "#/definitions/Meta"
-        }
-      }
-    },
-    "SubscriberBase": {
-      "type": "object",
-      "description": "Common Subscriber properties.",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "description": "The unique numeric ID of the subscriber; increments sequentially.\n",
-          "x-required": [
-            "put"
-          ]
-        },
-        "email": {
-          "type": "string",
-          "description": "The email of the subscriber. Must be unique.\n",
-          "x-required": [
-            "post"
-          ]
-        },
-        "first_name": {
-          "type": "string",
-          "description": "The first name of the subscriber.\n",
-          "minLength": 0,
-          "maxLength": 255
-        },
-        "last_name": {
-          "type": "string",
-          "description": "The last name of the subscriber.\n",
-          "minLength": 0,
-          "maxLength": 255
-        },
-        "source": {
-          "type": "string",
-          "description": "The source of the subscriber. Values are: `storefront`, `order`, or `custom`.\n",
-          "minLength": 0,
-          "maxLength": 255
-        },
-        "order_id": {
-          "type": "integer",
-          "description": "The ID of the source order, if source was an order.\n",
-          "x-nullable": true,
-          "minimum": 1,
-          "maximum": 2147483647
-        }
-      }
-    },
-    "Subscriber": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/SubscriberBase"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "date_modified": {
-              "type": "string",
-              "format": "date-time",
-              "description": "The date on which the subscriber was modified.\n"
-            },
-            "date_created": {
-              "type": "string",
-              "format": "date-time",
-              "description": "The date of which the subscriber was created.\n"
-            }
-          }
-        }
-      ]
-    },
-    "SubscriberPost": {
-      "type": "object",
-      "description": "The model for a POST to create a subscriber.\n",
-      "allOf": [
-        {
-          "$ref": "#/definitions/SubscriberBase"
-        }
-      ]
-    },
-    "SubscriberPut": {
-      "type": "object",
-      "description": "The model for a PUT to update a subscriber.\n",
-      "allOf": [
-        {
-          "$ref": "#/definitions/SubscriberBase"
-        }
-      ]
-    },
-    "CollectionMeta": {
-      "type": "object",
-      "description": "Data about the response, including pagination and collection totals.",
-      "properties": {
-        "pagination": {
-          "$ref": "#/definitions/Pagination"
-        }
-      },
-      "title": "Collection Meta"
-    },
-    "Pagination": {
-      "type": "object",
-      "description": "Data about the response, including pagination and collection totals.",
-      "title": "Pagination",
-      "properties": {
-        "total": {
-          "type": "integer",
-          "description": "Total number of items in the result set.\n",
-          "example": 36
-        },
-        "count": {
-          "type": "integer",
-          "description": "Total number of items in the collection response.\n",
-          "example": 36
-        },
-        "per_page": {
-          "type": "integer",
-          "description": "The amount of items returned in the collection per page, controlled by the limit parameter.\n",
-          "example": 50
-        },
-        "current_page": {
-          "type": "integer",
-          "description": "The page you are currently on within the collection.\n",
-          "example": 1
-        },
-        "total_pages": {
-          "type": "integer",
-          "description": "The total number of pages in the collection.\n",
-          "example": 1
-        },
-        "links": {
-          "type": "object",
-          "description": "Pagination links for the previous and next parts of the whole collection.\n",
-          "properties": {
-            "previous": {
-              "type": "string",
-              "description": "Link to the previous page returned in the response.\n"
-            },
-            "current": {
-              "type": "string",
-              "description": "Link to the current page returned in the response.\n",
-              "example": "?page=1&limit=50"
-            },
-            "next": {
-              "type": "string",
-              "description": "Link to the next page returned in the response.\n"
-            }
-          }
-        }
-      }
-    },
-    "Meta": {
-      "type": "object",
-      "description": "Empty meta object; may be used later.",
-      "title": "Meta"
-    },
-    "ErrorResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/BaseError"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "errors": {
-              "$ref": "#/definitions/DetailedErrors"
-            }
-          }
-        }
-      ],
-      "title": "Error Response"
-    },
-    "BaseError": {
-      "type": "object",
-      "description": "Error payload for the BigCommerce API.\n",
-      "properties": {
-        "status": {
-          "description": "The HTTP status code.\n",
-          "type": "integer"
-        },
-        "title": {
-          "description": "The error title describing the particular error.\n",
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "instance": {
-          "type": "string"
-        }
-      },
-      "title": "Base Error"
-    },
-    "NotFound": {
-      "description": "Error payload for the BigCommerce API.",
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "404 HTTP status code.\n",
-          "type": "integer"
-        },
-        "title": {
-          "description": "The error title describing the particular error.",
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "instance": {
-          "type": "string"
-        }
-      },
-      "title": "Not Found"
-    },
-    "DetailedErrors": {
-      "type": "object",
-      "title": "Detailed Errors",
-      "properties": {
-        "additionalProperties": {
-          "type": "string"
-        }
-      }
-    }
-  },
-  "securityDefinitions": {
-    "X-Auth-Client": {
-      "type": "apiKey",
-      "name": "X-Auth-Client",
-      "in": "header"
-    },
-    "X-Auth-Token": {
-      "type": "apiKey",
-      "name": "X-Auth-Token",
-      "in": "header"
-    }
-  },
-  "security": [
-    {
-      "X-Auth-Client": []
-    },
-    {
-      "X-Auth-Token": []
-    }
-  ]
-}
+swagger: '2.0'
+info:
+  title: V3 Subscribers
+  version: 3.0.0b
+  description: A Swagger Document for the BigCommmerce v3 API.
+  termsOfService: 'http://www.bigcommerce.com/terms'
+  license:
+    name: ''
+host: api.bigcommerce.com
+basePath: '/stores/{store_hash}/v3'
+tags:
+  - name: Subscribers
+    description: BigCommerce Customers API Definition.
+schemes:
+  - https
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  /customers/subscribers:
+    get:
+      description: |
+        Returns a paginated Subscribers collection.
+      operationId: getSubscribers
+      parameters:
+        - $ref: '#/parameters/FilterEmailParam'
+        - $ref: '#/parameters/FilterFirstNameParam'
+        - $ref: '#/parameters/FilterLastNameParam'
+        - $ref: '#/parameters/FilterSourceParam'
+        - $ref: '#/parameters/FilterOrderIdParam'
+        - $ref: '#/parameters/FilterDateCreatedParam'
+        - $ref: '#/parameters/FilterDateModifiedParam'
+        - $ref: '#/parameters/PageParam'
+        - $ref: '#/parameters/LimitParam'
+      responses:
+        '200':
+          description: |
+            An array of subscriber objects and metadata.
+          schema:
+            $ref: '#/definitions/SubscriberCollectionResponse'
+      tags:
+        - Subscribers
+    post:
+      description: |
+        Creates a `Subscriber` object.
+      operationId: createSubscriber
+      parameters:
+        - name: subscriber
+          in: body
+          required: true
+          description: |
+            `Subscriber` object.
+          schema:
+            $ref: '#/definitions/SubscriberPost'
+      responses:
+        '200':
+          description: |
+            A `Subscriber` object.
+          schema:
+            $ref: '#/definitions/SubscriberResponse'
+        '409':
+          description: >
+            The `Subscriber` was in conflict with another subscriber. This is
+            the result of duplicate unique values, such as email.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '422':
+          description: >
+            The `Subscriber` was not valid. This is the result of missing
+            required fields, or of invalid data. See the response for more
+            details.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      tags:
+        - Subscribers
+    delete:
+      description: |
+        Deletes a Subscriber or Subscribers from BigCommerce Customers.
+      operationId: deleteSubscribers
+      parameters:
+        - $ref: '#/parameters/FilterEmailParam'
+        - $ref: '#/parameters/FilterFirstNameParam'
+        - $ref: '#/parameters/FilterLastNameParam'
+        - $ref: '#/parameters/FilterSourceParam'
+        - $ref: '#/parameters/FilterOrderIdParam'
+        - $ref: '#/parameters/FilterDateCreatedParam'
+        - $ref: '#/parameters/FilterDateModifiedParam'
+      responses:
+        '204':
+          description: |
+            An empty response.
+      tags:
+        - Subscribers
+  '/customers/subscribers/{subscriber_id}':
+    parameters:
+      - $ref: '#/parameters/SubscriberIdParam'
+    get:
+      description: Gets `Subscriber` object.
+      operationId: getSubscriberById
+      responses:
+        '200':
+          description: |
+            A `Subscriber` object.
+          schema:
+            $ref: '#/definitions/SubscriberResponse'
+        '404':
+          description: |
+            The resource was not found.
+          schema:
+            $ref: '#/definitions/NotFound'
+      tags:
+        - Subscribers
+    put:
+      description: |
+        Updates a `Subscriber` object.
+      operationId: updateSubscriber
+      parameters:
+        - name: subscriber
+          in: body
+          required: true
+          description: |
+            Returns a `Subscriber` object.
+          schema:
+            $ref: '#/definitions/SubscriberPut'
+      responses:
+        '200':
+          description: |
+            A `Subscriber` object.
+          schema:
+            $ref: '#/definitions/SubscriberResponse'
+        '404':
+          description: |
+            The resource was not found.
+          schema:
+            $ref: '#/definitions/NotFound'
+        '409':
+          description: >
+            The `Subscriber` was in conflict with another subscriber. This is
+            the result of duplicate unique values, such as `email`.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '422':
+          description: >
+            The `Subscriber` was not valid. This is the result of missing
+            required fields, or of invalid data. See the response for more
+            details.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      tags:
+        - Subscribers
+    delete:
+      description: |
+        Deletes a `Subscriber` object.
+      operationId: deleteSubscriberById
+      responses:
+        '204':
+          description: |
+            An empty response.
+      tags:
+        - Subscribers
+parameters:
+  TemplateUUID:
+    name: uuid
+    description: The identifier for a specific template.
+    required: true
+    in: path
+    type: string
+    format: uuid
+  FilterWidgetTemplateUUIDParam:
+    in: query
+    name: widget_template_uuid
+    description: The identifier for a specific widget template.
+    type: string
+    format: uuid
+    required: false
+  FilterWidgetTemplateKindParam:
+    in: query
+    name: widget_template_kind
+    description: The kind of widget template.
+    type: string
+    required: false
+  FilterTemplateFileParam:
+    in: query
+    name: template_file
+    description: 'The template file, for example: `pages/home`.'
+    type: string
+    required: false
+  RequiredTemplateFile:
+    in: query
+    name: templateFile
+    description: 'The template file, for example: `pages/home`.'
+    type: string
+    required: true
+  PlacementUUID:
+    name: uuid
+    description: The identifier for a specific placement.
+    required: true
+    in: path
+    type: string
+    format: uuid
+  WidgetUUID:
+    name: uuid
+    description: The identifier for a specific widget.
+    required: true
+    in: path
+    type: string
+    format: uuid
+  ScriptUUID:
+    name: uuid
+    description: The identifier for a specific script.
+    required: true
+    in: path
+    type: string
+    format: uuid
+  FilterWidgetUUIDParam:
+    name: widget_uuid
+    description: The identifier for a specific widget.
+    in: query
+    type: string
+    format: uuid
+    required: false
+  FilterIdParam:
+    name: id
+    description: |
+      Filter items by id.
+    required: false
+    in: query
+    type: integer
+  FilterSkuParam:
+    name: sku
+    description: |
+      Filter items by sku.
+    required: false
+    in: query
+    type: string
+  FilterNameParam:
+    name: name
+    description: |
+      Filter items by name.
+    required: false
+    in: query
+    type: string
+  FilterEmailParam:
+    name: email
+    description: |
+      Filter items by email.
+    required: false
+    in: query
+    type: string
+  FilterFirstNameParam:
+    name: first_name
+    description: |
+      Filter items by first_name.
+    required: false
+    in: query
+    type: string
+  FilterLastNameParam:
+    name: last_name
+    description: |
+      Filter items by last_name.
+    required: false
+    in: query
+    type: string
+  FilterSourceParam:
+    name: source
+    description: |
+      Filter items by source.
+    required: false
+    in: query
+    type: string
+  FilterOrderIdParam:
+    name: order_id
+    description: |
+      Filter items by order_id.
+    required: false
+    in: query
+    type: integer
+  FilterUpcParam:
+    name: upc
+    description: |
+      Filter items by upc.
+    required: false
+    in: query
+    type: string
+  FilterPriceParam:
+    name: price
+    description: |
+      Filter items by price.
+    required: false
+    in: query
+    type: number
+  FilterSalePriceParam:
+    name: sale_price
+    description: |
+      Filter items by sale_price.
+    required: false
+    in: query
+    type: number
+  FilterRetailPriceParam:
+    name: retail_price
+    description: |
+      Filter items by retail_price.
+    required: false
+    in: query
+    type: number
+  FilterMapPriceParam:
+    name: map_price
+    description: |
+      Filter items by map_price.
+    required: false
+    in: query
+    type: number
+  FilterCalculatedPriceParam:
+    name: calculated_price
+    description: |
+      Filter items by calculated_price.
+    required: false
+    in: query
+    type: number
+  FilterWeightParam:
+    name: weight
+    description: |
+      Filter items by weight.
+    required: false
+    in: query
+    type: number
+  FilterConditionParam:
+    name: condition
+    description: |
+      Filter items by condition.
+    required: false
+    in: query
+    type: integer
+    enum:
+      - new
+      - used
+      - refurbished
+  FilterBrandIdParam:
+    name: brand_id
+    description: |
+      Filter items by brand_id.
+    required: false
+    in: query
+    type: integer
+  FilterDateModifiedParam:
+    name: date_modified
+    description: >-
+      Filter items by date_modified. For example
+      `v3/catalog/products?date_last_imported:min=2018-06-15`
+    required: false
+    in: query
+    type: string
+    format: date-time
+  FilterDateCreatedParam:
+    name: date_created
+    description: |
+      Filter items by date_created.
+    required: false
+    in: query
+    type: string
+    format: date-time
+  FilterDateLastImportedParam:
+    name: date_last_imported
+    description: >-
+      Filter items by date_last_imported. For example
+      `v3/catalog/products?date_modified:min=2018-06-15`
+    required: false
+    in: query
+    type: string
+    format: date-time
+  FilterIsVisibleParam:
+    name: is_visible
+    description: >
+      Filter items by is_visible. This filter uses numbers instead. 0 = false
+      and 1 = true.
+    required: false
+    in: query
+    type: integer
+    enum:
+      - 1
+      - 0
+  FilterIsFeaturedParam:
+    name: is_featured
+    description: |
+      Filter items by is_featured.
+    required: false
+    in: query
+    type: integer
+  FilterIsFreeShippingParam:
+    name: is_free_shipping
+    description: |
+      Filter items by is_free_shipping.
+    required: false
+    in: query
+    type: integer
+  FilterInventoryLevelParam:
+    name: inventory_level
+    description: |
+      Filter items by inventory_level.
+    required: false
+    in: query
+    type: integer
+  FilterInventoryLowParam:
+    name: inventory_low
+    description: |
+      Filter items by inventory_low. Values: 1, 0.
+    required: false
+    in: query
+    type: integer
+  FilterOutOfStockParam:
+    name: out_of_stock
+    description: >
+      Filter items by out_of_stock. To enable the filter, pass
+      `out_of_stock`=`1`.
+    required: false
+    in: query
+    type: integer
+  FilterTotalSoldParam:
+    name: total_sold
+    description: |
+      Filter items by total_sold.
+    required: false
+    in: query
+    type: integer
+  ProductFilterTypeParam:
+    name: type
+    description: 'Filter items by type: `physical` or `digital`.'
+    required: false
+    in: query
+    type: string
+    enum:
+      - digital
+      - physical
+  FilterCategoriesParam:
+    name: categories
+    description: |
+      Filter items by categories.
+    required: false
+    in: query
+    type: integer
+  FilterKeywordParam:
+    name: keyword
+    description: 'Filter items by keywords. eg. new, towel, bath'
+    required: false
+    in: query
+    type: string
+  ProductFilterKeywordParam:
+    name: keyword
+    description: >
+      Filter items by keywords found in the `name`, `description`, or `sku`
+      fields, or in the brand name.
+    required: false
+    in: query
+    type: string
+  ProductFilterKeywordContextParam:
+    name: keyword_context
+    description: Set context for a product search.
+    required: false
+    in: query
+    type: string
+    enum:
+      - shopper
+      - merchant
+  FilterStatusParam:
+    name: status
+    description: |
+      Filter items by status.
+    required: false
+    in: query
+    type: integer
+  FilterIncludeParam:
+    name: include
+    description: >-
+      Sub-resources to include on a product, in a comma-separated list. Valid
+      expansions currently include `variants`, `images`, 'primary_image`,
+      `custom_fields`, and `bulk_pricing_rules`.
+    required: false
+    in: query
+    type: string
+    enum:
+      - variants
+      - images
+      - custom_fields
+      - bulk_pricing_rules
+      - primary_image
+  FilterIncludePriceRecordParam:
+    name: include
+    description: >
+      Sub-resources to include on a price record, in a comma-separated list.
+      Valid expansions currently include `bulk_pricing_tiers` and `sku`.  Other
+      valies will be ignored.
+    required: false
+    in: query
+    type: string
+    enum:
+      - bulk_pricing_tiers
+      - sku
+  FilterIncludeFieldsParam:
+    name: include_fields
+    description: >-
+      Fields to include, in a comma-separated list. The ID and the specified
+      fields will be returned.
+    required: false
+    in: query
+    type: string
+  FilterExcludeFieldsParam:
+    name: exclude_fields
+    description: >-
+      Fields to exclude, in a comma-separated list. The specified fields will be
+      excluded from a response. The ID cannot be excluded.
+    required: false
+    in: query
+    type: string
+  FilterParentIdParam:
+    name: parent_id
+    description: >-
+      Filter items by parent_id. If the category is a child or sub category it
+      can be filtered with the parent_id. 
+    required: false
+    in: query
+    type: integer
+  FilterPageTitleParam:
+    name: page_title
+    description: |
+      Filter items by page_title.
+    required: false
+    in: query
+    type: string
+  FilterAvailabilityParam:
+    name: availability
+    description: |
+      Filter items by availability. Values are: available, disabled, preorder.
+    required: false
+    in: query
+    type: string
+    enum:
+      - available
+      - disabled
+      - preorder
+  FilterPriceListIdParam:
+    name: price_list_id
+    description: |
+      The ID of the `Price List`.
+    required: false
+    in: query
+    type: integer
+  FilterProductIdParam:
+    type: string
+    name: product_id
+    in: query
+    required: false
+    description: |
+      A comma-separated list of ids of `Product`s whose prices were requested.
+  FilterVariantIdParam:
+    type: integer
+    name: variant_id
+    in: query
+    required: false
+    description: |
+      The ID of the `Variant` whose prices were requested.
+  FilterCurrencyParam:
+    name: currency
+    description: |
+      Filter items by currency.
+    required: false
+    in: query
+    type: string
+    format: ISO-4217
+  PageParam:
+    name: page
+    description: Specifies the page number in a limited (paginated) list of products.
+    required: false
+    in: query
+    type: integer
+  LimitParam:
+    name: limit
+    description: >-
+      Controls the number of items per page in a limited (paginated) list of
+      products.
+    required: false
+    in: query
+    type: integer
+  ScriptsSortKeyParam:
+    name: sort
+    description: |
+      Scripts field name to sort by.
+    required: false
+    in: query
+    type: string
+    enum:
+      - name
+      - description
+      - date_created
+      - date_modified
+  DirectionParam:
+    name: direction
+    description: |
+      Sort direction. Acceptable values are: `asc`, `desc`.
+    required: false
+    in: query
+    type: string
+    enum:
+      - asc
+      - desc
+  ProductSortParam:
+    name: sort
+    description: |
+      Field name to sort by.
+    required: false
+    in: query
+    type: string
+    enum:
+      - id
+      - name
+      - sku
+      - price
+      - date_modified
+      - date_last_imported
+      - inventory_level
+      - is_visible
+      - total_sold
+  ProductIdParam:
+    name: product_id
+    in: path
+    description: |
+      The ID of the `Product` to which the resource belongs.
+    required: true
+    type: integer
+  ReviewIdParam:
+    name: review_id
+    description: |
+      The ID of the `review` that is being operated on.
+    required: true
+    in: path
+    type: integer
+  ImageIdParam:
+    name: image_id
+    description: |
+      The ID of the `Image` that is being operated on.
+    required: true
+    in: path
+    type: integer
+  VideoIdParam:
+    name: video_id
+    description: |
+      The ID of the `Video` that is being operated on.
+    required: true
+    in: path
+    type: string
+  ComplexRuleIdParam:
+    name: complex_rule_id
+    description: |
+      The ID of the `ComplexRule`.
+    required: true
+    in: path
+    type: integer
+  ConfigurableFieldIdParam:
+    name: configurable_field_id
+    description: |
+      The ID of the `ConfigurableField`.
+    required: true
+    in: path
+    type: integer
+  CustomFieldIdParam:
+    name: custom_field_id
+    description: |
+      The ID of the `CustomField`.
+    required: true
+    in: path
+    type: integer
+  BulkPricingRuleIdParam:
+    name: bulk_pricing_rule_id
+    description: |
+      The ID of the `BulkPricingRule`.
+    required: true
+    in: path
+    type: integer
+  ModifierIdParam:
+    name: modifier_id
+    description: |
+      The ID of the `Modifier`.
+    required: true
+    in: path
+    type: integer
+  ValueIdParam:
+    name: value_id
+    description: |
+      The ID of the `Modifier/Option Value`.
+    required: true
+    in: path
+    type: integer
+  OptionIdParam:
+    name: option_id
+    description: |
+      The ID of the `Option`.
+    required: true
+    in: path
+    type: integer
+  SubscriberIdParam:
+    name: subscriber_id
+    in: path
+    description: |
+      The ID of the `Subscriber` requested.
+    required: true
+    type: integer
+  VariantIdParam:
+    name: variant_id
+    in: path
+    description: |
+      ID of the variant on a product, or on an associated Price List Record.
+    required: true
+    type: integer
+  CategoryIdParam:
+    name: category_id
+    in: path
+    description: |
+      The ID of the `Category` to which the resource belongs.
+    required: true
+    type: integer
+  BrandIdParam:
+    name: brand_id
+    in: path
+    description: |
+      The ID of the `Brand` to which the resource belongs.
+    required: true
+    type: integer
+  MetafieldIdParam:
+    name: metafield_id
+    in: path
+    description: |
+      The ID of the `Metafield`.
+    required: true
+    type: integer
+  MetafieldKeyParam:
+    name: key
+    in: query
+    description: |
+      Filter based on a metafield's key.
+    required: false
+    type: string
+  MetafieldNamespaceParam:
+    name: namespace
+    in: query
+    description: Filter based on a metafield's namespace.
+    required: false
+    type: string
+  ImageFileParam:
+    name: image_file
+    description: |
+      An image file. Supported MIME types include GIF, JPEG, and PNG.
+    required: true
+    in: formData
+    type: file
+  OrderIdParam:
+    name: order_id
+    in: path
+    description: |
+      The ID of the `Order` to which the transactions belong.
+    required: true
+    type: integer
+  JobIdParam:
+    name: job_id
+    description: The job identifier.
+    in: path
+    type: string
+    required: true
+  ThemeIdParam:
+    name: theme_id
+    description: The theme identifier.
+    in: path
+    type: string
+    required: true
+  PriceListIdParam:
+    type: integer
+    name: price_list_id
+    in: path
+    description: |
+      The ID of the `Price List` requested.
+    required: true
+  PriceRecordCurrencyParam:
+    name: currency_code
+    type: string
+    in: path
+    description: |
+      The currency code associated with the price record being acted upon.
+    required: true
+    format: ISO-4217
+  QueryWidgetsParam:
+    type: string
+    name: query
+    in: query
+    description: |
+      The query string associated with a widget's name and description.
+  Accept:
+    in: header
+    type: string
+    name: Accept
+    default: application/json
+  Content-Type:
+    name: Content-Type
+    in: header
+    type: string
+    default: application/json
+definitions:
+  SubscriberCollectionResponse:
+    description: |
+      Response payload for the BigCommerce API.
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Subscriber'
+      meta:
+        $ref: '#/definitions/CollectionMeta'
+  SubscriberResponse:
+    description: |
+      Response payload for the BigCommerce API.
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/Subscriber'
+      meta:
+        $ref: '#/definitions/Meta'
+  SubscriberBase:
+    type: object
+    description: Common Subscriber properties.
+    properties:
+      id:
+        type: integer
+        description: |
+          The unique numeric ID of the subscriber; increments sequentially.
+        x-required:
+          - put
+      email:
+        type: string
+        description: |
+          The email of the subscriber. Must be unique.
+        x-required:
+          - post
+      first_name:
+        type: string
+        description: |
+          The first name of the subscriber.
+        minLength: 0
+        maxLength: 255
+      last_name:
+        type: string
+        description: |
+          The last name of the subscriber.
+        minLength: 0
+        maxLength: 255
+      source:
+        type: string
+        description: >
+          The source of the subscriber. Values are: `storefront`, `order`, or
+          `custom`.
+        minLength: 0
+        maxLength: 255
+      order_id:
+        type: integer
+        description: |
+          The ID of the source order, if source was an order.
+        x-nullable: true
+        minimum: 1
+        maximum: 2147483647
+  Subscriber:
+    type: object
+    allOf:
+      - $ref: '#/definitions/SubscriberBase'
+      - type: object
+        properties:
+          date_modified:
+            type: string
+            format: date-time
+            description: |
+              The date on which the subscriber was modified.
+          date_created:
+            type: string
+            format: date-time
+            description: |
+              The date of which the subscriber was created.
+  SubscriberPost:
+    type: object
+    description: |
+      The model for a POST to create a subscriber.
+    allOf:
+      - $ref: '#/definitions/SubscriberBase'
+  SubscriberPut:
+    type: object
+    description: |
+      The model for a PUT to update a subscriber.
+    allOf:
+      - $ref: '#/definitions/SubscriberBase'
+  CollectionMeta:
+    type: object
+    description: 'Data about the response, including pagination and collection totals.'
+    properties:
+      pagination:
+        $ref: '#/definitions/Pagination'
+    title: Collection Meta
+  Pagination:
+    type: object
+    description: 'Data about the response, including pagination and collection totals.'
+    title: Pagination
+    properties:
+      total:
+        type: integer
+        description: |
+          Total number of items in the result set.
+        example: 36
+      count:
+        type: integer
+        description: |
+          Total number of items in the collection response.
+        example: 36
+      per_page:
+        type: integer
+        description: >
+          The amount of items returned in the collection per page, controlled by
+          the limit parameter.
+        example: 50
+      current_page:
+        type: integer
+        description: |
+          The page you are currently on within the collection.
+        example: 1
+      total_pages:
+        type: integer
+        description: |
+          The total number of pages in the collection.
+        example: 1
+      links:
+        type: object
+        description: >
+          Pagination links for the previous and next parts of the whole
+          collection.
+        properties:
+          previous:
+            type: string
+            description: |
+              Link to the previous page returned in the response.
+          current:
+            type: string
+            description: |
+              Link to the current page returned in the response.
+            example: '?page=1&limit=50'
+          next:
+            type: string
+            description: |
+              Link to the next page returned in the response.
+  Meta:
+    type: object
+    description: Empty meta object; may be used later.
+    title: Meta
+  ErrorResponse:
+    allOf:
+      - $ref: '#/definitions/BaseError'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/definitions/DetailedErrors'
+    title: Error Response
+  BaseError:
+    type: object
+    description: |
+      Error payload for the BigCommerce API.
+    properties:
+      status:
+        description: |
+          The HTTP status code.
+        type: integer
+      title:
+        description: |
+          The error title describing the particular error.
+        type: string
+      type:
+        type: string
+      instance:
+        type: string
+    title: Base Error
+  NotFound:
+    description: Error payload for the BigCommerce API.
+    type: object
+    properties:
+      status:
+        description: |
+          404 HTTP status code.
+        type: integer
+      title:
+        description: The error title describing the particular error.
+        type: string
+      type:
+        type: string
+      instance:
+        type: string
+    title: Not Found
+  DetailedErrors:
+    type: object
+    title: Detailed Errors
+    properties:
+      additionalProperties:
+        type: string
+securityDefinitions:
+  X-Auth-Client:
+    type: apiKey
+    name: X-Auth-Client
+    in: header
+  X-Auth-Token:
+    type: apiKey
+    name: X-Auth-Token
+    in: header
+security:
+  - X-Auth-Client: []
+  - X-Auth-Token: []
