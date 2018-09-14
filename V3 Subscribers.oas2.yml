@@ -86,18 +86,29 @@ paths:
             $ref: '#/definitions/SubscriberPost'
           x-examples:
             application/json:
-              email: testing@bigcommerce.com
+              email: janedoe2@email.com
               first_name: Jane
               last_name: Doe
-              source: storefront
+              source: mailchimp
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A `Subscriber` object.
+          description: ''
           schema:
             $ref: '#/definitions/SubscriberResponse'
+          examples:
+            application/json:
+              data:
+                id: 3
+                email: janedoe2@email.com
+                first_name: Jane
+                last_name: Doe
+                source: mailchimp
+                order_id: null
+                date_created: '2018-09-14T19:49:45+00:00'
+                date_modified: '2018-09-14T19:49:45+00:00'
+              meta: {}
         '409':
           description: >
             The `Subscriber` was in conflict with another subscriber. This is
