@@ -1,6 +1,137 @@
 swagger: '2.0'
 info:
-  title: V 3 Orders API
-  version: '1.0'
-host: example.com
-paths: {}
+  title: BigCommerce API
+  version: 3.0.0b
+  description: A Swagger Document for the BigCommmerce v3 API.
+  termsOfService: 'http://www.bigcommerce.com/terms'
+  license:
+    name: ''
+host: api.bigcommerce.com
+basePath: '/stores/{store_hash}/v3'
+tags:
+  - name: Catalog
+  - name: Brands
+  - name: Category
+  - name: Products
+  - name: Product Metafields
+  - name: Product Bulk Pricing Rules
+  - name: Product Complex Rules
+  - name: Product Custom Fields
+  - name: Product Modifiers
+  - name: Product Variants
+  - name: Product Variants Metafields
+  - name: Product Variant Options
+  - name: Product Reviews
+  - name: Product Videos
+  - name: Product Images
+  - name: Customers
+    description: BigCommerce Customers API Definition.
+  - name: Orders
+    description: BigCommerce Orders API Definition.
+  - name: Price Lists
+    description: BigCommerce Price Lists API Definition.
+  - name: Scripts
+  - name: Themes
+    description: BigCommerce Themes API Definition.
+  - name: Legacy
+  - name: Widget Template
+    description: BigCommerce Widget Templates API Definition.
+  - name: Widget
+    description: BigCommerce Widgets API Definition.
+  - name: Placement
+    description: BigCommerce Placements API Definition.
+schemes:
+  - https
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  '/orders/{order_id}/transactions':
+    parameters:
+      - $ref: '#/parameters/OrderIdParam'
+    get:
+      tags:
+        - Orders
+      description: >
+        Returns a collection of `Transaction` objects related to a BigCommerce
+        Order.
+      operationId: getTransactions
+      responses:
+        '200':
+          description: |
+            An array of transactions.
+          schema:
+            $ref: '#/definitions/TransactionCollectionResponse'
+        '204':
+          description: |
+            No content found to fulfill request.
+          schema:
+            $ref: '#/definitions/NoContent'
+        '404':
+          description: |
+            The resource was not found.
+          schema:
+            $ref: '#/definitions/NotFound'
+    post:
+      tags:
+        - Orders
+      description: |
+        Creates a new `Transaction` related to a BigCommerce Order.
+      operationId: createTransaction
+      parameters:
+        - name: transaction
+          in: body
+          required: true
+          description: |
+            A BigCommerce `Transaction` object.
+          schema:
+            $ref: '#/definitions/TransactionPost'
+      responses:
+        '200':
+          description: |
+            Successful transaction object created call
+          schema:
+            $ref: '#/definitions/TransactionResponse'
+        '204':
+          description: |
+            No content found to fulfill request.
+          schema:
+            $ref: '#/definitions/NoContent'
+        '404':
+          description: |
+            The resource was not found.
+          schema:
+            $ref: '#/definitions/NotFound'
+parameters:
+  OrderIdParam:
+    name: order_id
+    in: path
+    description: |
+      The ID of the `Order` to which the transactions belong.
+    required: true
+    type: integer
+  Accept:
+    in: header
+    type: string
+    name: Accept
+    default: application/json
+  Content-Type:
+    name: Content-Type
+    in: header
+    type: string
+    default: application/json
+securityDefinitions:
+  X-Auth-Client:
+    type: apiKey
+    name: X-Auth-Client
+    in: header
+  X-Auth-Token:
+    type: apiKey
+    name: X-Auth-Token
+    in: header
+definitions:
+  testing:
+    type: object
+    properties: {}
+    title: TestModel
