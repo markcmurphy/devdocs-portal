@@ -291,11 +291,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: checkoutId
-          in: path
-          required: true
-          type: string
-          description: ''
+        - $ref: '#/parameters/checkoutId'
         - in: header
           name: Accepts
           type: string
@@ -563,11 +559,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: checkoutId
-          in: path
-          required: true
-          type: string
-          description: ''
+        - $ref: '#/parameters/checkoutId'
         - in: header
           name: Accepts
           type: string
@@ -586,13 +578,7 @@ paths:
           name: X-Auth-Token
           type: string
           required: true
-        - name: addressId
-          in: path
-          required: true
-          type: integer
-          exclusiveMaximum: false
-          exclusiveMinimum: false
-          description: ''
+        - $ref: '#/parameters/addressId'
         - name: body
           in: body
           required: true
@@ -2714,7 +2700,7 @@ definitions:
       - quantity
 parameters:
   checkoutId:
-    name: Checkout ID
+    name: checkoutId
     in: path
     type: string
     required: true
