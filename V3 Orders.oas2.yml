@@ -24,7 +24,15 @@ paths:
     get:
       tags:
         - Orders
-      description: Get transaction related to an order using the `order_id`.
+      description: >-
+        Get transaction related to an order using the `order_id`.
+
+
+        * Depending on the payment method used, different details will be
+        available. Not all credit card payment gateways will return full card
+        details or all CVV/fraud response details.
+
+        * Test Payment Gateway does not return any information.
       operationId: getTransactions
       responses:
         '200':
