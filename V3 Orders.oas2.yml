@@ -73,36 +73,6 @@ paths:
             The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
-    post:
-      tags:
-        - Orders
-      description: |
-        Creates a new `Transaction` related to a BigCommerce Order.
-      operationId: createTransaction
-      parameters:
-        - name: transaction
-          in: body
-          required: true
-          description: |
-            A BigCommerce `Transaction` object.
-          schema:
-            $ref: '#/definitions/TransactionPost'
-      responses:
-        '200':
-          description: |
-            Successful transaction object created call
-          schema:
-            $ref: '#/definitions/TransactionResponse'
-        '204':
-          description: |
-            No content found to fulfill request.
-          schema:
-            $ref: '#/definitions/NoContent'
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/NotFound'
 parameters:
   OrderIdParam:
     name: order_id
