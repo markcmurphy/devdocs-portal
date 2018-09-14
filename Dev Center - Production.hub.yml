@@ -10088,6 +10088,7 @@ pages:
               - title: New Subpage
                 route:
                   path: /new-subpage
+                data: {}
         - title: Price Lists
           route:
             path: /price-lists
@@ -10099,6 +10100,7 @@ pages:
               - title: New Subpage
                 route:
                   path: /new-subpage
+                data: {}
         - title: Subscribers & Customers
           route:
             path: /subscribers-customers
@@ -10780,14 +10782,40 @@ pages:
                     - title: V3 Server to Server Cart & Checkout
                       route:
                         path: /s2s-cart-checkout
+                      data: {}
+              - title: Storefront API's
+                route:
+                  path: /storefront-api
+                data:
+                  children:
+                    - title: Storefront Cart
+                      route:
+                        path: /storefront-cart
+                      data:
+                        $ref: ./Storefront Cart API.oas2.yml
+                    - title: Storefront Checkout
+                      route:
+                        path: /storefront-checkout
+                      data:
+                        $ref: ./Storefront Checkout API.oas2.yml
+              - title: Server to Server API's
+                route:
+                  path: /server-to-server-api
+                data:
+                  children:
+                    - title: Server to Server Cart
+                      route:
+                        path: /server-server-cart
+                      data: {}
+                    - title: Server to Server Checkout
+                      route:
+                        path: /server-server-checkout
+                      data: {}
               - title: V2 API
                 route:
                   path: /v2-api
                 data:
                   $ref: ./BigCommerce V2 API.oas2.yml
-              - title: Storefront API
-                route:
-                  path: /storefront-api
         - title: Legacy
           route:
             path: /legacy
