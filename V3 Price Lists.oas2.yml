@@ -601,13 +601,13 @@
       "default": "application/json"
     }
   },
-    "FilterProductIdParam": {
-      "type": "string",
-      "name": "product_id",
-      "in": "query",
-      "required": false,
-      "description": "A comma-separated list of ids of `Product`s whose prices were requested.\n"
-    },
+  "FilterProductIdParam": {
+    "type": "string",
+    "name": "product_id",
+    "in": "query",
+    "required": false,
+    "description": "A comma-separated list of ids of `Product`s whose prices were requested.\n"
+  },
   "definitions": {
     "PriceListCollectionResponse": {
       "description": "Get All PriceLists.",
@@ -950,6 +950,27 @@
         }
       },
       "title": "PriceRecord Batch Error Response"
+    },
+    "NoContent": {
+      "description": "No-content response for the BigCommerce API.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "204 HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the situation.",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "No Content"
     },
     "PriceRecordBatchErrorSet": {
       "description": "Error during Price Record batch PUT.  Includes data sent in the request and errors.",
