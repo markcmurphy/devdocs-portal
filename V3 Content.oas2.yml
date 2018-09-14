@@ -103,802 +103,802 @@
   ],
   "paths": {
     "/content/widget-templates": {
-        "post": {
-          "tags": [
-            "Widget Template"
-          ],
-          "summary": "Creates a widget template.",
-          "operationId": "createWidgetTemplate",
-          "parameters": [
-            {
-              "name": "templateBody",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/WidgetTemplatePost"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/WidgetTemplateResponse"
-              },
-              "description": "A widget template.\n"
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+      "post": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Creates a widget template.",
+        "operationId": "createWidgetTemplate",
+        "parameters": [
+          {
+            "name": "templateBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplatePost"
             }
           }
-        },
-        "get": {
-          "tags": [
-            "Widget Template"
-          ],
-          "summary": "Gets all widget templates.",
-          "operationId": "getWidgetTemplates",
-          "parameters": [
-            {
-              "$ref": "#/parameters/PageParam"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplateResponse"
             },
-            {
-              "$ref": "#/parameters/LimitParam"
-            },
-            {
-              "$ref": "#/parameters/FilterWidgetTemplateKindParam"
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/WidgetTemplatesResponse"
-              },
-              "description": "Success"
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        }
-      },
-      "/content/widget-templates/{uuid}": {
-        "get": {
-          "tags": [
-            "Widget Template"
-          ],
-          "summary": "Gets a widget template.",
-          "operationId": "getWidgetTemplate",
-          "parameters": [
-            {
-              "$ref": "#/parameters/TemplateUUID"
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/WidgetTemplateResponse"
-              },
-              "description": "Success"
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        },
-        "put": {
-          "tags": [
-            "Widget Template"
-          ],
-          "summary": "Updates a widget template.",
-          "operationId": "updateWidgetTemplate",
-          "parameters": [
-            {
-              "$ref": "#/parameters/TemplateUUID"
-            },
-            {
-              "name": "templateBody",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/WidgetTemplatePut"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/WidgetTemplateResponse"
-              },
-              "description": "Success"
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        },
-        "delete": {
-          "tags": [
-            "Widget Template"
-          ],
-          "summary": "Deletes a widget template.",
-          "operationId": "deleteWidgetTemplate",
-          "parameters": [
-            {
-              "$ref": "#/parameters/TemplateUUID"
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "An empty response."
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        }
-      },
-      "/content/widget-templates/{uuid}/preview": {
-        "post": {
-          "tags": [
-            "Widget Template"
-          ],
-          "summary": "Render a widget template and return the widget html.",
-          "operationId": "previewWidget",
-          "parameters": [
-            {
-              "$ref": "#/parameters/TemplateUUID"
-            },
-            {
-              "name": "templateBody",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/WidgetTemplatePreview"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/WidgetTemplatePreviewResponse"
-              },
-              "description": "Success"
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        }
-      },
-      "/content/widgets": {
-        "post": {
-          "tags": [
-            "Widget"
-          ],
-          "summary": "Creates a widget.",
-          "operationId": "createWidget",
-          "parameters": [
-            {
-              "name": "widgetBody",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/WidgetPost"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/WidgetResponse"
-              },
-              "description": "Success"
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        },
-        "get": {
-          "tags": [
-            "Widget"
-          ],
-          "summary": "Gets all widgets.",
-          "operationId": "getWidgets",
-          "parameters": [
-            {
-              "$ref": "#/parameters/PageParam"
-            },
-            {
-              "$ref": "#/parameters/LimitParam"
-            },
-            {
-              "$ref": "#/parameters/FilterWidgetTemplateKindParam"
-            },
-            {
-              "$ref": "#/parameters/FilterWidgetTemplateUUIDParam"
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/WidgetsResponse"
-              },
-              "description": "Success"
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        }
-      },
-      "/content/widgets/{uuid}": {
-        "get": {
-          "tags": [
-            "Widget"
-          ],
-          "summary": "Gets a widget.",
-          "operationId": "getWidget",
-          "parameters": [
-            {
-              "$ref": "#/parameters/WidgetUUID"
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/WidgetResponse"
-              },
-              "description": "Success"
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        },
-        "put": {
-          "tags": [
-            "Widget"
-          ],
-          "summary": "Updates a widget.",
-          "operationId": "updateWidget",
-          "parameters": [
-            {
-              "$ref": "#/parameters/WidgetUUID"
-            },
-            {
-              "name": "widgetBody",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/WidgetPut"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/WidgetResponse"
-              },
-              "description": "Success"
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        },
-        "delete": {
-          "tags": [
-            "Widget"
-          ],
-          "summary": "Deletes a widget.",
-          "operationId": "deleteWidget",
-          "parameters": [
-            {
-              "$ref": "#/parameters/WidgetUUID"
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "An empty response."
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        }
-      },
-      "/content/widgets/search": {
-        "get": {
-          "tags": [
-            "Widget"
-          ],
-          "summary": "Gets all widgets by search.",
-          "operationId": "searchWidgets",
-          "parameters": [
-            {
-              "$ref": "#/parameters/PageParam"
-            },
-            {
-              "$ref": "#/parameters/LimitParam"
-            },
-            {
-              "$ref": "#/parameters/QueryWidgetsParam"
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/WidgetsResponse"
-              },
-              "description": "Success"
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        }
-      },
-      "/content/placements": {
-        "post": {
-          "tags": [
-            "Placement"
-          ],
-          "summary": "Creates a placement.",
-          "operationId": "createPlacement",
-          "parameters": [
-            {
-              "name": "placementBody",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/PlacementPost"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/PlacementResponse"
-              },
-              "description": "A placement.\n"
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        },
-        "get": {
-          "tags": [
-            "Placement"
-          ],
-          "summary": "Gets all placements.",
-          "operationId": "getPlacements",
-          "parameters": [
-            {
-              "$ref": "#/parameters/PageParam"
-            },
-            {
-              "$ref": "#/parameters/LimitParam"
-            },
-            {
-              "$ref": "#/parameters/FilterWidgetTemplateKindParam"
-            },
-            {
-              "$ref": "#/parameters/FilterTemplateFileParam"
-            },
-            {
-              "$ref": "#/parameters/FilterWidgetUUIDParam"
-            },
-            {
-              "$ref": "#/parameters/FilterWidgetTemplateUUIDParam"
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/PlacementsResponse"
-              },
-              "description": "Success"
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        }
-      },
-      "/content/placements/{uuid}": {
-        "get": {
-          "tags": [
-            "Placement"
-          ],
-          "summary": "Gets a placement.",
-          "operationId": "getPlacement",
-          "parameters": [
-            {
-              "$ref": "#/parameters/PlacementUUID"
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/PlacementResponse"
-              },
-              "description": "Success"
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        },
-        "put": {
-          "tags": [
-            "Placement"
-          ],
-          "summary": "Updates a placement.",
-          "operationId": "updatePlacement",
-          "parameters": [
-            {
-              "$ref": "#/parameters/PlacementUUID"
-            },
-            {
-              "name": "placementBody",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/PlacementPut"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/PlacementResponse"
-              },
-              "description": "Success"
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        },
-        "delete": {
-          "tags": [
-            "Placement"
-          ],
-          "summary": "Deletes a placement.",
-          "operationId": "deletePlacement",
-          "parameters": [
-            {
-              "$ref": "#/parameters/PlacementUUID"
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "An empty response."
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          }
-        }
-      },
-      "/content/regions": {
-        "get": {
-          "summary": "Get an ordered list of unique regions defined in a template file.",
-          "operationId": "getRegions",
-          "parameters": [
-            {
-              "$ref": "#/parameters/RequiredTemplateFile"
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/ThemeRegionsResponse"
-              },
-              "description": "Success"
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
+            "description": "A widget template.\n"
           },
-          "tags": [
-            "Themes"
-          ]
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
         }
       },
-      "/content/scripts": {
-        "post": {
-          "summary": "Creates a script.",
-          "operationId": "createScript",
-          "parameters": [
-            {
-              "name": "scriptBody",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/ScriptPost"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/ScriptResponse"
-              },
-              "description": "Success.\n"
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
+      "get": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Gets all widget templates.",
+        "operationId": "getWidgetTemplates",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
           },
-          "tags": [
-            "Scripts"
-          ]
-        },
-        "get": {
-          "summary": "Gets all scripts.",
-          "operationId": "getScripts",
-          "parameters": [
-            {
-              "$ref": "#/parameters/PageParam"
-            },
-            {
-              "$ref": "#/parameters/LimitParam"
-            },
-            {
-              "$ref": "#/parameters/ScriptsSortKeyParam"
-            },
-            {
-              "$ref": "#/parameters/DirectionParam"
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/ScriptsResponse"
-              },
-              "description": "Success.\n"
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
+          {
+            "$ref": "#/parameters/LimitParam"
           },
-          "tags": [
-            "Scripts"
-          ]
-        }
-      },
-      "/content/scripts/{uuid}": {
-        "get": {
-          "summary": "Gets a script.",
-          "operationId": "getScript",
-          "parameters": [
-            {
-              "$ref": "#/parameters/ScriptUUID"
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/ScriptResponse"
-              },
-              "description": "Success"
+          {
+            "$ref": "#/parameters/FilterWidgetTemplateKindParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplatesResponse"
             },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
+            "description": "Success"
           },
-          "tags": [
-            "Scripts"
-          ]
-        },
-        "put": {
-          "summary": "Updates a script.",
-          "operationId": "updateScript",
-          "parameters": [
-            {
-              "$ref": "#/parameters/ScriptUUID"
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             },
-            {
-              "name": "scriptBody",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/ScriptPut"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/ScriptResponse"
-              },
-              "description": "Success"
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          },
-          "tags": [
-            "Scripts"
-          ]
-        },
-        "delete": {
-          "summary": "Deletes a script.",
-          "operationId": "deleteScript",
-          "parameters": [
-            {
-              "$ref": "#/parameters/ScriptUUID"
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "An empty response."
-            },
-            "404": {
-              "description": "The resource was not found.\n",
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              }
-            },
-            "422": {
-              "schema": {
-                "$ref": "#/definitions/ErrorResponse"
-              },
-              "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
-            }
-          },
-          "tags": [
-            "Scripts"
-          ]
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
         }
       }
+    },
+    "/content/widget-templates/{uuid}": {
+      "get": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Gets a widget template.",
+        "operationId": "getWidgetTemplate",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TemplateUUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplateResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Updates a widget template.",
+        "operationId": "updateWidgetTemplate",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TemplateUUID"
+          },
+          {
+            "name": "templateBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplatePut"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplateResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Deletes a widget template.",
+        "operationId": "deleteWidgetTemplate",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TemplateUUID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response."
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/widget-templates/{uuid}/preview": {
+      "post": {
+        "tags": [
+          "Widget Template"
+        ],
+        "summary": "Render a widget template and return the widget html.",
+        "operationId": "previewWidget",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TemplateUUID"
+          },
+          {
+            "name": "templateBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplatePreview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetTemplatePreviewResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/widgets": {
+      "post": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Creates a widget.",
+        "operationId": "createWidget",
+        "parameters": [
+          {
+            "name": "widgetBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WidgetPost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetResponse"
+            },
+            "description": "Success"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Gets all widgets.",
+        "operationId": "getWidgets",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetTemplateKindParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetTemplateUUIDParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetsResponse"
+            },
+            "description": "Success"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/widgets/{uuid}": {
+      "get": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Gets a widget.",
+        "operationId": "getWidget",
+        "parameters": [
+          {
+            "$ref": "#/parameters/WidgetUUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Updates a widget.",
+        "operationId": "updateWidget",
+        "parameters": [
+          {
+            "$ref": "#/parameters/WidgetUUID"
+          },
+          {
+            "name": "widgetBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WidgetPut"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Deletes a widget.",
+        "operationId": "deleteWidget",
+        "parameters": [
+          {
+            "$ref": "#/parameters/WidgetUUID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response."
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/widgets/search": {
+      "get": {
+        "tags": [
+          "Widget"
+        ],
+        "summary": "Gets all widgets by search.",
+        "operationId": "searchWidgets",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/QueryWidgetsParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/WidgetsResponse"
+            },
+            "description": "Success"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/placements": {
+      "post": {
+        "tags": [
+          "Placement"
+        ],
+        "summary": "Creates a placement.",
+        "operationId": "createPlacement",
+        "parameters": [
+          {
+            "name": "placementBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PlacementPost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PlacementResponse"
+            },
+            "description": "A placement.\n"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Placement"
+        ],
+        "summary": "Gets all placements.",
+        "operationId": "getPlacements",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetTemplateKindParam"
+          },
+          {
+            "$ref": "#/parameters/FilterTemplateFileParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetUUIDParam"
+          },
+          {
+            "$ref": "#/parameters/FilterWidgetTemplateUUIDParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PlacementsResponse"
+            },
+            "description": "Success"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/placements/{uuid}": {
+      "get": {
+        "tags": [
+          "Placement"
+        ],
+        "summary": "Gets a placement.",
+        "operationId": "getPlacement",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PlacementUUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PlacementResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Placement"
+        ],
+        "summary": "Updates a placement.",
+        "operationId": "updatePlacement",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PlacementUUID"
+          },
+          {
+            "name": "placementBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PlacementPut"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PlacementResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Placement"
+        ],
+        "summary": "Deletes a placement.",
+        "operationId": "deletePlacement",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PlacementUUID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response."
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        }
+      }
+    },
+    "/content/regions": {
+      "get": {
+        "summary": "Get an ordered list of unique regions defined in a template file.",
+        "operationId": "getRegions",
+        "parameters": [
+          {
+            "$ref": "#/parameters/RequiredTemplateFile"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ThemeRegionsResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Themes"
+        ]
+      }
+    },
+    "/content/scripts": {
+      "post": {
+        "summary": "Creates a script.",
+        "operationId": "createScript",
+        "parameters": [
+          {
+            "name": "scriptBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ScriptPost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ScriptResponse"
+            },
+            "description": "Success.\n"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Scripts"
+        ]
+      },
+      "get": {
+        "summary": "Gets all scripts.",
+        "operationId": "getScripts",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/ScriptsSortKeyParam"
+          },
+          {
+            "$ref": "#/parameters/DirectionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ScriptsResponse"
+            },
+            "description": "Success.\n"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Scripts"
+        ]
+      }
+    },
+    "/content/scripts/{uuid}": {
+      "get": {
+        "summary": "Gets a script.",
+        "operationId": "getScript",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ScriptUUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ScriptResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Scripts"
+        ]
+      },
+      "put": {
+        "summary": "Updates a script.",
+        "operationId": "updateScript",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ScriptUUID"
+          },
+          {
+            "name": "scriptBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ScriptPut"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ScriptResponse"
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Scripts"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes a script.",
+        "operationId": "deleteScript",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ScriptUUID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response."
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n"
+          }
+        },
+        "tags": [
+          "Scripts"
+        ]
+      }
+    }
   },
   "parameters": {
     "TemplateUUID": {
@@ -1560,6 +1560,158 @@
     }
   },
   "definitions": {
+      "CollectionMeta": {
+      "type": "object",
+      "description": "Data about the response, including pagination and collection totals.",
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/Pagination"
+        }
+      },
+      "title": "Collection Meta"
+    },
+    "Pagination": {
+      "type": "object",
+      "description": "Data about the response, including pagination and collection totals.",
+      "title": "Pagination",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "Total number of items in the result set.\n",
+          "example": 36
+        },
+        "count": {
+          "type": "integer",
+          "description": "Total number of items in the collection response.\n",
+          "example": 36
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The amount of items returned in the collection per page, controlled by the limit parameter.\n",
+          "example": 50
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The page you are currently on within the collection.\n",
+          "example": 1
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages in the collection.\n",
+          "example": 1
+        },
+        "links": {
+          "type": "object",
+          "description": "Pagination links for the previous and next parts of the whole collection.\n",
+          "properties": {
+            "previous": {
+              "type": "string",
+              "description": "Link to the previous page returned in the response.\n"
+            },
+            "current": {
+              "type": "string",
+              "description": "Link to the current page returned in the response.\n",
+              "example": "?page=1&limit=50"
+            },
+            "next": {
+              "type": "string",
+              "description": "Link to the next page returned in the response.\n"
+            }
+          }
+        }
+      }
+    },
+    "Meta": {
+      "type": "object",
+      "description": "Empty meta object; may be used later.",
+      "title": "Meta"
+    },
+    "ErrorResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseError"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "errors": {
+              "$ref": "#/definitions/DetailedErrors"
+            }
+          }
+        }
+      ],
+      "title": "Error Response"
+    },
+    "BaseError": {
+      "type": "object",
+      "description": "Error payload for the BigCommerce API.\n",
+      "properties": {
+        "status": {
+          "description": "The HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the particular error.\n",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "Base Error"
+    },
+    "DetailedErrors": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "DetailedErrors - Remove"
+    },
+    "NotFound": {
+      "description": "Error payload for the BigCommerce API.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "404 HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the particular error.",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "Not Found"
+    },
+    "NoContent": {
+      "description": "No-content response for the BigCommerce API.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "204 HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the situation.",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "No Content"
+    },
     "WidgetTemplatePreview": {
       "properties": {
         "widget_configuration": {
@@ -2206,25 +2358,25 @@
         }
       }
     },
-  "securityDefinitions": {
-    "X-Auth-Client": {
-      "type": "apiKey",
-      "name": "X-Auth-Client",
-      "in": "header"
+    "securityDefinitions": {
+      "X-Auth-Client": {
+        "type": "apiKey",
+        "name": "X-Auth-Client",
+        "in": "header"
+      },
+      "X-Auth-Token": {
+        "type": "apiKey",
+        "name": "X-Auth-Token",
+        "in": "header"
+      }
     },
-    "X-Auth-Token": {
-      "type": "apiKey",
-      "name": "X-Auth-Token",
-      "in": "header"
-    }
-  },
-  "security": [
-    {
-      "X-Auth-Client": []
-    },
-    {
-      "X-Auth-Token": []
-    }
-  ]
-}
+    "security": [
+      {
+        "X-Auth-Client": []
+      },
+      {
+        "X-Auth-Token": []
+      }
+    ]
+  }
 }
