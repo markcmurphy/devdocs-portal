@@ -20,8 +20,9 @@ consumes:
 paths:
   /customers/subscribers:
     get:
-      description: |
-        Returns a paginated Subscribers collection.
+      description: >-
+        Get all subscribers from your store. Optional parameters may be passed
+        in.
       operationId: getSubscribers
       parameters:
         - $ref: '#/parameters/FilterEmailParam'
@@ -33,14 +34,19 @@ paths:
         - $ref: '#/parameters/FilterDateModifiedParam'
         - $ref: '#/parameters/PageParam'
         - $ref: '#/parameters/LimitParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of subscriber objects and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/SubscriberCollectionResponse'
       tags:
         - Subscribers
+      summary: Get All Subscribers
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     post:
       description: |
         Creates a `Subscriber` object.
