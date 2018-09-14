@@ -76,17 +76,22 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      description: |
-        Creates a `Subscriber` object.
+      description: Create a subscriber.
       operationId: createSubscriber
       parameters:
         - name: subscriber
           in: body
           required: true
-          description: |
-            `Subscriber` object.
           schema:
             $ref: '#/definitions/SubscriberPost'
+          x-examples:
+            application/json:
+              email: testing@bigcommerce.com
+              first_name: Jane
+              last_name: Doe
+              source: storefront
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: |
@@ -108,6 +113,10 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       tags:
         - Subscribers
+      summary: Create a Subscriber
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: Delete a subscriber(s). Optional parameters maybe passed in.
       operationId: deleteSubscribers
