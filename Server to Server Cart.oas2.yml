@@ -144,7 +144,7 @@ paths:
         - X-Auth-Token: []
   '/carts/{cartId}/items':
     post:
-      description: Adds line item(s) to the cart.
+      description: Add a line item(s) to the cart using the `cartId`.
       parameters:
         - name: cartId
           in: path
@@ -156,13 +156,36 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/CartRequestData'
+          x-examples:
+            application/json:
+              line_items:
+                - quantity: 2
+                  product_id: 77
+                  variant_id: 125
+                  list_price: 12.5
+                  option_selections:
+                    - option_id: 8
+                      option_value: 'Yes'
+              gift_certificates:
+                - name: Happy Birthday
+                  theme: Birthday
+                  amount: 50
+                  quantity: 1
+                  sender:
+                    name: Jane Does
+                    email: janedoe@email.com
+                  recipient:
+                    name: Jane Does
+                    email: janedoe@email.com
+                  message: Happy Birthday Jane!
       tags:
         - Cart
       responses:
         '201':
-          description: Returns Cart Entity object.
+          description: ''
           schema:
             $ref: '#/definitions/Cart'
+      summary: Create Cart Line Items
   '/carts/{cartId}/redirect_urls':
     post:
       description: Creates a set of URLs to redirect the shopper to the BigCommerce store.
