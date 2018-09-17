@@ -18,6 +18,9 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/CartCreateRequestData'
+        - in: header
+          name: ''
+          type: string
       tags:
         - Cart
       responses:
@@ -26,6 +29,9 @@ paths:
           schema:
             $ref: '#/definitions/Cart'
       summary: Create a Cart
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/carts/{cartId}/items':
     post:
       description: Adds line item(s) to the cart.
@@ -545,3 +551,9 @@ securityDefinitions:
     type: apiKey
     name: X-Auth-Token
     in: header
+parameters:
+  Accept:
+    in: query
+    type: string
+    default: application/json
+    name: Accept
