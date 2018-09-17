@@ -177,16 +177,19 @@ paths:
       tags:
         - Price Lists
     delete:
-      description: >
-        Deletes one `Price List` object from BigCommerce by its ID. Also removes
-        all associated Price Records.
+      description: >-
+        Delete a Price List using the `price_list_id`. This also remove all the
+        associated price records.
       operationId: deletePriceList
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
       tags:
         - Price Lists
+      summary: Delete a Price List
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
   '/pricelists/{price_list_id}/records':
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
