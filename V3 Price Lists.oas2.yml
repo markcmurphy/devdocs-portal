@@ -148,23 +148,32 @@ paths:
         - Price Lists
       summary: Get a Price List
     put:
-      description: |
-        Updates a single `Price List` object.
+      description: Updates a single Price List using the `price_list_id`.
       operationId: updatePriceList
       parameters:
         - name: PriceList
           in: body
           required: true
-          description: |
-            A BigCommerce `Price List` object.
           schema:
             $ref: '#/definitions/PriceListPut'
+          x-examples:
+            application/json:
+              name: adipisicing
+              active: true
       responses:
         '200':
-          description: |
-            A Price List.
+          description: ''
           schema:
             $ref: '#/definitions/PriceListResponse'
+          examples:
+            application/json:
+              data:
+                id: 2
+                name: BigCommerce
+                date_created: '2018-02-26T17:37:01Z'
+                date_modified: '2018-09-17T18:45:17Z'
+                active: false
+              meta: {}
         '404':
           description: |
             The resource was not found.
@@ -184,6 +193,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       tags:
         - Price Lists
+      summary: Update a Price List
     delete:
       description: >-
         Delete a Price List using the `price_list_id`. This also remove all the
