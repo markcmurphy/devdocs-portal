@@ -286,6 +286,8 @@ paths:
           required: true
           type: string
           format: UUID
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       tags:
         - Cart
       responses:
@@ -300,6 +302,12 @@ paths:
               checkout_url:
                 type: string
                 format: url
+          examples:
+            application/json:
+              cart_url: >-
+                https://store-id30h7ohwf.mybigcommerce.com/cart.php?action=load&id=bc218c65-7a32-4ab7-8082-68730c074d02&token=aa958e2b7922035bf3339215d95d145ebd9193deb36ae847caa780aa2e003e4b
+              checkout_url: >-
+                https://store-id30h7ohwf.mybigcommerce.com/cart.php?action=loadInCheckout&id=bc218c65-7a32-4ab7-8082-68730c074d02&token=aa958e2b7922035bf3339215d95d145ebd9193deb36ae847caa780aa2e003e4b
       summary: Create Cart Redirect URL
   '/carts/{cartId}/items/{itemId}':
     put:
