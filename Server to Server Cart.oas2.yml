@@ -80,21 +80,7 @@ paths:
             Carts](http://).
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
-        - in: query
-          name: include
-          type: string
-          description: >-
-            redirect_urls: Create a direct link to a Cart.
-
-            line_items.physical_items.options: The Cart returns an abbreviated
-            result. Use this to return physical items product options. Can also
-            be used in a /POST to have the extended Cart object return.
-
-            line_items.digital_items.options: The Cart returns an abbreviated
-            result. Use this to return digital items product options.  Can also
-            be used in a /POST to have the extended Cart object return.
-          enum:
-            - redirect_urls
+        - $ref: '#/parameters/line_items'
       tags:
         - Cart
       responses:
@@ -102,6 +88,57 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Cart'
+          examples:
+            application/json:
+              data:
+                id: bc218c65-7a32-4ab7-8082-68730c074d02
+                customer_id: 0
+                email: ''
+                currency:
+                  code: USD
+                tax_included: false
+                base_amount: 139.75
+                discount_amount: 0
+                cart_amount: 162.81
+                coupons: []
+                line_items:
+                  physical_items:
+                    - id: 6e193ce6-f327-4dcc-b75e-72cf6738525e
+                      parent_id: null
+                      variant_id: 362
+                      product_id: 191
+                      sku: ''
+                      name: Openhouse No. 3
+                      url: >-
+                        http://tatianaistesting.mybigcommerce.com/all/openhouse-no-3/
+                      quantity: 5
+                      taxable: true
+                      image_url: >-
+                        https://cdn8.bigcommerce.com/s-id30h7ohwf/products/191/images/475/openhousevol3_1024x1024__59692__16355.1534344544.330.500.jpg?c=2
+                      discounts: []
+                      coupons: []
+                      discount_amount: 0
+                      coupon_amount: 0
+                      list_price: 27.95
+                      sale_price: 27.95
+                      extended_list_price: 139.75
+                      extended_sale_price: 139.75
+                      is_require_shipping: true
+                      options:
+                        - name: Add a $5 Donation
+                          nameId: 82
+                          value: 'No'
+                          valueId: 186
+                  digital_items: []
+                  gift_certificates: []
+                created_time: '2018-09-17T14:27:39+00:00'
+                updated_time: '2018-09-17T14:27:39+00:00'
+                redirect_urls:
+                  cart_url: >-
+                    https://store-id30h7ohwf.mybigcommerce.com/cart.php?action=load&id=bc218c65-7a32-4ab7-8082-68730c074d02&token=aa958e2b7922035bf3339215d95d145ebd9193deb36ae847caa780aa2e003e4b
+                  checkout_url: >-
+                    https://store-id30h7ohwf.mybigcommerce.com/cart.php?action=loadInCheckout&id=bc218c65-7a32-4ab7-8082-68730c074d02&token=aa958e2b7922035bf3339215d95d145ebd9193deb36ae847caa780aa2e003e4b
+              meta: {}
       summary: Create a Cart
       security:
         - X-Auth-Client: []
