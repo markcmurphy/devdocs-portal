@@ -683,8 +683,7 @@ definitions:
     title: Cart Update Request Data
   LineItemRequestData:
     type: object
-    required:
-      - quantity
+    title: Line Item Request Data
     properties:
       quantity:
         type: number
@@ -692,13 +691,17 @@ definitions:
         type: number
       variant_id:
         type: number
+        description: Required if the product has variants
       list_price:
         type: number
       option_selections:
         type: array
         items:
           $ref: '#/definitions/ProductOptionSelection'
-    title: Line Item Request Data
+    required:
+      - quantity
+      - product_id
+      - variant_id
   ProductOptionSelection:
     type: object
     properties:
