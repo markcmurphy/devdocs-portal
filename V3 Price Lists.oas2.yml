@@ -20,8 +20,7 @@ consumes:
 paths:
   /pricelists:
     get:
-      description: |
-        Returns a paginated collection of `Price List` objects from BigCommerce.
+      description: Get all Price Lists. Optional parameters can be passed in.
       operationId: getPriceListCollection
       parameters:
         - $ref: '#/parameters/FilterIdParam'
@@ -30,6 +29,8 @@ paths:
         - $ref: '#/parameters/FilterDateModifiedParam'
         - $ref: '#/parameters/PageParam'
         - $ref: '#/parameters/LimitParam'
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
       responses:
         '200':
           description: |
@@ -38,6 +39,7 @@ paths:
             $ref: '#/definitions/PriceListCollectionResponse'
       tags:
         - Price Lists
+      summary: Get All Price Lists
     post:
       description: |
         Creates a `Price List` in BigCommerce.
@@ -71,19 +73,21 @@ paths:
       tags:
         - Price Lists
     delete:
-      description: >
-        Deletes a set of `Price List` objects from BigCommerce using a filter.
-        Also removes all associated Price Recordss.
+      description: >-
+        Delete a set of price lists. This also removed all associated price
+        records. Optional parameters can be passed in.
       operationId: deletePriceListsByFilter
       parameters:
         - $ref: '#/parameters/FilterIdParam'
         - $ref: '#/parameters/FilterNameParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
       tags:
         - Price Lists
+      summary: Delete Price List
   '/pricelists/{price_list_id}':
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
