@@ -83,10 +83,18 @@ paths:
         - in: query
           name: include
           type: string
-          default: redirect_urls
           description: >-
-            To create a link to the Cart add the include to the end of the
-            request url.
+            redirect_urls: Create a direct link to a Cart.
+
+            line_items.physical_items.options: The Cart returns an abbreviated
+            result. Use this to return physical items product options. Can also
+            be used in a /POST to have the extended Cart object return.
+
+            line_items.digital_items.options: The Cart returns an abbreviated
+            result. Use this to return digital items product options.  Can also
+            be used in a /POST to have the extended Cart object return.
+          enum:
+            - redirect_urls
       tags:
         - Cart
       responses:
@@ -628,6 +636,25 @@ parameters:
     in: header
     type: string
     default: application/json
+  line_items:
+    name: includ
+    in: query
+    type: string
+    description: >-
+      * `redirect_urls`: Create a direct link to a Cart. This can be used during
+      the /POST request for Carts.
+
+      * `line_items.physical_items.options`: The Cart returns an abbreviated
+      result. Use this to return physical items product options. Can also be
+      used in a /POST to have the extended Cart object return.
+
+      * `line_items.digital_items.options`: The Cart returns an abbreviated
+      result. Use this to return digital items product options.  Can also be
+      used in a /POST to have the extended Cart object return.
+    enum:
+      - redirect_urls
+      - line_items.physical_items.options
+      - line_items.digital_items.options
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
