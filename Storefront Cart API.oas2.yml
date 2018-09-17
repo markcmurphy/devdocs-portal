@@ -37,9 +37,7 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/LineItemsRequest'
-        - in: header
-          name: ''
-          type: string
+        - $ref: '#/parameters/lineItems.physicalItems.options'
       tags:
         - Cart
       responses:
@@ -156,8 +154,8 @@ paths:
         '204':
           description: An empty response.
 parameters:
-  lineItems.physicalItems.options:
-    name: include
+  includeLineItemsPhysical:
+    name: lineItems.physicalItems.options
     type: string
     in: query
     description: >-
