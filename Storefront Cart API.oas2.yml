@@ -37,6 +37,9 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/LineItemsRequest'
+        - in: header
+          name: ''
+          type: string
       tags:
         - Cart
       responses:
@@ -44,6 +47,9 @@ paths:
           description: Returns Cart Entity Object.
           schema:
             $ref: '#/definitions/Cart'
+      security:
+        - X-Auth-Token: []
+        - X-Auth-Client: []
   '/carts/{cartId}/items':
     post:
       description: Adds line item(s) to the cart.
