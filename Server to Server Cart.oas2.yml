@@ -270,7 +270,16 @@ paths:
       summary: Add Cart Line Items
   '/carts/{cartId}/redirect_urls':
     post:
-      description: Creates a set of URLs to redirect the shopper to the BigCommerce store.
+      description: >-
+        Create a URL to redirect a shopper to an already created cart using the
+        `cartId`.
+
+
+        A cart's redirect URLs may only be used once. Once a redirect URL has
+        been visited, it will be invalidated and cannot be used again. If your
+        application requires URLs to be visited more than once, consider
+        generating a fresh one each time you need to restore a cart, and
+        redirecting to the URL from your own application.
       parameters:
         - name: cartId
           in: path
@@ -291,6 +300,7 @@ paths:
               checkout_url:
                 type: string
                 format: url
+      summary: Create Cart Redirect URL
   '/carts/{cartId}/items/{itemId}':
     put:
       description: >-
