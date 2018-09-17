@@ -42,13 +42,15 @@ paths:
       tags:
         - Scripts
     get:
-      summary: Gets all scripts.
+      summary: Get All Scripts
       operationId: getScripts
       parameters:
         - $ref: '#/parameters/PageParam'
         - $ref: '#/parameters/LimitParam'
         - $ref: '#/parameters/ScriptsSortKeyParam'
         - $ref: '#/parameters/DirectionParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -63,6 +65,10 @@ paths:
             See the response for more details.
       tags:
         - Scripts
+      description: >-
+        Get all scripts. Optional parameters can be passed in. This will only
+        return scripts that have been created by the api key and password that
+        created the script originally. 
   '/content/scripts/{uuid}':
     get:
       summary: Gets a script.
