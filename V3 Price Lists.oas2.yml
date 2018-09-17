@@ -128,17 +128,25 @@ paths:
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
     get:
-      description: |
-        Returns a `Price List` object from BigCommerce.
+      description: Get a Price List using the `price_list_id`.
       operationId: getPriceList
       responses:
         '200':
-          description: |
-            An array of Price Lists and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/PriceListResponse'
+          examples:
+            application/json:
+              data:
+                id: 2
+                name: B2B
+                date_created: '2018-02-26T17:37:01Z'
+                date_modified: '2018-09-17T18:34:36Z'
+                active: true
+              meta: {}
       tags:
         - Price Lists
+      summary: Get a Price List
     put:
       description: |
         Updates a single `Price List` object.
