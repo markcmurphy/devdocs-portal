@@ -3161,7 +3161,7 @@ definitions:
         type: number
         format: double
   AppliedCoupon:
-    title: AppliedCoupon
+    title: Applied Coupon
     type: object
     properties:
       id:
@@ -3185,7 +3185,7 @@ definitions:
     required:
       - code
   AppliedDiscount:
-    title: AppliedDiscount
+    title: Applied Discount
     type: object
     properties:
       name:
@@ -3196,7 +3196,7 @@ definitions:
         type: number
         format: double
   LineItem:
-    title: LineItem
+    title: Line Item
     type: object
     properties:
       physicalItems:
@@ -3219,7 +3219,7 @@ definitions:
       - digitalItems
       - giftCertificate
   ItemPhysical:
-    title: ItemPhysical
+    title: Item Physical
     type: object
     properties:
       id:
@@ -3304,7 +3304,7 @@ definitions:
     required:
       - quantity
   GiftWrapping:
-    title: GiftWrapping
+    title: Gift Wrapping
     type: object
     properties:
       name:
@@ -3318,7 +3318,7 @@ definitions:
         type: number
         format: double
   ItemDigital:
-    title: ItemDigital
+    title: Item Digital
     type: object
     properties:
       id:
@@ -3409,7 +3409,7 @@ definitions:
     required:
       - quantity
   ItemGiftCertificate:
-    title: ItemGiftCertificate
+    title: Item Gift Certificate
     type: object
     properties:
       id:
@@ -3446,7 +3446,7 @@ definitions:
       - sender
       - recipient
   ContactEntity:
-    title: ContactEntity
+    title: Contact Entity
     type: object
     properties:
       name:
@@ -3456,7 +3456,7 @@ definitions:
         description: ''
         type: string
   AddressResponse:
-    title: AddressResponse
+    title: Address Response
     allOf:
       - $ref: '#/definitions/AddressProperties'
       - type: object
@@ -3465,7 +3465,7 @@ definitions:
             description: ''
             type: string
   AddressProperties:
-    title: AddressProperties
+    title: Address Properties
     type: object
     properties:
       firstName:
@@ -3573,7 +3573,7 @@ definitions:
         items:
           type: string
   ShippingOptionEntity:
-    title: ShippingOptionEntity
+    title: Shipping Option Entity
     allOf:
       - $ref: '#/definitions/SelectedShippingOption'
       - type: object
@@ -3582,7 +3582,7 @@ definitions:
             description: Is this shipping method the recommended shipping option or not.
             type: boolean
   SelectedShippingOption:
-    title: SelectedShippingOption
+    title: Selected Shipping Option
     type: object
     properties:
       description:
@@ -3605,7 +3605,7 @@ definitions:
         description: An estimate of the arrival time.
         type: string
   ConsignmentCouponDiscount:
-    title: ConsignmentCouponDiscount
+    title: Consignment Coupon Discount
     type: object
     properties:
       code:
@@ -3616,7 +3616,7 @@ definitions:
         type: number
         format: double
   ConsignmentDiscount:
-    title: ConsignmentDiscount
+    title: Consignment Discount
     type: object
     properties:
       id:
@@ -3634,7 +3634,7 @@ definitions:
         type: number
         format: double
   GiftCertificate:
-    title: GiftCertificate
+    title: Gift Certificate
     description: >-
       The values presented here are projections of how much we would be using
       out of an existent gift certificate
@@ -3660,7 +3660,7 @@ definitions:
         type: number
         format: double
   CheckoutError:
-    title: CheckoutError
+    title: Checkout Error
     type: object
     properties:
       errors:
@@ -3669,7 +3669,7 @@ definitions:
         items:
           $ref: '#/definitions/ErrorInner'
   ErrorInner:
-    title: ErrorInner
+    title: Error Inner
     type: object
     properties:
       status:
@@ -3686,7 +3686,7 @@ definitions:
         description: ''
         type: string
   CheckoutUpdateRequest:
-    title: CheckoutUpdateRequest
+    title: Checkout Update Request
     type: object
     properties:
       customerMessage:
@@ -3699,7 +3699,7 @@ definitions:
       data:
         $ref: '#/definitions/Checkout'
   CartUpdateRequest:
-    title: CartUpdateRequest
+    title: Cart Update Request
     type: object
     properties:
       lineItem:
@@ -3707,7 +3707,7 @@ definitions:
       giftCertificate:
         $ref: '#/definitions/LineItemGiftCertificateRequestData'
   LineItemRequestData:
-    title: LineItemRequestData
+    title: Line Item Request Data
     type: object
     properties:
       quantity:
@@ -3723,7 +3723,7 @@ definitions:
         type: number
         format: double
   LineItemGiftCertificateRequestData:
-    title: LineItemGiftCertificateRequestData
+    title: Line Item Gift Certificate Request Data
     type: object
     properties:
       theme:
@@ -3755,7 +3755,7 @@ definitions:
       - recipient
       - quantity
   CreateConsignmentRequest:
-    title: CreateConsignmentRequest
+    title: Create Consignment Request
     type: object
     properties:
       shippingAddress:
@@ -3766,7 +3766,7 @@ definitions:
         items:
           $ref: '#/definitions/ConsignmentLineItem'
   ConsignmentLineItem:
-    title: ConsignmentLineItem
+    title: Consignment Line Item
     type: object
     properties:
       itemId:
@@ -3780,7 +3780,7 @@ definitions:
       - itemId
       - quantity
   UpdateConsignmentRequest:
-    title: UpdateConsignmentRequest
+    title: Update Consignment Request
     description: >-
       One or more of these three fields are mandatory. Shipping address and line
       items can be updated in one request. Shipping option ID has to be updated
@@ -3799,39 +3799,19 @@ definitions:
         description: ''
         type: string
   GiftCertificateRequest:
-    title: GiftCertificateRequest
+    title: Gift Certificate Request
     type: object
     properties:
       giftCertificateCode:
         description: ''
         type: string
   CouponCodeRequest:
-    title: CouponCodeRequest
+    title: Coupon Code Request
     type: object
     properties:
       couponCode:
         description: ''
         type: string
-  Currency406:
-    title: Currency406
-    description: This will always be the same between cart and checkout.
-    type: object
-    properties:
-      name:
-        description: The currency name.
-        type: string
-      code:
-        description: 'ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)'
-        type: string
-      symbol:
-        description: The currency symbol.
-        type: string
-      decimalPlaces:
-        description: >-
-          Number of decimal places for the currency. For example, USD currency
-          has two decimal places.
-        type: number
-        format: double
   Status:
     title: Status
     description: Order status.
@@ -3854,7 +3834,7 @@ definitions:
       - DISPUTED
       - PARTIALLY_REFUNDED
   BaseItem:
-    title: BaseItem
+    title: Base Item
     type: object
     properties:
       id:
@@ -3931,7 +3911,7 @@ definitions:
     required:
       - quantity
   CheckoutError522:
-    title: CheckoutError522
+    title: Checkout Error 522
     type: object
     properties:
       errors:
