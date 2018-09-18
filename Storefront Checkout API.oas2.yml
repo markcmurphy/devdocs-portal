@@ -1850,9 +1850,9 @@ paths:
   '/checkouts/{checkoutId}/consignments/{consignmentId}':
     put:
       description: >-
-        Updates an existing consignment. Shipping address, line item IDs or the
-        shipping option ID can be updated using this endpoint.
-      summary: CheckoutsConsignmentsByCheckoutId_PUT
+        Updates an existing consignment using the `checkoutId` and
+        `consignmentId`. Shipping address, line item IDs or the shipping option
+        ID can also be updated using this endpoint.
       tags:
         - Checkout
       operationId: CheckoutsConsignmentsByCheckoutIdAndConsignmentIdPut
@@ -1875,6 +1875,36 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/UpdateConsignmentRequest'
+          x-examples:
+            application/json:
+              shippingAddress:
+                countryCode: nisi dolor dolor esse
+                firstName: mol
+                lastName: ut cupidata
+                email: ex qui Lorem ut
+                company: ea
+                address1: aliqu
+                address2: cupidatat Excepteur dolo
+                city: sed pariatur id
+                stateOrProvince: non officia al
+                stateOrProvinceCode: commodo sunt tempor Ut dolor
+                postalCode: cupidatat dolore aute anim labore
+                phone: '+2670794234792x5{1-5}'
+                customFields:
+                  - fieldId: veniam aliquip
+                    fieldValue: reprehe
+                  - fieldId: proid
+                    fieldValue: officia anim esse veniam
+                  - fieldId: dolore elit
+                    fieldValue: deserunt Duis Lorem
+              lineItems:
+                - itemId: non Ut
+                  quantity: -16252981
+                - itemId: amet aute
+                  quantity: -76362072
+                - itemId: Ut
+                  quantity: -90696511
+              shippingOptionId: sed officia
         - name: include
           in: query
           required: false
@@ -1887,9 +1917,12 @@ paths:
           description: Returns Checkout Object.
           schema:
             $ref: '#/definitions/Checkout'
+      summary: Update Consignment
     delete:
-      description: Removes an existing consignment from checkout.
-      summary: CheckoutsConsignmentsByCheckoutId_DELETE
+      description: >-
+        Removes an existing consignment from checkout using the `checkoutId` and
+        `consignmentId`.
+      summary: Delete Consignment by Id
       tags:
         - Checkout
       operationId: CheckoutsConsignmentsByCheckoutIdAndConsignmentIdDelete
