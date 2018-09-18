@@ -1,537 +1,710 @@
-swagger: '2.0'
-info:
-  title: Storefront Cart
-  description: Storefront Cart
-  version: v0.0.2
-consumes:
-  - application/json
-produces:
-  - application/json
-paths:
-  /carts:
-    get:
-      parameters:
-        - $ref: '#/parameters/IncludeProductOptions'
-      tags:
-        - Cart
-      responses:
-        '200':
-          description: >-
-            Gets an empty list if no cart exists in the session, or the cart if
-            the shopper has an active cart.
-          schema:
-            type: object
-            properties:
-              data:
-                type: array
-                description: >-
-                  A cart contains a collection of items, prices, discounts, etc.
-                  It does not contain customer-related data.
-                items:
-                  $ref: '#/definitions/Cart'
-    post:
-      description: Creates a cart and generates a cart ID.
-      parameters:
-        - name: cartData
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/LineItemsRequest'
-        - $ref: '#/parameters/lineItems.physicalItems.options'
-      tags:
-        - Cart
-      responses:
-        '200':
-          description: Returns Cart Entity Object.
-          schema:
-            $ref: '#/definitions/Cart'
-      security:
-        - X-Auth-Token: []
-        - X-Auth-Client: []
-  '/carts/{cartId}/items':
-    post:
-      description: Adds line item(s) to the cart.
-      parameters:
-        - name: cartId
-          in: path
-          required: true
-          description: This cart's unique ID.
-          type: string
-          format: UUID
-        - name: ItemData
-          in: body
-          required: true
-          description: A BigCommerce `LineItemsRequest` object.
-          schema:
-            $ref: '#/definitions/LineItemsRequest'
-      tags:
-        - Cart
-      responses:
-        '200':
-          description: Returns Cart Entity Object.
-          schema:
-            $ref: '#/definitions/Cart'
-  '/carts/{cartId}/items/{itemId}':
-    put:
-      description: 'Updates an existing, single line item in the cart.'
-      parameters:
-        - name: cartId
-          in: path
-          required: true
-          description: This cart's unique ID.
-          type: string
-          format: UUID
-        - name: itemId
-          in: path
-          required: true
-          description: This item's ID.
-          type: string
-          format: number
-        - name: lineItem
-          in: body
-          required: true
-          description: A BigCommerce `CartUpdateRequest` object.
-          schema:
-            $ref: '#/definitions/CartUpdateRequest'
-      tags:
-        - Cart
-      responses:
-        '200':
-          description: Returns Cart Entity Object.
-          schema:
-            $ref: '#/definitions/Cart'
-    delete:
-      description: Removes a line item from the cart.
-      parameters:
-        - name: cartId
-          in: path
-          required: true
-          description: This cart's unique ID.
-          type: string
-          format: UUID
-        - name: itemId
-          in: path
-          required: true
-          description: The ID of the item to delete.
-          type: string
-          format: number
-      tags:
-        - Cart
-      responses:
-        '200':
-          description: Returns Cart Entity Object.
-          schema:
-            $ref: '#/definitions/Cart'
-  '/carts/{cartId}':
-    get:
-      description: 'Returns information about a given `Cart`, specified by its ID.'
-      parameters:
-        - name: cartId
-          in: path
-          required: true
-          type: string
-          format: UUID
-          description: The identifier of a specific cart.
-      tags:
-        - Cart
-      responses:
-        '200':
-          description: Returns Cart Entity Object.
-          schema:
-            $ref: '#/definitions/Cart'
-    delete:
-      description: Removes the entire cart.
-      parameters:
-        - name: cartId
-          in: path
-          required: true
-          description: This cart's unique ID.
-          type: string
-          format: UUID
-      tags:
-        - Cart
-      responses:
-        '204':
-          description: An empty response.
-parameters:
-  includeLineItemsPhysical:
-    name: lineItems.physicalItems.options
-    type: string
-    in: query
-    description: >-
-      By default, the cart response will return abbreviated details for cart
-      line items. To get the full product detail use the includes for lineItems.
-definitions:
-  LineItemsRequest:
-    type: object
-    properties:
-      lineItems:
-        type: array
-        description: Array of `LineItemRequestData` objects.
-        items:
-          $ref: '#/definitions/LineItemRequestData'
-      giftCertificates:
-        type: array
-        description: Array of `LineItemGiftCertificateRequestData` objects.
-        items:
-          $ref: '#/definitions/LineItemGiftCertificateRequestData'
-  CartUpdateRequest:
-    type: object
-    properties:
-      lineItem:
-        $ref: '#/definitions/LineItemRequestData'
-        description: A BigCommerce `LineItemRequestData` object.
-      giftCertificate:
-        $ref: '#/definitions/LineItemGiftCertificateRequestData'
-        description: A BigCommerce `LineItemGiftCertificateRequestData` object.
-  LineItemRequestData:
-    type: object
-    required:
-      - quantity
-    properties:
-      quantity:
-        type: number
-        description: Quantity of this item.
-      productId:
-        type: number
-        description: ID of the product.
-      variantId:
-        type: number
-        description: ID of the variant.
-      listPrice:
-        type: number
-        description: >-
-          The product's list price, also known as MSRP (manufacturer's suggested
-          retail price).
-  LineItemGiftCertificateRequestData:
-    type: object
-    required:
-      - sender
-      - recipient
-      - amount
-      - theme
-      - name
-      - quantity
-    properties:
-      name:
-        type: string
-        description: Name assigned to this gift-certificate line item.
-      theme:
-        type: string
-        description: >-
-          Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`,
-          `General`, and `Girl`.
-      amount:
-        type: number
-        description: Gift-certificate amount.
-        minimum: 1
-        maximum: 1000
-      quantity:
-        type: integer
-        description: Quantity of this item.
-        minimum: 1
-      sender:
-        $ref: '#/definitions/ContactEntity'
-        description: >-
-          A BigCommerce `ContactEntity object, representing the gift
-          certificate’s sender/purchaser.
-      recipient:
-        $ref: '#/definitions/ContactEntity'
-        description: >-
-          A BigCommerce `ContactEntity object, representing the gift
-          certificate’s recipient.
-      message:
-        type: string
-        maximum: 200
-        description: 'Message shown to recipient, as provided by sender.'
-  Cart:
-    description: >-
-      A cart contains a collection of items, prices, discounts, etc. It does not
-      contain customer-related data.
-    type: object
-    properties:
-      id:
-        description: 'Cart ID, provided after creating a cart with a POST.'
-        type: string
-        format: UUID
-      customer_id:
-        description: ID of the customer to which the cart belongs.
-        type: integer
-      email:
-        description: >-
-          The cart's email. This is the same email that is used in the billing
-          address
-        type: string
-      currency:
-        $ref: '#/definitions/Currency'
-        description: This will always be the same between cart and checkout.
-      isTaxIncluded:
-        type: boolean
-        description: Whether this item is taxable.
-      baseAmount:
-        type: number
-        description: 'Cost of cart''s contents, before applying discounts.'
-      discountAmount:
-        type: number
-        format: float
-        description: Discounted amount.
-      cartAmount:
-        type: number
-        description: >-
-          Sum of line-items amounts, minus cart-level discounts and coupons.
-          This amount includes taxes (where applicable).
-      coupons:
-        type: array
-        description: Array of `AppliedCoupon` objects applied to this cart.
-        items:
-          $ref: '#/definitions/AppliedCoupon'
-      discounts:
-        type: array
-        description: Array of `AppliedDiscount` objects applied to this cart.
-        items:
-          $ref: '#/definitions/AppliedDiscount'
-      lineItems:
-        type: array
-        description: Array of `LineItem` objects.
-        items:
-          $ref: '#/definitions/LineItem'
-      createdTime:
-        type: string
-        format: ISO-8601
-        description: Time when the cart was created.
-      updatedTime:
-        type: string
-        format: ISO-8601
-        description: Time when the cart was last updated.
-  Currency:
-    type: object
-    description: This will always be the same between cart and checkout.
-    properties:
-      code:
-        type: string
-        format: ISO-4217
-        description: 'ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)'
-  LineItem:
-    type: object
-    required:
-      - physicalItems
-      - digitalItems
-      - giftCertificates
-    properties:
-      physicalItems:
-        type: array
-        description: Array of `ItemPhysical` objects.
-        items:
-          $ref: '#/definitions/ItemPhysical'
-      digitalItems:
-        type: array
-        description: Array of `ItemDigital` objects.
-        items:
-          $ref: '#/definitions/ItemDigital'
-      giftCertificates:
-        type: array
-        description: Array of `ItemGiftCertificate` objects.
-        items:
-          $ref: '#/definitions/ItemGiftCertificate'
-  ItemGiftCertificate:
-    type: object
-    required:
-      - sender
-      - recipient
-      - amount
-      - theme
-    properties:
-      id:
-        type: string
-        description: ID of this gift certificate.
-      name:
-        type: string
-        description: GiftCertificate-provided name that will appear in the control panel.
-      theme:
-        type: string
-        description: >-
-          Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`,
-          `General`, and `Girl`.
-      amount:
-        type: number
-        description: >-
-          Value must be between 1.00 and 1,000.00 in the store's default
-          currency.
-      isTaxable:
-        type: boolean
-        description: Whether or not the gift certificate is taxable.
-      sender:
-        $ref: '#/definitions/ContactEntity'
-        description: >-
-          A BigCommerce `ContactEntity` object, representing the gift
-          certificate’s sender/purchaser.
-      recipient:
-        $ref: '#/definitions/ContactEntity'
-        description: >-
-          A BigCommerce ContactEntity object, representing the gift
-          certificate’s recipient.
-      message:
-        type: string
-        description: >-
-          Message that will be sent to the gift certificate's recipient. Limited
-          to 200 characters.
-  ContactEntity:
-    properties:
-      name:
-        type: string
-        description: Contact's name.
-      email:
-        type: string
-        format: email
-        description: Contact's email address.
-  ItemDigital:
-    allOf:
-      - $ref: '#/definitions/BaseItem'
-  ItemPhysical:
-    allOf:
-      - $ref: '#/definitions/BaseItem'
-      - type: object
-        properties:
-          isShippingRequired:
-            type: boolean
-            description: Whether this item requires shipping to a physical address.
-          giftWrapping:
-            $ref: '#/definitions/GiftWrapping'
-            description: A BigCommerce `GiftWrapping` object.
-  BaseItem:
-    type: object
-    required:
-      - quantity
-    properties:
-      id:
-        type: string
-        description: The line-item ID.
-      parentId:
-        type: string
-        description: Bundled items will have their parent's item Id.
-      variantId:
-        type: number
-        description: ID of the variant.
-      productId:
-        type: number
-        description: ID of the product.
-      sku:
-        type: string
-        description: SKU of the variant.
-      name:
-        type: string
-        description: The item's product name.
-      url:
-        description: The product URL.
-        type: string
-        format: uri
-      quantity:
-        type: number
-        description: Quantity of this item.
-      isTaxable:
-        type: boolean
-        description: Whether the item is taxable.
-      imageUrl:
-        type: string
-        description: 'URL of an image of this item, accessible on the internet.'
-        format: uri
-      discounts:
-        type: array
-        description: >-
-          List of discounts applied to this item, as an array of AppliedDiscount
-          objects.
-        items:
-          $ref: '#/definitions/AppliedDiscount'
-      discountAmount:
-        type: number
-        format: float
-        description: >-
-          The total value of all discounts applied to this item (excluding
-          coupon).
-      couponAmount:
-        type: number
-        description: The total value of all coupons applied to this item.
-      listPrice:
-        type: number
-        description: 'Item''s list price, as quoted by the manufacturer/distributor.'
-      salePrice:
-        type: number
-        description: >-
-          Item's price after all discounts are applied. (The final price before
-          tax calculation.)
-      extendedListPrice:
-        type: number
-        description: Item's list price multiplied by the quantity.
-      extendedSalePrice:
-        type: number
-        description: Item's sale price multiplied by the quantity.
-      Options:
-        description: The list of selected options for this product.
-        type: array
-        items:
-          $ref: '#/definitions/ProductOption'
-  ProductOption:
-    type: object
-    properties:
-      name:
-        type: string
-        description: 'The product option name. For example, Color or Size'
-      nameId:
-        type: number
-        description: The product option identifier.
-      value:
-        type: string
-        description: 'The product option value. For example, Red or Medium'
-      valueId:
-        type: number
-        description: The product option value identifier.
-  AppliedCoupon:
-    type: object
-    required:
-      - code
-    properties:
-      id:
-        type: string
-        description: The coupon ID.
-      code:
-        type: string
-        description: The coupon code.
-      couponType:
-        type: string
-        description: Key name to identify the type of coupon.
-      discountedAmount:
-        type: number
-        format: float
-        description: The discounted amount applied within a given context.
-  AppliedDiscount:
-    type: object
-    properties:
-      id:
-        type: number
-        description: ID of the applied discount.
-      discountedAmount:
-        type: number
-        format: float
-        description: The discounted amount applied within a given context.
-  GiftWrapping:
-    properties:
-      name:
-        type: string
-        description: Name of the gift-wrapping option.
-      amount:
-        type: number
-        format: float
-        description: Gift-wrapping price per product.
-securityDefinitions:
-  X-Auth-Token:
-    type: apiKey
-    name: X-Auth-Token
-    in: header
-  X-Auth-Client:
-    type: apiKey
-    name: X-Auth-Client
-    in: header
-basePath: /api/storefront
-host: '{store_url}'
-schemes:
-  - https
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Storefront Cart",
+    "description": "Storefront Cart",
+    "version": "v0.0.2"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/carts": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/IncludeProductOptions"
+          }
+        ],
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "200": {
+            "description": "Gets an empty list if no cart exists in the session, or the cart if the shopper has an active cart.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "description": "A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.",
+                  "items": {
+                    "$ref": "#/definitions/Cart"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a cart and generates a cart ID.",
+        "parameters": [
+          {
+            "name": "cartData",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LineItemsRequest"
+            }
+          },
+          {
+            "$ref": "#/parameters/lineItems.physicalItems.options"
+          }
+        ],
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Cart Entity Object.",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          }
+        },
+        "security": [
+          {
+            "X-Auth-Token": []
+          },
+          {
+            "X-Auth-Client": []
+          }
+        ]
+      }
+    },
+    "/carts/{cartId}/items": {
+      "post": {
+        "description": "Adds line item(s) to the cart.",
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "description": "This cart's unique ID.",
+            "type": "string",
+            "format": "UUID"
+          },
+          {
+            "name": "ItemData",
+            "in": "body",
+            "required": true,
+            "description": "A BigCommerce `LineItemsRequest` object.",
+            "schema": {
+              "$ref": "#/definitions/LineItemsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Cart Entity Object.",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          }
+        }
+      }
+    },
+    "/carts/{cartId}/items/{itemId}": {
+      "put": {
+        "description": "Updates an existing, single line item in the cart.",
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "description": "This cart's unique ID.",
+            "type": "string",
+            "format": "UUID"
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "description": "This item's ID.",
+            "type": "string",
+            "format": "number"
+          },
+          {
+            "name": "lineItem",
+            "in": "body",
+            "required": true,
+            "description": "A BigCommerce `CartUpdateRequest` object.",
+            "schema": {
+              "$ref": "#/definitions/CartUpdateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Cart Entity Object.",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Removes a line item from the cart.",
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "description": "This cart's unique ID.",
+            "type": "string",
+            "format": "UUID"
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the item to delete.",
+            "type": "string",
+            "format": "number"
+          }
+        ],
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Cart Entity Object.",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          }
+        }
+      }
+    },
+    "/carts/{cartId}": {
+      "get": {
+        "description": "Returns information about a given `Cart`, specified by its ID.",
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "UUID",
+            "description": "The identifier of a specific cart."
+          }
+        ],
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Cart Entity Object.",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Removes the entire cart.",
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "description": "This cart's unique ID.",
+            "type": "string",
+            "format": "UUID"
+          }
+        ],
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response."
+          }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "includeLineItemsPhysical": {
+      "name": "lineItems.physicalItems.options",
+      "type": "string",
+      "in": "query",
+      "description": "By default, the cart response will return abbreviated details for cart line items. To get the full product detail use the includes for lineItems."
+    }
+  },
+  "definitions": {
+    "LineItemsRequest": {
+      "type": "object",
+      "properties": {
+        "lineItems": {
+          "type": "array",
+          "description": "Array of `LineItemRequestData` objects.",
+          "items": {
+            "$ref": "#/definitions/LineItemRequestData"
+          }
+        },
+        "giftCertificates": {
+          "type": "array",
+          "description": "Array of `LineItemGiftCertificateRequestData` objects.",
+          "items": {
+            "$ref": "#/definitions/LineItemGiftCertificateRequestData"
+          }
+        }
+      }
+    },
+    "CartUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "lineItem": {
+          "$ref": "#/definitions/LineItemRequestData",
+          "description": "A BigCommerce `LineItemRequestData` object."
+        },
+        "giftCertificate": {
+          "$ref": "#/definitions/LineItemGiftCertificateRequestData"        }
+      }
+    },
+    "LineItemRequestData": {
+      "type": "object",
+      "required": [
+        "quantity"
+      ],
+      "properties": {
+        "quantity": {
+          "type": "number",
+          "description": "Quantity of this item."
+        },
+        "productId": {
+          "type": "number",
+          "description": "ID of the product."
+        },
+        "variantId": {
+          "type": "number",
+          "description": "ID of the variant."
+        },
+        "listPrice": {
+          "type": "number",
+          "description": "The product's list price, also known as MSRP (manufacturer's suggested retail price)."
+        }
+      }
+    },
+    "LineItemGiftCertificateRequestData": {
+      "type": "object",
+      "required": [
+        "sender",
+        "recipient",
+        "amount",
+        "theme",
+        "name",
+        "quantity"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name assigned to this gift-certificate line item."
+        },
+        "theme": {
+          "type": "string",
+          "description": "Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Gift-certificate amount.",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "Quantity of this item.",
+          "minimum": 1
+        },
+        "sender": {
+          "$ref": "#/definitions/ContactEntity",
+          "description": "A BigCommerce `ContactEntity object, representing the gift certificate’s sender/purchaser."
+        },
+        "recipient": {
+          "$ref": "#/definitions/ContactEntity",
+          "description": "A BigCommerce `ContactEntity object, representing the gift certificate’s recipient."
+        },
+        "message": {
+          "type": "string",
+          "maximum": 200,
+          "description": "Message shown to recipient, as provided by sender."
+        }
+      }
+    },
+    "Cart": {
+      "description": "A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Cart ID, provided after creating a cart with a POST.",
+          "type": "string",
+          "format": "UUID"
+        },
+        "customer_id": {
+          "description": "ID of the customer to which the cart belongs.",
+          "type": "integer"
+        },
+        "email": {
+          "description": "The cart's email. This is the same email that is used in the billing address",
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency",
+          "description": "This will always be the same between cart and checkout."
+        },
+        "isTaxIncluded": {
+          "type": "boolean",
+          "description": "Whether this item is taxable."
+        },
+        "baseAmount": {
+          "type": "number",
+          "description": "Cost of cart's contents, before applying discounts."
+        },
+        "discountAmount": {
+          "type": "number",
+          "format": "float",
+          "description": "Discounted amount."
+        },
+        "cartAmount": {
+          "type": "number",
+          "description": "Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable)."
+        },
+        "coupons": {
+          "type": "array",
+          "description": "Array of `AppliedCoupon` objects applied to this cart.",
+          "items": {
+            "$ref": "#/definitions/AppliedCoupon"
+          }
+        },
+        "discounts": {
+          "type": "array",
+          "description": "Array of `AppliedDiscount` objects applied to this cart.",
+          "items": {
+            "$ref": "#/definitions/AppliedDiscount"
+          }
+        },
+        "lineItems": {
+          "type": "array",
+          "description": "Array of `LineItem` objects.",
+          "items": {
+            "$ref": "#/definitions/LineItem"
+          }
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "ISO-8601",
+          "description": "Time when the cart was created."
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "ISO-8601",
+          "description": "Time when the cart was last updated."
+        }
+      }
+    },
+    "Currency": {
+      "type": "object",
+      "description": "This will always be the same between cart and checkout.",
+      "properties": {
+        "code": {
+          "type": "string",
+          "format": "ISO-4217",
+          "description": "ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)"
+        }
+      }
+    },
+    "LineItem": {
+      "type": "object",
+      "required": [
+        "physicalItems",
+        "digitalItems",
+        "giftCertificates"
+      ],
+      "properties": {
+        "physicalItems": {
+          "type": "array",
+          "description": "Array of `ItemPhysical` objects.",
+          "items": {
+            "$ref": "#/definitions/ItemPhysical"
+          }
+        },
+        "digitalItems": {
+          "type": "array",
+          "description": "Array of `ItemDigital` objects.",
+          "items": {
+            "$ref": "#/definitions/ItemDigital"
+          }
+        },
+        "giftCertificates": {
+          "type": "array",
+          "description": "Array of `ItemGiftCertificate` objects.",
+          "items": {
+            "$ref": "#/definitions/ItemGiftCertificate"
+          }
+        }
+      }
+    },
+    "ItemGiftCertificate": {
+      "type": "object",
+      "required": [
+        "sender",
+        "recipient",
+        "amount",
+        "theme"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of this gift certificate."
+        },
+        "name": {
+          "type": "string",
+          "description": "GiftCertificate-provided name that will appear in the control panel."
+        },
+        "theme": {
+          "type": "string",
+          "description": "Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Value must be between 1.00 and 1,000.00 in the store's default currency."
+        },
+        "isTaxable": {
+          "type": "boolean",
+          "description": "Whether or not the gift certificate is taxable."
+        },
+        "sender": {
+          "$ref": "#/definitions/ContactEntity",
+          "description": "A BigCommerce `ContactEntity` object, representing the gift certificate’s sender/purchaser."
+        },
+        "recipient": {
+          "$ref": "#/definitions/ContactEntity",
+          "description": "A BigCommerce ContactEntity object, representing the gift certificate’s recipient."
+        },
+        "message": {
+          "type": "string",
+          "description": "Message that will be sent to the gift certificate's recipient. Limited to 200 characters."
+        }
+      }
+    },
+    "ContactEntity": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Contact's name."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact's email address."
+        }
+      }
+    },
+    "ItemDigital": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseItem"
+        }
+      ]
+    },
+    "ItemPhysical": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseItem"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "isShippingRequired": {
+              "type": "boolean",
+              "description": "Whether this item requires shipping to a physical address."
+            },
+            "giftWrapping": {
+              "$ref": "#/definitions/GiftWrapping",
+              "description": "A BigCommerce `GiftWrapping` object."
+            }
+          }
+        }
+      ]
+    },
+    "BaseItem": {
+      "type": "object",
+      "required": [
+        "quantity"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The line-item ID."
+        },
+        "parentId": {
+          "type": "string",
+          "description": "Bundled items will have their parent's item Id."
+        },
+        "variantId": {
+          "type": "number",
+          "description": "ID of the variant."
+        },
+        "productId": {
+          "type": "number",
+          "description": "ID of the product."
+        },
+        "sku": {
+          "type": "string",
+          "description": "SKU of the variant."
+        },
+        "name": {
+          "type": "string",
+          "description": "The item's product name."
+        },
+        "url": {
+          "description": "The product URL.",
+          "type": "string",
+          "format": "uri"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity of this item."
+        },
+        "isTaxable": {
+          "type": "boolean",
+          "description": "Whether the item is taxable."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of an image of this item, accessible on the internet.",
+          "format": "uri"
+        },
+        "discounts": {
+          "type": "array",
+          "description": "List of discounts applied to this item, as an array of AppliedDiscount objects.",
+          "items": {
+            "$ref": "#/definitions/AppliedDiscount"
+          }
+        },
+        "discountAmount": {
+          "type": "number",
+          "format": "float",
+          "description": "The total value of all discounts applied to this item (excluding coupon)."
+        },
+        "couponAmount": {
+          "type": "number",
+          "description": "The total value of all coupons applied to this item."
+        },
+        "listPrice": {
+          "type": "number",
+          "description": "Item's list price, as quoted by the manufacturer/distributor."
+        },
+        "salePrice": {
+          "type": "number",
+          "description": "Item's price after all discounts are applied. (The final price before tax calculation.)"
+        },
+        "extendedListPrice": {
+          "type": "number",
+          "description": "Item's list price multiplied by the quantity."
+        },
+        "extendedSalePrice": {
+          "type": "number",
+          "description": "Item's sale price multiplied by the quantity."
+        },
+        "Options": {
+          "description": "The list of selected options for this product.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductOption"
+          }
+        }
+      }
+    },
+    "ProductOption": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The product option name. For example, Color or Size"
+        },
+        "nameId": {
+          "type": "number",
+          "description": "The product option identifier."
+        },
+        "value": {
+          "type": "string",
+          "description": "The product option value. For example, Red or Medium"
+        },
+        "valueId": {
+          "type": "number",
+          "description": "The product option value identifier."
+        }
+      }
+    },
+    "AppliedCoupon": {
+      "type": "object",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The coupon ID."
+        },
+        "code": {
+          "type": "string",
+          "description": "The coupon code."
+        },
+        "couponType": {
+          "type": "string",
+          "description": "Key name to identify the type of coupon."
+        },
+        "discountedAmount": {
+          "type": "number",
+          "format": "float",
+          "description": "The discounted amount applied within a given context."
+        }
+      }
+    },
+    "AppliedDiscount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "ID of the applied discount."
+        },
+        "discountedAmount": {
+          "type": "number",
+          "format": "float",
+          "description": "The discounted amount applied within a given context."
+        }
+      }
+    },
+    "GiftWrapping": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the gift-wrapping option."
+        },
+        "amount": {
+          "type": "number",
+          "format": "float",
+          "description": "Gift-wrapping price per product."
+        }
+      }
+    }
+  },
+  "securityDefinitions": {},
+  "basePath": "/api/storefront",
+  "host": "{store_url}",
+  "schemes": [
+    "https"
+  ]
+}
