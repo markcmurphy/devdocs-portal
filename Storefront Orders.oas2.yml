@@ -1,6 +1,543 @@
-swagger: '2.0'
-info:
-  title: Storefront Orders API
-  version: '1.0'
-host: example.com
-paths: {}
+{
+  "openapi": "3.0.1",
+  "servers": [
+    {
+      "url": "<store_url>/api/storefront"
+    }
+  ],
+  "info": {
+    "title": "Data Model for BigCommerce's writable Cart/Checkout API",
+    "description": "API for managing a shopper's end-to-end checkout experience.",
+    "version": "v0.0.2"
+  },
+  "paths": {
+    "/orders/{orderId}": {
+      "get": {
+        "description": "Retrieves order data.",
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "ID of an Order.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a subset of Order Object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseOrderData"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "IncludesShippingOptions": {
+        "name": "include",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "consignments.availableShippingOptions"
+          ]
+        }
+      }
+    },
+    "schemas": {
+      "OrderLineItem": {
+        "type": "object",
+        "required": [
+          "physicalItems",
+          "digitalItems",
+          "giftCertificate"
+        ],
+        "properties": {
+          "physicalItems": {
+            "type": "array",
+            "description": "Array of `ItemPhysical` objects.",
+            "items": {
+              "$ref": "#/components/schemas/ItemPhysical"
+            }
+          },
+          "digitalItems": {
+            "type": "array",
+            "description": "Array of `ItemDigital` objects.",
+            "items": {
+              "$ref": "#/components/schemas/OrderItemDigital"
+            }
+          },
+          "giftCertificate": {
+            "type": "array",
+            "description": "Array of `ItemGiftCertificate` objects.",
+            "items": {
+              "$ref": "#/components/schemas/OrderItemGiftCertificate"
+            }
+          }
+        }
+      },
+      "OrderItemGiftCertificate": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The item's product name."
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Quantity of this item."
+          },
+          "isTaxable": {
+            "type": "boolean",
+            "description": "Whether the item is taxable."
+          },
+          "amount": {
+            "type": "number",
+            "format": "float",
+            "description": "Price of the item"
+          },
+          "type": {
+            "type": "string",
+            "description": "Explicitly specifying the gift certificate type"
+          }
+        }
+      },
+      "OrderItemDigital": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseItem"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "downloadFileUrls": {
+                "description": "URLs to download all product files.",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "url"
+                }
+              },
+              "downloadPageUrl": {
+                "description": "The URL for the combined downloads page.",
+                "type": "string",
+                "format": "url"
+              },
+              "downloadSize": {
+                "description": "Combined download size, in human-readable style. E.g.: `30MB`.",
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "ResponseOrderData": {
+        "properties": {
+          "meta": {
+            "type": "object"
+          },
+          "data": {
+            "description": "Response data container for Order endpoints (`POST /order` and `POST /order/{orderId}`).",
+            "properties": {
+              "order": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          }
+        }
+      },
+      "Order": {
+        "properties": {
+          "orderId": {
+            "type": "number"
+          },
+          "cartId": {
+            "type": "string",
+            "format": "UUID",
+            "description": "The Id of cart that was converted to order."
+          },
+          "currency": {
+            "description": "This will always be the same between cart and checkout.",
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Currency"
+              }
+            ]
+          },
+          "isTaxIncluded": {
+            "type": "boolean",
+            "description": "Whether this item is taxable."
+          },
+          "baseAmount": {
+            "type": "number",
+            "description": "Cost of cart's contents, before applying discounts."
+          },
+          "discountAmount": {
+            "type": "number",
+            "format": "float",
+            "description": "Discounted amount."
+          },
+          "orderAmount": {
+            "type": "number",
+            "description": "Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable)."
+          },
+          "orderAmountAsInteger": {
+            "type": "number",
+            "description": "Order amount represented in integer. Eg. 1234 for $12.34"
+          },
+          "coupons": {
+            "type": "array",
+            "description": "Array of `AppliedCoupon` objects applied to this cart.",
+            "items": {
+              "$ref": "#/components/schemas/AppliedCoupon"
+            }
+          },
+          "discounts": {
+            "type": "array",
+            "description": "Array of `AppliedDiscount` objects applied to this cart.",
+            "items": {
+              "$ref": "#/components/schemas/AppliedDiscount"
+            }
+          },
+          "lineItems": {
+            "type": "array",
+            "description": "Array of `LineItem` objects.",
+            "items": {
+              "$ref": "#/components/schemas/OrderLineItem"
+            }
+          },
+          "customerId": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "billingAddress": {
+            "$ref": "#/components/schemas/AddressResponse"
+          },
+          "status": {
+            "type": "string",
+            "description": "Order status.",
+            "enum": [
+              "INCOMPLETE",
+              "PENDING",
+              "SHIPPED",
+              "PARTIALLY_SHIPPED",
+              "REFUNDED",
+              "CANCELLED",
+              "DECLINED",
+              "AWAITING_PAYMENT",
+              "AWAITING_PICKUP",
+              "AWAITING_SHIPMENT",
+              "COMPLETED",
+              "AWAITING_FULFILLMENT",
+              "MANUAL_VERIFICATION_REQUIRED",
+              "DISPUTED",
+              "PARTIALLY_REFUNDED"
+            ]
+          },
+          "customerCreated": {
+            "type": "boolean",
+            "description": "For guest checkouts, this flag will identify whether a new customer account was created for this order, or whether the billing email already existed on the store."
+          },
+          "hasDigitalItems": {
+            "type": "boolean",
+            "description": "Specifies whether this order has at least one digital item."
+          },
+          "isDownloadable": {
+            "type": "boolean",
+            "description": "Specifies whether this order is fully paid, so that digital items can be downloaded."
+          },
+          "isComplete": {
+            "type": "boolean",
+            "description": "Specifies whether this order is complete and ready to be taken to the order confirmation page."
+          },
+          "customerMessage": {
+            "type": "string",
+            "description": "Shopper's provided message for the order"
+          }
+        }
+      },
+      "ItemPhysical": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseItem"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "addedByPromotion": {
+                "type": "boolean",
+                "description": "Whether this item has been added automatically by a promotion."
+              },
+              "isShippingRequired": {
+                "type": "boolean",
+                "description": "Whether this item requires shipping to a physical address."
+              },
+              "giftWrapping": {
+                "description": "A BigCommerce `GiftWrapping` object.",
+                "type": "object",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GiftWrapping"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "BaseItem": {
+        "type": "object",
+        "required": [
+          "quantity"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The line-item ID."
+          },
+          "parentId": {
+            "type": "string",
+            "description": "Bundled items will have their parent's item Id."
+          },
+          "variantId": {
+            "type": "number",
+            "description": "ID of the variant."
+          },
+          "productId": {
+            "type": "number",
+            "description": "ID of the product."
+          },
+          "sku": {
+            "type": "string",
+            "description": "SKU of the variant."
+          },
+          "name": {
+            "type": "string",
+            "description": "The item's product name."
+          },
+          "url": {
+            "description": "The product URL.",
+            "type": "string",
+            "format": "uri"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Quantity of this item."
+          },
+          "isTaxable": {
+            "type": "boolean",
+            "description": "Whether the item is taxable."
+          },
+          "imageUrl": {
+            "type": "string",
+            "description": "URL of an image of this item, accessible on the internet.",
+            "format": "uri"
+          },
+          "discounts": {
+            "type": "array",
+            "description": "List of discounts applied to this item, as an array of AppliedDiscount objects.",
+            "items": {
+              "$ref": "#/components/schemas/AppliedDiscount"
+            }
+          },
+          "discountAmount": {
+            "type": "number",
+            "format": "float",
+            "description": "The total value of all discounts applied to this item (excluding coupon)."
+          },
+          "couponAmount": {
+            "type": "number",
+            "description": "The total value of all coupons applied to this item."
+          },
+          "listPrice": {
+            "type": "number",
+            "description": "Item's list price, as quoted by the manufacturer/distributor."
+          },
+          "salePrice": {
+            "type": "number",
+            "description": "Item's price after all discounts are applied. (The final price before tax calculation.)"
+          },
+          "extendedListPrice": {
+            "type": "number",
+            "description": "Item's list price multiplied by the quantity."
+          },
+          "extendedSalePrice": {
+            "type": "number",
+            "description": "Item's sale price multiplied by the quantity."
+          },
+          "type": {
+            "type": "string",
+            "description": "the product type - physical or digital"
+          }
+        }
+      },
+      "Currency": {
+        "type": "object",
+        "description": "This will always be the same between cart and checkout.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The currency name."
+          },
+          "code": {
+            "type": "string",
+            "description": "ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "The currency symbol."
+          },
+          "decimalPlaces": {
+            "type": "number",
+            "description": "Number of decimal places for the currency. For example, USD currency has two decimal places."
+          }
+        }
+      },
+      "AppliedCoupon": {
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The coupon ID."
+          },
+          "code": {
+            "type": "string",
+            "description": "the coupon code"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "The coupon title based on different types provided in control panel section"
+          },
+          "couponType": {
+            "type": "string",
+            "description": "Key name to identify the type of coupon."
+          },
+          "discountedAmount": {
+            "type": "number",
+            "description": "The discounted amount applied within a given context."
+          }
+        }
+      },
+      "AppliedDiscount": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name provided by the merchant."
+          },
+          "discountedAmount": {
+            "type": "number",
+            "description": "The discounted amount applied within a given context."
+          }
+        }
+      },
+      "GiftWrapping": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "AddressResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AddressProperties"
+          }
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "AddressProperties": {
+        "type": "object",
+        "required": [
+          "countryCode"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "stateOrProvince": {
+            "description": "Represents state or province.",
+            "type": "string"
+          },
+          "stateOrProvinceCode": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string",
+            "format": "ISO 3166-1 alpha-2",
+            "description": "ISO 3166-1 alpha-2 country code. (See: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string",
+            "format": "E.164",
+            "pattern": "^\\+?[1-9]\\d{1,14}(x\\d{1-5})?$"
+          },
+          "customFields": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "fieldId": {
+                  "type": "string"
+                },
+                "fieldValue": {
+                  "type": "string",
+                  "description": "This can also be an array for fields that need to support list of values (e.g., a set of check boxes.)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
