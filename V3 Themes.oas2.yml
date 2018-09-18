@@ -310,14 +310,19 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/WhichThemeToDownload'
+          x-examples:
+            application/json:
+              which: last_created
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            Job ID for the background job processing the download.
+          description: Job ID for the background job processing the download.
           schema:
             $ref: '#/definitions/JobId'
+          examples:
+            application/json:
+              job_id: Duis sit
         default:
           description: Error message.
           schema:
