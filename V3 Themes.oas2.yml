@@ -482,6 +482,7 @@ definitions:
   Job:
     description: The job for theme upload or download
     type: object
+    title: Job
     properties:
       errors:
         description: The errors.
@@ -506,9 +507,17 @@ definitions:
         type: object
         additionalProperties:
           type: string
+        properties:
+          theme_id:
+            type: string
       status:
-        description: The status.
         type: string
+        description: The status.
+        enum:
+          - COMPLETED
+          - QUEUED
+          - WORKING
+          - FAILED
       time:
         description: The time.
         type: string
@@ -524,7 +533,6 @@ definitions:
             warning:
               description: The warning.
               type: string
-    title: Job
   Theme:
     description: A theme.
     type: object
