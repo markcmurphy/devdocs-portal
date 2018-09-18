@@ -932,11 +932,17 @@ definitions:
         example: 'http://your-store-url.mybigcommerce.com/your-product/'
       quantity:
         type: number
+        example: 5
+        description: Quantity of this item in the cart.
       is_taxable:
         type: boolean
+        example: false
+        description: Whether the item is taxable.
       image_url:
         type: string
         format: uri
+        example: 'https://pathtoproductimage/ProductDefault.png'
+        description: Image of the product or variant.
       discounts:
         type: array
         items:
@@ -947,7 +953,10 @@ definitions:
           $ref: '#/definitions/AppliedCoupon'
       discount_amount:
         type: number
-        description: The total value of all discounts applied to this item.
+        description: >-
+          The total value of all discounts applied to this item. This includes
+          coupons and cart level discounts
+        example: 4
       coupon_amount:
         type: number
         description: The total value of all coupons applied to this item.
