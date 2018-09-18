@@ -210,13 +210,97 @@ paths:
         - Both physical and digital items:
         `?include=lineItems.digitalItems.options,lineItems.physicalItems.options`
     post:
-      description: Creates a cart and generates a cart ID.
+      description: >-
+        Creates a cart and generates a cart ID.
+
+
+        * When creating a cart it is recommeneded to use the option id and
+        option value.
+
+        * To add a product with a mix of variants and options, the
+        `optionSelections` need to be listed out separately. 
       parameters:
         - name: cartData
           in: body
           required: true
           schema:
             $ref: '#/definitions/LineItemsRequest'
+          x-examples:
+            Simple Product: |-
+              {
+                  "lineItems":[
+                      {
+                          "quantity": 5,
+                          "productId": 107
+                      }
+                  ]
+              }
+            Product with Variant: >-
+              {
+                "lineItems": [
+                  {
+                    "quantity": 2,
+                    "productId": 107,
+                    "variantId": 185
+                  }
+                ]
+              }
+
+              //This works when a product can be specified purely by a variant,
+              without any other required options.
+            Variant and Modifiers: |-
+              {
+                  "lineItems":[
+                      {
+                          "quantity": 2,
+                          "productId": 107,
+                          "variantId": 185,
+                          "optionSelections": [
+                              {
+                                "optionId": 134,
+                                "optionValue": 116
+                              },
+                              {
+                                "optionId": 135,
+                                "optionValue": 118
+                              }
+                          ]
+                      }
+                  ]
+              }
+            Several Variants and Modifiers: |
+              {
+                "lineItems": [
+                  {
+                    "quantity": 1,
+                    "productId": 77,
+                    "optionSelections": [
+                      {
+                        "optionId": 120,
+                        "optionValue": 69
+                      },
+                      {
+                        "optionId": 121,
+                        "optionValue": 10
+                      },
+
+                      {
+                        "optionId": 124,
+                        "optionValue": 106
+                      },
+                      {
+                        "optionId": 122,
+                        "optionValue": "Hello"
+                      },
+                      {
+                        "option_id": 123,
+                        "optionValue": 104
+                      }
+
+                    ]
+                  }
+                ]
+              } 
         - $ref: '#/parameters/lineItems.physicalItems.options'
       tags:
         - Cart
@@ -228,6 +312,7 @@ paths:
       security:
         - X-Auth-Token: []
         - X-Auth-Client: []
+      summary: Create a Cart
   '/carts/{cartId}/items':
     post:
       description: Adds line item(s) to the cart.
