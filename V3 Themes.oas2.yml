@@ -682,14 +682,29 @@ definitions:
     title: Job Response
     description: Response for /GET Jobs by Id.
   WhichThemeToDownload:
-    type: object
     description: >-
       An object specifying which theme to download. One of: `original`: the
       original Marketplace or uploaded custom theme; `last_activated`: the theme
       version most recently applied to the store; `last_created`: the theme
       version most recently created.
     allOf:
-      - type: object
+      - description: >-
+          A BigCommerce object specifying which theme to download.
+
+
+          `original`: the original Marketplace or uploaded custom theme.
+
+
+          `last_activated`: the theme version most recently applied to the
+          store.
+
+
+          `last_created`: the theme version most recently created.
+
+
+          If `which` is missing or invalid in the request, its value will
+          default to `last_activated`.
+        example: original
         properties:
           which:
             description: Which revision to use.
@@ -699,6 +714,7 @@ definitions:
               - last_activated
               - last_created
     title: Which Theme To Download
+    type: object
   RequestHeaders:
     type: object
     description: 'These are the minium request headers needed for BigCommerce. '
