@@ -308,15 +308,10 @@ paths:
         - name: which
           in: body
           required: true
-          description: >
-            A BigCommerce object specifying which theme to download. One of:
-            `original`: the original Marketplace or uploaded custom theme;
-            `last_activated`: the theme version most recently applied to the
-            store; `last_created`: the theme version most recently created. If
-            `which` is missing or invalid in the request, its value will default
-            to `last_activated`.
           schema:
             $ref: '#/definitions/WhichThemeToDownload'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: |
@@ -327,6 +322,7 @@ paths:
           description: Error message.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      description: Downloads a store theme by `uuid`.
   /themes/actions/activate:
     post:
       tags:
