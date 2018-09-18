@@ -209,7 +209,7 @@ paths:
       tags:
         - Themes
       operationId: getStoreTheme
-      summary: Gets a specified store theme.
+      summary: Get a Single Store Theme
       parameters:
         - $ref: '#/parameters/ThemeIdParam'
       responses:
@@ -225,7 +225,7 @@ paths:
       tags:
         - Themes
       operationId: deleteStoreTheme
-      summary: Deletes a specified store theme.
+      summary: Delete a Store Theme
       parameters:
         - $ref: '#/parameters/ThemeIdParam'
       responses:
@@ -245,7 +245,7 @@ paths:
       tags:
         - Themes
       operationId: downloadTheme
-      summary: Downloads a specified store theme.
+      summary: Download a Store Theme
       parameters:
         - name: which
           in: body
@@ -297,7 +297,7 @@ paths:
       tags:
         - Themes
       operationId: getJob
-      summary: Gets a specified job.
+      summary: Get a Theme Job
       parameters:
         - $ref: '#/parameters/JobIdParam'
       responses:
@@ -321,6 +321,9 @@ paths:
           description: Error message.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      description: |2-
+                Get the current status of background job with given UUID. If job is
+                completed, the result is included in the response
 parameters:
   JobIdParam:
     name: job_id
