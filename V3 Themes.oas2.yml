@@ -228,16 +228,18 @@ paths:
       summary: Delete a Store Theme
       parameters:
         - $ref: '#/parameters/ThemeIdParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '204':
-          description: |
-            No content found to fulfill the request.
-          schema:
-            $ref: '#/definitions/NoContent'
+          description: ''
         default:
           description: Error message.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      description: >-
+        Delete a store theme by `uuid`. Theme variations can not be deleted
+        using this endpoint. This will delete the theme and all variations.
   '/themes/{theme_id}/actions/download':
     parameters:
       - $ref: '#/parameters/ThemeIdParam'
@@ -282,15 +284,24 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/Activate'
+          x-examples:
+            application/json:
+              variation_id: 87be3180-731f-0136-9d2f-633ff0d6ced1
+              which: original
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '204':
-          description: No content found to fulfill the request.
+          description: This returns when the request is successful.
           schema:
             $ref: '#/definitions/NoContent'
         default:
           description: Error message.
           schema:
             $ref: '#/definitions/ErrorResponse'
+      description: >-
+        Make a theme active on the storefront. This returns a 204 response upon
+        success.
   '/themes/jobs/{job_id}':
     get:
       tags:
@@ -299,6 +310,8 @@ paths:
       summary: Get a Theme Job
       parameters:
         - $ref: '#/parameters/JobIdParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: ''
@@ -320,9 +333,9 @@ paths:
           description: Error message.
           schema:
             $ref: '#/definitions/ErrorResponse'
-      description: |2-
-                Get the current status of background job with given UUID. If job is
-                completed, the result is included in the response
+      description: >-
+        Get a specified job by job_id. If job is completed, the result is
+        included in the response
 parameters:
   JobIdParam:
     name: job_id
