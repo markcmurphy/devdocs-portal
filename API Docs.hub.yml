@@ -8982,6 +8982,8 @@ pages:
                         blocks:
                           - type: text
                             data: '# Variants'
+                          - type: html
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#custom-fields-introduction\">Introduction</a></li>\n    <li><a href-\"create-a-variant\">Create a Variant</a></li>\n    <li><a href-\"create-variant-product-endpoint\">Create a Variant Using the Product Endpoint</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ##
@@ -9015,7 +9017,7 @@ pages:
                               relate to a particular combination of variant
                               option values - such as “small” and “red”
                             header:
-                              anchor: variants
+                              anchor: introduction
                           - type: callout
                             data:
                               type: warning
@@ -9051,6 +9053,8 @@ pages:
                               Use the
                               `https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/131/options`
                               endpoint to get the option information.
+                            header:
+                              anchor: create-a-variant
                           - type: code
                             data: |-
                               {
@@ -9235,7 +9239,7 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
-                              ## Create a Variant using the Products endpoint. 
+                              ## Create a Variant Using the Products Endpoint
 
 
                               The following example creates a base product,
@@ -9244,6 +9248,8 @@ pages:
                               create a product and its variants in a single call
                               without creating variant options first, but not
                               all option types are supported by this method.
+                            header:
+                              anchor: create-variant-product-endpoint
                           - type: callout
                             data:
                               body: >-
@@ -9300,11 +9306,13 @@ pages:
                               anchor: create-variants-using-products-endpoint
                           - type: text
                             data: '---'
+                          - type: text
+                            data: '## Object Properties'
+                            header:
+                              anchor: object-properties
                           - type: jsonSchema
                             data:
-                              $ref: >-
-                                ./BigCommerce V3
-                                API.oas2.yml#/definitions/VariantBase
+                              $ref: './V3 Catalog.oas2.yml#/definitions/VariantBase'
                     - title: Modifier Options
                       route:
                         path: /modifier-options
