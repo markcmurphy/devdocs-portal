@@ -3035,7 +3035,7 @@
                   "data": {
                     "children": [
                       {
-                        "title": "Products Overview",
+                        "title": "Overview",
                         "route": {
                           "path": "/products-overview"
                         },
@@ -3046,14 +3046,18 @@
                               "data": "# Products Overview"
                             },
                             {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n    <li><a href=\"#introduction\">Introduction</a></li>\n\t\t<li><a href=\"#simple-product\">Create a Simple Product</a></li>\n\t\t<li><a href=\"#create-complex-product\">Create a Complex Product</a></li>\n\t\t<li><a href=\"#digital-products\">Digital Products</a></li>\n\t\t<li><a href=\"#available-webhooks\">Webhooks Available</a></li>\n    <li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
                               "type": "text",
                               "data": "The Catalog refers to a store’s collection of physical and digital products. The Catalog includes all the information about a product such as MPN, warranty, price, and images. "
                             },
                             {
                               "type": "text",
-                              "data": "## [/catalog/products](/api-docs/api-reference/v3-api/catalog/getproducts)\n\nProducts are the primary catalog entity, and the primary function of the e-commerce platform is to sell products on the storefront and other selling channels.\n\nProducts can either be [Simple](#create-simple-product) or [Complex](#create-complex-product). \n\nProducts can also be Physical or Digital. \n\n* Physical products are typically products that exist in a physical form, have a weight, and are being sold by retailers with the intent of shipping them to customers. \n\n* Digital products, on the other hand, may not have a physical representation in the real world; this includes downloadable products such as computer software, ebooks, music, images, and other digital media. Alternatively, a digital product may be used to sell services such as spa treatments, consulting, and so forth - which also do not require shipping.",
+                              "data": "## [/catalog/products](/api-docs/api-reference/v3-api/catalog-api/products/createproduct)\n\nProducts are the primary catalog entity, and the primary function of the e-commerce platform is to sell products on the storefront and other selling channels.\n\nProducts can either be [Simple](#create-simple-product) or [Complex](#create-complex-product). \n\nProducts can also be Physical or Digital. \n\n* Physical products are typically products that exist in a physical form, have a weight, and are being sold by retailers with the intent of shipping them to customers. \n\n* Digital products, on the other hand, may not have a physical representation in the real world; this includes downloadable products such as computer software, ebooks, music, images, and other digital media. Alternatively, a digital product may be used to sell services such as spa treatments, consulting, and so forth - which also do not require shipping.",
                               "header": {
-                                "anchor": "catalog-products"
+                                "anchor": "introduction"
                               }
                             },
                             {
@@ -3177,9 +3181,16 @@
                               "data": "---"
                             },
                             {
+                              "type": "text",
+                              "data": "## Object Properties",
+                              "header": {
+                                "anchor": "object-properties"
+                              }
+                            },
+                            {
                               "type": "jsonSchema",
                               "data": {
-                                "$ref": "./BigCommerce V3 API.oas2.yml#/definitions/ProductBase"
+                                "$ref": "./V3 Catalog.oas2.yml#/definitions/ProductBase"
                               }
                             }
                           ]
@@ -3197,9 +3208,15 @@
                               "data": "# Product Images"
                             },
                             {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n    <li><a href=\"#introduction\">Introduction</a></li>\n\t\t<li><a href=\"#create-multiple-images\">Create Multiple Images</a></li>\n\t\t<li><a href=\"#product-thumbnails\">Product Thumbnails</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
                               "type": "text",
-                              "data": "## [/catalog/products/{product_id}/images](/api-docs/api-reference/v3-api/catalog/getproductimages)\n\nProduct images are used to show shoppers what they’re buying and merchandise products. When creating an image, `image_url` or an `image_file` can be passed in. \n\nIf using `image_file` Content-Type needs to be set to \nContent-Type: multipart/form-data. Any other updates using the /POST or /PUT will be rejected with the form-data.",
-                              "header": {}
+                              "data": "## [/catalog/products/{product_id}/images](/api-docs/api-reference/v3-api/catalog-api/product-images/createproductimage)\n\nProduct images are used to show shoppers what they’re buying and merchandise products. When creating an image, `image_url` or an `image_file` can be passed in. \n\nIf using `image_file` Content-Type needs to be set to \nContent-Type: multipart/form-data. Any other updates using the /POST or /PUT will be rejected with the form-data.",
+                              "header": {
+                                "anchor": "introduction"
+                              }
                             },
                             {
                               "type": "http",
@@ -3256,7 +3273,10 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Product Thumbnails\n\nOnly one image can be the product thumbnail. The product thumbnail is the image that shows on the product listing page, in search results and any other location that features the product. If only one image is on the product it becomes both the thumbnail and the main product image. Images can also be added to [variants](/api-docs/catalog/products/product-variants). "
+                              "data": "## Product Thumbnails\n\nOnly one image can be the product thumbnail. The product thumbnail is the image that shows on the product listing page, in search results and any other location that features the product. If only one image is on the product it becomes both the thumbnail and the main product image. Images can also be added to [variants](/api-docs/catalog/products/product-variants). ",
+                              "header": {
+                                "anchor": "product-thumbnails"
+                              }
                             },
                             {
                               "type": "code",
@@ -3275,9 +3295,16 @@
                               "data": "---"
                             },
                             {
+                              "type": "text",
+                              "data": "## Object Properties",
+                              "header": {
+                                "anchor": "object-properties"
+                              }
+                            },
+                            {
                               "type": "jsonSchema",
                               "data": {
-                                "$ref": "./BigCommerce V3 API.oas2.yml#/definitions/ProductImageBase"
+                                "$ref": "./V3 Catalog.oas2.yml#/definitions/ProductImageBase"
                               }
                             }
                           ]
@@ -3295,10 +3322,14 @@
                               "data": "# Product Videos"
                             },
                             {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
                               "type": "text",
-                              "data": "## [/catalog/products/{product_id}/videos](/api-docs/api-reference/v3-api/catalog/getproductvideos)\n\nProduct Videos, in addition to images, can help shoppers understand what they’re buying and help sell the product. A product can have more than one video.\n\n* Product videos must be hosted on YouTube. The video_id corresponds to the “v” parameter in a video url. \n\nExample: https://www.youtube.com/watch?v=***R12345677***\n",
+                              "data": "## [/catalog/products/{product_id}/videos](/api-docs/api-reference/v3-api/catalog-api/product-videos/createproductvideo)\n\nProduct Videos, in addition to images, can help shoppers understand what they’re buying and help sell the product. A product can have more than one video.\n\n* Product videos must be hosted on YouTube. The video_id corresponds to the “v” parameter in a video url. \n\nExample: https://www.youtube.com/watch?v=***R12345677***\n",
                               "header": {
-                                "anchor": "product-video-introduction"
+                                "anchor": "introduction"
                               }
                             },
                             {
@@ -3325,9 +3356,16 @@
                               "data": "---"
                             },
                             {
+                              "type": "text",
+                              "data": "## Object Properties",
+                              "header": {
+                                "anchor": "object-properties"
+                              }
+                            },
+                            {
                               "type": "jsonSchema",
                               "data": {
-                                "$ref": "./BigCommerce V3 API.oas2.yml#/definitions/ProductVideoBase"
+                                "$ref": "./V3 Catalog.oas2.yml#/definitions/ProductVideoBase"
                               }
                             }
                           ]
@@ -3345,10 +3383,14 @@
                               "data": "# Custom Fields"
                             },
                             {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
                               "type": "text",
-                              "data": "## [/catalog/products/{product_id}/custom-fields](/api-docs/api-reference/v3-api/catalog/getcustomfields)\n\nCustom fields are a feature intended for product specifications, in a key: value arrangement. As an example, there might be fields indicating technical specifications about an LED TV  such as screen size, maximum resolution, HDR support, etc. Alternatively, if selling wine, I might use Custom Fields for specifications such as vintage, region, grape, etc. Custom fields can not be used to add rules such as changing the weight or price of a product. ",
+                              "data": "## [/catalog/products/{product_id}/custom-fields](/api-docs/api-reference/v3-api/catalog-api/product-custom-fields/createcustomfield)\n\nCustom fields are a feature intended for product specifications, in a key: value arrangement. As an example, there might be fields indicating technical specifications about an LED TV  such as screen size, maximum resolution, HDR support, etc. Alternatively, if selling wine, I might use Custom Fields for specifications such as vintage, region, grape, etc. Custom fields can not be used to add rules such as changing the weight or price of a product. ",
                               "header": {
-                                "anchor": "custom-fields-overview"
+                                "anchor": "introduction"
                               }
                             },
                             {
@@ -3385,9 +3427,16 @@
                               "data": "---"
                             },
                             {
+                              "type": "text",
+                              "data": "## Object Properties",
+                              "header": {
+                                "anchor": "object-properties"
+                              }
+                            },
+                            {
                               "type": "jsonSchema",
                               "data": {
-                                "$ref": "./BigCommerce V3 API.oas2.yml#/definitions/CustomFieldBase"
+                                "$ref": "./V3 Catalog.oas2.yml#/definitions/CustomFieldBase"
                               }
                             }
                           ]
@@ -3405,8 +3454,15 @@
                               "data": "# Bulk Pricing Rules"
                             },
                             {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
                               "type": "text",
-                              "data": "## [catalog/products/product_id/bulk-pricing-rules](/api-docs/api-reference/v3-api/catalog/getbulkpricingrules)\n\nBulk Pricing Rules are intended for merchants who want to offer wholesale discounts for buying in bulk. They apply once products are added to cart, but they are displayed as a callout on the storefront to let shoppers know how they can save.\n\nBulk Pricing rules in the catalog are on the product, meaning that they’ll trigger even if several different variants of the product are in the cart, as long as the total quantity of those variants meets one of the quantity breaks. [Price List bulk pricing](http://) works differently."
+                              "data": "## [catalog/products/product_id/bulk-pricing-rules](/api-docs/api-reference/v3-api/catalog-api/product-bulk-pricing-rules/createbulkpricingrule)\n\nBulk Pricing Rules are intended for merchants who want to offer wholesale discounts for buying in bulk. They apply once products are added to cart, but they are displayed as a callout on the storefront to let shoppers know how they can save.\n\nBulk Pricing rules in the catalog are on the product, meaning that they’ll trigger even if several different variants of the product are in the cart, as long as the total quantity of those variants meets one of the quantity breaks. [Price List bulk pricing](http://) works differently.",
+                              "header": {
+                                "anchor": "introduction"
+                              }
                             },
                             {
                               "type": "http",
@@ -3432,9 +3488,16 @@
                               "data": "---"
                             },
                             {
+                              "type": "text",
+                              "data": "## Object Properties",
+                              "header": {
+                                "anchor": "object-properties"
+                              }
+                            },
+                            {
                               "type": "jsonSchema",
                               "data": {
-                                "$ref": "./BigCommerce V3 API.oas2.yml#/definitions/BulkPricingRuleBase"
+                                "$ref": "./V3 Catalog.oas2.yml#/definitions/BulkPricingRuleBase"
                               }
                             }
                           ]
@@ -3452,8 +3515,15 @@
                               "data": "# Variant Options"
                             },
                             {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n    <li><a href=\"#option-v2-v3\">Options Created on V2 and V3</a></li>\n    <li><a href=\"#create-variant-options\">Create Variant Options</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
                               "type": "text",
-                              "data": "## [/catalog/products/product_id/options](/api-docs/api-reference/v3-api/catalog/getoptions)\n\nVariant options are any choices that the shopper needs to make that will result in the selection of a variant. Color and Size are typical examples of Variant Options.  A t-shirt can have different combinations of sizes and colors.  \n\nExample:\n* Color is a Variant Option while Red, Orange, and Green are Variant Option Values\n* Size is a Variant Option while Small, Medium, and Large are Variant Option Values\n\nThe combination of Small & Red is what is selected on the storefront and correlates to a product variation also called a SKU. \n \n**Variant options:**\n\n* Require the shopper to select a value\n* Only support “multiple choice” option types\n* Rectangle\n* Radio button\n* Color swatch\n* Product pick list\n* Product pick list w/ images\n* Will automatically generate variants when created in the CP\n* Are auto-generated from variants when a product is created with variants via V3 API Product /POST"
+                              "data": "## [/catalog/products/product_id/options](/api-docs/api-reference/v3-api/catalog-api/product-variant-options/createoption)\n\nVariant options are any choices that the shopper needs to make that will result in the selection of a variant. Color and Size are typical examples of Variant Options.  A t-shirt can have different combinations of sizes and colors.  \n\nExample:\n* Color is a Variant Option while Red, Orange, and Green are Variant Option Values\n* Size is a Variant Option while Small, Medium, and Large are Variant Option Values\n\nThe combination of Small & Red is what is selected on the storefront and correlates to a product variation also called a SKU. \n \n**Variant options:**\n\n* Require the shopper to select a value\n* Only support “multiple choice” option types\n* Rectangle\n* Radio button\n* Color swatch\n* Product pick list\n* Product pick list w/ images\n* Will automatically generate variants when created in the CP\n* Are auto-generated from variants when a product is created with variants via V3 API Product /POST",
+                              "header": {
+                                "anchor": "introduction"
+                              }
                             },
                             {
                               "type": "text",
@@ -3478,7 +3548,10 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Create Variant Options\nThe following request will create options, but the SKU’s are not updated and they are not a variant on the product. Variant SKUs must be created with a separate request. Variant options will show on the storefront as an option that can be selected by the customer. A request like this could be used to add new choices to a variant that has already been created."
+                              "data": "## Create Variant Options\nThe following request will create options, but the SKU’s are not updated and they are not a variant on the product. Variant SKUs must be created with a separate request. Variant options will show on the storefront as an option that can be selected by the customer. A request like this could be used to add new choices to a variant that has already been created.",
+                              "header": {
+                                "anchor": "create-variant-options"
+                              }
                             },
                             {
                               "type": "code",
@@ -3522,9 +3595,16 @@
                               "data": "---"
                             },
                             {
+                              "type": "text",
+                              "data": "## Object Properties",
+                              "header": {
+                                "anchor": "object-properties"
+                              }
+                            },
+                            {
                               "type": "jsonSchema",
                               "data": {
-                                "$ref": "./BigCommerce V3 API.oas2.yml#/definitions/OptionBase"
+                                "$ref": "./V3 Catalog.oas2.yml#/definitions/OptionBase"
                               }
                             }
                           ]
@@ -3542,10 +3622,14 @@
                               "data": "# Variants"
                             },
                             {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n    <li><a href-\"#create-a-variant\">Create a Variant</a></li>\n    <li><a href-\"#create-variant-product-endpoint\">Create a Variant Using the Product Endpoint</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
                               "type": "text",
-                              "data": "## [/catalog/products/product_id/variants](/api-docs/api-reference/v3-api/catalog/getvariantsbyproductid)\n\nVariants represent an item as it sits on the shelf in the warehouse or a particular saleable product. A product might be a t-shirt, while the variant would be “a small, red t-shirt”. Variants are selected by shoppers on the storefront via Product Options. In the case where a product is simple, meaning it does not have any options, the product is its own variant - called a base variant. Everything you can buy should be a variant.\n\n* Options build out variants. \n* Variants are usually what inventory is tracked against \n* Can have their own price, weight, dimensions, image, etc - or they can inherit these values from the product if they have not been specified\n* Must have a SKU code (unless they’re a base variant)\n* In the case of non-base variants, variants will relate to a particular combination of variant option values - such as “small” and “red”",
+                              "data": "## [/catalog/products/product_id/variants](/api-docs/api-reference/v3-api/catalog-api/product-variants/createvariant)\n\nVariants represent an item as it sits on the shelf in the warehouse or a particular saleable product. A product might be a t-shirt, while the variant would be “a small, red t-shirt”. Variants are selected by shoppers on the storefront via Product Options. In the case where a product is simple, meaning it does not have any options, the product is its own variant - called a base variant. Everything you can buy should be a variant.\n\n* Options build out variants. \n* Variants are usually what inventory is tracked against \n* Can have their own price, weight, dimensions, image, etc - or they can inherit these values from the product if they have not been specified\n* Must have a SKU code (unless they’re a base variant)\n* In the case of non-base variants, variants will relate to a particular combination of variant option values - such as “small” and “red”",
                               "header": {
-                                "anchor": "variants"
+                                "anchor": "introduction"
                               }
                             },
                             {
@@ -3564,7 +3648,10 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Create a Variant\nVariants can be created in two ways:\n* From existing variant options using the variant options endpoint. [v3/catalog/products/{product_id}/options ](http://)\n* By adding the variants with variant options and skus when creating the product. See [Create a Complex Product](http://).\n\nThis will go over using existing variant options to create the variants.\n\nUse the `https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/131/options` endpoint to get the option information."
+                              "data": "## Create a Variant\nVariants can be created in two ways:\n* From existing variant options using the variant options endpoint. [v3/catalog/products/{product_id}/options ](http://)\n* By adding the variants with variant options and skus when creating the product. See [Create a Complex Product](http://).\n\nThis will go over using existing variant options to create the variants.\n\nUse the `https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/131/options` endpoint to get the option information.",
+                              "header": {
+                                "anchor": "create-a-variant"
+                              }
                             },
                             {
                               "type": "code",
@@ -3635,7 +3722,10 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Create a Variant using the Products endpoint. \n\nThe following example creates a base product, variant options, and variants in a single call to the /products endpoint. You can use this method to create a product and its variants in a single call without creating variant options first, but not all option types are supported by this method."
+                              "data": "## Create a Variant Using the Products Endpoint\n\nThe following example creates a base product, variant options, and variants in a single call to the /products endpoint. You can use this method to create a product and its variants in a single call without creating variant options first, but not all option types are supported by this method.",
+                              "header": {
+                                "anchor": "create-variant-product-endpoint"
+                              }
                             },
                             {
                               "type": "callout",
@@ -3668,9 +3758,16 @@
                               "data": "---"
                             },
                             {
+                              "type": "text",
+                              "data": "## Object Properties",
+                              "header": {
+                                "anchor": "object-properties"
+                              }
+                            },
+                            {
                               "type": "jsonSchema",
                               "data": {
-                                "$ref": "./BigCommerce V3 API.oas2.yml#/definitions/VariantBase"
+                                "$ref": "./V3 Catalog.oas2.yml#/definitions/VariantBase"
                               }
                             }
                           ]
@@ -3688,6 +3785,10 @@
                               "data": "# Modifier Options"
                             },
                             {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n        <li><a href=\"#add-modifer\">Add Modifier to Existing Product</a></li>\n        <li><a href=\"#422-error\">422 Error</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
                               "type": "text",
                               "data": "## [/catalog/products/{{product_id}}/modifiers](/api-docs/api-reference/v3-api/catalog/getmodifiers)\n\nModifier options are any choices that the shopper can make that will change the way the merchant fulfills the product. Examples include:\n* A checkbox to add shipping insurance\n* Text to be engraved on the product\n* A color that an unfinished product is to be painted before it’s shipped\n \nCritically, the modifier will not change the SKU/variant being fulfilled, and you cannot track inventory against combinations of modifier values. Modifiers typically would not change which product is “picked off the shelf” in the warehouse, but they change what happens to that product before it’s sent to the shopper, or how it’s sent.\n \nModifier options:\n* May be required or non-required\n* Support all option types\n* Cannot be used as part of a variant\n* \nAn adjuster can be added to a modifier option to change things such as adding to the price, changing the weight or shipping rules.  Adjusters cannot be applied to all modifiers."
                             },
@@ -3701,7 +3802,9 @@
                             {
                               "type": "text",
                               "data": "## Add a modifier to an existing product with price adjuster\n\nThe following example shows how to add a modifier - checkbox with a price adjuster - increase price by five dollars. Checkboxes have to made in two steps.  The reason is that it creates more than one modifier. A checkbox is a yes or no which is listed as two different `option_values`. ",
-                              "header": {}
+                              "header": {
+                                "anchor": "add-modifer"
+                              }
                             },
                             {
                               "type": "callout",
@@ -3778,16 +3881,26 @@
                             },
                             {
                               "type": "text",
-                              "data": "## 422 Error\n\n```\n{\n    \"status\": 422,\n    \"title\": \"The product is currently associated with an option set, please remove it before editing an option or modifier.\",\n    \"type\": \"https://developer.bigcommerce.com/api#api-status-codes\",\n    \"errors\": {\n        \"product_id\": \"The product is currently associated with an option set, please remove it before editing an option or modifier.\"\n    }\n}\n```\n\nTo fix this error:\n* Modify the products using the V2 API\n* Remove the option set using the V2 API or the Control Panel, then remake the variants and modifiers using V3"
+                              "data": "## 422 Error\n\n```\n{\n    \"status\": 422,\n    \"title\": \"The product is currently associated with an option set, please remove it before editing an option or modifier.\",\n    \"type\": \"https://developer.bigcommerce.com/api#api-status-codes\",\n    \"errors\": {\n        \"product_id\": \"The product is currently associated with an option set, please remove it before editing an option or modifier.\"\n    }\n}\n```\n\nTo fix this error:\n* Modify the products using the V2 API\n* Remove the option set using the V2 API or the Control Panel, then remake the variants and modifiers using V3",
+                              "header": {
+                                "anchor": "422-error"
+                              }
                             },
                             {
                               "type": "text",
                               "data": "---"
                             },
                             {
+                              "type": "text",
+                              "data": "## Object Properties",
+                              "header": {
+                                "anchor": "object-properties"
+                              }
+                            },
+                            {
                               "type": "jsonSchema",
                               "data": {
-                                "$ref": "./BigCommerce V3 API.oas2.yml#/definitions/ModifierBase"
+                                "$ref": "./V3 Catalog.oas2.yml#/definitions/ModifierBase"
                               }
                             }
                           ]
