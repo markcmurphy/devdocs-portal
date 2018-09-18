@@ -541,7 +541,7 @@ paths:
             $ref: '#/definitions/PriceRecordBatchErrorResponse'
       tags:
         - Price Lists
-      summary: Create or Update Price List Records
+      summary: Set Price List Records
     delete:
       description: >-
         Delete price records. Deleting the records does not delete the Price
@@ -646,27 +646,87 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/PriceRecordResponse'
+          examples:
+            application/json:
+              data:
+                - price_list_id: 4
+                  variant_id: 356
+                  price: 22.544
+                  sale_price: null
+                  retail_price: null
+                  map_price: null
+                  calculated_price: 22.544
+                  date_created: '2018-09-18T13:18:15Z'
+                  date_modified: '2018-09-18T13:18:15Z'
+                  currency: eur
+                  product_id: 185
+              meta:
+                pagination:
+                  total: 1
+                  count: 1
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
       tags:
         - Price Lists
       summary: Get a Price Record by Currency Code
     put:
-      description: |
-        Creates or updates a single `Price Record` object.
+      description: >-
+        Creates or updates a single price record using the `price_list_id`,
+        `variant_id` and `currency_code`.
       operationId: setPriceListRecord
       parameters:
         - name: PriceRecord
           in: body
           required: true
-          description: |
-            A BigCommerce `Price Record` object.
           schema:
             $ref: '#/definitions/PriceRecordPut'
+          x-examples:
+            application/json:
+              price: 12.99
+              sale_price: 10.99
+              retail_price: 15.99
+              map_price: 17.99
+              bulk_pricing_tiers:
+                - quantity_min: 5
+                  quantity_max: 10
+                  type: percent
+                  amount: 1
+                - quantity_min: 11
+                  quantity_max: 20
+                  type: percent
+                  amount: 2
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            A price record.
+          description: ''
           schema:
             $ref: '#/definitions/PriceRecordResponse'
+          examples:
+            application/json:
+              data:
+                price_list_id: 4
+                variant_id: 356
+                price: 12.99
+                sale_price: 10.99
+                retail_price: 15.99
+                map_price: 17.99
+                calculated_price: 10.99
+                date_created: '2018-09-18T13:18:15Z'
+                date_modified: '2018-09-18T13:30:48Z'
+                currency: eur
+                product_id: 185
+                bulk_pricing_tiers:
+                  - quantity_min: 5
+                    quantity_max: 10
+                    type: percent
+                    amount: 1
+                  - quantity_min: 11
+                    quantity_max: 20
+                    type: percent
+                    amount: 2
+              meta: {}
         '404':
           description: |
             The resource was not found.
@@ -686,6 +746,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       tags:
         - Price Lists
+      summary: Set Price List Record by Currency Code
     delete:
       description: >-
         Delete a price record(s) using the `price_list_id`, `variant_id` and
