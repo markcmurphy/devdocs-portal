@@ -1,202 +1,197 @@
 {
-  "openapi": "3.0.1",
-  "servers": [
-    {
-      "url": "<store_url>/api/storefront"
-    }
-  ],
+  "swagger": "2.0",
   "info": {
+    "version": "v0.0.2",
     "title": "Data Model for BigCommerce's writable Cart/Checkout API",
-    "description": "API for managing a shopper's end-to-end checkout experience.",
-    "version": "v0.0.2"
+    "description": "API for managing a shopper's end-to-end checkout experience."
   },
+  "host": "<store_url>",
+  "basePath": "/api/storefront",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/checkouts/{checkoutId}": {
       "get": {
-        "summary": "Returns information about a given `Checkout`, specified by its ID.",
         "description": "A checkout is an aggregation of multiple entities – Cart, Addresses, Shipping Options, and more.",
+        "summary": "Returns information about a given `Checkout`, specified by its ID.",
+        "tags": [
+          "Checkout"
+        ],
+        "operationId": "CheckoutsByCheckoutIdGet",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
-          {
-            "$ref": "#/components/parameters/IncludesShippingOptions"
-          },
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "consignments.availableShippingOptions"
+            ],
+            "type": "string",
+            "description": ""
           }
-        ],
-        "tags": [
-          "Checkout"
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           },
           "400": {
             "description": "When a problem arises, returns (for now) a generic response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CheckoutError"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/CheckoutError"
             }
           }
         }
       },
       "put": {
-        "summary": "Update Customer Message of the checkout",
         "description": "PUT endpoint to update root level checkout properties. Only \"Customer Message\" is supported now.",
+        "summary": "Update Customer Message of the checkout",
         "tags": [
           "Checkout"
+        ],
+        "operationId": "CheckoutsByCheckoutIdPut",
+        "produces": [
+          "application/json"
         ],
         "parameters": [
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/CheckoutUpdateRequest"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Checkout"
-                    }
-                  }
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/CheckoutsResponse"
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CheckoutUpdateRequest"
-              }
-            }
-          },
-          "required": true
         }
       }
     },
     "/checkouts/{checkoutId}/carts/{cartId}/items/{itemId}": {
       "put": {
         "description": "Partial updates of cart sub-resource, via checkout endpoint.",
+        "summary": "CheckoutsCartsItemsItemIdByCheckoutId_PUT",
+        "tags": [
+          "Checkout"
+        ],
+        "operationId": "CheckoutsCartsItemsItemIdByCheckoutIdAndCartIdPut",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
           },
           {
             "name": "cartId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "UUID"
-            }
+            "type": "string",
+            "format": "uuid",
+            "description": ""
           },
           {
             "name": "itemId",
             "in": "path",
             "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/CartUpdateRequest"
             }
           }
-        ],
-        "tags": [
-          "Checkout"
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CartUpdateRequest"
-              }
-            }
-          },
-          "required": true
         }
       },
       "delete": {
         "description": "Removes a line item from the cart.",
+        "summary": "CheckoutsCartsItemsItemIdByCheckoutId_DELETE",
+        "tags": [
+          "Checkout"
+        ],
+        "operationId": "CheckoutsCartsItemsItemIdByCheckoutIdAndCartIdDelete",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
           },
           {
             "name": "cartId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "UUID"
-            }
+            "type": "string",
+            "format": "uuid",
+            "description": ""
           },
           {
             "name": "itemId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "number"
-            }
+            "type": "string",
+            "description": ""
           }
-        ],
-        "tags": [
-          "Checkout"
         ],
         "responses": {
           "200": {
             "description": "Returns Cart Entity Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
         }
@@ -205,217 +200,229 @@
     "/checkouts/{checkoutId}/billing-address": {
       "post": {
         "description": "Adds customer's billing address to checkout.",
+        "summary": "CheckoutsBillingAddressByCheckoutId_POST",
+        "tags": [
+          "Checkout"
+        ],
+        "operationId": "CheckoutsBillingAddressByCheckoutIdPost",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Either email or countryCode is required.",
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/AddressProperties"
             }
           }
-        ],
-        "tags": [
-          "Checkout"
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddressRequest"
-              }
-            }
-          },
-          "description": "Either email or countryCode is required.",
-          "required": true
         }
       }
     },
     "/checkouts/{checkoutId}/billing-address/{addressId}": {
       "put": {
         "description": "Updates customer's billing address in checkout.",
+        "summary": "CheckoutsBillingAddressByCheckoutId_PUT",
+        "tags": [
+          "Checkout"
+        ],
+        "operationId": "CheckoutsBillingAddressByCheckoutIdAndAddressIdPut",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
           },
           {
             "name": "addressId",
             "in": "path",
             "required": true,
+            "type": "number",
+            "format": "double",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
             "schema": {
-              "type": "number"
+              "$ref": "#/definitions/AddressProperties"
             }
           }
-        ],
-        "tags": [
-          "Checkout"
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddressRequest"
-              }
-            }
-          },
-          "required": true
         }
       }
     },
     "/checkouts/{checkoutId}/consignments": {
       "post": {
         "description": "Adds a new consignment to checkout. A Consignment includes a shipping address, a list of line item IDs that ship to this address and a shipping option ID. When creating a new consignment, you'll need to provide an address and a list of line item IDs. Shipping option ID should be added to this consignment later, using PUT.",
+        "summary": "CheckoutsConsignmentsByCheckoutId_POST",
+        "tags": [
+          "Checkout"
+        ],
+        "operationId": "CheckoutsConsignmentsByCheckoutIdPost",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
-          {
-            "$ref": "#/components/parameters/IncludesShippingOptions"
-          },
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CreateConsignmentRequest"
+              }
             }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "consignments.availableShippingOptions"
+            ],
+            "type": "string",
+            "description": ""
           }
-        ],
-        "tags": [
-          "Checkout"
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateConsignmentRequest"
-              }
-            }
-          },
-          "required": true
         }
       }
     },
     "/checkouts/{checkoutId}/consignments/{consignmentId}": {
       "put": {
         "description": "Updates an existing consignment. Shipping address, line item IDs or the shipping option ID can be updated using this endpoint.",
+        "summary": "CheckoutsConsignmentsByCheckoutId_PUT",
+        "tags": [
+          "Checkout"
+        ],
+        "operationId": "CheckoutsConsignmentsByCheckoutIdAndConsignmentIdPut",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
-          {
-            "$ref": "#/components/parameters/IncludesShippingOptions"
-          },
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
           },
           {
             "name": "consignmentId",
             "in": "path",
             "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/UpdateConsignmentRequest"
             }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "consignments.availableShippingOptions"
+            ],
+            "type": "string",
+            "description": ""
           }
-        ],
-        "tags": [
-          "Checkout"
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateConsignmentRequest"
-              }
-            }
-          },
-          "required": true
         }
       },
       "delete": {
         "description": "Removes an existing consignment from checkout.",
+        "summary": "CheckoutsConsignmentsByCheckoutId_DELETE",
         "tags": [
           "Checkout"
+        ],
+        "operationId": "CheckoutsConsignmentsByCheckoutIdAndConsignmentIdDelete",
+        "produces": [
+          "application/json"
         ],
         "parameters": [
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
           },
           {
             "name": "consignmentId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
           }
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
         }
@@ -424,76 +431,74 @@
     "/checkouts/{checkoutId}/gift-certificates": {
       "post": {
         "description": "Adds gift certificate code to checkout.",
+        "summary": "CheckoutsGiftCertificatesByCheckoutId_POST",
         "tags": [
           "Checkout"
+        ],
+        "operationId": "CheckoutsGiftCertificatesByCheckoutIdPost",
+        "produces": [
+          "application/json"
         ],
         "parameters": [
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/GiftCertificateRequest"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GiftCertificateRequest"
-              }
-            }
-          },
-          "required": true
         }
       }
     },
     "/checkouts/{checkoutId}/gift-certificates/{giftCertificateCode}": {
       "delete": {
         "description": "Removes an existing gift certificate from checkout.",
+        "summary": "CheckoutsGiftCertificatesByCheckoutId_DELETE",
         "tags": [
           "Checkout"
+        ],
+        "operationId": "CheckoutsGiftCertificatesByCheckoutIdAndGiftCertificateCodeDelete",
+        "produces": [
+          "application/json"
         ],
         "parameters": [
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
           },
           {
             "name": "giftCertificateCode",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
           }
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
         }
@@ -502,76 +507,74 @@
     "/checkouts/{checkoutId}/coupons": {
       "post": {
         "description": "Adds a coupon code to checkout.",
+        "summary": "CheckoutsCouponsByCheckoutId_POST",
         "tags": [
           "Checkout"
+        ],
+        "operationId": "CheckoutsCouponsByCheckoutIdPost",
+        "produces": [
+          "application/json"
         ],
         "parameters": [
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/CouponCodeRequest"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CouponCodeRequest"
-              }
-            }
-          },
-          "required": true
         }
       }
     },
     "/checkouts/{checkoutId}/coupons/{couponCode}": {
       "delete": {
         "description": "Removes an existing coupon from checkout.",
+        "summary": "CheckoutsCouponsByCheckoutId_DELETE",
         "tags": [
           "Checkout"
+        ],
+        "operationId": "CheckoutsCouponsByCheckoutIdAndCouponCodeDelete",
+        "produces": [
+          "application/json"
         ],
         "parameters": [
           {
             "name": "checkoutId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
           },
           {
             "name": "couponCode",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": ""
           }
         ],
         "responses": {
           "200": {
             "description": "Returns Checkout Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Checkout"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Checkout"
             }
           }
         }
@@ -580,1109 +583,1512 @@
     "/orders/{orderId}": {
       "get": {
         "description": "Retrieves order data.",
+        "summary": "OrdersByOrderId_GET",
         "tags": [
           "Order"
+        ],
+        "operationId": "OrdersByOrderIdGet",
+        "produces": [
+          "application/json"
         ],
         "parameters": [
           {
             "name": "orderId",
             "in": "path",
-            "description": "ID of an Order.",
             "required": true,
-            "schema": {
-              "type": "integer"
-            }
+            "type": "integer",
+            "format": "int32",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "ID of an Order."
           }
         ],
         "responses": {
           "200": {
             "description": "Returns a subset of Order Object.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseOrderData"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/ResponseOrderData"
             }
           }
         }
       }
     }
   },
-  "components": {
-    "parameters": {
-      "IncludesShippingOptions": {
-        "name": "include",
-        "in": "query",
-        "schema": {
+  "definitions": {
+    "Include": {
+      "title": "include",
+      "example": "consignments.availableShippingOptions",
+      "type": "string",
+      "enum": [
+        "consignments.availableShippingOptions"
+      ]
+    },
+    "Checkout": {
+      "title": "Checkout",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "",
           "type": "string",
-          "enum": [
-            "consignments.availableShippingOptions"
-          ]
+          "format": "uuid"
+        },
+        "cart": {
+          "$ref": "#/definitions/Cart"
+        },
+        "billingAddress": {
+          "$ref": "#/definitions/AddressResponse"
+        },
+        "consignments": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Consignment"
+          }
+        },
+        "taxes": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tax"
+          }
+        },
+        "coupons": {
+          "description": "Coupons applied at checkout level.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedCoupon"
+          }
+        },
+        "orderId": {
+          "description": "",
+          "type": "string"
+        },
+        "shippingCostTotal": {
+          "description": "Shipping cost before any discounts are applied.",
+          "type": "number",
+          "format": "double"
+        },
+        "handlingCostTotal": {
+          "description": "Handling cost for all consignments including or excluding tax.",
+          "type": "number",
+          "format": "double"
+        },
+        "taxTotal": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        },
+        "subtotal": {
+          "description": "Subtotal of the checkout before applying item level discounts. Tax inclusive based on the store settings.",
+          "type": "number",
+          "format": "double"
+        },
+        "grandTotal": {
+          "description": "The total payable amount, before applying any store credit or gift certificate.",
+          "type": "number",
+          "format": "double"
+        },
+        "giftCertificates": {
+          "description": "Applied gift certificate (as a payment method).",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GiftCertificate"
+          }
+        },
+        "createdTime": {
+          "description": "Time when the cart was created.",
+          "type": "string"
+        },
+        "updatedTime": {
+          "description": "Time when the cart was last updated.",
+          "type": "string"
+        },
+        "customerMessage": {
+          "description": "Shopper's message provided as details for the order to be created from this cart",
+          "type": "string"
         }
       }
     },
-    "schemas": {
-      "LineItemRequestData": {
-        "type": "object",
-        "properties": {
-          "quantity": {
-            "type": "number"
-          },
-          "productId": {
-            "type": "number"
-          },
-          "variantId": {
-            "type": "number"
+    "Cart": {
+      "title": "Cart",
+      "description": "A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Cart ID, provided after creating a cart with a POST.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "customer_id": {
+          "description": "ID of the customer to which the cart belongs.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "description": "The cart's email. This is the same email that is used in the billing address",
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency"
+        },
+        "taxIncluded": {
+          "description": "Boolean representing whether tax information is included.",
+          "type": "boolean"
+        },
+        "baseAmount": {
+          "description": "Cost of cart's contents, before applying discounts.",
+          "type": "number",
+          "format": "double"
+        },
+        "discountAmount": {
+          "description": "Discounted amount.",
+          "type": "number",
+          "format": "double"
+        },
+        "cartAmount": {
+          "description": "Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable).",
+          "type": "number",
+          "format": "double"
+        },
+        "coupons": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedCoupon"
+          }
+        },
+        "discounts": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedDiscount"
+          }
+        },
+        "lineItems": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LineItem"
+          }
+        },
+        "createdTime": {
+          "description": "Time when the cart was created.",
+          "type": "string"
+        },
+        "updatedTime": {
+          "description": "Time when the cart was last updated.",
+          "type": "string"
+        }
+      }
+    },
+    "Currency": {
+      "title": "Currency",
+      "description": "The currency which prices are displayed (the store default currency).",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The currency name.",
+          "type": "string"
+        },
+        "code": {
+          "description": "ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)",
+          "type": "string"
+        },
+        "symbol": {
+          "description": "The currency symbol.",
+          "type": "string"
+        },
+        "decimalPlaces": {
+          "description": "Number of decimal places for the currency. For example, USD currency has two decimal places.",
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "AppliedCoupon": {
+      "title": "AppliedCoupon",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The coupon ID.",
+          "type": "string"
+        },
+        "code": {
+          "description": "the coupon code",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The coupon title based on different types provided in control panel section",
+          "type": "string"
+        },
+        "couponType": {
+          "description": "Key name to identify the type of coupon.",
+          "type": "string"
+        },
+        "discountedAmount": {
+          "description": "The discounted amount applied within a given context.",
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    },
+    "AppliedDiscount": {
+      "title": "AppliedDiscount",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name provided by the merchant.",
+          "type": "string"
+        },
+        "discountedAmount": {
+          "description": "The discounted amount applied within a given context.",
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "LineItem": {
+      "title": "LineItem",
+      "type": "object",
+      "properties": {
+        "physicalItems": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemPhysical"
+          }
+        },
+        "digitalItems": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemDigital"
+          }
+        },
+        "giftCertificate": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemGiftCertificate"
           }
         }
       },
-      "LineItemGiftCertificateRequestData": {
-        "type": "object",
-        "required": [
-          "sender",
-          "recipient",
-          "amount",
-          "theme",
-          "quantity"
-        ],
-        "properties": {
-          "theme": {
-            "type": "string",
-            "description": "Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`."
-          },
-          "amount": {
-            "type": "number",
-            "minimum": 1,
-            "maximum": 1000
-          },
-          "sender": {
-            "$ref": "#/components/schemas/ContactEntity"
-          },
-          "recipient": {
-            "$ref": "#/components/schemas/ContactEntity"
-          },
-          "message": {
-            "type": "string",
-            "maximum": 200,
-            "description": "Message shown to recipient, as provided by sender."
-          },
-          "quantity": {
-            "type": "number"
+      "required": [
+        "physicalItems",
+        "digitalItems",
+        "giftCertificate"
+      ]
+    },
+    "ItemPhysical": {
+      "title": "ItemPhysical",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The line-item ID.",
+          "type": "string"
+        },
+        "parentId": {
+          "description": "Bundled items will have their parent's item Id.",
+          "type": "string"
+        },
+        "variantId": {
+          "description": "ID of the variant.",
+          "type": "number",
+          "format": "double"
+        },
+        "productId": {
+          "description": "ID of the product.",
+          "type": "number",
+          "format": "double"
+        },
+        "sku": {
+          "description": "SKU of the variant.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The item's product name.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The product URL.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "Quantity of this item.",
+          "type": "number",
+          "format": "double"
+        },
+        "isTaxable": {
+          "description": "Whether the item is taxable.",
+          "type": "boolean"
+        },
+        "imageUrl": {
+          "description": "URL of an image of this item, accessible on the internet.",
+          "type": "string"
+        },
+        "discounts": {
+          "description": "List of discounts applied to this item, as an array of AppliedDiscount objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedDiscount"
           }
+        },
+        "discountAmount": {
+          "description": "The total value of all discounts applied to this item (excluding coupon).",
+          "type": "number",
+          "format": "double"
+        },
+        "couponAmount": {
+          "description": "The total value of all coupons applied to this item.",
+          "type": "number",
+          "format": "double"
+        },
+        "listPrice": {
+          "description": "Item's list price, as quoted by the manufacturer/distributor.",
+          "type": "number",
+          "format": "double"
+        },
+        "salePrice": {
+          "description": "Item's price after all discounts are applied. (The final price before tax calculation.)",
+          "type": "number",
+          "format": "double"
+        },
+        "extendedListPrice": {
+          "description": "Item's list price multiplied by the quantity.",
+          "type": "number",
+          "format": "double"
+        },
+        "extendedSalePrice": {
+          "description": "Item's sale price multiplied by the quantity.",
+          "type": "number",
+          "format": "double"
+        },
+        "type": {
+          "description": "the product type - physical or digital",
+          "type": "string"
+        },
+        "addedByPromotion": {
+          "description": "Whether this item has been added automatically by a promotion.",
+          "type": "boolean"
+        },
+        "isShippingRequired": {
+          "description": "Whether this item requires shipping to a physical address.",
+          "type": "boolean"
+        },
+        "giftWrapping": {
+          "$ref": "#/definitions/GiftWrapping"
         }
       },
-      "Checkout": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "UUID"
-          },
-          "cart": {
-            "$ref": "#/components/schemas/Cart"
-          },
-          "billingAddress": {
-            "$ref": "#/components/schemas/AddressResponse"
-          },
-          "consignments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Consignment"
-            }
-          },
-          "taxes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Tax"
-            }
-          },
-          "coupons": {
-            "description": "Coupons applied at checkout level.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AppliedCoupon"
-            }
-          },
-          "orderId": {
+      "required": [
+        "quantity"
+      ]
+    },
+    "GiftWrapping": {
+      "title": "GiftWrapping",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "",
+          "type": "string"
+        },
+        "message": {
+          "description": "",
+          "type": "string"
+        },
+        "amount": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "ItemDigital": {
+      "title": "ItemDigital",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The line-item ID.",
+          "type": "string"
+        },
+        "parentId": {
+          "description": "Bundled items will have their parent's item Id.",
+          "type": "string"
+        },
+        "variantId": {
+          "description": "ID of the variant.",
+          "type": "number",
+          "format": "double"
+        },
+        "productId": {
+          "description": "ID of the product.",
+          "type": "number",
+          "format": "double"
+        },
+        "sku": {
+          "description": "SKU of the variant.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The item's product name.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The product URL.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "Quantity of this item.",
+          "type": "number",
+          "format": "double"
+        },
+        "isTaxable": {
+          "description": "Whether the item is taxable.",
+          "type": "boolean"
+        },
+        "imageUrl": {
+          "description": "URL of an image of this item, accessible on the internet.",
+          "type": "string"
+        },
+        "discounts": {
+          "description": "List of discounts applied to this item, as an array of AppliedDiscount objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedDiscount"
+          }
+        },
+        "discountAmount": {
+          "description": "The total value of all discounts applied to this item (excluding coupon).",
+          "type": "number",
+          "format": "double"
+        },
+        "couponAmount": {
+          "description": "The total value of all coupons applied to this item.",
+          "type": "number",
+          "format": "double"
+        },
+        "listPrice": {
+          "description": "Item's list price, as quoted by the manufacturer/distributor.",
+          "type": "number",
+          "format": "double"
+        },
+        "salePrice": {
+          "description": "Item's price after all discounts are applied. (The final price before tax calculation.)",
+          "type": "number",
+          "format": "double"
+        },
+        "extendedListPrice": {
+          "description": "Item's list price multiplied by the quantity.",
+          "type": "number",
+          "format": "double"
+        },
+        "extendedSalePrice": {
+          "description": "Item's sale price multiplied by the quantity.",
+          "type": "number",
+          "format": "double"
+        },
+        "type": {
+          "description": "the product type - physical or digital",
+          "type": "string"
+        },
+        "isShippingRequired": {
+          "description": "Whether this item requires shipping to a physical address.",
+          "type": "boolean"
+        },
+        "downloadFileUrls": {
+          "description": "URLs to download all product files.",
+          "type": "array",
+          "items": {
             "type": "string"
-          },
-          "shippingCostTotal": {
-            "description": "Shipping cost before any discounts are applied.",
-            "type": "number"
-          },
-          "handlingCostTotal": {
-            "description": "Handling cost for all consignments including or excluding tax.",
-            "type": "number",
-            "format": "float"
-          },
-          "taxTotal": {
-            "type": "number"
-          },
-          "subtotal": {
-            "type": "number",
-            "description": "Subtotal of the checkout before applying item level discounts. Tax inclusive based on the store settings."
-          },
-          "grandTotal": {
-            "type": "number",
-            "description": "The total payable amount, before applying any store credit or gift certificate."
-          },
-          "giftCertificates": {
-            "type": "array",
-            "description": "Applied gift certificate (as a payment method).",
-            "items": {
-              "$ref": "#/components/schemas/GiftCertificate"
-            }
-          },
-          "createdTime": {
-            "type": "string",
-            "format": "ISO-8601",
-            "description": "Time when the cart was created."
-          },
-          "updatedTime": {
-            "type": "string",
-            "format": "ISO-8601",
-            "description": "Time when the cart was last updated."
-          },
-          "customerMessage": {
-            "type": "string",
-            "description": "Shopper's message provided as details for the order to be created from this cart"
           }
+        },
+        "downloadPageUrl": {
+          "description": "The URL for the combined downloads page.",
+          "type": "string"
+        },
+        "downloadSize": {
+          "description": "Combined download size, in human-readable style. E.g.: `30MB`.",
+          "type": "string"
         }
       },
-      "Cart": {
-        "description": "A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.",
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Cart ID, provided after creating a cart with a POST.",
-            "type": "string",
-            "format": "UUID"
-          },
-          "customer_id": {
-            "description": "ID of the customer to which the cart belongs.",
-            "type": "integer"
-          },
-          "email": {
-            "description": "The cart's email. This is the same email that is used in the billing address",
-            "type": "string"
-          },
-          "currency": {
-            "description": "The currency which prices are displayed (the store default currency).",
-            "$ref": "#/components/schemas/Currency"
-          },
-          "taxIncluded": {
-            "type": "boolean",
-            "description": "Boolean representing whether tax information is included."
-          },
-          "baseAmount": {
-            "type": "number",
-            "description": "Cost of cart's contents, before applying discounts."
-          },
-          "discountAmount": {
-            "type": "number",
-            "description": "Discounted amount."
-          },
-          "cartAmount": {
-            "type": "number",
-            "description": "Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable)."
-          },
-          "coupons": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AppliedCoupon"
-            }
-          },
-          "discounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AppliedDiscount"
-            }
-          },
-          "lineItems": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LineItem"
-            }
-          },
-          "createdTime": {
-            "type": "string",
-            "format": "ISO-8601",
-            "description": "Time when the cart was created."
-          },
-          "updatedTime": {
-            "type": "string",
-            "format": "ISO-8601",
-            "description": "Time when the cart was last updated."
-          }
+      "required": [
+        "quantity"
+      ]
+    },
+    "ItemGiftCertificate": {
+      "title": "ItemGiftCertificate",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Gift certificate identifier",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the purchased gift certificate e.g. $20 Gift Certificate",
+          "type": "string"
+        },
+        "theme": {
+          "description": "Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.",
+          "type": "string"
+        },
+        "amount": {
+          "description": "Value must be between $1.00 and $1,000.00.",
+          "type": "number",
+          "format": "double"
+        },
+        "taxable": {
+          "description": "",
+          "type": "boolean"
+        },
+        "sender": {
+          "$ref": "#/definitions/ContactEntity"
+        },
+        "recipient": {
+          "$ref": "#/definitions/ContactEntity"
+        },
+        "message": {
+          "description": "Limited to 200 characters.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Explicitly specifying the gift certificate type",
+          "type": "string"
         }
       },
-      "Consignment": {
-        "description": "This allows us to have multiple shipping addresses. Where there is only one shipping address, this array will contain only one value, with all the items.",
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "shippingAddress": {
-            "$ref": "#/components/schemas/AddressResponse"
-          },
-          "availableShippingOptions": {
-            "description": "This is available only when \"include=consignments.availableShippingOptions\" is presented in the URL.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingOptionEntity"
-            }
-          },
-          "selectedShippingOption": {
-            "$ref": "#/components/schemas/SelectedShippingOption"
-          },
-          "couponDiscounts": {
-            "description": "List of consignment discounts applied through coupons",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ConsignmentCouponDiscount"
-            }
-          },
-          "discounts": {
-            "description": "List of consignment discounts applied through cart level discounts",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ConsignmentDiscount"
-            }
-          },
-          "shippingCost": {
-            "description": "The shipping cost for this consignment.",
-            "type": "number",
-            "format": "float"
-          },
-          "handlingCost": {
-            "description": "The handling cost of shipping for this consignment.",
-            "type": "number",
-            "format": "float"
-          },
-          "lineItemIds": {
-            "type": "array",
-            "items": {
+      "required": [
+        "theme",
+        "amount",
+        "sender",
+        "recipient"
+      ]
+    },
+    "ContactEntity": {
+      "title": "ContactEntity",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "",
+          "type": "string"
+        },
+        "email": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "AddressResponse": {
+      "title": "AddressResponse",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AddressProperties"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "",
               "type": "string"
             }
           }
         }
-      },
-      "Currency": {
-        "type": "object",
-        "description": "This will always be the same between cart and checkout.",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The currency name."
-          },
-          "code": {
-            "type": "string",
-            "description": "ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)"
-          },
-          "symbol": {
-            "type": "string",
-            "description": "The currency symbol."
-          },
-          "decimalPlaces": {
-            "type": "number",
-            "description": "Number of decimal places for the currency. For example, USD currency has two decimal places."
+      ]
+    },
+    "AddressProperties": {
+      "title": "AddressProperties",
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "description": "",
+          "type": "string"
+        },
+        "lastName": {
+          "description": "",
+          "type": "string"
+        },
+        "email": {
+          "description": "",
+          "type": "string"
+        },
+        "company": {
+          "description": "",
+          "type": "string"
+        },
+        "address1": {
+          "description": "",
+          "type": "string"
+        },
+        "address2": {
+          "description": "",
+          "type": "string"
+        },
+        "city": {
+          "description": "",
+          "type": "string"
+        },
+        "stateOrProvince": {
+          "description": "Represents state or province.",
+          "type": "string"
+        },
+        "stateOrProvinceCode": {
+          "description": "",
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "ISO 3166-1 alpha-2 country code. (See: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)",
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "",
+          "type": "string"
+        },
+        "phone": {
+          "description": "",
+          "type": "string",
+          "pattern": "^\\+?[1-9]\\d{1,14}(x\\d{1-5})?$"
+        },
+        "customFields": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomField"
           }
         }
       },
-      "AddressResponse": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/AddressProperties"
+      "required": [
+        "countryCode"
+      ]
+    },
+    "CustomField": {
+      "title": "CustomField",
+      "type": "object",
+      "properties": {
+        "fieldId": {
+          "description": "",
+          "type": "string"
+        },
+        "fieldValue": {
+          "description": "This can also be an array for fields that need to support list of values (e.g., a set of check boxes.)",
+          "type": "string"
+        }
+      }
+    },
+    "Consignment": {
+      "title": "Consignment",
+      "description": "This allows us to have multiple shipping addresses. Where there is only one shipping address, this array will contain only one value, with all the items.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "",
+          "type": "string"
+        },
+        "shippingAddress": {
+          "$ref": "#/definitions/AddressResponse"
+        },
+        "availableShippingOptions": {
+          "description": "This is available only when \"include=consignments.availableShippingOptions\" is presented in the URL.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShippingOptionEntity"
           }
-        ],
-        "properties": {
-          "id": {
+        },
+        "selectedShippingOption": {
+          "$ref": "#/definitions/SelectedShippingOption"
+        },
+        "couponDiscounts": {
+          "description": "List of consignment discounts applied through coupons",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConsignmentCouponDiscount"
+          }
+        },
+        "discounts": {
+          "description": "List of consignment discounts applied through cart level discounts",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConsignmentDiscount"
+          }
+        },
+        "shippingCost": {
+          "description": "The shipping cost for this consignment.",
+          "type": "number",
+          "format": "double"
+        },
+        "handlingCost": {
+          "description": "The handling cost of shipping for this consignment.",
+          "type": "number",
+          "format": "double"
+        },
+        "lineItemIds": {
+          "description": "",
+          "type": "array",
+          "items": {
             "type": "string"
           }
         }
-      },
-      "OrderLineItem": {
-        "type": "object",
-        "required": [
-          "physicalItems",
-          "digitalItems",
-          "giftCertificate"
-        ],
-        "properties": {
-          "physicalItems": {
-            "type": "array",
-            "description": "Array of `ItemPhysical` objects.",
-            "items": {
-              "$ref": "#/components/schemas/ItemPhysical"
-            }
-          },
-          "digitalItems": {
-            "type": "array",
-            "description": "Array of `ItemDigital` objects.",
-            "items": {
-              "$ref": "#/components/schemas/OrderItemDigital"
-            }
-          },
-          "giftCertificate": {
-            "type": "array",
-            "description": "Array of `ItemGiftCertificate` objects.",
-            "items": {
-              "$ref": "#/components/schemas/OrderItemGiftCertificate"
-            }
-          }
-        }
-      },
-      "LineItem": {
-        "type": "object",
-        "required": [
-          "physicalItems",
-          "digitalItems",
-          "giftCertificate"
-        ],
-        "properties": {
-          "physicalItems": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ItemPhysical"
-            }
-          },
-          "digitalItems": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ItemDigital"
-            }
-          },
-          "giftCertificate": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ItemGiftCertificate"
-            }
-          }
-        }
-      },
-      "CartUpdateRequest": {
-        "type": "object",
-        "properties": {
-          "lineItem": {
-            "$ref": "#/components/schemas/LineItemRequestData"
-          },
-          "giftCertificate": {
-            "$ref": "#/components/schemas/LineItemGiftCertificateRequestData"
-          }
-        }
-      },
-      "CheckoutUpdateRequest": {
-        "type": "object",
-        "properties": {
-          "customerMessage": {
-            "type": "string"
-          }
-        }
-      },
-      "OrderItemGiftCertificate": {
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The item's product name."
-          },
-          "quantity": {
-            "type": "number",
-            "description": "Quantity of this item."
-          },
-          "isTaxable": {
-            "type": "boolean",
-            "description": "Whether the item is taxable."
-          },
-          "amount": {
-            "type": "number",
-            "format": "float",
-            "description": "Price of the item"
-          },
-          "type": {
-            "type": "string",
-            "description": "Explicitly specifying the gift certificate type"
-          }
-        }
-      },
-      "ItemGiftCertificate": {
-        "type": "object",
-        "required": [
-          "sender",
-          "recipient",
-          "amount",
-          "theme"
-        ],
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Gift certificate identifier"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the purchased gift certificate e.g. $20 Gift Certificate"
-          },
-          "theme": {
-            "type": "string",
-            "description": "Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`."
-          },
-          "amount": {
-            "type": "number",
-            "description": "Value must be between $1.00 and $1,000.00."
-          },
-          "taxable": {
-            "type": "boolean"
-          },
-          "sender": {
-            "$ref": "#/components/schemas/ContactEntity"
-          },
-          "recipient": {
-            "$ref": "#/components/schemas/ContactEntity"
-          },
-          "message": {
-            "type": "string",
-            "description": "Limited to 200 characters."
-          },
-          "type": {
-            "type": "string",
-            "description": "Explicitly specifying the gift certificate type"
-          }
-        }
-      },
-      "ContactEntity": {
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string",
-            "format": "email"
-          }
-        }
-      },
-      "OrderItemDigital": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/BaseItem"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "downloadFileUrls": {
-                "description": "URLs to download all product files.",
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "format": "url"
-                }
-              },
-              "downloadPageUrl": {
-                "description": "The URL for the combined downloads page.",
-                "type": "string",
-                "format": "url"
-              },
-              "downloadSize": {
-                "description": "Combined download size, in human-readable style. E.g.: `30MB`.",
-                "type": "string"
-              }
-            }
-          }
-        ]
-      },
-      "ItemDigital": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/BaseItem"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "isShippingRequired": {
-                "type": "boolean",
-                "description": "Whether this item requires shipping to a physical address."
-              },
-              "downloadFileUrls": {
-                "description": "URLs to download all product files.",
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "format": "url"
-                }
-              },
-              "downloadPageUrl": {
-                "description": "The URL for the combined downloads page.",
-                "type": "string",
-                "format": "url"
-              },
-              "downloadSize": {
-                "description": "Combined download size, in human-readable style. E.g.: `30MB`.",
-                "type": "string"
-              }
-            }
-          }
-        ]
-      },
-      "ItemPhysical": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/BaseItem"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "addedByPromotion": {
-                "type": "boolean",
-                "description": "Whether this item has been added automatically by a promotion."
-              },
-              "isShippingRequired": {
-                "type": "boolean",
-                "description": "Whether this item requires shipping to a physical address."
-              },
-              "giftWrapping": {
-                "description": "A BigCommerce `GiftWrapping` object.",
-                "type": "object",
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/GiftWrapping"
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      },
-      "BaseItem": {
-        "type": "object",
-        "required": [
-          "quantity"
-        ],
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The line-item ID."
-          },
-          "parentId": {
-            "type": "string",
-            "description": "Bundled items will have their parent's item Id."
-          },
-          "variantId": {
-            "type": "number",
-            "description": "ID of the variant."
-          },
-          "productId": {
-            "type": "number",
-            "description": "ID of the product."
-          },
-          "sku": {
-            "type": "string",
-            "description": "SKU of the variant."
-          },
-          "name": {
-            "type": "string",
-            "description": "The item's product name."
-          },
-          "url": {
-            "description": "The product URL.",
-            "type": "string",
-            "format": "uri"
-          },
-          "quantity": {
-            "type": "number",
-            "description": "Quantity of this item."
-          },
-          "isTaxable": {
-            "type": "boolean",
-            "description": "Whether the item is taxable."
-          },
-          "imageUrl": {
-            "type": "string",
-            "description": "URL of an image of this item, accessible on the internet.",
-            "format": "uri"
-          },
-          "discounts": {
-            "type": "array",
-            "description": "List of discounts applied to this item, as an array of AppliedDiscount objects.",
-            "items": {
-              "$ref": "#/components/schemas/AppliedDiscount"
-            }
-          },
-          "discountAmount": {
-            "type": "number",
-            "format": "float",
-            "description": "The total value of all discounts applied to this item (excluding coupon)."
-          },
-          "couponAmount": {
-            "type": "number",
-            "description": "The total value of all coupons applied to this item."
-          },
-          "listPrice": {
-            "type": "number",
-            "description": "Item's list price, as quoted by the manufacturer/distributor."
-          },
-          "salePrice": {
-            "type": "number",
-            "description": "Item's price after all discounts are applied. (The final price before tax calculation.)"
-          },
-          "extendedListPrice": {
-            "type": "number",
-            "description": "Item's list price multiplied by the quantity."
-          },
-          "extendedSalePrice": {
-            "type": "number",
-            "description": "Item's sale price multiplied by the quantity."
-          },
-          "type": {
-            "type": "string",
-            "description": "the product type - physical or digital"
-          }
-        }
-      },
-      "Tax": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the tax."
-          },
-          "amount": {
-            "type": "number"
-          }
-        }
-      },
-      "AppliedCoupon": {
-        "type": "object",
-        "required": [
-          "code"
-        ],
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The coupon ID."
-          },
-          "code": {
-            "type": "string",
-            "description": "the coupon code"
-          },
-          "displayName": {
-            "type": "string",
-            "description": "The coupon title based on different types provided in control panel section"
-          },
-          "couponType": {
-            "type": "string",
-            "description": "Key name to identify the type of coupon."
-          },
-          "discountedAmount": {
-            "type": "number",
-            "description": "The discounted amount applied within a given context."
-          }
-        }
-      },
-      "AppliedDiscount": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The name provided by the merchant."
-          },
-          "discountedAmount": {
-            "type": "number",
-            "description": "The discounted amount applied within a given context."
-          }
-        }
-      },
-      "GiftWrapping": {
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
-      "GiftCertificateRequest": {
-        "type": "object",
-        "properties": {
-          "giftCertificateCode": {
-            "type": "string"
-          }
-        }
-      },
-      "CouponCodeRequest": {
-        "type": "object",
-        "properties": {
-          "couponCode": {
-            "type": "string"
-          }
-        }
-      },
-      "GiftCertificate": {
-        "type": "object",
-        "description": "The values presented here are projections of how much we would be using out of an existent gift certificate",
-        "properties": {
-          "balance": {
-            "type": "number"
-          },
-          "code": {
-            "type": "string"
-          },
-          "purchaseDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "remaining": {
-            "type": "number"
-          },
-          "used": {
-            "type": "number"
-          }
-        }
-      },
-      "CheckoutError": {
-        "type": "object",
-        "properties": {
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ErrorInner"
-            }
-          }
-        }
-      },
-      "ErrorInner": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer"
-          },
-          "title": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "detail": {
-            "type": "string"
-          }
-        }
-      },
-      "ResponseOrderData": {
-        "properties": {
-          "meta": {
-            "type": "object"
-          },
-          "data": {
-            "description": "Response data container for Order endpoints (`POST /order` and `POST /order/{orderId}`).",
-            "properties": {
-              "order": {
-                "$ref": "#/components/schemas/Order"
-              }
-            }
-          }
-        }
-      },
-      "Order": {
-        "properties": {
-          "orderId": {
-            "type": "number"
-          },
-          "cartId": {
-            "type": "string",
-            "format": "UUID",
-            "description": "The Id of cart that was converted to order."
-          },
-          "currency": {
-            "description": "This will always be the same between cart and checkout.",
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Currency"
-              }
-            ]
-          },
-          "isTaxIncluded": {
-            "type": "boolean",
-            "description": "Whether this item is taxable."
-          },
-          "baseAmount": {
-            "type": "number",
-            "description": "Cost of cart's contents, before applying discounts."
-          },
-          "discountAmount": {
-            "type": "number",
-            "format": "float",
-            "description": "Discounted amount."
-          },
-          "orderAmount": {
-            "type": "number",
-            "description": "Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable)."
-          },
-          "orderAmountAsInteger": {
-            "type": "number",
-            "description": "Order amount represented in integer. Eg. 1234 for $12.34"
-          },
-          "coupons": {
-            "type": "array",
-            "description": "Array of `AppliedCoupon` objects applied to this cart.",
-            "items": {
-              "$ref": "#/components/schemas/AppliedCoupon"
-            }
-          },
-          "discounts": {
-            "type": "array",
-            "description": "Array of `AppliedDiscount` objects applied to this cart.",
-            "items": {
-              "$ref": "#/components/schemas/AppliedDiscount"
-            }
-          },
-          "lineItems": {
-            "type": "array",
-            "description": "Array of `LineItem` objects.",
-            "items": {
-              "$ref": "#/components/schemas/OrderLineItem"
-            }
-          },
-          "customerId": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          },
-          "billingAddress": {
-            "$ref": "#/components/schemas/AddressResponse"
-          },
-          "status": {
-            "type": "string",
-            "description": "Order status.",
-            "enum": [
-              "INCOMPLETE",
-              "PENDING",
-              "SHIPPED",
-              "PARTIALLY_SHIPPED",
-              "REFUNDED",
-              "CANCELLED",
-              "DECLINED",
-              "AWAITING_PAYMENT",
-              "AWAITING_PICKUP",
-              "AWAITING_SHIPMENT",
-              "COMPLETED",
-              "AWAITING_FULFILLMENT",
-              "MANUAL_VERIFICATION_REQUIRED",
-              "DISPUTED",
-              "PARTIALLY_REFUNDED"
-            ]
-          },
-          "customerCreated": {
-            "type": "boolean",
-            "description": "For guest checkouts, this flag will identify whether a new customer account was created for this order, or whether the billing email already existed on the store."
-          },
-          "hasDigitalItems": {
-            "type": "boolean",
-            "description": "Specifies whether this order has at least one digital item."
-          },
-          "isDownloadable": {
-            "type": "boolean",
-            "description": "Specifies whether this order is fully paid, so that digital items can be downloaded."
-          },
-          "isComplete": {
-            "type": "boolean",
-            "description": "Specifies whether this order is complete and ready to be taken to the order confirmation page."
-          },
-          "customerMessage": {
-            "type": "string",
-            "description": "Shopper's provided message for the order"
-          }
-        }
-      },
-      "ShippingOptionEntity": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/SelectedShippingOption"
-          }
-        ],
-        "properties": {
-          "isRecommended": {
-            "description": "Is this shipping method the recommended shipping option or not.",
-            "type": "boolean"
-          }
-        }
-      },
-      "SelectedShippingOption": {
-        "properties": {
-          "description": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "description": "Specified the type of shipping option. Flat rate, UPS, etc.,"
-          },
-          "imageUrl": {
-            "type": "string"
-          },
-          "cost": {
-            "type": "number",
-            "format": "float"
-          },
-          "transitTime": {
-            "type": "string",
-            "description": "An estimate of the arrival time."
-          }
-        }
-      },
-      "ConsignmentCouponDiscount": {
-        "properties": {
-          "code": {
-            "description": "Coupon code that applied this discount",
-            "type": "string"
-          },
-          "amount": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
-      "ConsignmentDiscount": {
-        "properties": {
-          "id": {
-            "description": "Discount rule ID that applied this discount",
-            "type": "string"
-          }
-        }
-      },
-      "AddressRequest": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/AddressProperties"
-          }
-        ]
-      },
-      "AddressProperties": {
-        "type": "object",
-        "required": [
-          "countryCode"
-        ],
-        "properties": {
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "company": {
-            "type": "string"
-          },
-          "address1": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "stateOrProvince": {
-            "description": "Represents state or province.",
-            "type": "string"
-          },
-          "stateOrProvinceCode": {
-            "type": "string"
-          },
-          "countryCode": {
-            "type": "string",
-            "format": "ISO 3166-1 alpha-2",
-            "description": "ISO 3166-1 alpha-2 country code. (See: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)"
-          },
-          "postalCode": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string",
-            "format": "E.164",
-            "pattern": "^\\+?[1-9]\\d{1,14}(x\\d{1-5})?$"
-          },
-          "customFields": {
-            "type": "array",
-            "items": {
-              "properties": {
-                "fieldId": {
-                  "type": "string"
-                },
-                "fieldValue": {
-                  "type": "string",
-                  "description": "This can also be an array for fields that need to support list of values (e.g., a set of check boxes.)"
-                }
-              }
-            }
-          }
-        }
-      },
-      "CreateConsignmentRequest": {
-        "type": "array",
-        "items": {
+      }
+    },
+    "ShippingOptionEntity": {
+      "title": "ShippingOptionEntity",
+      "allOf": [
+        {
+          "$ref": "#/definitions/SelectedShippingOption"
+        },
+        {
+          "type": "object",
           "properties": {
-            "shippingAddress": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/AddressRequest"
-                }
-              ]
-            },
-            "lineItems": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/ConsignmentLineItem"
-              }
+            "isRecommended": {
+              "description": "Is this shipping method the recommended shipping option or not.",
+              "type": "boolean"
             }
           }
         }
+      ]
+    },
+    "SelectedShippingOption": {
+      "title": "SelectedShippingOption",
+      "type": "object",
+      "properties": {
+        "description": {
+          "description": "",
+          "type": "string"
+        },
+        "id": {
+          "description": "",
+          "type": "string"
+        },
+        "type": {
+          "description": "Specified the type of shipping option. Flat rate, UPS, etc.,",
+          "type": "string"
+        },
+        "imageUrl": {
+          "description": "",
+          "type": "string"
+        },
+        "cost": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        },
+        "transitTime": {
+          "description": "An estimate of the arrival time.",
+          "type": "string"
+        }
+      }
+    },
+    "ConsignmentCouponDiscount": {
+      "title": "ConsignmentCouponDiscount",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Coupon code that applied this discount",
+          "type": "string"
+        },
+        "amount": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "ConsignmentDiscount": {
+      "title": "ConsignmentDiscount",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Discount rule ID that applied this discount",
+          "type": "string"
+        }
+      }
+    },
+    "Tax": {
+      "title": "Tax",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the tax.",
+          "type": "string"
+        },
+        "amount": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "GiftCertificate": {
+      "title": "GiftCertificate",
+      "description": "The values presented here are projections of how much we would be using out of an existent gift certificate",
+      "type": "object",
+      "properties": {
+        "balance": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        },
+        "code": {
+          "description": "",
+          "type": "string"
+        },
+        "purchaseDate": {
+          "description": "",
+          "type": "string",
+          "format": "date"
+        },
+        "remaining": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        },
+        "used": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "CheckoutError": {
+      "title": "CheckoutError",
+      "type": "object",
+      "properties": {
+        "errors": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorInner"
+          }
+        }
+      }
+    },
+    "ErrorInner": {
+      "title": "ErrorInner",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "",
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "description": "",
+          "type": "string"
+        },
+        "type": {
+          "description": "",
+          "type": "string"
+        },
+        "detail": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "CheckoutUpdateRequest": {
+      "title": "CheckoutUpdateRequest",
+      "type": "object",
+      "properties": {
+        "customerMessage": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "CheckoutsResponse": {
+      "title": "Checkouts Response",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Checkout"
+        }
+      }
+    },
+    "CartUpdateRequest": {
+      "title": "CartUpdateRequest",
+      "type": "object",
+      "properties": {
+        "lineItem": {
+          "$ref": "#/definitions/LineItemRequestData"
+        },
+        "giftCertificate": {
+          "$ref": "#/definitions/LineItemGiftCertificateRequestData"
+        }
+      }
+    },
+    "LineItemRequestData": {
+      "title": "LineItemRequestData",
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        },
+        "productId": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        },
+        "variantId": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "LineItemGiftCertificateRequestData": {
+      "title": "LineItemGiftCertificateRequestData",
+      "type": "object",
+      "properties": {
+        "theme": {
+          "description": "Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.",
+          "type": "string"
+        },
+        "amount": {
+          "description": "",
+          "type": "number",
+          "minimum": 1.0,
+          "maximum": 1000.0,
+          "format": "double"
+        },
+        "sender": {
+          "$ref": "#/definitions/ContactEntity"
+        },
+        "recipient": {
+          "$ref": "#/definitions/ContactEntity"
+        },
+        "message": {
+          "description": "Message shown to recipient, as provided by sender.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        }
       },
-      "UpdateConsignmentRequest": {
-        "type": "object",
-        "description": "One or more of these three fields are mandatory. Shipping address and line items can be updated in one request. Shipping option ID has to be updated in a separate request, since changing the address or line items can invalidate the previously available shipping options.",
-        "properties": {
-          "shippingAddress": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AddressRequest"
-              }
-            ]
-          },
-          "lineItems": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ConsignmentLineItem"
-            }
-          },
-          "shippingOptionId": {
-            "type": "string"
+      "required": [
+        "theme",
+        "amount",
+        "sender",
+        "recipient",
+        "quantity"
+      ]
+    },
+    "CreateConsignmentRequest": {
+      "title": "CreateConsignmentRequest",
+      "type": "object",
+      "properties": {
+        "shippingAddress": {
+          "$ref": "#/definitions/AddressProperties"
+        },
+        "lineItems": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConsignmentLineItem"
+          }
+        }
+      }
+    },
+    "ConsignmentLineItem": {
+      "title": "ConsignmentLineItem",
+      "type": "object",
+      "properties": {
+        "itemId": {
+          "description": "",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "itemId",
+        "quantity"
+      ]
+    },
+    "UpdateConsignmentRequest": {
+      "title": "UpdateConsignmentRequest",
+      "description": "One or more of these three fields are mandatory. Shipping address and line items can be updated in one request. Shipping option ID has to be updated in a separate request, since changing the address or line items can invalidate the previously available shipping options.",
+      "type": "object",
+      "properties": {
+        "shippingAddress": {
+          "$ref": "#/definitions/AddressProperties"
+        },
+        "lineItems": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConsignmentLineItem"
+          }
+        },
+        "shippingOptionId": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "GiftCertificateRequest": {
+      "title": "GiftCertificateRequest",
+      "type": "object",
+      "properties": {
+        "giftCertificateCode": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "CouponCodeRequest": {
+      "title": "CouponCodeRequest",
+      "type": "object",
+      "properties": {
+        "couponCode": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "ResponseOrderData": {
+      "title": "ResponseOrderData",
+      "type": "object",
+      "properties": {
+        "meta": {
+          "description": "",
+          "type": "object"
+        },
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      }
+    },
+    "Data": {
+      "title": "Data",
+      "description": "Response data container for Order endpoints (`POST /order` and `POST /order/{orderId}`).",
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/Order"
+        }
+      }
+    },
+    "Order": {
+      "title": "Order",
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "description": "",
+          "type": "number",
+          "format": "double"
+        },
+        "cartId": {
+          "description": "The Id of cart that was converted to order.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency406"
+        },
+        "isTaxIncluded": {
+          "description": "Whether this item is taxable.",
+          "type": "boolean"
+        },
+        "baseAmount": {
+          "description": "Cost of cart's contents, before applying discounts.",
+          "type": "number",
+          "format": "double"
+        },
+        "discountAmount": {
+          "description": "Discounted amount.",
+          "type": "number",
+          "format": "double"
+        },
+        "orderAmount": {
+          "description": "Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable).",
+          "type": "number",
+          "format": "double"
+        },
+        "orderAmountAsInteger": {
+          "description": "Order amount represented in integer. Eg. 1234 for $12.34",
+          "type": "number",
+          "format": "double"
+        },
+        "coupons": {
+          "description": "Array of `AppliedCoupon` objects applied to this cart.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedCoupon"
+          }
+        },
+        "discounts": {
+          "description": "Array of `AppliedDiscount` objects applied to this cart.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedDiscount"
+          }
+        },
+        "lineItems": {
+          "description": "Array of `LineItem` objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderLineItem"
+          }
+        },
+        "customerId": {
+          "description": "",
+          "type": "string"
+        },
+        "token": {
+          "description": "",
+          "type": "string"
+        },
+        "billingAddress": {
+          "$ref": "#/definitions/AddressResponse"
+        },
+        "status": {
+          "$ref": "#/definitions/Status"
+        },
+        "customerCreated": {
+          "description": "For guest checkouts, this flag will identify whether a new customer account was created for this order, or whether the billing email already existed on the store.",
+          "type": "boolean"
+        },
+        "hasDigitalItems": {
+          "description": "Specifies whether this order has at least one digital item.",
+          "type": "boolean"
+        },
+        "isDownloadable": {
+          "description": "Specifies whether this order is fully paid, so that digital items can be downloaded.",
+          "type": "boolean"
+        },
+        "isComplete": {
+          "description": "Specifies whether this order is complete and ready to be taken to the order confirmation page.",
+          "type": "boolean"
+        },
+        "customerMessage": {
+          "description": "Shopper's provided message for the order",
+          "type": "string"
+        }
+      }
+    },
+    "Currency406": {
+      "title": "Currency406",
+      "description": "This will always be the same between cart and checkout.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The currency name.",
+          "type": "string"
+        },
+        "code": {
+          "description": "ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)",
+          "type": "string"
+        },
+        "symbol": {
+          "description": "The currency symbol.",
+          "type": "string"
+        },
+        "decimalPlaces": {
+          "description": "Number of decimal places for the currency. For example, USD currency has two decimal places.",
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "OrderLineItem": {
+      "title": "OrderLineItem",
+      "type": "object",
+      "properties": {
+        "physicalItems": {
+          "description": "Array of `ItemPhysical` objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemPhysical"
+          }
+        },
+        "digitalItems": {
+          "description": "Array of `ItemDigital` objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderItemDigital"
+          }
+        },
+        "giftCertificate": {
+          "description": "Array of `ItemGiftCertificate` objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderItemGiftCertificate"
           }
         }
       },
-      "ConsignmentLineItem": {
-        "type": "object",
-        "required": [
-          "itemId",
-          "quantity"
-        ],
-        "properties": {
-          "itemId": {
+      "required": [
+        "physicalItems",
+        "digitalItems",
+        "giftCertificate"
+      ]
+    },
+    "OrderItemDigital": {
+      "title": "OrderItemDigital",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The line-item ID.",
+          "type": "string"
+        },
+        "parentId": {
+          "description": "Bundled items will have their parent's item Id.",
+          "type": "string"
+        },
+        "variantId": {
+          "description": "ID of the variant.",
+          "type": "number",
+          "format": "double"
+        },
+        "productId": {
+          "description": "ID of the product.",
+          "type": "number",
+          "format": "double"
+        },
+        "sku": {
+          "description": "SKU of the variant.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The item's product name.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The product URL.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "Quantity of this item.",
+          "type": "number",
+          "format": "double"
+        },
+        "isTaxable": {
+          "description": "Whether the item is taxable.",
+          "type": "boolean"
+        },
+        "imageUrl": {
+          "description": "URL of an image of this item, accessible on the internet.",
+          "type": "string"
+        },
+        "discounts": {
+          "description": "List of discounts applied to this item, as an array of AppliedDiscount objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedDiscount"
+          }
+        },
+        "discountAmount": {
+          "description": "The total value of all discounts applied to this item (excluding coupon).",
+          "type": "number",
+          "format": "double"
+        },
+        "couponAmount": {
+          "description": "The total value of all coupons applied to this item.",
+          "type": "number",
+          "format": "double"
+        },
+        "listPrice": {
+          "description": "Item's list price, as quoted by the manufacturer/distributor.",
+          "type": "number",
+          "format": "double"
+        },
+        "salePrice": {
+          "description": "Item's price after all discounts are applied. (The final price before tax calculation.)",
+          "type": "number",
+          "format": "double"
+        },
+        "extendedListPrice": {
+          "description": "Item's list price multiplied by the quantity.",
+          "type": "number",
+          "format": "double"
+        },
+        "extendedSalePrice": {
+          "description": "Item's sale price multiplied by the quantity.",
+          "type": "number",
+          "format": "double"
+        },
+        "type": {
+          "description": "the product type - physical or digital",
+          "type": "string"
+        },
+        "downloadFileUrls": {
+          "description": "URLs to download all product files.",
+          "type": "array",
+          "items": {
             "type": "string"
-          },
-          "quantity": {
-            "type": "integer"
+          }
+        },
+        "downloadPageUrl": {
+          "description": "The URL for the combined downloads page.",
+          "type": "string"
+        },
+        "downloadSize": {
+          "description": "Combined download size, in human-readable style. E.g.: `30MB`.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "quantity"
+      ]
+    },
+    "OrderItemGiftCertificate": {
+      "title": "OrderItemGiftCertificate",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The item's product name.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "Quantity of this item.",
+          "type": "number",
+          "format": "double"
+        },
+        "isTaxable": {
+          "description": "Whether the item is taxable.",
+          "type": "boolean"
+        },
+        "amount": {
+          "description": "Price of the item",
+          "type": "number",
+          "format": "double"
+        },
+        "type": {
+          "description": "Explicitly specifying the gift certificate type",
+          "type": "string"
+        }
+      }
+    },
+    "Status": {
+      "title": "Status",
+      "description": "Order status.",
+      "example": "INCOMPLETE",
+      "type": "string",
+      "enum": [
+        "INCOMPLETE",
+        "PENDING",
+        "SHIPPED",
+        "PARTIALLY_SHIPPED",
+        "REFUNDED",
+        "CANCELLED",
+        "DECLINED",
+        "AWAITING_PAYMENT",
+        "AWAITING_PICKUP",
+        "AWAITING_SHIPMENT",
+        "COMPLETED",
+        "AWAITING_FULFILLMENT",
+        "MANUAL_VERIFICATION_REQUIRED",
+        "DISPUTED",
+        "PARTIALLY_REFUNDED"
+      ]
+    },
+    "BaseItem": {
+      "title": "BaseItem",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The line-item ID.",
+          "type": "string"
+        },
+        "parentId": {
+          "description": "Bundled items will have their parent's item Id.",
+          "type": "string"
+        },
+        "variantId": {
+          "description": "ID of the variant.",
+          "type": "number",
+          "format": "double"
+        },
+        "productId": {
+          "description": "ID of the product.",
+          "type": "number",
+          "format": "double"
+        },
+        "sku": {
+          "description": "SKU of the variant.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The item's product name.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The product URL.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "Quantity of this item.",
+          "type": "number",
+          "format": "double"
+        },
+        "isTaxable": {
+          "description": "Whether the item is taxable.",
+          "type": "boolean"
+        },
+        "imageUrl": {
+          "description": "URL of an image of this item, accessible on the internet.",
+          "type": "string"
+        },
+        "discounts": {
+          "description": "List of discounts applied to this item, as an array of AppliedDiscount objects.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedDiscount"
+          }
+        },
+        "discountAmount": {
+          "description": "The total value of all discounts applied to this item (excluding coupon).",
+          "type": "number",
+          "format": "double"
+        },
+        "couponAmount": {
+          "description": "The total value of all coupons applied to this item.",
+          "type": "number",
+          "format": "double"
+        },
+        "listPrice": {
+          "description": "Item's list price, as quoted by the manufacturer/distributor.",
+          "type": "number",
+          "format": "double"
+        },
+        "salePrice": {
+          "description": "Item's price after all discounts are applied. (The final price before tax calculation.)",
+          "type": "number",
+          "format": "double"
+        },
+        "extendedListPrice": {
+          "description": "Item's list price multiplied by the quantity.",
+          "type": "number",
+          "format": "double"
+        },
+        "extendedSalePrice": {
+          "description": "Item's sale price multiplied by the quantity.",
+          "type": "number",
+          "format": "double"
+        },
+        "type": {
+          "description": "the product type - physical or digital",
+          "type": "string"
+        }
+      },
+      "required": [
+        "quantity"
+      ]
+    },
+    "CheckoutError522": {
+      "title": "CheckoutError522",
+      "type": "object",
+      "properties": {
+        "errors": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorInner"
           }
         }
       }
