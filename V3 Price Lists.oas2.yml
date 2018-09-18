@@ -525,13 +525,15 @@ paths:
                     quantity_max: 2147483647
                     type: percent
                     amount: 5
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: Success response for batch PUT of `Price Records`.
           schema:
             $ref: '#/definitions/SuccessBatchResponse'
         '422':
-          description: >
+          description: >-
             Error response for batch PUT of `Price Records`.  May include errors
             during partial update in non-strict mode.
           schema:
