@@ -486,7 +486,8 @@ paths:
     put:
       description: >-
         Create or update a price list records using the `price_list_id`. This
-        endpoint supports batching bulk price records.
+        endpoint supports batching bulk price records. Bulk requests are limited
+        to 1000 items per request.
       operationId: setPriceListRecordCollection
       parameters:
         - name: X-Strict-Mode
@@ -632,19 +633,22 @@ paths:
       - $ref: '#/parameters/VariantIdParam'
       - $ref: '#/parameters/PriceRecordCurrencyParam'
     get:
-      description: |
-        Returns a `Price Record` object from BigCommerce.
+      description: >-
+        Get a price list using the `price_list_id`, `variant_id` and
+        `currency_code`. Optional parameters can be used.
       operationId: getPriceListRecord
       parameters:
         - $ref: '#/parameters/FilterIncludePriceRecordParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: |
-            An array of prices and metadata.
+          description: ''
           schema:
             $ref: '#/definitions/PriceRecordResponse'
       tags:
         - Price Lists
+      summary: Get a Price Record by Currency Code
     put:
       description: |
         Creates or updates a single `Price Record` object.
@@ -683,15 +687,19 @@ paths:
       tags:
         - Price Lists
     delete:
-      description: |
-        Deletes one `Price Record` object from BigCommerce, by `variant_id`.
+      description: >-
+        Delete a price record(s) using the `price_list_id`, `variant_id` and
+        `currency_code`.
       operationId: deletePriceListRecord
       responses:
         '204':
-          description: |
-            An empty response.
+          description: ''
       tags:
         - Price Lists
+      summary: Delete a Price Record by Currency Code
+      parameters:
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
 parameters:
   FilterIdParam:
     name: id
