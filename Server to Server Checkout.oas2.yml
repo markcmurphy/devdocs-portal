@@ -40,14 +40,6 @@ paths:
           type: string
           default: application/json
           required: true
-        - in: header
-          name: X-Auth-Client
-          type: string
-          required: true
-        - in: header
-          name: X-Auth-Token
-          type: string
-          required: true
       responses:
         '200':
           description: >-
@@ -301,14 +293,6 @@ paths:
           name: Content-Type
           type: string
           default: application/json
-          required: true
-        - in: header
-          name: X-Auth-Client
-          type: string
-          required: true
-        - in: header
-          name: X-Auth-Token
-          type: string
           required: true
         - name: body
           in: body
@@ -570,14 +554,6 @@ paths:
           type: string
           default: application/json
           required: true
-        - in: header
-          name: X-Auth-Client
-          type: string
-          required: true
-        - in: header
-          name: X-Auth-Token
-          type: string
-          required: true
         - $ref: '#/parameters/addressId'
         - name: body
           in: body
@@ -808,71 +784,6 @@ paths:
         shipping option ID. When creating a new consignment, you'll need to
         provide an address and a list of line item IDs. Shipping option ID
         should be added to this consignment later, using PUT.
-
-
-        Example /POST:
-
-
-        ```
-
-        [
-          {
-            "shipping_address": {
-              "email": "jane2@email.com",
-              "country_code": "US",
-              "first_name": "BigCommerce",
-              "last_name": "Cart/Checkout",
-              "address1": "123 Main Street",
-              "city": "Austin",
-              "state_or_province": "Texas",
-              "state_or_province_code": "TX",
-              "postal_code": "78751",
-              "phone": "688546",
-              "custom_fields": [
-                {
-                  "field_id": "field_25",
-                  "field_value": "Great!"
-                }
-              ]
-            },
-            "line_items": [
-              {
-                "item_id": "27556eb3-6537-4d08-b75e-1ac32d80934b",
-                "quantity": 1
-              }
-            ]
-          },
-          {
-            "shipping_address": {
-              "email": "testing@email.com",
-              "country_code": "US",
-              "first_name": "Testing",
-              "last_name": "BigCommerce",
-              "company": "BigCommerce",
-              "address1": "111 Main Street",
-              "address2": "#1324",
-              "city": "Austin",
-              "state_or_province": "Texas",
-              "state_or_province_code": "TX",
-              "postal_code": "78751",
-              "phone": "+5185158x1{1-5}",
-              "custom_fields": [
-                {
-                  "field_id": "field_25",
-                  "field_value": "You're Welcome"
-                }
-              ]
-            },
-            "line_items": [
-              {
-                "item_id": "15429582-222e-499e-8d22-d2930a0cfc0e",
-                "quantity": 1
-              }
-            ]
-          }
-        ]
-
-        ```
       summary: Add Consignment to Checkout
       tags:
         - Checkout
@@ -890,14 +801,6 @@ paths:
           name: Content-Type
           type: string
           default: application/json
-          required: true
-        - in: header
-          name: X-Auth-Client
-          type: string
-          required: true
-        - in: header
-          name: X-Auth-Token
-          type: string
           required: true
         - name: body
           in: body
@@ -1357,14 +1260,6 @@ paths:
           type: string
           default: application/json
           required: true
-        - in: header
-          name: X-Auth-Client
-          type: string
-          required: true
-        - in: header
-          name: X-Auth-Token
-          type: string
-          required: true
         - $ref: '#/parameters/consignmentId'
       responses:
         '200':
@@ -1534,14 +1429,6 @@ paths:
           name: Content-Type
           type: string
           default: application/json
-          required: true
-        - in: header
-          name: X-Auth-Client
-          type: string
-          required: true
-        - in: header
-          name: X-Auth-Token
-          type: string
           required: true
         - name: body
           in: body
@@ -1725,14 +1612,6 @@ paths:
           name: Content-Type
           type: string
           default: application/json
-          required: true
-        - in: header
-          name: X-Auth-Client
-          type: string
-          required: true
-        - in: header
-          name: X-Auth-Token
-          type: string
           required: true
         - $ref: '#/parameters/couponCode'
       responses:
