@@ -8776,6 +8776,8 @@ pages:
                         blocks:
                           - type: text
                             data: '# Variant Options'
+                          - type: html
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n    <li><a href=\"#option-v2-v3\">Options Created on V2 and V3</a></li>\n    <li><a href=\"#create-variant-options\">Create Variant Options</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ##
@@ -8824,6 +8826,8 @@ pages:
 
                               * Are auto-generated from variants when a product
                               is created with variants via V3 API Product /POST
+                            header:
+                              anchor: introduction
                           - type: text
                             data: '---'
                           - type: text
@@ -8865,6 +8869,8 @@ pages:
                               by the customer. A request like this could be used
                               to add new choices to a variant that has already
                               been created.
+                            header:
+                              anchor: create-variant-options
                           - type: code
                             data: |-
                               {
@@ -8962,11 +8968,13 @@ pages:
                               anchor: code-create-color-variant
                           - type: text
                             data: '---'
+                          - type: text
+                            data: '## Object Properties'
+                            header:
+                              anchor: object-properties
                           - type: jsonSchema
                             data:
-                              $ref: >-
-                                ./BigCommerce V3
-                                API.oas2.yml#/definitions/OptionBase
+                              $ref: './V3 Catalog.oas2.yml#/definitions/OptionBase'
                     - title: Variants
                       route:
                         path: /product-variants
