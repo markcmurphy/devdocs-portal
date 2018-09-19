@@ -9810,8 +9810,6 @@ pages:
                         path: /brands
                       data:
                         blocks:
-                          - type: text
-                            data: '# Brands'
                           - type: html
                             data: "<h1> Brands </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                           - type: text
@@ -9887,11 +9885,12 @@ pages:
                         path: /categories-overview
                       data:
                         blocks:
-                          - type: text
-                            data: '# Category'
+                          - type: html
+                            data: "<h1> Category </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\"> Introduction</a></li>\n\t\t<li><a href=\"#object-properties\"> Object Properties</a></li>\n\t</ul>\n</div>\n"
                           - type: text
                             data: >-
-                              ## [/catalog/categories](http://)
+                              ##
+                              [/catalog/categories](/api-docs/api-reference/v3-api/catalog-api/category/createcategory)
 
 
                               Categories are a hierarchy of products available
@@ -9915,6 +9914,8 @@ pages:
                               which might wish to use a product’s categories to
                               map to a category structure in that external
                               system.
+                            header:
+                              anchor: introduction
                           - type: http
                             data:
                               headers:
@@ -9941,11 +9942,13 @@ pages:
                                 your own.
                           - type: text
                             data: '---'
+                          - type: text
+                            data: '## Object Properties'
+                            header:
+                              anchor: object-properties
                           - type: jsonSchema
                             data:
-                              $ref: >-
-                                ./BigCommerce V3
-                                API.oas2.yml#/definitions/CategoryBase
+                              $ref: './V3 Catalog.oas2.yml#/definitions/CategoryBase'
                     - title: Category Tree
                       route:
                         path: /category-tree
