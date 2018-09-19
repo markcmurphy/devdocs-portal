@@ -898,20 +898,46 @@ pages:
                               type: error
                           - type: text
                             data: >-
-                              If you are reinstalling over a base theme on which
-                              you have already begun development, first back up
-                              at least your theme's <theme-name>.stencil file.
-                              This file contains your store URL, your
-                              BigCommerce username and access tokens, and other
-                              basic settings. Preserving those settings will
-                              speed up initializing and launching the new
-                              version.
+                              ## Adding the Cornerstone Base Theme
 
 
-                              To allow complete rollback, back up your whole
-                              <theme-name> directory. (In a default
-                              installation, this directory is named
-                              .../cornerstone/.
+                              _Windows users need to run this in git bash._
+
+
+                              Navigate to a directory where you would like to
+                              install a subdirectory for your theme. You must
+                              have appropriate write permissions in this
+                              directory. 
+
+
+                              Execute the following command to clone Stencil's
+                              base theme, Cornerstone, into a new subdirectory
+                              named `.../cornerstone/`
+
+
+                              `git clone
+                              https://github.com/bigcommerce/cornerstone.git`
+                                
+                              If the above command fails, and you are accessing
+                              GitHub anonymously, give the URL this alternate
+                              prefix:
+
+
+                              `git clone
+                              git://github.com/bigcommerce/cornerstone.git`
+
+
+
+                              <!-- Add a note here: If downloading a marketplace
+                              theme, must install jspm, register your jspm
+                              instance, and set up BitBucket access...  -->
+
+
+                              <!-- If you are installing Stencil for the first
+                              time, then in--> In the next step, you will
+                              install Stencil <a
+                              href="/docs/javascript-utilities">JavaScript
+                              utilities</a> to enable API access via Ajax.
                     - title: Installing Javascript Utilities
                       route:
                         path: /installing-javascript-utilities
@@ -1215,8 +1241,13 @@ pages:
                         body: >-
                           The steps below are required only if you are
                           downloading a refreshed copy of Stencil's default
-                          Cornerstone theme, from the BigCommerce Theme
-                          Marketplace.
+                          Cornerstone theme from the BigCommerce Theme
+                          Marketplace. Cornerstone uses a simplified workflow
+                          that bypasses BitBucket requirements, and that
+                          replaces jspm with the Webpack build system. You can
+                          configure Webpack's watched folders, or substitute
+                          your own build system. For details, please see Webpack
+                          and Build-System Options.
 
 
                           If you are downloading a different Marketplace theme
@@ -1224,13 +1255,6 @@ pages:
                           outlined at Downloading and Customizing Marketplace
                           Themes.
 
-
-                          (Cornerstone, Diamond, and Queen use a simplified
-                          workflow that bypasses BitBucket requirements, and
-                          that replaces jspm with the Webpack build system. You
-                          can configure Webpack's watched folders, or substitute
-                          your own build system. For details, please see Webpack
-                          and Build-System Options)
 
 
                           To keep any _custom or customized theme updated with
