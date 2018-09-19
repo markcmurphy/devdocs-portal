@@ -3359,15 +3359,50 @@ pages:
                         path: /authentication
                       data:
                         blocks:
-                          - type: text
+                          - type: html
                             data: |-
-                              # Authentication
+                              what-are-oauth-credentials
+                              getting-oauth-credentials
+                              revoking-oauth-token
+                              client-id-secret
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## What are OAuth Credentials?
 
-                              ## What We'll Cover
-                              * Getting OAuth Credentials
-                              * Revoking an OAuth Token
-                              * Getting a Client ID and Secret
-                              * OAuth Scopes
+
+                              BigCommerce uses [OAuth
+                              authentication](https://dev.to/anabella/dancing-with-oauth-emp)
+                              for all API and app usage. Currently, there are
+                              two types of tokens available, with different use
+                              cases. 
+
+
+                              ### API Credentials
+
+                              Credentials for making API requests are created in
+                              the Control Panel and can only be created by the
+                              store owner. They are referred to in this
+                              documentation as API Credentials. API Credentials
+                              are used for testing, webhooks and writing
+                              scripts.  The API token can only be created by the
+                              store owner since they are tied to the store.
+
+
+                              ### Client Id and Client Token
+
+                              Credentials for creating apps for sale in the
+                              marketplace, private apps or connector apps are
+                              created in DevTools. They are referred to as
+                              Client Id and Client Token in this documentation. 
+                              The Client Id and Client Token are used for
+                              generating an authorization token per store. This
+                              eliminates the need to have a merchant generate
+                              new API Credentials every time they want to
+                              install an app in their store. 
+                            header:
+                              anchor: what-are-oauth-credentials
                           - type: text
                             data: '---'
                           - type: text
@@ -3421,6 +3456,8 @@ pages:
                               sensitive – please treat them with the same
                               caution that you would treat a private key or root
                               password.
+                            header:
+                              anchor: getting-oauth-credentials
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1536087816482
@@ -3460,6 +3497,8 @@ pages:
                               4. In the Actions column at right, select the
                               trash-can button next to the account you want to
                               delete.
+                            header:
+                              anchor: revoking-oauth-token
                           - type: callout
                             data:
                               type: error
@@ -3524,16 +3563,32 @@ pages:
                               accessed again by clicking on View Client ID at
                               any time. If you delete the app, there is no way
                               to recover them.
+                            header:
+                              anchor: client-id-secret
                           - type: text
                             data: '---'
                           - type: text
-                            data: |-
+                            data: >-
                               ## When to Use Each
 
+
                               | Client Id / Client Secret | OAuth Credentials |
+
                               |--|--|
-                              | Marketplace Apps | Single API Requests |
-                              | Private Apps | 
+
+                              | Gotten from DevTools| Gotten from Store Control
+                              Panel|
+
+                              | Single Click Apps (Marketplace)| Single API
+                              Requests |
+
+                              | Private Apps ||
+
+                              | Hidden Apps | |
+
+                              | Connector Apps ||
+                            header:
+                              anchor: when-to-use
                           - type: text
                             data: '---'
                           - type: text
