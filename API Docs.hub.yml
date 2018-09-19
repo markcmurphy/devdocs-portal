@@ -9765,12 +9765,12 @@ pages:
                         path: /product-reviews
                       data:
                         blocks:
-                          - type: text
-                            data: '# Reviews'
+                          - type: html
+                            data: "<h1> Reviews </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ##
-                              [/catalog/products/product_id/reviews](/api-docs/api-reference/v3-api/catalog/getproductreviews)
+                              [/catalog/products/{product_id}/reviews](/api-docs/api-reference/v3-api/catalog/getproductreviews)
 
 
                               A product review is used to give shoppers the
@@ -9786,6 +9786,8 @@ pages:
                               reviews. Product Reviews are native to the
                               platform but can be turned off in favor of a
                               custom setup.
+                            header:
+                              anchor: introduction
                           - type: http
                             data:
                               headers:
@@ -9814,11 +9816,15 @@ pages:
                               anchor: code-create-product-review
                           - type: text
                             data: '---'
+                          - type: text
+                            data: '## Object Properties'
+                            header:
+                              anchor: object-properties
                           - type: jsonSchema
                             data:
                               $ref: >-
-                                ./BigCommerce V3
-                                API.oas2.yml#/definitions/ProductReviewBase
+                                ./V3
+                                Catalog.oas2.yml#/definitions/ProductReviewBase
                     - title: Brands
                       route:
                         path: /brands
