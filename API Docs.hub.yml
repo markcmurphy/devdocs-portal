@@ -3360,13 +3360,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: |-
-                              what-are-oauth-credentials
-                              getting-oauth-credentials
-                              revoking-oauth-token
-                              client-id-secret
-                              when-to-use
-                              oauth-scope
+                            data: "<h1>Authentication</h1>\n\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#what-are-oauth-credentials\">What are OAuth Credentials?</a></li>\n\t\t<li><a href=\"#getting-api-credentials\"> Getting API Credentials </a></li>\n\t\t<li><a href=\"#revoking-api-credentials\"> Revoking API Credtials</a></li>\n\t\t<li><a href=\"#client-id-secret\"> Getting Client Id and Client Secret</a></li>\n\t\t<li><a href=\"#when-to-use\"> When to Use Each</a></li>\n\t\t<li><a href=\"#oauth-scopes\"> OAuth Scopes</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: '---'
                           - type: text
@@ -3409,9 +3403,9 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
-                              ## Getting OAuth Credentials
+                              ## Getting API Tokens
 
-                              You can create and manage OAuth tokens in the
+                              You can create and manage API Credentials in the
                               BigCommerce control panel by creating an API
                               account, as described below. (Only the store owner
                               can create API accounts; accounts are limited to
@@ -3459,7 +3453,7 @@ pages:
                               caution that you would treat a private key or root
                               password.
                             header:
-                              anchor: getting-oauth-credentials
+                              anchor: getting-api-credentials
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1536087816482
@@ -3482,7 +3476,7 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
-                              ## Revoking an OAuth Token
+                              ## Revoking API Credentials
 
 
                               To revoke an OAuth token, use the following steps
@@ -3500,7 +3494,7 @@ pages:
                               trash-can button next to the account you want to
                               delete.
                             header:
-                              anchor: revoking-oauth-token
+                              anchor: revoking-api-credentials
                           - type: callout
                             data:
                               type: error
@@ -3515,7 +3509,7 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
-                              ## Client ID and Client Secret
+                              ## Getting Client ID and Client Secret
 
 
                               * The Client ID value uniquely identifies your app
@@ -3581,23 +3575,27 @@ pages:
                               | Gotten from DevTools| Gotten from Store Control
                               Panel|
 
-                              | Single Click Apps (Marketplace)| Single API
-                              Requests |
+                              | Single Click Apps (Marketplace)| V3 API |
 
-                              | Private Apps ||
+                              | Private Apps | V2 API |
 
-                              | Hidden Apps | |
+                              | Hidden Apps | Webhooks |
 
                               | Connector Apps ||
                             header:
                               anchor: when-to-use
                           - type: text
                             data: '---'
-                            header:
-                              anchor: oauth-scope
+                            header: {}
                           - type: text
                             data: >-
-                              ## Oauth Scopes
+                              ## OAuth Scopes
+
+
+                              Scope limits Client Id/ Client Tokens and API
+                              Credentials ability to read or write to data. Set
+                              the scope to the minimum level needed to
+                              accomplish the task at hand.
 
 
                               All OAuth scopes except `default` have `read_only`
@@ -3808,6 +3806,8 @@ pages:
                               || store_cart_read_only | View Carts |
 
                               ||| [/v3/carts](/api/v3/cart.html) |
+                            header:
+                              anchor: oauth-scopes
                     - title: API Requests
                       route:
                         path: /api-requests
