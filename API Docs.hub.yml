@@ -3535,19 +3535,32 @@ pages:
                               to log in to the developer portal. 
 
 
-                              1. Click on Create an app
+                              1. Click on Create an app.
 
                               2. Give your app a name. This will only be visible
                               to you.
 
                               3. A pop up box will display showing Your Profile,
                               App Summary and Category. 
-
+                            header:
+                              anchor: client-id-secret
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1537389767940
+                            header:
+                              title: Create an App
+                          - type: text
+                            data: >-
                               4. Click on Step 3 - Technical. Fill out the App
-                              Features sections with App Tyle, Multiples Users
-                              Callback URLs and OAuth Scopes. You read more
-                              about this page in the dev portal article. 
-
+                              Features sections with App Type, Callback URLS and
+                              Scope.
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1537389883100
+                            header:
+                              title: Step 3 - Technical
+                          - type: text
+                            data: >-
                               5. Then in the lower right-hand corner of the
                               popup box click Update & Close.
 
@@ -3556,36 +3569,42 @@ pages:
 
                               7. It will take you back to the home page and your
                               app will be listed. Click View Client ID. 
-
-                              8. Here you can get your Client ID and Client
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1537390078741
+                            header:
+                              title: View Client Id
+                          - type: text
+                            data: >-
+                              9. Here you can get your Client ID and Client
                               Secret. 
 
-                              9. The Client ID and Client Secret here can be
+                              10. The Client ID and Client Secret here can be
                               accessed again by clicking on View Client ID at
-                              any time. If you delete the app, there is no way
-                              to recover them.
+                              any time. 
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1537390135692
                             header:
-                              anchor: client-id-secret
+                              title: Client Id and Client Secret
+                          - type: callout
+                            data:
+                              type: warning
+                              body: >-
+                                If you delete the app, there is no way to
+                                recover the Client Id and Client Secret.
                           - type: text
                             data: '---'
                           - type: text
-                            data: >-
+                            data: |-
                               ## When to Use Each
 
-
                               | Client Id / Client Secret | OAuth Credentials |
-
                               |--|--|
-
-                              | Gotten from DevTools| Gotten from Store Control
-                              Panel|
-
+                              | From DevTools| From Store Control Panel|
                               | Single Click Apps (Marketplace)| V3 API |
-
                               | Private Apps | V2 API |
-
                               | Hidden Apps | Webhooks |
-
                               | Connector Apps ||
                             header:
                               anchor: when-to-use
@@ -3593,9 +3612,20 @@ pages:
                             data: '---'
                             header: {}
                           - type: text
-                            data: |+
-                              ## Migrating from Legacy to OAuth
-
+                            data: '## Migrating from Legacy to OAuth'
+                          - type: callout
+                            data:
+                              type: error
+                              body: >-
+                                As of July 31, 2018, new BigCommerce stores are
+                                no longer able to create Legacy API Accounts
+                                (accounts using HTTP Basic Auth) within their
+                                control panels. Existing Legacy API Accounts
+                                will continue to work until further notice, but
+                                we strongly recommend migrating to OAuth as soon
+                                as possible.
+                          - type: text
+                            data: "Migrating to OAuth comes with several benefits:\n\n* All OAuth requests are sent to a common hostname: `https://api.bigcommerce.com`. Using a single hostname prevents any interruption of service when the domain or SSL on a particular store changes or expires.\n\n* All of BigCommerce’s newest V3 APIs are exclusively available via OAuth.\n\n* OAuth API accounts have access to subscribe to BigCommerce’s Webhooks for real-time event notifications\n\n* The ability to use new APIs that require a shared secret, such as the Storefront Login API or the Storefront Current Customer identification endpoint.\n\n* Gzip compression on API responses to reduce bandwidth usage\n\n* Better security as all OAuth tokens are scoped to particular endpoints\n\n### How to Migrate\n\nFirst, consider whether your application should reside within the public App Marketplace, where any BigCommerce merchant can quickly discover and install it. To learn more about how to set up this kind of app, see [Becoming a Partner](/api-docs/getting-started/partner/becoming-a-partner).\n\nIf you would like to update your API connection from Basic Authentication to OAuth, you will need to make the following changes:\n\n- Get a Client ID and an Access Token, by creating an API Account within the control panel. You’ll want to make sure the account has the correct Scopes for the API endpoints you need to access. We recommend that you provide the minimum scopes that your application requires to function, as a good security practice.\n- If you use one of the Client Libraries, follow the relevant guide (within the library’s documentation) for establishing an OAuth connection.\n- If you have created your connection, you’ll want to update your connection parameters:\n\t- Where you previously used the BigCommerce store’s secure hostname, you will instead use the `https://api.bigcommerce.com` gateway URL.\nAs an example, requests to `https://store-abc123.mybigcommerce.com/api/v2/orders/123` or `https://my-custom-store-domain.com/api/v2/orders/123 `would instead go to `https://api.bigcommerce.com/stores/{store_hash}/v2/orders/123`.\n- With Basic Auth, you use an Authentication HTTP Header to authenticate your connection. With OAuth, you’ll want to use two headers:\n\t- X-Client-Id for your Client ID, and the \n\t- X-Auth-Token header for your Access Token. You can read more here.\n\nRate limiting of API requests works differently for OAuth API connections. To become familiar with the OAuth system, please see the [Rate Limits]()."
                           - type: text
                             data: '---'
                           - type: text
