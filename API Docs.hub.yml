@@ -8764,8 +8764,6 @@ pages:
                         path: /product-variant-options
                       data:
                         blocks:
-                          - type: text
-                            data: '# Variant Options'
                           - type: html
                             data: "<h1> Variant Options </h1>\n\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n    <li><a href=\"#option-v2-v3\">Options Created on V2 and V3</a></li>\n    <li><a href=\"#create-variant-options\">Create Variant Options</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                           - type: text
@@ -8970,8 +8968,6 @@ pages:
                         path: /product-variants
                       data:
                         blocks:
-                          - type: text
-                            data: '# Variants'
                           - type: html
                             data: "<h1> Variants </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n    <li><a href-\"#create-a-variant\">Create a Variant</a></li>\n    <li><a href-\"#create-variant-product-endpoint\">Create a Variant Using the Product Endpoint</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                           - type: text
@@ -9816,10 +9812,12 @@ pages:
                         blocks:
                           - type: text
                             data: '# Brands'
+                          - type: html
+                            data: "<h1> Brands </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#introduction\">Introduction</a></li>\n\t\t<li><a href=\"#object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ##
-                              [/catalog/brands](/api-docs/api-reference/v3-api/brands/getbrands)
+                              [/catalog/brands](/api-docs/api-reference/v3-api/catalog-api/brands/createbrand)
 
 
                               Brands are another form of catalog taxonomy,
@@ -9840,6 +9838,8 @@ pages:
                               on the storefront which shows all the products in
                               that Brand. They’re also used as part of faceted
                               search navigation.
+                            header:
+                              anchor: introduction
                           - type: http
                             data:
                               headers:
@@ -9869,11 +9869,13 @@ pages:
                               anchor: code-create-brand
                           - type: text
                             data: '---'
+                          - type: text
+                            data: '## Object Properties'
+                            header:
+                              anchor: object-properties
                           - type: jsonSchema
                             data:
-                              $ref: >-
-                                ./BigCommerce V3
-                                API.oas2.yml#/definitions/BrandBase
+                              $ref: './V3 Catalog.oas2.yml#/definitions/BrandBase'
               - title: Categories
                 route:
                   path: /categories
