@@ -3791,22 +3791,7 @@ pages:
                                                             ### Request Update V3 Product Stock
                                                             Levels
 
-
-                                                            * Variant Stock Levels can also be
-                                                            updated at this endpoint with the sku
-                                                            and variant_id included in the request.
-
-
-                                                            ```
-
-                                                            {
-                                                              "inventory_level": 100,
-                                                              "inventory_warning_level": 10,
-                                                              "id": 388,
-                                                              "sku": "SKU-4484A834"
-                                                            }
-
-                                                            ```
+                                                            * For a simple product
                                                         - type: code
                                                           data: |
 
@@ -3822,6 +3807,8 @@ pages:
                                                           data: >-
                                                             ### Request Update V2 Product Stock
                                                             Levels
+
+                                                            * For a simple product
                                                         - type: code
                                                           data: |-
                                                             {
@@ -3838,9 +3825,9 @@ pages:
                                                         /v3/catalog/products/{{id}}/variants/{{id}}
                                                       blocks:
                                                         - type: text
-                                                          data: >
-                                                            ### Request to Update Stock Levels on
-                                                            Variant
+                                                          data: |-
+                                                            ### Update V3 Variant Stock Level
+                                                            * For a single variant
                                                         - type: code
                                                           data: |-
                                                             {
@@ -3849,6 +3836,10 @@ pages:
                                                             }
                                                     - title: 'PUT /v2/products/{{id}}/skus/{{id}}'
                                                       blocks:
+                                                        - type: text
+                                                          data: |-
+                                                            ### Update V2 SKU Level
+                                                            * For a single sku
                                                         - type: code
                                                           data: |2-
                                                               {
@@ -3867,9 +3858,7 @@ pages:
                                                     - title: 'PUT /v3/catalog/products/{{id}}'
                                                       blocks:
                                                         - type: text
-                                                          data: >-
-                                                            ### Request to Update Stock on Multiple
-                                                            Variants
+                                                          data: '### Update V3 Multiple Stock Levels'
                                                         - type: code
                                                           data: |-
                                                             [
@@ -3884,12 +3873,22 @@ pages:
                                                               "inventory_warning_level": 10,
                                                               "id": 389,
                                                               "sku": "SKU-9E932372"
-                                                            },
+                                                            }
                                                             ]
                                                           config:
                                                             mode: json
                                                     - title: 'PUT /v2/products/{{id}}/skus/{{id}}'
-                                                      blocks: []
+                                                      blocks:
+                                                        - type: text
+                                                          data: |-
+                                                            ### Update V2 Multiple Stock Levels
+                                                            * A request must be sent for each SKU
+                                                        - type: code
+                                                          data: |-
+                                                            {
+                                                              "inventory_level": 100,
+                                                              "inventory_warning_level": 10
+                                                            }
                                 - title: Complex Products
                                   blocks:
                                     - type: tabs
