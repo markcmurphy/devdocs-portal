@@ -4090,8 +4090,48 @@ pages:
                                               - type: tabs
                                                 data:
                                                   children:
-                                                    - title: v3
-                                                      blocks: []
+                                                    - title: V3 Modifier
+                                                      blocks:
+                                                        - type: text
+                                                          data: >-
+                                                            ### Modifers
+
+
+                                                            This examples uses a checkbox which is
+                                                            created in two steps. 
+                                                        - type: code
+                                                          data: |-
+                                                            {
+                                                              "type": "checkbox",
+                                                              "required": false,
+                                                              "config": {
+                                                                "default_value": "Yes",
+                                                                "checked_by_default": false,
+                                                                "checkbox_label": "Check for Donation"
+                                                              },
+                                                              "display_name": "Add a $5 Donation"
+                                                            }
+                                                          header:
+                                                            title: Create Modifier
+                                                            subtitle: >-
+                                                              POST
+                                                              /v3/catalog/products/{product_id}/modifiers
+                                                        - type: code
+                                                          data: |-
+                                                            {
+                                                              "is_default": false,
+                                                              "adjusters": {
+                                                                "price": {
+                                                                  "adjuster": "relative",
+                                                                  "adjuster_value": 5
+                                                                }
+                                                              }
+                                                            }
+                                                          header:
+                                                            title: Update Modifier Values
+                                                            subtitle: >-
+                                                              PUT
+                                                              /v3/catalog/products/{product_id}/modifiers/{modifier_id}/values
                                                     - title: v2
                                                       blocks: []
                                           - title: >-
