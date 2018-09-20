@@ -3899,149 +3899,28 @@ pages:
                                                           config:
                                                             mode: json
                                                 header: {}
-                                    - type: text
-                                      data: >-
-                                        ### /POST a Simple Product with Images
-
-
-                                        | V3 | V2 |
-
-                                        |--|--|
-
-                                        | POST /v3/catalog/products.<br> For
-                                        each image: POST
-                                        /v3/catalog/products/{{product_id}}/images
-                                        | POST /v2/products <br> For each image:
-                                        POST /v2/products/{{product_id}}/images
-                                        |
-                                    - type: text
-                                      data: >-
-                                        ### Identify Number of Pages of Products
-
-
-                                        | V3 | V2 |
-
-                                        |--|--|
-
-                                        | GET /v3/catalog/products <br> Observe
-                                        `total_pages` property of the  meta
-                                        object in the response | GET
-                                        /v2/products/count <br> Divide the
-                                        number in the response by the number of
-                                        objects per page defined by the limit
-                                        parameter (max 250) | 
-                                    - type: text
-                                      data: >-
-                                        ### Add a Product with Product Videos
-
-
-                                        | V3 | V2 |
-
-                                        |--|--|
-
-                                        | POST /v3/catalog/products <br> For
-                                        each video: POST
-                                        /v3/catalog/products/{{id}}/videos| POST
-                                        /v2/products <br> For each video: POST
-                                        /v2/products/{{id}}/videos|
                                 - title: Stock Levels
                                   blocks:
-                                    - type: text
-                                      data: >-
-                                        ### Update Stock Levels
-
-
-                                        | V3 | V2 |
-
-                                        |--|--|
-
-                                        | PUT /v3/catalog/products/{{id}}| PUT
-                                        /v2/products/{{id}} |
-                                    - type: text
-                                      data: >-
-                                        ### Update Stock Level on a Single
-                                        Variants/SKU
-
-
-                                        | V3 | V2 |
-
-                                        |--|--|
-
-                                        | PUT
-                                        /v3/catalog/products/{{id}}/variants/{{id}}
-                                        | PUT /v2/products/{{id}}/skus/{{id}} |
-                                    - type: text
-                                      data: >-
-                                        ### Update Stock Levels on Multiple
-                                        Variants/SKUs 
-
-
-                                        - Attached to a single product
-
-
-                                        | V3 | V2 |
-
-                                        |--|--|
-
-                                        | PUT/v3/catalog/products/{id} <br>
-                                        Request body includes a variants array |
-                                        For each SKU: PUT
-                                        /v2/products/{id}/skus/{id}|
-
-
-                                        **Variants Array**
-
-                                         ```
-                                        {
-                                          "variants": [
-                                            {
-                                              "inventory_level": 100,
-                                              "inventory_warning_level": 10,
-                                              "product_id": 195,
-                                              "sku": "SKU-4484A834",
-                                              "id":388
-                                            },
-                                            {
-                                              "inventory_level": 100,
-                                              "inventory_warning_level": 10,
-                                              "product_id": 195,
-                                              "sku": "SKU-9E932372",
-                                              "id":389
-                                            },
-                                                {
-                                              "inventory_level": 100,
-                                              "inventory_warning_level": 10,
-                                              "product_id": 195,
-                                              "sku": "SKU-29CE333F",
-                                              "id": 390
-                                            },
-                                                {
-                                              "inventory_level": 100,
-                                              "inventory_warning_level": 10,
-                                              "product_id": 195,
-                                              "sku": "SKU-02FBF02A",
-                                              "id": 391
-                                            }
-                                          ]
-                                         }
-                                        ```
+                                    - type: tabs
+                                      data:
+                                        children:
+                                          - title: Update Stock Levels
+                                            blocks: []
+                                          - title: Update Stock Levels on Variant/SKU
+                                            blocks: []
+                                          - title: >-
+                                              Update Stock Levels on Multiple
+                                              Variants/SKU
+                                            blocks: []
                                 - title: Complex Products
                                   blocks:
-                                    - type: text
-                                      data: >
-                                        ### Create a Product with Variants/SKUs
-
-
-                                        - Here the Variants/SKUs can include
-                                        unique values for weight, price, image
-                                        file, and availability (i.e. purchasing
-                                        disabled)
-
-
-                                        POST /v3/catalog/products
-
-
-                                        Request body includes a variants array
+                                    - type: tabs
+                                      data:
+                                        children:
+                                          - title: Create Product with Variants/SKU
+                                            blocks: []
+                                          - title: Tab 2
+                                            blocks: []
                             header:
                               title: Product Actions
                     - title: Authentication
