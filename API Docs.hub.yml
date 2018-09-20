@@ -3894,7 +3894,7 @@ pages:
                                     - type: tabs
                                       data:
                                         children:
-                                          - title: Create Product with Variants/SKU
+                                          - title: Create Product with Variants
                                             blocks:
                                               - type: tabs
                                                 data:
@@ -3972,9 +3972,18 @@ pages:
                                                         - type: text
                                                           data: >-
                                                             This will add values such as small,
-                                                            medium and large
+                                                            medium and large. Only one value at a
+                                                            time can be created. In this example it
+                                                            will take 3 seperate /POST requests to
+                                                            create all sizes
                                                         - type: code
-                                                          data: ''
+                                                          data: |-
+                                                            {
+                                                              "label": "Medium",
+                                                              "sort_order": 1,
+                                                              "value": "Medium",
+                                                              "is_default": false
+                                                            }
                                                           header:
                                                             title: Add option values
                                                             subtitle: '/v2/options/{option_set_id}/values'
