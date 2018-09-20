@@ -3398,7 +3398,47 @@ pages:
                                           - title: Get a Product
                                             blocks: []
                                           - title: Post a Product
-                                            blocks: []
+                                            blocks:
+                                              - type: tabs
+                                                data:
+                                                  children:
+                                                    - title: 'POST /v3/catalog/products '
+                                                      blocks:
+                                                        - type: code
+                                                          data: |-
+                                                            {
+                                                              "name": "BigCommerce Coffee Mug",
+                                                              "price": "10.00",
+                                                              "categories": [
+                                                                23,
+                                                                21
+                                                              ],
+                                                              "weight": 4,
+                                                              "type": "physical"
+                                                            }
+                                                          header:
+                                                            title: Request
+                                                          config:
+                                                            mode: json
+                                                    - title: POST /v2/products
+                                                      blocks:
+                                                        - type: code
+                                                          data: |-
+                                                            {
+                                                                "name": "Plain T-Shirt",
+                                                                "type": "physical",
+                                                                "description": "This timeless fashion staple will never go out of style!",
+                                                                "price": "29.99",
+                                                                "categories": [18],
+                                                                "availability": "available",
+                                                                "weight": "0.5"
+                                                            }
+                                                          header:
+                                                            title: Request
+                                                          config:
+                                                            mode: json
+                                                header:
+                                                  title: /POST a Simple Product
                                           - title: Post Product with Images
                                             blocks: []
                                           - title: Post Product with Videos
@@ -3636,48 +3676,7 @@ pages:
                                                             title: Response
                                                           config:
                                                             mode: json
-                                                header:
-                                                  title: /GET a Simple Product
-                                    - type: tabs
-                                      data:
-                                        children:
-                                          - title: 'POST /v3/catalog/products '
-                                            blocks:
-                                              - type: code
-                                                data: |-
-                                                  {
-                                                    "name": "BigCommerce Coffee Mug",
-                                                    "price": "10.00",
-                                                    "categories": [
-                                                      23,
-                                                      21
-                                                    ],
-                                                    "weight": 4,
-                                                    "type": "physical"
-                                                  }
-                                                header:
-                                                  title: Request
-                                                config:
-                                                  mode: json
-                                          - title: POST /v2/products
-                                            blocks:
-                                              - type: code
-                                                data: |-
-                                                  {
-                                                      "name": "Plain T-Shirt",
-                                                      "type": "physical",
-                                                      "description": "This timeless fashion staple will never go out of style!",
-                                                      "price": "29.99",
-                                                      "categories": [18],
-                                                      "availability": "available",
-                                                      "weight": "0.5"
-                                                  }
-                                                header:
-                                                  title: Request
-                                                config:
-                                                  mode: json
-                                      header:
-                                        title: /POST a Simple Product
+                                                header: {}
                                     - type: text
                                       data: >-
                                         ### /POST a Simple Product with Images
