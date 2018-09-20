@@ -4014,6 +4014,68 @@ pages:
                                                           header:
                                                             title: Assign the Option Set to the Product
                                                             subtitle: 'PUT /v2/products/{product_id}'
+                                                        - type: text
+                                                          data: >-
+                                                            To create the SKU's first you need the
+                                                            `option_value_id`. Sent a /GET to 
+
+                                                            `optionsets/{option_set_id}/options` .
+
+
+                                                            ```
+
+                                                            {
+                                                                "id": 119,
+                                                                "option_id": 88,
+                                                                "option_set_id": 60,
+                                                                "display_name": "T-Shirt Size",
+                                                                "sort_order": 0,
+                                                                "is_required": false,
+                                                                "option": {
+                                                                    "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/options/88",
+                                                                    "resource": "/options/88"
+                                                                },
+                                                                "values": [
+                                                                    {
+                                                                        "label": "Small",
+                                                                        "sort_order": 0,
+                                                                        "value": "Small",
+                                                                        "is_default": false,
+                                                                        "option_value_id": 192
+                                                                    },
+                                                                    {
+                                                                        "label": "Medium",
+                                                                        "sort_order": 1,
+                                                                        "value": "Medium",
+                                                                        "is_default": false,
+                                                                        "option_value_id": 193
+                                                                    },
+                                                                    {
+                                                                        "label": "Large",
+                                                                        "sort_order": 2,
+                                                                        "value": "Large",
+                                                                        "is_default": false,
+                                                                        "option_value_id": 194
+                                                                    }
+                                                                ]
+                                                            }
+
+                                                            ```
+
+
+                                                            The `product_option_id` is also
+                                                            required.
+
+                                                            `/v2/products/{product_id}/options`. 
+
+
+                                                            Each size will need a seperate POST to
+                                                            create all the SKU's.
+                                                        - type: code
+                                                          data: "{\n\t\"sku\": \"SMALL-1\",\n\t\"options\":[\n\t\t{\n\t\t\t\"product_option_id\": 223,\n\t\t\t\"option_value_id\": 192\n\t\t}\n\t]\n}"
+                                                          header:
+                                                            title: Add Product SKU
+                                                            subtitle: 'POST /v2/products/{product_id}/skus'
                                           - title: Tab 2
                                             blocks: []
                             header: {}
