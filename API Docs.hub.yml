@@ -3790,6 +3790,23 @@ pages:
                                                           data: >-
                                                             ### Request Update V3 Product Stock
                                                             Levels
+
+
+                                                            * Variant Stock Levels can also be
+                                                            updated at this endpoint with the sku
+                                                            and variant_id included in the request.
+
+
+                                                            ```
+
+                                                            {
+                                                              "inventory_level": 100,
+                                                              "inventory_warning_level": 10,
+                                                              "id": 388,
+                                                              "sku": "SKU-4484A834"
+                                                            }
+
+                                                            ```
                                                         - type: code
                                                           data: |
 
@@ -3819,7 +3836,17 @@ pages:
                                                     - title: >-
                                                         PUT
                                                         /v3/catalog/products/{{id}}/variants/{{id}}
-                                                      blocks: []
+                                                      blocks:
+                                                        - type: text
+                                                          data: >
+                                                            ### Request to Update Stock Levels on
+                                                            Variant
+                                                        - type: code
+                                                          data: |-
+                                                            {
+                                                              "inventory_level": 100,
+                                                              "inventory_warning_level": 10
+                                                            }
                                                     - title: 'PUT /v2/products/{{id}}/skus/{{id}}'
                                                       blocks:
                                                         - type: code
