@@ -3895,7 +3895,48 @@ pages:
                                       data:
                                         children:
                                           - title: Create Product with Variants/SKU
-                                            blocks: []
+                                            blocks:
+                                              - type: tabs
+                                                data:
+                                                  children:
+                                                    - title: POST /v3/catalog/products
+                                                      blocks:
+                                                        - type: text
+                                                          data: '### Create a V3 Product with Variants'
+                                                        - type: code
+                                                          data: |-
+                                                            {
+                                                              "name": "BigCommerce Coffee Mug",
+                                                              "price": "10.00",
+                                                              "categories": [
+                                                                23,
+                                                                21
+                                                              ],
+                                                              "weight": 4,
+                                                              "type": "physical",
+                                                              "variants": [
+                                                                {
+                                                                  "sku": "SKU-BLU",
+                                                                  "option_values": [
+                                                                    {
+                                                                      "option_display_name": "Mug Color",
+                                                                      "label": "Blue"
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "sku": "SKU-GRAY",
+                                                                  "option_values": [
+                                                                    {
+                                                                      "option_display_name": "Mug Color",
+                                                                      "label": "Gray"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                    - title: Tab 2
+                                                      blocks: []
                                           - title: Tab 2
                                             blocks: []
                             header:
