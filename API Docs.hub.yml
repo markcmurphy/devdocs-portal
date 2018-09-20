@@ -3384,6 +3384,39 @@ pages:
                                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
                                   </div>
                               </div>
+                          - type: tabs
+                            data:
+                              children:
+                                - title: If the option set does not yet exist
+                                  blocks:
+                                    - type: text
+                                      data: |
+                                        POST /v2/products
+
+                                        For each SKU:
+                                        /v2/products/{{product_id}}/skus
+                                - title: If the options in the set do not yet exist
+                                  blocks:
+                                    - type: text
+                                      data: >
+                                        POST /v2/products/option_sets
+
+
+                                        For each option:
+
+                                        POST
+                                        /v2/products/option_sets/{{product_id}}/options
+                                - title: Create a Product with Variants/SKUS
+                                  blocks:
+                                    - type: text
+                                      data: |
+                                        For each option:
+                                        POST /v2/products/options
+
+                                        For each value under each option:
+                                        POST /v2/products/options/{{id}}/value
+                            header:
+                              title: Create a Product with Variants/SKUs
                     - title: Authentication
                       route:
                         path: /authentication
