@@ -3401,7 +3401,7 @@ pages:
                                         | POST /v3/catalog/products | POST
                                         /v2/products |
                                     - type: text
-                                      data: >+
+                                      data: >-
                                         ### /POST a Simple Product with Images
 
 
@@ -3415,7 +3415,21 @@ pages:
                                         | POST /v2/products <br> For each image:
                                         POST /v2/products/{{product_id}}/images
                                         |
+                                    - type: text
+                                      data: >-
+                                        ### Identify number of pages of products
 
+                                        | V3 | V2 |
+
+                                        |--|--|
+
+                                        | GET /v3/catalog/products <br> Observe
+                                        `total_pages` property of the  meta
+                                        object in the response | GET
+                                        /v2/products/count <br> Divide the
+                                        number in the response by the number of
+                                        objects per page defined by the limit
+                                        parameter (max 250) | 
                                 - title: Simple Product with Images
                                   blocks:
                                     - type: text
