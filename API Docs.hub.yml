@@ -3726,7 +3726,52 @@ pages:
                                                           config:
                                                             mode: http
                                           - title: Post Product with Videos
-                                            blocks: []
+                                            blocks:
+                                              - type: tabs
+                                                data:
+                                                  children:
+                                                    - title: '/v3/catalog/products/{{id}}/videos'
+                                                      blocks:
+                                                        - type: text
+                                                          data: >-
+                                                            ### Create V3 Product with Videos
+
+
+                                                            1. Create a product using: `POST
+                                                            /v3/catalog/products`
+
+                                                            2. Add video using: `POST
+                                                            /v3/catalog/products/{{id}}/videos`
+                                                        - type: code
+                                                          data: |-
+                                                            {
+                                                              "title": "Your Video",
+                                                              "description": "Company Values",
+                                                              "sort_order": 1,
+                                                              "type": "youtube",
+                                                              "video_id": "123345AA"
+                                                            }
+                                                          config:
+                                                            mode: json
+                                                    - title: '/v2/products/{{id}}/videos'
+                                                      blocks:
+                                                        - type: text
+                                                          data: >-
+                                                            ### Create V2 Product with Videos
+
+
+                                                            1. Create a product using: `POST
+                                                            /v2/products`
+
+                                                            2. Add video using: `POST
+                                                            /v2/products/{{id}}/videos`
+                                                        - type: code
+                                                          data: |-
+                                                            {
+                                                              "url": "https://www.youtube.com/watch?v=4wZ3ZG_Wams"
+                                                            }
+                                                          config:
+                                                            mode: json
                                           - title: Number of Product Pages
                                             blocks:
                                               - type: tabs
