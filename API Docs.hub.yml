@@ -8897,7 +8897,7 @@ pages:
 
                               | store/customer/updated | Customer is updated |
 
-                              | store/customer/deleted | Customer is deleted |
+                              |store/customer/deleted | Customer is deleted |
                             header:
                               anchor: customer
                           - type: code
@@ -8919,7 +8919,7 @@ pages:
                             config:
                               mode: json
                           - type: text
-                            data: >
+                            data: >-
                               ## Store
 
                               |Name|Description|
@@ -8953,13 +8953,11 @@ pages:
 
                               | *Dimensions Decimal Places* | *Dimensions
                               Decimal Token* |
-
-                              | *Plan Name* | *Plan Level* |
-
+                               *Plan Name* | *Plan Level* |
                               | *Store Logo* | *Mobile Template Logo* |
 
                               | *Tax Entered With Prices* | *Stencil Template
-                              Enabled* |
+                              Enabled* 
                             header:
                               anchor: store
                           - type: code
@@ -9051,9 +9049,13 @@ pages:
                               Cart](https://support.bigcommerce.com/articles/Public/Using-the-Abandoned-Cart-Saver/).
                               |
 
-                              | store/cart/converted | If a cart has been
-                              converted. This will fire after a cart has been
-                              considered abandoned. |
+                              | store/cart/converted | This hook fires when a
+                              cart is converted into an order, which is
+                              typically after the payment step of checkout on
+                              the storefront. At this point, the Cart is no
+                              longer accessible and has been deleted. This hook
+                              returns both the Cart ID and Order ID for
+                              correlation purposes. |
                             header:
                               anchor: cart
                           - type: code
