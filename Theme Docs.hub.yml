@@ -963,7 +963,7 @@ pages:
                           - type: html
                             data: <h1>Creating an API Account</h1>
                           - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#desktop-and-mobile\">Creating OAuth Accounts</a></li>\n\t</ul>\n</div>"
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#creating_oauth-accounts\">Creating OAuth Accounts</a></li>\n    <li><a href=\"#creating_issuing-additional\">Creating OAuth Accounts</a></li>\n\t</ul>\n</div>"
                           - type: callout
                             data:
                               type: error
@@ -1009,6 +1009,20 @@ pages:
                               also authorizing this account to upload themes to
                               the store from the command line.)
 
+
+                              6. Click Save. As outlined in this support
+                              article, doing so will display a modal, from which
+                              you can copy your Client ID and Access Token
+                              values. It will also prompt your browser to
+                              download a .txt file that contains your
+                              credentials.
+
+
+                              You will need these values to authorize/initialize
+                              your Stencil theme. If you're ready to do so now,
+                              move ahead to Authorizing and Initializing
+                              Stencil.
+
                           - type: callout
                             data:
                               type: warning
@@ -1018,15 +1032,42 @@ pages:
                                 OAuth API account according to the instructions
                                 below. Also, note that each store is limited to
                                 50 accounts at a time.
-                    - title: Issuing Additional Tokens
-                      route:
-                        path: /issuing-additional-tokens
-                      data:
-                        blocks:
-                          - type: html
-                            data: <h1>Issuing Additional Tokens</h1>
-                          - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#desktop-and-mobile\">Supported Desktop and Mobile Browsers</a></li>\n\t</ul>\n</div>"
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Issuing Additional Tokens
+
+
+                              To issue store tokens for additional themes or
+                              developers, repeat the process outlined in
+                              Creating an API Account.
+
+
+                              (Even if you originally initialized your theme
+                              using a legacy API [Basic-Auth] token, we strongly
+                              encourage you to generate any new tokens using the
+                              new OAuth flow. However, Stencil CLI will still
+                              honor your legacy tokens to restart this theme.)
+
+
+                              You can create up to 50 API accounts/tokens per
+                              store. If you hit this limit and still need to
+                              create new tokens, you will need to delete
+                              existing accounts.
+                          - type: callout
+                            data:
+                              type: warning
+                              title: Token-Management Tips
+                              body: >-
+                                Deleting an account will invalidate the
+                                corresponding token. This will affect any
+                                developer using that token.
+
+
+                                We recommend naming accounts by purpose, to help
+                                you keep track of which accounts you need to
+                                keep active.
                     - title: Revoking Tokens
                       route:
                         path: /revoking-tokens
@@ -1035,7 +1076,39 @@ pages:
                           - type: html
                             data: <h1>Revoking Tokens</h1>
                           - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#desktop-and-mobile\">Supported Desktop and Mobile Browsers</a></li>\n\t</ul>\n</div>"
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#revoking_revoking-oauth\">Revoking OAuth Tokens</a></li>\n\t</ul>\n</div>"
+                          - type: text
+                            data: >+
+                              ## Revoking OAuth Tokens
+
+
+                              To revoke an existing OAuth store token, delete
+                              the corresponding Store API account:
+
+
+                              Navigate to the control panel's API Accounts page.
+
+
+                              Select the trash-can button to the right of the
+                              account that you want to delete.
+
+                              (You can also use the check boxes at left to
+                              select multiple accounts, and then delete them all
+                              at once.)
+
+                            header:
+                              anchor: revoking_revoking-oauth
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6116/1537421464104
+                          - type: callout
+                            data:
+                              title: Revoke with Caution!
+                              type: error
+                              body: >-
+                                There is no undo. This process completely
+                                deletes the selected account(s), revoking the
+                                corresponding token(s).
                     - title: Copying a Token to Initialize Stencil
                       route:
                         path: /copying-token-to-initialize
