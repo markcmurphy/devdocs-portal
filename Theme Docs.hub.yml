@@ -1164,7 +1164,7 @@ pages:
                           - type: html
                             data: <h1>Authorizing and Initializing Stencil</h1>
                           - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#creating_oauth-accounts\">Authorizing with OAuth Tokens</a></li>\n\t</ul>\n</div>"
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#authorizing_authorizing-oauth\">Authorizing with OAuth Tokens</a></li>\n\t</ul>\n</div>"
                           - type: callout
                             data:
                               body: >-
@@ -1182,7 +1182,65 @@ pages:
                                 default subdirectory name was .../stencil/.)
                               title: ' Best Practice: Isolate Stores by Subdirectory'
                           - type: text
-                            data: |+
+                            data: >+
+                              ## Authorizing with OAuth Tokens
+
+
+                              Use the following steps to authorize your theme
+                              using an OAuth API account:
+
+
+                              1. Have your store API account's Client ID and
+                              Access Token hashes ready. 
+
+                              (Refer back to the Copying a Token to Initialize
+                              Stencil or Creating an API Account instructions.)
+
+
+                              2. Starting from the subdirectory for the
+                              appropriate theme (and store), initialize Stencil
+                              CLI by running the following command (_Windows
+                              users need to run this in git bash_):
+
+
+                              `stencil init`
+
+
+                              3. You will be prompted to provide the homepage
+                              URL of the production store against which you want
+                              to develop. This can be your own store, or a
+                              client store that you are customizing.
+
+
+                              4. Next, you will be prompted to enter the port
+                              where you would like to run your store on your
+                              local machine. This can be any port you like, but
+                              we recommend using port 3000.
+
+
+                              5. Next, you will be prompted: What is your
+                              Stencil OAuth Client ID? Enter your store API
+                              account's Client ID.
+
+
+                              (If you used this Client ID when you last ran
+                              stencil init, you'll see it hinted on the command
+                              line, and can just confirm it.)
+
+
+                              6. Finally, you will be prompted: What is your
+                              Stencil OAuth Access Token? If you entered these
+                              credentials when you last ran stencil init, you'll
+                              see the token hinted in cleartext. If not, paste
+                              your Access Token hash onto the command line. Then
+                              press Enter.
+
+
+
+                              Your terminal window should now confirm that you
+                              have successfully initialized Stencil CLI on your
+                              local machine. With Stencil CLI initialized, you
+                              are ready to start Stencil and begin development.
 
 
                     - title: Running Stencil Locally
