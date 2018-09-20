@@ -3380,8 +3380,13 @@ pages:
                               actions on both versions.
 
 
-                              In the examples below, a simple product is defined
-                              as not having variants, modifiers or options.
+                              In the examples below: 
+
+                              * Simple product is defined as not having
+                              variants, modifiers or options.
+
+                              * Complex Products are defined as having variants,
+                              options and modifiers.
                           - type: tabs
                             data:
                               children:
@@ -3426,7 +3431,8 @@ pages:
                                         |
                                     - type: text
                                       data: >-
-                                        ### Identify number of pages of products
+                                        ### Identify Number of Pages of Products
+
 
                                         | V3 | V2 |
 
@@ -3440,25 +3446,100 @@ pages:
                                         objects per page defined by the limit
                                         parameter (max 250) | 
                                     - type: text
-                                      data: '### Add a Product with Product Videos'
-                                - title: Simple Product with Images
-                                  blocks:
-                                    - type: text
                                       data: >-
-                                        ### /GET a Simple Product with Images
+                                        ### Add a Product with Product Videos
 
 
                                         | V3 | V2 |
 
                                         |--|--|
 
-                                        | GET /v3/catalog/products/{product_id}
-                                        | GET /v2/products/{product_id} |
-                                - title: ' Product with Product Videos'
-                                  blocks: []
-                                - title: ' GET a single Product'
-                                  blocks: []
-                                - title: ' Number of Pages of Products'
+                                        | POST /v3/catalog/products <br> For
+                                        each video: POST
+                                        /v3/catalog/products/{{id}}/videos| POST
+                                        /v2/products <br> For each video: POST
+                                        /v2/products/{{id}}/videos|
+                                - title: Stock Levels
+                                  blocks:
+                                    - type: text
+                                      data: >-
+                                        ### Update Stock Levels
+
+
+                                        | V3 | V2 |
+
+                                        |--|--|
+
+                                        | PUT /v3/catalog/products/{{id}}| PUT
+                                        /v2/products/{{id}} |
+                                    - type: text
+                                      data: >-
+                                        ### Update Stock Level on a Single
+                                        Variants/SKU
+
+
+                                        | V3 | V2 |
+
+                                        |--|--|
+
+                                        | PUT
+                                        /v3/catalog/products/{{id}}/variants/{{id}}
+                                        | PUT /v2/products/{{id}}/skus/{{id}} |
+                                    - type: text
+                                      data: >-
+                                        Update Stock Levels on Multiple
+                                        Variants/SKUs 
+
+                                        - Attached to a single product
+
+
+                                        | V3 | V2 |
+
+                                        |--|--|
+
+                                        | PUT/v3/catalog/products/{id} <br>
+                                        Request body includes a variants array |
+                                        For each SKU: PUT
+                                        /v2/products/{id}/skus/{id}|
+
+
+                                        **Variants Array**
+
+                                         ```
+                                        {
+                                          "variants": [
+                                            {
+                                              "inventory_level": 100,
+                                              "inventory_warning_level": 10,
+                                              "product_id": 195,
+                                              "sku": "SKU-4484A834",
+                                              "id":388
+                                            },
+                                            {
+                                              "inventory_level": 100,
+                                              "inventory_warning_level": 10,
+                                              "product_id": 195,
+                                              "sku": "SKU-9E932372",
+                                              "id":389
+                                            },
+                                                {
+                                              "inventory_level": 100,
+                                              "inventory_warning_level": 10,
+                                              "product_id": 195,
+                                              "sku": "SKU-29CE333F",
+                                              "id": 390
+                                            },
+                                                {
+                                              "inventory_level": 100,
+                                              "inventory_warning_level": 10,
+                                              "product_id": 195,
+                                              "sku": "SKU-02FBF02A",
+                                              "id": 391
+                                            }
+                                          ]
+                                         }
+                                        ```
+                                - title: Complex Products
                                   blocks: []
                             header:
                               title: Product Actions
