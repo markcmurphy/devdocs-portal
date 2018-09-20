@@ -3778,7 +3778,40 @@ pages:
                                       data:
                                         children:
                                           - title: Update Stock Levels
-                                            blocks: []
+                                            blocks:
+                                              - type: tabs
+                                                data:
+                                                  children:
+                                                    - title: '/v3/catalog/products/{id}'
+                                                      blocks:
+                                                        - type: text
+                                                          data: >-
+                                                            ### Request Update V3 Product Stock
+                                                            Levels
+
+                                                            * If inventory is being tracked by
+                                                            variants, a `variant_id` is required in
+                                                            the request.
+                                                        - type: code
+                                                          data: |
+                                                            [
+                                                            {
+                                                              "inventory_level": 100,
+                                                              "inventory_warning_level": 10,
+                                                              "id": 388,
+                                                              "sku": "SKU-4484A834"
+                                                            },
+                                                              {
+                                                              "inventory_level": 100,
+                                                              "inventory_warning_level": 10,
+                                                              "id": 389,
+                                                              "sku": "SKU-9E932372"
+                                                              }
+                                                            ]
+                                                          config:
+                                                            mode: json
+                                                    - title: ' /v2/products/{id}'
+                                                      blocks: []
                                           - title: Update Stock Levels on Variant/SKU
                                             blocks: []
                                           - title: >-
