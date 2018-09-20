@@ -3380,7 +3380,47 @@ pages:
                                   blocks:
                                     - type: text
                                       data: >-
-                                        ### /GET a Single Product
+                                        ### /GET a Simple Product
+
+
+                                        | V3 | V2 |
+
+                                        |--|--|
+
+                                        | POST /v3/catalog/products | POST
+                                        /v2/products |
+                                    - type: text
+                                      data: >-
+                                        ### /POST a Simple Product
+
+
+                                        | V3 | V2 |
+
+                                        |--|--|
+
+                                        | POST /v3/catalog/products | POST
+                                        /v2/products |
+                                    - type: text
+                                      data: >+
+                                        ### /POST a Simple Product with Images
+
+
+                                        | V3 | V2 |
+
+                                        |--|--|
+
+                                        | POST /v3/catalog/products.<br> For
+                                        each image: POST
+                                        /v3/catalog/products/{{product_id}}/images
+                                        | POST /v2/products <br> For each image:
+                                        POST /v2/products/{{product_id}}/images
+                                        |
+
+                                - title: Simple Product with Images
+                                  blocks:
+                                    - type: text
+                                      data: >-
+                                        ### /GET a Simple Product with Images
 
 
                                         | V3 | V2 |
@@ -3389,14 +3429,17 @@ pages:
 
                                         | GET /v3/catalog/products/{product_id}
                                         | GET /v2/products/{product_id} |
-                                - title: Simple Product with Images
-                                  blocks: []
                                 - title: ' Product with Product Videos'
                                   blocks: []
                                 - title: ' GET a single Product'
                                   blocks: []
                                 - title: ' Number of Pages of Products'
                                   blocks: []
+                            header:
+                              title: Product Actions
+                              subtitle: >-
+                                A simple product does not have options or
+                                variants
                           - type: text
                             data: '---'
                           - type: text
