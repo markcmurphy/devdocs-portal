@@ -4171,7 +4171,42 @@ pages:
                                                     - title: v3
                                                       blocks: []
                                                     - title: v2
-                                                      blocks: []
+                                                      blocks:
+                                                        - type: text
+                                                          data: >+
+                                                            ### Add a Complex Rule
+
+
+                                                            * A complex rule can not be added
+                                                            without an option
+
+
+                                                            The example below add's a complex rule
+                                                            to increase the price by $5 if the
+                                                            checkbox is selected.
+
+
+                                                            ```
+
+                                                            {
+                                                                "id": 89,
+                                                                "product_id": null,
+                                                                "name": "Checkbox",
+                                                                "display_name": "$5 for Insurance",
+                                                                "type": "C",
+                                                                "values": {
+                                                                    "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/options/89/values",
+                                                                    "resource": "/options/89/values"
+                                                                }
+                                                            }
+
+                                                            ```
+
+                                                        - type: code
+                                                          data: "{\n        \"price_adjuster\": {\n            \"adjuster\": \"relative\",\n            \"adjuster_value\": 5\n        },\n      \"conditions\": [\n\t\t    {\n\t\t      \"product_option_id\": 89,\n\t\t      \"option_value_id\": 195\n\t\t    }\n\t\t  ]\n}\n"
+                                                          header:
+                                                            subtitle: 'POST /v2/products/{product_id}/rules'
+                                                            title: Add Product Rule
                             header: {}
                     - title: Authentication
                       route:
