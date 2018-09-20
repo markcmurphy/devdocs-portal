@@ -3975,7 +3975,7 @@ pages:
                                                             medium and large. Only one value at a
                                                             time can be created. In this example it
                                                             will take 3 seperate /POST requests to
-                                                            create all sizes
+                                                            create all sizes.
                                                         - type: code
                                                           data: |-
                                                             {
@@ -3986,16 +3986,34 @@ pages:
                                                             }
                                                           header:
                                                             title: Add option values
-                                                            subtitle: '/v2/options/{option_set_id}/values'
+                                                            subtitle: 'POST /v2/options/{option_id}/values'
+                                                        - type: text
+                                                          data: >-
+                                                            After the option with values has been
+                                                            created, a option set needs to be
+                                                            created so the option and values created
+                                                            in the previous steps can be added to
+                                                            it. 
                                                         - type: code
-                                                          data: ''
+                                                          data: "{\n\t\"name\": \"T-Shirt Sizes BigCommerce\"\n}"
+                                                          header:
+                                                            title: Create Option Set
+                                                            subtitle: POST /v2/optionsets
+                                                        - type: code
+                                                          data: "{\n\t\"option_id\":88\n}"
+                                                          header:
+                                                            title: Add the T-Shirt Size Options to Set
+                                                            subtitle: 'POST /optionsets/{option_set_id}/options'
+                                                        - type: text
+                                                          data: >-
+                                                            To assign the option set to a product,
+                                                            do a /PUT request aganist the product
+                                                            and update the `option_set_id` field. 
+                                                        - type: code
+                                                          data: "{\n\t\"option_set_id\": 60\n}"
                                                           header:
                                                             title: Assign the Option Set to the Product
-                                                            subtitle: Using the Option Set Id
-                                                        - type: code
-                                                          data: ''
-                                                          header:
-                                                            title: Create SKU's for the Options
+                                                            subtitle: 'PUT /v2/products/{product_id}'
                                           - title: Tab 2
                                             blocks: []
                             header: {}
