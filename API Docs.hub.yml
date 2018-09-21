@@ -4741,7 +4741,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>API Environment</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#api-enviroment\">API Environment</a></li>\n        <li><a href=\"#request-headers\">Request Headers</a></li>\n        <li><a href=\"#response-headers\">Response Headers</a></li>\n        <li><a href=\"#media-types\">Media Types</a></li>\n        <li><a href=\"#content-types\">Content Types</a></li>\n        <li><a href=\"#making-a-request\">Making A Request</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>API Enviroment</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#api-enviroment\">API Environment</a></li>\n        <li><a href=\"#request-headers\">Request Headers</a></li>\n        <li><a href=\"#response-headers\">Response Headers</a></li>\n        <li><a href=\"#media-types\">Media Types</a></li>\n        <li><a href=\"#content-types\">Content Types</a></li>\n        <li><a href=\"#making-a-request\">Making a Request</a></li>\n        <li><a href=\"#create-a-product\">Create a Product</a></li>\n        <li><a href=\"#make-request-troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ## API Environment 
@@ -5985,7 +5985,11 @@ pages:
                               Products](/api-docs/api-reference/v3-api/catalog-api/products/getproducts)
                               for a full list of available filters. 
                           - type: text
+                            data: '---'
+                          - type: text
                             data: "## Create a Product\n\nFor our product, we are going to create a BigCommerce Hoodie. The minimum parameters to create a product are: name, price, category, type and weight. \n\n* Name: The name of your product as a string.\n* Price: How much the items costs in number format. \n* Category: What `{category_id}` this product belongs to. An item can be assigned to more than one category. You can /GET the category id by using:\n\n`https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/categories`\n\n* Type: Is the item a physical item or digital?\n\t- Physical items are anything that is being shipped to the customer. Such as a t-shirt.\n\t- Digital items are anything that the customer downloads such as PDF instructions. \n* Weight: How much it weighs as a number. This is determined by the [store settings](https://forum.bigcommerce.com/s/article/Store-Settings#physical). \n\nReview the information already populated in the Body tab below. Make sure to run a GET request for the categories and update request."
+                            header:
+                              anchor: create-a-product
                           - type: http
                             data:
                               method: post
@@ -6145,6 +6149,33 @@ pages:
 
                               * Try to make a different product with new
                               attributes.
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Troubleshooting
+
+
+                              Did you get a status of 403 Forbidden?
+
+                              * Check the Client ID and Client Token.
+
+                              * Check your request headers are correct.
+
+                              * Check to see if you replaced `{store_hash}` with
+                              your store hash. 
+
+                              * Make sure the request url is correct.
+
+
+                              Did you get a 200 but nothing was returned?
+
+                              * Make sure your store has products.
+
+
+                              Did you get a status of 404?
+
+                              * Check the request url for errors.
                     - title: Best Practices
                       route:
                         path: /best-practices
