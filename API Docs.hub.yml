@@ -5159,9 +5159,9 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: "## Making A Request\n\n### Prerequisites\n* [API Credentials](/api-docs/api-docs/getting-started/about-api/authentication#getting-api-credentials)\n* [Scope](http://) set to `Products Modify`\n* BigCommerce Store (store_hash)\n\n*Note: Any API client will work. This walkthrough will use the Try it Now brower requests.*\n\n### Getting a List of Products\n\nWe will be getting a list of products from the store using a limit filter to only show the first 10 products and sorting them by name. \n\nThe URL to /GET products is: `https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products`\n\nTo add [filters](http://) use: `?page=10&sort=name`\n\nIn the Headers tab below replace:  \n- {X-Auth-Token} - Access Token from API Credentials\n- {X-Auth-Client} - Client Id from API Credentials\n- store_hash with the hash in the api path. \n\t- https://api.bigcommerce.com/stores/{store_hash}/v3/\n\nThe filters and request are already filled out. \nHit the send button and review your response."
+                            data: "## Making a Request\n\n### Prerequisites\n* [API Credentials](/api-docs/api-docs/getting-started/about-api/authentication#getting-api-credentials)\n* [Scope](http://) set to `Products Modify`\n* BigCommerce Store (store_hash)\n\n*Note: Any API client will work. This walkthrough will use the Try it Now brower requests.*\n\n### Getting a List of Products\n\nWe will be getting a list of products from the store using a limit filter to only show the first 10 products and sorting them by name. \n\nThe URL to /GET products is: `https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products`\n\nTo add [filters](http://) use: `?page=10&sort=name`\n\nIn the Headers tab below replace:  \n- {X-Auth-Token} - Access Token from API Credentials\n- {X-Auth-Client} - Client Id from API Credentials\n- store_hash with the hash in the api path. \n\t- https://api.bigcommerce.com/stores/{store_hash}/v3/\n\nThe filters and request are already filled out. \nHit the send button and review your response."
                             header:
-                              anchor: making-your-first-request
+                              anchor: making-a-request
                           - type: http
                             data:
                               method: get
@@ -5965,7 +5965,8 @@ pages:
                                   }
                               }
                             header:
-                              title: Products Response
+                              title: GET Products Response
+                              subtitle: 200 OK
                           - type: text
                             data: >-
                               The produdcts return are in an object with a data
@@ -5980,8 +5981,9 @@ pages:
 
 
                               * Try including other filter paramters such as
-                              name or include and exclude. See
-                              [filtering](http://) for a full list. 
+                              name or include and exclude. See [Get All
+                              Products](/api-docs/api-reference/v3-api/catalog-api/products/getproducts)
+                              for a full list of available filters. 
                           - type: text
                             data: "## Create a Product\n\nFor our product, we are going to create a BigCommerce Hoodie. The minimum parameters to create a product are: name, price, category, type and weight. \n\n* Name: The name of your product as a string.\n* Price: How much the items costs in number format. \n* Category: What `{category_id}` this product belongs to. An item can be assigned to more than one category. You can /GET the category id by using:\n\n`https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/categories`\n\n* Type: Is the item a physical item or digital?\n\t- Physical items are anything that is being shipped to the customer. Such as a t-shirt.\n\t- Digital items are anything that the customer downloads such as PDF instructions. \n* Weight: How much it weighs as a number. This is determined by the [store settings](https://forum.bigcommerce.com/s/article/Store-Settings#physical). \n\nReview the information already populated in the Body tab below. Make sure to run a GET request for the categories and update request."
                           - type: http
@@ -6010,9 +6012,139 @@ pages:
                             header:
                               title: Create a Product
                           - type: code
-                            data: ''
+                            data: |-
+                              {
+                                  "data": {
+                                      "id": 196,
+                                      "name": "BigCommerce Hoodie",
+                                      "type": "physical",
+                                      "sku": "",
+                                      "description": "A super soft hoodie to wear",
+                                      "weight": 5,
+                                      "width": 12,
+                                      "depth": 0,
+                                      "height": 0,
+                                      "price": 25.99,
+                                      "cost_price": 0,
+                                      "retail_price": 0,
+                                      "sale_price": 0,
+                                      "map_price": 0,
+                                      "tax_class_id": 0,
+                                      "product_tax_code": "",
+                                      "calculated_price": 25.99,
+                                      "categories": [
+                                          20,
+                                          21
+                                      ],
+                                      "brand_id": 0,
+                                      "option_set_id": null,
+                                      "option_set_display": "right",
+                                      "inventory_level": 0,
+                                      "inventory_warning_level": 0,
+                                      "inventory_tracking": "none",
+                                      "reviews_rating_sum": 0,
+                                      "reviews_count": 0,
+                                      "total_sold": 0,
+                                      "fixed_cost_shipping_price": 0,
+                                      "is_free_shipping": false,
+                                      "is_visible": true,
+                                      "is_featured": false,
+                                      "related_products": [
+                                          -1
+                                      ],
+                                      "warranty": "",
+                                      "bin_picking_number": "",
+                                      "layout_file": "",
+                                      "upc": "",
+                                      "mpn": "",
+                                      "gtin": "",
+                                      "search_keywords": "",
+                                      "availability": "available",
+                                      "availability_description": "",
+                                      "gift_wrapping_options_type": "any",
+                                      "gift_wrapping_options_list": [],
+                                      "sort_order": 0,
+                                      "condition": "New",
+                                      "is_condition_shown": false,
+                                      "order_quantity_minimum": 0,
+                                      "order_quantity_maximum": 0,
+                                      "page_title": "",
+                                      "meta_keywords": [],
+                                      "meta_description": "",
+                                      "date_created": "2018-09-21T17:12:59+00:00",
+                                      "date_modified": "2018-09-21T17:12:59+00:00",
+                                      "view_count": 0,
+                                      "preorder_release_date": null,
+                                      "preorder_message": "",
+                                      "is_preorder_only": false,
+                                      "is_price_hidden": false,
+                                      "price_hidden_label": "",
+                                      "custom_url": {
+                                          "url": "/bigcommerce-hoodie/",
+                                          "is_customized": false
+                                      },
+                                      "base_variant_id": 402,
+                                      "open_graph_type": "product",
+                                      "open_graph_title": "",
+                                      "open_graph_description": "",
+                                      "open_graph_use_meta_description": true,
+                                      "open_graph_use_product_name": true,
+                                      "open_graph_use_image": true,
+                                      "variants": [
+                                          {
+                                              "id": 402,
+                                              "product_id": 196,
+                                              "sku": "",
+                                              "sku_id": null,
+                                              "price": 25.99,
+                                              "calculated_price": 25.99,
+                                              "sale_price": 0,
+                                              "retail_price": 0,
+                                              "map_price": 0,
+                                              "weight": 5,
+                                              "width": 12,
+                                              "height": 0,
+                                              "depth": 0,
+                                              "is_free_shipping": false,
+                                              "fixed_cost_shipping_price": 0,
+                                              "calculated_weight": 5,
+                                              "purchasing_disabled": false,
+                                              "purchasing_disabled_message": "",
+                                              "image_url": "",
+                                              "cost_price": 0,
+                                              "upc": "",
+                                              "mpn": "",
+                                              "gtin": "",
+                                              "inventory_level": 0,
+                                              "inventory_warning_level": 0,
+                                              "bin_picking_number": "",
+                                              "option_values": []
+                                          }
+                                      ],
+                                      "images": [],
+                                      "primary_image": null,
+                                      "videos": [],
+                                      "custom_fields": [],
+                                      "bulk_pricing_rules": [],
+                                      "reviews": []
+                                  },
+                                  "meta": {}
+                              }
                             header:
-                              title: Response Create a Product
+                              title: Response POST Products
+                              subtitle: 200 OK
+                            config:
+                              mode: json
+                          - type: text
+                            data: >-
+                              ### Next Steps
+
+                              * To see a full list of fields that can be sent in
+                              a request see [Create a
+                              Product](/api-docs/api-reference/v3-api/catalog-api/products/createproduct)
+
+                              * Try to make a different product with new
+                              attributes.
                     - title: Best Practices
                       route:
                         path: /best-practices
