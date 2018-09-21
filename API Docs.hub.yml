@@ -5164,7 +5164,7 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: >+
+                            data: >-
                               ## Making A Request
 
 
@@ -5184,8 +5184,26 @@ pages:
 
                               ### Getting a List of Products
 
+
+                              We will be getting a list of products from the
+                              store using a limit filter to only show the first
+                              10 products and sorting them by name. 
+
+
+                              The URL to /GET products is:
+                              `https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products`
                             header:
                               anchor: making-your-first-request
+                          - type: http
+                            data:
+                              method: get
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
+                              headers:
+                                Accept: application/sjon
+                                Content-Type: application/json
+                                X-Auth-Token: ''
+                                X-Auth-Client: ''
                     - title: Best Practices
                       route:
                         path: /best-practices
