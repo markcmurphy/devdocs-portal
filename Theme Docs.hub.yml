@@ -1253,7 +1253,7 @@ pages:
                           - type: html
                             data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#root-permissions\">Local Launch: Theme Only</a></li>\n    <li><a href=\"#node.js\">Local Launch: Theme and Theme Editor</a></li>\n    <li><a href=\"#next-steps\">Customizing Theme Editor's Port</a></li>\n    <li><a href=\"#next-steps\">Local Launch: Disabling Caching</a></li>\n\t</ul>\n</div>"
                           - type: text
-                            data: >
+                            data: >-
                               ## Local Launch: Theme Only
 
 
@@ -1266,11 +1266,11 @@ pages:
                               `stencil start`
 
 
-                              Assuming that you set Stencil to run on port 3000,
-                              when you go to http://localhost:3000, you should
-                              see the storefront to which you pointed your local
-                              instance – but with the stencil theme applied to
-                              it.
+                              Assuming that you set Stencil to run on `port
+                              3000`, when you navigate to http://localhost:3000,
+                              you should see the storefront to which you pointed
+                              your local instance – but with the stencil theme
+                              applied to it.
 
 
                               ## Troubleshooting Token Errors
@@ -1285,7 +1285,8 @@ pages:
                               then store token authentication has failed.
 
 
-                              In this case, please review these steps:
+                              In this case, please track back and review the
+                              following articles:
 
 
                               * [Creating an API
@@ -1296,29 +1297,71 @@ pages:
                               Stencil:](authorizing-and-initializing-stencil):
                               How to initialize Stencil with your username and
                               token.
-
-
-
-
-                              If you cannot create a valid token in the control
-                              panel, please contact your BigCommerce account
-                              manager to resolve the problem.
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: '## Troubleshooting Token Errors'
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: '## Local Launch: Theme and Theme Editor'
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: '## Customizing Theme Editor''s Port'
                           - type: text
                             data: '---'
                           - type: text
                             data: >-
+                              ## Troubleshooting Token Errors
+
+
+                              If you receive the following error message, then
+                              store token authentication has failed:
+
+
+                              `Unauthorized, please use a valid username/token`
+
+
+                              In this case, please review these steps:
+
+                              * Creating an API Account: How to issue or reissue
+                              tokens in the BigCommerce control panel.
+
+                              * Authorizing and Initializing Stencil: How to
+                              initialize Stencil with your username and token.
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Local Launch: Theme and Theme Editor
+
+
+                              To run Stencil locally while also launching a
+                              local version of Theme Editor, start in your theme
+                              directory and run the following command, but
+                              append the -e option:
+
+
+                              `stencil start -e`
+
+
+                              The Theme Editor server will run in parallel with
+                              the stencil theme at
+                              [http://localhost:8181](http://localhost:8181/).
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Customizing Theme Editor's Port
+
+
+                              You can override Theme Editor's default port by
+                              appending the "--theme-editor-port [port]" option.
+                              For example, to specify port 9000, you would
+                              enter:
+
+
+                              `stencil start -e --theme-editor-port 9000
+
+                              `
+
+
+                              To verify Theme Editor's launch, you would then go
+                              to http://localhost:9000. Using this option, you
+                              can specify any port between `1024` and `65535`.
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >
                               ## Local Launch: Disabling Caching
 
 
@@ -1337,8 +1380,15 @@ pages:
                               `stencil start -n`
 
 
-                              Tp enable caching, restart Stencil, this time
-                              omitting the --no-cache or -n option.
+                              ### To re-enable caching:
+
+
+                              Kill the current Stencil server (_ctrl + c will do
+                              the job_) and restart Stencil, this time omitting
+                              the `--no-cache` or `-n` option.
+
+
+                              `stencil start` 
                     - title: Troubleshooting Your Setup
                       route:
                         path: /troubleshooting-your-setup
