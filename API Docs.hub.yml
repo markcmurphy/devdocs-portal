@@ -5987,6 +5987,33 @@ pages:
                               * Try including other filter paramters such as
                               name or include and exclude. See
                               [filtering](http://) for a full list. 
+                          - type: text
+                            data: "## Create a Product\n\nFor our product, we are going to create a BigCommerce Hoodie. The minimum parameters to create a product are: name, price, category, type and weight. \n\n* Name: The name of your product as a string.\n* Price: How much the items costs in number format. \n* Category: What `{category_id}` this product belongs to. An item can be assigned to more than one category. You can /GET the category id by using:\n\n`https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/categories`\n\n* Type: Is the item a physical item or digital?\n\t- Physical items are anything that is being shipped to the customer. Such as a t-shirt.\n\t- Digital items are anything that the customer downloads such as PDF instructions. \n* Weight: How much it weighs as a number. This is determined by the [store settings](https://forum.bigcommerce.com/s/article/Store-Settings#physical). \n\nReview the information already populated in the Body tab below. Make sure to run a GET request for the categories and update request."
+                          - type: http
+                            data:
+                              method: post
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
+                              headers:
+                                Accept: application/sjon
+                                X-Auth-Token: '{X-Auth-Token}'
+                                X-Auth-Client: '{X-Auth-Client}'
+                                Content-Type: application/json
+                              body: |
+                                {
+                                  "name": "BigCommerce Hoodie",
+                                  "type": "physical",
+                                  "description": "A super soft hoodie to wear",
+                                  "weight": 5,
+                                  "width": 12,
+                                  "price": 25.99,
+                                  "categories": [
+                                    // set your category here. Accepts a comma seperated list
+                                  ],
+                                  "condition": "New"
+                                }
+                            header:
+                              title: Create a Product
                     - title: Best Practices
                       route:
                         path: /best-practices
