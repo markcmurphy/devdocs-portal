@@ -10174,8 +10174,8 @@ pages:
                         path: /webhook-events
                       data:
                         blocks:
-                          - type: text
-                            data: '# List of Webhook Events'
+                          - type: html
+                            data: "<h1>List of Webhook Events</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#webhook-orders-event\">Orders</a></li>\n        <li><a href=\"#webhook-products-event\">Products</a></li>\n        <li><a href=\"#webhooks-category-event\">Category/a></li>\n        <li><a href=\"#webhooks-sku-event\"></a>SKU</li>\n        <li><a href=\"#webhooks-customer-event\"></a>Customer</li>\n        <li><a href=\"#webhooks-store-event\">Store</a></li>\n        <li><a href=\"#webhooks-cart-event\">Cart</a></li>\n        <li><a href=\"#webhooks-shipment-event\">Shipment</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ## Orders
@@ -10396,7 +10396,7 @@ pages:
 
                               **variant_id**: Id of the variant
                             header:
-                              anchor: sku
+                              anchor: webhooks-sku-event
                           - type: code
                             data: |-
                               {
@@ -10422,6 +10422,8 @@ pages:
                             config:
                               mode: json
                           - type: text
+                            data: '---'
+                          - type: text
                             data: >-
                               ## Customer
 
@@ -10439,7 +10441,7 @@ pages:
 
                               |store/customer/deleted | Customer is deleted |
                             header:
-                              anchor: customer
+                              anchor: webhooks-customer-event
                           - type: code
                             data: |-
                               {
@@ -10454,10 +10456,12 @@ pages:
                                 "producer": "stores/abcdefg"
                               }
                             header:
-                              title: tore/customer/deleted
+                              title: store/customer/deleted
                               anchor: customer-deleted
                             config:
                               mode: json
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
                               ## Store
@@ -10499,7 +10503,7 @@ pages:
                               | *Tax Entered With Prices* | *Stencil Template
                               Enabled* 
                             header:
-                              anchor: store
+                              anchor: webhooks-store-event
                           - type: code
                             data: |-
                               {
@@ -10517,6 +10521,8 @@ pages:
                               anchor: store-information-updated
                             config:
                               mode: json
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >
                               ## Cart
@@ -10597,7 +10603,7 @@ pages:
                               returns both the Cart ID and Order ID for
                               correlation purposes. |
                             header:
-                              anchor: cart
+                              anchor: webhooks-cart-event
                           - type: code
                             data: |-
                               {
@@ -10623,6 +10629,8 @@ pages:
                               title: store/cart/created
                               anchor: cart-created
                           - type: text
+                            data: '---'
+                          - type: text
                             data: >-
                               ## Shipment
 
@@ -10640,7 +10648,7 @@ pages:
 
                               | store/shipment/deleted | Shipment is deleted |
                             header:
-                              anchor: shipment
+                              anchor: webhooks-shipment-event
                           - type: code
                             data: |-
                               {
