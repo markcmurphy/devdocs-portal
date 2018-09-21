@@ -4747,7 +4747,70 @@ pages:
                     - title: API Requests
                       route:
                         path: /api-requests
-                      data: {}
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              ## API Environment 
+
+
+                              BigCommerce API requests can be made in the
+                              context of the storefront or server-to-server.  
+
+
+                              * Storefront APIs use the store url:
+                              `https://your-store.mybigcommerce.com/api/{endpoint}`
+
+                              * Server-to-Server requests use the base url: 
+                              `https://api.bigcommerce.com/stores/{store_hash}/v3/`
+
+                              * V2 API Requests use the base url:
+                              `https://api.bigcommerce.com/stores/{store_hash}/v2/`
+                            header:
+                              anchor: api-enviroment
+                          - type: text
+                            data: >-
+                              ## Request Headers
+
+
+                              Server-to-Server request headers require Accept,
+                              X-Auth-Client and X-Auth-Token and Content-Type at
+                              a minimum. Other requests may require more
+                              headers.
+
+
+                              ## Request Headers 
+
+
+                              | Header | Allowed Values | Description | Example
+                              |
+
+                              | --- | --- | --- | --- |
+
+                              | `Accept` | `application/json` (for .json
+                              requests) `application/xml` (for .xml requests) |
+                              The MIME type for the format you want to receive a
+                              response in.|`application/xml` |
+
+                              | `Content-Type` | `application/json` (for JSON
+                              requests) `application/xml` (for XML requests) |
+                              The MIME type of the request body. Use to validate
+                              and parse the request to the API. |
+                              `application/json` |
+
+                              | `User-Agent` | String | While it is not
+                              required, we ask that you specify a user agent
+                              which identifies your integration/client with your
+                              requests. |
+
+                              | `X-Auth-Client` | String | Client ID of the
+                              requesting app |
+
+                              | `X-Auth-Token` | String | Access token
+                              authorizing the app to access resources on behalf
+                              of a user |
+                            header:
+                              anchor: request-headers
                     - title: Best Practices
                       route:
                         path: /best-practices
