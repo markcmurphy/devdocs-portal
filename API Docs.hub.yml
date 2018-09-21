@@ -6644,11 +6644,13 @@ pages:
                               to <a
                               href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>.
                               to discuss your plan.
-                    - title: Building Apps
+                    - title: Building an App
                       route:
                         path: /building-apps
                       data:
                         blocks:
+                          - type: html
+                            data: "<h1>Building an App</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#request-headers\">Request Headers</a></li>\n\t\t<li><a href=\"#session-timeouts\">Managing Users Session Timeouts</a></li>\n\t\t<li><a href=\"#installation-update-sequence\">App Installation and Update Sequence</a></li>\n\t\t<li><a href=\"#recieving-get-request\">Receiving the GET Request</a></li>\n\t\t<li><a href=\"#responding-get-request\">Responding to the GET Request</a></li>\n        <li><a href=\"#making-post-request\">Making the POST Request</a></li>\n        <li><a href=\"#recieving-post-request\">Receiving the POST Response</a></li>\n        <li><a href=\"#load-uninstall-removal-requests\">Load, Uninstall, and User Removal Requests</a></li>\n        <li><a href=\"#processing-signed-payload\">Processing the Signed Payload</a></li>\n        <li><a href=\"#multi-user-support\">Multi-User Support</a></li>\n        <li><a href=\"#external-app-installation\">External App Installation</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ## Request Headers
@@ -6672,11 +6674,13 @@ pages:
                               Accept and Content-Type headers, many do. To
                               ensure that your calls succeed, always include
                               these headers.
+                            header:
+                              anchor: request-headers
                           - type: text
                             data: '---'
                           - type: text
                             data: >-
-                              ## Managing Users’ Session Timeouts
+                              ## Managing Users Session Timeouts
 
 
                               We recommend that you add BigCommerce’s JavaScript
@@ -6710,6 +6714,8 @@ pages:
                               panel, or is automatically logged out. The
                               callback will allow your app to respond to this
                               logout.
+                            header:
+                              anchor: session-timeouts
                           - type: text
                             data: '---'
                           - type: text
@@ -6731,6 +6737,8 @@ pages:
                               Callback URI provided during app registration. The
                               Auth Callback URI must be publicly available,
                               fully qualified, and served over TLS.
+                            header:
+                              anchor: installation-update-sequence
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1536263813949
@@ -6756,8 +6764,11 @@ pages:
                               and then redirects the user to your client-side
                               app’s entry point.
                           - type: text
+                            data: '---'
+                          - type: text
                             data: >-
                               ## Receiving the GET Request
+
 
                               The GET request to your Auth Callback URI contains
                               a temporary code that you can exchange for a
@@ -6771,8 +6782,8 @@ pages:
                               from BigCommerce to your Auth Callback URI.
                               BigCommerce passes these within the URI itself as
                               query parameters.
-                          - type: text
-                            data: >-
+
+
                               | Parameter | Description |
 
                               | --- | --- |
@@ -6798,8 +6809,8 @@ pages:
                               `stores/{store_hash}`. Save the store hash value,
                               because you will need to pass it in all your
                               requests to the Stores API. |
-                          - type: text
-                            data: >-
+
+
                               ### Example – Initial Installation
 
 
@@ -6835,11 +6846,15 @@ pages:
                               Host: app.example.com
 
                               ```
+                            header:
+                              anchor: recieving-get-request
                           - type: callout
                             data:
                               body: >-
                                 Note that when your app receives a new token,
                                 any previously issued token is invalidated.
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
                               ## Responding to the GET Request
@@ -6855,6 +6870,10 @@ pages:
                               user will be left looking at a blank screen. Such
                               an app would not be accepted into the App
                               Marketplace.
+                            header:
+                              anchor: responding-get-request
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
                               ## Making the POST Request
@@ -6891,6 +6910,8 @@ pages:
                               progress-indicator overlay removed, the user can
                               interact with the HTML that you returned in your
                               GET response.
+                            header:
+                              anchor: making-post-request
                           - type: callout
                             data:
                               body: >-
@@ -7029,6 +7050,8 @@ pages:
                             config:
                               mode: php
                           - type: text
+                            data: '---'
+                          - type: text
                             data: >-
                               ## Receiving the POST Response
 
@@ -7041,6 +7064,8 @@ pages:
                               to identify the user and store at load and
                               uninstall. The following sections detail the
                               contents of the JSON body.
+                            header:
+                              anchor: recieving-post-request
                           - type: text
                             data: >-
                               ### JSON Values
@@ -7106,7 +7131,11 @@ pages:
                             config:
                               mode: json
                           - type: text
+                            data: '---'
+                          - type: text
                             data: "## Load, Uninstall, and User Removal Requests\nIn addition to the Auth Callback URI, the following URI’s are required for BigCommerce Apps:\n\n| Name | Required? | Event Discussion |\n| --- | --- | --- |\n| Load Callback URI | Yes | Called when the store owner or user clicks to load your app. |\n| Uninstall Callback URI | No | Called when the store owner clicks to uninstall your app. |\n| Remove User Callback URI | No | Called when the store admin revokes a user&#39;s access to your app. |\n\nEach BigCommerce request is a GET request and includes a signed payload that allows your app to:\n- Verify that the request came from BigCommerce.\n- Identify the store.\n- Identify the store owner or user.\n\n### Load Request and Response\n\nOnce your app has been installed, the store owner or user can click its icon in the control panel to launch it. This causes BigCommerce to send a GET request to the Load Callback URI that you provided. In a production environment, the Load Callback URI must be publicly available, fully qualified, and served over TLS/SSL.\n\n```\nThe GET request contains a signed payload, as shown below.\nGET /load?signed_payload=hw9fhkx2ureq.t73sk8y80jx9 HTTP/1.1\nHost: app.example.com\n```\n\n\nUpon receiving a GET request to the Load Callback URI, your app needs to [process the signed payload](). After processing the payload, your app returns its user interface as HTML. BigCommerce renders this inside of an iframe. Please see [User Interface Constraints]() for important information about your app’s user interface.\n\n### Uninstall Request (Optional)\n\nStore owners have the option to uninstall any app at any time. When a store owner uninstalls an app, the app’s OAuth token is revoked and the app cannot make requests to the Stores API on the store’s behalf anymore.\n\nYou do not need to provide an Uninstall Callback URI. The lack of an Uninstall Callback URI does not prevent uninstallation. Instead, the Uninstall Callback URI allows you to track store owners who uninstall your app and to run cleanup operations, such as removing the store’s user accounts from your system.\nShould you choose to avail of this option and provide an Uninstall Callback URI, please note that it must be publicly available, fully qualified, and served over TLS/SSL. If provided, BigCommerce will send a GET request to your Uninstall Callback URI when a store owner clicks to uninstall your app.\n\nExample of a GET Request sent to the Uninstall Callback URI\n```\nGET /uninstall?signed_payload=hw9fhkx2ureq.t73sk8y80jx9 HTTP/1.1\n\tHost: app.example.com\n```\nUpon receiving the GET request, your app will need to process the signed payload."
+                            header:
+                              anchor: load-uninstall-removal-requests
                           - type: callout
                             data:
                               body: >-
@@ -7150,6 +7179,8 @@ pages:
                               body: >-
                                 Any HTML that you return in your response will
                                 not be rendered.
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
                               ## Processing the Signed Payload
@@ -7202,6 +7233,8 @@ pages:
                               payload using your client secret, and confirm that
                               it matches the signature that was sent in the
                               request.
+                            header:
+                              anchor: processing-signed-payload
                           - type: callout
                             data:
                               body: >-
@@ -7379,6 +7412,8 @@ pages:
                             config:
                               mode: json
                           - type: text
+                            data: '---'
+                          - type: text
                             data: >-
                               ## Multi-User Support
 
@@ -7462,6 +7497,10 @@ pages:
 
                               For further information, please see Remove User
                               Request.
+                            header:
+                              anchor: multi-user-support
+                          - type: text
+                            data: '---'
                           - type: text
                             data: >-
                               ## External App Installation
@@ -7510,6 +7549,8 @@ pages:
 
                               Below is a sample code snippet of an auth callback
                               that does this:
+                            header:
+                              anchor: external-app-installation
                           - type: code
                             data: |2-
                                  if params['external_install']
