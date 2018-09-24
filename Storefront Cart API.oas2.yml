@@ -1697,15 +1697,16 @@ definitions:
     title: Item Physical
   BaseItem:
     type: object
-    required:
-      - quantity
+    title: Base Item
     properties:
       id:
         type: string
         description: The line-item ID.
       parentId:
         type: string
-        description: Bundled items will have their parent's item Id.
+        description: >-
+          The product is part of a bundle such as a product pick list, then the
+          parentId or the main product id will populate.
       variantId:
         type: number
         description: ID of the variant.
@@ -1767,7 +1768,8 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/ProductOption'
-    title: Base Item
+    required:
+      - quantity
   ProductOption:
     type: object
     properties:
