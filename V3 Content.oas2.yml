@@ -578,10 +578,19 @@ definitions:
       visibility:
         type: string
         description: >-
-          Which set of pages the script should load on. The values allowed for
-          this parameter are `storefront`, `all_pages`, `checkout` and
-          `order_confirmation`. Please note that you need to have `Checkout
-          content` scope to use `all_pages` and `checkout`.
+          Which set of pages the script should load on. 
+
+
+          Please note that you need to have `Checkout content` scope to use
+          `all_pages` and `checkout`.
+
+
+          - The current visibility options are `storefront`, `checkout`,
+          `all_pages` and `order_confirmation`.
+
+               `storefront`: All pages that are not `checkout` or `order_confirmation`.
+               
+               `all_pages`: Includes `storefront`, `checkout` and `order_confirmation`. This also includes the cart page. It **does not** include giftcertificates.php, sitemap.php, account.php, and login.php.
         enum:
           - storefront
           - all_pages
