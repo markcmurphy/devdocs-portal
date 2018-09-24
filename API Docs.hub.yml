@@ -13167,58 +13167,35 @@ pages:
                         ## What is a Price List?
 
 
-                        - A Price List allows you to populate different versions
+                        A Price List allows you to populate different versions
                         of catalog pricing and assign them to different
                         [Customer
                         Groups](https://developer.bigcommerce.com/api/v2/#customer-groups).
                         The prices are specified exclusively at the variant
-                        level. If an active Price List does not contain prices
-                        for a variant then the Catalog pricing will be used. The
+                        level. 
+
+
+                        If an active Price List does not contain prices for a
+                        variant then the Catalog pricing will be used. The
                         association of a Price List to a Customer Group can be
                         done either via the Control Panel or using the [V2
                         Customer Groups API.](/api/v2/#customer-groups)
 
 
-                        - Price Lists will provide overridden price values to
-                        the Stencil storefront. Final price display can be
-                        further customized within the Stencil template. See the
-                        [Price
+                        Price Lists will provide overridden price values to the
+                        Stencil storefront. Final price display can be further
+                        customized within the Stencil template. See the [Price
                         Object](https://stencil.bigcommerce.com/docs/price-object-properties)
                         in Stencil for further documentation.
-
-
-                        - Bulk requests are limited to 1000 items per request. 
                       header:
                         anchor: what-is-a-pricelist
                     - type: text
                       data: '---'
+                      header: {}
+                    - type: text
+                      data: "## Definitions\n\n- `Price List` : A collection of price records. `Price Records` make up a price list.\n \n- `Price Record`: A price override for a particular variant - minimally, this is a variant ID, price, and currency.\n        \n```\n\t{\n\t\t\"variant_id\": 3121,\n\t\t\"price\": 10.0,\n\t\t\"sale_price\": 8.0,\n\t\t\"retail_price\": 12.0,\n\t\t\"map_price\": 6.0,\n\t\t\"currency\": \"EUR\"\n\t}\n```\n\n        \n- `PriceRecordBatch`: A way to update several `Price Records` in a `Price List` at once. Using this bulk upsert endpoint, you can upsert up to 1000 Price Records in a single API call.\n\n- `Currency`:  A `Price List` can contain records for multiple currencies. At this time, *only price records that match the store's default currency will be used to determine storefront and in-cart prices.* Although BigCommerce supports a storefront currency selection, this is not currently integrated with Price Lists and will merely convert prices from the store's default currency for display convenience."
                       header:
                         anchor: pricelist-definitions
-                    - type: text
-                      data: >-
-                        ## Definitions
-
-
-                        - `Price List` : A collection of price records. `Price
-                        Records` make up a price list.
-                         
-                        - `Price Record`: A price override for a particular
-                        variant - minimally, this is a variant ID, price, and
-                        currency.
-                                 - `{
-                                  "variant_id": 3121,
-                                  "price": 10.0,
-                                  "sale_price": 8.0,
-                                  "retail_price": 12.0,
-                                  "map_price": 6.0,
-                                  "currency": "EUR"
-                                }
-                                `
-                                
-                        - `PriceRecordBatch`: A way to update several `Price
-                        Records` in a `Price List` at once. Using this bulk
-                        upsert endpoint, you can upsert up to 1000 Price Records
-                        in a single API call.
                     - type: code
                       data: |-
                         [{
@@ -13290,16 +13267,6 @@ pages:
                     - type: text
                       data: >-
                         #### Notes
-
-
-                        - Currency: A `Price List` can contain records for
-                        multiple currencies. At this time, *only price records
-                        that match the store's default currency will be used to
-                        determine storefront and in-cart prices.* Although
-                        BigCommerce supports a storefront currency selection,
-                        this is not currently integrated with Price Lists and
-                        will merely convert prices from the store's default
-                        currency for display convenience.
 
 
                         - Bulk Pricing Tiers may additionally be associated with
