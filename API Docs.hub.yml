@@ -13376,6 +13376,125 @@ pages:
               - title: Add to Cart URL's
                 route:
                   path: /add-to-cart-url
+                data:
+                  blocks:
+                    - type: html
+                      data: "<h1> Add to Cart URL's </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#jwt\"> JWT</a></li>\n\t\t<li><a href=\"#oauth-scope\">OAuth Scope</a></li>\n    <li><a href=\"#sample-code\">Sample Code</a></li>\n    <li><a href=\"#access-url\">Acces URL</a></li>\n    <li><a href=\"#logging-in-a-customer\">Loggin In a Customer</a></li>\n    <li><a href=\"#troubleshooting-customer-login-api\">Troubleshooting</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        Your apps can use a product's or variant's <a
+                        href="https://support.bigcommerce.com/articles/Public/Product-SKUs"
+                        target="_blank">SKU</a> to create custom product URLs in
+                        order to perform specific actions, like:
+
+
+                        * Pre-select a specific SKU’s product-option values when
+                        loading a product detail page.
+
+                        * Add a specific SKU to the cart.
+
+                        * Add a specific SKU to the cart and go directly to
+                        checkout.
+
+                        * Add a specific SKU to the cart, go directly to
+                        checkout, and include a source parameter for analytics
+                        and conversion tracking.
+                    - type: text
+                      data: '---'
+                    - type: callout
+                      data:
+                        title: 'Limitation: One Item per URL'
+                        body: >-
+                          Each of the custom links described here can add only a
+                          single item (quantity 1) to the cart at a time.
+                    - type: text
+                      data: >-
+                        ## Select Specific SKU (Product/Variant) on Product
+                        Detail Page
+
+
+                        To link to a specific product variant, append
+                        `?sku=INSERT-SKU-HERE` to the product URL, as shown
+                        below. This will link to the product page, with the
+                        variant's options already selected.
+
+
+                        ### Structure:
+
+                        `site.com/sample-test-product-w-options/?sku=INSERT-SKU-HERE`
+
+
+
+                        ### Example:
+
+                        `myawesomestore.com/shirt/?sku=SHIRT-SM-RED`
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Add Specific SKU to Cart
+
+
+                        To automatically add a product or variant to a shopper's
+                        cart and take them directly to the cart page, append   
+
+                        `/cart.php?action=add&sku=INSERT-SKU-HERE` to the
+                        store's domain.
+
+
+                        ### Structure:
+
+                        `/site.com/cart.php?action=add&sku=INSERT-SKU-HERE`
+
+
+                        ### Example:
+
+                        `myawesomestore.com/cart.php?action=add&sku=SHIRT-SM-RED`
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Add Specific SKU to Cart and Go Directly to Checkout
+
+                        To automatically add a product or variant to a shopper's
+                        cart and forward them directly to checkout, append   
+
+                        `/cart.php?action=buy&sku=INSERT-SKU-HERE` to the
+                        store's domain.
+
+
+                        ### Structure:
+
+                        `/site.com/cart.php?action=buy&sku=INSERT-SKU-HERE`
+
+
+                        ### Example:
+
+                        `myawesomestore.com/cart.php?action=buy&sku=SHIRT-SM-RED`
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Add Specific SKU, Go to Checkout, and Include Source
+
+
+                        To automatically add a product or variant to a shopper's
+                        cart, forward them to checkout, and also include a
+                        source parameter for analytics/conversion tracking,
+                        append
+                        `cart.php?action=buy&sku=INSERT-SKU-HERE&source=SOURCE-HERE`
+                        to the store's domain. (The&#160;source parameter can be
+                        any string.)
+
+
+                        ### Structure:
+
+                        `site.com/cart.php?action=buy&sku=INSERT-SKU-HERE&source=SOURCE-HERE`
+
+
+                        ### Example:
+
+                        `myawesomestore.com/cart.php?action=buy&sku=SHIRT-SM-RED&source=JULY-EMAIL-NEWSLETTER`
         - title: Checkout
           route:
             path: /checkout
