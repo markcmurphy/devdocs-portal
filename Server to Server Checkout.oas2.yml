@@ -1665,7 +1665,19 @@ paths:
             type: object
             properties: {}
       summary: Create an Order
-      description: 'Turns an existing Checkout into an Order. '
+      description: >-
+        Create an order. Orders created will be set to incomplete order status. 
+
+
+        You can create as many orders from the same order(cart) as you want.
+        Order duplication creates the same order with a new order number with
+        the incomplete status. 
+
+        Once the order is paid, then the cart is deleted. Cart deletion occurs
+        if you are using BigCommerce to accept payments on orders.
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     parameters:
       - name: checkoutId
         in: path
