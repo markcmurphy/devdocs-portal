@@ -251,7 +251,9 @@ paths:
         IsMultiContentStreaming: false
   '/checkouts/{checkoutId}/billing-address':
     post:
-      description: Adds a new billing address to the checkout.
+      description: >-
+        Adds a new billing address to the checkout. Either email or countryCode
+        is required.
       tags:
         - Checkout
       operationId: CheckoutsBillingAddressByCheckoutIdPost
@@ -494,15 +496,7 @@ paths:
       summary: Add Checkout Billing Address
   '/checkouts/{checkoutId}/billing-address/{addressId}':
     put:
-      description: |
-        Updates the existing billing address on the checkout.
-        Example /PUT:
-        ```
-        {
-          "email": "jane@email.com",
-          "phone": "1234567890"
-        }
-        ```
+      description: Updates the existing billing address on the checkout.
       summary: Update Checkout Billing Address
       tags:
         - Checkout
@@ -1331,14 +1325,7 @@ paths:
         IsMultiContentStreaming: false
   '/checkouts/{checkoutId}/coupons':
     post:
-      description: |-
-        Adds a coupon code to the checkout.
-        Example /POST: 
-        ```
-        {
-          "coupon_code": "S2549JM0Y"
-        }
-        ```
+      description: Adds a coupon code to the checkout.
       summary: Add Coupon to Checkout
       tags:
         - Checkout
@@ -1513,7 +1500,7 @@ paths:
         IsMultiContentStreaming: false
   '/checkouts/{checkoutId}/coupons/{couponCode}':
     delete:
-      description: Removes an existing coupon from checkout.
+      description: 'Removes an existing coupon from checkout. '
       summary: Delete Checkout Coupon
       tags:
         - Checkout
@@ -1664,6 +1651,21 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+  '/checkouts/{checkoutId}/orders':
+    post:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+      summary: Create an Order
+      description: 'Turns an existing Checkout into an Order. '
+    parameters:
+      - name: checkoutId
+        in: path
+        type: string
+        required: true
 definitions:
   Checkout:
     title: Checkout
