@@ -11869,9 +11869,46 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: |+
+                            data: >-
                               ## Webhooks Available
 
+
+                              | Name | Description |
+
+                              | --- | --- |
+
+                              | store/sku/* |Subscribe to all store/sku events |
+
+                              | store/sku/created | A new sku is created |
+
+                              | store/sku/updated | Sku is updated |
+
+                              | store/sku/deleted| Sku is deleted |
+
+                              | store/sku/inventory/updated| |
+
+                              | store/sku/inventory/order/updated| This webhook
+                              will fire if inventory is being tracked by sku on
+                              a product. It will also fire the
+                              store/product/inventory/order/updated webhook. |
+
+
+                              Included in the response is a data object:
+
+
+                              **value**: the number of items that the inventory
+                              changed by. This can be negative if the inventory
+                              is decreased `-3` or positive if an item is
+                              returned to the inventory from an order, `+2`
+
+
+                              **method** : Will always return relative.
+
+
+                              **type**: Will always be sku
+
+
+                              **variant_id**: Id of the variant
                           - type: text
                             data: '## Object Properties'
                             header:
