@@ -520,6 +520,19 @@ definitions:
     title: No Content
   Script:
     type: object
+    example:
+      uuid: 2bf40be2-e57a-4bc8-860a-5bf45edd3795
+      name: jQuery
+      description: 'The Write Less, Do More, JavaScript Library.'
+      src: 'https://code.jquery.com/jquery-3.2.1.min.js'
+      auto_uninstall: true
+      load_method: defer
+      location: head
+      visibility: storefront
+      kind: src
+      api_client_id: d1j42k5q76xsm15fa3g8sp2egytoixo
+      date_created: '2017-12-05T23:37:45.506Z'
+      date_modified: '2017-12-05T23:37:45.506Z'
     properties:
       uuid:
         type: string
@@ -544,13 +557,14 @@ definitions:
       auto_uninstall:
         type: boolean
         description: >-
-          Whether to uninstall this script when the app associated with it is
-          removed.
+          It will enable automatic cleanup of the script when the single click
+          app is uninstalled or OAuth token is revoked.
       load_method:
         type: string
         description: >-
           The load method to use for the script. Values are `default`, `async`,
-          or `defer`.
+          or `defer`. It determines how the script should be loaded into the
+          page.
         enum:
           - default
           - async
@@ -596,19 +610,6 @@ definitions:
         type: string
         format: date-time
         description: The date on which this object was last updated.
-    example:
-      uuid: 2bf40be2-e57a-4bc8-860a-5bf45edd3795
-      name: jQuery
-      description: 'The Write Less, Do More, JavaScript Library.'
-      src: 'https://code.jquery.com/jquery-3.2.1.min.js'
-      auto_uninstall: true
-      load_method: defer
-      location: head
-      visibility: storefront
-      kind: src
-      api_client_id: d1j42k5q76xsm15fa3g8sp2egytoixo
-      date_created: '2017-12-05T23:37:45.506Z'
-      date_modified: '2017-12-05T23:37:45.506Z'
   ScriptPost:
     required:
       - name
