@@ -12771,14 +12771,14 @@ pages:
                         Example use cases for the Customer Login API include:
 
 
-                        * Merchants with a footprint across multiple sites and
-                        platforms
+                        * Integration with a SSO provider or IdP
 
-                        * Social login applications
+                        * Continuous login between a BC storefront and another
+                        system, such as a WordPress blog
 
-                        * Apps that need to bypass the built-in customer login
-                        page in order to log customers in from a third-party
-                        system
+                        * Any login method other than BC's typical email and
+                        password login - for example, if you wanted to enable
+                        customers to log in via a phone number and SMS password
                       header: {}
                     - type: text
                       data: >-
@@ -12918,7 +12918,7 @@ pages:
                       header:
                         anchor: payload-fields
                     - type: text
-                      data: >
+                      data: >-
                         ### Signature
 
 
@@ -13222,25 +13222,29 @@ pages:
                         ## Troubleshooting
 
 
-                        Tokens are valid for a very short time frame after being
-                        generated, so tokens should not be generated in advance.
-                        Instead, the application should generate the token and
-                        then immediately redirect the user’s browser to
-                        /login/token/{token}. 
-
-
-                        If the server generating the iat is out of sync, the
+                        * If the server generating the iat is out of sync, the
                         login token will fail if the timestamp indicates a time
                         in the future or an expired token.
 
 
-                        The login URL can be visited only once. Once a GET
+                        * The login URL can be visited only once. Once a GET
                         request is run against the link, the token is
                         invalidated. 
 
 
-                        Tokens can be validated or generated for testing
+                        * Tokens can be validated or generated for testing
                         purposes using the debugger at https://jwt.io/.
+
+
+                        * Tokens will be valid for a very short timeframe after
+                        they are first generated, so tokens should not be
+                        generated in advance. Instead, the application should
+                        generate the token and then immediately redirect the
+                        user’s browser to `/login/token/{token}`. If you're
+                        seeing issues related to your system time differing from
+                        BC's server time, you can use the <a
+                        href="/api/v2/#get-a-timestamp">/v2/time</a> endpoint as
+                        a source of truth.
                       header:
                         anchor: troubleshooting-customer-login-api"
               - title: Current Customer API
