@@ -13890,6 +13890,7 @@ pages:
                     - type: code
                       data: |-
                         <script>
+                        console.log('Log Cart');
                         fetch('/api/storefront/cart', {
                           credentials: 'include'
                         }).then(function(response) {
@@ -13900,6 +13901,66 @@ pages:
                         </script>
                       header:
                         title: Log Cart Details to the Console
+                      config:
+                        mode: html
+                    - type: code
+                      data: >-
+                        <script>
+
+                        console.log('Log Checkout');
+
+                        fetch('/api/storefront/cart?includes=consignments.availableShippingOptions',
+                        {
+                                credentials: 'include'
+                              })
+                              .then(function(response) {
+                                return response.json();
+                              }).then(function(cartJson) {
+                                console.log(cartJson);
+                                return cartJson[0].id;
+                              }).catch(function(error) {
+                                console.log(error);
+                              }).then(function(cartId) {
+                                fetch('/api/storefront/checkouts/' + cartId, {
+                                  credentials: 'include'
+                                }).then(function(response) {
+                                  return response.json();
+                                }).then(function(checkoutJson) {
+                                  console.log(checkoutJson);
+                                }).catch(function(error) {
+                                  console.log(error);
+                                })
+                              });
+
+                        </script>
+                      header:
+                        title: Log Checkout Details to the Console
+                      config:
+                        mode: html
+                    - type: code
+                      data: >-
+                        <script>
+
+                        console.log("Log Order");
+
+                        fetch('/api/storefront/order/{{checkout.order.id}}',
+                        {credentials: 'include'})
+
+                        .then(function(response) {
+
+                        return response.json();
+
+                        })
+
+                        .then(function(myJson) {
+
+                        console.log(myJson);
+
+                        });
+
+                        </script>
+                      header:
+                        title: Log Order Details to the Console
                       config:
                         mode: html
                     - type: text
