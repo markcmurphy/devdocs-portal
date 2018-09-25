@@ -5676,7 +5676,7 @@ pages:
                               * [Storefront APIs](http://) use the store url:
                               `https://your-store.mybigcommerce.com/api/{endpoint}`
 
-                              * [Server-to-Server``](http://) requests use the
+                              * [Server-to-Server](http://) requests use the
                               base url: 
                               `https://api.bigcommerce.com/stores/{store_hash}/v3/`
 
@@ -5692,12 +5692,9 @@ pages:
 
 
                               Server-to-Server request headers require Accept,
-                              X-Auth-Client and X-Auth-Token and Content-Type at
-                              a minimum. Other requests may require more
-                              headers.
+                              X-Auth-Client, X-Auth-Token and Content-Type at a
+                              minimum.
 
-
-                              ## Request Headers 
 
 
                               | Header | Allowed Values | Description | Example
@@ -5712,8 +5709,8 @@ pages:
 
                               | `Content-Type` | `application/json` (for JSON
                               requests) `application/xml` (for XML requests) |
-                              The MIME type of the request body. Use to validate
-                              and parse the request to the API. |
+                              The MIME type of the request body. Used to
+                              validate and parse the request to the API. |
                               `application/json` |
 
                               | `User-Agent` | String | While it is not
@@ -5760,22 +5757,22 @@ pages:
                               of the endpoint that was requested. |
                               `application/json` |
 
-                              | Content-Location | A URI. | Sent if the request
+                              | Content-Location | A URI | Sent if the request
                               was redirected. | `/api/v2/orders/5.json` |
 
                               | Location | A URI | The URI of a newly created
                               resource. Sent with a `201 Created` response. |
                               `/api/v2/products/7` |
 
-                              | X-Retry-After | An integer | Rate limited
-                              response, indicating the number of seconds before
-                              the quota refreshes. See the [Platform
+                              | X-Retry-After | integer | Rate limited response,
+                              indicating the number of seconds before the quota
+                              refreshes. See [Platform
                               Limits](https://forum.bigcommerce.com/s/article/Platform-Limits#product-catalog-limits)
                               for more information. | `15` |
 
-                              | X-BC-ApiLimit-Remaining | An integer | The
-                              number of API requests remaining for the current
-                              period (rolling one hour). [Platform
+                              | X-BC-ApiLimit-Remaining | integer | The number
+                              of API requests remaining for the current period
+                              (rolling one hour). See [Platform
                               Limits](https://forum.bigcommerce.com/s/article/Platform-Limits#product-catalog-limits)
                               for more information. | `987` |
 
@@ -5784,11 +5781,14 @@ pages:
                               This header is available on versions 7.3.6+. | `
                               7.3.6` |
 
-                              | Content-Encoding | gzip | Allows API clients to
-                              request content to be compressed before being sent
-                              back in the response to an API request. | gzip |
+                              | Content-Encoding | `gzip` | Allows API clients
+                              to request content to be compressed before being
+                              sent back in the response to an API request. |
+                              `gzip` |
 
-                              | Transfer-Encoding |
+                              | Transfer-Encoding | `chunked` | Specifies the
+                              form of encoding used to transfer the resource. |
+                              `chunked`
 
                               | X-Rate-Limit-Requests-Left | number | Details
                               how many remaining requests your client can make
@@ -5797,21 +5797,21 @@ pages:
                               6 more requests in the next 3000 milliseconds; on
                               the 7th request within 3000 milliseconds, you
                               would be rate-limited and would receive an HTTP
-                              429 response. | 16101491 |
+                              429 response. | `16101491` |
 
                               | X-Rate-Limit-Requests-Quota | number | Shows how
                               many API requests are allowed in the current
-                              window for your client. | 16101495 |
+                              window for your client. | `16101495` |
 
                               | X-Rate-Limit-Time-Reset-Ms  | number | Shows how
                               many milliseconds are remaining in the window. In
                               this case, 3000 milliseconds – so, 3000
                               milliseconds after this request, the API quota
-                              will be refreshed. |30000 |
+                              will be refreshed. |`30000 `|
 
                               | X-Rate-Limit-Time-Window-Ms | number | Shows the
-                              size of your current rate-limiting window. | 9762
-                              |
+                              size of your current rate-limiting window. |
+                              `9762` |
                             header:
                               anchor: response-headers
                           - type: text
@@ -5825,7 +5825,7 @@ pages:
                               response body. The BigCommerce API accepts
                               requests and responds in JSON. You should encode
                               requests using the UTF-8 character set. (Other
-                              character sets might have unpredictable results.)
+                              character sets might have unpredictable results).
                             header:
                               anchor: media-types
                           - type: text
@@ -5853,12 +5853,13 @@ pages:
                               The priority in which these methods are processed
                               are:
 
-                              * Accept header high-priority types (eg. Accept:
-                              application/json) extensions on the resource
-                              (e.g.: customers.json).
+                              * Accept header high-priority types (eg. `Accept:
+                              application/json`) extensions on the resource
+                              (e.g. `customers.json`).
 
                               * Accept header low priority types (priorities
-                              less than 1, e.g.: Accept: application/json;q=0.9)
+                              less than 1, e.g. `Accept:
+                              application/json;q=0.9`)
                             header:
                               anchor: content-types
                           - type: text
@@ -5930,152 +5931,152 @@ pages:
                           - type: code
                             data: |-
                               {
-                                  "data": [
-                                      {
-                                          "id": 19,
-                                          "parent_id": 0,
-                                          "name": "Garden",
-                                          "description": "<p>This is the garden description</p>",
-                                          "views": 0,
-                                          "sort_order": 2,
-                                          "page_title": "page title",
-                                          "meta_keywords": [
-                                              "meta keyword"
-                                          ],
-                                          "meta_description": "meta description",
-                                          "layout_file": "category.html",
-                                          "image_url": "",
-                                          "is_visible": true,
-                                          "search_keywords": "search keywords",
-                                          "default_product_sort": "use_store_settings",
-                                          "custom_url": {
-                                              "url": "/garden/",
-                                              "is_customized": false
-                                          }
-                                      },
-                                      {
-                                          "id": 20,
-                                          "parent_id": 0,
-                                          "name": "Publications",
-                                          "description": "",
-                                          "views": 0,
-                                          "sort_order": 4,
-                                          "page_title": "",
-                                          "meta_keywords": [
-                                              ""
-                                          ],
-                                          "meta_description": "",
-                                          "layout_file": "category_with_facets.html",
-                                          "image_url": "",
-                                          "is_visible": true,
-                                          "search_keywords": "",
-                                          "default_product_sort": "use_store_settings",
-                                          "custom_url": {
-                                              "url": "/publications/",
-                                              "is_customized": false
-                                          }
-                                      },
-                                      {
-                                          "id": 21,
-                                          "parent_id": 0,
-                                          "name": "Kitchen",
-                                          "description": "",
-                                          "views": 0,
-                                          "sort_order": 3,
-                                          "page_title": "",
-                                          "meta_keywords": [
-                                              ""
-                                          ],
-                                          "meta_description": "",
-                                          "layout_file": "category_with_facets.html",
-                                          "image_url": "",
-                                          "is_visible": true,
-                                          "search_keywords": "",
-                                          "default_product_sort": "use_store_settings",
-                                          "custom_url": {
-                                              "url": "/kitchen/",
-                                              "is_customized": false
-                                          }
-                                      },
-                                      {
-                                          "id": 22,
-                                          "parent_id": 0,
-                                          "name": "Utility",
-                                          "description": "",
-                                          "views": 0,
-                                          "sort_order": 5,
-                                          "page_title": "",
-                                          "meta_keywords": [
-                                              ""
-                                          ],
-                                          "meta_description": "",
-                                          "layout_file": "category_with_facets.html",
-                                          "image_url": "",
-                                          "is_visible": true,
-                                          "search_keywords": "",
-                                          "default_product_sort": "use_store_settings",
-                                          "custom_url": {
-                                              "url": "/utility/",
-                                              "is_customized": false
-                                          }
-                                      },
-                                      {
-                                          "id": 23,
-                                          "parent_id": 0,
-                                          "name": "Shop All",
-                                          "description": "<h1>Browse our full collection</h1>",
-                                          "views": 0,
-                                          "sort_order": 0,
-                                          "page_title": "",
-                                          "meta_keywords": [
-                                              ""
-                                          ],
-                                          "meta_description": "",
-                                          "layout_file": "category_with_facets.html",
-                                          "image_url": "",
-                                          "is_visible": true,
-                                          "search_keywords": "",
-                                          "default_product_sort": "use_store_settings",
-                                          "custom_url": {
-                                              "url": "/shop-all/",
-                                              "is_customized": false
-                                          }
-                                      },
-                                      {
-                                          "id": 39,
-                                          "parent_id": 19,
-                                          "name": "Bath",
-                                          "description": "",
-                                          "views": 0,
-                                          "sort_order": 0,
-                                          "page_title": "",
-                                          "meta_keywords": [
-                                              ""
-                                          ],
-                                          "meta_description": "",
-                                          "layout_file": "category.html",
-                                          "image_url": "",
-                                          "is_visible": true,
-                                          "search_keywords": "",
-                                          "default_product_sort": "use_store_settings",
-                                          "custom_url": {
-                                              "url": "/garden/bath/",
-                                              "is_customized": false
-                                          }
-                                      }
-                                  ],
-                                  "meta": {
-                                      "pagination": {
-                                          "total": 6,
-                                          "count": 6,
-                                          "per_page": 50,
-                                          "current_page": 1,
-                                          "total_pages": 1,
-                                          "links": {
-                                              "current": "?page=1&limit=50"
-                                          }
-                                      }
+                                "data": [
+                                  {
+                                    "id": 19,
+                                    "parent_id": 0,
+                                    "name": "Garden",
+                                    "description": "<p>A collection of products for the garden.</p>",
+                                    "views": 0,
+                                    "sort_order": 2,
+                                    "page_title": "page title",
+                                    "meta_keywords": [
+                                      "meta keyword"
+                                    ],
+                                    "meta_description": "meta description",
+                                    "layout_file": "category.html",
+                                    "image_url": "",
+                                    "is_visible": true,
+                                    "search_keywords": "search keywords",
+                                    "default_product_sort": "use_store_settings",
+                                    "custom_url": {
+                                      "url": "/garden/",
+                                      "is_customized": false
+                                    }
+                                  },
+                                  {
+                                    "id": 20,
+                                    "parent_id": 0,
+                                    "name": "Publications",
+                                    "description": "",
+                                    "views": 0,
+                                    "sort_order": 4,
+                                    "page_title": "",
+                                    "meta_keywords": [
+                                      ""
+                                    ],
+                                    "meta_description": "",
+                                    "layout_file": "category_with_facets.html",
+                                    "image_url": "",
+                                    "is_visible": true,
+                                    "search_keywords": "",
+                                    "default_product_sort": "use_store_settings",
+                                    "custom_url": {
+                                      "url": "/publications/",
+                                      "is_customized": false
+                                    }
+                                  },
+                                  {
+                                    "id": 21,
+                                    "parent_id": 0,
+                                    "name": "Kitchen",
+                                    "description": "",
+                                    "views": 0,
+                                    "sort_order": 3,
+                                    "page_title": "",
+                                    "meta_keywords": [
+                                      ""
+                                    ],
+                                    "meta_description": "",
+                                    "layout_file": "category_with_facets.html",
+                                    "image_url": "",
+                                    "is_visible": true,
+                                    "search_keywords": "",
+                                    "default_product_sort": "use_store_settings",
+                                    "custom_url": {
+                                      "url": "/kitchen/",
+                                      "is_customized": false
+                                    }
+                                  },
+                                  {
+                                    "id": 22,
+                                    "parent_id": 0,
+                                    "name": "Utility",
+                                    "description": "",
+                                    "views": 0,
+                                    "sort_order": 5,
+                                    "page_title": "",
+                                    "meta_keywords": [
+                                      ""
+                                    ],
+                                    "meta_description": "",
+                                    "layout_file": "category_with_facets.html",
+                                    "image_url": "",
+                                    "is_visible": true,
+                                    "search_keywords": "",
+                                    "default_product_sort": "use_store_settings",
+                                    "custom_url": {
+                                      "url": "/utility/",
+                                      "is_customized": false
+                                    }
+                                  },
+                                  {
+                                    "id": 23,
+                                    "parent_id": 0,
+                                    "name": "Shop All",
+                                    "description": "<h1>Browse our full collection</h1>",
+                                    "views": 0,
+                                    "sort_order": 0,
+                                    "page_title": "",
+                                    "meta_keywords": [
+                                      ""
+                                    ],
+                                    "meta_description": "",
+                                    "layout_file": "category_with_facets.html",
+                                    "image_url": "",
+                                    "is_visible": true,
+                                    "search_keywords": "",
+                                    "default_product_sort": "use_store_settings",
+                                    "custom_url": {
+                                      "url": "/shop-all/",
+                                      "is_customized": false
+                                    }
+                                  },
+                                  {
+                                    "id": 39,
+                                    "parent_id": 19,
+                                    "name": "Bath",
+                                    "description": "",
+                                    "views": 0,
+                                    "sort_order": 0,
+                                    "page_title": "",
+                                    "meta_keywords": [
+                                      ""
+                                    ],
+                                    "meta_description": "",
+                                    "layout_file": "category.html",
+                                    "image_url": "",
+                                    "is_visible": true,
+                                    "search_keywords": "",
+                                    "default_product_sort": "use_store_settings",
+                                    "custom_url": {
+                                      "url": "/garden/bath/",
+                                      "is_customized": false
+                                    }
                                   }
+                                ],
+                                "meta": {
+                                  "pagination": {
+                                    "total": 6,
+                                    "count": 6,
+                                    "per_page": 50,
+                                    "current_page": 1,
+                                    "total_pages": 1,
+                                    "links": {
+                                      "current": "?page=1&limit=50"
+                                    }
+                                  }
+                                }
                               }
                             header:
                               title: Multiple Categories
