@@ -1461,6 +1461,93 @@ pages:
                               above to see platform-specific recommendations –
                               if you get unexpected error messages when issuing
                               the npm install or stencil init commands.
+                          - type: text
+                            data: >
+                              ## "Uncaught TypeError: Illegal invocation" error
+
+
+                              If you receive an `Uncaught TypeError: Illegal
+                              invocation` console error, and previously
+                              installed Stencil using the original jspm-based
+                              installation flow, then later switched to our
+                              current webpack installation flow: Please remove
+                              your theme's `/node_modules/` subdirectory, then
+                              re-run `npm install` inside your theme's
+                              directory.
+                          - type: text
+                            data: >+
+                              ## "js/bundle" Errors upon `stencil init`
+
+
+                              If you get errors of the following type upon
+                              executing the stencil init command:
+
+
+                              ```
+
+                              Potentially unhandled rejection [6] TypeError:
+                              Error loading "js/bundle" 
+
+                              at
+                              file:/Users/<username>/Desktop/Fortune-1.4.6/assets/js/bundle.js
+
+
+                              Error evaluating
+                              file:/Users/<username>/Desktop/Fortune-1.4.6/assets/js/bundle.js
+
+
+                              Cannot read property 'createElement' of
+                              undefined...
+
+                              ```
+
+
+                              try the following workaround:
+
+
+                              1. Download and unzip a fresh copy of the theme.
+
+
+                              3. Refresh theme dependencies by running `npm
+                              install && jspm install`
+
+
+                              3. Run `stencil init`.
+
+
+                              *You will see the same error message as before,
+                              but proceed.*
+
+
+                              4. Delete the `<theme-name>/assets/js/bundle.js`
+                              file.
+
+
+                              5. Run `stencil init` again.
+
+                              This should now execute properly.
+
+                              6. Run `stencil start`
+
+
+                              8. Verify your theme's launch at:
+                              http://localhost:3000.
+
+                          - type: text
+                            data: >-
+                              ## stencil init/stencil start Errors
+
+
+                              If you get unexpected error messages or unexpected
+                              results upon executing the `stencil init`,
+                              `stencil start`, or other Stencil CLI commands,
+                              make sure you are working in the subdirectory for
+                              the specific theme you intend to launch. 
+
+
+                              One way of checking what directory you are working
+                              in is by running the `pwd` command in your
+                              terminal.
                     - title: Stencil CLI Options and Commands
                       route:
                         path: /stencil-cli-options-and-commands
