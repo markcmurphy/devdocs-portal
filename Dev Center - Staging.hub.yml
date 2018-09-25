@@ -468,7 +468,7 @@
                           ]
                         }
                       },
-                     {
+                      {
                         "title": "Installing the Stencil CLI",
                         "route": {
                           "path": "/installing-the-stencil-cli"
@@ -523,7 +523,7 @@
                           ]
                         }
                       },
-                                            {
+                      {
                         "title": "Adding a Base Theme",
                         "route": {
                           "path": "/adding-a-base-theme"
@@ -596,52 +596,206 @@
                         "route": {
                           "path": "/creating-an-api-account"
                         },
-                        "data": {}
-                      },
-                      {
-                        "title": "Issuing Additional Tokens",
-                        "route": {
-                          "path": "/issuing-additional-tokens"
-                        },
-                        "data": {}
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Creating an API Account</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#creating_oauth-accounts\">Creating OAuth Accounts</a></li>\n    <li><a href=\"#creating_issuing-additional\">Creating OAuth Accounts</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "type": "error",
+                                "body": "If you've successfully installed Stencil you're ready to create a BigCommerce API Account. \n_If you have not yet installed Stencil, see the articles in \"Installing and Launching Stencil._",
+                                "title": "Status Check"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Creating OAuth Accounts\n\n1. Log into the control panel of the store for which you are developing. (Use the store owner's credentials.)\n\n2. From the left nav, select Advanced Settings > API Accounts.\n\n3. From the resulting Store API Accounts page, select the Create API Account button.\n\n4. Give your account a Name that reflects its purpose. (The BigCommerce platform does not validate this name – so just assign a name that will make the account's purpose clear to you and other store administrators.)\n\n5. Under OAuth Scopes, set the Themes selector to either modify or read-only.\n\n(The read-only scope is sufficient to authorize/initialize a Stencil theme. However, the modify scope will achieve the same goal, while also authorizing this account to upload themes to the store from the command line.)\n\n6. Click Save. As outlined in this support article, doing so will display a modal, from which you can copy your Client ID and Access Token values. It will also prompt your browser to download a .txt file that contains your credentials.\n\nYou will need these values to authorize/initialize your Stencil theme. If you're ready to do so now, move ahead to Authorizing and Initializing Stencil.\n\n"
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "type": "warning",
+                                "title": "Reserved Role",
+                                "body": "Currently, only the store owner can create an OAuth API account according to the instructions below. Also, note that each store is limited to 50 accounts at a time."
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Issuing Additional Tokens\n\nTo issue store tokens for additional themes or developers, repeat the process outlined in Creating an API Account.\n\n(Even if you originally initialized your theme using a legacy API [Basic-Auth] token, we strongly encourage you to generate any new tokens using the new OAuth flow. However, Stencil CLI will still honor your legacy tokens to restart this theme.)\n\nYou can create up to 50 API accounts/tokens per store. If you hit this limit and still need to create new tokens, you will need to delete existing accounts."
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "type": "warning",
+                                "title": "Token-Management Tips",
+                                "body": "Deleting an account will invalidate the corresponding token. This will affect any developer using that token.\n\nWe recommend naming accounts by purpose, to help you keep track of which accounts you need to keep active."
+                              }
+                            }
+                          ]
+                        }
                       },
                       {
                         "title": "Revoking Tokens",
                         "route": {
                           "path": "/revoking-tokens"
                         },
-                        "data": {}
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Revoking Tokens</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#revoking_revoking-oauth\">Revoking OAuth Tokens</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Revoking OAuth Tokens\n\nTo revoke an existing OAuth store token, delete the corresponding Store API account:\n\nNavigate to the control panel's API Accounts page.\n\nSelect the trash-can button to the right of the account that you want to delete.\n(You can also use the check boxes at left to select multiple accounts, and then delete them all at once.)\n\n",
+                              "header": {
+                                "anchor": "revoking_revoking-oauth"
+                              }
+                            },
+                            {
+                              "type": "image",
+                              "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1537421464104"
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "title": "Revoke with Caution!",
+                                "type": "error",
+                                "body": "There is no undo. This process completely deletes the selected account(s), revoking the corresponding token(s)."
+                              }
+                            }
+                          ]
+                        }
                       },
                       {
                         "title": "Copying a Token to Initialize Stencil",
                         "route": {
-                          "path": "/copying-a-token-to-initializ"
+                          "path": "/copying-token-to-initialize"
                         },
-                        "data": {}
-                      },
-                      {
-                        "title": "Launching Stencil",
-                        "route": {
-                          "path": "/launching-stencil"
-                        },
-                        "data": {}
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Copying a Token to Intialize Stencil</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#copying_copying-oauth\"></a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Copying OAuth Tokens \n\nTo access an existing OAuth token to authorize your theme:\n\n1. Open the .txt file that the BigCommerce control panel generated when you created the API account.\n\n(If you did not retain this file, you will need to generate a new token by repeating the Creating an API Account procedure.)\n\n2. Note the Client ID and Access Token hashes in the file (or in the control-panel modal for your newly created token).\n\n3. If you are a merchant granting an outside theme developer access to your store, provide these two values to the developer. They will need them when [Authorizing and Initializing Stencil]().\n\n4. If you are developing a theme against your own store, you will use the same two values in the same [Authorizing and Initializing Stencil]() step, described on the following page."
+                            }
+                          ]
+                        }
                       }
                     ]
                   }
                 },
                 {
-                  "title": "Authorizing and Initializing Stencil",
+                  "title": "Launching Stencil",
                   "route": {
-                    "path": "/authorizing-and-initializing-stencil"
+                    "path": "/launching-stencil"
                   },
                   "data": {
                     "children": [
+                      {
+                        "title": "Authorizing and Initializing Stencil",
+                        "route": {
+                          "path": "/authorizing-and-initializing"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Authorizing and Initializing Stencil</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#authorizing_authorizing-oauth\">Authorizing with OAuth Tokens</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "body": "Even when you share a theme across storefronts, we strongly recommend that you clone a separate subdirectory (each containing its own .stencil file) for each store. This helps isolate and secure each merchant's data.\n\nYou can clone your .../cornerstone/ subdirectory now to create your first isolated copy, and then switch to the resulting new subdirectory to continue. (Prior to March 2017, Stencil's default subdirectory name was .../stencil/.)",
+                                "title": " Best Practice: Isolate Stores by Subdirectory"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Authorizing with OAuth Tokens\n\nUse the following steps to authorize your theme using an OAuth API account:\n\n1. Have your store API account's Client ID and Access Token hashes ready. \n(Refer back to the Copying a Token to Initialize Stencil or Creating an API Account instructions.)\n\n2. Starting from the subdirectory for the appropriate theme (and store), initialize Stencil CLI by running the following command (_Windows users need to run this in git bash_):\n\n`stencil init`\n\n3. You will be prompted to provide the homepage URL of the production store against which you want to develop. This can be your own store, or a client store that you are customizing.\n\n4. Next, you will be prompted to enter the port where you would like to run your store on your local machine. This can be any port you like, but we recommend using port 3000.\n\n5. Next, you will be prompted: What is your Stencil OAuth Client ID? Enter your store API account's Client ID.\n\n(If you used this Client ID when you last ran stencil init, you'll see it hinted on the command line, and can just confirm it.)\n\n6. Finally, you will be prompted: What is your Stencil OAuth Access Token? If you entered these credentials when you last ran stencil init, you'll see the token hinted in cleartext. If not, paste your Access Token hash onto the command line. Then press Enter.\n\n\nYour terminal window should now confirm that you have successfully initialized Stencil CLI on your local machine. With Stencil CLI initialized, you are ready to start Stencil and begin development.\n\n\n"
+                            }
+                          ]
+                        }
+                      },
                       {
                         "title": "Running Stencil Locally",
                         "route": {
                           "path": "/running-stencil-locally"
                         },
-                        "data": {}
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Running Stencil Locally</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#root-permissions\">Local Launch: Theme Only</a></li>\n    <li><a href=\"#node.js\">Local Launch: Theme and Theme Editor</a></li>\n    <li><a href=\"#next-steps\">Customizing Theme Editor's Port</a></li>\n    <li><a href=\"#next-steps\">Local Launch: Disabling Caching</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Local Launch: Theme Only\n\nIn order to run Stencil locally, issue the following command in your initialized Stencil theme directory (_Windows users need to run this in git bash_):\n\n`stencil start`\n\nAssuming that you set Stencil to run on `port 3000`, when you navigate to http://localhost:3000, you should see the storefront to which you pointed your local instance – but with the stencil theme applied to it.\n\n## Troubleshooting Token Errors\n\nIf you receive the following error message, \n\n`Unauthorized, please use a valid username/token`\n\nthen store token authentication has failed.\n\nIn this case, please track back and review the following articles:\n\n* [Creating an API Account](creating-an-api-account): How to issue or reissue tokens in the BigCommerce control panel.\n* [Authorizing and Initializing Stencil:](authorizing-and-initializing-stencil): How to initialize Stencil with your username and token."
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Troubleshooting Token Errors\n\nIf you receive the following error message, then store token authentication has failed:\n\n`Unauthorized, please use a valid username/token`\n\nIn this case, please review these steps:\n* Creating an API Account: How to issue or reissue tokens in the BigCommerce control panel.\n* Authorizing and Initializing Stencil: How to initialize Stencil with your username and token."
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Local Launch: Theme and Theme Editor\n\nTo run Stencil locally while also launching a local version of Theme Editor, start in your theme directory and run the following command, but append the -e option:\n\n`stencil start -e`\n\nThe Theme Editor server will run in parallel with the stencil theme at [http://localhost:8181](http://localhost:8181/). The use case for this is a developer who is reconfiguring the Theme Editor/Store Design (check terminology) settings. It is important to note this is a tool to understand the experience changes when editing the schema.json file. Making changes to your store on the Theme Editor/Using store design on the local host port will not affect your life store."
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Customizing Theme Editor's Port\n\nYou can override Theme Editor's default port by appending the \"--theme-editor-port [port]\" option. For example, to specify port 9000, you would enter:\n\n`stencil start -e --theme-editor-port 9000\n`\n\nTo verify Theme Editor's launch, you would then go to http://localhost:9000. Using this option, you can specify any port between `1024` and `65535`."
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Local Launch: Disabling Caching\n\nBy default, Stencil caches API resource data per storefront page. This minimizes server traffic while you develop your theme locally.\nIf you prefer to see your changes reflected immediately in your live store, you can turn off caching by appending the `--no-cache` or `-n` option:\n\n`stencil start --no-cache`\n`stencil start -n`\n\n### To re-enable caching:\n\nKill the current Stencil server (_ctrl + c will do the job_) and restart Stencil, this time omitting the `--no-cache` or `-n` option.\n\n`stencil start` \n"
+                            }
+                          ]
+                        }
                       },
                       {
                         "title": "Troubleshooting Your Setup",
