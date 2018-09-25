@@ -8135,7 +8135,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Building an App</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#request-headers\">Request Headers</a></li>\n\t\t<li><a href=\"#session-timeouts\">Managing Users Session Timeouts</a></li>\n\t\t<li><a href=\"#installation-update-sequence\">App Installation and Update Sequence</a></li>\n\t\t<li><a href=\"#recieving-get-request\">Receiving the GET Request</a></li>\n\t\t<li><a href=\"#responding-get-request\">Responding to the GET Request</a></li>\n        <li><a href=\"#making-post-request\">Making the POST Request</a></li>\n        <li><a href=\"#recieving-post-request\">Receiving the POST Response</a></li>\n        <li><a href=\"#load-uninstall-removal-requests\">Load, Uninstall, and User Removal Requests</a></li>\n        <li><a href=\"#processing-signed-payload\">Processing the Signed Payload</a></li>\n        <li><a href=\"#multi-user-support\">Multi-User Support</a></li>\n    <li><a href=\"#external-app-installation\">External App Installation</a></li>\n    <li><a href=\"app-walktrhough\"> Sample App Workflow </a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Building an App</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#request-headers\">Request Headers</a></li>\n\t\t<li><a href=\"#session-timeouts\">Managing Users Session Timeouts</a></li>\n\t\t<li><a href=\"#installation-update-sequence\">App Installation and Update Sequence</a></li>\n\t\t<li><a href=\"#recieving-get-request\">Receiving the GET Request</a></li>\n\t\t<li><a href=\"#responding-get-request\">Responding to the GET Request</a></li>\n        <li><a href=\"#making-post-request\">Making the POST Request</a></li>\n        <li><a href=\"#recieving-post-request\">Receiving the POST Response</a></li>\n        <li><a href=\"#load-uninstall-removal-requests\">Load, Uninstall, and User Removal Requests</a></li>\n        <li><a href=\"#processing-signed-payload\">Processing the Signed Payload</a></li>\n        <li><a href=\"#multi-user-support\">Multi-User Support</a></li>\n    <li><a href=\"#external-app-installation\">External App Installation</a></li>\n    <li><a href=\"user-interface-constraints\">User Interface Constraints<a/></li>\n    <li><a href=\"#app-walktrhough\"> Sample App Workflow </a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               Public OAuth Apps (applications) can be listed in
@@ -8284,8 +8284,8 @@ pages:
 
                               | code | Temporary code to exchange for a
                               permanent OAuth token. See [Making the POST
-                              request]() below for more information about this
-                              exchange. |
+                              request](/api-docs/getting-started/building-apps-bigcommerce/building-apps#making-post-request)
+                              below for more information about this exchange. |
 
                               | scope | List of scopes authorized by the user.
                               As a best practice, your app should validate this
@@ -8426,18 +8426,23 @@ pages:
                               | --- | --- |
 
                               | client_id | The Client ID for your app, obtained
-                              during [registration](#app-registration). |
+                              during
+                              [registration](/api-docs/getting-started/building-apps-bigcommerce/apps-quickstart).
+                              |
 
                               | client_secret | The Client Secret for your app,
-                              obtained during [registration](#app-registration).
+                              obtained during
+                              [registration](/api-docs/getting-started/building-apps-bigcommerce/apps-quickstart).
                               |
 
                               | code | Temporary access code received in the
-                              [GET request](#receiving-the-get-request)
+                              [GET
+                              request](/api-docs/getting-started/building-apps-bigcommerce/building-apps#recieving-get-request)
                               discussed above. |
 
                               | scope | List of OAuth scopes received in the
-                              [GET request](#receiving-the-get-request)
+                              [GET
+                              request](/api-docs/getting-started/building-apps-bigcommerce/building-apps#recieving-get-request)
                               discussed above. |
 
                               | grant_type | Always use the following:
@@ -8447,8 +8452,8 @@ pages:
                               registered Auth Callback URI. |
 
                               | context | The store hash received in the [GET
-                              request](#receiving-the-get-request), in the
-                              format: `stores/{_store_hash_}` |
+                              request](/api-docs/getting-started/building-apps-bigcommerce/building-apps#recieving-get-request),
+                              in the format: `stores/{_store_hash_}` |
 
 
                               ### Examples – Initial Installation
@@ -8627,7 +8632,7 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: "## Load, Uninstall, and User Removal Requests\nIn addition to the Auth Callback URI, the following URI’s are required for BigCommerce Apps:\n\n| Name | Required? | Event Discussion |\n| --- | --- | --- |\n| Load Callback URI | Yes | Called when the store owner or user clicks to load your app. |\n| Uninstall Callback URI | No | Called when the store owner clicks to uninstall your app. |\n| Remove User Callback URI | No | Called when the store admin revokes a user's access to your app. |\n\nEach BigCommerce request is a GET request and includes a signed payload that allows your app to:\n- Verify that the request came from BigCommerce.\n- Identify the store.\n- Identify the store owner or user.\n\n### Load Request and Response\n\nOnce your app has been installed, the store owner or user can click its icon in the control panel to launch it. This causes BigCommerce to send a GET request to the Load Callback URI that you provided. In a production environment, the Load Callback URI must be publicly available, fully qualified, and served over TLS/SSL.\n\n```\nThe GET request contains a signed payload, as shown below.\nGET /load?signed_payload=hw9fhkx2ureq.t73sk8y80jx9 HTTP/1.1\nHost: app.example.com\n```\n\nUpon receiving a GET request to the Load Callback URI, your app needs to [process the signed payload](). After processing the payload, your app returns its user interface as HTML. BigCommerce renders this inside of an iframe. Please see [User Interface Constraints]() for important information about your app’s user interface.\n\n### Uninstall Request (Optional)\n\nStore owners have the option to uninstall any app at any time. When a store owner uninstalls an app, the app’s OAuth token is revoked and the app cannot make requests to the Stores API on the store’s behalf anymore.\n\nYou do not need to provide an Uninstall Callback URI. The lack of an Uninstall Callback URI does not prevent uninstallation. Instead, the Uninstall Callback URI allows you to track store owners who uninstall your app and to run cleanup operations, such as removing the store’s user accounts from your system.\nShould you choose to avail of this option and provide an Uninstall Callback URI, please note that it must be publicly available, fully qualified, and served over TLS/SSL. If provided, BigCommerce will send a GET request to your Uninstall Callback URI when a store owner clicks to uninstall your app.\n\nExample of a GET Request sent to the Uninstall Callback URI\n```\nGET /uninstall?signed_payload=hw9fhkx2ureq.t73sk8y80jx9 HTTP/1.1\n\tHost: app.example.com\n```\nUpon receiving the GET request, your app will need to process the signed payload."
+                            data: "## Load, Uninstall, and User Removal Requests\nIn addition to the Auth Callback URI, the following URI’s are required for BigCommerce Apps:\n\n| Name | Required? | Event Discussion |\n| --- | --- | --- |\n| Load Callback URI | Yes | Called when the store owner or user clicks to load your app. |\n| Uninstall Callback URI | No | Called when the store owner clicks to uninstall your app. |\n| Remove User Callback URI | No | Called when the store admin revokes a user's access to your app. |\n\nEach BigCommerce request is a GET request and includes a signed payload that allows your app to:\n- Verify that the request came from BigCommerce.\n- Identify the store.\n- Identify the store owner or user.\n\n### Load Request and Response\n\nOnce your app has been installed, the store owner or user can click its icon in the control panel to launch it. This causes BigCommerce to send a GET request to the Load Callback URI that you provided. In a production environment, the Load Callback URI must be publicly available, fully qualified, and served over TLS/SSL.\n\n```\nThe GET request contains a signed payload, as shown below.\nGET /load?signed_payload=hw9fhkx2ureq.t73sk8y80jx9 HTTP/1.1\nHost: app.example.com\n```\n\nUpon receiving a GET request to the Load Callback URI, your app needs to [process the signed payload](/api-docs/getting-started/building-apps-bigcommerce/building-apps#processing-signed-payload). After processing the payload, your app returns its user interface as HTML. BigCommerce renders this inside of an iframe. Please see [User Interface Constraints]() for important information about your app’s user interface.\n\n### Uninstall Request (Optional)\n\nStore owners have the option to uninstall any app at any time. When a store owner uninstalls an app, the app’s OAuth token is revoked and the app cannot make requests to the Stores API on the store’s behalf anymore.\n\nYou do not need to provide an Uninstall Callback URI. The lack of an Uninstall Callback URI does not prevent uninstallation. Instead, the Uninstall Callback URI allows you to track store owners who uninstall your app and to run cleanup operations, such as removing the store’s user accounts from your system.\nShould you choose to avail of this option and provide an Uninstall Callback URI, please note that it must be publicly available, fully qualified, and served over TLS/SSL. If provided, BigCommerce will send a GET request to your Uninstall Callback URI when a store owner clicks to uninstall your app.\n\nExample of a GET Request sent to the Uninstall Callback URI\n```\nGET /uninstall?signed_payload=hw9fhkx2ureq.t73sk8y80jx9 HTTP/1.1\n\tHost: app.example.com\n```\nUpon receiving the GET request, your app will need to process the signed payload."
                             header:
                               anchor: load-uninstall-removal-requests
                           - type: callout
@@ -9066,6 +9071,10 @@ pages:
                               Depending on which endpoint you call, we will
                               render one of the following success/failed pages
                               to the modal.
+                          - type: text
+                            data: '## User Interface Constraints'
+                            header:
+                              anchor: user-interface-constraints
                     - title: New Subpage
                       route:
                         path: /new-subpage
