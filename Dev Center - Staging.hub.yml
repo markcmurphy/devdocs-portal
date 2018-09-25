@@ -5161,7 +5161,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Authentication</h1>\n\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#what-are-oauth-credentials\">What are OAuth Credentials?</a></li>\n\t\t<li><a href=\"#getting-api-credentials\"> Getting API Credentials </a></li>\n\t\t<li><a href=\"#revoking-api-credentials\"> Revoking API Credtials</a></li>\n\t\t<li><a href=\"#client-id-secret\"> Getting Client ID and Client Secret</a></li>\n\t\t<li><a href=\"#when-to-use\"> When to Use Each</a></li>\n    <li><a href=\"#migration-legacy-oauth\">Migrating from Legacy to OAuth</a></li>\n\t\t<li><a href=\"#oauth-scopes\"> OAuth Scopes</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Authentication</h1>\n\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#what-are-oauth-credentials\">What are OAuth Credentials?</a></li>\n\t\t<li><a href=\"#getting-api-credentials\"> Getting API Credentials </a></li>\n\t\t<li><a href=\"#revoking-api-credentials\"> Revoking API Credtials</a></li>\n\t\t<li><a href=\"#client-id-secret\"> Getting Client ID and Client Secret</a></li>\n\t\t<li><a href=\"#when-to-use\"> Use Cases by Token Type</a></li>\n    <li><a href=\"#migration-legacy-oauth\">Migrating from Legacy to OAuth</a></li>\n\t\t<li><a href=\"#oauth-scopes\"> OAuth Scopes</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: '---'
                           - type: text
@@ -5408,10 +5408,10 @@ pages:
                             data: '---'
                           - type: text
                             data: |-
-                              ## When to Use Each
+                              ## Use Cases by Token Type
 
                               |  | Client ID / Client Secret | API Credentials |
-                              |---|---|---|
+                              |---|:---:|:---:|
                               | From DevTools| X | |
                               |From Store Control Panel| | X |
                               | Single Click Apps (Marketplace)| X | |
@@ -5444,7 +5444,7 @@ pages:
                                 we strongly recommend migrating to OAuth as soon
                                 as possible.
                           - type: text
-                            data: "### Migrating to OAuth comes with several benefits:\n\n* All OAuth requests are sent to a common hostname: `https://api.bigcommerce.com`. Using a single hostname prevents any interruption of service when the domain or SSL on a particular store changes or expires.\n\n* All of BigCommerce’s newest V3 APIs are exclusively available via OAuth.\n\n* OAuth API accounts have access to subscribe to BigCommerce’s Webhooks for real-time event notifications\n\n* The ability to use new APIs that require a shared secret, such as the Storefront Login API or the Storefront Current Customer identification endpoint.\n\n* Gzip compression on API responses to reduce bandwidth usage\n\n* Better security as all OAuth tokens are scoped to particular endpoints\n\n### How to Migrate\n\nFirst, consider whether your application should reside within the public App Marketplace, where any BigCommerce merchant can quickly discover and install it. To learn more about how to set up this kind of app, see [Becoming a Partner](/api-docs/getting-started/partner/becoming-a-partner).\n\nIf you would like to update your API connection from Basic Authentication to OAuth, you will need to make the following changes:\n\n- Get a Client ID and an Access Token, by creating an API Account within the control panel. You’ll want to make sure the account has the correct Scopes for the API endpoints you need to access. We recommend that you provide the minimum scopes that your application requires to function, as a good security practice.\n- If you use one of the Client Libraries, follow the relevant guide (within the library’s documentation) for establishing an OAuth connection.\n- If you have created your connection, you’ll want to update your connection parameters:\n\t- Where you previously used the BigCommerce store’s secure hostname, you will instead use the `https://api.bigcommerce.com` gateway URL.\nAs an example, requests to `https://store-abc123.mybigcommerce.com/api/v2/orders/123` or `https://my-custom-store-domain.com/api/v2/orders/123 `would instead go to `https://api.bigcommerce.com/stores/{store_hash}/v2/orders/123`.\n- With Basic Auth, you use an Authentication HTTP Header to authenticate your connection. With OAuth, you’ll want to use two headers:\n\t- X-Client-Id for your Client ID, and the \n\t- X-Auth-Token header for your Access Token. You can read more here.\n\nRate limiting of API requests works differently for OAuth API connections. To become familiar with the OAuth system, please see the [Rate Limits]()."
+                            data: "### Migrating to OAuth comes with several benefits:\n\n* All OAuth requests are sent to a common hostname: `https://api.bigcommerce.com`. Using a single hostname prevents any interruption of service when the domain or SSL on a particular store changes or expires.\n\n* All of BigCommerce’s newest V3 APIs are exclusively available via OAuth.\n\n* OAuth API accounts have access to subscribe to BigCommerce’s Webhooks for real-time event notifications\n\n* The ability to use new APIs that require a shared secret, such as the Storefront Login API or the Storefront Current Customer identification endpoint.\n\n* Gzip compression on API responses to reduce bandwidth usage\n\n* Better security as all OAuth tokens are scoped to particular endpoints\n\n### How to Migrate\n\nFirst, consider whether your application should reside within the public App Marketplace, where any BigCommerce merchant can quickly discover and install it. To learn more about how to set up this kind of app, see [Becoming a Partner](/api-docs/getting-started/partner/becoming-a-partner).\n\nIf you would like to update your API connection from Basic Authentication to OAuth, you will need to make the following changes:\n\n- Get a Client ID and an Access Token, by creating an API Account within the control panel. You’ll want to make sure the account has the correct Scopes for the API endpoints you need to access. We recommend that you provide the minimum scopes that your application requires to function, as a good security practice.\n- If you use one of the Client Libraries, follow the relevant guide (within the library’s documentation) for establishing an OAuth connection.\n- If you have created your connection, you’ll want to update your connection parameters:\n\t- Where you previously used the BigCommerce store’s secure hostname, you will instead use the `https://api.bigcommerce.com` gateway URL.\nAs an example, requests to `https://store-abc123.mybigcommerce.com/api/v2/orders/123` or `https://my-custom-store-domain.com/api/v2/orders/123 `would instead go to `https://api.bigcommerce.com/stores/{store_hash}/v2/orders/123`.\n- With Basic Auth, you use an Authentication HTTP Header to authenticate your connection. With OAuth, you’ll want to use two headers:\n\t- X-Client-Id for your Client ID, and the \n\t- X-Auth-Token header for your Access Token. You can read more [here]().\n\nRate limiting of API requests works differently for OAuth API connections. To become familiar with the OAuth system, please see the [Rate Limits]()."
                           - type: text
                             data: '---'
                           - type: text
@@ -5452,8 +5452,7 @@ pages:
                               ## OAuth Scopes
 
 
-                              Scope limits Client Id/ Client Tokens and API
-                              Credentials ability to read or write to data. Set
+                              Scope limits ability to read or write to data. Set
                               the scope to the minimum level needed to
                               accomplish the task at hand.
 
@@ -5517,7 +5516,7 @@ pages:
                               |
 
                               | Customers Login | store_v2_customers_login | Log
-                              in any of your customers to your storefront |
+                              in customers to your storefront |
 
                               ||| [Access to the Customer Login
                               API](/api/v2/#customer-login-api)
