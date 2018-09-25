@@ -14002,85 +14002,21 @@ pages:
                         Checkout and Payment API this allows for a fully
                         headless ecommerce solution.
                     - type: text
-                      data: '## When to Use Each'
+                      data: |-
+                        ## Available Webhooks
+                        * Carts
+                        * Checkouts
+                        * Products
+                        * Checkout Content
+                        * Order Transactions
                     - type: text
-                      data: >
-                        The Storefront Cart API is for managing the contents of
-                        managing a shopper's cart using JavaScript in the
-                        context of a storefront session. 
-
-
-                        For managing shopping carts across users from an
-                        external server, see our [Server to Server Cart
-                        API](https://developer.bigcommerce.com/api/v3/#/reference/cart).  
-
-
-                        By default, the cart response will return abbreviated
-                        details for cart line items. To get full details of
-                        selected product options, use the following query
-                        parameters: 
-
-
-                        For physical products only:
-                        `?include=lineItems.physicalItems.options`
-
-                        For digital products only:
-                        `?include=lineItems.digitalItems.options`  
-
-                        For both physical and digital items:
-                        `?include=lineItems.digitalItems.options,lineItems.physicalItems.options`
-
-
-
-                        #### To log *Cart* details to the console, use this
-                        script:
-
-
-                        ```
-
-                        <script>
-
-                        fetch('/api/storefront/cart', {
-                          credentials: 'include'
-                        }).then(function(response) {
-                          return response.json();
-                        }).then(function(myJson) {
-                          console.log(myJson);
-                        });
-
-                        </script>
-
-                        ```
-
-
-                        It can also be injected into a store using the [Scripts
-                        API](https://developer.bigcommerce.com/api/v3/#/reference/scripts).
-
-
-                        ```
-
-                        {
-                          "name": "Log Cart Details",
-                          "description": "This will log cart details to the console.",
-                          "html": "<script>fetch('/api/storefront/cart', {credentials: 'include'}).then(function(response) {return response.json();}).then(function(myJson) {console.log(myJson);});</script>",
-                          "load_method": "default",
-                          "location": "footer",
-                          "visibility": "all_pages",
-                          "kind": "script_tag"
-                        }
-
-                        ```
-
-
-                        If the script is not rendering on the Stencil theme,
-                        footer scripts may need to be enabled. More on [footer
-                        and header
-                        scripts](https://stencil.bigcommerce.com/docs/checkoutconfirmation-injection-options-clone)
-                        in Stencil. 
-                    - type: text
-                      data: '## Available Webhooks'
-                    - type: text
-                      data: '## OAuth Scopes'
+                      data: |-
+                        ## OAuth Scopes
+                        * Carts
+                        * Checkouts
+                        * Products
+                        * Checkout Content
+                        * Order Transactions
               - title: Checkout SDK
                 route:
                   path: /checkout-sdk
