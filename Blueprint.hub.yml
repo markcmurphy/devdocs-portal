@@ -10833,15 +10833,85 @@ pages:
     title: Blueprint
     data:
       children:
-        - title: Getting Started with Blueprint
+        - title: reCAPTCHA v2
           route:
-            path: /getting-started-blueprint
+            path: /recaptcha-two
           data:
             blocks:
               - type: html
-                data: <h1>Hello World!</h1>
+                data: "<h1>ReCaptcha 2</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#better-spam-deterrance\">Better Spam Deterrance/a></li>\n\t\t<li><a href=\"#products-v3\">Products in V3</a></li>\n\t\t<li><a href=\"#whats-not-in-v3\"> What's not in V3</a></li>\n\t\t<li><a href=\"#recommendations\"> Recommendations</a></li>\n\t\t<li><a href=\"#cheat-sheet\"> Cheat Sheet</a></li>\n\t</ul>\n</div>"
               - type: text
-                data: ''
+                data: >-
+                  To deter spam submission through storefront forms, BigCommerce
+                  now supports Google [reCAPTCHA
+                  v2](https://support.google.com/recaptcha/?hl=en#6080933)
+                  challenges, to distinguish human customers/visitors from
+                  automated bots.
+                header:
+                  anchor: blueprint-layouts
+              - type: text
+                data: >
+                  ## Better Spam Deterrence
+
+
+                  We recommend that all storefront themes take advantage of this
+                  upgraded bot detection. However, BigCommerce's legacy
+                  Blueprint themes were last published in our Theme Marketplace
+                  before we implemented reCAPTCHA v2. Therefore, please use the
+                  following instructions to update your Blueprint-based theme
+                  with the best-available deterrent against automated spam.
+                header:
+                  anchor: better-spam-deterrance
+              - type: text
+                data: '---'
+              - type: text
+                data: >-
+                  ## How to Upgrade
+
+
+                  To incorporate reCAPTCHA v2, you will need to update script
+                  references in these three template files: 
+
+
+                  * `Panels/CreateAccountForm.html`
+
+                  * `page_contact_form.html`
+
+                  * `product_comments.html`
+                header:
+                  anchor: blueprint-how-to-upgrade-recaptcha
+              - type: callout
+                data:
+                  type: error
+                  body: >-
+                    Please back up each file before making any changes. 
+
+
+                    The instructions below are based on the default Blueprint
+                    theme (Classic Next), as it was last published in
+                    BigCommerce’s Theme Marketplace. Therefore, the HTML markup
+                    will vary, based on customizations you have already made to
+                    this theme, or to other Marketplace themes.
+                  title: |2
+                     Updating Safely 
+              - type: text
+                data: >-
+                  ### Script Tag to Remove
+
+                  Search each of the three template files for a `<script>` tag
+                  like the following. If you find it, delete the whole tag.
+                  (This script invokes a legacy reCAPTCHA v1 challenge:)
+              - type: code
+                data: |-
+                  <script type="text/javascript"> 
+                   var RecaptchaOptions = { 
+                   theme : 'clean' or 'white' 
+                   }; 
+                   </script>
+                header:
+                  title: Script Tag to Remove
+                config:
+                  mode: html
 theme:
   background: '#3550b6'
   primary: '#4b71fc'
