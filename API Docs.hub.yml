@@ -5174,7 +5174,6 @@ pages:
                               }
                             header:
                               title: Multiple Categories
-                        children: []
                     - title: Making Requests
                       route:
                         path: /making-requests
@@ -13855,9 +13854,9 @@ pages:
                         and
                         [PHP](https://github.com/bigcommerce/hello-world-app-php-silex/)
                         sample apps.
-        - title: Cart
+        - title: Cart and Checkout
           route:
-            path: /cart
+            path: /cart-and-checkout
           data:
             children:
               - title: Storefront Cart
@@ -13942,8 +13941,116 @@ pages:
               - title: Server To Server Cart
                 route:
                   path: /server-server-cart
+                data: {}
+              - title: Storefront Checkout
+                route:
+                  path: /storefront-checkout
+                data: {}
+              - title: Server To Server Checkout
+                route:
+                  path: /server-server-checkout
+                data: {}
+              - title: Checkout SDK
+                route:
+                  path: /checkout-sdk
                 data:
-                  children: []
+                  blocks:
+                    - type: text
+                      data: "<h1> Checkout SDK </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#what-can-i-do\"> What Can I Do with the SDK?</a></li>\n\t\t<li><a href=\"#where-to-get\">Where Can I Get the SDK?\n</a></li>\n    <li><a href=\"#support-customization\">Support and Customization\n</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        The Checkout JS SDK is a wrapper for the BigCommerce
+                        Storefront Checkout API.
+
+
+                        It allows for a developer to create a custom checkout
+                        experience to move a customer through the checkout
+                        process.
+
+                        The SDK handles all the ‘heavy-lifting’ such as customer
+                        login, getting shipping quotes and submitting payment
+                        for an order.
+
+                        With the Checkout JS SDK, you can build a [custom
+                        checkout
+                        presentation](https://github.com/bigcommerce/checkout-sdk-js-example)
+                        layer in popular frontend frameworks such as React.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## What Can I Do with the SDK?
+
+
+                        -   It can initialize payment and shipping providers
+                        that require client-side setup through a common
+                        interface. Below are some examples of these providers:
+                            
+                            -   PayPal Express
+                            -   Braintree
+                            -   Stripe 
+                            -   Square
+                            -   Amazon
+                            -   Klarna
+                          
+                        -   It provides a JavaScript interface for interacting
+                        with the web API.
+                            -   Fetch and submit resources:
+                                -   Cart
+                                -   Order
+                                -   Customer
+                            -   Fetch available options:
+                                -   Shipping addresses
+                                -   Shipping countries
+                                -   Shipping states
+                                -   Billing addresses
+                                -   Billing countries
+                                -   Billing states
+                                -   Shipping methods
+                                -   Payment methods
+                         
+                        The Checkout JS SDK allows you to present the checkout
+                        process to the shopper in any way you like, and, through
+                        frontend technologies and external web services, augment
+                        the checkout with extra information. 
+
+
+                        However, the Checkout JS SDK does not allow you to
+                        change the underpinnings of the checkout - you must
+                        still conform to the model of the Checkout API
+                        underpinning the SDK to complete a Checkout and create
+                        an Order in BigCommerce. 
+
+                        The SDK does not allow you to implement custom payment,
+                        shipping, or tax calculation providers into the checkout
+                        - instead, the configured providers for these services
+                        on a given store are expressed via our Checkout API.
+                      header:
+                        anchor: what-can-i-do
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Where Can I Get the SDK?
+
+                        The Checkout JS SDK and associated documentation is
+                        available from the [BigCommerce SDK Repo.](
+                        https://github.com/bigcommerce/checkout-sdk-js)
+                      header:
+                        anchor: where-to-get
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Support and Customization
+
+                        - Enterprise clients can reach out to their account
+                        manager to review services and resources available.
+
+                        - For more on our design policy please visit [Design
+                        Support](https://forum.bigcommerce.com/s/article/BigCommerce-Design-Policy#support).
+                      header:
+                        anchor: support-customization
               - title: Add to Cart URL's
                 route:
                   path: /add-to-cart-url
@@ -14074,120 +14181,6 @@ pages:
                         `myawesomestore.com/cart.php?action=buy&sku=SHIRT-SM-RED&source=JULY-EMAIL-NEWSLETTER`
                       header:
                         anchor: add-specific-sku-checkout-source
-        - title: Checkout
-          route:
-            path: /checkout
-          data:
-            children:
-              - title: Storefront Checkout
-                route:
-                  path: /storefront-checkout
-                data: {}
-              - title: Server To Server Checkout
-                route:
-                  path: /server-server-checkout
-                data: {}
-              - title: Checkout SDK
-                route:
-                  path: /checkout-sdk
-                data:
-                  blocks:
-                    - type: text
-                      data: "<h1> Checkout SDK </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#what-can-i-do\"> What Can I Do with the SDK?</a></li>\n\t\t<li><a href=\"#where-to-get\">Where Can I Get the SDK?\n</a></li>\n    <li><a href=\"#support-customization\">Support and Customization\n</a></li>\n\t</ul>\n</div>"
-                    - type: text
-                      data: >-
-                        The Checkout JS SDK is a wrapper for the BigCommerce
-                        Storefront Checkout API.
-
-
-                        It allows for a developer to create a custom checkout
-                        experience to move a customer through the checkout
-                        process.
-
-                        The SDK handles all the ‘heavy-lifting’ such as customer
-                        login, getting shipping quotes and submitting payment
-                        for an order.
-
-                        With the Checkout JS SDK, you can build a [custom
-                        checkout
-                        presentation](https://github.com/bigcommerce/checkout-sdk-js-example)
-                        layer in popular frontend frameworks such as React.
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## What Can I Do with the SDK?
-
-
-                        -   It can initialize payment and shipping providers
-                        that require client-side setup through a common
-                        interface. Below are some examples of these providers:
-                            
-                            -   PayPal Express
-                            -   Braintree
-                            -   Stripe 
-                            -   Square
-                            -   Amazon
-                            -   Klarna
-                          
-                        -   It provides a JavaScript interface for interacting
-                        with the web API.
-                            -   Fetch and submit resources:
-                                -   Cart
-                                -   Order
-                                -   Customer
-                            -   Fetch available options:
-                                -   Shipping addresses
-                                -   Shipping countries
-                                -   Shipping states
-                                -   Billing addresses
-                                -   Billing countries
-                                -   Billing states
-                                -   Shipping methods
-                                -   Payment methods
-                         
-                        The Checkout JS SDK allows you to present the checkout
-                        process to the shopper in any way you like, and, through
-                        frontend technologies and external web services, augment
-                        the checkout with extra information. 
-
-
-                        However, the Checkout JS SDK does not allow you to
-                        change the underpinnings of the checkout - you must
-                        still conform to the model of the Checkout API
-                        underpinning the SDK to complete a Checkout and create
-                        an Order in BigCommerce. 
-
-                        The SDK does not allow you to implement custom payment,
-                        shipping, or tax calculation providers into the checkout
-                        - instead, the configured providers for these services
-                        on a given store are expressed via our Checkout API.
-                      header:
-                        anchor: what-can-i-do
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Where Can I Get the SDK?
-
-                        The Checkout JS SDK and associated documentation is
-                        available from the [BigCommerce SDK Repo.](
-                        https://github.com/bigcommerce/checkout-sdk-js)
-                      header:
-                        anchor: where-to-get
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Support and Customization
-
-                        - Enterprise clients can reach out to their account
-                        manager to review services and resources available.
-
-                        - For more on our design policy please visit [Design
-                        Support](https://forum.bigcommerce.com/s/article/BigCommerce-Design-Policy#support).
-                      header:
-                        anchor: support-customization
         - title: API Reference
           route:
             path: /api-reference
@@ -14229,9 +14222,9 @@ pages:
                         path: /themes-api
                       data:
                         $ref: ./V3 Themes.oas2.yml
-              - title: Storefront API's
+              - title: Cart and Checkout API's
                 route:
-                  path: /storefront-api
+                  path: /cart-and-checkout-api-reference
                 data:
                   children:
                     - title: Storefront Cart
@@ -14249,19 +14242,16 @@ pages:
                         path: /storefront-orders
                       data:
                         $ref: ./Storefront Orders.oas2.yml
-              - title: Server to Server API's
-                route:
-                  path: /server-to-server-api
-                data:
-                  children:
                     - title: Server to Server Cart
                       route:
                         path: /server-server-cart
-                      data: {}
+                      data:
+                        $ref: ./Server to Server Cart.oas2.yml
                     - title: Server to Server Checkout
                       route:
                         path: /server-server-checkout
-                      data: {}
+                      data:
+                        $ref: ./Server to Server Checkout.oas2.yml
               - title: V2 API
                 route:
                   path: /v2-api
