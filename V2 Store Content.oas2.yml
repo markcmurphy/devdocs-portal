@@ -1581,6 +1581,28 @@ paths:
         Updates an existing URL redirect.
 
 
+        ## Read-only Properties 
+
+
+        The following properties of the redirect are read-only. If one or more
+        of these properties are included in the request, it will be rejected.
+
+
+        *   url
+
+
+        ## Requirements 
+
+
+        The following properties of the redirect are required. The request won’t
+        be fulfilled unless these properties are valid.
+
+
+        *   path
+
+        *   forward
+
+
         **Note:** The path, forward.type, and forward.ref fields of an existing
         redirect can be updated. 
       summary: Update A Redirect
@@ -1607,16 +1629,6 @@ paths:
           type: string
           description: ''
         - name: Content-Type
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
           in: header
           required: true
           type: string
