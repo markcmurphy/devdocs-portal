@@ -2490,7 +2490,7 @@ paths:
     get:
       description: Get all shipping address on an order using the `order_id`.
       summary: Get A List of Order Shipping Address
-      operationId: StoresV2OrdersShippingAddressesByStoreHashAndOrderIdGet
+      operationId: V2OrdersShippingAddressesByStoreHashAndOrderIdGet
       produces:
         - application/json
       parameters:
@@ -2518,16 +2518,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: page
           in: query
           required: false
@@ -2623,7 +2613,9 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipping Addresses
-        - Orders
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/stores/{store_hash}/v2/orders/{order_id}/shipping_addresses/count':
     get:
       description: Returns a count of all order shipping addresses using the `order_id`.
