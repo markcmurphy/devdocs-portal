@@ -2019,7 +2019,7 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
-  '/stores/{store_hash}/v2/orders/{order_id}/coupons':
+  '/orders/{order_id}/coupons':
     get:
       description: Lists all order coupons. Optional parameters can be passed in.
       summary: List Order Coupons
@@ -2106,7 +2106,12 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
-  '/stores/{store_hash}/v2/orders/{order_id}/products':
+    parameters:
+      - name: order_id
+        in: path
+        type: string
+        required: true
+  '/orders/{order_id}/products':
     get:
       description: >-
         Lists all order products on an order using `order_id`. By default, items
@@ -2633,6 +2638,11 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
+    parameters:
+      - name: order_id
+        in: path
+        type: string
+        required: true
   '/stores/{store_hash}/v2/orders/{order_id}/shipping_addresses':
     get:
       description: Get all shipping address on an order using the `order_id`.
