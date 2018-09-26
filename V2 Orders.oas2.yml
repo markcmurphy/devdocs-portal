@@ -2912,7 +2912,7 @@ paths:
     get:
       description: Gets a single order status.
       summary: Get a Single Order Status by Id
-      operationId: StoresV2OrderStatusesByStoreHashAndIdGet
+      operationId: V2OrderStatusesByStoreHashAndIdGet
       produces:
         - application/json
       parameters:
@@ -2940,16 +2940,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '200':
           description: ''
@@ -2991,7 +2981,9 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Statues
-        - Orders
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/stores/{store_hash}/v2/orders/{order_id}/taxes':
     get:
       description: Gets all order taxes using `order_id`.
