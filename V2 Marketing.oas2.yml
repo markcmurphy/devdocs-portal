@@ -468,17 +468,36 @@ paths:
         - Coupons
   '/stores/{store_hash}/v2/coupons/{id}':
     put:
-      description: Updates an existing store coupon.
+      description: >-
+        Updates an existing store coupon.
+
+
+        ### Read-only Properties 
+
+
+        The following properties of the coupon are read-only. If one or more of
+        these properties are included in the request, it will be rejected:
+
+
+        *   id
+
+        *   num_uses
+
+
+        ### Requirements 
+
+
+        The following property of the coupon is required. If it is not included
+        in the `PUT` request, its existing value on the coupon will be cleared:
+
+
+        *   applies_to
+
+
+        > Note that if the `applies_to` value is cleared, you can restore it to
+        the coupon by reapplying the `applies_to` value in a new PUT request.
       summary: Update an Existing Coupon
-      operationId: StoresV2CouponsByStoreHashAndIdPut
-      produces:
-        - application/json
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: id
           in: path
           required: true
@@ -498,16 +517,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: body
           in: body
           required: true
@@ -550,6 +559,31 @@ paths:
               restricted_to: []
               shipping_methods: null
               date_created: 'Mon, 30 Jul 2018 15:33:43 +0000'
+            Response Schema:
+              name: non velit magna quis elit
+              type: per_total_discount
+              amount: dolore anim dolor
+              code: ex
+              applies_to:
+                id: -53552945
+                entities:
+                  - in aliqua Excepteur exercitation nostru
+                  - cupidatat et
+                  - est
+              id: 65958210
+              min_purchase: Excepteur sint in amet a
+              expires: in minim sunt
+              enabled: false
+              num_uses: 20614958
+              max_uses: -33527872
+              max_uses_per_customer: 30909741
+              restricted_to:
+                countries: ipsum tempor
+              shipping_methods:
+                - elit Duis amet in
+                - sunt est cillum
+                - elit nostrud anim quis
+              date_created: ut aliqua tempor
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -558,7 +592,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
-        - Marketing
     delete:
       description: Deletes a single coupon.
       summary: Delete A Coupon
