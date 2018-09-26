@@ -3235,6 +3235,30 @@ paths:
       tags:
         - Order Shipments
         - Orders
+  '/v2/orders/{order_id}/messages':
+    get:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+      summary: Get Order Messages
+      description: Gets the messages associated with an order.
+      tags:
+        - Order Messages
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - in: header
+          name: ''
+          type: string
+    parameters:
+      - name: order_id
+        in: path
+        type: string
+        required: true
 definitions:
   Order:
     title: Order
@@ -4625,6 +4649,7 @@ tags:
   - name: Order Statues
   - name: Order Shipments
   - name: Order Shipping Addresses
+  - name: Order Messages
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
