@@ -3723,7 +3723,7 @@ paths:
     put:
       description: Updates an existing shipment associated with an order.
       summary: Update A Shipment
-      operationId: StoresV2OrdersShipmentsIdByStoreHashAndOrderIdPut
+      operationId: ']'
       produces:
         - application/json
       parameters:
@@ -3758,16 +3758,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: body
           in: body
           required: true
@@ -3837,11 +3827,12 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipments
-        - Orders
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: Deletes a shipment associated with an order.
       summary: Delete A Order Shipment
-      operationId: StoresV2OrdersShipmentsIdByStoreHashAndOrderIdDelete
       produces:
         - application/json
       parameters:
@@ -3876,16 +3867,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '204':
           description: ''
@@ -3898,6 +3879,9 @@ paths:
       tags:
         - Order Shipments
         - Orders
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/v2/orders/{order_id}/messages':
     get:
       responses:
