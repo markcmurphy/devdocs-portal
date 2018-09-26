@@ -2283,19 +2283,11 @@ paths:
       tags:
         - Customer Groups
         - Customers
-  '/stores/{store_hash}/v2/customer_groups/count':
+  /customer_groups/count:
     get:
       description: Gets a count of all customer groups in a store.
       summary: Get A Count of Customer Groups
-      operationId: StoresV2CustomerGroupsCountByStoreHashGet
-      produces:
-        - application/json
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: Accept
           in: header
           required: true
@@ -2308,21 +2300,11 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '200':
           description: ''
           schema:
-            $ref: '#/definitions/OrderCountResponse'
+            $ref: '#/definitions/CountResponse'
           examples:
             application/json:
               count: 27
@@ -2334,7 +2316,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Groups
-        - Customers
 definitions:
   BillingAddress:
     title: Billing Address
