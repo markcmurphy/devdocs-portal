@@ -3253,11 +3253,64 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      description: Creates a new shipment for an order.
+      description: >-
+        ## Requirements 
+
+
+        The following properties of the shipment are required. The request won’t
+        be fulfilled unless these properties are valid.
+
+
+        *   order_address_id
+
+        *   items
+
+        *   shipping_provider
+
+        *   
+
+        ## Read-only Properties 
+
+
+        The following properties of the shipment are read-only. If one or more
+        of these properties are included in the request, it will be rejected.
+
+
+        *   id
+
+        *   order_id
+
+        *   date_created
+
+        *   customer_id
+
+        *   billing_address
+
+        *   shipping_address
+
+
+        ## Notes 
+
+
+        * For the `shipping_provider` property, acceptable values are an empty
+        string (`""`), or one of these valid BigCommerce shipping-provider
+        values: `auspost`, `canadapost`, `endicia`, `usps`, `fedex`,
+        `royalmail`, `ups`, `upsready`, `upsonline`, or `shipperhq`.
+
+        * If your POST request does not include `shipping_provider` – at least
+        as an empty string, as shown in the example request below – this
+        property's value will default to `custom`, and no tracking link will be
+        generated in the email. 
+
+        * `tracking_carrier` is optional, but if you include it, its value must
+        refer/map to the same carrier service as the `shipping_provider` value.
+        Acceptable values for `tracking_carrier` are an empty string (`""`), or
+        one of the valid tracking-carrier values viewable
+        [here](https://docs.google.com/spreadsheets/d/1w9c_aECSCGyf-oOrvGeUniDl-ARGKemfZl0qSsav8D4/pubhtml?gid=0&single=true)
+        and downloadable as a .CSV file
+        [here](https://docs.google.com/spreadsheets/d/1mTueEynfcEmwsU2y2Jd2MX-8GKwNZrmlRMBcIElg9aY/pub?gid=0&single=true&output=csv).
       summary: Create A New Order Shipment
-      operationId: StoresV2OrdersShipmentsByStoreHashAndOrderIdPost
-      produces:
-        - application/json
+      operationId: V2OrdersShipmentsByStoreHashAndOrderIdPost
       parameters:
         - name: store_hash
           in: path
@@ -3363,7 +3416,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipments
-        - Orders
     delete:
       description: Deletes all shipments associated with an order.
       summary: Delete All Order Shipments
@@ -4039,9 +4091,7 @@ paths:
                   product_id: 70332115
                   quantity: 76589032
       summary: Get a Shipment
-      description: |+
-        Gets a shipment associated with an order.
-
+      description: Gets a shipment associated with an order.
       tags:
         - Order Shipments
       security:
