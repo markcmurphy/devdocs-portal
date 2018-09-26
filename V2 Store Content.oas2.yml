@@ -376,7 +376,50 @@ paths:
         - X-Auth-Token: []
         - X-Auth-Client: []
     post:
-      description: Creates a new blog post.
+      description: >-
+        ## Read-only Properties 
+
+
+        The following properties of the blog post are read-only. If one or more
+        of these properties are included in the request, it will be rejected.
+
+
+        *   id
+
+        *   preview_url
+
+        *   summary
+
+
+        ## Requirements 
+
+
+        The following properties of the blog post are required. The request
+        won’t be fulfilled unless these properties are valid.
+
+
+        *   title
+
+        *   body
+
+
+        ## Notes 
+
+
+        * When including `published_date` in a request, supply it as a flat date
+        string (not an object) in valid <a
+        href="http://tools.ietf.org/html/rfc2822#section-3.3"
+        target="_blank">RFC 2822</a> or <a
+        href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO
+        8601</a> format. The&#160;example request below includes a
+        `published_date` in RFC 2822 format.
+
+
+        * Blog posts default to draft status. To publish blog posts to the
+        storefront, set their `is_published` property to `true`.
+
+        * If a custom URL is not provided, the post’s URL will be generated
+        based on the value of `title`.
       summary: Create A Blog Post
       produces:
         - application/json
