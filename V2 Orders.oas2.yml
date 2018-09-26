@@ -3939,6 +3939,126 @@ paths:
         in: path
         type: string
         required: true
+  '/orders/{order_id}/shipments/{id}':
+    get:
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/OrderShipment'
+          examples:
+            application/json:
+              id: 12
+              order_id: 114
+              customer_id: 0
+              order_address_id: 15
+              date_created: 'Wed, 19 Dec 2012 18:18:23 +0000'
+              tracking_number: 123-123-123
+              shipping_method: None
+              shipping_provider: usps
+              tracking_carrier: usps
+              comments: null
+              billing_address:
+                first_name: Julie
+                last_name: Bishop
+                company: Yamia
+                street_1: 988 Comanche Circle
+                street_2: ''
+                city: Cypress
+                state: Wyoming
+                zip: 77426-2265
+                country: United States
+                country_iso2: US
+                phone: 5-(248)906-2014
+                email: ''
+              shipping_address:
+                first_name: Julie
+                last_name: Bishop
+                company: Yamia
+                street_1: 988 Comanche Circle
+                street_2: ''
+                city: Cypress
+                state: Wyoming
+                zip: 77426-2265
+                country: United States
+                country_iso2: US
+                phone: 5-(248)906-2014
+                email: ''
+              items:
+                - order_product_id: 15
+                  product_id: 0
+                  quantity: 1
+            Response Schema:
+              id: 25930504
+              order_id: -3523618
+              customer_id: 74639387
+              order_address_id: 70548164
+              date_created: '2014-11-22T22:41:41.578Z'
+              tracking_number: ea labore
+              shipping_method: eu cillum minim
+              shipping_provider: ea id elit nulla proident
+              tracking_carrier: royalmail
+              comments: dolore veniam nisi
+              billing_address:
+                first_name: quis officia
+                last_name: mi
+                company: exercitation occaecat eu
+                street_1: pariatur
+                street_2: anim Duis pariatur ullamco
+                city: eu eiusmod
+                state: nulla minim aliqua ea
+                zip: oc
+                country: aliquip
+                country_iso2: labore Duis
+                phone: cillum mollit in labore
+                email: ea eu
+              shipping_address:
+                first_name: incididunt do
+                last_name: incididunt
+                company: nulla ipsum laborum exerc
+                street_1: m
+                street_2: eu sit irure
+                city: laborum dolore
+                state: nulla
+                zip: est velit veniam sed non
+                country: Duis aliquip aute id quis
+                country_iso2: do in
+                phone: tempor aliqua i
+                email: exercitation nisi
+              items:
+                - order_product_id: -28289465
+                  product_id: 9756936
+                  quantity: -56728405
+                - order_product_id: -88300582
+                  product_id: -63155092
+                  quantity: -5767068
+                - order_product_id: -24011999
+                  product_id: 5641382
+                  quantity: -39927230
+                - order_product_id: -61769155
+                  product_id: 70332115
+                  quantity: 76589032
+      summary: Get a Shipment
+      description: |+
+        Gets a shipment associated with an order.
+
+      tags:
+        - Order Shipments
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+    parameters:
+      - name: order_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
 definitions:
   Order:
     title: Order
