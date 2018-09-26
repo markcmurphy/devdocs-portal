@@ -791,11 +791,10 @@ paths:
       tags:
         - Blog Posts
         - Store Content
-  '/stores/{store_hash}/v2/blog/posts/count':
+  /blog/posts/count:
     get:
       description: Gets a count of all blog posts in a store.
       summary: Get A Count of All Blog Posts
-      operationId: StoresV2BlogPostsCountByStoreHashGet
       produces:
         - application/json
       parameters:
@@ -816,16 +815,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '200':
           description: ''
@@ -842,7 +831,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Blog Posts
-        - Store Content
   '/stores/{store_hash}/v2/pages':
     get:
       description: >-
