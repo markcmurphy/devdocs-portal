@@ -1253,7 +1253,7 @@ paths:
       tags:
         - Gift Certificate
         - Marketing
-  '/stores/{store_hash}/v2/gift_certificates':
+  /gift_certificates:
     get:
       responses:
         '200':
@@ -1306,6 +1306,67 @@ paths:
                 customer_id: '0'
                 expiry_date: '0'
                 purchase_date: '1454433621'
+            Response Schema:
+              - to_name: q
+                to_email: nostrud
+                from_name: voluptate dolor
+                from_email: ei
+                amount: et exercitation anim aute enim
+                id: 58269283
+                customer_id: -95640037
+                order_id: -49565680
+                code: elit eu
+                balance: cupidatat eu dolore pariatur Ut
+                status: {}
+                template: dolor aute tempor deserunt nisi
+                message: dolore et exercitation
+                purchase_date: dolore sed
+                expiry_date: nulla sed
+              - to_name: elit sint id
+                to_email: culpa quis commodo aute do
+                from_name: 'velit '
+                from_email: sunt deser
+                amount: dolor nulla
+                id: -95013292
+                customer_id: 71282773
+                order_id: -68244754
+                code: occaecat in reprehenderit
+                balance: in est officia aliqua
+                status: {}
+                template: enim id
+                message: laboris ut
+                purchase_date: eu et culpa
+                expiry_date: ''
+              - to_name: ipsum in officia Duis dolor
+                to_email: eu aliquip sit
+                from_name: aute nostrud ut eu
+                from_email: eu incididunt enim occaecat pariatur
+                amount: labore commodo dolor
+                id: -34100027
+                customer_id: 26956019
+                order_id: -80744122
+                code: ut amet in sunt
+                balance: non nulla
+                status: {}
+                template: labore ut sit
+                message: occaecat ir
+                purchase_date: tempor et
+                expiry_date: Lorem veniam el
+              - to_name: anim ni
+                to_email: in
+                from_name: voluptate esse in
+                from_email: non ut occaecat
+                amount: ad Duis est proident voluptate
+                id: 25214479
+                customer_id: -35542678
+                order_id: -84097841
+                code: est voluptate Excepteur
+                balance: qui esse ullamco
+                status: {}
+                template: laborum anim sed
+                message: consequat veniam consectetur
+                purchase_date: ea anim
+                expiry_date: eiusmod Ut enim
       summary: Get All Gift Certificates
       description: >-
         Retrieves the gift certificates available. Default sorting is by
@@ -1315,12 +1376,7 @@ paths:
         by default.
       tags:
         - Gift Certificate
-        - Marketing
       parameters:
-        - in: path
-          name: store_hash
-          type: string
-          required: true
         - in: query
           name: min_id
           type: integer
@@ -1361,19 +1417,6 @@ paths:
           type: string
           required: true
           default: application/json
-        - in: header
-          name: X-Auth-Client
-          type: string
-          required: true
-        - in: header
-          name: X-Auth-Token
-          type: string
-          required: true
-    parameters:
-      - name: store_hash
-        in: path
-        type: string
-        required: true
     post:
       responses:
         '200':
