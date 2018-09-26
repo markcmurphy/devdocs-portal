@@ -834,7 +834,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Blog Posts
-  '/stores/{store_hash}/v2/pages':
+  /pages:
     get:
       description: >-
         Gets the collection of pages. (Default sorting is by auto-generated ID.
@@ -842,8 +842,6 @@ paths:
       summary: Get All Pages
       tags:
         - Pages
-        - Store Content
-      operationId: StoresV2PagesByStoreHashGet
       produces:
         - application/json
       parameters:
@@ -864,16 +862,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: page
           in: query
           required: false
@@ -1054,6 +1042,27 @@ paths:
                 has_mobile_version: true
                 mobile_body: ''
                 url: /footer-only-page/
+            Response Schema:
+              - type: page
+                name: consequat labore cillum minim
+                body: occaecat reprehenderit
+                feed: consectetur et
+                link: nulla veniam aliq
+                id: null
+                parent_id: -3084899
+                contact_fields: do dolor
+                email: adipisicing minim esse
+                url: in ut
+                meta_description: est Duis
+                mobile_body: incididunt nulla dolore ut in
+                has_mobile_version: true
+                is_visible: true
+                is_homepage: true
+                meta_title: voluptate sint ullamco ut occaecat
+                layout_file: reprehenderit eiusmod ut adipisicing
+                sort_order: 96609556
+                search_keywords: dolor enim exercitation
+                meta_keywords: sun
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -1061,12 +1070,39 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
     post:
-      description: Creates a new page.
+      description: >-
+        Creates a new page.
+
+
+        ## Read-only Properties 
+
+
+        The following property of the page is read-only. If it is included in
+        the request, the request will be rejected:
+
+
+        *   id
+
+
+        ## Requirements 
+
+
+        The following properties of the page are required. The request won’t be
+        fulfilled unless these properties are valid:
+
+
+        *   type
+
+        *   name
+
+        *   link (for a page of `type: link`)
+
+        *   feed (for a page of `type: rss_feed`)
+
+        *   body (for a page of `type: raw`)
       summary: Create A Page
       tags:
         - Pages
-        - Store Content
-      operationId: StoresV2PagesByStoreHashPost
       produces:
         - application/json
       parameters:
@@ -1087,16 +1123,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: body
           in: body
           required: true
@@ -1149,6 +1175,27 @@ paths:
                 meta_title: ''
                 search_keywords: ''
                 meta_keywords: ''
+            Response Schema:
+              type: raw
+              name: Duis dolor
+              body: anim Lorem enim exercitation
+              feed: voluptate
+              link: eiusmod
+              id: null
+              parent_id: 44535181
+              contact_fields: voluptate minim eu
+              email: tempor labore e
+              url: deserunt mollit exercitation
+              meta_description: aute in ullamco consequat
+              mobile_body: id dolore commodo
+              has_mobile_version: true
+              is_visible: true
+              is_homepage: false
+              meta_title: aliquip
+              layout_file: in aliquip consectetur
+              sort_order: -55425677
+              search_keywords: aliqua commodo veniam in
+              meta_keywords: ex magna reprehenderit
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
