@@ -337,17 +337,106 @@ paths:
         - Customers
     post:
       description: >-
+        ## Read-only Properties 
+
+
+        The following properties of the customer are read-only. If one or more
+        of these properties are included in the request, it will be rejected.
+
+
+        *   id
+
+        *   date_created
+
+        *   date_modified
+
+        *   accepts_marketing
+
+        *   addresses
+
+        *   form_fields
+
+
+        ## Requirements 
+
+
+        The following properties of the customer are required. The request won’t
+        be fulfilled unless these properties are valid.
+
+
+        *   first_name
+
+        *   last_name
+
+        *   email
+
+
+        ## Notes 
+
+
         The `_authentication` object exposes functionality associated with the
         customer’s ability to log in to the store. All properties of the
-        `_authentication` object are optional. 
+        `_authentication` object are optional.
 
 
-        When the _authentication object is not supplied with an update request,
-        then the existing customer password remains the same
+        When the `_authentication` object is not supplied with an update
+        request, then the existing customer password remains the same.
+
+
+        ## Updating Passwords 
+
+
+        To manually update a customer password in the same way as the control
+        panel, supply a value for the password field:
+
+
+        ```
+
+        {
+            "_authentication": {
+                "password": "12w69Y217PYR96J"
+            }
+        }
+
+        ```
+
+
+        ## Confirming Passwords 
+
+
+        An additional optional `password_confirmation` field can also be sent,
+        providing password confirmation as a service:
+
+
+        ```
+
+        {
+            "_authentication": {
+               "password": "12w69Y217PYR96J",
+               "password_confirmation": "12w69Y217PYR96J"
+            }
+        }
+
+        ```
+
+
+        ## Forcing Password Resets 
+
+
+        To force a customer to reset their password upon their next login
+        attempt, give the `force_reset` field a value of true, as shown here:
+
+
+        ```
+
+        {
+            "_authentication": {
+                "force_reset": true
+            }
+        }
       summary: Create a New Customer
       tags:
         - Customers
-      operationId: StoresV2CustomersByStoreHashPost
       produces:
         - application/json
       parameters:
@@ -357,16 +446,6 @@ paths:
           type: string
           description: ''
         - name: Content-Type
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
           in: header
           required: true
           type: string
@@ -409,11 +488,6 @@ paths:
               first_name: Jane
               last_name: Doe
               phone: '1234567890'
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: ''
       responses:
         '200':
           description: ''
@@ -444,6 +518,36 @@ paths:
                 - name: ''
                   value: ''
               reset_pass_on_login: false
+            Response Schema:
+              first_name: consectetur est
+              last_name: fugiat nostrud exercitation
+              email: incididunt
+              id: 40836578
+              _authentication:
+                force_reset: esse
+                password: sunt ut elit
+                password_confirmation: esse pariatur amet in ad
+              company: ex nulla occa
+              phone: laborum
+              date_created: '1950-01-07T13:02:45.762Z'
+              date_modified: '1964-07-17T02:26:32.238Z'
+              store_credit: ex ullamco adipisicing
+              registration_ip_address: ex amet commodo
+              customer_group_id: 99641267
+              notes: sint officia ut ut
+              tax_exempt_category: dolor
+              accepts_marketing: true
+              addresses:
+                url: magna cupidatat proident
+                resource: Excepteur quis exercitat
+              form_fields:
+                - name: u
+                  value: enim reprehenderit
+                - name: consequat adipisicing dolore
+                  value: eu cupidatat amet deserunt
+                - name: ex veniam quis voluptate
+                  value: sed aliquip
+              reset_pass_on_login: true
       x-unitTests:
         - request:
             method: POST
