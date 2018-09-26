@@ -244,16 +244,9 @@ paths:
       summary: Update a Shipping Zone
       tags:
         - Shipping Zones
-        - Shipping
-      operationId: StoresV2ShippingZonesByStoreHashAndIdPut
       produces:
         - application/json
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: id
           in: path
           required: true
@@ -273,16 +266,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: body
           in: body
           required: true
@@ -308,7 +291,8 @@ paths:
       responses:
         '200':
           description: ''
-          schema: {}
+          schema:
+            $ref: '#/definitions/ShippingZone'
           examples:
             application/json:
               id: 1
@@ -328,6 +312,32 @@ paths:
                 percentage_surcharge: ''
                 display_separately: true
               enabled: true
+            Request Schema:
+              name: dolore Ut qui
+              id: -44321070
+              type: zip
+              locations:
+                - id: 65307977
+                  zip: sint cillum
+                  country_iso2: ullamco incididunt veniam voluptate
+                  state_iso2: ad
+                - id: -93132011
+                  zip: cillum quis
+                  country_iso2: ad qui sunt
+                  state_iso2: magna u
+                - id: -29601790
+                  zip: ut
+                  country_iso2: sunt
+                  state_iso2: esse ex in ut
+              free_shipping:
+                enabled: false
+                minimum_sub_total: cillum proident reprehenderit sed enim
+                exclude_fixed_shipping_products: true
+              handling_fees:
+                fixed_surcharge: dolore fugiat
+                percentage_surcharge: eu anim
+                display_separately: true
+              enabled: false
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
