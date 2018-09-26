@@ -1432,12 +1432,24 @@ paths:
               customer_id: '0'
               expiry_date: '0'
               purchase_date: '1454433240'
+            Response Schema:
+              to_name: occaecat sit pariatur
+              to_email: ullamco ut fugiat in
+              from_name: ut nisi consequat non
+              from_email: veniam
+              amount: Duis anim dolor Excepteur
+              id: -29767449
+              customer_id: -43769798
+              order_id: -27746535
+              code: in adipisicing eu consectetur
+              balance: officia eu irure dolor esse
+              status: {}
+              template: sed id Ut
+              message: qui Duis
+              purchase_date: in eu
+              expiry_date: deserunt dolor
       summary: Create a Gift Certificate
       parameters:
-        - in: path
-          name: store_hash
-          type: string
-          required: true
         - in: header
           name: Accept
           type: string
@@ -1448,14 +1460,6 @@ paths:
           type: string
           required: true
           default: application/json
-        - in: header
-          name: X-Auth-Token
-          type: string
-          required: true
-        - in: header
-          name: X-Auth-Client
-          type: string
-          required: true
         - in: body
           name: body
           schema:
@@ -1471,7 +1475,76 @@ paths:
               from_email: test1@test.com
       tags:
         - Gift Certificate
-        - Marketing
+      description: >-
+        ### Read-only Properties 
+
+
+        The following properties of the gift certificate are read-only. If one
+        or more of these properties are included in the request, it will be
+        rejected:
+
+
+        * id
+
+        * order_id
+
+        * template
+
+
+
+        ### Requirements 
+
+
+        The following properties of the gift certificate are required. The
+        request won't be fulfilled unless these properties are valid.
+
+
+        * to_name
+
+        * to_email
+
+        * from_name
+
+        * from_email
+
+        * amount
+
+
+        ### Notes 
+
+
+        When a gift certificate is created through the API, no email
+        notification is triggered to the specified recipient.
+
+
+        The gift certificate's status can be one of the following:
+
+
+        * pending
+
+        * active
+
+        * disabled
+
+        * expired
+
+
+        The gift certificate's template can be one of the following:
+
+
+        * Birthday
+
+        * Boy
+
+        * Celebration
+
+        * Christmas
+
+        * General
+
+        * Girl
+
+        * {blank}
     delete:
       responses:
         '204':
