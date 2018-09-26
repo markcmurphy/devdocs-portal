@@ -3859,6 +3859,30 @@ paths:
         in: path
         type: string
         required: true
+  '/orders/{order_id}/shipping_addresses/{id}':
+    get:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+      summary: Get a Shipping Address
+      description: Gets a shipping address associated with an order.
+      tags:
+        - Order Shipping Addresses
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+    parameters:
+      - name: order_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
 definitions:
   Order:
     title: Order
