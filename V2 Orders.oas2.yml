@@ -1,8 +1,12 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: BigCommerce V2 API
-  description: 'TODO: Add a description'
+  title: BigCommerce V2 Orders API
+  description: >-
+    Orders APIs integrate with point-of-sale, shipping, distribution, and
+    inventory-management systems. They include Orders, Order Coupons, Order
+    Messages, Order Products, Order Shipping Addresses, Order Statuses, Order
+    Taxes, and Shipments.
 host: api.bigcommerce.com
 basePath: '/stores/{store_hash}/v2'
 schemes:
@@ -3793,7 +3797,15 @@ tags:
   - name: Order Statues
   - name: Order Shipments
   - name: Order Shipping Addresses
-securityDefinitions: {}
+securityDefinitions:
+  X-Auth-Client:
+    type: apiKey
+    name: X-Auth-Client
+    in: header
+  X-Auth-Token:
+    type: apiKey
+    name: X-Auth-Token
+    in: header
 security:
   - X-Auth-Token: []
   - X-Auth-Client: []
