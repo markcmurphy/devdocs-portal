@@ -1154,11 +1154,141 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     post:
-      description: "## Requirements\n\nThe following properties of the order are required. The request won’t be fulfilled unless these properties are valid.\n\n*   products\n*   billing_address\n\n\n<aside class=\"warning\">\n<span class=\"aside-warning-hd\">Tax Notes</span><br><br>\n\n  <ul>\n\t<li>If a store has automatic tax enabled, BigCommerce does not compute sales tax on orders created via the API.\n\t</li>\n\t<li>Abbreviated state names in shipping and billing addresses will prevent tax documents from being submitted to Avalara. To ensure successful Avalara tax-document submission, spell state names out in full. For example, supplying <code>CA</code> as a state name leads to no tax-document submission. Supplying <code>California</code> as a state name leads to a successful submission.\n\t</li>\n  </ul>\n</aside>\n\n\n## Overriding Preset Values\n\nYou can create overrides for calculated values such as product prices, subtotal and totals by sending a fixed value in the request. If values are not supplied for these properties, they will be automatically calculated based on the pre-set store values and tax rules.\n\n## Order Products\n\n*   Existing products can be added to the order with a reference to their `product_id`.\n*   Custom products can be added to the order using the [`products` array](#order-products-array).\n*   If price is not specified, it will automatically pick up the price from the store’s product catalog. However, you can override this via `price_inc_tax` and `price_ex_tax`.\n*   If `price_inc_tax` and `price_ex_tax` are specified, price and rulesets are ignored, and the `price_inc_tax` or `price_ex_tax` are written to `base_price` according to the store settings.\n*   When the store is subscribed to Avalara Premium, a value of `API Tax Override` is written to the Order Tax object's `name` field.\n*   Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`.\n*   For products that are configured to track stock, the quantity specified on the order will reduce the stock on hand. When there is not enough inventory to fulfill the order, the order will be rejected with an \"out of stock\" error code.\n*   For products that have min and max quantities specified in their settings, the API will honor these, and will reject orders appropriately.\n*   For products where product options are required, the API will validate these requirements to ensure that the product options are specified.\n*   Product quantity must be specified.\n\n#### Calculation of Totals\n\n*   When not specified, order subtotal and total are automatically calculated.\n*   You can override order subtotal and/or total. If you choose to override one, we strongly recommend that override both, because the system will not be able to accurately calculate the other.\n\n#### Order Properties\n\n*   Billing address is mandatory.\n*   Shipping address is not mandatory, and can optionally be specified as composite records.\n    *   When the shipping address is not specified, the system will fall back to using the billing address as the shipping address.\n    *   Multiple shipments are not supported, so the API will assume the first address in the collection.\n*   In the shipping and billing addresses, there is no requirement to specify `country` when `country_ISO2` is specified.\n    *   The value specified for `country_ISO2` will always override any value specified for `country`.\n*   Coupon redemption is not currently supported.\n*   To specify a guest checkout, set `customer_id` to `0`.\n*   `order_source` cannot be specified, and will be set to `external`.\n    *   You can optionally specify a value for `external_source` to specify which external source the order is coming from - e.g., POS system X, accounting system Y, etc.\n\n## Changing the Order Status\n\n*   You can specify `status_id`, which will automatically set the corresponding `status`. When `status_id` is not specified, it will be automatically set to `1`, which will set `status` to `Pending`.\n\n*   `POST` or `PUT` orders on stores with Avalara Premium cause tax documents to be submitted. If a store has subscribed to Avalara Premium, BigCommerce automatically submits tax documents to Avalara when the order achieves a paid status. The following statuses are of the paid type:\n    *   Shipped\n    *   Partially Shipped\n    *   Awaiting Pickup\n    *   Awaiting Shipment\n    *   Completed\n    *   Awaiting Fulfillment\n*   BigCommerce considers all statuses other than those above to be of the unpaid type, except `Refunded`, which is considered neither paid or unpaid. Orders that are created using the `POST` method, and that include a status of the paid type, cause the submission of tax documents to Avalara."
+      description: >-
+        ## Requirements
+
+
+        The following properties of the order are required. The request won’t be
+        fulfilled unless these properties are valid.
+
+
+        *   products
+
+        *   billing_address
+
+
+        ## Taxes
+
+        If a store has automatic tax enabled, BigCommerce does not compute sales
+        tax on orders created via the API.
+
+
+        Abbreviated state names in shipping and billing addresses will prevent
+        tax documents from being submitted to Avalara. To ensure successful
+        Avalara tax-document submission, spell state names out in full. For
+        example, supplying CA as a state name leads to no tax-document
+        submission. Supplying California as a state name leads to a successful
+        submission.
+
+
+        ## Overriding Preset Values
+
+
+        You can create overrides for calculated values such as product prices,
+        subtotal and totals by sending a fixed value in the request. If values
+        are not supplied for these properties, they will be automatically
+        calculated based on the pre-set store values and tax rules.
+
+
+        ## Order Products
+
+
+        *   Existing products can be added to the order with a reference to
+        their `product_id`.
+
+        *   Custom products can be added to the order using the [`products`
+        array](#order-products-array).
+
+        *   If price is not specified, it will automatically pick up the price
+        from the store’s product catalog. However, you can override this via
+        `price_inc_tax` and `price_ex_tax`.
+
+        *   If `price_inc_tax` and `price_ex_tax` are specified, price and
+        rulesets are ignored, and the `price_inc_tax` or `price_ex_tax` are
+        written to `base_price` according to the store settings.
+
+        *   When the store is subscribed to Avalara Premium, a value of `API Tax
+        Override` is written to the Order Tax object's `name` field.
+
+        *   Tax will be calculated based on the tax rules specified in the
+        store, except in the case of automatic taxes. However, in both cases,
+        you can optionally override the tax values by specifying `price_inc_tax`
+        and `price_ex_tax`.
+
+        *   For products that are configured to track stock, the quantity
+        specified on the order will reduce the stock on hand. When there is not
+        enough inventory to fulfill the order, the order will be rejected with
+        an "out of stock" error code.
+
+        *   For products that have min and max quantities specified in their
+        settings, the API will honor these, and will reject orders
+        appropriately.
+
+        *   For products where product options are required, the API will
+        validate these requirements to ensure that the product options are
+        specified.
+
+        *   Product quantity must be specified.
+
+
+        #### Calculation of Totals
+
+
+        *   When not specified, order subtotal and total are automatically
+        calculated.
+
+        *   You can override order subtotal and/or total. If you choose to
+        override one, we strongly recommend that override both, because the
+        system will not be able to accurately calculate the other.
+
+
+        #### Order Properties
+
+
+        *   Billing address is mandatory.
+
+        *   Shipping address is not mandatory, and can optionally be specified
+        as composite records.
+            *   When the shipping address is not specified, the system will fall back to using the billing address as the shipping address.
+            *   Multiple shipments are not supported, so the API will assume the first address in the collection.
+        *   In the shipping and billing addresses, there is no requirement to
+        specify `country` when `country_ISO2` is specified.
+            *   The value specified for `country_ISO2` will always override any value specified for `country`.
+        *   Coupon redemption is not currently supported.
+
+        *   To specify a guest checkout, set `customer_id` to `0`.
+
+        *   `order_source` cannot be specified, and will be set to `external`.
+            *   You can optionally specify a value for `external_source` to specify which external source the order is coming from - e.g., POS system X, accounting system Y, etc.
+
+        ## Changing the Order Status
+
+
+        *   You can specify `status_id`, which will automatically set the
+        corresponding `status`. When `status_id` is not specified, it will be
+        automatically set to `1`, which will set `status` to `Pending`.
+
+
+        *   `POST` or `PUT` orders on stores with Avalara Premium cause tax
+        documents to be submitted. If a store has subscribed to Avalara Premium,
+        BigCommerce automatically submits tax documents to Avalara when the
+        order achieves a paid status. The following statuses are of the paid
+        type:
+            *   Shipped
+            *   Partially Shipped
+            *   Awaiting Pickup
+            *   Awaiting Shipment
+            *   Completed
+            *   Awaiting Fulfillment
+        *   BigCommerce considers all statuses other than those above to be of
+        the unpaid type, except `Refunded`, which is considered neither paid or
+        unpaid. Orders that are created using the `POST` method, and that
+        include a status of the paid type, cause the submission of tax documents
+        to Avalara.
       summary: Create an Order
       tags:
         - Orders
-      operationId: StoresV2OrdersByStoreHashPost
+      operationId: V2OrdersByStoreHashPost
       produces:
         - application/json
       parameters:
@@ -1179,16 +1309,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: body
           in: body
           required: true
@@ -1356,6 +1476,9 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: Archives all orders.
       summary: Delete all Orders
