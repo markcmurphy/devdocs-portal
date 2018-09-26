@@ -3241,8 +3241,20 @@ paths:
         '200':
           description: ''
           schema:
-            type: object
-            properties: {}
+            $ref: '#/definitions/OrderMessages'
+          examples:
+            application/json:
+              - id: 2
+                order_id: 181
+                staff_id: 1
+                customer_id: 11
+                type: admin
+                subject: 'Re: Order #181'
+                message: Thank you again!
+                status: unread
+                is_flagged: false
+                date_created: 'Wed, 26 Sep 2018 15:52:03 +0000'
+                customer: null
       summary: Get Order Messages
       description: Gets the messages associated with an order.
       tags:
