@@ -247,7 +247,132 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     put:
-      description: Updates an order using the order `id`.
+      description: >-
+        ## Read-only Properties
+
+
+        *   id
+
+        *   date_modified
+
+        *   date_shipped
+
+        *   status
+
+        *   order_source
+
+        *   subtotal_tax
+
+        *   shipping_cost_tax
+
+        *   shipping_cost_tax_class_id
+
+        *   handling_cost_tax
+
+        *   handling_cost_tax_class_id
+
+        *   wrapping_cost_tax
+
+        *   wrapping_cost_tax_class_id
+
+        *   total_tax
+
+        *   payment_status
+
+        *   currency_id
+
+        *   currency_code
+
+        *   currency_exchange_rate
+
+        *   default_currency_id
+
+        *   default_currency_code
+
+        *   coupon_discount
+
+        *   store_credit_amount
+
+        *   gift_certificate_amount
+
+        *   shipping_address_count
+
+        *   coupons
+
+
+
+        > If a store has automatic tax enabled, BigCommerce does not compute
+        sales tax on orders updated via the API.
+
+
+
+        ## Changing the Order Status
+
+
+        The `status` property cannot be edited directly, because it is generated
+        based on the `status_id`.
+
+
+        Use the `status_id` property to set the order to a specific state. The
+        list of available statuses is provided by the [Order Statuses](#)
+        resource. If the store has subscribed to Avalara Premium, tax documents
+        are submitted when the `status_id` property changes. The following table
+        details the behavior for `PUT` operations. See also the list of [Paid
+        Statuses](#).
+
+
+        | Existing Status | Status Passed | Resultant Status | Avalara Tax
+        Document Submission |
+
+        | --- | --- | --- | --- |
+
+        | Any | None | `Pending` | None |
+
+        | Paid or `Refunded` | Paid | Paid | None |
+
+        | Unpaid or `Refunded` | Unpaid | Unpaid | None |
+
+        | Paid or `Refunded` | Unpaid | Unpaid | Tax document voided |
+
+        | Unpaid or `Refunded` | Paid | Paid | Tax document submitted |
+
+
+        ## Calculated Fields
+
+
+        Edits to the following properties will trigger a recalculation of the
+        subtotal and total:
+
+
+        *   products
+
+        *   discount_amount
+
+        *   shipping_cost_ex_tax
+
+        *   shipping_cost_inc_tax
+
+        *   handling_cost_ex_tax
+
+        *   handling_cost_inc_tax
+
+        *   wrapping_cost_ex_tax
+
+        *   wrapping_cost_inc_tax
+
+        *   billing_address
+
+        *   shipping_addresses
+
+
+
+        ## Limitation on Coupons/Discounts
+
+
+        The Orders resource currently does not support coupon redemptions or
+        discounts, apart from manual discount. You should modify the above
+        fields only if you have created the order via the POST operation, or if
+        you intend to manually override the subtotals and totals.
       summary: Update an Order
       tags:
         - Orders
