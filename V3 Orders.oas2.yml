@@ -427,12 +427,10 @@ definitions:
         $ref: '#/definitions/CollectionMeta'
     title: Transaction Collection Response
   Transaction:
-    type: object
     description: A BigCommerce Transaction object describes a single transaction.
     allOf:
       - $ref: '#/definitions/TransactionPost'
-      - type: object
-        properties:
+      - properties:
           id:
             type: integer
             description: |
@@ -449,9 +447,10 @@ definitions:
             format: date-time
           payment_instrument_token:
             type: string
-            description: >
-              Token for an existing stored Credit Card used for this
-              transaction, if any.
+            description: >-
+              This field contains internal BigPay token for stored card that is
+              then mapped to the actual third-party token. We currently do not
+              offer a way to get third party tokens.
           avs_result:
             $ref: '#/definitions/AVSResult'
           cvv_result:
@@ -462,6 +461,8 @@ definitions:
             $ref: '#/definitions/GiftCertificate'
           store_credit:
             $ref: '#/definitions/StoreCredit'
+    type: object
+    title: Transaction
   CreditCard:
     type: object
     description: A credit-card model.
