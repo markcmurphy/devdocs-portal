@@ -12,7 +12,7 @@ consumes:
 produces:
   - application/json
 paths:
-  '/stores/{store_hash}/v2/currencies':
+  /currencies:
     get:
       responses:
         '200':
@@ -70,10 +70,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - in: path
-          name: store_hash
-          type: string
-          required: true
         - in: header
           name: X-Auth-Client
           type: string
@@ -84,21 +80,8 @@ paths:
           type: string
           default: application/json
           required: true
-        - in: header
-          name: Accepts
-          type: string
-          required: true
-        - in: header
-          name: Content-Type
-          type: string
-          required: true
       tags:
         - Currency
-    parameters:
-      - name: store_hash
-        in: path
-        type: string
-        required: true
     delete:
       responses:
         '204':
@@ -108,10 +91,6 @@ paths:
             properties: {}
       summary: Delete All Store Currencies
       parameters:
-        - in: path
-          name: store_hash
-          type: string
-          required: true
         - in: header
           name: Content-Type
           type: string
@@ -121,14 +100,6 @@ paths:
           name: Accepts
           type: string
           default: application/json
-          required: true
-        - in: header
-          name: X-Auth-Token
-          type: string
-          required: true
-        - in: header
-          name: X-Auth-Client
-          type: string
           required: true
       tags:
         - Currency
@@ -230,72 +201,25 @@ definitions:
       - thousands_token
       - decimal_places
       - name
-  Country:
-    title: Country
-    example:
-      id: 13
-      country: Australia
-      country_iso2: AU
-      country_iso3: AUS
-      states:
-        url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/countries/13/states'
-        resource: /countries/13/states
-    type: object
-    properties:
-      id:
-        description: Id of the country.
-        example: 13
-        type: integer
-      country:
-        description: Country name.
-        example: Australia
-        type: string
-      country_iso2:
-        description: 2-letter country code.
-        example: AU
-        type: string
-      country_iso3:
-        description: 3-letter country code.
-        example: AUS
-        type: string
-      states:
-        $ref: '#/definitions/States'
-  States:
-    title: States Resource
-    type: object
-    properties:
-      url:
-        description: ''
-        example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/countries/13/states'
-        type: string
-      resource:
-        description: ''
-        example: /countries/13/states
-        type: string
-  State:
-    title: State
-    example:
-      id: 208
-      state: Australian Capital Territory
-      state_abbreviation: ACT
-      country_id: 13
-    type: object
-    properties:
-      id:
-        description: Numeric ID of the state/province.
-        example: 208
-        type: integer
-      state:
-        description: Name of the state/province.
-        example: Australian Capital Territory
-        type: string
-      state_abbreviation:
-        description: Abbreviation for the state/province.
-        example: ACT
-        type: string
-      country_id:
-        description: Numeric ID of the state’s/province’s associated country.
-        example: 13
-        type: integer
 tags:
   - name: Currency
+securityDefinitions:
+  X-Auth-Token:
+    type: apiKey
+    name: X-Auth-Token
+    in: header
+  X-Auth-Client:
+    type: apiKey
+    name: X-Auth-Client
+    in: header
+parameters:
+  Accept:
+    name: Accept
+    in: header
+    type: string
+    default: application/json
+  Content-Type:
+    name: Content-Type
+    in: header
+    type: string
+    default: application/json
