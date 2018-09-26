@@ -92,8 +92,6 @@ paths:
         published_date, from most-recently published posts to earliest published
         posts.)
       summary: Get All Blog Posts
-      produces:
-        - application/json
       parameters:
         - name: store_hash
           in: path
@@ -112,16 +110,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: is_published
           in: query
           required: false
@@ -317,11 +305,12 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-      consumes:
-        - application/json
       tags:
         - Blog Posts
         - Store Content
+      security:
+        - X-Auth-Token: []
+        - X-Auth-Client: []
     post:
       description: Creates a new blog post.
       summary: Create A Blog Post
@@ -416,8 +405,6 @@ paths:
     delete:
       description: Deletes all blog posts on the store.
       summary: Delete All Blog Posts
-      produces:
-        - application/json
       parameters:
         - name: store_hash
           in: path
@@ -436,16 +423,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: page
           in: query
           required: false
@@ -471,10 +448,11 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-      consumes:
-        - application/json
       tags:
         - Blog Posts
+      security:
+        - X-Auth-Token: []
+        - X-Auth-Client: []
   '/stores/{store_hash}/v2/blog/posts/{id}':
     get:
       description: Gets a blog post.
@@ -2175,3 +2153,6 @@ securityDefinitions:
     type: apiKey
     name: X-Auth-Client
     in: header
+security:
+  - X-Auth-Token: []
+  - X-Auth-Client: []
