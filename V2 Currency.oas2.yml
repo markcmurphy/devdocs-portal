@@ -96,6 +96,24 @@ paths:
       tags:
         - Currency
       description: Delete All non-default store currencies
+  '/currencies/{id}':
+    get:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+      summary: Get a Single Currency
+      description: Retrieves a specified currency.
+      parameters:
+        - $ref: '#/parameters/Content-Type'
+        - $ref: '#/parameters/Accept'
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
 definitions:
   Currency:
     title: Currency
