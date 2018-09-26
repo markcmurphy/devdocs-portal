@@ -1130,7 +1130,7 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       tags:
-        - Gift Certificate
+        - Gift Certificates
     delete:
       description: Deletes a gift certificate by `id`.
       summary: Delete a Gift Certificate
@@ -1164,7 +1164,7 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       tags:
-        - Gift Certificate
+        - Gift Certificates
     parameters:
       - name: id
         in: path
@@ -1228,8 +1228,6 @@ paths:
           x-examples:
             application/json:
               to_name: New testing
-      tags:
-        - Gift Certificate
       description: >-
         ### Read-only Properties 
 
@@ -1244,6 +1242,8 @@ paths:
         * order_id
 
         * template
+      tags:
+        - Gift Certificates
   /gift_certificates:
     get:
       responses:
@@ -1365,8 +1365,6 @@ paths:
         the URL query string to paginate the collection. The maximum limit is
         250. If a limit isn’t provided, up to 50 gift_certificates are returned
         by default.
-      tags:
-        - Gift Certificate
       parameters:
         - in: query
           name: min_id
@@ -1408,6 +1406,8 @@ paths:
           type: string
           required: true
           default: application/json
+      tags:
+        - Gift Certificates
     post:
       responses:
         '200':
@@ -1471,8 +1471,6 @@ paths:
               to_email: test@test.com
               from_name: Tarzan
               from_email: test1@test.com
-      tags:
-        - Gift Certificate
       description: >-
         ### Read-only Properties 
 
@@ -1543,6 +1541,8 @@ paths:
         * Girl
 
         * {blank}
+      tags:
+        - Gift Certificates
     delete:
       responses:
         '204':
@@ -1551,8 +1551,6 @@ paths:
             type: object
             properties: {}
       summary: Delete All Store Gift Certificates
-      tags:
-        - Gift Certificate
       parameters:
         - in: header
           name: Accept
@@ -1562,6 +1560,8 @@ paths:
           name: Content-Type
           type: string
           default: application/json
+      tags:
+        - Gift Certificates
 definitions:
   CouponsResource:
     title: Coupon Resource
@@ -1918,7 +1918,7 @@ definitions:
 tags:
   - name: Banners
   - name: Coupons
-  - name: Gift Certificate
+  - name: Gift Certificates
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
