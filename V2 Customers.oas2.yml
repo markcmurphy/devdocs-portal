@@ -1135,7 +1135,7 @@ paths:
         in: path
         type: string
         required: true
-  '/stores/{store_hash}/v2/customers/{customer_id}/addresses':
+  '/customers/{customer_id}/addresses':
     get:
       description: >-
         Gets the addresses belonging to a customer. (Default sorting is by
@@ -1143,10 +1143,7 @@ paths:
         query string to paginate the collection. The maximum limit is 250. If a
         limit isn’t provided, up to 50 customer_addresses are returned by
         default.
-      summary: List All Customer Addresses
-      operationId: StoresV2CustomersAddressesByStoreHashAndCustomerIdGet
-      produces:
-        - application/json
+      summary: Get All Customer Addresses
       parameters:
         - name: store_hash
           in: path
@@ -1255,7 +1252,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Addresses
-        - Customers
     post:
       description: >-
         Creates a new customer address. (Note: The “state” property cannot be
@@ -1418,6 +1414,11 @@ paths:
       tags:
         - Customer Addresses
         - Customers
+    parameters:
+      - name: customer_id
+        in: path
+        type: string
+        required: true
   '/stores/{store_hash}/v2/customers/{customer_id}/addresses/{id}':
     get:
       description: Gets a customer address.
