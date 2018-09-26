@@ -1506,7 +1506,7 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  '/stores/{store_hash}/v2/redirects/{id}':
+  '/redirects/{id}':
     get:
       description: Gets a single url.
       summary: Get A Single Redirect URL
@@ -1654,10 +1654,6 @@ paths:
       summary: Delete A Single Redirect
       tags:
         - Redirects
-        - Store Content
-      operationId: StoresV2RedirectsByStoreHashAndIdDelete
-      produces:
-        - application/json
       parameters:
         - name: store_hash
           in: path
@@ -1683,16 +1679,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '204':
           description: ''
@@ -1702,6 +1688,11 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
   /redirects/count:
     get:
       description: Gets a count of redirects in a store.
