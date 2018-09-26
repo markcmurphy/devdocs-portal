@@ -2034,19 +2034,11 @@ paths:
       tags:
         - Customer Groups
         - Customers
-  '/stores/{store_hash}/v2/customer_groups/{id}':
+  '/customer_groups/{id}':
     get:
       description: Gets a customer group.
-      summary: Get A Single Customer Group
-      operationId: StoresV2CustomerGroupsByStoreHashAndIdGet
-      produces:
-        - application/json
+      summary: Get A Customer Group
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: id
           in: path
           required: true
@@ -2066,16 +2058,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: page
           in: query
           required: false
@@ -2121,6 +2103,15 @@ paths:
                 - type: all
                   method: percent
                   amount: '5.0000'
+            Response Schema:
+              id: -36304046
+              name: nulla sunt et
+              is_default: true
+              category_access: {}
+              discount_rules:
+                - type: amet consectetur
+                  method: ad aute
+                  amount: aliquip esse
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -2129,7 +2120,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Groups
-        - Customers
     delete:
       description: >-
         Deletes a customer group. **All existing customers are unassigned from
@@ -2186,10 +2176,6 @@ paths:
         - Customer Groups
         - Customers
     parameters:
-      - name: store_hash
-        in: path
-        type: string
-        required: true
       - name: id
         in: path
         type: string
