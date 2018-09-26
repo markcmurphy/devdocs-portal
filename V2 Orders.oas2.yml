@@ -1856,16 +1856,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '204':
           description: ''
@@ -1875,6 +1865,9 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/stores/{store_hash}/v2/orders/{order_id}/coupons':
     get:
       description: Lists all order coupons. Optional parameters can be passed in.
