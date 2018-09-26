@@ -96,6 +96,67 @@ paths:
       tags:
         - Currency
       description: Delete All non-default store currencies
+    post:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+      summary: Create a Currency
+      description: >-
+        Creates a new currency.
+
+
+        ## Read-only Properties 
+
+
+        The following properties of the currency are read-only. If one or more
+        of these properties are included in the request, it will be rejected:
+
+
+        * id
+
+        * is_default
+
+        * date_created
+
+        * date_modified
+
+
+        ## Notes 
+
+
+        The `is_default` property cannot be set programmatically. To change the
+        store's default currency via the BigCommerce control panel, please see
+        [this support
+        article](https://support.bigcommerce.com/articles/Public/Managing-Currencies/?q=currency&l=en_US&fs=Search&pn=1#default).
+
+
+        ## Requirements 
+
+
+        The following properties of the currency are required. The request won't
+        be fulfilled unless these properties are valid.
+
+
+        * country_iso2
+
+        * currency_code
+
+        * currency_exchange_rate
+
+        * auto_update
+
+        * location
+
+        * token
+
+        * decimal_token
+
+        * thousands_token
+
+        * decimal_places
   '/currencies/{id}':
     get:
       responses:
