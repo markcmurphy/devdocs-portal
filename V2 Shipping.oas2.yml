@@ -1,8 +1,20 @@
 swagger: '2.0'
 info:
-  version: '1.0'
-  title: BigCommerce V2 API
-  description: 'TODO: Add a description'
+  version: ''
+  title: BigCommerce V2 Shipping
+  description: >-
+    ### Shipping Zones
+
+    The Shipping Zone object and endpoints manage shipping zones within
+    countries.
+
+
+    ### Shipping Methods
+
+    The Shipping Methods object and endpoints manage shipping rules within
+    Shipping Zones. These rules determine the shipping rates displayed at
+    checkout, and related parts of the control panel, such as the shipping of
+    manual orders.
 host: api.bigcommerce.com
 basePath: '/stores/{store_hash}/v2'
 schemes:
@@ -1554,3 +1566,15 @@ tags:
   - name: Store
   - name: Taxes
   - name: Payment Methods
+securityDefinitions:
+  X-Auth-Client:
+    type: apiKey
+    name: X-Auth-Client
+    in: header
+  X-Auth-Token:
+    type: apiKey
+    name: X-Auth-Token
+    in: header
+security:
+  - X-Auth-Client: []
+  - X-Auth-Token: []
