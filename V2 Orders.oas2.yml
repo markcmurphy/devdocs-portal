@@ -2760,16 +2760,6 @@ paths:
           required: true
           type: string
           description: ''
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: page
           in: query
           required: false
@@ -2915,7 +2905,9 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Statues
-        - Orders
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/stores/{store_hash}/v2/order_statuses/{id}':
     get:
       description: Gets a single order status.
