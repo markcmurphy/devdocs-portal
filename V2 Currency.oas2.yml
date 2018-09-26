@@ -251,6 +251,76 @@ paths:
         in: path
         type: string
         required: true
+    put:
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Currency'
+          examples:
+            application/json:
+              id: 3
+              is_default: 'false'
+              date_created: 'Thu, 11 Sep 2014 17:10:12 +0000'
+              date_modified: 'Thu, 08 Jan 2015 15:12:48 +0000'
+              country_iso2: AU
+              currency_code: AUD
+              currency_exchange_rate: '1.3885600000'
+              auto_update: 'false'
+              location: left
+              token: $
+              decimal_token: .
+              thousands_token: ','
+              decimal_places: 2
+            Response Schema:
+              country_iso2: ullamco
+              currency_code: Lorem
+              currency_exchange_rate: ut
+              auto_update: false
+              token_location: ut eu consequat mollit
+              token: qui Excepteur occaecat nulla
+              decimal_token: in Excepteur mollit
+              thousands_token: cillum id
+              decimal_places: -70119370
+              name: ullamco magna amet tempor pariatur
+              id: 70177765
+              is_default: true
+              last_updated: '1947-12-04T17:27:38.508Z'
+              enabled: true
+      summary: Update a Currency
+      description: >-
+        ### Read-only Properties 
+
+
+        The following properties of the currency are read-only. If one or more
+        of these properties are included in the request, it will be rejected:
+
+
+        * id
+
+        * is_default
+
+        * date_created
+
+        * date_modified
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/Currency'
+          x-examples:
+            application/json:
+              country_iso2: AU
+              currency_code: AUD
+              currency_exchange_rate: '1.3885600000'
+              auto_update: 'false'
+              location: left
+              token: $
+              decimal_token: .
+              thousands_token: ','
+              decimal_places: 2
 definitions:
   Currency:
     title: Currency
