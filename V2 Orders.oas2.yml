@@ -2918,11 +2918,13 @@ paths:
           required: true
           type: string
           description: ''
+          default: application/json
         - name: Content-Type
           in: header
           required: true
           type: string
           description: ''
+          default: application/json
         - name: page
           in: query
           required: false
@@ -3071,7 +3073,7 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
-  '/stores/{store_hash}/v2/order_statuses/{id}':
+  '/order_statuses/{id}':
     get:
       description: Gets a single order status.
       summary: Get a Single Order Status by Id
@@ -3146,6 +3148,11 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
   '/stores/{store_hash}/v2/orders/{order_id}/taxes':
     get:
       description: >-
