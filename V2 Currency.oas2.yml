@@ -101,8 +101,37 @@ paths:
         '200':
           description: ''
           schema:
-            type: object
-            properties: {}
+            $ref: '#/definitions/Currency'
+          examples:
+            application/json:
+              id: 3
+              is_default: 'false'
+              date_created: 'Thu, 11 Sep 2014 17:10:12 +0000'
+              date_modified: 'Thu, 08 Jan 2015 15:12:48 +0000'
+              country_iso2: AU
+              currency_code: AUD
+              currency_exchange_rate: '1.3885600000'
+              auto_update: 'false'
+              location: left
+              token: $
+              decimal_token: .
+              thousands_token: ','
+              decimal_places: 2
+            Response Schema:
+              country_iso2: ut
+              currency_code: labore in culpa
+              currency_exchange_rate: in proident tempor laborum cillum
+              auto_update: false
+              token_location: sit
+              token: irure
+              decimal_token: consequat
+              thousands_token: nulla esse laborum mollit eiusmod
+              decimal_places: 78912848
+              name: irure ut ipsum
+              id: -78012173
+              is_default: true
+              last_updated: '1949-11-24T17:38:14.674Z'
+              enabled: false
       summary: Create a Currency
       description: >-
         Creates a new currency.
@@ -157,6 +186,24 @@ paths:
         * thousands_token
 
         * decimal_places
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/Currency'
+          x-examples:
+            application/json:
+              country_iso2: AU
+              currency_code: AUD
+              currency_exchange_rate: '1.3885600000'
+              auto_update: 'false'
+              location: left
+              token: $
+              decimal_token: .
+              thousands_token: ','
+              decimal_places: 2
   '/currencies/{id}':
     get:
       responses:
