@@ -1066,19 +1066,11 @@ paths:
         in: path
         type: string
         required: true
-  '/stores/{store_hash}/v2/banners/count':
+  /banners/count:
     get:
       description: Gets a count of all store banners.
       summary: Get a Count of Store Banners
-      operationId: StoresV2BannersCountByStoreHashGet
-      produces:
-        - application/json
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: Accept
           in: header
           required: true
@@ -1091,21 +1083,11 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '200':
           description: ''
           schema:
-            $ref: '#/definitions/OrderCountResponse'
+            $ref: '#/definitions/CountResponse'
           examples:
             application/json:
               count: 27
@@ -1117,7 +1099,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Banners
-        - Marketing
   '/stores/{store_hash}/v2/gift_certificates/{id}':
     get:
       description: Gets a single gift certificate by `id`.
