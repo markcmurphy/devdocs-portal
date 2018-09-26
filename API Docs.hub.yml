@@ -14385,6 +14385,89 @@ pages:
                         `myawesomestore.com/cart.php?action=buy&sku=SHIRT-SM-RED&source=JULY-EMAIL-NEWSLETTER`
                       header:
                         anchor: add-specific-sku-checkout-source
+        - title: Orders
+          route:
+            path: /orders
+          data:
+            children:
+              - title: Overview
+                route:
+                  path: /orders-overview
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: text
+                      data: |-
+                        BigCommerce has several ways to interact with orders. 
+                        - Storefront Orders API 
+                        - V2 Orders API 
+                        - Using the Server to Server Checkout
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ##  Storefront Orders API 
+
+                        Can be used to return order information right away to
+                        the customer, for example, the confirmation screen or
+                        scrape the data for analytics later. You can interact
+                        with it either using an app or a browser API. Below we
+                        use the Fetch API to log orders to the console. See
+                        [Storefront Orders API](http://) for more.
+                      header:
+                        anchor: orders-sf-orders-api
+                    - type: code
+                      data: >-
+                        <script>
+
+                        console.log("Log Orders")
+
+                        fetch('/api/storefront/order/{{checkout.order.id}}',
+                        {credentials: 'include'})
+
+                        .then(function(response) {
+
+                        return response.json();
+
+                        })
+
+                        .then(function(myJson) {
+
+                        console.log(myJson);
+
+                        });
+
+                        </script>
+                      header:
+                        title: Log Orders to Console
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Server to Server Checkout Orders
+
+
+                        This API will allow you to take a checkout made using a
+                        call to the server and then convert that to an order.
+                        From there the order can be managed by either working in
+                        the Control Panel or using the V2 Orders API. See
+                        `Server to Server Checkout` for more.
+                      header:
+                        anchor: orders-server-server-checkout
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+
+                        ## V2 Orders API
+
+                        This API can be used to create an order from scratch. It
+                        allows you to manage an orders billing address,
+                        products, coupons, and taxes. See V2 Orders API for
+                        more.
+                      header:
+                        anchor: orders-v2-orders
         - title: API Reference
           route:
             path: /api-reference
@@ -14467,14 +14550,6 @@ pages:
                         path: /v2-orders
                       data:
                         $ref: ./V2 Orders.oas2.yml
-        - title: Orders
-          route:
-            path: /orders
-          data:
-            children:
-              - title: Overview
-                route:
-                  path: /orders-overview
   /changelog:
     title: Changelog
     data:
