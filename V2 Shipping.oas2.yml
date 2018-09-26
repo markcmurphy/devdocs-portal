@@ -1,6 +1,1845 @@
-swagger: '2.0'
-info:
-  title: V 2 Shipping API
-  version: '1.0'
-host: example.com
-paths: {}
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "BigCommerce V2 API",
+    "description": "TODO: Add a description"
+  },
+  "host": "api.bigcommerce.com",
+  "basePath": "/stores/{store_hash}/v2",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/shipping/zones": {
+      "get": {
+        "description": "Gets all shipping zones in a store.",
+        "summary": "Get All Shipping Zones",
+        "tags": [
+          "Shipping Zones",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingZonesByStoreHashGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ShippingZone"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 1,
+                  "name": "United States",
+                  "type": "country",
+                  "locations": [
+                    {
+                      "id": 5,
+                      "country_iso2": "US"
+                    }
+                  ],
+                  "free_shipping": {
+                    "enabled": false,
+                    "minimum_sub_total": "0.0000",
+                    "exclude_fixed_shipping_products": false
+                  },
+                  "handling_fees": {
+                    "display_separately": true,
+                    "fixed_surcharge": "0.0000"
+                  },
+                  "enabled": true
+                },
+                {
+                  "id": 2,
+                  "name": "Australia",
+                  "type": "country",
+                  "locations": [
+                    {
+                      "id": 6,
+                      "country_iso2": "AU"
+                    }
+                  ],
+                  "free_shipping": {
+                    "enabled": false,
+                    "minimum_sub_total": "0.0000",
+                    "exclude_fixed_shipping_products": false
+                  },
+                  "handling_fees": {
+                    "display_separately": true,
+                    "fixed_surcharge": "0.0000"
+                  },
+                  "enabled": true
+                }
+              ]
+            }
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "post": {
+        "description": "Create a new shipping zone.",
+        "summary": "Create Shipping Zone",
+        "tags": [
+          "Shipping Zones",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingZonesByStoreHashPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ShippingZone"
+            },
+            "x-examples": {
+              "application/json": {
+                "name": "UnitedStates-NM",
+                "type": "state",
+                "locations": [
+                  {
+                    "country_iso2": "US",
+                    "state_iso2": "NM"
+                  }
+                ],
+                "handling_fees": {
+                  "fixed_surcharge": 12,
+                  "display_separately": true
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ShippingZone"
+            },
+            "examples": {
+              "application/json": {
+                "id": 2,
+                "name": "UnitedStates-NM",
+                "type": "state",
+                "locations": [
+                  {
+                    "id": 2,
+                    "country_iso2": "US",
+                    "state_iso2": "NM"
+                  }
+                ],
+                "free_shipping": {
+                  "enabled": false,
+                  "minimum_subtotal": "0.0000",
+                  "exclude_fixed_shipping_products": false
+                },
+                "handling_fees": {
+                  "fixed_surcharge": "12.0000",
+                  "display_separately": true
+                },
+                "enabled": true
+              }
+            }
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/shipping/zones/{id}": {
+      "get": {
+        "description": "Gets a single shipping zone by `id`.",
+        "summary": "Get a Shipping Zones",
+        "tags": [
+          "Shipping Zones",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingZonesByStoreHashAndIdGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping zone."
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ShippingZone"
+            },
+            "examples": {
+              "application/json": {
+                "id": 1,
+                "name": "United States",
+                "type": "zip",
+                "locations": [
+                  {
+                    "id": 3,
+                    "zip": 12345,
+                    "country_iso2": "US",
+                    "state_iso2": "TX"
+                  }
+                ],
+                "free_shipping": {
+                  "enabled": false,
+                  "minimum_subtotal": 0,
+                  "exclude_fixed_shipping_products": false
+                },
+                "handling_fees": {
+                  "fixed_surcharge": 0,
+                  "percentage_surcharge": "",
+                  "display_separately": true
+                },
+                "enabled": true
+              }
+            }
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "put": {
+        "description": "Updates an existing shipping zone by `id`.",
+        "summary": "Update a Shipping Zone",
+        "tags": [
+          "Shipping Zones",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingZonesByStoreHashAndIdPut",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping zone."
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ShippingZone"
+            },
+            "x-examples": {
+              "application/json": {
+                "name": "UnitedStates-Samoa",
+                "type": "state",
+                "locations": [
+                  {
+                    "id": 5,
+                    "country_iso2": "US",
+                    "state_iso2": "AS"
+                  }
+                ],
+                "free_shipping": {
+                  "enabled": false,
+                  "minimum_subtotal": "0.0000",
+                  "exclude_fixed_shipping_products": false
+                },
+                "handling_fees": {
+                  "fixed_surcharge": "6.0000",
+                  "display_separately": true
+                },
+                "enabled": true
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {},
+            "examples": {
+              "application/json": {
+                "id": 1,
+                "name": "United States",
+                "type": "zip",
+                "locations": [
+                  {
+                    "id": 3,
+                    "zip": 12345,
+                    "country_iso2": "US",
+                    "state_iso2": "TX"
+                  }
+                ],
+                "free_shipping": {
+                  "enabled": false,
+                  "minimum_subtotal": 0,
+                  "exclude_fixed_shipping_products": false
+                },
+                "handling_fees": {
+                  "fixed_surcharge": 0,
+                  "percentage_surcharge": "",
+                  "display_separately": true
+                },
+                "enabled": true
+              }
+            }
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "delete": {
+        "description": "Deletes an existing shipping zone by `id`.",
+        "summary": "Delete a Shipping Zone",
+        "tags": [
+          "Shipping Zones",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingZonesByStoreHashAndIdDelete",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping zone."
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/shipping/zones/{zone_id}/methods": {
+      "get": {
+        "description": "Gets all configured shipping methods, by zone_id. Default sorting is by shipping-method id, from lowest to highest.",
+        "summary": "Get All Shipping Methods in a Zone",
+        "tags": [
+          "Shipping Method",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingZonesMethodsByStoreHashAndZoneIdGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping zone."
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ShippingMethod"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 1,
+                  "name": "Flat Rate",
+                  "type": "perorder",
+                  "settings": {
+                    "rate": 12
+                  },
+                  "enabled": true,
+                  "handling_fees": {
+                    "fixed_surcharge": 0
+                  },
+                  "is_fallback": false
+                },
+                {
+                  "id": 2,
+                  "name": "Pickup In Store",
+                  "type": "pickupinstore",
+                  "settings": [],
+                  "enabled": false,
+                  "handling_fees": {
+                    "fixed_surcharge": 0
+                  },
+                  "is_fallback": false
+                },
+                {
+                  "id": 3,
+                  "name": "Ship by Weight",
+                  "type": "weight",
+                  "settings": {
+                    "default_cost": 0,
+                    "default_cost_type": "fixed_amount",
+                    "range": [
+                      {
+                        "lower_limit": 0,
+                        "upper_limit": 20,
+                        "shipping_cost": 8
+                      },
+                      {
+                        "lower_limit": 20,
+                        "upper_limit": 40,
+                        "shipping_cost": 8
+                      },
+                      {
+                        "lower_limit": 40,
+                        "upper_limit": 60,
+                        "shipping_cost": 8
+                      },
+                      {
+                        "lower_limit": 60,
+                        "upper_limit": 80,
+                        "shipping_cost": 8
+                      }
+                    ]
+                  },
+                  "enabled": true,
+                  "handling_fees": {
+                    "fixed_surcharge": 0
+                  },
+                  "is_fallback": false
+                },
+                {
+                  "id": 4,
+                  "name": "UPS®",
+                  "type": "upsready",
+                  "settings": {
+                    "carrier_options": {
+                      "include_package_value": "1",
+                      "show_transit_time": "1",
+                      "destination_type": "residential",
+                      "packing_method": "combined",
+                      "packaging_type": "2c",
+                      "delivery_services": [
+                        "Express",
+                        "Ground",
+                        "Next_Day_Air",
+                        "Saver",
+                        "Standard"
+                      ],
+                      "packaging": []
+                    }
+                  },
+                  "enabled": true,
+                  "handling_fees": {
+                    "fixed_surcharge": 0
+                  },
+                  "is_fallback": false
+                }
+              ]
+            }
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "post": {
+        "description": "Creates a new shipping method within a shipping zone.",
+        "summary": "Create a New Shipping Method",
+        "tags": [
+          "Shipping Method",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingZonesMethodsByStoreHashAndZoneIdPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping zone."
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ShippingMethod"
+            },
+            "x-examples": {
+              "application/json": {
+                "name": "Per Order",
+                "type": "perorder",
+                "settings": {
+                  "rate": 8
+                },
+                "enabled": true,
+                "handling_fees": {
+                  "fixed_surcharge": 3
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ShippingMethod"
+            },
+            "examples": {
+              "application/json": {
+                "id": 5,
+                "name": "Per Order",
+                "type": "perorder",
+                "settings": {
+                  "rate": 8
+                },
+                "enabled": true,
+                "handling_fees": {
+                  "fixed_surcharge": 3
+                }
+              }
+            }
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/shipping/zones/{zone_id}/methods/{method_id}": {
+      "get": {
+        "description": "Gets a shipping method using the `zone_id` and `method_id`.",
+        "summary": "Get a Single Shipping Method",
+        "tags": [
+          "Shipping Method",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingZonesMethodsMethodIdByStoreHashAndZoneIdGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping zone."
+          },
+          {
+            "name": "method_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping method within the shipping zone."
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ShippingMethod"
+            },
+            "examples": {
+              "application/json": {
+                "id": 1,
+                "name": "Flat Rate",
+                "type": "perorder",
+                "settings": {
+                  "rate": 12
+                },
+                "enabled": true,
+                "handling_fees": {
+                  "fixed_surcharge": 0
+                },
+                "is_fallback": false
+              }
+            }
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "put": {
+        "description": "Updates an existing shipping method.",
+        "summary": "Update a Shipping Method",
+        "tags": [
+          "Shipping Method",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingZonesMethodsMethodIdByStoreHashAndZoneIdPut",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping zone."
+          },
+          {
+            "name": "method_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping method within the shipping zone."
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ShippingMethod"
+            },
+            "x-examples": {
+              "application/json": {
+                "settings": {
+                  "rate": 11
+                },
+                "handling_fees": {
+                  "fixed_surcharge": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ShippingMethod"
+            },
+            "examples": {
+              "application/json": {
+                "id": 5,
+                "name": "Per Order",
+                "type": "perorder",
+                "settings": {
+                  "rate": 11
+                },
+                "enabled": true,
+                "handling_fees": {
+                  "fixed_surcharge": 0
+                }
+              }
+            }
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "delete": {
+        "description": "Deletes an existing shipping method using `zone_id` and `method_id`.",
+        "summary": "Delete a Shipping Method",
+        "tags": [
+          "Shipping Method",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingZonesMethodsMethodIdByStoreHashAndZoneIdDelete",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping zone."
+          },
+          {
+            "name": "method_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Id of the shipping method within the shipping zone."
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/shipping/carrier/connection": {
+      "put": {
+        "description": "Updating the carrier connection is done using the same information as creating the connection. This endpoint can be used to update credentials.\n\n*Endicia Example*\n```\n{   \"carrier_id\" : \"endicia\",\n    \"connection\": {\n        \"account_id\" : \"yourEndiciaAccountId\",\n        \"pass_phrase\" : \"yourEndiciaPassphrase\"\n    }\n}\n```",
+        "summary": "Update a Carrier Connection",
+        "tags": [
+          "Shipping Carrier",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingCarrierConnectionByStoreHashPut",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            },
+            "x-examples": {
+              "application/json": {
+                "carrier_id": "endicia",
+                "connection": {
+                  "account_id": "yourEndiciaAccountId",
+                  "pass_phrase": "yourEndiciaPassphrase"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Returns if request was succesful"
+          },
+          "400": {
+            "description": "If a required field is not provided it will return a 400 response. \n\n[\n    {\n        \"status\": 400,\n        \"message\": \"Required fields missing [key]\"\n    }\n]",
+            "schema": {}
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "post": {
+        "description": "Carrier connections refer to specific settings required to connect to a specific shipping carrier. Each carrier requires your app to supply a unique set of properties/fields to establish a connection with that carrier.\n\n*Notes:*\n\n- There is no `GET` with this resource. It has `PUT`, `POST` and `DELETE`.\n    * A PUT is used to update. The connection can be updated via API.\n    \n- Connections created here do not enable the shipping method. To enable the carrier for a shipping zone, use the [Shipping Methods API](#reference/shipping-method). \n\n- The Carrier Connection resource returns a 204 for both succesful and unsuccesful attempts to connect. If a field is missing it will return a 400.\n\n**Australia Post Example**\n\n```\n{\n    \"carrier_id\" : \"auspost\",\n    \"connection\" : {\n        \"auth_key\" : \"yourAusPostAuthKey\",\n        \"test_mode\" : false\n    }\n}\n```\n\n\n**Endicia Example**\nUSPS is connected through Endicia.\n\n```\n{   \"carrier_id\" : \"endicia\",\n    \"connection\": {\n        \"account_id\" : \"yourEndiciaAccountId\",\n        \"pass_phrase\" : \"yourEndiciaPassphrase\"\n    }\n}\n```\n\n\n**FedEx Example**\n\n```\n{\n    \"carrier_id\" : \"fedex\",\n    \"connection\" : {\n        \"key\" : \"yourFedexKey\",\n        \"password\" : \"yourFedexPassword\",\n        \"account_number\" : \"yourFedexAccountNumber\",\n        \"meter_number\" : \"yourFedexMeterNumber\"\n    }\n}\n```",
+        "summary": "Create a Carrier Connection",
+        "tags": [
+          "Shipping Carrier",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingCarrierConnectionByStoreHashPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            },
+            "x-examples": {
+              "application/json": {
+                "carrier_id": "auspost",
+                "connection": {
+                  "auth_key": "yourAusPostAuthKey",
+                  "test_mode": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Returns if request was succesful"
+          },
+          "400": {
+            "description": "If a required field is not provided, the request will return a 400 response. \n\n[\n    {\n        \"status\": 400,\n        \"message\": \"Required fields missing [key]\"\n    }\n]",
+            "schema": {}
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "delete": {
+        "description": "When sending a DELETE request only the `carrier_id` is needed. \n\n```\n{\n    \"carrier_id\" : \"fedex\"\n}\n```",
+        "summary": "Delete a Carrier Connection",
+        "tags": [
+          "Shipping Carrier",
+          "Shipping"
+        ],
+        "operationId": "StoresV2ShippingCarrierConnectionByStoreHashDelete",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "store_hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Your store's hash from the canonical URL"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "carrier_id": {
+                  "type": "string",
+                  "example": "fedex"
+                }
+              }
+            },
+            "x-examples": {
+              "application/json": {
+                "carrier_id": "fedex"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Returns if request was succesful"
+          },
+          "400": {
+            "description": "If a required field is not provided it will return a 400 response. \n\n[\n    {\n        \"status\": 400,\n        \"message\": \"Required fields missing [key]\"\n    }\n]",
+            "schema": {}
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    }
+  },
+  "definitions": {
+    "TrackingCarrier": {
+      "title": "Tracking Carrier",
+      "example": "auspost",
+      "x-enum-elements": [
+        {
+          "name": "auspost",
+          "description": ""
+        },
+        {
+          "name": "canadapost",
+          "description": ""
+        },
+        {
+          "name": "endicia",
+          "description": ""
+        },
+        {
+          "name": "usps",
+          "description": ""
+        },
+        {
+          "name": "fedex",
+          "description": ""
+        },
+        {
+          "name": "royalmail",
+          "description": ""
+        },
+        {
+          "name": "ups",
+          "description": ""
+        },
+        {
+          "name": "upsready",
+          "description": ""
+        },
+        {
+          "name": "shipperhq",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "auspost",
+        "canadapost",
+        "endicia",
+        "usps",
+        "fedex",
+        "royalmail",
+        "ups",
+        "upsready",
+        "shipperhq"
+      ]
+    },
+    "ShippingProvider": {
+      "title": "Shipping Provider",
+      "x-enum-elements": [
+        {
+          "name": "Enum_0",
+          "description": "empty string"
+        },
+        {
+          "name": "Enum_1",
+          "description": ""
+        },
+        {
+          "name": "Enum_2",
+          "description": ""
+        },
+        {
+          "name": "Enum_3",
+          "description": ""
+        },
+        {
+          "name": "Enum_4",
+          "description": ""
+        },
+        {
+          "name": "Enum_5",
+          "description": ""
+        },
+        {
+          "name": "Enum_6",
+          "description": ""
+        },
+        {
+          "name": "Enum_7",
+          "description": ""
+        },
+        {
+          "name": "Enum_8",
+          "description": ""
+        },
+        {
+          "name": "Enum_9",
+          "description": ""
+        },
+        {
+          "name": "Enum_10",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "``",
+        "fedex",
+        "auspost",
+        "canadapost",
+        "endicia",
+        "usps",
+        "royalmail",
+        "ups",
+        "upsready",
+        "upsonline",
+        "shipperhq"
+      ],
+      "example": "endicia"
+    },
+    "ShippingZone": {
+      "title": "Shipping Zone",
+      "example": {
+        "id": 1,
+        "name": "United States",
+        "type": "zip",
+        "locations": [
+          {
+            "id": 3,
+            "zip": 12345,
+            "country_iso2": "US",
+            "state_iso2": "TX"
+          }
+        ],
+        "free_shipping": {
+          "enabled": false,
+          "minimum_subtotal": 0,
+          "exclude_fixed_shipping_products": false
+        },
+        "handling_fees": {
+          "fixed_surcharge": 0,
+          "percentage_surcharge": "",
+          "display_separately": true
+        },
+        "enabled": true
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Zone Id. READ-ONLY",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "description": "Zone name. Required for /PUT",
+          "example": "United States"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "zip",
+            "country",
+            "state",
+            "global"
+          ]
+        },
+        "locations": {
+          "description": "Array of zone locations.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShippingZoneLocations"
+          }
+        },
+        "free_shipping": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "minimum_sub_total": {
+              "type": "string",
+              "example": "0.0000",
+              "description": "(Float, Float-As-String, Integer)"
+            },
+            "exclude_fixed_shipping_products": {
+              "type": "boolean"
+            }
+          }
+        },
+        "handling_fees": {
+          "$ref": "#/definitions/HandlingFees"
+        },
+        "enabled": {
+          "description": "Whether this shipping zone is enabled.",
+          "example": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "ShippingZoneLocations": {
+      "title": "Shipping Zone Locations",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Location’s ID.",
+          "example": 3,
+          "type": "integer"
+        },
+        "zip": {
+          "description": "Location’s ZIP/postal code.",
+          "example": 12345,
+          "type": "string"
+        },
+        "country_iso2": {
+          "description": "2-letter ISO Alpha-2 code for the country.",
+          "example": "US",
+          "type": "string"
+        },
+        "state_iso2": {
+          "description": "ISO Alpha-2 code for the state.",
+          "example": "TX",
+          "type": "string"
+        }
+      }
+    },
+    "HandlingFees": {
+      "title": "Shipping Zone Handling Fees",
+      "type": "object",
+      "properties": {
+        "fixed_surcharge": {
+          "description": "",
+          "example": 0,
+          "type": "string"
+        },
+        "percentage_surcharge": {
+          "description": "",
+          "type": "string"
+        },
+        "display_separately": {
+          "description": "",
+          "example": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "ShippingMethod": {
+      "title": "Shipping Method",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Shipping-method ID. READ-ONLY",
+          "example": 1,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Display name for shipping method.",
+          "example": "Flat Rate",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/ShippingMethodType"
+        },
+        "settings": {
+          "description": "Depends on the shipping-method type. See the [supported settings object](#supported-settings).",
+          "type": "object"
+        },
+        "enabled": {
+          "description": "Whether or not this shipping-zone method is enabled.",
+          "example": true,
+          "type": "boolean"
+        },
+        "handling_fees": {
+          "type": "object",
+          "enum": [
+            "fixed_surcharge",
+            "percentage_surcharge"
+          ],
+          "example": "percentage_surcharge",
+          "description": "`fixed_surcharge`: flat-rate handling fee applied to shipping cost.\n\n`percentage_surcharge`: percentage handling fee applied to shipping cost"
+        },
+        "is_fallback": {
+          "description": "Whether or not this shipping zone is the fallback if all others are not valid for the order.",
+          "example": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "ShippingMethodType": {
+      "title": "Shipping Method Type",
+      "example": "perorder",
+      "x-enum-elements": [
+        {
+          "name": "perorder",
+          "description": ""
+        },
+        {
+          "name": "peritem",
+          "description": ""
+        },
+        {
+          "name": "weight",
+          "description": ""
+        },
+        {
+          "name": "total",
+          "description": ""
+        },
+        {
+          "name": "auspost",
+          "description": ""
+        },
+        {
+          "name": "canadapost",
+          "description": ""
+        },
+        {
+          "name": "endicia",
+          "description": ""
+        },
+        {
+          "name": "usps",
+          "description": ""
+        },
+        {
+          "name": "fedex",
+          "description": ""
+        },
+        {
+          "name": "royalmail",
+          "description": ""
+        },
+        {
+          "name": "upsready",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "perorder",
+        "peritem",
+        "weight",
+        "total",
+        "auspost",
+        "canadapost",
+        "endicia",
+        "usps",
+        "fedex",
+        "royalmail",
+        "upsready"
+      ]
+    },
+  },
+  "tags": [
+    {
+      "name": "Orders"
+    },
+    {
+      "name": "Order Coupons"
+    },
+    {
+      "name": "Order Products"
+    },
+    {
+      "name": "Order Taxes"
+    },
+    {
+      "name": "Order Statues"
+    },
+    {
+      "name": "Order Shipments"
+    },
+    {
+      "name": "Order Shipping Addresses"
+    },
+    {
+      "name": "Store Content"
+    },
+    {
+      "name": "Blog Posts"
+    },
+    {
+      "name": "Pages"
+    },
+    {
+      "name": "Redirects"
+    },
+    {
+      "name": "Gift Certificate"
+    },
+    {
+      "name": "Currency"
+    },
+    {
+      "name": "Customers"
+    },
+    {
+      "name": "Customer Groups"
+    },
+    {
+      "name": "Customer Addresses"
+    },
+    {
+      "name": "Customer Passwords"
+    },
+    {
+      "name": "Geography"
+    },
+    {
+      "name": "Countries"
+    },
+    {
+      "name": "States"
+    },
+    {
+      "name": "Marketing"
+    },
+    {
+      "name": "Banners"
+    },
+    {
+      "name": "Coupons"
+    },
+    {
+      "name": "Shipping"
+    },
+    {
+      "name": "Shipping Method"
+    },
+    {
+      "name": "Shipping Carrier"
+    },
+    {
+      "name": "Shipping Zones"
+    },
+    {
+      "name": "Store Information Reference"
+    },
+    {
+      "name": "Store"
+    },
+    {
+      "name": "Taxes"
+    },
+    {
+      "name": "Payment Methods"
+    }
+  ]
+}
