@@ -568,7 +568,7 @@ paths:
       security:
         - X-Auth-Token: []
         - X-Auth-Client: []
-  '/stores/{store_hash}/v2/blog/posts/{id}':
+  '/blog/posts/{id}':
     get:
       description: Gets a blog post.
       summary: Get A Single Blog Post
@@ -742,8 +742,6 @@ paths:
     delete:
       description: Deletes a single blog post.
       summary: Delete A Blog Post
-      produces:
-        - application/json
       parameters:
         - name: store_hash
           in: path
@@ -769,16 +767,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '204':
           description: ''
@@ -790,7 +778,11 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Blog Posts
-        - Store Content
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
   /blog/posts/count:
     get:
       description: Gets a count of all blog posts in a store.
