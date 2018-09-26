@@ -1872,7 +1872,7 @@ paths:
     get:
       description: Lists all order coupons. Optional parameters can be passed in.
       summary: List Order Coupons
-      operationId: StoresV2OrdersCouponsByStoreHashAndOrderIdGet
+      operationId: V2OrdersCouponsByStoreHashAndOrderIdGet
       produces:
         - application/json
       parameters:
@@ -1900,16 +1900,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: page
           in: query
           required: false
@@ -1940,6 +1930,21 @@ paths:
                 amount: 5
                 type: 2
                 discount: 5
+            Response Schema:
+              - id: 16524854
+                coupon_id: -45375120
+                order_id: 63105415
+                code: elit aute con
+                amount: exercitation minim occaecat labore sed
+                type: '3'
+                discount: 26943999.942130953
+              - id: -19288276
+                coupon_id: -90734671
+                order_id: -53768252
+                code: ex labore occaecat esse
+                amount: nulla reprehenderit elit
+                type: '1'
+                discount: 68318902.99129134
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -1949,6 +1954,9 @@ paths:
       tags:
         - Order Coupons
         - Orders
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/stores/{store_hash}/v2/orders/{order_id}/products':
     get:
       description: Lists all order products on an order using `order_id`.
