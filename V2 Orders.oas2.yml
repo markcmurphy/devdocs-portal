@@ -373,6 +373,48 @@ paths:
         discounts, apart from manual discount. You should modify the above
         fields only if you have created the order via the POST operation, or if
         you intend to manually override the subtotals and totals.
+
+
+        ## Adding an Existing Product
+
+        | Name             | Type  |
+        Description                                                                                                                                                                                                                                                                                               
+        |
+
+        | ---------------- | ----- |
+        ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        |
+
+        | product\_id      | int   | The ID of the product that you want to add
+        to the order
+        (required).                                                                                                                                                                                                                                       
+        |
+
+        | quantity         | int   | How many products of this type to add to
+        the order
+        (required).                                                                                                                                                                                                                                            
+        |
+
+        | product\_options | array | These values might be required, depending
+        on how the product's options are set up. If the options are required,
+        pass in the \[\`id\`\](\#options-object-properties) of the product
+        option (not the option itself) and the
+        \[\`value\`\](\#option-value-object-properties) of the option (not the
+        product). |
+
+        | price\_inc\_tax  | int   | If you include a value here, it will
+        overwrite the price (including tax) already specified for the product.
+        This property is optional, but if you do include a value for
+        \`price\_inc\_tax\`, you must also include a value for
+        \`price\_ex\_tax\`.                                                       
+        |
+
+        | price\_ex\_tax   | int   | If you include a value here, it will
+        overwrite the price (excluding tax) already specified for the product.
+        This property is optional, but if you do include a value for
+        \`price\_ex\_tax\`, you must also include a value for
+        \`price\_inc\_tax\`.                                                       
+        |
       summary: Update an Order
       tags:
         - Orders
@@ -506,6 +548,7 @@ paths:
                 resource: non laboris labore dolore reprehenderit
               external_id: tempor et sunt
               external_merchant_id: id ea a
+            Adding an Existing Product: "{\n  \"product_id\"\n  \"quantity\"\n  \"product_options\":{}\n\t\"price_inc_tax\"\n\t\"price_ex_tax\"\n  \n}"
         - name: id
           in: path
           required: true
