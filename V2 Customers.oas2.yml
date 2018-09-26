@@ -896,7 +896,7 @@ paths:
             password-reset:
               _authentication:
                 force_reset: true
-      description: >-
+      description: >
         This endpoint can be used to update a customer or a customers password
         information.  Passwords use the `_authentication` functionality to
         update, confirm or force a password reset.
@@ -921,6 +921,102 @@ paths:
 
 
         On success they return the *Customer* object.
+
+
+
+
+        #### Read-only Properties 
+
+
+        The following properties of the customer are read-only. If one or more
+        of these properties are included in the request, it will be rejected.
+
+
+        *   id
+
+        *   date_created
+
+        *   date_modified
+
+        *   accepts_marketing
+
+        *   addresses
+
+        *   form_fields
+
+
+        #### Requirements 
+
+
+        The following properties of the customer are required. The request won’t
+        be fulfilled unless these properties are valid.
+
+
+        #### Notes 
+
+
+        The `_authentication` object exposes functionality associated with the
+        customer’s ability to log in to the store. All properties of the
+        `_authentication` object are optional.
+
+
+        When the `_authentication` object is not supplied with an update
+        request, then the existing customer password remains the same.
+
+
+        #### Updating Passwords 
+
+
+        To manually update a customer password in the same way as the control
+        panel, supply a value for the `password` field:
+
+
+        ```json
+
+        {
+            "_authentication": {
+                "password": "12w69Y217PYR96J"
+            }
+        }
+
+        ```
+
+
+        #### Confirming Passwords 
+
+
+        An additional optional `password_confirmation` field can also be sent,
+        providing password confirmation as a service:
+
+
+        ```json
+
+        {
+            "_authentication": {
+               "password": "12w69Y217PYR96J"
+               "password_confirmation": "12w69Y217PYR96J"
+            }
+        }
+
+        ```
+
+
+        #### Forcing Password Resets 
+
+
+        To force a customer to reset their password upon their next login
+        attempt, give the `force_reset` field a value of true, as shown here:
+
+
+        ```json
+
+        {
+            "_authentication": {
+                "force_reset": true
+            }
+        }
+
+        ```
   /customers/count:
     get:
       description: Gets a count of the total number of customers in the store.
