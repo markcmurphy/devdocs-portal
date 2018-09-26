@@ -3594,6 +3594,33 @@ paths:
         in: path
         type: string
         required: true
+  '/v2/orders/{order_id}/products/{id}':
+    get:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+      summary: Get a Order Product
+      description: Gets a product line item associated with the order.
+      tags:
+        - Order Products
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+    parameters:
+      - name: order_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
 definitions:
   Order:
     title: Order
