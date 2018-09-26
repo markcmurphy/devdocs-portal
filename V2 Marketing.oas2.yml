@@ -618,15 +618,7 @@ paths:
         Gets the banners available. (Default sorting is by banner id, from
         lowest to highest.)
       summary: Get a List of All Banners
-      operationId: StoresV2BannersByStoreHashGet
-      produces:
-        - application/json
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: Accept
           in: header
           required: true
@@ -639,16 +631,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: min_id
           in: query
           required: false
@@ -708,6 +690,51 @@ paths:
                 date_from: '0'
                 date_to: '0'
                 visible: '1'
+            Response Schema:
+              - name: enim dolore culpa
+                content: nostrud ex
+                page: home_page
+                location: bottom
+                date_type: always
+                id: -20236841
+                item_id: adipisicing
+                date_created: '2000-02-01T23:41:02.227Z'
+                date_from: ullamco dolore occaecat est
+                date_to: cup
+                visible: dolore ullamco
+              - name: officia ullamco veniam cillum
+                content: est in dolore ipsum
+                page: search_page
+                location: bottom
+                date_type: custom
+                id: -39106690
+                item_id: nulla sed
+                date_created: '1971-12-11T04:18:51.484Z'
+                date_from: ex nulla laboris eiusmod
+                date_to: do tempor
+                visible: Ut eu dolor voluptate
+              - name: 'minim '
+                content: ve
+                page: home_page
+                location: top
+                date_type: custom
+                id: 60422855
+                item_id: dolore pariatur
+                date_created: '1958-04-29T06:45:26.348Z'
+                date_from: quis do occaecat deserunt
+                date_to: laborum nost
+                visible: Ut sint
+              - name: labore dolore eu
+                content: ipsum nostrud eiusmod magna anim
+                page: brand_page
+                location: bottom
+                date_type: custom
+                id: 68348597
+                item_id: eiusmod et
+                date_created: '1990-05-30T06:31:49.521Z'
+                date_from: sed
+                date_to: velit
+                visible: in labore eiusmod incididunt
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -716,7 +743,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Banners
-        - Marketing
     post:
       description: Creates a new banner.
       summary: Create a Banner
