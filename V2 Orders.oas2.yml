@@ -251,7 +251,7 @@ paths:
       summary: Update an Order
       tags:
         - Orders
-      operationId: StoresV2OrdersByStoreHashAndIdPut
+      operationId: V2OrdersByStoreHashAndIdPut
       produces:
         - application/json
       parameters:
@@ -272,16 +272,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: body
           in: body
           required: true
@@ -408,6 +398,9 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     delete:
       description: Archives an order by `id`.
       summary: Delete an Order
