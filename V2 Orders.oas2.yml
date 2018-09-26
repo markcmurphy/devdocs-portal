@@ -2643,7 +2643,7 @@ paths:
         in: path
         type: string
         required: true
-  '/stores/{store_hash}/v2/orders/{order_id}/shipping_addresses':
+  '/orders/{order_id}/shipping_addresses':
     get:
       description: Get all shipping address on an order using the `order_id`.
       summary: Get A List of Order Shipping Address
@@ -2893,6 +2893,11 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
+    parameters:
+      - name: order_id
+        in: path
+        type: string
+        required: true
   /order_statuses:
     get:
       description: Gets a list of order statues.
@@ -3145,7 +3150,7 @@ paths:
         in: path
         type: string
         required: true
-  '/stores/{store_hash}/v2/orders/{order_id}/taxes':
+  '/orders/{order_id}/taxes':
     get:
       description: >-
         Gets all order taxes using `order_id`.
@@ -3257,6 +3262,11 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
+    parameters:
+      - name: order_id
+        in: path
+        type: string
+        required: true
   '/orders/{order_id}/shipments':
     get:
       description: Gets a list of all shipments on an order
