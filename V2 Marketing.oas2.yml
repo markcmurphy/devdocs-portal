@@ -744,17 +744,37 @@ paths:
       tags:
         - Banners
     post:
-      description: Creates a new banner.
+      description: >-
+        Creates a new banner.
+
+
+        ## Read-only Properties
+
+
+        The following properties of the banner are read-only. If one or more of
+        these properties are included in the request, it will be rejected.
+
+
+        ## Requirements
+
+
+        The following properties of the banner are required. The request won't
+        be fulfilled unless these properties are valid.
+
+
+        * name
+
+        * content
+
+        * page
+
+        * location
+
+        * date_type
       summary: Create a Banner
-      operationId: StoresV2BannersByStoreHashPost
       produces:
         - application/json
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: Accept
           in: header
           required: true
@@ -767,16 +787,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: body
           in: body
           required: true
@@ -809,6 +819,18 @@ paths:
               date_from: 0
               date_to: 0
               visible: 1
+            Response Schema:
+              name: dolore
+              content: in enim
+              page: category_page
+              location: top
+              date_type: always
+              id: -78851849
+              item_id: do
+              date_created: '1947-03-02T17:54:28.008Z'
+              date_from: proident velit aute laboris
+              date_to: sunt ex adipisicing non
+              visible: id commodo
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -817,7 +839,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Banners
-        - Marketing
     delete:
       description: Deletes all banners associated with the store.
       summary: Delete All Banners
@@ -866,33 +887,7 @@ paths:
         - Marketing
   '/banners/{id}':
     get:
-      description: >-
-        Gets a single banner by `id`.
-
-
-        ## Read-only Properties
-
-
-        The following properties of the banner are read-only. If one or more of
-        these properties are included in the request, it will be rejected.
-
-
-        ## Requirements
-
-
-        The following properties of the banner are required. The request won't
-        be fulfilled unless these properties are valid.
-
-
-        * name
-
-        * content
-
-        * page
-
-        * location
-
-        * date_type
+      description: Gets a single banner by `id`.
       summary: Get a Banner
       parameters:
         - name: id
