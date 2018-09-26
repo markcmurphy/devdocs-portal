@@ -555,13 +555,12 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  '/stores/{store_hash}/v2/customers/{id}':
+  '/customers/{id}':
     get:
       description: Gets a single customer.
       summary: Get a Single Customer
       tags:
         - Customers
-      operationId: StoresV2CustomersByStoreHashAndIdGet
       produces:
         - application/json
       parameters:
@@ -584,21 +583,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: ''
       responses:
         '200':
           description: ''
@@ -628,6 +612,40 @@ paths:
               form_fields:
                 - name: ''
                   value: ''
+              reset_pass_on_login: false
+            Response Schema:
+              first_name: qui
+              last_name: magna aliqua
+              email: ut qui
+              id: -50281083
+              _authentication:
+                force_reset: ad Excepteur
+                password: aliqua anim ad non
+                password_confirmation: dolore in ex sint
+              company: consequat nisi adipisicing quis
+              phone: sed occaecat non ut voluptate
+              date_created: '1996-02-05T07:35:29.104Z'
+              date_modified: '2000-04-28T20:17:23.598Z'
+              store_credit: cupidatat ipsum minim
+              registration_ip_address: quis Duis sed elit qui
+              customer_group_id: 37499869
+              notes: ut voluptate reprehenderit
+              tax_exempt_category: consequat esse
+              accepts_marketing: false
+              addresses:
+                url: anim ea veniam
+                resource: minim dolor ex mollit
+              form_fields:
+                - name: nisi adipisicing
+                  value: Duis eiusmod sed
+                - name: esse occaecat
+                  value: aliqua dolor velit sit
+                - name: do deserunt
+                  value: amet ut consequat fugiat
+                - name: tempor in sit sed minim
+                  value: dolor ullamco amet est
+                - name: labor
+                  value: culpa ipsum aute
               reset_pass_on_login: false
       x-unitTests: []
       x-operation-settings:
@@ -688,10 +706,6 @@ paths:
       tags:
         - Customers
     parameters:
-      - name: store_hash
-        in: path
-        type: string
-        required: true
       - name: id
         in: path
         type: string
