@@ -527,11 +527,19 @@ paths:
         - X-Auth-Client: []
         - X-Auth-Token: []
     delete:
-      description: Archives an order by `id`.
+      description: >
+        Archives an order
+
+
+        ## Deletion Blocked by Automatic Tax
+
+
+        Any attempt to DELETE an order on a store with automatic tax enabled
+        will fail, and will return `405 Method not allowed.`
       summary: Delete an Order
       tags:
         - Orders
-      operationId: StoresV2OrdersByStoreHashAndIdDelete
+      operationId: V2OrdersByStoreHashAndIdDelete
       produces:
         - application/json
       parameters:
@@ -559,16 +567,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '204':
           description: ''
@@ -578,6 +576,9 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
     parameters:
       - name: store_hash
         in: path
