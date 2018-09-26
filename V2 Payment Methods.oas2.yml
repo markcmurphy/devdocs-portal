@@ -1,257 +1,145 @@
-{
-  "swagger": "2.0",
-  "info": {
-    "version": "1.0",
-    "title": "BigCommerce V2 API",
-    "description": "TODO: Add a description"
-  },
-  "host": "api.bigcommerce.com",
-  "basePath": "/stores/{store_hash}/v2",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/payments/methods": {
-      "get": {
-        "description": "Gets the list of enabled payment methods. Default sorting is by payment method, alphabetically from A to Z.",
-        "summary": "Get All Payment Methods",
-        "operationId": "StoresV2PaymentsMethodsByStoreHashGet",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "store_hash",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "Your store's hash from the canonical URL"
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": "",
-            "default": "application/json"
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": "",
-            "default": "application/json"
-          },
-          {
-            "name": "X-Auth-Client",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "X-Auth-Token",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "exclusiveMaximum": false,
-            "exclusiveMinimum": false,
-            "description": "Optional filter param `/api/v2/payments/methods?page={number}`"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "exclusiveMaximum": false,
-            "exclusiveMinimum": false,
-            "description": "Optional filter param `/api/v2/payments/methods?limit={count}`"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/PaymentMethod"
-              }
-            },
-            "examples": {
-              "application/json": [
-                {
-                  "code": "braintree",
-                  "name": "Braintree",
-                  "test_mode": false
-                },
-                {
-                  "code": "braintreepaypal",
-                  "name": "Braintree (PayPal)",
-                  "test_mode": false
-                },
-                {
-                  "code": "braintreepaypalcredit",
-                  "name": "Braintree (PayPal Credit)",
-                  "test_mode": false
-                },
-                {
-                  "code": "instore",
-                  "name": "Pay in Store",
-                  "test_mode": false
-                }
-              ]
-            }
-          }
-        },
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        },
-        "tags": [
-          "Payment Methods"
-        ]
-      }
-    }
-  },
-  "definitions": {
-
-    "PaymentMethod": {
-      "title": "PaymentMethod",
-      "example": {
-        "code": "squarev2",
-        "name": "Square",
-        "test_mode": false
-      },
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Unique platform-wide code identifying the payment method.",
-          "example": "squarev2",
-          "type": "string"
-        },
-        "name": {
-          "description": "Descriptive name of the payment method.",
-          "example": "Square",
-          "type": "string"
-        },
-        "test_mode": {
-          "description": "Determines whether the payment gateway is in test mode. Always false for offline payment methods.",
-          "example": false,
-          "type": "boolean"
-        }
-      }
-    }
-  },
-  "tags": [
-    {
-      "name": "Orders"
-    },
-    {
-      "name": "Order Coupons"
-    },
-    {
-      "name": "Order Products"
-    },
-    {
-      "name": "Order Taxes"
-    },
-    {
-      "name": "Order Statues"
-    },
-    {
-      "name": "Order Shipments"
-    },
-    {
-      "name": "Order Shipping Addresses"
-    },
-    {
-      "name": "Store Content"
-    },
-    {
-      "name": "Blog Posts"
-    },
-    {
-      "name": "Pages"
-    },
-    {
-      "name": "Redirects"
-    },
-    {
-      "name": "Gift Certificate"
-    },
-    {
-      "name": "Currency"
-    },
-    {
-      "name": "Customers"
-    },
-    {
-      "name": "Customer Groups"
-    },
-    {
-      "name": "Customer Addresses"
-    },
-    {
-      "name": "Customer Passwords"
-    },
-    {
-      "name": "Geography"
-    },
-    {
-      "name": "Countries"
-    },
-    {
-      "name": "States"
-    },
-    {
-      "name": "Marketing"
-    },
-    {
-      "name": "Banners"
-    },
-    {
-      "name": "Coupons"
-    },
-    {
-      "name": "Shipping"
-    },
-    {
-      "name": "Shipping Method"
-    },
-    {
-      "name": "Shipping Carrier"
-    },
-    {
-      "name": "Shipping Zones"
-    },
-    {
-      "name": "Store Information Reference"
-    },
-    {
-      "name": "Store"
-    },
-    {
-      "name": "Taxes"
-    },
-    {
-      "name": "Payment Methods"
-    }
-  ]
-}
+swagger: '2.0'
+info:
+  version: ''
+  title: BigCommerce V2 Payment Methods
+  description: Enabled payment types or methods in a store.
+host: api.bigcommerce.com
+basePath: '/stores/{store_hash}/v2'
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /payments/methods:
+    get:
+      description: >-
+        Gets the list of enabled payment methods. Default sorting is by payment
+        method, alphabetically from A to Z.
+      summary: Get All Payment Methods
+      produces:
+        - application/json
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          type: string
+          description: ''
+          default: application/json
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: ''
+          default: application/json
+        - name: page
+          in: query
+          required: false
+          type: number
+          exclusiveMaximum: false
+          exclusiveMinimum: false
+          description: 'Optional filter param `/api/v2/payments/methods?page={number}`'
+        - name: limit
+          in: query
+          required: false
+          type: number
+          exclusiveMaximum: false
+          exclusiveMinimum: false
+          description: 'Optional filter param `/api/v2/payments/methods?limit={count}`'
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PaymentMethod'
+          examples:
+            application/json:
+              - code: braintree
+                name: Braintree
+                test_mode: false
+              - code: braintreepaypal
+                name: Braintree (PayPal)
+                test_mode: false
+              - code: braintreepaypalcredit
+                name: Braintree (PayPal Credit)
+                test_mode: false
+              - code: instore
+                name: Pay in Store
+                test_mode: false
+      x-unitTests: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      tags:
+        - Payment Methods
+definitions:
+  PaymentMethod:
+    title: PaymentMethod
+    example:
+      code: squarev2
+      name: Square
+      test_mode: false
+    type: object
+    properties:
+      code:
+        description: Unique platform-wide code identifying the payment method.
+        example: squarev2
+        type: string
+      name:
+        description: Descriptive name of the payment method.
+        example: Square
+        type: string
+      test_mode:
+        description: >-
+          Determines whether the payment gateway is in test mode. Always false
+          for offline payment methods.
+        example: false
+        type: boolean
+tags:
+  - name: Orders
+  - name: Order Coupons
+  - name: Order Products
+  - name: Order Taxes
+  - name: Order Statues
+  - name: Order Shipments
+  - name: Order Shipping Addresses
+  - name: Store Content
+  - name: Blog Posts
+  - name: Pages
+  - name: Redirects
+  - name: Gift Certificate
+  - name: Currency
+  - name: Customers
+  - name: Customer Groups
+  - name: Customer Addresses
+  - name: Customer Passwords
+  - name: Geography
+  - name: Countries
+  - name: States
+  - name: Marketing
+  - name: Banners
+  - name: Coupons
+  - name: Shipping
+  - name: Shipping Method
+  - name: Shipping Carrier
+  - name: Shipping Zones
+  - name: Store Information Reference
+  - name: Store
+  - name: Taxes
+  - name: Payment Methods
+securityDefinitions:
+  X-Auth-Client:
+    type: apiKey
+    name: X-Auth-Client
+    in: header
+  X-Auth-Token:
+    type: apiKey
+    name: X-Auth-Token
+    in: header
+security:
+  - X-Auth-Client: []
+  - X-Auth-Token: []
