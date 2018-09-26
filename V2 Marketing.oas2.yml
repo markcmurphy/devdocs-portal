@@ -390,15 +390,7 @@ paths:
     delete:
       description: Deletes all store coupons
       summary: Delete All Coupons
-      operationId: StoresV2CouponsByStoreHashDelete
-      produces:
-        - application/json
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: Accept
           in: header
           required: true
@@ -411,16 +403,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '204':
           description: ''
@@ -432,7 +414,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
-        - Marketing
   /coupons/count:
     get:
       description: Gets a count of all coupons in the store.
