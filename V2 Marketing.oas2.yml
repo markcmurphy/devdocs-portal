@@ -612,7 +612,7 @@ paths:
         in: path
         type: string
         required: true
-  '/stores/{store_hash}/v2/banners':
+  /banners:
     get:
       description: >-
         Gets the banners available. (Default sorting is by banner id, from
@@ -864,7 +864,7 @@ paths:
       tags:
         - Banners
         - Marketing
-  '/stores/{store_hash}/v2/banners/{id}':
+  '/banners/{id}':
     get:
       description: Gets a single banner by `id`.
       summary: Get a Banner
@@ -1061,6 +1061,11 @@ paths:
       tags:
         - Banners
         - Marketing
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
   '/stores/{store_hash}/v2/banners/count':
     get:
       description: Gets a count of all store banners.
