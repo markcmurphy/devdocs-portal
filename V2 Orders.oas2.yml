@@ -3257,7 +3257,7 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
-  '/stores/{store_hash}/v2/orders/{order_id}/shipments':
+  '/orders/{order_id}/shipments':
     get:
       description: Gets a list of all shipments on an order
       summary: Get A List of Order Shipments
@@ -3653,6 +3653,11 @@ paths:
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
+    parameters:
+      - name: order_id
+        in: path
+        type: string
+        required: true
   '/stores/{store_hash}/v2/orders/{order_id}/shipments/count':
     get:
       description: >-
