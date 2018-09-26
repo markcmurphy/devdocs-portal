@@ -250,11 +250,56 @@ paths:
       tags:
         - Coupons
     post:
-      description: Creates a new coupon.
+      description: >-
+        Creates a new coupon.
+
+
+        ### Read-only Properties 
+
+
+        The following properties of the coupon are read-only. If one or more of
+        these properties are included in the request, it will be rejected:
+
+
+        *   id
+
+        *   num_uses
+
+
+        ### Requirements 
+
+
+        The following properties of the coupon are required. The request won’t
+        be fulfilled unless these properties are valid:
+
+
+        *   name
+
+        *   code
+
+        *   type
+
+        *   amount
+
+        *   applies_to
+
+
+        ### Notes 
+
+
+        The coupon type can be one of the following:
+
+
+        *   per_item_discount
+
+        *   per_total_discount
+
+        *   shipping_discount
+
+        *   free_shipping
+
+        *   percentage_discount
       summary: Create a New Coupon
-      operationId: StoresV2CouponsByStoreHashPost
-      produces:
-        - application/json
       parameters:
         - name: store_hash
           in: path
@@ -333,7 +378,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
-        - Marketing
     delete:
       description: Deletes all store coupons
       summary: Delete All Coupons
