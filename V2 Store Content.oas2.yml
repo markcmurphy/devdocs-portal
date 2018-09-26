@@ -1202,7 +1202,7 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  '/stores/{store_hash}/v2/pages/{id}':
+  '/pages/{id}':
     get:
       description: Gets a single page.
       summary: Get A Page
@@ -1282,8 +1282,6 @@ paths:
       summary: Delete A Page
       tags:
         - Pages
-        - Store Content
-      operationId: StoresV2PagesByStoreHashAndIdDelete
       produces:
         - application/json
       parameters:
@@ -1311,16 +1309,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '204':
           description: ''
@@ -1330,6 +1318,11 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
   '/stores/{store_hash}/v2/redirects':
     get:
       description: Gets all redirect urls.
