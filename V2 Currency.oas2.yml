@@ -1,480 +1,331 @@
-{
-    "swagger": "2.0",
-    "info": {
-      "version": "1.0",
-      "title": "BigCommerce V2 API",
-      "description": "TODO: Add a description"
-    },
-    "host": "api.bigcommerce.com",
-    "basePath": "/stores/{store_hash}/v2",
-    "schemes": [
-      "https"
-    ],
-    "consumes": [
-      "application/json"
-    ],
-    "produces": [
-      "application/json"
-    ],
-    "paths": {
-
-      "/stores/{store_hash}/v2/currencies": {
-        "get": {
-          "responses": {
-            "200": {
-              "description": "",
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/Currency"
-                }
-              },
-              "examples": {
-                "application/json": [
-                  {
-                    "id": 1,
-                    "is_default": true,
-                    "last_updated": "Fri, 11 May 2018 16:58:57 +0000",
-                    "country_iso2": "US",
-                    "currency_code": "USD",
-                    "currency_exchange_rate": "1.0000000000",
-                    "name": "US Dollars",
-                    "token": "$",
-                    "auto_update": false,
-                    "token_location": "left",
-                    "decimal_token": ".",
-                    "thousands_token": ",",
-                    "decimal_places": 2,
-                    "enabled": true
-                  },
-                  {
-                    "id": 2,
-                    "is_default": false,
-                    "last_updated": "Fri, 10 Aug 2018 14:47:03 +0000",
-                    "country_iso2": "EU",
-                    "currency_code": "EUR",
-                    "currency_exchange_rate": "0.8729000000",
-                    "name": "Euro",
-                    "token": "€",
-                    "auto_update": true,
-                    "token_location": "left",
-                    "decimal_token": ".",
-                    "thousands_token": ",",
-                    "decimal_places": 2,
-                    "enabled": true
-                  },
-                  {
-                    "id": 3,
-                    "is_default": false,
-                    "last_updated": "Fri, 10 Aug 2018 14:47:03 +0000",
-                    "country_iso2": "AU",
-                    "currency_code": "AUD",
-                    "currency_exchange_rate": "1.3678000000",
-                    "name": "Aus",
-                    "token": "$",
-                    "auto_update": true,
-                    "token_location": "left",
-                    "decimal_token": ".",
-                    "thousands_token": ",",
-                    "decimal_places": 2,
-                    "enabled": false
-                  }
-                ]
-              }
-            }
-          },
-          "summary": "Get All Store Currency",
-          "description": "Get all Store Currencies",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "in": "path",
-              "name": "store_hash",
-              "type": "string",
-              "required": true
-            },
-            {
-              "in": "header",
-              "name": "X-Auth-Client",
-              "type": "string",
-              "default": "application/json",
-              "required": true
-            },
-            {
-              "in": "header",
-              "name": "X-Auth-Token",
-              "type": "string",
-              "default": "application/json",
-              "required": true
-            },
-            {
-              "in": "header",
-              "name": "Accepts",
-              "type": "string",
-              "required": true
-            },
-            {
-              "in": "header",
-              "name": "Content-Type",
-              "type": "string",
-              "required": true
-            }
-          ],
-          "tags": [
-            "Currency"
-          ]
-        },
-        "parameters": [
-          {
-            "name": "store_hash",
-            "in": "path",
-            "type": "string",
-            "required": true
-          }
-        ],
-        "delete": {
-          "responses": {
-            "204": {
-              "description": "",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            }
-          },
-          "summary": "Delete All Store Currencies",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "store_hash",
-              "type": "string",
-              "required": true
-            },
-            {
-              "in": "header",
-              "name": "Content-Type",
-              "type": "string",
-              "default": "application/json",
-              "required": true
-            },
-            {
-              "in": "header",
-              "name": "Accepts",
-              "type": "string",
-              "default": "application/json",
-              "required": true
-            },
-            {
-              "in": "header",
-              "name": "X-Auth-Token",
-              "type": "string",
-              "required": true
-            },
-            {
-              "in": "header",
-              "name": "X-Auth-Client",
-              "type": "string",
-              "required": true
-            }
-          ],
-          "tags": [
-            "Currency"
-          ],
-          "description": "Delete All non-default store currencies"
-        }
-      }
-    },
-    "definitions": {
-
-
-      "Currency": {
-        "title": "Currency",
-        "example": {
-          "id": 2,
-          "is_default": false,
-          "last_updated": "Tue, 12 Jun 2018 14:41:56 +0000\"",
-          "country_iso2": "EU",
-          "currency_code": "EUR",
-          "currency_exchange_rate": 0.849,
-          "auto_update": true,
-          "token_location": "left",
-          "token": "€",
-          "decimal_token": ".",
-          "thousands_token": ",",
-          "decimal_places": 2,
-          "name": "Euro",
-          "enabled": false
-        },
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Id of the currency. READ-ONLY",
-            "example": 2,
-            "type": "integer"
-          },
-          "is_default": {
-            "description": "Specifies whether this is the store’s default currency display format and may only be adjusted in the control panel. READ-ONLY",
-            "example": false,
-            "type": "boolean"
-          },
-          "last_updated": {
-            "description": "Date the currency was last updated, created or modified.",
-            "example": "Tue, 12 Jun 2018 14:41:56 +0000\"",
-            "type": "string",
-            "format": "date-time"
-          },
-          "country_iso2": {
-            "type": "string",
-            "description": "2-letter ISO Alpha-2 code for this currency’s country.",
-            "example": "EU"
-          },
-          "currency_code": {
-            "type": "string",
-            "description": "3-letter ISO 4217 code for this currency.",
-            "example": "EUR"
-          },
-          "currency_exchange_rate": {
-            "type": "string",
-            "description": "Amount of this currency that is equivalent to one U.S. dollar.(Float, Float as String, Integer)",
-            "example": 0.849
-          },
-          "auto_update": {
-            "type": "boolean",
-            "description": "Specifies whether to use the Open Exchange Rates service to update the currency conversion. A value of false specifies a static conversion value.",
-            "example": true
-          },
-          "token_location": {
-            "type": "string",
-            "description": "Specifies whether this currency’s symbol appears to the “left” or “right” of the numeric amount.",
-            "example": "left"
-          },
-          "token": {
-            "type": "string",
-            "description": "Symbol for this currency.",
-            "example": "€"
-          },
-          "decimal_token": {
-            "type": "string",
-            "description": "Symbol used as the decimal separator in this currency.",
-            "example": "."
-          },
-          "thousands_token": {
-            "type": "string",
-            "description": "Symbol used as the thousands separator in this currency.",
-            "example": ","
-          },
-          "decimal_places": {
-            "type": "integer",
-            "description": "Number of decimal places to show for this currency.",
-            "example": 2
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the currency.",
-            "example": "Euro"
-          },
-          "enabled": {
-            "description": "If the currency is active on the store.",
-            "example": false,
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "country_iso2",
-          "currency_code",
-          "currency_exchange_rate",
-          "auto_update",
-          "token_location",
-          "token",
-          "decimal_token",
-          "thousands_token",
-          "decimal_places",
-          "name"
-        ]
-      },
-      "Country": {
-        "title": "Country",
-        "example": {
-          "id": 13,
-          "country": "Australia",
-          "country_iso2": "AU",
-          "country_iso3": "AUS",
-          "states": {
-            "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/countries/13/states",
-            "resource": "/countries/13/states"
-          }
-        },
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Id of the country.",
-            "example": 13,
-            "type": "integer"
-          },
-          "country": {
-            "description": "Country name.",
-            "example": "Australia",
-            "type": "string"
-          },
-          "country_iso2": {
-            "description": "2-letter country code.",
-            "example": "AU",
-            "type": "string"
-          },
-          "country_iso3": {
-            "description": "3-letter country code.",
-            "example": "AUS",
-            "type": "string"
-          },
-          "states": {
-            "$ref": "#/definitions/States"
-          }
-        }
-      },
-      "States": {
-        "title": "States Resource",
-        "type": "object",
-        "properties": {
-          "url": {
-            "description": "",
-            "example": "https://api.bigcommerce.com/stores/{store_hash}/v2/countries/13/states",
-            "type": "string"
-          },
-          "resource": {
-            "description": "",
-            "example": "/countries/13/states",
-            "type": "string"
-          }
-        }
-      },
-      "State": {
-        "title": "State",
-        "example": {
-          "id": 208,
-          "state": "Australian Capital Territory",
-          "state_abbreviation": "ACT",
-          "country_id": 13
-        },
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Numeric ID of the state/province.",
-            "example": 208,
-            "type": "integer"
-          },
-          "state": {
-            "description": "Name of the state/province.",
-            "example": "Australian Capital Territory",
-            "type": "string"
-          },
-          "state_abbreviation": {
-            "description": "Abbreviation for the state/province.",
-            "example": "ACT",
-            "type": "string"
-          },
-          "country_id": {
-            "description": "Numeric ID of the state’s/province’s associated country.",
-            "example": 13,
-            "type": "integer"
-          }
-        }
-      }
-    },
-    "tags": [
-      {
-        "name": "Orders"
-      },
-      {
-        "name": "Order Coupons"
-      },
-      {
-        "name": "Order Products"
-      },
-      {
-        "name": "Order Taxes"
-      },
-      {
-        "name": "Order Statues"
-      },
-      {
-        "name": "Order Shipments"
-      },
-      {
-        "name": "Order Shipping Addresses"
-      },
-      {
-        "name": "Store Content"
-      },
-      {
-        "name": "Blog Posts"
-      },
-      {
-        "name": "Pages"
-      },
-      {
-        "name": "Redirects"
-      },
-      {
-        "name": "Gift Certificate"
-      },
-      {
-        "name": "Currency"
-      },
-      {
-        "name": "Customers"
-      },
-      {
-        "name": "Customer Groups"
-      },
-      {
-        "name": "Customer Addresses"
-      },
-      {
-        "name": "Customer Passwords"
-      },
-      {
-        "name": "Geography"
-      },
-      {
-        "name": "Countries"
-      },
-      {
-        "name": "States"
-      },
-      {
-        "name": "Marketing"
-      },
-      {
-        "name": "Banners"
-      },
-      {
-        "name": "Coupons"
-      },
-      {
-        "name": "Shipping"
-      },
-      {
-        "name": "Shipping Method"
-      },
-      {
-        "name": "Shipping Carrier"
-      },
-      {
-        "name": "Shipping Zones"
-      },
-      {
-        "name": "Store Information Reference"
-      },
-      {
-        "name": "Store"
-      },
-      {
-        "name": "Taxes"
-      },
-      {
-        "name": "Payment Methods"
-      }
-    ]
-  }
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: BigCommerce V2 Currency
+  description: 'TODO: Add a description'
+host: api.bigcommerce.com
+basePath: '/stores/{store_hash}/v2'
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  '/stores/{store_hash}/v2/currencies':
+    get:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Currency'
+          examples:
+            application/json:
+              - id: 1
+                is_default: true
+                last_updated: 'Fri, 11 May 2018 16:58:57 +0000'
+                country_iso2: US
+                currency_code: USD
+                currency_exchange_rate: '1.0000000000'
+                name: US Dollars
+                token: $
+                auto_update: false
+                token_location: left
+                decimal_token: .
+                thousands_token: ','
+                decimal_places: 2
+                enabled: true
+              - id: 2
+                is_default: false
+                last_updated: 'Fri, 10 Aug 2018 14:47:03 +0000'
+                country_iso2: EU
+                currency_code: EUR
+                currency_exchange_rate: '0.8729000000'
+                name: Euro
+                token: €
+                auto_update: true
+                token_location: left
+                decimal_token: .
+                thousands_token: ','
+                decimal_places: 2
+                enabled: true
+              - id: 3
+                is_default: false
+                last_updated: 'Fri, 10 Aug 2018 14:47:03 +0000'
+                country_iso2: AU
+                currency_code: AUD
+                currency_exchange_rate: '1.3678000000'
+                name: Aus
+                token: $
+                auto_update: true
+                token_location: left
+                decimal_token: .
+                thousands_token: ','
+                decimal_places: 2
+                enabled: false
+      summary: Get All Store Currency
+      description: Get all Store Currencies
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: store_hash
+          type: string
+          required: true
+        - in: header
+          name: X-Auth-Client
+          type: string
+          default: application/json
+          required: true
+        - in: header
+          name: X-Auth-Token
+          type: string
+          default: application/json
+          required: true
+        - in: header
+          name: Accepts
+          type: string
+          required: true
+        - in: header
+          name: Content-Type
+          type: string
+          required: true
+      tags:
+        - Currency
+    parameters:
+      - name: store_hash
+        in: path
+        type: string
+        required: true
+    delete:
+      responses:
+        '204':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+      summary: Delete All Store Currencies
+      parameters:
+        - in: path
+          name: store_hash
+          type: string
+          required: true
+        - in: header
+          name: Content-Type
+          type: string
+          default: application/json
+          required: true
+        - in: header
+          name: Accepts
+          type: string
+          default: application/json
+          required: true
+        - in: header
+          name: X-Auth-Token
+          type: string
+          required: true
+        - in: header
+          name: X-Auth-Client
+          type: string
+          required: true
+      tags:
+        - Currency
+      description: Delete All non-default store currencies
+definitions:
+  Currency:
+    title: Currency
+    example:
+      id: 2
+      is_default: false
+      last_updated: 'Tue, 12 Jun 2018 14:41:56 +0000"'
+      country_iso2: EU
+      currency_code: EUR
+      currency_exchange_rate: 0.849
+      auto_update: true
+      token_location: left
+      token: €
+      decimal_token: .
+      thousands_token: ','
+      decimal_places: 2
+      name: Euro
+      enabled: false
+    type: object
+    properties:
+      id:
+        description: Id of the currency. READ-ONLY
+        example: 2
+        type: integer
+      is_default:
+        description: >-
+          Specifies whether this is the store’s default currency display format
+          and may only be adjusted in the control panel. READ-ONLY
+        example: false
+        type: boolean
+      last_updated:
+        description: 'Date the currency was last updated, created or modified.'
+        example: 'Tue, 12 Jun 2018 14:41:56 +0000"'
+        type: string
+        format: date-time
+      country_iso2:
+        type: string
+        description: 2-letter ISO Alpha-2 code for this currency’s country.
+        example: EU
+      currency_code:
+        type: string
+        description: 3-letter ISO 4217 code for this currency.
+        example: EUR
+      currency_exchange_rate:
+        type: string
+        description: >-
+          Amount of this currency that is equivalent to one U.S. dollar.(Float,
+          Float as String, Integer)
+        example: 0.849
+      auto_update:
+        type: boolean
+        description: >-
+          Specifies whether to use the Open Exchange Rates service to update the
+          currency conversion. A value of false specifies a static conversion
+          value.
+        example: true
+      token_location:
+        type: string
+        description: >-
+          Specifies whether this currency’s symbol appears to the “left” or
+          “right” of the numeric amount.
+        example: left
+      token:
+        type: string
+        description: Symbol for this currency.
+        example: €
+      decimal_token:
+        type: string
+        description: Symbol used as the decimal separator in this currency.
+        example: .
+      thousands_token:
+        type: string
+        description: Symbol used as the thousands separator in this currency.
+        example: ','
+      decimal_places:
+        type: integer
+        description: Number of decimal places to show for this currency.
+        example: 2
+      name:
+        type: string
+        description: Name of the currency.
+        example: Euro
+      enabled:
+        description: If the currency is active on the store.
+        example: false
+        type: boolean
+    required:
+      - country_iso2
+      - currency_code
+      - currency_exchange_rate
+      - auto_update
+      - token_location
+      - token
+      - decimal_token
+      - thousands_token
+      - decimal_places
+      - name
+  Country:
+    title: Country
+    example:
+      id: 13
+      country: Australia
+      country_iso2: AU
+      country_iso3: AUS
+      states:
+        url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/countries/13/states'
+        resource: /countries/13/states
+    type: object
+    properties:
+      id:
+        description: Id of the country.
+        example: 13
+        type: integer
+      country:
+        description: Country name.
+        example: Australia
+        type: string
+      country_iso2:
+        description: 2-letter country code.
+        example: AU
+        type: string
+      country_iso3:
+        description: 3-letter country code.
+        example: AUS
+        type: string
+      states:
+        $ref: '#/definitions/States'
+  States:
+    title: States Resource
+    type: object
+    properties:
+      url:
+        description: ''
+        example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/countries/13/states'
+        type: string
+      resource:
+        description: ''
+        example: /countries/13/states
+        type: string
+  State:
+    title: State
+    example:
+      id: 208
+      state: Australian Capital Territory
+      state_abbreviation: ACT
+      country_id: 13
+    type: object
+    properties:
+      id:
+        description: Numeric ID of the state/province.
+        example: 208
+        type: integer
+      state:
+        description: Name of the state/province.
+        example: Australian Capital Territory
+        type: string
+      state_abbreviation:
+        description: Abbreviation for the state/province.
+        example: ACT
+        type: string
+      country_id:
+        description: Numeric ID of the state’s/province’s associated country.
+        example: 13
+        type: integer
+tags:
+  - name: Orders
+  - name: Order Coupons
+  - name: Order Products
+  - name: Order Taxes
+  - name: Order Statues
+  - name: Order Shipments
+  - name: Order Shipping Addresses
+  - name: Store Content
+  - name: Blog Posts
+  - name: Pages
+  - name: Redirects
+  - name: Gift Certificate
+  - name: Currency
+  - name: Customers
+  - name: Customer Groups
+  - name: Customer Addresses
+  - name: Customer Passwords
+  - name: Geography
+  - name: Countries
+  - name: States
+  - name: Marketing
+  - name: Banners
+  - name: Coupons
+  - name: Shipping
+  - name: Shipping Method
+  - name: Shipping Carrier
+  - name: Shipping Zones
+  - name: Store Information Reference
+  - name: Store
+  - name: Taxes
+  - name: Payment Methods
