@@ -484,21 +484,13 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Countries
-  '/stores/{store_hash}/v2/countries/{id}':
+  '/countries/{id}':
     get:
       description: >-
         Gets a country. A country or territory, identifiable by an ISO 3166
         country code.
       summary: Get A Single Country
-      operationId: StoresV2CountriesByStoreHashAndIdGet
-      produces:
-        - application/json
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: id
           in: path
           required: true
@@ -518,16 +510,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '200':
           description: ''
@@ -551,7 +533,11 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Countries
-        - Geography
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
   '/stores/{store_hash}/v2/countries/{country_id}/states':
     get:
       description: >-
