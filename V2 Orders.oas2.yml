@@ -801,7 +801,6 @@ paths:
       summary: Delete an Order
       tags:
         - Orders
-      operationId: V2OrdersByStoreHashAndIdDelete
       produces:
         - application/json
       parameters:
@@ -2044,7 +2043,6 @@ paths:
     get:
       description: Lists all order coupons. Optional parameters can be passed in.
       summary: List Order Coupons
-      operationId: V2OrdersCouponsByStoreHashAndOrderIdGet
       produces:
         - application/json
       parameters:
@@ -2125,7 +2123,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Coupons
-        - Orders
       security:
         - X-Auth-Client: []
         - X-Auth-Token: []
@@ -2136,7 +2133,6 @@ paths:
         sort from lowest to highest according to a newly created ID, separate
         from the `order_id` and the `product_id`.
       summary: List Order Products
-      operationId: V2OrdersProductsByStoreHashAndOrderIdGet
       produces:
         - application/json
       parameters:
@@ -3271,7 +3267,6 @@ paths:
     get:
       description: Gets a list of all shipments on an order
       summary: Get A List of Order Shipments
-      operationId: StoresV2OrdersShipmentsByStoreHashAndOrderIdGet
       parameters:
         - name: store_hash
           in: path
@@ -3480,7 +3475,6 @@ paths:
         and downloadable as a .CSV file
         [here](https://docs.google.com/spreadsheets/d/1mTueEynfcEmwsU2y2Jd2MX-8GKwNZrmlRMBcIElg9aY/pub?gid=0&single=true&output=csv).
       summary: Create A New Order Shipment
-      operationId: V2OrdersShipmentsByStoreHashAndOrderIdPost
       parameters:
         - name: store_hash
           in: path
@@ -3568,6 +3562,50 @@ paths:
                 - order_product_id: 25
                   product_id: 77
                   quantity: 1
+            Response Schema:
+              id: 68348393
+              order_id: 72821164
+              customer_id: 88562614
+              order_address_id: -19801127
+              date_created: '1999-10-09T09:41:05.927Z'
+              tracking_number: incididunt ut nulla
+              shipping_method: Duis
+              shipping_provider: magna non nisi ut
+              tracking_carrier: ups
+              comments: reprehenderit veniam
+              billing_address:
+                first_name: qui eiusmod in
+                last_name: voluptate et ma
+                company: aute ullamco deserunt Excepteur
+                street_1: exercitation qui
+                street_2: officia sint
+                city: nulla officia fugiat
+                state: irure ut dolore re
+                zip: aliqua minim elit
+                country: ut eu sint labore laboris
+                country_iso2: dolor ad aliquip Lorem labore
+                phone: c
+                email: dolor ea aliqua tempor
+              shipping_address:
+                first_name: sed do mollit aliqua
+                last_name: cillum consectetur veniam
+                company: Excepteur esse
+                street_1: commodo in
+                street_2: exercitation reprehenderit ex
+                city: exercitation irure
+                state: nulla est cupidatat
+                zip: quis aute sunt tempor
+                country: esse qui officia consequat ut
+                country_iso2: deserunt Ut
+                phone: consectetur tempor
+                email: id Duis dolor consequat
+              items:
+                - order_product_id: 67825145
+                  product_id: -40666300
+                  quantity: 9199069
+                - order_product_id: 10532130
+                  product_id: -90504280
+                  quantity: -12956390
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -3582,7 +3620,6 @@ paths:
     delete:
       description: Deletes all shipments associated with an order.
       summary: Delete All Order Shipments
-      operationId: StoresV2OrdersShipmentsByStoreHashAndOrderIdDelete
       produces:
         - application/json
       parameters:
@@ -3608,16 +3645,6 @@ paths:
           required: true
           type: string
           description: ''
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
       responses:
         '204':
           description: ''
@@ -3630,13 +3657,15 @@ paths:
       tags:
         - Order Shipments
         - Orders
+      security:
+        - X-Auth-Client: []
+        - X-Auth-Token: []
   '/stores/{store_hash}/v2/orders/{order_id}/shipments/count':
     get:
       description: >-
         Gets a count of the number of shipments that have been made for a single
         order.
       summary: Get A Count of Shipments Per Order
-      operationId: StoresV2OrdersShipmentsCountByStoreHashAndOrderIdGet
       produces:
         - application/json
       parameters:
@@ -3690,7 +3719,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipments
-        - Orders
   '/stores/{store_hash}/v2/orders/{order_id}/shipments/{id}':
     put:
       description: Updates an existing shipment associated with an order.
