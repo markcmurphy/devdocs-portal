@@ -30,7 +30,7 @@ consumes:
 produces:
   - application/json
 paths:
-  '/stores/{store_hash}/v2/coupons':
+  /coupons:
     get:
       description: >-
         Gets all coupons in the store. Default sorting is by coupon/discount id,
@@ -38,15 +38,7 @@ paths:
 
         To get a single coupon filter by coupon `id`.
       summary: Get All Coupons
-      operationId: StoresV2CouponsByStoreHashGet
-      produces:
-        - application/json
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: Accept
           in: header
           required: true
@@ -59,16 +51,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: id
           in: query
           required: false
@@ -237,6 +219,28 @@ paths:
                 restricted_to: []
                 shipping_methods: null
                 date_created: 'Mon, 30 Jul 2018 15:35:21 +0000'
+            Response Schema:
+              - name: ut e
+                type: shipping_discount
+                amount: 'elit sit '
+                code: adipisicing veli
+                applies_to:
+                  id: 73351335
+                  entities:
+                    - magna sint
+                id: -54319944
+                min_purchase: Ut enim
+                expires: ea
+                enabled: false
+                num_uses: 45888494
+                max_uses: -98470682
+                max_uses_per_customer: 78356302
+                restricted_to:
+                  countries: nostrud consequat dolor in
+                shipping_methods:
+                  - ex
+                  - mollit qui
+                date_created: dolor sed
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -245,7 +249,6 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
-        - Marketing
     post:
       description: Creates a new coupon.
       summary: Create a New Coupon
@@ -1819,3 +1822,6 @@ securityDefinitions:
     type: apiKey
     name: X-Auth-Client
     in: header
+security:
+  - X-Auth-Token: []
+  - X-Auth-Client: []
