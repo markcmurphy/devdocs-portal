@@ -16916,6 +16916,97 @@ pages:
               - title: Categories
                 route:
                   path: /v2-categories
+                data:
+                  blocks:
+                    - type: text
+                      data: >-
+                        ## List Categories 
+
+
+                        Gets the list of categories. (Default sorting is by
+                        category id, from lowest to highest.)
+
+
+
+                        >`GET /stores/{store_hash}/v2/categories`
+
+
+                        ### Filters 
+
+
+                        Filter parameters can be added to the URL query string
+                        to select specific categories in the collection.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | parent_id | string |
+                        /api/v2/categories?parent_id={value} |
+
+                        | name | string | /api/v2/categories?name={value} |
+
+                        | is_visible | string |
+                        /api/v2/categories?is_visible={value} |
+
+                        | min_id | int | /api/v2/categories?min_id={value} |
+
+                        | max_id | int | /api/v2/categories?max_id={value} |
+
+
+                        ### Pagination 
+
+
+                        Parameters can be added to the URL query string to
+                        paginate the collection. The maximum limit is 250. If a
+                        limit isn’t provided, up to 50 categories are returned
+                        by default.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | Page | int | /api/v2/categories?page={number} |
+
+                        | Limit | int | /api/v2/categories?limit={count} |
+
+
+                        ### Response
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        [
+                          {
+                            "id": 1,
+                            "parent_id": 0,
+                            "name": "Shop Mac",
+                            "description": "",
+                            "sort_order": 0,
+                            "page_title": "",
+                            "meta_keywords": "",
+                            "meta_description": "",
+                            "layout_file": "category.html",
+                            "parent_category_list": [
+                              1
+                            ],
+                            "image_file": "",
+                            "is_visible": true,
+                            "search_keywords": "",
+                            "url": "/shop-mac/"
+                          }
+                        ]
+
+                        ```
+                      header:
+                        anchor: v2-list-categories
+                    - type: text
+                      data: '---'
           config:
             sidebar:
               token: v2
