@@ -16517,6 +16517,8 @@ pages:
                   path: /v2-bulk-pricing
                 data:
                   blocks:
+                    - type: html
+                      data: "<h1>Bulk Pricing Rules</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-bulk-pricing-object-properties\">Bulk Pricing Rules Object – Properties</a></li>\n        <li><a href=\"#v2-list-bulk-pricing-rules\">List Bulk Pricing Rules</a></li>\n        <li><a href=\"#v2-bulk-pricing-rules\">Get a Product Bulk Pricing Rule </a></li>\n        <li><a href=\"#v2-get-a-count-bulk-pricing\">Get a Count of Bulk Pricing Rules</a></li>\n        <li><a href=\"#v2-create-a-bulk-pricing-rule\">Create a Product Bulk Pricing Rule </a></li>\n        <li><a href=\"#v2-update-a-bulk-pricing-rule\">Update a Product Bulk Pricing Rule</a></li>\n        <li><a href=\"#v2-delete-a-bulk-pricing-rule\">Delete a Product Bulk Pricing Rule</a></li>\n        <li><a href=\"#v2-delete-all-bulk-pricing-rules\">Delete Multiple Product Bulk Pricing Rules</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         ##  Bulk Pricing Object – Properties 
@@ -16863,6 +16865,54 @@ pages:
                         anchor: v2-update-a-bulk-pricing-rule
                     - type: text
                       data: '---'
+                    - type: text
+                      data: >-
+                        ## Delete a Product Bulk Pricing Rule 
+
+
+                        Deletes a product bulk pricing rule.
+
+
+                        >`DELETE
+                        /stores/{store_hash}/v2/products/{product_id}/discount_rules/{id}`
+                      header:
+                        anchor: v2-delete-a-bulk-pricing-rule
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Delete Multiple Product Bulk Pricing Rules 
+
+
+                        Deletes bulk pricing rules associated with a product.
+
+
+                        >`DELETE
+                        /stores/{store_hash}/v2/products/{product_id}/discount_rules`
+
+
+                        ### Pagination 
+
+
+                        Parameters can be added to the URL query string to
+                        paginate the collection. The maximum limit is 250. If a
+                        limit isn’t provided, up to 50 `bulk_pricing_rules` are
+                        returned by default.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | page | int |
+                        /api/v2/products/{product_id}/discount_rules?page={number}
+                        |
+
+                        | limit | int |
+                        /api/v2/products/{product_id}/discount_rules?limit={count}
+                        |
+                      header:
+                        anchor: v2-delete-all-bulk-pricing-rules
           config:
             sidebar:
               token: v2
