@@ -17566,6 +17566,81 @@ pages:
                         ```
                       header:
                         anchor: v2-create-a-custom-field
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Update a Custom Field 
+
+
+                        Updates an existing custom field associated with a
+                        product.
+
+
+
+                        >`PUT
+                        /stores/{store_hash}/v2/products/{product_id}/custom_fields/{id}`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the custom field are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   product_id
+
+
+                        ### Requirements 
+
+
+                        The following properties of the custom field are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
+
+
+                        *   name
+
+                        *   text
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "name": "Release Date",
+                          "text": "2013-12-31"
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 5,
+                          "product_id": 45,
+                          "name": "Release Date",
+                          "text": "2013-12-31"
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-update-a-custom-field
           config:
             sidebar:
               token: v2
