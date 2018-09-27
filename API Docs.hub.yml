@@ -17463,6 +17463,109 @@ pages:
                         anchor: v2-get-a-custom-field
                     - type: text
                       data: '---'
+                    - type: text
+                      data: >-
+                        ## Get a Count of Custom Fields 
+
+
+                        Gets a count of the number of custom fields in the
+                        store.
+
+
+
+                        >`GET
+                        /stores/{store_hash}/v2/products/custom_fields/count`
+
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "count": 0
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-get-a-count-custom-fields
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create a Custom Field 
+
+
+                        Creates a new custom field associated with a product
+
+
+
+                        >`POST
+                        /stores/{store_hash}/v2/products/{product_id}/custom_fields`
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the custom field are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   product_id
+
+
+                        ### Requirements 
+
+
+                        The following properties of the custom field are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
+
+
+                        *   name
+
+                        *   text
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "name": "Release Date",
+                          "text": "2013-12-25"
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 5,
+                          "product_id": 45,
+                          "name": "Release Date",
+                          "text": "2013-12-25"
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-create-a-custom-field
           config:
             sidebar:
               token: v2
