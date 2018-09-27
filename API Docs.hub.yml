@@ -17702,6 +17702,44 @@ pages:
                   path: /v2-options
                 data:
                   blocks:
+                    - type: html
+                      data: "<h1>Options</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-option-object-properties\">Options Object – Properties</a></li>\n        <li><a href=\"#v2-list-options\">List Options</a></li>\n        <li><a href=\"#v2-get-a-option\">Get an Option</a></li>\n        <li><a href=\"#v2-get-a-count-of-options\">Get a Count of Options</a></li>\n        <li><a href=\"#v2-create-a-option\">Create an Option</a></li>\n        <li><a href=\"#v2-update-a-option\">Update an Option</a></li>\n        <li><a href=\"#v2-delete-a-option\">Delete a Option</a></li>\n        <li><a href=\"#v2-delete-all-options\">Delete All Options</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        ## Options Object – Properties 
+
+
+                        | Name | Type | Description |
+
+                        |---|---|---|
+
+                        | name | string | Required field. The option's name, as
+                        used internally. Must be unique. |
+
+                        | display_name | string | Optional field. The option's
+                        name, as displayed on the storefront. Defaults to same
+                        value as `name`. However, a custom value can be defined
+                        here, and can be reused among multiple options. |
+
+                        | type | string | Optional field. The type of option,
+                        which determines how it will display on the storefront.
+                        Acceptable values: <br> `C`: Checkbox; <br>`D`: Date
+                        field; <br>`F`: File upload field; <br>`MT`: Multi-line
+                        text field; <br>`RB`: Radio buttons; <br>`RT`:
+                        Rectangular boxes (for product sizes); <br>`S`:
+                        Select/drop-down list; <br>`C`: Numbers-only text field;
+                        <br>`P`: Product Pick list; <br>`CS`: Color/texture
+                        Swatch; <br>`T`: Text field.  |
+
+                        | values | object | Optional field. Object containing
+                        option values: a `url` and a `resource`. |
+
+                        | product_id | integer | Optional field; read-only. If
+                        `null`, this option can be reused with any product. If
+                        populated with a numeric ID, this option can be used
+                        exclusively with the corresponding product. |
+                      header:
+                        anchor: v2-option-object-properties
                     - type: text
                       data: >-
                         ## List Options 
