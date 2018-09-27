@@ -17351,6 +17351,8 @@ pages:
                   path: /v2-custom-fields
                 data:
                   blocks:
+                    - type: html
+                      data: "<h1>Custom Fields</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-custom-fields-object-properties\">Custom Field Object – Properties</a></li>\n        <li><a href=\"#v2-list-custom-fields\">List Custom Fields</a></li>\n        <li><a href=\"#v2-get-a-custom-field\">Get a Custom Field</a></li>\n        <li><a href=\"#v2-get-a-count-custom-fields\">Get a Count of Custom Fields </a></li>\n        <li><a href=\"#v2-create-a-custom-field\">Create a Custom Field</a></li>\n        <li><a href=\"#v2-update-a-custom-field\">Update a Custom Field</a></li>\n        <li><a href=\"#v2-delete-a-custom-field\">Delete a Custom Field</a></li>\n        <li><a href=\"#v2-delete-multiple-custom-fields\">Delete Multiple Custom Fields</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: |-
                         ## Custom Field Object – Properties 
@@ -17641,6 +17643,59 @@ pages:
                         ```
                       header:
                         anchor: v2-update-a-custom-field
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Delete a Custom Field 
+
+
+                        Deletes a custom field associated with a product.
+
+
+                        >`DELETE
+                        /stores/{store_hash}/v2/products/{product_id}/custom_fields/{id}`
+                      header:
+                        anchor: v2-delete-a-custom-field
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Delete Multiple Custom Fields 
+
+
+                        Deletes multiple custom fields associated with a
+                        product.
+
+
+                        *   OAuth
+
+                        >`DELETE
+                        /stores/{store_hash}/v2/products/{product_id}/custom_fields`
+
+
+                        ### Pagination 
+
+
+                        Parameters can be added to the URL query string to
+                        paginate the collection. The maximum limit is 250. If a
+                        limit isn’t provided, up to 50 custom_fields are
+                        returned by default.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | page | int |
+                        /api/v2/products/{product_id}/custom_fields?page={number}
+                        |
+
+                        | limit | int |
+                        /api/v2/products/{product_id}/custom_fields?limit={count}
+                        |
+                      header:
+                        anchor: v2-delete-multiple-custom-fields
           config:
             sidebar:
               token: v2
