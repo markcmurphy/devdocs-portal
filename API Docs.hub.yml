@@ -15945,6 +15945,175 @@ pages:
                         If automatic tax is enabled on the store, the value of
                         `tax_class_id` will have no effect on the calculation of
                         taxes.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Update a Product 
+
+
+                        Updates an existing product.
+
+
+                        > `PUT /stores/{store_hash}/v2/products/{id}`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the product are read-only.
+                        If one or more of these properties are included in the
+                        request, it will be rejected.
+
+
+                        *   id
+
+                        *   rating_total
+
+                        *   rating_count
+
+                        *   number_sold
+
+                        *   date_created
+
+                        *   date_modified
+
+                        *   date_last_imported
+
+                        *   calculated_price
+
+                        *   brand
+
+                        *   images
+
+                        *   discount_rules
+
+                        *   configurable_fields
+
+                        *   custom_fields
+
+                        *   primary_image
+
+                        *   videos
+
+                        *   skus
+
+                        *   rules
+
+                        *   option_set
+
+                        *   options
+
+                        *   tax_class
+
+
+                        ### Requirements 
+
+
+                        There are no required properties when updating a
+                        product.
+
+
+                        ### Notes 
+
+
+                        To update a product, set one or more product properties
+                        in the `PUT` request:
+
+
+                        ```
+
+                        {
+                            "custom_url": "/plain-tshirt/",
+                            "is_visible": true
+                        }
+
+                        ```
+
+
+                        For example, you can use a `PUT` to link a product to an
+                        option set:
+
+
+                        ```
+
+                        {
+                            "option_set_id": 14
+                        }
+
+                        ```
+
+
+                        Invalid property values will produce a `400 Bad Request`
+                        error response:
+
+
+                        ### Request 
+
+
+                        ``` 
+
+                        {
+                            "condition": "Worn"
+                        }
+
+                        ```
+
+
+                        #### Response 
+
+
+                        ```
+
+                        400 Bad Request
+
+                        ```
+
+
+                        Trying to set read-only properties will also produce a
+                        `400 Bad Request` error response:
+
+
+                        ### Request 
+
+
+                        ```
+
+                        {
+                            "number_sold": 99
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        ```
+
+                        400 Bad Request
+
+                        ```
+
+
+                        To maximize system performance, BigCommerce caps the
+                        maximum number of categories to which a product can
+                        belong, at 1,000. If your `PUT` includes an array of
+                        more than 1,000 `categories` ID values, BigCommerce will
+                        return a `403` error:
+
+
+                        ```
+
+                        403 Access Denied/Forbidden
+
+                        ```
+
+
+                        If automatic tax is enabled on the store, the value of
+                        `tax_class_id` will have no effect on the calculation of
+                        taxes.
                   children: []
                 config:
                   sidebar:
