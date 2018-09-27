@@ -15011,13 +15011,7 @@ pages:
                         product id, from lowest to highest.)
 
 
-                        *   OAuth 
-
                         > `GET /stores/{store_hash}/v2/products`
-
-                        *   Basic Auth
-
-                        > `GET /api/v2/products`
 
 
                         ### Filters 
@@ -15391,13 +15385,135 @@ pages:
                         ]
                       header:
                         title: Example JSON returned in the response
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Get a Product 
+
+
+                        Gets a product.
+
+
+                        *   OAuth 
+
+                        > `GET /stores/{store_hash}/v2/products/{id}`
+
+                        *   Basic Auth
+
+                        > `GET /api/v2/products/{id}`
+
+
+                        ### Notes 
+
+
+                        You can filter the retrieved fields by appending one of
+                        the following options to your request: 
+
+
+                        - `?include=`
+
+                        - `?include=@summary` 
+
+                        - `?exclude=`
+
+
+                        In particular, you can reduce payload size, and improve
+                        performance, by excluding the `description` field.
+
+
+                        ### Mandatory Fields 
+
+
+                        However, the following fields are always present on
+                        product API requests, and cannot be excluded:
+
+
+                        - `id`
+
+                        - `name`
+
+                        - `date_modified`
+
+                        - `primary_image`
+
+
+                        ### include 
+
+
+                        The following sample request will retrieve *only* the
+                        specified `date_created`, `price`, and `cost_price`
+                        fields, plus the [mandatory
+                        fields](#get-a-product-mandatory) listed just above:
+
+
+                        ```
+
+                        https://store-et7xe3pz.mybigcommerce.com/api/v2/products/32?include=date_created,price,cost_price
+
+                        ```
+
+
+                        Here is a corresponding sample response:
+
+
+                        ```json
+
+                        {
+                            "id": 32,
+                            "name": "[Sample] Tomorrow is today, Red printed scarf",
+                            "price": "89.0000",
+                            "cost_price": "0.0000",
+                            "date_created": "Fri, 21 Sep 2012 02:31:01 +0000",
+                            "date_modified": "Thu, 10 Dec 2015 21:10:17 +0000",
+                            "primary_image": {
+                                "id": 247,
+                                "tiny_url": "https://cdn.url.path/bcapp/k84uuwpy/products/32/images/247/in_123__14581.1348449270.60.90.jpg?c=1",
+                                "standard_url": "https://cdn.url.path/bcapp/k84uuwpy/products/32/images/247/in_123__14581.1348449270.500.750.jpg?c=1",
+                                "thumbnail_url": "https://cdn.url.path/bcapp/k84uuwpy/products/32/images/247/in_123__14581.1348449270.190.285.jpg?c=1",
+                                "zoom_url": "https://cdn.url.path/bcapp/k84uuwpy/products/32/images/247/in_123__14581.1348449270.1280.1280.jpg?c=1"
+                            },
+                            "metadata": []
+                        }
+
+                        ```
+
+
+                        ##### include=@summary 
+
+
+                        The `?include=@summary` option retrieves the following
+                        predefined subset of fields, in addition to the
+                        [mandatory fields](#get-a-product-mandatory) listed
+                        above: 
+
+
+                        - `availability`
+
+                        - `calculated_price`
+
+                        - `inventory_tracking`
+
+                        - `sku`
+
+                        - `inventory_level`
+
+                        - `inventory_warning_level`
+
+                        - `is_visible`
+
+                        - `is_featured` 
                   children: []
                 config:
                   sidebar:
                     token: v2
-              - title: New Subpage
+              - title: Get a Product
                 route:
-                  path: /new-subpage
+                  path: /get-a-products
+                data:
+                  blocks:
+                    - type: text
+                      data: ''
 theme:
   background: '#3550b6'
 logo: >-
