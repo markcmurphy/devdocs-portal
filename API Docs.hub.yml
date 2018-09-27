@@ -17365,6 +17365,104 @@ pages:
                         anchor: v2-custom-fields-object-properties
                     - type: text
                       data: '---'
+                    - type: text
+                      data: >-
+                        ## List Custom Fields 
+
+
+                        Gets custom fields associated with a product.
+
+
+                        >`GET
+                        /stores/{store_hash}/v2/products/{product_id}/custom_fields`
+
+                        ### Filters 
+
+
+                        There are no filter parameters specific to
+                        `custom_fields`.
+
+
+                        ### Pagination 
+
+
+                        Parameters can be added to the URL query string to
+                        paginate the collection. The maximum limit is 250. If a
+                        limit isn’t provided, up to 50 custom_fields are
+                        returned by default.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | page | int |
+                        /api/v2/products/{product_id}/custom_fields?page={number}
+                        |
+
+                        | limit | int |
+                        /api/v2/products/{product_id}/custom_fields?limit={count}
+                        |
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        [
+                          {
+                            "id": 1,
+                            "product_id": 30,
+                            "name": "Toy manufactured in",
+                            "text": "USA"
+                          },
+                          {
+                            "id": 2,
+                            "product_id": 45,
+                            "name": "Release Date",
+                            "text": "2013-12-25"
+                          }
+                        ]
+
+                        ```
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Get a Custom Field 
+
+
+                        Gets a custom field associated with a product.
+
+
+                        >`GET
+                        /stores/{store_hash}/v2/products/{product_id}/custom_fields/{id}`
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 2,
+                          "product_id": 30,
+                          "name": "Toy manufactured in",
+                          "text": "USA"
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-get-a-custom-field
+                    - type: text
+                      data: '---'
           config:
             sidebar:
               token: v2
