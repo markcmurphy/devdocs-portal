@@ -4179,6 +4179,17 @@ paths:
           schema:
             type: object
             properties: {}
+          examples:
+            application/json:
+              id: '24'
+              uuid: a72acc8d-504b-4a40-8534-7c54d997ed59
+              timestamp: 'Mon, 27 Aug 2018 19:28:26 +0000'
+              shipping_provider_id: bcstatic
+              shipping_provider_quote: []
+              provider_code: shipping_byweight
+              carrier_code: ''
+              rate_code: ''
+              rate_id: ''
       summary: Get All Shipping Quotes
       description: >-
         Gets any shipping quotes assocated to an order. 
@@ -4189,6 +4200,9 @@ paths:
         storefront at this time. Orders that are created in the control panel or
         via api return a 204 for this endpoint since a shipping quote is not
         generated during that process.
+      parameters:
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
     parameters:
       - name: order_id
         in: path
