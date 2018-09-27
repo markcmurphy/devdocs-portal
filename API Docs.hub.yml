@@ -15824,6 +15824,127 @@ pages:
                         }
 
                         ```
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create a Product 
+
+
+                        Creates a new product. The example request shows how to
+                        create a basic product by sending a product object with
+                        the minimum required properties.
+
+
+                        > `POST /stores/{store_hash}/v2/products`
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the product are read-only.
+                        If one or more of these properties are included in the
+                        request, it will be rejected.
+
+
+                        *   id
+
+                        *   calculated_price
+
+                        *   brand
+
+                        *   images
+
+                        *   discount_rules
+
+                        *   configurable_fields
+
+                        *   custom_fields
+
+                        *   primary_image
+
+                        *   videos
+
+                        *   skus
+
+                        *   rules
+
+                        *   option_set
+
+                        *   options
+
+                        *   tax_class
+
+
+                        #### Requirements 
+
+
+                        The following properties of the product are required.
+                        The request won’t be fulfilled unless these properties
+                        are valid.
+
+
+                        *   name
+
+                        *   price
+
+                        *   categories
+
+                        *   type
+
+                        *   availability
+
+                        *   weight
+
+
+                        ### Notes 
+
+
+                        Create a request by sending a product object with the
+                        minimum required properties:
+
+
+                        ```
+
+                        {
+                            "name": "Plain T-Shirt",
+                            "type": "physical",
+                            "description": "This timeless fashion staple will never go out of style!",
+                            "price": "29.99",
+                            "categories": [18],
+                            "availability": "available",
+                            "weight": "0.5"
+                        }
+
+                        ```
+
+
+                        When the `is_visible` property is not provided, the
+                        product's visibility is `false` by default.
+
+
+                        To make newly created products immediately visible on
+                        the storefront, you must set `is_visible` to `true` when
+                        you create each product.
+
+
+                        To maximize system performance, BigCommerce caps the
+                        number of categories to which a product can belong. The
+                        maximum is 1,000. If your `POST` includes an array of
+                        more than 1,000 `categories` ID values, BigCommerce will
+                        return a 403 error:
+
+
+                        ```
+
+                        403 Access Denied/Forbidden
+
+                        ```
+
+
+                        If automatic tax is enabled on the store, the value of
+                        `tax_class_id` will have no effect on the calculation of
+                        taxes.
                   children: []
                 config:
                   sidebar:
