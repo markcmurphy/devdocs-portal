@@ -10836,778 +10836,812 @@ pages:
         - title: Blueprint Themes
           route:
             path: /blueprint-themes
-          data: {}
-        - title: reCAPTCHA v2
-          route:
-            path: /recaptcha-two
           data:
-            blocks:
-              - type: html
-                data: "<h1>ReCaptcha 2</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#better-spam-deterrance\">Better Spam Deterrance</a></li>\n\t\t<li><a href=\"#blueprint-how-to-upgrade-recaptcha\">How to Upgrade</a></li>\n\t\t<li><a href=\"#blueprint-supported-browsers\">Supported Browsers</a></li>\n\t\t</ul>\n</div>"
-              - type: text
-                data: >-
-                  To deter spam submission through storefront forms, BigCommerce
-                  now supports Google [reCAPTCHA
-                  v2](https://support.google.com/recaptcha/?hl=en#6080933)
-                  challenges, to distinguish human customers/visitors from
-                  automated bots.
-                header: {}
-              - type: text
-                data: >
-                  ## Better Spam Deterrence
-
-
-                  We recommend that all storefront themes take advantage of this
-                  upgraded bot detection. However, BigCommerce's legacy
-                  Blueprint themes were last published in our Theme Marketplace
-                  before we implemented reCAPTCHA v2. Therefore, please use the
-                  following instructions to update your Blueprint-based theme
-                  with the best-available deterrent against automated spam.
-                header:
-                  anchor: better-spam-deterrance
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## How to Upgrade
-
-
-                  To incorporate reCAPTCHA v2, you will need to update script
-                  references in these three template files: 
-
-
-                  * `Panels/CreateAccountForm.html`
-
-                  * `page_contact_form.html`
-
-                  * `product_comments.html`
-                header:
-                  anchor: blueprint-how-to-upgrade-recaptcha
-              - type: callout
+            children:
+              - title: reCAPTCHA v2
+                route:
+                  path: /recaptcha-two
                 data:
-                  type: error
-                  body: >-
-                    Please back up each file before making any changes. 
+                  blocks:
+                    - type: html
+                      data: "<h1>ReCaptcha 2</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#better-spam-deterrance\">Better Spam Deterrance</a></li>\n\t\t<li><a href=\"#blueprint-how-to-upgrade-recaptcha\">How to Upgrade</a></li>\n\t\t<li><a href=\"#blueprint-supported-browsers\">Supported Browsers</a></li>\n\t\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        To deter spam submission through storefront forms,
+                        BigCommerce now supports Google [reCAPTCHA
+                        v2](https://support.google.com/recaptcha/?hl=en#6080933)
+                        challenges, to distinguish human customers/visitors from
+                        automated bots.
+                      header: {}
+                    - type: text
+                      data: >
+                        ## Better Spam Deterrence
 
 
-                    The instructions below are based on the default Blueprint
-                    theme (Classic Next), as it was last published in
-                    BigCommerce’s Theme Marketplace. Therefore, the HTML markup
-                    will vary, based on customizations you have already made to
-                    this theme, or to other Marketplace themes.
-                  title: |2
-                     Updating Safely 
-              - type: text
-                data: >-
-                  ### Script Tag to Remove
-
-                  Search each of the three template files for a ``<script>`` tag
-                  like the following. If you find it, delete the whole tag.
-                  (This script invokes a legacy reCAPTCHA v1 challenge:)
-              - type: code
-                data: |-
-                  <script type="text/javascript"> 
-                   var RecaptchaOptions = { 
-                   theme : 'clean' or 'white' 
-                   }; 
-                   </script>
-                header:
-                  title: Script Tag to Remove
-                config:
-                  mode: html
-              - type: text
-                data: >+
-                  ### Variable to Remove
+                        We recommend that all storefront themes take advantage
+                        of this upgraded bot detection. However, BigCommerce's
+                        legacy Blueprint themes were last published in our Theme
+                        Marketplace before we implemented reCAPTCHA v2.
+                        Therefore, please use the following instructions to
+                        update your Blueprint-based theme with the
+                        best-available deterrent against automated spam.
+                      header:
+                        anchor: better-spam-deterrance
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## How to Upgrade
 
 
-                  Alternately, you might see the same `RecaptchaOptions`
-                  variable inside a different `<script>` tag at the top of the
-                  same three templates. If so, delete the lines shown here:
-
-              - type: code
-                data: |
-                  var RecaptchaOptions = { 
-                   theme : 'clean' or 'white'
-                   };
-                config:
-                  mode: js
-              - type: text
-                data: >-
-                  ### reCAPTCHA Script to Update
+                        To incorporate reCAPTCHA v2, you will need to update
+                        script references in these three template files: 
 
 
-                  Next, in each of the three template files, replace the
-                  "before" code block just below with the simplified "after"
-                  code that follows.
+                        * `Panels/CreateAccountForm.html`
+
+                        * `page_contact_form.html`
+
+                        * `product_comments.html`
+                      header:
+                        anchor: blueprint-how-to-upgrade-recaptcha
+                    - type: callout
+                      data:
+                        type: error
+                        body: >-
+                          Please back up each file before making any changes. 
+
+
+                          The instructions below are based on the default
+                          Blueprint theme (Classic Next), as it was last
+                          published in BigCommerce’s Theme Marketplace.
+                          Therefore, the HTML markup will vary, based on
+                          customizations you have already made to this theme, or
+                          to other Marketplace themes.
+                        title: |2
+                           Updating Safely 
+                    - type: text
+                      data: >-
+                        ### Script Tag to Remove
+
+                        Search each of the three template files for a
+                        ``<script>`` tag like the following. If you find it,
+                        delete the whole tag. (This script invokes a legacy
+                        reCAPTCHA v1 challenge:)
+                    - type: code
+                      data: |-
+                        <script type="text/javascript"> 
+                         var RecaptchaOptions = { 
+                         theme : 'clean' or 'white' 
+                         }; 
+                         </script>
+                      header:
+                        title: Script Tag to Remove
+                      config:
+                        mode: html
+                    - type: text
+                      data: >+
+                        ### Variable to Remove
+
+
+                        Alternately, you might see the same `RecaptchaOptions`
+                        variable inside a different `<script>` tag at the top of
+                        the same three templates. If so, delete the lines shown
+                        here:
+
+                    - type: code
+                      data: |
+                        var RecaptchaOptions = { 
+                         theme : 'clean' or 'white'
+                         };
+                      config:
+                        mode: js
+                    - type: text
+                      data: >-
+                        ### reCAPTCHA Script to Update
+
+
+                        Next, in each of the three template files, replace the
+                        "before" code block just below with the simplified
+                        "after" code that follows.
 
 
 
-                  #### Replace this (before):
-                header: {}
-              - type: code
-                data: >-
-                  <script type="text/javascript"
+                        #### Replace this (before):
+                      header: {}
+                    - type: code
+                      data: >-
+                        <script type="text/javascript"
 
-                  src="https://www.google.com/recaptcha/api/challenge?k=%%GLOBAL_ReCaptchaAPIKeyPublic%%">
+                        src="https://www.google.com/recaptcha/api/challenge?k=%%GLOBAL_ReCaptchaAPIKeyPublic%%">
 
-                  </script>
-
-
-                  <noscript>
-
-                  <iframe
-                  src="https://www.google.com/recaptcha/api/noscript?k=%%GLOBAL_ReCaptchaAPIKeyPublic%%"
-
-                  height="300" width="500" frameborder="0"></iframe>
-
-                  <br>
-
-                  <textarea name="recaptcha_challenge_field" rows="3" cols="40">
-
-                  </textarea>
-
-                  <input type="hidden" name="recaptcha_response_field"
-
-                  value="manual_challenge">
-
-                  </noscript>
-                config:
-                  mode: html
-              - type: text
-                data: |
-                  #### ...with this (after):
-              - type: code
-                data: |
-                  %%GLOBAL_ReCaptchaMarkup%%
-                config:
-                  mode: java
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Supported Browsers 
+                        </script>
 
 
-                  Below are the browsers supported for the BigCommerce control
-                  panel. We drop support when a version falls below 2% of usage.
-                  The browsers are sorted by popularity, with the most popular
-                  browsers at the top.
+                        <noscript>
+
+                        <iframe
+                        src="https://www.google.com/recaptcha/api/noscript?k=%%GLOBAL_ReCaptchaAPIKeyPublic%%"
+
+                        height="300" width="500" frameborder="0"></iframe>
+
+                        <br>
+
+                        <textarea name="recaptcha_challenge_field" rows="3"
+                        cols="40">
+
+                        </textarea>
+
+                        <input type="hidden" name="recaptcha_response_field"
+
+                        value="manual_challenge">
+
+                        </noscript>
+                      config:
+                        mode: html
+                    - type: text
+                      data: |
+                        #### ...with this (after):
+                    - type: code
+                      data: |
+                        %%GLOBAL_ReCaptchaMarkup%%
+                      config:
+                        mode: java
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Supported Browsers 
 
 
-                  | Desktop |
-
-                  | --- |
-
-                  | Chrome latest |
-
-                  | Firefox latest |
-
-                  | Internet Explorer 11 or later |
-
-                  | Safari latest |
+                        Below are the browsers supported for the BigCommerce
+                        control panel. We drop support when a version falls
+                        below 2% of usage. The browsers are sorted by
+                        popularity, with the most popular browsers at the top.
 
 
-                  For a current list of target browsers (desktop and mobile)
-                  that BigCommerce supports for _storefronts_ using our themes,
-                  please see <NOBR><a
-                  href="https://forum.bigcommerce.com/s/article/Themes-Supported-Browsers"
-                  target="_blank">this support page</a>.</nobr>
-                header:
-                  anchor: blueprint-supported-browsers
-        - title: Anatomy of a Theme
-          route:
-            path: /anatomy-of-a-theme
-          data:
-            blocks:
-              - type: html
-                data: "<h1>Anatomy of a Theme</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#directory-structure\">Directory Structure</a></li>\n\t\t<li><a href=\"#blueprint-images\">Images</a></li>\n\t\t<li><a href=\"#blueprint-layouts\">Layouts/a></li>\n    <li><a href=\"#blueprint-panels\">Panels</a></li>\n    <li><a href=\"#blueprint-snippets\">Snippets</a></li>\n    <li><a href=\"#blueprint-styles\">Styles</a></li>\n\t\t</ul>\n</div>"
-              - type: text
-                data: >-
-                  Themes are built using a powerful template system that enables
-                  designers and developers familiar with CSS and HTML to modify
-                  the presentation and structure of a BigCommerce store.
-              - type: text
-                data: '---'
-              - type: text
-                data: >
-                  ## Directory Structure
+                        | Desktop |
+
+                        | --- |
+
+                        | Chrome latest |
+
+                        | Firefox latest |
+
+                        | Internet Explorer 11 or later |
+
+                        | Safari latest |
 
 
-                  Theme files that apply to a store design are organized in
-                  several different directories, as follows:
-
-
-                  *   **Images**
-
-                  *   **Panels**
-
-                  *   **Snippets**
-
-                  *   **Styles**
-                header:
-                  anchor: directory-structure
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Images
-
-
-                  Theme specific static images (referenced from CSS, or in image
-                  tags).
-                header:
-                  anchor: blueprint-images
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Layouts
-
-
-                  Layout templates provide the base HTML structure that wraps
-                  storefront page content. Each layout file corresponds to a
-                  specific page.
-
-
-                  For example, `product.html` refers to the page that’s shown
-                  when a customer is viewing the details of a product.
-
-
-                  Most layout files contain nothing more than references to
-                  individual panels to be shown on a page. These panels are
-                  contained in div tags that generally define left, center, or
-                  right columns of the page.
-                header:
-                  anchor: blueprint-layouts
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Panels
-
-
-                  Panels provide reusable blocks or dynamic sections of content.
-
-
-                  For example, the `SideCategoryList` panel builds a list of
-                  categories to be shown throughout the store.
-
-
-                  Panels are generally referenced directly from layout
-                  templates. They define which content should be shown on a
-                  particular page and handle the generation of that specific
-                  content.
-
-
-                  Some panels contain strictly static content (such as the store
-                  name) whilst others generate content dynamically. Dynamically
-                  generated panels cannot be created ad-hoc as they are linked
-                  to specific data and logic within the application.
-                header:
-                  anchor: blueprint-panels
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Snippets
-
-
-                  Snippets are templates containing a fragment of HTML that can
-                  be embedded multiple times in a page, either from direct
-                  references or from being part of a loop that iterates over the
-                  items in a list.
-
-
-                  For example, the `HomeFeaturedProductsItem` snippet renders
-                  each individual product listed in the `HomeFeaturedProducts`
-                  panel.
-                header:
-                  anchor: blueprint-snippets
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Styles
-
-
-                  Primary layout stylesheets for the Theme, with `styles.css`
-                  being the core file.
-                header:
-                  anchor: blueprint-styles
-        - title: Blueprint and Developer Mode
-          route:
-            path: /blueprint-and-developer-mode
-          data:
-            blocks:
-              - type: text
-                data: "<h1>Blueprint and Developer Mode</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#foundation-for-creating-themes\">A Foundation for Creating Themes</a></li>\n\t\t<li><a href=\"#setting-up-your-environment\">Setting Up Your Environment</a></li>\n\t\t</ul>\n</div>"
-              - type: callout
+                        For a current list of target browsers (desktop and
+                        mobile) that BigCommerce supports for _storefronts_
+                        using our themes, please see <NOBR><a
+                        href="https://forum.bigcommerce.com/s/article/Themes-Supported-Browsers"
+                        target="_blank">this support page</a>.</nobr>
+                      header:
+                        anchor: blueprint-supported-browsers
+              - title: Anatomy of a Theme
+                route:
+                  path: /anatomy-of-a-theme
                 data:
-                  title: Restricted/Grandfathered Access
-                  body: >-
-                    As of November 2016, new BigCommerce stores are being
-                    offered themes exclusively from BigCommerce's new Stencil
-                    theme platform. For existing stores, the control panel's
-                    Themes Marketplace and My Themes pages will show only those
-                    Blueprint themes that have been applied to the store and/or
-                    purchased before November 2016. 
+                  blocks:
+                    - type: html
+                      data: "<h1>Anatomy of a Theme</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#directory-structure\">Directory Structure</a></li>\n\t\t<li><a href=\"#blueprint-images\">Images</a></li>\n\t\t<li><a href=\"#blueprint-layouts\">Layouts/a></li>\n    <li><a href=\"#blueprint-panels\">Panels</a></li>\n    <li><a href=\"#blueprint-snippets\">Snippets</a></li>\n    <li><a href=\"#blueprint-styles\">Styles</a></li>\n\t\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        Themes are built using a powerful template system that
+                        enables designers and developers familiar with CSS and
+                        HTML to modify the presentation and structure of a
+                        BigCommerce store.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >
+                        ## Directory Structure
 
 
-                    This means that the workflow below will work only for stores
-                    that have applied or purchased at least one Blueprint theme
-                    before November 2016. For information about developing on
-                    the current Stencil platform, please see our Stencil
-                    developer documentation.
-                  type: warning
-              - type: text
-                data: >-
-                  ## A Foundation for Creating Themes 
+                        Theme files that apply to a store design are organized
+                        in several different directories, as follows:
 
 
-                  Our (legacy) Blueprint "Classic Next" base theme provides a
-                  starting point for creating a new theme. This theme includes
-                  responsive support out-of-the-box, so it works with lower
-                  resolutions like those on mobile devices. The visual design
-                  has been stripped back, so you can create from a clean canvas.
+                        *   **Images**
+
+                        *   **Panels**
+
+                        *   **Snippets**
+
+                        *   **Styles**
+                      header:
+                        anchor: directory-structure
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Images
 
 
-                  <a href="https://blueprint-demo.mybigcommerce.com"
-                  target="_blank">View the demo</a>.
-                header:
-                  anchor: foundation-for-creating-themes
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Setting Up Your Environment 
+                        Theme specific static images (referenced from CSS, or in
+                        image tags).
+                      header:
+                        anchor: blueprint-images
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Layouts
 
 
-                  Follow these steps to start developing using the Blueprint
-                  theme:
+                        Layout templates provide the base HTML structure that
+                        wraps storefront page content. Each layout file
+                        corresponds to a specific page.
 
 
-                  1.  To enable the Blueprint theme on your store, simply log in
-                  to the control panel, and place
-                  <NOBR>`/index.php?ToDo=viewTemplates&dev=enable` </nobr>after
-                  `/admin`.<br>
-                      (For example: <NOBR>`https://store-123abmy.mybigcommerce.com/admin/index.php?ToDo=viewTemplates&dev=enable`.</nobr>)
-                  2.  Apply the Blueprint theme.
-
-                  3.  Connect to the site via <a
-                  href="https://forum.bigcommerce.com/s/article/File-Access-WebDAV"
-                  target="_blank">WebDAV</a>.
-
-                  4.  Once connected via WebDav, navigate to the `/template/`
-                  folder, where you will have access to all the files that make
-                  up a theme.
-
-                  5.  To make a change to a file, just download the file, edit
-                  it, and then upload your altered version.
-
-                  6.  Every time you make changes to any files, you will need to
-                  upload them through WebDAV for the changes to be reflected on
-                  your site.
-                header:
-                  anchor: setting-up-your-environment
-        - title: Theme Update Process
-          route:
-            path: /blueprint-theme-update-process
-          data:
-            blocks:
-              - type: html
-                data: "<h1>Theme Update Process</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#theme-update-prerequisites\">Prerequisites</a></li>\n\t\t<li><a href=\"#blueprint-theme-update-process\">Update Process</a></li>\n    <li><a href=\"#theme-update-other-requirements\">Requirements</a></li>\n  \n\t\t</ul>\n</div>"
-              - type: text
-                data: >-
-                  Here is how BigCommerce and our partners collaborate to
-                  integrate a partner's theme changes/updates into the
-                  BigCommerce Theme Marketplace (which merchants also know as
-                  our "theme store"):
-              - type: text
-                data: >-
-                  ## Prerequisites 
+                        For example, `product.html` refers to the page that’s
+                        shown when a customer is viewing the details of a
+                        product.
 
 
-                  Integrating a partner's theme changes requires these
-                  preconditions:
+                        Most layout files contain nothing more than references
+                        to individual panels to be shown on a page. These panels
+                        are contained in div tags that generally define left,
+                        center, or right columns of the page.
+                      header:
+                        anchor: blueprint-layouts
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Panels
 
 
-                  *   Partner has an existing theme in the BigCommerce Theme
-                  Marketplace.
+                        Panels provide reusable blocks or dynamic sections of
+                        content.
 
 
-                  *   BigCommerce sets up a Theme Development store (or converts
-                  an existing regular store) and applies the theme. All theme
-                  files will automatically be copied into the WebDAV
-                  `/template/` directory.
-                header:
-                  anchor: theme-update-prerequisites
-              - type: callout
+                        For example, the `SideCategoryList` panel builds a list
+                        of categories to be shown throughout the store.
+
+
+                        Panels are generally referenced directly from layout
+                        templates. They define which content should be shown on
+                        a particular page and handle the generation of that
+                        specific content.
+
+
+                        Some panels contain strictly static content (such as the
+                        store name) whilst others generate content dynamically.
+                        Dynamically generated panels cannot be created ad-hoc as
+                        they are linked to specific data and logic within the
+                        application.
+                      header:
+                        anchor: blueprint-panels
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Snippets
+
+
+                        Snippets are templates containing a fragment of HTML
+                        that can be embedded multiple times in a page, either
+                        from direct references or from being part of a loop that
+                        iterates over the items in a list.
+
+
+                        For example, the `HomeFeaturedProductsItem` snippet
+                        renders each individual product listed in the
+                        `HomeFeaturedProducts` panel.
+                      header:
+                        anchor: blueprint-snippets
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Styles
+
+
+                        Primary layout stylesheets for the Theme, with
+                        `styles.css` being the core file.
+                      header:
+                        anchor: blueprint-styles
+              - title: Blueprint and Developer Mode
+                route:
+                  path: /blueprint-and-developer-mode
                 data:
-                  title: Template Path Abstracted
-                  body: >
-                    The Theme Development store resolves the %%GLOBAL_TPL_PATH%%
-                    variable into /template/. Therefore, assets will be pulled
-                    from the /template/ directory, which is accessible via
-                    WebDAV or via the BigCommerce control panel.
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Update Process 
+                  blocks:
+                    - type: text
+                      data: "<h1>Blueprint and Developer Mode</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#foundation-for-creating-themes\">A Foundation for Creating Themes</a></li>\n\t\t<li><a href=\"#setting-up-your-environment\">Setting Up Your Environment</a></li>\n\t\t</ul>\n</div>"
+                    - type: callout
+                      data:
+                        title: Restricted/Grandfathered Access
+                        body: >-
+                          As of November 2016, new BigCommerce stores are being
+                          offered themes exclusively from BigCommerce's new <a
+                          href="https://support.bigcommerce.com/articles/Public/The-Stencil-Theme-Platform"
+                          target="_blank">Stencil</a> theme platform. For
+                          existing stores, the control panel's <NOBR><b>Themes
+                          Marketplace</b></nobr> and <NOBR><b>My
+                          Themes</b></nobr> pages will show only those Blueprint
+                          themes that have been applied to the store and/or
+                          purchased before November 2016. <br><br> 
 
 
-                  1.  The partner switches on Theme Development mode, by
-                  using:  
+                          This means that the workflow below will work only for
+                          stores that have applied or purchased at least one
+                          Blueprint theme before November 2016. For information
+                          about developing on the current Stencil platform,
+                          please see <a
+                          href="https://stencil.bigcommerce.com/docs/"
+                          target="_blank">this developer documentation</a>.
+                        type: warning
+                    - type: text
+                      data: >-
+                        ## A Foundation for Creating Themes 
 
-                  `http://<STORE>/admin/index.php?ToDo=viewTemplates&dev=enable`.
 
-                  2.  The partner asks BigCommerce to switch a theme. (Partners
-                  currently cannot switch it directly, because it’s a paid
-                  theme.)
-                header:
-                  anchor: blueprint-theme-update-process
-              - type: callout
+                        Our (legacy) Blueprint "Classic Next" base theme
+                        provides a starting point for creating a new theme. This
+                        theme includes responsive support out-of-the-box, so it
+                        works with lower resolutions like those on mobile
+                        devices. The visual design has been stripped back, so
+                        you can create from a clean canvas.
+
+
+                        <a href="https://blueprint-demo.mybigcommerce.com"
+                        target="_blank">View the demo</a>.
+                      header:
+                        anchor: foundation-for-creating-themes
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Setting Up Your Environment 
+
+
+                        Follow these steps to start developing using the
+                        Blueprint theme:
+
+
+                        1.  To enable the Blueprint theme on your store, simply
+                        log in to the control panel, and place
+                        <NOBR>`/index.php?ToDo=viewTemplates&dev=enable`
+                        </nobr>after `/admin`.<br>
+                            (For example: <NOBR>`https://store-123abmy.mybigcommerce.com/admin/index.php?ToDo=viewTemplates&dev=enable`.</nobr>)
+                        2.  Apply the Blueprint theme.
+
+                        3.  Connect to the site via <a
+                        href="https://forum.bigcommerce.com/s/article/File-Access-WebDAV"
+                        target="_blank">WebDAV</a>.
+
+                        4.  Once connected via WebDav, navigate to the
+                        `/template/` folder, where you will have access to all
+                        the files that make up a theme.
+
+                        5.  To make a change to a file, just download the file,
+                        edit it, and then upload your altered version.
+
+                        6.  Every time you make changes to any files, you will
+                        need to upload them through WebDAV for the changes to be
+                        reflected on your site.
+                      header:
+                        anchor: setting-up-your-environment
+              - title: Theme Update Process
+                route:
+                  path: /blueprint-theme-update-process
                 data:
-                  type: error
-                  body: >-
-                    This step will wipe out all files in the /template/
-                    directory and copy in the latest version of the integrated
-                    theme.
-              - type: text
-                data: >-
-                  3.  The partner pulls changes from BigCommerce's GitHub fork,
-                  to get the most recent version onto their local machine as
-                  well.
+                  blocks:
+                    - type: html
+                      data: "<h1>Theme Update Process</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#theme-update-prerequisites\">Prerequisites</a></li>\n\t\t<li><a href=\"#blueprint-theme-update-process\">Update Process</a></li>\n    <li><a href=\"#theme-update-other-requirements\">Requirements</a></li>\n  \n\t\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        Here is how BigCommerce and our partners collaborate to
+                        integrate a partner's theme changes/updates into the
+                        BigCommerce Theme Marketplace (which merchants also know
+                        as our "theme store"):
+                    - type: text
+                      data: >-
+                        ## Prerequisites 
 
-                  4.  The partner makes appropriate changes to CSS/HTML files.
 
-                  5.  The partner commits their changes into the feature branch,
-                  and opens a pull request against the BigCommerce fork.
-              - type: callout
+                        Integrating a partner's theme changes requires these
+                        preconditions:
+
+
+                        *   Partner has an existing theme in the BigCommerce
+                        Theme Marketplace.
+
+
+                        *   BigCommerce sets up a Theme Development store (or
+                        converts an existing regular store) and applies the
+                        theme. All theme files will automatically be copied into
+                        the WebDAV `/template/` directory.
+                      header:
+                        anchor: theme-update-prerequisites
+                    - type: callout
+                      data:
+                        title: Template Path Abstracted
+                        body: >
+                          The Theme Development store resolves the
+                          %%GLOBAL_TPL_PATH%% variable into /template/.
+                          Therefore, assets will be pulled from the /template/
+                          directory, which is accessible via WebDAV or via the
+                          BigCommerce control panel.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Update Process 
+
+
+                        1.  The partner switches on Theme Development mode, by
+                        using:  
+
+                        `http://<STORE>/admin/index.php?ToDo=viewTemplates&dev=enable`.
+
+                        2.  The partner asks BigCommerce to switch a theme.
+                        (Partners currently cannot switch it directly, because
+                        it’s a paid theme.)
+                      header:
+                        anchor: blueprint-theme-update-process
+                    - type: callout
+                      data:
+                        type: error
+                        body: >-
+                          This step will wipe out all files in the /template/
+                          directory and copy in the latest version of the
+                          integrated theme.
+                    - type: text
+                      data: >-
+                        3.  The partner pulls changes from BigCommerce's GitHub
+                        fork, to get the most recent version onto their local
+                        machine as well.
+
+                        4.  The partner makes appropriate changes to CSS/HTML
+                        files.
+
+                        5.  The partner commits their changes into the feature
+                        branch, and opens a pull request against the BigCommerce
+                        fork.
+                    - type: callout
+                      data:
+                        type: warning
+                        body: >-
+                          If BigCommerce made conflicting changes (which should
+                          happen only when resolving urgent issues), the partner
+                          might need to rebase changes (using git rebase master)
+                          in order to resolve the conflicts.
+                    - type: text
+                      data: >-
+                        6.  Partner [emails](mailto:themestore@bigcommerce.com)
+                        their Git URL to the BigCommerce Theme Marketplace.
+
+                        7.  BigCommerce integrates changes into BigCommerce
+                        Themes.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Other Requirements 
+
+
+                        *   Partners must not change the repository's directory
+                        structure or directory names.
+
+                        *   Files should have permission 644 (`rw-r–r–`).
+
+                        *   Directories should have permission 755
+                        (`drwxr-x-r-x`).
+                      header:
+                        anchor: theme-update-other-requirements
+              - title: Style Editor
+                route:
+                  path: /style-editor
                 data:
-                  type: warning
-                  body: >-
-                    If BigCommerce made conflicting changes (which should happen
-                    only when resolving urgent issues), the partner might need
-                    to rebase changes (using git rebase master) in order to
-                    resolve the conflicts.
-              - type: text
-                data: >-
-                  6.  Partner [emails](mailto:themestore@bigcommerce.com) their
-                  Git URL to the BigCommerce Theme Marketplace.
+                  blocks:
+                    - type: html
+                      data: "<h1>Style Editor/h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#what-is-lessjs\">What is Less.js?</a></li>\n\t\t<li><a href=\"#integrating-theme-style-editor\">Integrating a Theme with the Style Editor</a></li>\n\t\t<li><a href=\"#testing-style-editor-with-theme\">Testing Style Editor with Your Theme</a></li>\n \n\t\t</ul>\n</div>"
+                    - type: text
+                      data: >
+                        Style Editor allows users to customize the look and feel
+                        of their BigCommerce store, without needing to know HTML
+                        or CSS conventions. Using a simple WYSIWYG interface,
+                        users can edit colors and fonts, then see the changes
+                        simultaneously in a live preview.
 
-                  7.  BigCommerce integrates changes into BigCommerce Themes.
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Other Requirements 
 
+                        Style Editor uses Less.js as a CSS preprocessor. This
+                        allows Style Editor to take advantage of variables and
+                        other functions to ensure design consistency.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >
+                        ## What Is Less.js? 
 
-                  *   Partners must not change the repository's directory
-                  structure or directory names.
-
-                  *   Files should have permission 644 (`rw-r–r–`).
-
-                  *   Directories should have permission 755 (`drwxr-x-r-x`).
-                header:
-                  anchor: theme-update-other-requirements
-        - title: Style Editor
-          route:
-            path: /style-editor
-          data:
-            blocks:
-              - type: html
-                data: "<h1>Style Editor/h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#what-is-lessjs\">What is Less.js?</a></li>\n\t\t<li><a href=\"#integrating-theme-style-editor\">Integrating a Theme with the Style Editor</a></li>\n\t\t<li><a href=\"#testing-style-editor-with-theme\">Testing Style Editor with Your Theme</a></li>\n \n\t\t</ul>\n</div>"
-              - type: text
-                data: >
-                  Style Editor allows users to customize the look and feel of
-                  their BigCommerce store, without needing to know HTML or CSS
-                  conventions. Using a simple WYSIWYG interface, users can edit
-                  colors and fonts, then see the changes simultaneously in a
-                  live preview.
-
-
-                  Style Editor uses Less.js as a CSS preprocessor. This allows
-                  Style Editor to take advantage of variables and other
-                  functions to ensure design consistency.
-              - type: text
-                data: '---'
-              - type: text
-                data: >
-                  ## What Is Less.js? 
 
+                        Less (formally, Less.js) is a CSS preprocessor that
+                        allows theme designers to use advanced functions and
+                        programming principles in their CSS. A JavaScript
+                        compiler runs over the Less files, and converts them
+                        into usable CSS that can be included in themes.
 
-                  Less (formally, Less.js) is a CSS preprocessor that allows
-                  theme designers to use advanced functions and programming
-                  principles in their CSS. A JavaScript compiler runs over the
-                  Less files, and converts them into usable CSS that can be
-                  included in themes.
-
-
-                  For more information on examples, techniques, and how to
-                  install Less, please see <a href="http://lesscss.org/"
-                  target="_blank">lesscss.org</a>.
-                header:
-                  anchor: what-is-lessjs
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Integrating a Theme with the Style Editor 
-
-
-                  The Style Editor uses a specific group of files to build its
-                  user interface, and to compile and generate the stylesheet.
-                  BigCommerce’s base developer theme, Blueprint, already
-                  contains these out-of-the-box. The files are stored in the
-                  `Styles/less` directory.
-
-
-                  The Style Editor depends on these files:
-
-
-                  *   `style-editor-variables.less`
-
-                  *   `internal-variables.less`
-
-                  *   `init.less`
-
-                  *   `theme.less`
-
-
-                  ### style-editor-variables.less 
-
-
-                  Style Editor uses this file to generate its user interface.
-                  Here, you can enter variables for colours, fonts and numbers
-                  that will help the merchant customize the design of the theme.
-                  You can separate these variables out into sections with
-                  headings to help categorize the variables in a logical manner.
-                  No actual CSS is written in this file.
-
 
-                  There are some syntax patterns involved that Style Editor will
-                  understand to help you customize the UI. Special syntax:
-
-
-                  `@color-your-text-here` — This is the naming convention for a
-                  color variable. The style editor will generate this as a color
-                  picker, with the value of the variable set as the color
-                  picker’s default hexadecimal color value.
+                        For more information on examples, techniques, and how to
+                        install Less, please see <a href="http://lesscss.org/"
+                        target="_blank">lesscss.org</a>.
+                      header:
+                        anchor: what-is-lessjs
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Integrating a Theme with the Style Editor 
 
 
-                  For example:
-                header:
-                  anchor: integrating-theme-style-editor
-              - type: code
-                data: '@color-header-background: #FFFFFF;'
-                config:
-                  mode: css
-              - type: text
-                data: >-
-                  This will generate a color picker with the label “Header
-                  Background”, set to #FFFFFF (white) by default.
+                        The Style Editor uses a specific group of files to build
+                        its user interface, and to compile and generate the
+                        stylesheet. BigCommerce’s base developer theme,
+                        Blueprint, already contains these out-of-the-box. The
+                        files are stored in the `Styles/less` directory.
+
+
+                        The Style Editor depends on these files:
+
+
+                        *   `style-editor-variables.less`
+
+                        *   `internal-variables.less`
+
+                        *   `init.less`
+
+                        *   `theme.less`
+
+
+                        ### style-editor-variables.less 
+
+
+                        Style Editor uses this file to generate its user
+                        interface. Here, you can enter variables for colours,
+                        fonts and numbers that will help the merchant customize
+                        the design of the theme. You can separate these
+                        variables out into sections with headings to help
+                        categorize the variables in a logical manner. No actual
+                        CSS is written in this file.
+
+
+                        There are some syntax patterns involved that Style
+                        Editor will understand to help you customize the UI.
+                        Special syntax:
+
+
+                        `@color-your-text-here` — This is the naming convention
+                        for a color variable. The style editor will generate
+                        this as a color picker, with the value of the variable
+                        set as the color picker’s default hexadecimal color
+                        value.
+
+
+                        For example:
+                      header:
+                        anchor: integrating-theme-style-editor
+                    - type: code
+                      data: '@color-header-background: #FFFFFF;'
+                      config:
+                        mode: css
+                    - type: text
+                      data: >-
+                        This will generate a color picker with the label “Header
+                        Background”, set to #FFFFFF (white) by default.
 
 
-                  `@font-your-text-here` — This is the naming convention for a
-                  font variable. The style editor will generate this as a
-                  dropdown, preloaded with your theme’s predefined fonts. The
-                  variable’s value will be preselected.
+                        `@font-your-text-here` — This is the naming convention
+                        for a font variable. The style editor will generate this
+                        as a dropdown, preloaded with your theme’s predefined
+                        fonts. The variable’s value will be preselected.
+
+
+                        For example:
+                    - type: code
+                      data: '@font-page-text: "Open Sans",Helvetica,Arial,sans-serif;'
+                      config:
+                        mode: css
+                    - type: text
+                      data: >-
+                        This will generate a dropdown with the label “Page
+                        Text”, and with the “Open Sans” font preselected. The
+                        dropdown’s other options will be the predefined list of
+                        fonts you’ve provided.
 
 
-                  For example:
-              - type: code
-                data: '@font-page-text: "Open Sans",Helvetica,Arial,sans-serif;'
-                config:
-                  mode: css
-              - type: text
-                data: >-
-                  This will generate a dropdown with the label “Page Text”, and
-                  with the “Open Sans” font preselected. The dropdown’s other
-                  options will be the predefined list of fonts you’ve provided.
+                        `@font-declaration` — This variable will store all the
+                        default fonts (and their fallbacks) for the style
+                        editor. It will use these fonts in the font dropdown
+                        mentioned in the above point.
 
 
-                  `@font-declaration` — This variable will store all the default
-                  fonts (and their fallbacks) for the style editor. It will use
-                  these fonts in the font dropdown mentioned in the above point.
+                        For example:
+                    - type: code
+                      data: >
+                        @font-declaration: '{ "Lato":["Lato", "Arial",
+                        "sans-serif"], "Freckle Face":["Freckle Face",
+                        "cursive"]}';
+                      config:
+                        mode: css
+                    - type: text
+                      data: >-
+                        This will populate all font drop-downs with the fonts
+                        “Lato” and “Freckle Face,” and if one of them is
+                        selected, the fonts for that variable will be set to the
+                        values in the corresponding array of fonts. For example,
+                        “Lato” will set the fonts to “Lato”, Arial, sans-serif.
+
+
+                        To use these fonts in the Style Editor, they must be
+                        included in the style editor variables file through an
+                        import. For the above example, you would include the
+                        styles from Google Fonts like so:
+                    - type: code
+                      data: >
+                        @import
+                        url(//fonts.googleapis.com/css?family=Lato|Freckle+Face);
+                      config:
+                        mode: css
+                    - type: text
+                      data: >
+                        `@color-declaration` — This variable will store all the
+                        default colors for the style editor. It will list these
+                        colours in the color picker’s palette after all the
+                        color picker’s defaults.
 
 
-                  For example:
-              - type: code
-                data: >
-                  @font-declaration: '{ "Lato":["Lato", "Arial", "sans-serif"],
-                  "Freckle Face":["Freckle Face", "cursive"]}';
-                config:
-                  mode: css
-              - type: text
-                data: >-
-                  This will populate all font drop-downs with the fonts “Lato”
-                  and “Freckle Face,” and if one of them is selected, the fonts
-                  for that variable will be set to the values in the
-                  corresponding array of fonts. For example, “Lato” will set the
-                  fonts to “Lato”, Arial, sans-serif.
+                        For example:
+                    - type: code
+                      data: '@color-declaration: ''["#FF7700, #9966CC" ]'';'
+                      config:
+                        mode: css
+                    - type: text
+                      data: >
+                        This will add a shade of orange and a shade of purple to
+                        the end of the list of colors selectable in the color
+                        picker.
 
 
-                  To use these fonts in the Style Editor, they must be included
-                  in the style editor variables file through an import. For the
-                  above example, you would include the styles from Google Fonts
-                  like so:
-              - type: code
-                data: >
-                  @import
-                  url(//fonts.googleapis.com/css?family=Lato|Freckle+Face);
-                config:
-                  mode: css
-              - type: text
-                data: >
-                  `@color-declaration` — This variable will store all the
-                  default colors for the style editor. It will list these
-                  colours in the color picker’s palette after all the color
-                  picker’s defaults.
+                        `//! @section: your text here` — You can group variables
+                        into sections with headings using this syntax to help
+                        your users read and understand your variables more
+                        easily.
 
 
-                  For example:
-              - type: code
-                data: '@color-declaration: ''["#FF7700, #9966CC" ]'';'
-                config:
-                  mode: css
-              - type: text
-                data: >
-                  This will add a shade of orange and a shade of purple to the
-                  end of the list of colors selectable in the color picker.
+                        For example:
 
 
-                  `//! @section: your text here` — You can group variables into
-                  sections with headings using this syntax to help your users
-                  read and understand your variables more easily.
+                        `//! @section: Header`  
 
+                        `@color-header-background: #FFF;`  
 
-                  For example:
+                        `//! @endsection`  of
 
 
-                  `//! @section: Header`  
+                        This will create a section in the left navigation with
+                        the title “Header”, which will house the “Header
+                        Background” variable.
 
-                  `@color-header-background: #FFF;`  
 
-                  `//! @endsection`  of
+                        More information on syntax, and examples, can be found
+                        in the comments of the style-editor-variables.less file
+                        found in Blueprint.
+                    - type: text
+                      data: >
+                        ### internal-variables.less 
 
 
-                  This will create a section in the left navigation with the
-                  title “Header”, which will house the “Header Background”
-                  variable.
+                        This file is for you to store the variables that you may
+                        need to use, but don’t want the Style editor to see. For
+                        example, you can use it to create a hierarchy within
+                        your Less file, so that:
 
 
-                  More information on syntax, and examples, can be found in the
-                  comments of the style-editor-variables.less file found in
-                  Blueprint.
-              - type: text
-                data: >
-                  ### internal-variables.less 
+                        *   The user sets a value to @color-store-name;
 
+                        *   in internal-variables.less, @main-accent:
+                        @color-store-name;
 
-                  This file is for you to store the variables that you may need
-                  to use, but don’t want the Style editor to see. For example,
-                  you can use it to create a hierarchy within your Less file, so
-                  that:
+                        *   in init.less, we set a:hover {color: @main-accent};
 
 
-                  *   The user sets a value to @color-store-name;
+                        In this example, the link hover color will be set to
+                        whatever the store name color is. We can add as many
+                        selectors as we want to this css statement, depending on
+                        our design.
 
-                  *   in internal-variables.less, @main-accent:
-                  @color-store-name;
 
-                  *   in init.less, we set a:hover {color: @main-accent};
+                        This way, we can reuse the color that gets set to
+                        `@color-store-name` as the color for elements that we
+                        may not want to be edited in the Style Editor, but will
+                        now carry on the colour of the store name to create
+                        consistency within your design.
+                    - type: text
+                      data: >
+                        ### init.less 
 
 
-                  In this example, the link hover color will be set to whatever
-                  the store name color is. We can add as many selectors as we
-                  want to this css statement, depending on our design.
+                        This is where you initialize the use of the variables.
+                        This file contains all the CSS that will be compiled and
+                        generated into the theme.css file. For example, the
+                        @color-store-name can now be applied to the `#HeaderLogo
+                        h1` element by saying:
+                    - type: code
+                      data: |
+                        #HeaderLogo h1 {
+                        color: @color-store-name
+                        }
+                      config:
+                        mode: css
+                    - type: text
+                      data: >+
+                        ### theme.less 
 
 
-                  This way, we can reuse the color that gets set to
-                  `@color-store-name` as the color for elements that we may not
-                  want to be edited in the Style Editor, but will now carry on
-                  the colour of the store name to create consistency within your
-                  design.
-              - type: text
-                data: >
-                  ### init.less 
+                        The file that ultimately gets compiled into `theme.css`.
+                        This just uses `@import` to include the other three Less
+                        files for compilation. The Style Editor will read this
+                        file for instructions on how to compile your styles
+                        using Less.
 
 
-                  This is where you initialize the use of the variables. This
-                  file contains all the CSS that will be compiled and generated
-                  into the theme.css file. For example, the @color-store-name
-                  can now be applied to the `#HeaderLogo h1` element by saying:
-              - type: code
-                data: |
-                  #HeaderLogo h1 {
-                  color: @color-store-name
-                  }
-                config:
-                  mode: css
-              - type: text
-                data: >+
-                  ### theme.less 
+                        Compiling your Less files
 
 
-                  The file that ultimately gets compiled into `theme.css`. This
-                  just uses `@import` to include the other three Less files for
-                  compilation. The Style Editor will read this file for
-                  instructions on how to compile your styles using Less.
+                        Once you have finished working on your `.less` files,
+                        _don’t forget to compile them!_ If you are using the
+                        command line, you should be doing something similar to:
 
+                    - type: code
+                      data: |+
+                        lessc Styles/less/theme.less > Styles/theme.css 
 
-                  Compiling your Less files
 
+                      config:
+                        mode: html
+                    - type: text
+                      data: >-
+                        This will use the `theme.less` file to generate the
+                        `theme.css` file into your theme's `Styles/` folder.
 
-                  Once you have finished working on your `.less` files, _don’t
-                  forget to compile them!_ If you are using the command line,
-                  you should be doing something similar to:
 
-              - type: code
-                data: |+
-                  lessc Styles/less/theme.less > Styles/theme.css 
+                        If you find that you have to make a change to
+                        `theme.css`, please don't forget to replicate this
+                        change in `theme.less` (but more preferably, in
+                        `init.less`). Otherwise, every time you recompile the
+                        less files, this change will be overwritten.
 
 
-                config:
-                  mode: html
-              - type: text
-                data: >-
-                  This will use the `theme.less` file to generate the
-                  `theme.css` file into your theme's `Styles/` folder.
+                        Less offers a variety of compilation methods, including
+                        applications for both Windows and Mac that you can use
+                        if you prefer not to use the command prompt/terminal.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Testing Style Editor with Your Theme 
 
 
-                  If you find that you have to make a change to `theme.css`,
-                  please don't forget to replicate this change in `theme.less`
-                  (but more preferably, in `init.less`). Otherwise, every time
-                  you recompile the less files, this change will be overwritten.
+                        If you'd like to add Style Editor support to your theme,
+                        you can enable the Style Editor on just your store.
+                        Simply log in to the control panel and place
+                        `/index.php?ToDo=viewTemplates&dev=enable` after
+                        `/admin`.<br>
 
+                        (For example:
+                        <NOBR>`https://store-123abmy.mybigcommerce.com/admin/index.php?ToDo=viewTemplates&dev=enable`</nobr>)
 
-                  Less offers a variety of compilation methods, including
-                  applications for both Windows and Mac that you can use if you
-                  prefer not to use the command prompt/terminal.
-              - type: text
-                data: '---'
-              - type: text
-                data: >-
-                  ## Testing Style Editor with Your Theme 
 
-
-                  If you'd like to add Style Editor support to your theme, you
-                  can enable the Style Editor on just your store. Simply log in
-                  to the control panel and place
-                  `/index.php?ToDo=viewTemplates&dev=enable` after `/admin`.<br>
-
-                  (For example:
-                  <NOBR>`https://store-123abmy.mybigcommerce.com/admin/index.php?ToDo=viewTemplates&dev=enable`</nobr>)
-
-
-                  This will enable [Developer Mode](#) for your store, which
-                  also enables Blueprint and other features for theme
-                  developers. You can [use Blueprint](#) as a basis for creating
-                  new themes.
-                header:
-                  anchor: testing-style-editor-with-theme
+                        This will enable [Developer Mode](#) for your store,
+                        which also enables Blueprint and other features for
+                        theme developers. You can [use Blueprint](#) as a basis
+                        for creating new themes.
+                      header:
+                        anchor: testing-style-editor-with-theme
 theme:
   background: '#3550b6'
   primary: '#4b71fc'
