@@ -17818,9 +17818,115 @@ pages:
                         }
                         ```
                       header:
-                        anchor: '#v2-get-a-option'
+                        anchor: v2-get-a-option
                     - type: text
                       data: '---'
+                    - type: text
+                      data: |-
+                        ## Get a Count of Options 
+
+                        Gets a count of the number of options in the store.
+
+                        >`GET /stores/{store_hash}/v2/options/count`
+
+
+                        ### Response 
+
+                        Example JSON returned in the response:
+
+                        ```
+                        {
+                          "count": 4
+                        }
+                        ```
+                      header:
+                        anchor: v2-get-a-count-of-options
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create an Option 
+
+
+                        Creates a new option.
+
+
+
+                        >`POST /stores/{store_hash}/v2/options`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the option are read-only. If
+                        one or more of these properties are included in the
+                        request, it will be rejected.
+
+
+                        *   id
+
+                        *   values
+
+
+                        ### Requirements 
+
+
+                        The following properties of the option are required. The
+                        request won’t be fulfilled unless these properties are
+                        valid.
+
+
+                        *   name
+
+                        *   type
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "name": "Color",
+                          "display_name": "Color",
+                          "type": "CS"
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 10,
+                          "product_id": null,
+                          "name": "Color",
+                          "display_name": "Color",
+                          "type": "CS",
+                          "values": {
+                            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/options/10/values.json",
+                            "resource": "/options/10/values",
+                            "product_id": null
+                          }
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-create-a-option
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: ''
           config:
             sidebar:
               token: v2
