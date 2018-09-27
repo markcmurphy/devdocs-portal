@@ -1743,8 +1743,33 @@ pages:
                             config:
                               maxHeight: '800'
                               maxWidth: '800'
-                          - type: image
-                            data: ''
+                          - type: text
+                            data: >+
+                              You can use the `-f` or `--filename` option in
+                              cases where you have already run `stencil bundle`
+                              to bundle your theme, but the resulting .zip file
+                              has not yet uploaded to BigCommerce. Use the
+                              generated .zip file's **filename** as a parameter
+                              to identify the generated file in your theme
+                              directory. An example of the command is outlined
+                              below.
+
+
+                              `stencil push -f Cornerstone-2.3.2.zip`
+
+
+                              In this example, `Cornerstone-2.3.2.zip` is the
+                              name of the file that was generated after running
+                              `stencil bundle`.
+
+
+                              When you run `stencil push` with the `-f` or
+                              `--filename` option, Stencil CLI skips all its
+                              bundling steps and diagnostics. It proceeds
+                              directly to uploading the specified file,
+                              displaying its processing progress bar to show
+                              upload status.
+
                     - title: Cornerstone File Structure
                       route:
                         path: /cornerstone-file-structure
