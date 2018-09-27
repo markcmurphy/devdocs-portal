@@ -858,21 +858,107 @@
                           ]
                         }
                       },
-                      {
+{
                         "title": "Stencil CLI Options and Commands",
                         "route": {
                           "path": "/stencil-cli-options-and-commands"
                         },
-                        "data": {}
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Stencil CLI Options and Commands</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#stencil_basic-cli\">Basic CLI Options and Commands</a></li>\n    <li><a href=\"#stencil_stencil-start\">Stencil Start Options</a></li>\n    <li><a href=\"#stencil_stencil-push\">Stencil Push Options</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Basic CLI Options and Commands\n\nThe syntax to run a basic Stencil CLI command is: stencil <commands> [options] <parameter>.\n\nTo see the basic options and commands that the Stencil CLI package supports, enter any of the following forms of the help option on your command line:\n\n`stencil <command> [option] <parameter>`\n\nTo see the basic options and commands that the Stencil CLI package supports, enter any of the following forms of the help option on your command line:\n\n```\nstencil\nstencil help\nstencil --help\nstencil -h\n```\n\nYour terminal window will display options and commands listed in the tables below. \n",
+                              "header": {
+                                "anchor": "#stencil_basic-cli"
+                              }
+                            },
+                            {
+                              "type": "html",
+                              "data": "<table>\n  <tr>\n    <th>Option</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>-h, --help</td>\n    <td>Outputs usage information.</td>\n  </tr>\n  <tr>\n    <td>-V, --version</td>\n    <td>Outputs the version number (which is read from package.json file</span>).</td>\n  </tr>\n</table>\n\n<p></p>\n<table>\n  <tr>\n    <th>Command</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>init</td>\n    <td >Interactively creates a .stencil file, which configures how to run a BigCommerce store locally.</td>\n  </tr>\n  <tr>\n    <td>start</td>\n    <td>Starts up the BigCommerce store, using theme files in the current directory. \n\n<b>Note:</b> If stencil start generates an \"Unauthorized, please use a valid username/token error: Please make sure that the .stencil file contains the correct store URL and (for OAuth) the correct URL prefix). Also, verify that you have copied the correct credentials, as outlined here. If you continue to get the same error, please reissue tokens, as outlined here.\n    </td>\n  </tr>\n \n  \n  <tr>\n    <td>bundle</td>\n    <td>Bundles up the theme into a structured .zip file, which can be uploaded to BigCommerce. (Please see restrictions here).</td>\n  </tr>\n  \n  <tr>\n    <td></a>push</td>\n    <td>Bundles up the theme into a structured .zip file; then directly uploads (pushes) the .zip to BigCommerce.(Please see</nobr> usage instructions here. The same restrictions apply as for the bundle command.)</td>\n  </tr>\n  \n  <tr>\n    <td>release</td>\n    <td>Creates a new release in a theme's GitHub repository. Developers outside BigCommerce can use this for forks (not master) of Stencil's Cornerstone base theme, or for their own parallel themes independent of Cornerstone.</td>\n  </tr>\n    \n  <tr>\n    <td>help &lt;command&gt;</td>\n    <td>return all the options available to use for the specified command. For example, <code>stencil help bundle</code> will return the options that are available to use specifically with the stencil bundle command.\t\n    </td>\n  </tr>  \n  \n</table>"
+                            },
+                            {
+                              "type": "image",
+                              "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1538055264839",
+                              "header": {
+                                "title": "Basic Stencil CLI Options and Commands"
+                              }
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "title": "'stencil start' and 'stencil push' Options",
+                                "body": "The `stencil start` and `stencil push` CLI Commands have additional custom options that can be used with the command, which are detailed below."
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Stencil Start Options\n\nTo see Stencil CLI's additional options for the `stencil start` command (described above), enter the following on your command line:\n\n`stencil help start` \n\nYour terminal screen should read similar to the image below.\n",
+                              "header": {
+                                "anchor": "#stencil_stencil-start"
+                              }
+                            },
+                            {
+                              "type": "image",
+                              "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1538029681278",
+                              "config": {
+                                "maxWidth": "1300",
+                                "maxHeight": "1300"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Stencil Push Options\n\nTo see Stencil CLI's additional options for the stencil push command (described above), enter the following on your command line:\n\n`stencil help push`\n\nYour terminal screen should read similar to the image below."
+                            },
+                            {
+                              "type": "image",
+                              "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1538055086025",
+                              "config": {
+                                "maxHeight": "800",
+                                "maxWidth": "800"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "You can use the `-f` or `--filename` option in cases where you have already run `stencil bundle` to bundle your theme, but the resulting .zip file has not yet uploaded to BigCommerce. Use the generated .zip file's **filename** as a parameter to identify the generated file in your theme directory. An example of the command is outlined below.\n\n`stencil push -f Cornerstone-2.3.2.zip`\n\nIn this example, `Cornerstone-2.3.2.zip` is the name of the file that was generated after running `stencil bundle`.\n\nWhen you run `stencil push` with the `-f` or `--filename` option, Stencil CLI skips all its bundling steps and diagnostics. It proceeds directly to uploading the specified file, displaying its processing progress bar to show upload status.\n\n"
+                            }
+                          ]
+                        }
                       },
                       {
-                        "title": "Stencil Theme's Path Anatomy",
+                        "title": "Cornerstone File Structure",
                         "route": {
-                          "path": "/stencil-themes-path-anatomy"
+                          "path": "/cornerstone-file-structure"
                         },
-                        "data": {}
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Cornerstone File Structure</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#cornerstone_cornerstone-file-structure\">The Cornerstone Theme File Structure</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## The Cornerstone Theme File Structure\n\nCornerstone is the base Stencil theme, and it is also the default theme for all newly initialized local storefronts. Cornerstone provides the standard file structure, base design pattern, and default file assets necessary to start developing a custom storefront experience.\n\nThe Cornerstone file structure consists of four main subdirectories. Within those subdirectories, you'll be directed to specific files in the Development Quick Start tutorial and in Stencil reference material:\n\n### `template/pages`\n`templates/pages` contains all the base template pages used in a BigCommerce online storefront. The pages are grouped by page category. In order to prevent any rendering errors, please avoid changing page names. For details, please see Templates Required Directory > Pages Subdirectory.\n\n\n### `template/components`\n`templates/components` Components consist of code snippets and partials that can be reused throughout your theme. This directory is grouped by component type. For details, please see Templates Required Directory > Component Subdirectory.\n\n### `template/layout`\n`templates/layout` define the overall structure (header, footer, etc.) for your storefront. You can implement multiple layouts here, for different use cases – to make it easy to switch between different look-and-feel variations for the same theme. For details, please see Templates Required Directory > Layout Subdirectory.\n\n### `assets/`\n`assets/` (images, CSS and JavaScript files) will be located in this directory. For details, please see CSS, JavaScript, and Design Resources.\n\n### `lang/`\n`lang/` contains translation files, including the required `en.json`. For details, please see the Internationalization/Localization section of the documentation.\n\nWhen developing in your local environment, all files that you change in your Stencil theme directory (/cornerstone/ in our default installation) will be reflected immediately at [http://localhost:3000](http://localhost:3000).\n",
+                              "header": {
+                                "anchor": "cornerstone_cornerstone-file-structure"
+                              }
+                            }
+                          ]
+                        }
                       }
-                    ]
+                    ],
+                    "blocks": []
                   }
                 }
               ]
