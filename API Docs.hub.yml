@@ -17926,7 +17926,80 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
-                      data: ''
+                      data: >
+                        ## Update an Option 
+
+
+                        Updates an existing option.
+
+
+                        >`PUT /stores/{store_hash}/v2/options/{id}`
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the option are read-only. If
+                        one or more of these properties are included in the
+                        request, it will be rejected.
+
+
+                        *   `id`
+
+                        *   `values`
+
+
+                        ### Requirements 
+
+
+                        The following properties of the option are required. The
+                        request won’t be fulfilled unless these properties are
+                        valid.
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "name": "Xmen toys",
+                          "display_name": "xmen extreme toys",
+                          "type": "T"
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 18,
+                          "product_id": null,
+                          "name": "Xmen toys",
+                          "display_name": "xmen extreme toys",
+                          "type": "T",
+                          "values": {
+                            "url": "https://store-bwvr466.mybigcommerce.com/api/v2/options/18/values.json",
+                            "resource": "/options/18/values",
+                            "product_id": null
+                          }
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-update-a-option
+                    - type: text
+                      data: '---'
           config:
             sidebar:
               token: v2
