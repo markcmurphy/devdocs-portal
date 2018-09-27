@@ -16304,6 +16304,8 @@ pages:
                       header:
                         anchor: v2-list-brands
                     - type: text
+                      data: '---'
+                    - type: text
                       data: |-
                         ## Get a Brand 
 
@@ -16325,6 +16327,164 @@ pages:
                           "image_file": "",
                           "search_keywords": ""
                         }
+                        ```
+                      header:
+                        anchor: v2-get-a-brand
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: |-
+                        ## Get a Count of Brands 
+
+                        Returns the total number of brands in the store.
+
+
+                        >`GET /stores/{store_hash}/v2/brands/count`
+
+                        ### Response 
+
+                        Example JSON returned in the response:
+
+                        ```
+                        {
+                          "count": 25
+                        }
+                        ```
+                      header:
+                        anchor: v2-get-a-brand-count
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create a Brand 
+
+
+                        Creates a new brand.
+
+
+                        >`POST /stores/{store_hash}/v2/brands`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the brand are read-only. If
+                        one or more of these properties are included in the
+                        request, it will be rejected.
+
+
+                        *   id
+
+
+                        ### Requirements 
+
+
+                        The following properties of the brand are required. The
+                        request won’t be fulfilled unless these properties are
+                        valid.
+
+
+                        *   name
+
+
+                        ### Notes 
+
+
+                        To maximize system performance, BigCommerce caps the
+                        number of brands that can be added to a store at 30,000.
+                        If your POST causes the store to exceed the maximum of
+                        30,000 brands, BigCommerce will return a 403 error.
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "name": "Xmen",
+                          "page_title": "X men brand"
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 10,
+                          "name": "Xmen",
+                          "page_title": "X men brand",
+                          "meta_keywords": null,
+                          "meta_description": null,
+                          "image_file": "",
+                          "search_keywords": ""
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-create-a-brand
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Update a Brand 
+
+
+                        Updates an existing brand.
+
+
+                        >`PUT /stores/{store_hash}/v2/brands/{id}`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the brand are read-only. If
+                        one or more of these properties are included in the
+                        request, it will be rejected.
+
+
+                        *   id
+
+
+                        ### Requirements 
+
+
+                        The following properties of the brand are required. The
+                        request won’t be fulfilled unless these properties are
+                        valid.
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 10,
+                          "name": "Xmen",
+                          "page_title": "X men brand",
+                          "meta_keywords": null,
+                          "meta_description": null,
+                          "image_file": "t/apirmzk0a__43675.jpg",
+                          "search_keywords": "xmen, awesomeness"
+                        }
+
                         ```
           config:
             sidebar:
