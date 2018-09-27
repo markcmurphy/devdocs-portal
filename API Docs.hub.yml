@@ -17696,6 +17696,103 @@ pages:
                         |
                       header:
                         anchor: v2-delete-multiple-custom-fields
+                  children: []
+              - title: Options
+                route:
+                  path: /v2-options
+                data:
+                  blocks:
+                    - type: text
+                      data: >-
+                        ## List Options 
+
+
+                        Gets the collection of options. (Default sorting is by
+                        option id, from lowest to highest.)
+
+
+                        >`GET /stores/{store_hash}/v2/options`
+
+
+                        ### Filters 
+
+
+                        Filter parameters can be added to the URL query string
+                        to select specific options in the collection.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | name | string | /api/v2/options?name={value} |
+
+                        | display_name | string |
+                        /api/v2/options?display_name={value} |
+
+                        | type | string | /api/v2/options?type={value} |
+
+
+                        ### Pagination 
+
+
+                        Parameters can be added to the URL query string to
+                        paginate the collection. The maximum limit is 250. If a
+                        limit isn’t provided, up to 50 options are returned by
+                        default.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | Page | int | /api/v2/options?page={number} |
+
+                        | Limit | int | /api/v2/options?limit={count} |
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        [
+                          {
+                            "id": 3,
+                            "product_id": null,
+                            "name": "Colors",
+                            "display_name": "Color",
+                            "type": "CS",
+                            "values": {
+                              "url": "https://store-bwvr466.mybigcommerce.com/api/v2/options/3/values.json",
+                              "resource": "/options/3/values",
+                              "product_id": null
+                            }
+                          },
+                          {
+                            "id": 4,
+                            "product_id": null,
+                            "name": "Screen Sizes",
+                            "display_name": "Screen Sizes",
+                            "type": "RT",
+                            "values": {
+                              "url": "https://store-bwvr466.mybigcommerce.com/api/v2/options/4/values.json",
+                              "resource": "/options/4/values",
+                              "product_id": null
+                            }
+                          }
+                        ]
+
+                        ```
+                      header:
+                        anchor: v2-list-options
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: ''
           config:
             sidebar:
               token: v2
