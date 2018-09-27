@@ -16678,6 +16678,191 @@ pages:
                         ```
                       header:
                         anchor: v2-get-a-count-bulk-pricing
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create a Product Bulk Pricing Rule 
+
+
+                        Creates a new product bulk pricing rule.
+
+
+
+                        >`POST
+                        /stores/{store_hash}/v2/products/{product_id}/discount_rules`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the discount rule are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   product_id
+
+
+                        ### Requirements 
+
+
+                        The following properties of the discount rule are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
+
+
+                        *   type
+
+                        *   type_value
+
+
+                        ### Notes 
+
+
+                        To specify that a `min` or `max` value is unbounded,
+                        these properties must be explicitly set with a value of
+                        `0`. If neither `min` nor `max` properties are included
+                        in the request, the existing value will remain
+                        unchanged.
+
+
+                        The range of the `min` and `max` values must not overlap
+                        an existing rule associated with the same product.
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "min": 100,
+                          "max": 500,
+                          "type": "price",
+                          "type_value": 2
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": "1",
+                          "product_id": 30,
+                          "min": 100,
+                          "max": 500,
+                          "type": "price",
+                          "type_value": 2
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-create-a-bulk-pricing-rule
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Update a Product Bulk Pricing Rule 
+
+
+                        Updates an existing product bulk pricing rule.
+
+
+
+                        >`PUT
+                        /stores/{store_hash}/v2/products/{product_id}/discount_rules/{id}`
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the discount rule are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   product_id
+
+
+                        ### Requirements 
+
+
+                        The following properties of the discount rule are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
+
+
+                        *   type
+
+                        *   type_value
+
+
+                        ### Notes 
+
+
+                        To specify that a `min` or `max` value is unbounded,
+                        these properties must be explicitly set with a value of
+                        `0`. If neither `min` nor `max` properties are included
+                        in the request, the existing value will remain
+                        unchanged.
+
+
+                        The range of the `min` and `max` values must not overlap
+                        an existing rule associated with the same product.
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "min": 200,
+                          "max": 300,
+                          "type": "fixed",
+                          "type_value": 10
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": "1",
+                          "product_id": 30,
+                          "min": 200,
+                          "max": 300,
+                          "type": "fixed",
+                          "type_value": 10
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-update-a-bulk-pricing-rule
+                    - type: text
+                      data: '---'
           config:
             sidebar:
               token: v2
