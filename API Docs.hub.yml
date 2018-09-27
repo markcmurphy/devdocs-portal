@@ -15132,10 +15132,11 @@ pages:
                         * ?exclude=
 
 
-                        For details, syntax, and examples, please see the [Get a
-                        Product](#get-a-product) operation.
-                    - type: code
-                      data: |-
+                        Example JSON returned in the response:
+
+
+                        ```
+
                         [
                           {
                             "id": 32,
@@ -15383,8 +15384,8 @@ pages:
                             }
                           }
                         ]
-                      header:
-                        title: Example JSON returned in the response
+
+                        ```
                     - type: text
                       data: '---'
                     - type: text
@@ -15706,17 +15707,127 @@ pages:
                         }
 
                         ```
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Get a Product Count 
+
+
+                        Gets a count of products.
+
+                         > `GET /stores/{store_hash}/v2/products/count`
+
+                        ### Filters 
+
+
+                        Filter parameters can be added to the URL query string
+                        to select specific products in the collection.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | min_id | int | /api/v2/products?min_id={value} |
+
+                        | max_id | int | /api/v2/products?max_id={value} |
+
+                        | name | string | /api/v2/products?name={value} |
+
+                        | keyword_filter | string |
+                        /api/v2/products?keyword_filter={value} |
+
+                        | description | string |
+                        /api/v2/products?description={value} |
+
+                        | sku | string | /api/v2/products?sku={value} |
+
+                        | condition | string |
+                        /api/v2/products?condition={value} |
+
+                        | availability | string |
+                        /api/v2/products?availability={value} |
+
+                        | brand_id | string | /api/v2/products?brand_id={value}
+                        |
+
+                        | min_date_created | date |
+                        /api/v2/products?min_date_created={value} |
+
+                        | max_date_created | date |
+                        /api/v2/products?max_date_created={value} |
+
+                        | min_date_modified | date |
+                        /api/v2/products?min_date_modified={value} |
+
+                        | max_date_modified | date |
+                        /api/v2/products?max_date_modified={value} |
+
+                        | min_date_last_imported | date |
+                        /api/v2/products?min_date_last_imported={value} |
+
+                        | max_date_last_imported | date |
+                        /api/v2/products?max_date_last_imported={value} |
+
+                        | min_price | decimal |
+                        /api/v2/products?min_price={value} |
+
+                        | max_price | decimal |
+                        /api/v2/products?max_price={value} |
+
+                        | min_number_sold | int |
+                        /api/v2/products?min_number_sold={value} |
+
+                        | max_number_sold | int |
+                        /api/v2/products?max_number_sold={value} |
+
+                        | is_visible | string |
+                        /api/v2/products?is_visible={value} |
+
+                        | is_featured | string |
+                        /api/v2/products?is_featured={value} |
+
+                        | min_inventory_level | int |
+                        /api/v2/products?min_inventory_level={value} |
+
+                        | max_inventory_level | int |
+                        /api/v2/products?max_inventory_level={value} |
+
+                        | include_sku | boolean |
+                        /api/v2/products?include_sku={value} |
+
+                        | category | string | /api/v2/products?category={value}
+                        |
+
+                        | product_tax_code | string |
+                        /api/v2/products?product_tax_code={value} |
+
+
+                        ### Notes 
+
+
+                        If no filters are applied, the total number of products
+                        is returned.
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "count": 44
+                        }
+
+                        ```
                   children: []
                 config:
                   sidebar:
                     token: v2
-              - title: Get a Product
-                route:
-                  path: /get-a-products
-                data:
-                  blocks:
-                    - type: text
-                      data: ''
 theme:
   background: '#3550b6'
 logo: >-
