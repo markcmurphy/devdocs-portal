@@ -18602,6 +18602,126 @@ pages:
                         ```
                       header:
                         anchor: v2-list-option-set-options
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Get an Option Set Option 
+
+
+                        Gets an option set option.
+
+
+                        >`GET
+                        /stores/{store_hash}/v2/option_sets/{option_set_id}/options/{id}`
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 4,
+                          "option_id": 5,
+                          "option_set_id": 2,
+                          "display_name": "Clock Speeds (CPU)",
+                          "sort_order": 0,
+                          "is_required": true,
+                          "option": {
+                            "url": "https://example.com/api/v2/options/5.json",
+                            "resource": "/options/5"
+                          }
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-get-a-option-set-option
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create an Option Set Option 
+
+
+                        Creates a new option associated with an option set.
+
+
+                        >`POST
+                        /stores/{store_hash}/v2/option_sets/{option_set_id}/options`
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the option set option are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   id
+
+                        *   option_set_id
+
+                        *   values
+
+                        *   option
+
+
+                        ### Requirements 
+
+
+                        The following properties of the option set option are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
+
+
+                        *   option_id
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "option_id": 10,
+                          "display_name": "Choose a color",
+                          "sort_order": 1,
+                          "is_required": true
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 2,
+                          "option_id": 10,
+                          "option_set_id": 1,
+                          "display_name": "Choose a color",
+                          "sort_order": 1,
+                          "is_required": true,
+                          "option": {
+                            "url": "https://example.com/api/v2/options/10.json",
+                            "resource": "/options/10"
+                          }
+                        }
+
+                        ```
           config:
             sidebar:
               token: v2
