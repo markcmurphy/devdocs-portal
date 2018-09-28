@@ -15170,7 +15170,124 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
-                      data: ''
+                      data: |-
+                        ## Get a Count of Product SKUs 
+
+                        Gets a count of the number of product SKUs in the store.
+
+
+                        >`GET /stores/{store_hash}/v2/products/skus/count`
+
+
+                        ### Response 
+
+                        Example JSON returned in the response:
+
+                        ```
+                        {
+                          "count": 1235
+                        }
+                        ```
+                      header:
+                        anchor: v2-get-a-count-of-product-skus
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create a Product SKU 
+
+
+                        Creates a new product SKU.
+
+
+
+                        >`POST
+                        /stores/{store_hash}/v2/products/{product_id}/skus`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the sku are read-only. If
+                        one or more of these properties are included in the
+                        request, it will be rejected.
+
+
+                        *   id
+
+                        *   product_id
+
+                        *   adjusted_price
+
+                        *   adjusted_weight
+
+
+                        ### Requirements 
+
+
+                        The following properties of the sku are required. The
+                        request won’t be fulfilled unless these properties are
+                        valid.
+
+
+                        *   sku
+
+                        *   options
+
+
+                        ### Notes 
+
+
+                        To maximize system performance, BigCommerce caps the
+                        number of SKUs associated with a product at 500. If you
+                        attempt to add a SKU to a product that has 500 SKUs,
+                        BigCommerce will return a 403 error.
+
+
+                        BigCommerce has updated the SKU schema to include
+                        additional price, weight, image, and purchasable
+                        properties. We will eventually remove the ability to
+                        manage these properties via SKU rules. (Merchants are
+                        already constrained from creating SKU-only rules in the
+                        BigCommerce control panel.)
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 5,
+                          "product_id": 7,
+                          "sku": "MBA-1atest",
+                            "price": null,
+                            "adjusted_price": "1.5000",
+                          "cost_price": "0.0000",
+                          "upc": "",
+                          "inventory_level": 0,
+                          "inventory_warning_level": 0,
+                          "bin_picking_number": "",
+                            "weight": null,
+                            "adjusted_weight": "0.00",
+                            "is_purchasing_disabled": false,
+                            "purchasing_disabled_message": "",
+                            "image_file": "",
+                          "options": [
+                            {
+                              "product_option_id": 20,
+                              "option_value_id": 51
+                            }
+                          ]
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-create-a-product-sku
               - title: Products
                 route:
                   path: /v2-products
