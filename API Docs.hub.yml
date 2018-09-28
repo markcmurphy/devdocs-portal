@@ -15288,6 +15288,183 @@ pages:
                         ```
                       header:
                         anchor: v2-create-a-product-sku
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Update a Product SKU 
+
+
+                        Updates an existing product SKU.
+
+
+
+                        >`PUT
+                        /stores/{store_hash}/v2/products/{product_id}/skus/{id}`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the sku are read-only. If
+                        one or more of these properties are included in the
+                        request, it will be rejected.
+
+
+                        *   id
+
+                        *   product_id
+
+                        *   adjusted_price
+
+                        *   adjusted_weight
+
+
+                        ### Requirements 
+
+
+                        There are no required properties for updating a product
+                        SKU.
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 5,
+                          "product_id": 7,
+                          "sku": "MBA-1atest",
+                            "price": "4.9900",
+                            "adjusted_price": "3.9900",
+                          "cost_price": "2.9900",
+                          "upc": "",
+                          "inventory_level": 0,
+                          "inventory_warning_level": 0,
+                          "bin_picking_number": "",
+                            "weight": null,
+                            "adjusted_weight": "0.00",
+                            "is_purchasing_disabled": true,
+                            "purchasing_disabled_message": "We're sorry, this is unavailable.",
+                            "image_file": "",
+                          "options": [
+                            {
+                              "product_option_id": 20,
+                              "option_value_id": 51
+                            }
+                          ]
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-update-a-product-sku
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Delete a Product SKU 
+
+
+                        Deletes a product SKU.
+
+
+                        >`DELETE
+                        /stores/{store_hash}/v2/products/{product_id}/skus/{id}`
+                      header:
+                        anchor: v2-delete-a-product-sku
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Delete Multiple Product SKUs 
+
+
+                        Deletes multiple product SKUs.
+
+
+
+                        >`DELETE
+                        /stores/{store_hash}/v2/products/{product_id}/skus`
+
+
+
+                        ### Filters 
+
+
+                        Filter parameters can be added to the URL query string
+                        to select specific SKUs in the collection.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | min_id | int |
+                        /api/v2/products/{product_id}/skus?min_id={value} |
+
+                        | max_id | int |
+                        /api/v2/products/{product_id}/skus?max_id={value} |
+
+                        | sku | string |
+                        /api/v2/products/{product_id}/skus?sku={value} |
+
+                        | upc | string |
+                        /api/v2/products/{product_id}/skus?upc={value} |
+
+                        | inventory_level | string |
+                        /api/v2/products/{product_id}/skus?inventory_level={value}
+                        |
+
+                        | inventory_warning_level | string |
+                        /api/v2/products/{product_id}/skus?inventory_warning_level={value}
+                        |
+
+                        | bin_picking_number | string |
+                        /api/v2/products/{product_id}/skus?bin_picking_number={value}
+                        |
+
+                        | min_inventory_level | int |
+                        /api/v2/products/{product_id}/skus?min_inventory_level={value}
+                        |
+
+                        | max_inventory_level | int |
+                        /api/v2/products/{product_id}/skus?max_inventory_level={value}
+                        |
+
+                        | is_low_inventory | boolean |
+                        /api/v2/products/{product_id}/skus?is_low_inventory={value}
+                        |
+
+                        | product_hash | int |
+                        /api/v2/products/{product_id}/skus?product_hash={value}
+                        |
+
+
+                        ## Pagination 
+
+
+                        Parameters can be added to the URL query string to
+                        paginate the collection. The maximum limit is 250. If a
+                        limit isn’t provided, up to 50 skus are returned by
+                        default.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | page | int |
+                        /api/v2/products/{product_id}/skus?page={number} |
+
+                        | limit | int |
+                        /api/v2/products/{product_id}/skus?limit={count} |
+                      header:
+                        anchor: v2-delete-multiple-product-skus
               - title: Products
                 route:
                   path: /v2-products
