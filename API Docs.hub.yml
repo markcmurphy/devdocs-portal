@@ -14626,7 +14626,111 @@ pages:
               - title: Shipper HQ
                 route:
                   path: /shipper-hq
-                data: {}
+                data:
+                  blocks:
+                    - type: text
+                      data: >-
+                        When ShipperHQ is enabled on a store, there are
+                        additional fields that become available on the product
+                        level.
+
+                        Shipping Origins, Origin Locations, and Dimensional
+                        Rules are accessible. These can be set in the Control
+                        Panel by the merchant as well as using the
+
+                        [Product Metafields
+                        Endpoint](https://developer.bigcommerce.com/api/v3/#/reference/catalog/product-metafields)
+                        or the [Variant Metafields
+                        Endpoint](https://developer.bigcommerce.com/api/v3/#/reference/catalog/variant-metafields).
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Object Properties
+
+
+                        | Property | Type | Values |
+
+                        |---|---|---|
+
+                        | permission_set | string | This must be set to `write`.
+                        Setting to any other field will cause unintended
+                        behavior. **required** |
+
+                        | key | enum | Members: `shipping-groups`,
+                        `shipping-origins`, `shipping-dimensional-rules`
+                        **required** |
+
+                        | value | JSON encoded string | This will be the name of
+                        the attribute type in ShipperHQ. This needs to be input
+                        exactly how it is listed within ShipperHQ. To pass in
+                        more than one Shipping Origin, Origin Location or
+                        Dimensional Rule use an array with a comma-separated
+                        list. White spaces and special characters need to be
+                        escaped. Must be a JSON encoded string `"[\"Origin Name
+                        from SHQ-1\",\" Origin Name from SHQ-2\"]"` **required**
+                        |
+
+                        | namespace | string | This will always be
+                        `shipping.shipperhq` **required** |
+
+                        | resource_type | string | Either `product` or `variant`
+                        |
+
+                        | resource_id | string | Id of the product or variant
+                        **read-only** |
+
+                        | description | string | ShipperHQ shipping origins
+                        associated with this product/sku. **read-only** |
+
+                        | date_created | string | Date and time of the
+                        metafield's creation. **read-only** |
+
+                        | date_modified | string | Date and time when the
+                        metafield was last updated. **read-only** |
+
+                        | id | number | Id of the Metafield. **read-only** |
+                    - type: callout
+                      data:
+                        type: warning
+                        body: >-
+                          The metafields must be entered exactly otherwise they
+                          will not work. Since the metafield can also be used to
+                          store information against a product, if the
+                          <code>namespace</code> for example is set to shipping
+                          and not <code>shipping.shipperhq</code>, it will not
+                          update the shipping information.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >
+                        ## Control Panel Behavior
+
+
+                        When Shipping Origins are set using the API, the fields
+                        cannot be deleted using the Control Panel. A /DELETE
+                        request must be sent to the metafields resource.
+
+
+                        `/DELETE
+                        https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields`
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Add ShipperHQ Metafield
+
+
+                        `/POST
+                        https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields`
+                    - type: code
+                      data: "{\n\t\"permission_set\": \"write\",\n\t\"key\": \"shipping-origins\",\n\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\"namespace\": \"shipping.shipperhq\"\n}"
+                      header:
+                        title: SHQ Add Metafield Request
+                    - type: code
+                      data: "{\n\t\"data\": [{\n\t\t\t\"id\": 51,\n\t\t\t\"key\": \"shipping-origins\",\n\t\t\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping origins associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-19T17:56:08+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 52,\n\t\t\t\"key\": \"shipping-groups\",\n\t\t\t\"value\": \"[\\\"SHIPPING GROUP NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping group rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 53,\n\t\t\t\"key\": \"shipping-dimensional-rules\",\n\t\t\t\"value\": \"[\\\"DIMENSIONAL RULES NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ dimensional rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t}\n\t],\n\t\"meta\": {\n\t\t\"pagination\": {\n\t\t\t\"total\": 3,\n\t\t\t\"count\": 3,\n\t\t\t\"per_page\": 50,\n\t\t\t\"current_page\": 1,\n\t\t\t\"total_pages\": 1,\n\t\t\t\"links\": {\n\t\t\t\t\"current\": \"?page=1&limit=50\"\n\t\t\t}\n\t\t}\n\t}\n}"
+                      header:
+                        title: SHQ Add Metafield Response
         - title: API Reference
           route:
             path: /api-reference
