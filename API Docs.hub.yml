@@ -20092,6 +20092,169 @@ pages:
                         anchor: v2-get-a-product-review
                     - type: text
                       data: '---'
+                    - type: text
+                      data: >-
+                        ## Create a Product Review 
+
+
+                        Creates a new product review. 
+
+
+                        ### Notes 
+
+
+                        The `review` property is the review's text. The `rating`
+                        property must be a whole number between 1–5. If the
+                        optional `date_created` property is not specified, it
+                        defaults to the current date/time. If the optional
+                        "status" property is not specified, it defaults to 0
+                        [`Pending`]. Other allowable values are 1 [`Approved`]
+                        or 2 [`Disapproved`].)
+
+
+
+                        >`POST
+                        /stores/{store_hash}/v2/products/{product_id}/reviews`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the product review are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   id
+
+                        *   product_id
+
+
+                        ### Requirements 
+
+
+                        The following properties of the product review are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
+
+
+                        *   author
+
+                        *   title
+
+                        *   review
+
+                        *   rating
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 8,
+                          "product_id": 32,
+                          "author": "Jimmy Doe",
+                          "date_created": "Tue, 05 Mar 2013 06:00:00 +0000",
+                          "title": "Worked for me!",
+                          "review": "I thought this product was pretty good",
+                          "rating": 5,
+                          "status": 0
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-create-a-product-review
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Update a Product Review 
+
+
+                        Updates an existing product review. Your request may
+                        update any of the properties that are writeable for the
+                        Create (POST) operation.
+
+
+
+                        >`PUT
+                        /stores/{store_hash}/v2/products/{product_id}/reviews/{id}`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the product review are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   id
+
+                        *   product_id
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 8,
+                          "product_id": 32,
+                          "author": "Jimmy Doe",
+                          "date_created": "Tue, 05 Mar 2013 06:00:00 +0000",
+                          "title": "Worked for me!",
+                          "review": "I thought this product was pretty good",
+                          "rating": 5,
+                          "status": 1
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-update-a-product-review
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Delete a Product Review 
+
+
+                        Deletes a specified product review. (If successful, this
+                        will typically return a `204 No Content`.)
+
+
+                        >`DELETE
+                        /stores/{store_hash}/v2/products/{product_id}/reviews/{id}`
+                      header:
+                        anchor: v2-delete-a-product-review
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Delete All Product Reviews 
+
+
+                        Deletes all reviews for the specified product. (If
+                        successful, this will typically return a `204 No
+                        Content`.)
+
+
+
+                        >`DELETE
+                        /stores/{store_hash}/v2/products/{product_id}/reviews`
+                      header:
+                        anchor: v2-delete-all-product-reviews
           config:
             sidebar:
               token: v2
