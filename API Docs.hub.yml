@@ -18722,6 +18722,94 @@ pages:
                         }
 
                         ```
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Update an Option Set Option 
+
+
+                        Updates an existing option set option.
+
+
+
+                        >`PUT
+                        /stores/{store_hash}/v2/option_sets/{option_set_id}/options/{id}`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the option set option are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   id
+
+                        *   option_id
+
+                        *   option_set_id
+
+                        *   values
+
+                        *   option
+
+
+                        ### Requirements 
+
+
+                        The following properties of the option set option are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "display_name": "Pick a color...",
+                          "sort_order": 2,
+                          "is_required": false
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 2,
+                          "option_id": 10,
+                          "option_set_id": 2,
+                          "display_name": "Pick a color...",
+                          "sort_order": 2,
+                          "is_required": false,
+                          "option": {
+                            "url": "https://example.com/api/v2/options/10.json",
+                            "resource": "/options/10"
+                          }
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-update-a-option-set-option
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: ''
           config:
             sidebar:
               token: v2
