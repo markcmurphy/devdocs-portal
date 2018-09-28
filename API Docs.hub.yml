@@ -19099,6 +19099,89 @@ pages:
                         ```
                       header:
                         anchor: v2-create-an-option-value
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Update an Option Value 
+
+
+                        Updates an existing option value.
+
+
+
+                        >`PUT
+                        /stores/{store_hash}/v2/options/{option_id}/values/{id}`
+
+
+
+                        ###  Read-only Properties
+
+
+                        The following properties of the option value are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   id
+
+                        *   option_id
+
+
+                        #### Requirements 
+
+
+                        The following properties of the option value are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
+
+
+                        ###  Notes
+
+
+                        When you PUT an `is_default` property of `true`, all
+                        other option values on the parent option will have their
+                        `is_default` property set to `false`.
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "label": "whitish",
+                          "sort_order": 1,
+                          "value": "#FFFFEF",
+                          "is_default": true
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 68,
+                          "option_id": 3,
+                          "label": "whitish",
+                          "sort_order": 1,
+                          "value": "#FFFFEF",
+                          "is_default": true
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-update-an-option-value
           config:
             sidebar:
               token: v2
