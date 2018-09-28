@@ -18476,7 +18476,132 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
-                      data: ''
+                      data: >-
+                        ## List Option Set Options 
+
+
+                        Gets the options associated with an option set. (Default
+                        sorting is by option id, from lowest to highest.)
+
+
+
+                        >`GET
+                        /stores/{store_hash}/v2/option_sets/{option_set_id}/options`
+
+
+
+                        ### Pagination 
+
+
+                        Parameters can be added to the URL query string to
+                        paginate the collection. The maximum limit is 250. If a
+                        limit isn’t provided, up to 50 option_set_options are
+                        returned by default.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | Page | int |
+                        /api/v2/option_sets/{option_set_id}/options?page={number}
+                        |
+
+                        | Limit | int |
+                        /api/v2/option_sets/{option_set_id}/options?limit={count}
+                        |
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        [
+                          {
+                            "id": 43,
+                            "option_id": 18,
+                            "option_set_id": 14,
+                            "display_name": "Size",
+                            "sort_order": 0,
+                            "is_required": true,
+                            "option": {
+                              "url": "https://example.com/api/v2/options/18.json",
+                              "resource": "/options/18"
+                            },
+                            "values": [
+                              {
+                                "label": "XS",
+                                "sort_order": 0,
+                                "value": "XS",
+                                "option_value_id": 68
+                              },
+                              {
+                                "label": "S",
+                                "sort_order": 1,
+                                "value": "S",
+                                "option_value_id": 69
+                              },
+                              {
+                                "label": "M",
+                                "sort_order": 2,
+                                "value": "M",
+                                "option_value_id": 70
+                              },
+                              {
+                                "label": "L",
+                                "sort_order": 3,
+                                "value": "L",
+                                "option_value_id": 71
+                              },
+                              {
+                                "label": "XL",
+                                "sort_order": 4,
+                                "value": "XL",
+                                "option_value_id": 72
+                              }
+                            ]
+                          },
+                          {
+                            "id": 44,
+                            "option_id": 3,
+                            "option_set_id": 14,
+                            "display_name": "Color",
+                            "sort_order": 1,
+                            "is_required": true,
+                            "option": {
+                              "url": "https://example.com/api/v2/options/3.json",
+                              "resource": "/options/3"
+                            },
+                            "values": [
+                              {
+                                "label": "Silver",
+                                "sort_order": 1,
+                                "value": "#cccccc",
+                                "option_value_id": 7
+                              },
+                              {
+                                "label": "Black",
+                                "sort_order": 2,
+                                "value": "#000000",
+                                "option_value_id": 8
+                              },
+                              {
+                                "label": "Purple",
+                                "sort_order": 3,
+                                "value": "#700170",
+                                "option_value_id": 9
+                              }
+                            ]
+                          }
+                        ]
+
+                        ```
+                      header:
+                        anchor: v2-list-option-set-options
           config:
             sidebar:
               token: v2
