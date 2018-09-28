@@ -19813,6 +19813,120 @@ pages:
                         /api/v2/products/{product_id}/images?limit={count} |
                       header:
                         anchor: v2-delete-multiple-product-images
+                  children: []
+              - title: Product Options
+                route:
+                  path: /v2-product-options
+                data:
+                  blocks:
+                    - type: html
+                      data: "<h1>Product Options</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-product-option-object-properties\"> Product Options Object – Properties</a></li>\n        <li><a href=\"#v2-list-product-options\">List Product Options</a></li>\n        <li><a href=\"#v2-get-a-product-option\">Get a Product Option</a></li>\n\t</ul>\n</div>\n\n\n"
+                    - type: text
+                      data: |-
+                        ## Product Options Object – Properties 
+
+                        | Title | Name | Type | Description |
+                        | --- | --- | --- | --- |
+                        | `id` | `int` |
+                        | `option_id` | `int` |
+                        | `display_name` | `string` |
+                        | `sort_order` | `int` |
+                        | `is_required` | `boolean` |
+                      header:
+                        anchor: v2-product-option-object-properties
+                    - type: text
+                      data: >-
+                        ## List Product Options
+
+
+                        Gets the options associated with a product.
+
+
+                        >`GET
+                        /stores/{store_hash}/v2/products/{product_id}/options`
+
+
+                        ### Pagination
+
+
+                        Parameters can be added to the URL query string to
+                        paginate the collection. The maximum limit is 250\. If a
+                        limit isn’t provided, up to 50 product_options are
+                        returned by default.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | `page` | int |
+                        `/api/v2/products/{product_id}/options?page={number}` |
+
+                        | `limit` | int |
+                        `/api/v2/products/{product_id}/options?limit={count}` |
+
+
+                        ### Response
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        [
+                          {
+                            "id": 13,
+                            "option_id": 8,
+                            "display_name": "iPod Capacities",
+                            "sort_order": 0,
+                            "is_required": true
+                          },
+                          {
+                            "id": 14,
+                            "option_id": 9,
+                            "display_name": "Accessories",
+                            "sort_order": 1,
+                            "is_required": false
+                          }
+                        ]
+
+                        ```
+                      header:
+                        anchor: v2-list-product-options
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Get a Product Option
+
+
+                        Gets an option associated with a product.
+
+
+                        >`GET
+                        /stores/{store_hash}/v2/products/{product_id}/options/{id}`
+
+
+                        ### Response
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 14,
+                          "option_id": 9,
+                          "display_name": "Accessories",
+                          "sort_order": 1,
+                          "is_required": false
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-get-a-product-option
           config:
             sidebar:
               token: v2
