@@ -20511,6 +20511,107 @@ pages:
                         ```
                       header:
                         anchor: v2-get-a-product-rule
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Get a Count of Product Rules 
+
+
+                        Gets a count of the number of product rules in the
+                        store.
+
+
+                        >`GET /stores/{store_hash}/v2/products/rules/count`
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "count": 3
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-get-a-count-of-product-rules
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create a Product Rule 
+
+
+                        Creates a new product rule.
+
+
+
+                        >`POST
+                        /stores/{store_hash}/v2/products/{product_id}/rules`
+
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the product rule are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   id
+
+                        *   product_id
+
+
+                        ### Requirements 
+
+
+                        The following properties of the product rule are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
+
+
+                        *   conditions
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 10,
+                          "product_id": 3,
+                          "sort_order": 1,
+                          "is_enabled": true,
+                          "is_stop": false,
+                          "price_adjuster": null,
+                          "weight_adjuster": null,
+                          "is_purchasing_disabled": false,
+                          "purchasing_disabled_message": "",
+                          "is_purchasing_hidden": false,
+                          "image_file": "attribute_rule_images/2_source.jpg",
+                          "conditions": [
+                            {
+                              "product_option_id": 4,
+                              "option_value_id": 8,
+                              "sku_id": null
+                            }
+                          ]
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-create-a-product-rule
           config:
             sidebar:
               token: v2
