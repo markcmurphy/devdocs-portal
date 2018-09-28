@@ -18975,7 +18975,130 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
-                      data: ''
+                      data: >-
+                        ## Get an Option Value 
+
+
+                        Gets an option value.
+
+
+                        >`GET
+                        /stores/{store_hash}/v2/options/{option_id}/values/{id}`
+
+
+                        #### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 9,
+                          "option_id": 3,
+                          "label": "Purple",
+                          "sort_order": 3,
+                          "value": "#700170",
+                          "is_default": false
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-get-an-option-value
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create an Option Value 
+
+
+                        Creates a new option value.
+
+
+
+                        >`POST
+                        /stores/{store_hash}/v2/options/{option_id}/values`
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the option value are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   id
+
+                        *   option_id
+
+
+                        ### Requirements 
+
+
+                        The following properties of the option value are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
+
+
+                        *   label
+
+                        *   value
+
+
+                        ### Notes 
+
+
+                        To maximize system performance, BigCommerce caps the
+                        total number of values per option at 250. IF the option
+                        has 250 values and you try to create another one,
+                        BigCommerce will return a 403 error.
+
+
+                        When you POST an `is_default`property of `true`, all
+                        other option values on the parent option will have their
+                        `is_default` property set to `false`.
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "label": "white",
+                          "sort_order": 0,
+                          "value": "#FFFFFF",
+                          "is_default": true
+                        }
+
+                        ```
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        {
+                          "id": 68,
+                          "option_id": 3,
+                          "label": "white",
+                          "sort_order": 0,
+                          "value": "#FFFFFF",
+                          "is_default": true
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-create-an-option-value
           config:
             sidebar:
               token: v2
