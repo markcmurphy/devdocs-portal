@@ -18909,6 +18909,72 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
+                      data: >-
+                        ## List Option Values 
+
+
+                        Gets the values belonging to an option. (Default sorting
+                        is by option-value id, from lowest to highest.)
+
+
+
+                        >`GET
+                        /stores/{store_hash}/v2/options/{option_id}/values`
+
+
+                        ### Pagination 
+
+
+                        Parameters can be added to the URL query string to
+                        paginate the collection. The maximum limit is 250. If a
+                        limit isn’t provided, up to 50 option_values are
+                        returned by default.
+
+
+                        | Parameter | Type | Example |
+
+                        | --- | --- | --- |
+
+                        | Page | int |
+                        /api/v2/options/{option_id}/values?page={number} |
+
+                        | Limit | int |
+                        /api/v2/options/{option_id}/values?limit={count} |
+
+
+                        ### Response 
+
+
+                        Example JSON returned in the response:
+
+
+                        ```
+
+                        [
+                          {
+                            "id": 1,
+                            "option_id": 3,
+                            "label": "Silver",
+                            "sort_order": 2,
+                            "value": "#cccccc",
+                            "is_default": true
+                          },
+                          {
+                            "id": 2,
+                            "option_id": 3,
+                            "label": "Black",
+                            "sort_order": 1,
+                            "value": "#000000",
+                            "is_default": false
+                          }
+                        ]
+
+                        ```
+                      header:
+                        anchor: v2-list-option-values
+                    - type: text
+                      data: '---'
+                    - type: text
                       data: ''
           config:
             sidebar:
