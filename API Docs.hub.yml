@@ -20736,6 +20736,131 @@ pages:
                         /api/v2/products/{product_id}/rules?limit={count} |
                       header:
                         anchor: v2-delete-multiple-product-rules
+                  children:
+                    - title: Product Videos
+                      route:
+                        path: /v2-product-videos
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              ## Videos Object – Properties 
+
+
+                              | Name | Type | Description |
+
+                              | --- | --- | --- |
+
+                              | id | string | ID of this video. |
+
+                              | product_id | int | ID of the associated product.
+                              |
+
+                              | sort_order | int | Sort order for this video. |
+
+                              | name | string | Name for this video. |
+                            header:
+                              anchor: v2-product-video-object-properties
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## List Product Videos 
+
+
+                              Gets the videos associated with a product.
+
+
+                              >`GET
+                              /stores/{store_hash}/v2/products/{product_id}/videos`
+
+
+                              ### Pagination 
+
+
+                              Parameters can be added to the URL query string to
+                              paginate the collection. The maximum limit is 250.
+                              If a limit isn’t provided, up to 50
+                              `product_videos` are returned by default.
+
+
+                              | Parameter | Type | Example |
+
+                              | --- | --- | --- |
+
+                              | page | int |
+                              /api/v2/products/{product_id}/videos?page={number}
+                              |
+
+                              | limit | int |
+                              /api/v2/products/{product_id}/videos?limit={count}
+                              |
+
+
+                              ### Response 
+
+
+                              Example JSON returned in the response:
+
+
+                              ```
+
+                              [
+                                {
+                                  "id": "UmhvxsOwhqk",
+                                  "product_id": 30,
+                                  "sort_order": 0,
+                                  "name": "X-Men Evolution: Season 1, Episode 1"
+                                }
+                              ]
+
+                              ```
+                            header:
+                              anchor: v2-list-product-videos
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >
+                              ## Get a Product Video 
+
+
+                              Gets a product video.
+
+
+                              >`GET
+                              /stores/{store_hash}/v2/products/{product_id}/videos/{id}`
+                            header:
+                              anchor: v2-get-a-product-video
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Get a Count of Product Videos 
+
+
+                              Gets a count of the number of product videos in
+                              the store.
+
+
+                              >`GET
+                              /stores/{store_hash}/v2/products/videos/count`
+
+
+                              ### Response 
+
+
+                              Example JSON returned in the response:
+
+
+                              ```
+
+                              {
+                                "count": 0
+                              }
+
+                              ```
+                          - type: text
+                            data: '---'
           config:
             sidebar:
               token: v2
