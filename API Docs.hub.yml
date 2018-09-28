@@ -20915,8 +20915,92 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
-                      data: ''
-                      header: {}
+                      data: >-
+                        ## Update Product Video Metadata 
+
+
+                        Edit the metadata of a product video.
+
+
+                        >`PUT
+                        /stores/{store_hash}/v2/products/{product_id}/videos/{id}`
+
+
+                        ### Read-only Properties 
+
+
+                        The following properties of the product video are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
+
+
+                        *   id
+
+                        *   product_id
+
+
+                        ### Requirements 
+
+
+                        There are no required properties when updating a product
+                        video. 
+
+
+                        ### Notes 
+
+
+                        The `name`, `sort_order` and `url` properties of the
+                        product video are editable.
+
+
+                        Posting a new `url` will update the `id` of the video to
+                        reference the new video.
+
+
+                        ### Request 
+
+
+                        Example request object:
+
+
+                        ```
+
+                        {
+                          "name": "New video title",
+                          "sort_order": 2
+                        }
+
+                        ```
+                      header:
+                        anchor: v2-update-a-product-video
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Delete a Product Video 
+
+
+                        Delete a product video.
+
+
+                        >`DELETE
+                        /stores/{store_hash}/v2/products/{product_id}/videos/{id}`
+                      header:
+                        anchor: v2-delete-a-product-video
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Delete All Product Videos 
+
+
+                        Deletes all videos belonging to a product.
+
+
+                        >`DELETE
+                        /stores/{store_hash}/v2/products/{product_id}/videos`
+                      header:
+                        anchor: v2-delete-all-product-videos
           config:
             sidebar:
               token: v2
