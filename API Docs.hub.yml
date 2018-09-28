@@ -20736,192 +20736,182 @@ pages:
                         /api/v2/products/{product_id}/rules?limit={count} |
                       header:
                         anchor: v2-delete-multiple-product-rules
-                  children:
-                    - title: Product Videos
-                      route:
-                        path: /v2-product-videos
-                      data:
-                        blocks:
-                          - type: text
-                            data: >-
-                              ## Videos Object – Properties 
+                  children: []
+              - title: Product Videos
+                route:
+                  path: /v2-product-videos
+                data:
+                  blocks:
+                    - type: text
+                      data: |-
+                        ## Videos Object – Properties 
 
+                        | Name | Type | Description |
+                        | --- | --- | --- |
+                        | id | string | ID of this video. |
+                        | product_id | int | ID of the associated product. |
+                        | sort_order | int | Sort order for this video. |
+                        | name | string | Name for this video. |
+                      header:
+                        anchor: v2-product-video-object-properties
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## List Product Videos 
 
-                              | Name | Type | Description |
 
-                              | --- | --- | --- |
+                        Gets the videos associated with a product.
 
-                              | id | string | ID of this video. |
 
-                              | product_id | int | ID of the associated product.
-                              |
+                        >`GET
+                        /stores/{store_hash}/v2/products/{product_id}/videos`
 
-                              | sort_order | int | Sort order for this video. |
 
-                              | name | string | Name for this video. |
-                            header:
-                              anchor: v2-product-video-object-properties
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ## List Product Videos 
+                        ### Pagination 
 
 
-                              Gets the videos associated with a product.
+                        Parameters can be added to the URL query string to
+                        paginate the collection. The maximum limit is 250. If a
+                        limit isn’t provided, up to 50 `product_videos` are
+                        returned by default.
 
 
-                              >`GET
-                              /stores/{store_hash}/v2/products/{product_id}/videos`
+                        | Parameter | Type | Example |
 
+                        | --- | --- | --- |
 
-                              ### Pagination 
+                        | page | int |
+                        /api/v2/products/{product_id}/videos?page={number} |
 
+                        | limit | int |
+                        /api/v2/products/{product_id}/videos?limit={count} |
 
-                              Parameters can be added to the URL query string to
-                              paginate the collection. The maximum limit is 250.
-                              If a limit isn’t provided, up to 50
-                              `product_videos` are returned by default.
 
+                        ### Response 
 
-                              | Parameter | Type | Example |
 
-                              | --- | --- | --- |
+                        Example JSON returned in the response:
 
-                              | page | int |
-                              /api/v2/products/{product_id}/videos?page={number}
-                              |
 
-                              | limit | int |
-                              /api/v2/products/{product_id}/videos?limit={count}
-                              |
+                        ```
 
+                        [
+                          {
+                            "id": "UmhvxsOwhqk",
+                            "product_id": 30,
+                            "sort_order": 0,
+                            "name": "X-Men Evolution: Season 1, Episode 1"
+                          }
+                        ]
 
-                              ### Response 
+                        ```
+                      header:
+                        anchor: v2-list-product-videos
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >
+                        ## Get a Product Video 
 
 
-                              Example JSON returned in the response:
+                        Gets a product video.
 
 
-                              ```
+                        >`GET
+                        /stores/{store_hash}/v2/products/{product_id}/videos/{id}`
+                      header:
+                        anchor: v2-get-a-product-video
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Get a Count of Product Videos 
 
-                              [
-                                {
-                                  "id": "UmhvxsOwhqk",
-                                  "product_id": 30,
-                                  "sort_order": 0,
-                                  "name": "X-Men Evolution: Season 1, Episode 1"
-                                }
-                              ]
 
-                              ```
-                            header:
-                              anchor: v2-list-product-videos
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >
-                              ## Get a Product Video 
+                        Gets a count of the number of product videos in the
+                        store.
 
 
-                              Gets a product video.
+                        >`GET /stores/{store_hash}/v2/products/videos/count`
 
 
-                              >`GET
-                              /stores/{store_hash}/v2/products/{product_id}/videos/{id}`
-                            header:
-                              anchor: v2-get-a-product-video
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ## Get a Count of Product Videos 
+                        ### Response 
 
 
-                              Gets a count of the number of product videos in
-                              the store.
+                        Example JSON returned in the response:
 
 
-                              >`GET
-                              /stores/{store_hash}/v2/products/videos/count`
+                        ```
 
+                        {
+                          "count": 0
+                        }
 
-                              ### Response 
+                        ```
+                      header:
+                        anchor: v2-get-a-count-of-product-videos
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create a Product Video 
 
 
-                              Example JSON returned in the response:
+                        Adds a link to a YouTube video to a product.
 
 
-                              ```
 
-                              {
-                                "count": 0
-                              }
+                        >`POST
+                        /stores/{store_hash}/v2/products/{product_id}/videos`
 
-                              ```
-                            header:
-                              anchor: v2-get-a-count-of-product-videos
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ## Create a Product Video 
 
+                        ### Read-only Properties 
 
-                              Adds a link to a YouTube video to a product.
 
+                        The following properties of the product video are
+                        read-only. If one or more of these properties are
+                        included in the request, it will be rejected.
 
 
-                              >`POST
-                              /stores/{store_hash}/v2/products/{product_id}/videos`
+                        *   id
 
+                        *   product_id
 
-                              ### Read-only Properties 
 
+                        ### Requirements 
 
-                              The following properties of the product video are
-                              read-only. If one or more of these properties are
-                              included in the request, it will be rejected.
 
+                        The following properties of the product video are
+                        required. The request won’t be fulfilled unless these
+                        properties are valid.
 
-                              *   id
 
-                              *   product_id
+                        *   url
 
 
-                              ### Requirements 
+                        ### Notes 
 
 
-                              The following properties of the product video are
-                              required. The request won’t be fulfilled unless
-                              these properties are valid.
+                        Only YouTube videos are supported. To create a new
+                        video, pass the full `url` in the request body.
 
 
-                              *   url
+                        ### Request 
 
 
-                              ### Notes 
+                        Example request object:
 
 
-                              Only YouTube videos are supported. To create a new
-                              video, pass the full `url` in the request body.
+                        ```
 
+                        {
+                          "url": "https://www.youtube.com/watch?v=4wZ3ZG_Wams"
+                        }
 
-                              ### Request 
-
-
-                              Example request object:
-
-
-                              ```
-
-                              {
-                                "url": "https://www.youtube.com/watch?v=4wZ3ZG_Wams"
-                              }
-
-                              ```
-                            header:
-                              anchor: v2-create-a-product-video
+                        ```
+                      header:
+                        anchor: v2-create-a-product-video
           config:
             sidebar:
               token: v2
