@@ -8163,12 +8163,61 @@ pages:
                             data: "<h1>Building an App</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#building-apps-request-headers\">Request Headers</a></li>\n\t\t<li><a href=\"#building-apps-session-timeouts\">Managing Users Session Timeouts</a></li>\n\t\t<li><a href=\"#building-apps-installation-update-sequence\">App Installation and Update Sequence</a></li>\n\t\t<li><a href=\"#building-apps-recieving-get-request\">Receiving the GET Request</a></li>\n\t\t<li><a href=\"#responding-get-request\">Responding to the GET Request</a></li>\n    <li><a href=\"#building-apps-#making-post-request\">Making the POST Request</a></li>\n    <li><a href=\"#building-apps-recieving-post-request\">Receiving the POST Response</a></li>\n    <li><a href=\"#building-apps-load-uninstall-removal-requests\">Load, Uninstall, and User Removal Requests</a></li>\n    <li><a href=\"#building-apps-processing-signed-payload\">Processing the Signed Payload</a></li>\n    <li><a href=\"#building-apps-multi-user-support\">Multi-User Support</a></li>\n    <li><a href=\"#building-apps-external-app-installation\">External App Installation</a></li>\n    <li><a href=\"#building-apps-user-interface-constraints\">User Interface Constraints<a/></li>\n    <li><a href=\"#building-apps-app-walktrhough\"> Sample App Workflow </a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
-                              Public OAuth Apps (applications) can be listed in
-                              the App Marketplace for easy installation in all
-                              BigCommerce stores. They use OAuth for token
-                              exchange during installation: The user installing
-                              the app will approve the scopes for your app to
-                              access and/or modify their store's data.
+                              ## OAuth Summary:
+
+                              API Authentication is only available for [store
+                              owners](https://forum.bigcommerce.com/s/article/Store-API-Accounts#creating).
+                              To test an app before release apply for a
+                              [sandbox](https://www.bigcommerce.com/partners/)
+                              store. An app can request authentication “on
+                              behalf” of a store-owner. This will allow the app
+                              to make API requests against the store data.
+                               
+                              - A merchant installs the app that kicks off a
+                              [/GET request]() your app should be able to
+                              receive. 
+
+                              - BigCommerce sends a `code` or temporary access
+                              token, `client_id`, `client_secret`, `scopes` and
+                              [other information]() to the [Auth Callback URL]()
+                              in the /GET request.  Your app URL needs to be
+                              https. You should also have access to the server
+                              logs which will allow you to see the information
+                              in the request.
+
+                              - The app needs to respond to the /GET  with HTML
+                              that will be rendered in the iframe of the store.
+
+                              - The app then needs to make a /POST request back
+                              to BigCommerce that contains the code, client_id
+                              and client secret back to BigCommerce. This should
+                              be done programmatically. 
+
+                              - BigCommerce will respond with a permanent token
+                              that can be used for that store only to make API
+                              requests. 
+
+                              - The data such as the store_hash and access_token
+                              should be stored somewhere secure so the app does
+                              not lose its authorization. 
+
+
+
+                              ### FAQ's
+
+                              How can I make API calls? We have built several
+                              Hello World apps to get you started quickly. 
+
+
+                              How can I sell this app?
+
+                              You can apply to the BigCommerce [partner
+                              program](). 
+
+
+                              I need a deeper dive on app installation?
+
+                              Keep reading below.
                           - type: text
                             data: >-
                               ## Request Headers
