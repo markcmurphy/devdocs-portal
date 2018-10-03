@@ -4169,14 +4169,14 @@ pages:
                 route:
                   path: /new-subpage
                 data: {}
-        - title: Templates Reference
+        - title: Customize the Template Files
           route:
-            path: /templates-reference
+            path: /customize-the-template-files
           data:
             children:
-              - title: Navigating the Templates Directory
+              - title: Templates Directory File Structure
                 route:
-                  path: /new-subpage-2
+                  path: /templates-directory-file-structure
                 data:
                   children:
                     - title: Components Subdirectory
@@ -4225,11 +4225,7 @@ pages:
                   path: /new-subpage
                 data:
                   children:
-                    - title: Preparing Stencil for Optimized One-Page Checkout
-                      route:
-                        path: /new-subpage
-                      data: {}
-                    - title: Optimized One Page Checkout
+                    - title: Enabling Optimized One-Page Checkout
                       route:
                         path: /new-subpage
                       data: {}
@@ -4237,7 +4233,7 @@ pages:
                       route:
                         path: /new-subpage
                       data: {}
-                    - title: Multi Language Checkout
+                    - title: Multi-Language Checkout
                       route:
                         path: /new-subpage
                       data: {}
@@ -4245,10 +4241,433 @@ pages:
                       route:
                         path: /new-subpage-1
                       data: {}
-                    - title: Implementing a custom checkout
+                    - title: Implement a Custom Checkout with React
                       route:
-                        path: /new-subpage-2
-                      data: {}
+                        path: /implement-a-custom-checkout
+                      data:
+                        blocks:
+                          - type: html
+                            data: >-
+                              <h1>Implementing a Custom React.js Checkout to
+                              Cornerstone using the BigCommerce Checkout
+                              SDK</h1>
+                          - type: html
+                            data: "<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"implement_tutorial-overview\">Tutorial Overview</a></li>\n    <li><a href=\"implement_steps\">Steps to Implement a Custom React Checkout</a></li>\n    <li><a href=\"implement_additional\">Additional Resources</a></li>\t\n</ul>\n</div>\n"
+                          - type: text
+                            data: >-
+                              ## Tutorial Overview
+
+
+                              This tutorial will take you through the steps to
+                              implement a custom checkout built with React to
+                              the Cornerstone Theme. The checkout will utilize
+                              BigCommerce's Checkout SDK. This tutorial assumes
+                              Cornerstone 2.4.0 as a starting point.
+                            header:
+                              anchor: implement_tutorial-overview
+                          - type: callout
+                            data:
+                              type: error
+                              body: >-
+                                Please note that the provided checkout example
+                                is a good starting and reference point, but is
+                                **NOT production ready**. You should **not** use
+                                this custom checkout in production as it stands.
+                              title: Checkout Example NOT production ready!
+                          - type: text
+                            data: >-
+                              ## Steps to Implement a Custom React Checkout in
+                              Cornerstone
+
+
+                              ### Tutorial Prerequisites
+
+
+                              You will need to have the Stencil CLI installed
+                              and your Stencil store should be up and running
+                              locally. 
+
+
+                              If you have not fulfilled these prerequisites, see
+                              the articles under the first section of this
+                              documentation titled _Getting Started_.
+
+
+                              ### Install Dependencies
+
+
+                              The React app used to demonstrate the Checkout SDK
+                              has a few additional dependencies.
+
+                              In your theme directory (e.g.
+                              /stencil/cornerstone), run the following command:
+
+
+                              `npm install --save react react-dom
+                              react-text-mask classnames accounting
+                              babel-preset-react css-loader node-sass
+                              sass-loader style-loader
+                              @bigcommerce/checkout-sdk`
+
+
+
+                              ### Update webpack.common.js
+
+
+                              The React app includes .jsx files which will not
+                              be resolved using the default webpack
+                              configuration in Cornerstone. Additionally,
+                              loaders must be registered for .jsx and .scss
+                              files.
+
+
+                              **Note:** _Cornerstone 2.0 and above uses Webpack
+                              4 which does **not** use a `webpack.conf.js` file
+                              like earlier Webpack versions. Instead, we will
+                              modify `webpack.common.js`._
+
+
+                              #### Register .jsx and .scss loaders
+
+
+                              In webpack.common.js, add the following objects to
+                              the `rules` array:
+
+
+                              ```
+
+                              {
+                                test: /\.jsx$/,
+                                exclude: /node_modules/,
+                                use: {
+                                    loader: "babel-loader",
+                                    options: {
+                                        presets: ['react'],
+                                    },
+                                }
+                              },
+
+
+                              {
+                                test: /\.scss$/,
+                                use:  [
+                                    'style-loader',
+                                    {
+                                        loader: 'css-loader',
+                                        options: {
+                                            modules: true
+                                        }
+                                    },
+                                    'sass-loader'
+                                ],
+                              },
+
+                              ```
+
+
+                              Next, in webpack.common.js, add the following
+                              property to the `resolve` object:
+
+
+
+                              `extensions: ['.js', '.jsx']`
+
+
+
+                              ### Add Components to Theme
+
+
+                              1. Clone or download BigCommerce's [Checkout SDK
+                              JS
+                              Example](https://github.com/bigcommerce/checkout-sdk-js-example)
+                              **outside** of your theme directory
+
+
+                              `git clone
+                              git@github.com:bigcommerce/checkout-sdk-js-example.git`
+
+
+                              2. In you theme directory, navigate to /assets/js/
+                              and create a checkout-app directory (i.e.
+                              /assets/js/checkout-app)
+
+                              Copy the contents of /checkout-sdk-js-example/src
+                              into /assets/js/checkout-app
+
+
+                              ### Import Dependencies
+
+
+                              Edit `/assets/js/app.js` and add the following
+                              lines toward the beginning with the other import
+                              statements:
+
+
+                              ```
+
+                              import React from 'react';
+
+                              import ReactDOM from 'react-dom';
+
+                              import Checkout from
+                              './checkout-app/Checkout/checkout';
+
+                              ```
+
+
+                              ### Define a Function to Initialize React
+
+
+                              Edit `/assets/js/app.js` and add the following
+                              lines to the end:
+
+
+                              ```
+
+                              window.initReact = function initReact() {
+                                  ReactDOM.render(
+                                      React.createElement(Checkout, null, null),
+                                      document.getElementById('checkout-app')
+                                  );
+                              };
+
+                              ```
+
+
+                              ### Customize the Checkout Template
+
+
+                              1. Edit `/templates/pages/checkout.html` and add
+                              the following lines between `{{{ footer.scripts
+                              }}}` and `{{/partial}}`
+
+
+                              ```
+
+                              <script src="{{cdn
+                              'assets/dist/theme-bundle.main.js'}}"></script>
+                               
+                              <script type="text/javascript" defer>
+                                  // Exported in app.js
+                                  window.initReact();
+                              </script>
+
+                              ```
+
+
+                              2. In `/templates/pages/checkout.html`, replace
+                              `{{{ checkout.checkout_content }}}` with the
+                              following:
+
+
+                              ```<div id="checkout-app"></div>```
+
+
+
+                              ### Congratulations!
+
+
+                              You should now be able to view your example React
+                              checkout by running the `stencil start` command in
+                              your theme directory and navigating to your
+                              storefront at
+                              [http://localhost:3000](http://localhost:3000)
+
+
+                              You can also make customizations to the React
+                              components used to build checkout by modifying the
+                              components in `/assets/js/checkout-app`!
+                            header:
+                              anchor: implement_steps
+                          - type: tabs
+                            data:
+                              children:
+                                - title: webpack.common.js
+                                  blocks:
+                                    - type: code
+                                      data: >
+                                        LodashPlugin =
+                                        require('lodash-webpack-plugin'),
+
+                                        path = require('path'),
+
+                                        webpack = require('webpack');
+
+
+                                        // Common configuration, with extensions
+                                        in webpack.dev.js and webpack.prod.js.
+
+                                        module.exports = {
+
+                                        bail: true,
+
+                                        context: __dirname,
+
+                                        entry: {
+                                          main: './assets/js/app.js',
+                                        },
+
+                                        module: {
+                                          rules: [
+                                              {
+                                                  test: /\.js$/,
+                                                  include: /(assets\/js|assets\\js|stencil-utils)/,
+                                                  use: {
+                                                      loader: 'babel-loader',
+                                                      options: {
+                                                          plugins: [
+                                                              'dynamic-import-webpack', // Needed for dynamic imports.
+                                                              'lodash', // Automagically tree-shakes lodash.
+                                                              'transform-regenerator', // Transforms async and generator functions.
+                                                          ],
+                                                          presets: [
+                                                              ['env', {
+                                                                  loose: true, // Enable "loose" transformations for any plugins in this preset that allow them.
+                                                                  modules: false, // Don't transform modules; needed for tree-shaking.
+                                                                  useBuiltIns: true, // Tree-shake babel-polyfill.
+                                                              }],
+                                                          ],
+                                                      },
+                                                  },
+                                              },
+                                              {
+                                                  test: /jquery-migrate/,
+                                                  use: 'imports-loader?define=>false',
+                                              },
+                                              {
+                                                  test: /\.jsx$/,
+                                                  exclude: /node_modules/,
+                                                  use: {
+                                                      loader: "babel-loader",
+                                                      options: {
+                                                          presets: ['react'],
+                                                      },
+                                                  }
+                                              },
+                                              {
+                                                  test: /\.scss$/,
+                                                  use:  [
+                                                      'style-loader',
+                                                      {
+                                                          loader: 'css-loader',
+                                                          options: {
+                                                              modules: true
+                                                          }
+                                                      },
+                                                      'sass-loader'
+                                                  ]
+                                              }
+                                          ],
+                                        },
+
+                                        output: {
+                                          chunkFilename: 'theme-bundle.chunk.[name].js',
+                                          filename: 'theme-bundle.[name].js',
+                                          path: path.resolve(__dirname, 'assets/dist'),
+                                        },
+
+                                        plugins: [
+                                          new CleanPlugin(['assets/dist'], {
+                                              verbose: false,
+                                              watch: false,
+                                          }),
+                                          new LodashPlugin, // Complements babel-plugin-lodash by shrinking its cherry-picked builds further.
+                                          new webpack.ProvidePlugin({
+                                              $: 'jquery',
+                                              jQuery: 'jquery',
+                                              'window.jQuery': 'jquery',
+                                          }),
+                                        ],
+
+                                        resolve: {
+                                          alias: {
+                                              'jquery-migrate': path.resolve(__dirname, 'node_modules/jquery-migrate/dist/jquery-migrate.min.js'),
+                                              jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
+                                              lazysizes: path.resolve(__dirname, 'node_modules/lazysizes/lazysizes.min.js'),
+                                              pace: path.resolve(__dirname, 'node_modules/pace/pace.min.js'),
+                                              'slick-carousel': path.resolve(__dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
+                                              'svg-injector': path.resolve(__dirname, 'node_modules/svg-injector/dist/svg-injector.min.js'),
+                                              sweetalert2: path.resolve(__dirname, 'node_modules/sweetalert2/dist/sweetalert2.min.js'),
+                                          },
+                                          extensions: ['.js', '.jsx'],
+                                        },
+
+                                        };
+                                      header:
+                                        title: webpack.common.js
+                                - title: app.js
+                                  blocks: []
+                                - title: checkout.html
+                                  blocks:
+                                    - type: code
+                                      data: >-
+                                        {{#partial "head"}}
+                                         
+                                        {{{ checkout.checkout_head }}}
+
+                                        {{{ stylesheet
+                                        '/assets/css/optimized-checkout.css' }}}
+
+                                        {{ getFontsCollection }}
+                                         
+                                        <script type="text/javascript">
+                                            window.language = {{{langJson 'optimized_checkout'}}};
+                                        </script>
+                                         
+                                        {{{head.scripts}}}
+                                         
+                                        {{/partial}}
+                                         
+                                        {{#partial "page"}}
+
+                                        <header class="checkoutHeader
+                                        optimizedCheckout-header">
+                                            <div class="checkoutHeader-content">
+                                                <h1 class="is-srOnly">{{lang 'checkout.title'}}</h1>
+                                                <h2 class="checkoutHeader-heading">
+                                                    <a class="checkoutHeader-link" href="{{urls.home}}">
+                                                        {{#if checkout.header_image}}
+                                                            <img alt="{{settings.store_logo.title}}" class="checkoutHeader-logo" id="logoImage" src="{{ checkout.header_image }}"/>
+                                                        {{ else }}
+                                                            <span class="header-logo-text">{{settings.store_logo.title}}</span>
+                                                        {{/if}}
+                                                    </a>
+                                                </h2>
+                                            </div>
+                                        </header>
+                                         
+                                        <div id="checkout-app"></div>
+                                         
+                                        {{{ footer.scripts }}}
+
+                                        <script src="{{cdn
+                                        'assets/dist/theme-bundle.main.js'}}"></script>
+                                         
+                                        <script type="text/javascript" defer>
+                                            // Exported in app.js
+                                            window.initReact();
+                                        </script>
+
+                                        {{/partial}}
+                                         
+                                        {{> layout/empty}}
+                                      header:
+                                        title: checkout.html
+                            header:
+                              title: Examples of files after completing this tutorial
+                          - type: text
+                            data: >-
+                              ## Additional Resources
+
+
+                              * www.reactjs.org
+
+                              * www.reactjs.org/tutorial/tutorial.html
+                              (Excellent tutorial on the basics of React)
+
+                              * https://webpack.js.org/concepts/
+                            header:
+                              anchor: implement_additional"
                     - title: Styling the Apple Pay Button
                       route:
                         path: /new-subpage-3
