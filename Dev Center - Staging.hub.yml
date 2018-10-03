@@ -7705,7 +7705,7 @@ pages:
 
                               The [BigCommerce Ruby API](http://) client is
                               thread-safe: It satisfies the need for multiple
-                              threads to access the same shared data, and the
+                              threads to access the same shared data and the
                               need for a shared piece of data to be accessed by
                               only one thread at any given time. These
                               attributes can reduce the total time that your app
@@ -7872,7 +7872,7 @@ pages:
                               after this time has elapsed, and your API service
                               will resume as normal.
                           - type: text
-                            data: "### Example of 429 Status Code\n\nWhen you see a response with a HTTP 429 status code, your client shouldn’t make any further requests until your quota has refreshed:\n\n```\nHTTP/1.1 429 Too Many Requests\n    \tDate: Mon, 03 Feb 2017 20:36:00 GMT\n    \tContent-Type: application/json\n    \tX-Rate-Limit-Time-Reset-Ms: 15000\n```\n\n\nParse the `X-Rate-Limit-Time-Reset-Ms` header to determine how long you have to wait. In this case, it would be 15000 milliseconds.\nYour client can sleep on the specified interval:\n\n```\n   $milliseconds = $response->getHeader(\"X-Rate-Limit-Time-Reset-Ms\");\n    usleep($milliseconds * 1000);\n```\n\n\nAfter waiting for the given number of milliseconds, you can go back to making API requests."
+                            data: "### Example of 429 Status Code\n\nWhen you see a response with an HTTP 429 status code, your client shouldn’t make any further requests until your quota has refreshed:\n\n```\nHTTP/1.1 429 Too Many Requests\n    \tDate: Mon, 03 Feb 2017 20:36:00 GMT\n    \tContent-Type: application/json\n    \tX-Rate-Limit-Time-Reset-Ms: 15000\n```\n\n\nParse the `X-Rate-Limit-Time-Reset-Ms` header to determine how long you have to wait. In this case, it would be 15000 milliseconds.\nYour client can sleep on the specified interval:\n\n```\n   $milliseconds = $response->getHeader(\"X-Rate-Limit-Time-Reset-Ms\");\n    usleep($milliseconds * 1000);\n```\n\n\nAfter waiting for the given number of milliseconds, you can go back to making API requests."
                           - type: text
                             data: >-
                               ### Making Requests in Parallel
@@ -7900,9 +7900,9 @@ pages:
                               ## Platform Limits
 
 
-                              BigCommerce does have a limit on the number of
-                              products, category, brands etc that can be in a
-                              store. See [Platform
+                              BigCommerce does have limits on the number of
+                              products, categories, brands, etc. that can be
+                              created in a store. See [Platform
                               Limits](https://forum.bigcommerce.com/s/article/Platform-Limits#product-catalog-limits)
                               for more details.
                             header:
