@@ -2116,6 +2116,21 @@ pages:
 
                         https://help.github.com/articles/connecting-to-github-with-ssh/)
 
+                    - type: callout
+                      data:
+                        body: >-
+                          Marketplace themes other than Cornerstone must be
+                          purchased in order to be downloadable.
+
+
+                          You are entitled to customize a free or purchased
+                          theme for a store that you support. However, the
+                          theme's original creator retains rights to that
+                          theme's design. So, except for Cornerstone-based
+                          themes, you may not upload a derived theme to a public
+                          theme marketplace (whether BigCommerce's or
+                          third-party), nor sell it privately.
+                        title: ' Theme Access, Copyright/Ownership, and Distribution'
                     - type: text
                       data: "## Downloading a Marketplace Theme for Customization\n\nUse these steps to download a theme available in the store control panel's Storefront Design area. (This page applies to purchased themes and free themes other than Cornerstone.)\n\n\n1. If you have not yet added the theme to your store, start at Storefront Design > Themes Marketplace, and add the theme.\n\n2. Go to Storefront Design > My Themes.\n\n3. Click the theme's thumbnail:\n\t \n\t* To download the store's currently active theme, click the image thumbnail at the top of the page, under the Current Theme heading.\n\t\n\t* To download an inactive theme, scroll down below the lower My Themes subheading, and click the appropriate theme's thumbnail.\n\nYour selected theme will zoom up to a full-page description and display a Theme Options drop-down list at the upper right.\n\n4. Note the version number displayed under the theme's title and credits. At Checking the Theme's Version below, you will use this number to choose between two installation flows.\n\n5. From the Theme Options drop-down list, select the appropriate Download option. (The options visible depend on your theme's current state:)\n\n\t* Download current theme: Download the theme version that is now active on the storefront. (This option appears only if you selected the Current Theme.)\n\n\t* Download your latest customizations: Download the theme's most recently saved version. (This option appears only for themes that have been customized for this store.)\n\n\t* Download theme file: Download the theme as it was originally uploaded to Theme Marketplace. \n\n6. Unpack the zipped theme to a working directory.\n(In the remainder of this documentation, substitute this working directory's name for the default `stencil` path or the `theme-name` placeholder.)"
                     - type: image
@@ -2158,54 +2173,90 @@ pages:
                         Refer to the theme's version number that you you noted
                         above at Downloading a Theme for Customization:
 
-                        If the version number is 1.10.0 or higher, the theme
-                        uses Webpack as its JavaScript build system. 
 
-                        Skip ahead to the simplified installation instructions
-                        below at Installing Modules (Webpack Themes).
+                        * If the version number is 1.10.0 or higher, the theme
+                        uses Webpack as its JavaScript build system. Skip ahead
+                        to the simplified installation instructions below at
+                        Installing Modules (Webpack Themes).
 
-                        If the version number is lower than 1.10.0, the theme
-                        uses jspm as its JavaScript build system. 
 
-                        Follow the steps outlined on jspm Extra Steps for
-                        Earlier Versions.
+                        * If the version number is lower than 1.10.0, the theme
+                        uses jspm as its JavaScript build system. Follow the
+                        steps outlined on [jspm Steps for Earlier Versions]()
+                    - type: callout
+                      data:
+                        body: >-
+                          For version numbers below 1.10.0, consider using the
+                          options within control panel > My Themes to download a
+                          newer version of the same theme. This will allow you
+                          to jump ahead to the streamlined instructions below at
+                          Installing Modules (Webpack Themes).
+
+
+                          **Note**: These version numbers do not apply to the
+                          Cornerstone theme. All currently supported Cornerstone
+                          versions use Webpack, and can be refreshed using the
+                          even simpler refresh instructions in [Downloading the
+                          Cornerstone Theme]().
+                        title: Consider Updating Your Theme
+                        type: warning
+                    - type: text
+                      data: |-
+                        ## jspm Steps for Earlier Versions
+
+                        link to legacy article
+                    - type: text
+                      data: >-
+                        ## Installing Modules (Webpack themes)
 
 
                         For Marketplace themes whose version number is 1.10.0 or
                         higher, simply use npm to install the modules required
                         to access Stencil JavaScript events:
 
-                        Navigate to your theme directory. This example assumes
-                        that this target directory has the default name stencil:
 
-                        cd stencil 
+                        1. Navigate to your theme directory. This example
+                        assumes that this target directory has the default name
+                        Cornerstone:
 
-                        Within that directory, install (or reinstall) the
-                        stencil-utils module to ensure that all your
-                        dependencies are up to date:
 
-                        npm install 
+                        `cd cornerstone`
+
+
+                        2. Within that directory, install the stencil-utils
+                        module to ensure that all your dependencies are up to
+                        date:
+
+
+                        `npm install`
                     - type: text
-                      data: '## jspm Steps for Earlier Versions'
-                    - type: text
-                      data: '## Installing Modules (Webpack themes)'
-                    - type: text
-                      data: '## Next Steps'
+                      data: >
+                        ## Next Steps
+
+
+                        To authorize, initialize, and launch your theme, follow
+                        the steps in the _Launching Stencil_ section.
+
+
+                        Later, when you are ready to upload your customized
+                        theme to a store, you should follow the zipping and
+                        uploading instructions in Bundling and Submitting a
+                        Theme and Troubleshooting Theme Uploads.
                     - type: callout
                       data:
                         body: >-
-                          Marketplace themes other than Cornerstone must be
-                          purchased in order to be downloadable.
+                          When you issue the `stencil init` command to authorize
+                          and initialize Stencil, you might receive error
+                          messages about resolving BitBucket as an SSH host.
+                          These errors occur when you have not recently logged
+                          into BitBucket.
 
 
-                          You are entitled to customize a free or purchased
-                          theme for a store that you support. However, the
-                          theme's original creator retains rights to that
-                          theme's design. So, except for Cornerstone-based
-                          themes, you may not upload a derived theme to a public
-                          theme marketplace (whether BigCommerce's or
-                          third-party), nor sell it privately.
-                        title: ' Theme Access, Copyright/Ownership, and Distribution'
+                          When prompted, enter the BitBucket password you used
+                          in Setting Up BitBucket SSH Keys above. This will
+                          clear the errors and allow you to proceed.
+                        type: warning
+                        title: BitBucket Reauthentication
               - title: Theme Updates and Version Control
                 route:
                   path: /theme-updates-and-version-control
