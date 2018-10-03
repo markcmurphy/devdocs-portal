@@ -422,8 +422,7 @@ definitions:
     title: Transaction Response
   TransactionCollectionResponse:
     type: object
-    description: |
-      Response payload for the BigCommerce Order Transactions API.
+    description: Response payload for the BigCommerce Order Transactions API.
     properties:
       data:
         type: array
@@ -456,7 +455,8 @@ definitions:
             description: >-
               This field contains internal BigPay token for stored card that is
               then mapped to the actual third-party token. We currently do not
-              offer a way to get third party tokens.
+              offer a way to get third party tokens.These tokens are read-only
+              and do not return any information about the payment.
           avs_result:
             $ref: '#/definitions/AVSResult'
           cvv_result:
@@ -467,8 +467,8 @@ definitions:
             $ref: '#/definitions/GiftCertificate'
           store_credit:
             $ref: '#/definitions/StoreCredit'
-    type: object
     title: Transaction
+    type: object
   CreditCard:
     type: object
     description: A credit-card model.
