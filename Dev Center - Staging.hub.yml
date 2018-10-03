@@ -7917,12 +7917,12 @@ pages:
                           - type: text
                             data: >-
                               To filter collections down to a particular set of
-                              items, you can add filters as URL query
-                              parameters.
+                              items, you can add filters to your request as URL
+                              query parameters.
 
 
                               These are the most common filter options available
-                              for the V3 API. 
+                              for the V3 API: 
 
 
                               | Operator | Expression  | Example | 
@@ -7962,14 +7962,10 @@ pages:
                               `/v3/catalog/products?categories:not_in=123,456` |
 
 
-                              <p>Available filters vary by endpoint. Refer to
-                              the GET method for an endpoint to see a list of
-                              available filters.</p>
+                              Available filters vary by endpoint. Refer to the
+                              GET method for an endpoint to see a list of
+                              available filters.
 
-                              <p> When using DELETE filter parameters can be
-                              passed in. This is not required for all. Refer to
-                              the endpoint to see the requirements for each.
-                              </p>
 
 
                               ### Includes
@@ -7981,7 +7977,7 @@ pages:
 
 
                               This allows you to save API calls by getting more
-                              information in a response, however it may slow
+                              information in a response. However, it may slow
                               down your response.
 
 
@@ -7990,15 +7986,15 @@ pages:
                               `/v3/catalog/products?include=variants,images`
 
 
-                              Available includes vary by endpoint. Refer to the
-                              GET method for an endpoint to see a list of
-                              available includes.
+                              Availability of the `?include` parameter varies by
+                              endpoint. Refer to the GET method for an endpoint
+                              to see a list of fields that can be included.
 
 
                               ### Including and Excluding fields
 
 
-                              Some endpoints use `?include_fields` and
+                              Some endpoints support both `?include_fields` and
                               `?exclude_fields`. 
 
 
@@ -8007,11 +8003,10 @@ pages:
                               the specified fields from the response.
 
 
-                              You can specify any field that is available as
-                              apart of the object. Excluding fields you don't
-                              care about (especially large fields like
-                              descriptions) can speed up your API request
-                              response time.
+                              You can specify any field that is available on the
+                              object. Excluding fields you don't care about
+                              (especially large fields like descriptions) can
+                              speed up your API request response time.
 
 
 
@@ -8021,7 +8016,7 @@ pages:
                               `https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products?include_fields=name,price`
 
 
-                              Here product name and price have been included.
+                              Here, product name and price have been included:
 
 
                               ```
