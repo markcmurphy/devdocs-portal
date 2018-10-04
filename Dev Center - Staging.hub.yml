@@ -6654,11 +6654,33 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Making Requests</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#making-a-request\">Making a Request</a></li>\n        <li><a href=\"#create-a-product\">Creating a Product</a></li>\n        <li><a href=\"#make-request-troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Making Requests</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    \t\t<li><a href=\"#making-requests_prerequisites\">Prerequisites<a/></li>\n        <li><a href=\"#making-requests_get-products\">Getting a List of Products</a></li>\n        <li><a href=\"#making-requests_create-a-product\">Creating a Product</a></li>\n        <li><a href=\"#making-requests_troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
                           - type: text
-                            data: "## Making a Request\n\n### Prerequisites\n* [API Credentials](/api-docs/getting-started/about-api/authentication#getting-api-credentials)\n* [Scope](/api-docs/getting-started/about-api/authentication#oauth-scopes) set to `Products Modify`\n* BigCommerce Store (`store_hash`)\n\n*Note: You can use any API client (like Postman) for this walkthrough, but these steps are written with the built-in HTTP request maker in mind.*\n\n### Getting a List of Products\n\nIn this walkthrough, we'll get a list of products from the store, use a limit filter to only show the first 10 products, and sort products by name. \n\nIn the request maker below, we've prefilled the URL to /GET products: `https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products`\n\nTo add [filters](/api-docs/getting-started/about-api/filtering), append `?page=10&sort=name` to the end of the request URL.\n\nIn the request maker tabs, replace these placeholders with the appropriate values:  \n- {X-Auth-Token} Header - Access Token from API Credentials\n- {X-Auth-Client} Header - Client Id from API Credentials\n- store_hash Variable - the hash in your api path \n\t- https://api.bigcommerce.com/stores/{store_hash}/v3/\n\n \nHit the send button and review your response."
+                            data: >-
+                              ## Making a Request
+
+
+                              ### Prerequisites
+
+                              * [API
+                              Credentials](/api-docs/getting-started/about-api/authentication#getting-api-credentials)
+
+                              *
+                              [Scope](/api-docs/getting-started/about-api/authentication#oauth-scopes)
+                              set to `Products Modify`
+
+                              * BigCommerce Store (`store_hash`)
+
+
+                              *Note: You can use any API client (like Postman)
+                              for this walkthrough, but these steps are written
+                              with the built-in HTTP request maker in mind.*
                             header:
-                              anchor: making-a-request
+                              anchor: making-requests_prerequisites
+                          - type: text
+                            data: "## Getting a List of Products\n\nIn this walkthrough, we'll get a list of products from the store, use a limit filter to only show the first 10 products, and sort products by name. \n\nIn the request maker below, we've prefilled the URL to /GET products: `https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products`\n\nTo add [filters](/api-docs/getting-started/about-api/filtering), append `?page=10&sort=name` to the end of the request URL.\n\nIn the request maker tabs, replace these placeholders with the appropriate values:  \n- {X-Auth-Token} Header - Access Token from API Credentials\n- {X-Auth-Client} Header - Client Id from API Credentials\n- store_hash Variable - the hash in your api path \n\t- https://api.bigcommerce.com/stores/{store_hash}/v3/\n\n \nHit the send button and review your response."
+                            header:
+                              anchor: making-requests_get-products
                           - type: http
                             data:
                               method: get
@@ -7486,7 +7508,7 @@ pages:
                           - type: text
                             data: "## Create a Product\n\nIn this walkthrough, we'll create an example product: BigCommerce Hoodie. The minimum parameters to create a product are: name, price, category, type and weight. \n\n* Name: The name of your product as a string.\n* Price: How much the items costs in number format. \n* Category: The `{category_id}` for the category this product belongs to. An item can be assigned to more than one category. You can /GET the category id by using:\n\n`https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/categories`\n\n* Type: Is the item physical or digital?\n\t- Physical items are anything that is shipped to the customer, such as a t-shirt.\n\t- Digital items are products that the customer downloads, such as a PDF of an ebook. \n* Weight: How much the product weighs as a number. The measurement unit is determined by the [store settings](https://forum.bigcommerce.com/s/article/Store-Settings#physical). \n\nReview the information pre-populated in the Body tab below. Make sure to run a GET request for the categories first and update request with the appropriate category ID."
                             header:
-                              anchor: create-a-product
+                              anchor: making-requests_create-a-product
                           - type: http
                             data:
                               method: post
@@ -7674,7 +7696,7 @@ pages:
 
                               * Check the request url for errors.
                             header:
-                              anchor: make-request-troubleshooting
+                              anchor: making-requests_troubleshooting
                     - title: Best Practices
                       route:
                         path: /best-practices
