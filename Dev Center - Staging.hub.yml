@@ -8440,999 +8440,6 @@ pages:
                             data: "## Troubleshooting\n\n### Why am I getting 4xx/5xx errors from the API?\n* A 401 error indicates that your API call is being received but isn’t properly authenticating with our API. Either credentials are absent from the request, or we are receiving invalid credentials. Steps to resolve this:\n\t* Double-check your Access Token and Client ID.\n\t* If your credentials are valid, try sending a cURL request with the same credentials. This will test whether the problem is something within your application, rather than a credentials issue.\n* For 403 errors , there are 4 common causes:\n\t* Your app lacks the appropriate scopes to make the request that it sent. Resolution: Check the OAuth scopes that you requested, either in control panel > API Accounts or in Developer Portal’s My Apps section.\n\t* The store-owner account has changed on a store that installed your app. Resolution: This might require a reinstall by the new store owner, or a rollback of the store-owner changes.\n\t* Your API request exceeded an enforced platform limit. Among other limits, each store is limited to a maximum of 30,000 brands and 16,000 categories. For more information about these limits, see either the API resource you are using or our support documentation on platform limits.\n\t* Check your URL paths. An incorrect path can sometimes trigger a 403 error.\n* 500 errors almost always indicate an internal server error on BigCommerce’s side. Steps to resolve these:\n\t* Re-attempt the request three to five times, with increasing delays of at least a minute between attempts.\n\t* Check our status page.\n\t* 500 errors can also be caused by particularly expensive API calls. To avoid these errors on stores with very complex data, try reducing how many objects you are requesting. In the v2 API, you can request fewer objects by using ?limit={count}. In either the v2 or v3 API, you can request fewer objects by excluding certain fields or only requesting certain fields.\n\t\n### Why am I getting an HTTP 204 or 301/302 response to an API request?\n* Double-check the URL to which you are making an API request. If the response code is 301/302, try the WWW or non-WWW version of the URL."
                             header:
                               anchor: api-status-codes_troubleshooting
-              - title: Partner Information
-                route:
-                  path: /partner
-                data:
-                  children:
-                    - title: Becoming A Partner
-                      route:
-                        path: /becoming-a-partner
-                      data:
-                        blocks:
-                          - type: html
-                            data: "<h1>Becoming a Partner</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#becoming-a-partner_apply-technology-partner-program\">Apply to the Technology Partner Program </a></li>\n\t\t<li><a href=\"#becoming-a-partner_types-of-apps-looking-for\">Types of Apps We Are Looking For</a></li>\n\t\t<li><a href=\"#becoming-a-partner_getting-sandbox-store\">Getting a Sandbox Store</a></li>\n\t\t<li><a href=\"#becoming-a-partner_app-store-approval-requirements\">App Store Approval Requirements</a></li>\n\t\t<li><a href=\"#becoming-a-partner_partner-program-troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
-                          - type: text
-                            data: >-
-                              The following sections outline the steps required
-                              to become a vendor of Single-Click Apps on the
-                              BigCommerce platform. Doing so requires a
-                              partnership application, but acceptance will
-                              authorize you to provide best-of-breed solutions
-                              to the fast-growing online businesses we host.
-
-
-                              ## Apply to the Technology Partner Program
-
-
-                              Before you can submit an app to the BigCommerce
-                              App Marketplace (which merchants also know as our
-                              “app store”), you must become an official Partner.
-                              BigCommerce offers app developers free sandbox
-                              stores through its Technology Partner Program. To
-                              be approved as a partner, you will need:
-
-
-                              * A website
-
-                              * Intent to offer your app publicly
-
-                              * Ability to support users of your app
-
-                              * Evidence of expertise in app development
-
-
-                              Once approved, you will receive one or more emails
-                              listing your partner credentials and next steps.
-                              Your Partner ID will be required to submit your
-                              app for App Marketplace consideration. If you do
-                              not receive these credentials by email, please
-                              contact <a
-                              href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>.
-                            header:
-                              anchor: >-
-                                becoming-a-partner_apply-technology-partner-program
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ## Getting a Sandbox Store
-
-
-                              To build a Marketplace app, you will need to have
-                              a sandbox store, a developer account at
-                              devtools.bigcommerce.com, and be accepted as a
-                              BigCommerce partner. We encourage you to create
-                              your sandbox store and your Dev Tools account
-                              using the same login credentials. A sandbox store
-                              cannot process transactions and is for developing
-                              and testing apps without the 15-day time time
-                              limit of a trial store. 
-                            header:
-                              anchor: becoming-a-partner_getting-sandbox-store
-                          - type: callout
-                            data:
-                              type: warning
-                              body: >-
-                                A sandbox store is not required for app
-                                development, but if you develop on a trial store
-                                instead, after 15 days the store will be erased
-                                along with the data and a new store will need to
-                                be created. Applying to be a partner and getting
-                                a sandbox store is best practice. 
-                          - type: text
-                            data: >-
-                              ### Create a Sandbox Store
-
-
-                              1. Navigate to the [BigCommerce Pricing
-                              page](https://www.bigcommerce.com/pricing/).
-
-                              2. Select **START YOUR FREE TRIAL**.
-
-                              3. Where prompted for an email address, enter the
-                              same email that you used when applying to become a
-                              Technology Partner. 
-
-                              4. Select **CONTINUE TO STORE DETAILS**.
-
-                              5. In the trial store setup form, enter a store
-                              name, password, and other details. Then select
-                              **CREATE YOUR STORE**.
-
-                              6. Log in to the [Partner
-                              Portal](https://partners.bigcommerce.com) and
-                              navigate to Support > Create a Case > Issue Type =
-                              Portal and Membership. In the case description,
-                              enter your new sandbox store’s friendly URL (for
-                              example: http://your-store-name.mybigcommerce.com)
-                              and request conversion to a Sandbox. We will flag
-                              this as a sandbox store to ensure your continued
-                              access to the store, as opposed to the normal
-                              15-day trial. This can take around two days.
-
-                              7. When you log into your new store, use the same
-                              email that you used for step 3 above.
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ## App Store Approval Requirements
-
-
-                              ### Prerequisites
-
-
-                              Make sure you’ve applied and been approved for our
-                              [Technology Partner
-                              Program](https://partners.bigcommerce.com/English/register_email.aspx)
-                              before you’re ready to submit your app - you’ll
-                              need a valid Partner ID to do so. You’ll also need
-                              to accept the Terms & Conditions in the [Partner
-                              Portal](https://partners.bigcommerce.com/English/)
-                              before we can publish your app.
-
-
-                              ### General Requirements
-
-
-                              -   Support resources should be available
-                              throughout the app experience, including in your
-                              onboarding flow and the app’s dashboard.
-                                  
-                              -   Make sure to reference BigCommerce using the
-                              proper formatting. You can visit our [Media
-                              Kit](https://www.bigcommerce.com/press/media-kit/)
-                              for any BigCommerce branding assets needed.
-                                  
-                              -   The app and app listing should make no
-                              references to competitor platforms.
-
-
-                              -   Use the brand name you’ve given your app for
-                              your app title throughout your app content. This
-                              listing name should be a concise title for easy
-                              identification and should not include additional
-                              taglines or descriptors. The name will always
-                              appear alongside your summary, so there’s no need
-                              to muddy your app’s branding with duplicate
-                              content when that tagline is already displayed
-                              with it!  
-                                    
-                                  - If your solution is a connector to a specific third-party service, or you’re offering only a specific feature, make sure to include both the name of the third party service or feature and your company name (Ex: “Marketplace by BigCommerce”, “Search by BigCommerce”), with your company name following the feature.
-                                  
-                              -   Your app, including any storefront components,
-                              should be compatible with all
-                              [browsers](#stencil-link) that the BigCommerce
-                              platform supports.
-
-
-                              ### Listing Requirements
-
-
-                              #### Name
-
-                              - The brand name for your app integration. 
-                                  
-                              #### App Images
-
-                              - Your primary app logo should be 350x130px (or
-                              larger at this ratio) with a white background and
-                              dark branding in the foreground. The logo should
-                              only include branding, no taglines necessary.
-
-                              - Your app icon will be included on the main app
-                              detail page and the sidebar in the BigCommerce
-                              control panel once the app is installed. This
-                              should be a square 200x200px image.
-
-                              - Your alternate logo will be used if your app is
-                              featured on the homepage carousel of the
-                              Marketplace. This image should be 259x158px (or
-                              larger at this ratio) with a dark background and
-                              white or light branding in the foreground. The
-                              logo should only include branding, no taglines
-                              necessary.
-                                  
-                              #### Pricing & Categorization
-
-                              - Select one of our pre-formatted pricing options
-                              to call out your app’s starting price. If you
-                              offer a forever-free plan, choose the “Free”
-                              option. If your app does not fit one of our
-                              formatted options, specify your details in a few
-                              words in the “Other” selection.
-
-                              - Choose the most appropriate category for your
-                              app.
-                            header:
-                              anchor: >-
-                                becoming-a-partner_app-store-approval-requirements
-                          - type: callout
-                            data:
-                              body: >-
-                                If you need to specify more detail on your
-                                pricing options, save it for your app
-                                description.  
-                          - type: text
-                            data: >-
-                              #### App Details
-                                  
-                              -   Summary - A short tagline description of your
-                              app that will be used on your app card in category
-                              and search results within the Marketplace. 128
-                              characters max.
-                                  
-                              -   Description - A more in-depth value
-                              proposition for your listing, including how your
-                              solution works, why your solution stands out in
-                              its category, and why a merchant should choose you
-                              over other competitors. Avoid using fluff or
-                              buzzwords, as this field will not be indexed for
-                              search. 200 words max recommended.
-                                  
-                              -   Features - Up to 5 separate feature headings
-                              and short descriptions to highlight stand-out
-                              details about your app.
-                                  
-                              -   Guides - Links to your User and Installation
-                              Guides as a reference for existing users and
-                              prospects.
-                                  
-
-                              #### Partner Information
-                                  
-
-                              -   A support email and website for users to reach
-                              out as needed. These will be publicly visible on
-                              the Marketplace, so make sure to stay away from
-                              personal emails or non-support URLs.
-                                  
-                              -   Links to your privacy policy and terms of
-                              service.
-                                  
-                              ### Installation
-
-
-                              -   Apps should be Single-Click and use our OAuth
-                              token exchange flow to authenticate the user
-                                  
-                              -   Single-Click does not mean everything 
-                              completed in one click, but that authentication is
-                              handled in that click - other tasks can be handled
-                              post-auth with the user
-                                  
-                              -   When the app is installed, a styled HTML page
-                              must be returned in the iframe of the BigCommerce
-                              control panel - this content cannot be blank and
-                              must follow our [user-interface
-                              constraints](/api-docs/getting-started/building-apps-bigcommerce/building-apps#user-interface-constraints).
-                                  
-                              -   During the OAuth handshake, be sure to store
-                              the user’s token against their store hash - rather
-                              than their email address - to avoid any problems
-                              with ownership changes or multi-user support.
-                          - type: callout
-                            data:
-                              body: >-
-                                If your app cannot meet these requirements,
-                                please reach out to <a
-                                href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>
-                                in order to discuss the potential for a
-                                Connector app listing. In the majority of cases,
-                                a Single-Click app will be the more appropriate
-                                solution and put your integration on par with
-                                other Marketplace partners, but exceptions may
-                                be made under certain circumstances
-                          - type: text
-                            data: >-
-                              ### Functionality
-
-
-                              -   Your app must work as intended, be free of
-                              defects, and not conflict with or break any
-                              default BigCommerce functionality, including the
-                              BigCommerce storefront and checkout.
-                                  
-                              -   Utilize any V3 API resources that are
-                              currently available for the data you need from a
-                              BigCommerce store.
-                                  
-                              -   The dashboard and callback URLs for your app
-                              should operate strictly over HTTPS using a valid
-                              SSL certificate.
-                                  
-                              -   Apps should offer [multi-user
-                              support](/api-docs/getting-started/building-apps-bigcommerce/building-apps#multi-user-support)
-                              so that permissions for the app can be distributed
-                              by the store owner to additional users, from the
-                              BigCommerce control panel.
-                                  
-                              -   Any apps that process transactions or handle
-                              credit card data will need to pass a PCI
-                              Compliance review with our Security team, and also
-                              be compatible with our Optimized One-Page
-                              Checkout.
-                                  
-                              -   Avoid copy/paste for storefront code - use the
-                              [V3 Scripts
-                              API](/api-docs/api-reference/v3-api/content-api)
-                              to programmatically inject code snippets into a
-                              store’s Script Manager and storefront theme.
-                                  
-                              -   If your app requires payment, you’ll need to
-                              collect payment from the user within your app.
-                              More info on [monetizing your app
-                              here](/api-docs/getting-started/partner/becoming-a-partner#app-store-approval-requirements).  
-
-
-                              ### Recommendations
-
-
-                              -   Have a form to fill out for new users? We
-                              recommend auto-filling user input fields with data
-                              from the [Store Information API resource](), which
-                              already contains much of the info you might need
-                              from a new user.
-                                  
-                              -   No account approval process needed for your
-                              app? Consider automatically generating accounts
-                              for stores that install your app and don’t match
-                              an existing store in your database.
-                                  
-                              -   Require login on launch? Use the information
-                              in the BigCommerce payload to your callback URL to
-                              authenticate the user without asking for a
-                              username and password each time.
-                                  
-                              -   Want to share user testimonials? Add a link to
-                              your full case study in the Case Studies field,
-                              with a title and short description.
-
-
-
-                              ### Technical
-
-
-                              You will have already provided much of the
-                              information during the initial app registration.
-                              Before submitting your app, please review the
-                              information that you initially provided, to make
-                              sure that all of the URIs are publicly available,
-                              fully qualified, and served over TLS/SSL. Also,
-                              ensure that your app is requesting all of the
-                              scopes that it needs now, as well as the scopes
-                              that you anticipate needing in the future.
-
-
-                              Before submission, you must also provide detailed
-                              testing instructions, as well as test accounts.
-                          - type: callout
-                            data:
-                              body: >-
-                                Changing scopes once your app is launched will
-                                require all of your current users to
-                                re-authorize the app before they can launch it
-                                again.
-                          - type: text
-                            data: >-
-                              ###  Submitting your App
-
-
-                              Our submission guidelines aim to protect the
-                              merchant experience and to provide enough
-                              structure for you to develop apps efficiently and
-                              effectively. Before submitting your app, please be
-                              sure to carefully review the App Requirements, to
-                              avoid having your app rejected and going through
-                              resubmission. A fee of $99 is required for each
-                              submission. If the app is rejected you will be
-                              charged for a new submission. You can submit an
-                              app through [Dev
-                              Tools](https://devtools.bigcommerce.com).
-
-                                
-                              ###  Monetizing Your App
-
-
-                              If you want to charge merchants for your app,
-                              please note that BigCommerce expects you to handle
-                              the billing aspects of the transaction. Your app
-                              needs to take care of collecting the fee from the
-                              merchant.
-
-
-                              Under BigCommerce’s Technology Partner Program,
-                              within 30 days of collecting this revenue, you
-                              must send BigCommerce 20% and retain the remaining
-                              80% for yourself. Once your app is published, a
-                              mandatory revenue-share reporting form will be
-                              sent to the primary contact on your partner
-                              account, at the beginning of each month.
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ##  Troubleshooting
-
-
-                              ### Are all fields required?
-
-
-                              While not all fields are required to publish edits
-                              for your listing, they are all highly recommended.
-                              Without filling in all fields, your listing will
-                              be missing information that merchants have seen on
-                              other listings and expect to see throughout the
-                              Marketplace.
-
-
-                              ###  I’ve logged in to Dev Tools, but I don’t see
-                              my published listing. Where is it?
-
-
-                              You may be logged in with the wrong account. Each
-                              listing can only be owned by one user, so it is
-                              likely assigned to another email address. If
-                              you’re unable to track down the correct owner
-                              account for your solution, please reach out to <a
-                              href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>.
-
-
-                              ### I saved my changes, but my listing detail page
-                              on BigCommerce.com/Apps has not updated yet.
-                              What’s the problem?
-
-
-                              The changes will be effective immediately in your
-                              control panel app card, but the updates can take
-                              up to 24 hours to appear on the public BigCommerce
-                              Marketplace. Feel free to use this as a grace
-                              period to make additional edits as needed.
-                            header:
-                              anchor: >-
-                                becoming-a-partner_partner-program-troubleshooting
-                          - type: callout
-                            data:
-                              type: success
-                              body: >-
-                                Questions? Please contact <a
-                                href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>
-                    - title: Dev Tools Walkthrough
-                      route:
-                        path: /using-dev-tools
-                      data:
-                        blocks:
-                          - type: html
-                            data: <h1>Dev Tools Walkthrough</h1>
-                          - type: text
-                            data: >-
-                              Dev Tools can be found by clicking [My
-                              Apps](https://devtools.bigcommerce.com/) in the
-                              upper right corner of the page. 
-
-
-                              Dev Tools is where the Client Id and Client
-                              Secret, submission form and a list of apps that
-                              you have created are located.
-                          - type: text
-                            data: '---'
-                          - type: tabs
-                            data:
-                              children:
-                                - title: App Summary
-                                  blocks:
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536259683439
-                                      header:
-                                        anchor: app-summary
-                                    - type: text
-                                      data: >-
-                                        ### Contact Name
-
-                                        Use the email address that was created
-                                        when applying for your Partner Id. 
-
-
-                                        ### Partner Name
-
-                                        List the name of your company​, as you
-                                        want it to be attributed on the detail
-                                        page.
-
-
-                                        ### Partner Website
-
-                                        Provide the URL for your homepage so
-                                        users can learn more about your company.
-
-
-                                        ### Support email
-
-                                        Email where users can get help with the
-                                        app. This should be a formal group email
-                                        at your company domain (Ex:
-                                        support@app-partner.com) rather than a
-                                        personal email. If not provided, this
-                                        option will not be displayed.
-
-
-                                        ### Support website
-
-                                        A Support email and website for users to
-                                        reach out as needed.
-
-                                        These will be publicly visible on the
-                                        Marketplace, so make sure to stay away
-                                        from personal emails or non-support
-                                        URLs. Your public detail page will
-                                        include a button for users to “Get
-                                        Support,” which will take them to this
-                                        URL in a new tab. If not provided, the
-                                        button will not be displayed on your
-                                        detail page.
-
-
-                                        ### Partner ID
-
-                                        When you’re ready to submit your listing
-                                        for review, you will need to enter your
-                                        [Partner
-                                        ID](https://partners.bigcommerce.com/English/register_email.aspx)
-                                        for your Technology Partner account.
-                                        This field is not required to create,
-                                        save, or edit a Draft prior to
-                                        submission. 
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536259722234
-                                    - type: text
-                                      data: >-
-                                        ### App Name
-
-                                        Use the brand name you’ve given your app
-                                        for your app title throughout your app
-                                        content. This listing name should be a
-                                        concise title for easy identification
-                                        and should not include additional
-                                        taglines or descriptors. The name will
-                                        always appear alongside your summary, so
-                                        there’s no need to muddy your app’s
-                                        branding with duplicate content when
-                                        that tagline is already displayed with
-                                        it.
-                                    - type: callout
-                                      data:
-                                        body: >-
-                                          If your solution is a connector to a
-                                          specific third-party service, or you’re
-                                          offering only a particular feature, make
-                                          sure to include both the name of the
-                                          third party service or feature and your
-                                          company name​ (Ex: “Marketplace by
-                                          BigCommerce,” “Search by BigCommerce”).
-                                          The company name needs to follow the
-                                          feature.
-                                    - type: text
-                                      data: >-
-                                        ### App Logo
-
-                                        Your primary app logo should be 350 x
-                                        130px (or larger at this ratio) with a
-                                        white background and dark branding in
-                                        the foreground. The logo should only
-                                        include branding, no taglines necessary.
-
-
-                                        ### Price
-
-                                        Select one of our pre-formatted pricing
-                                        options to call out your app’s starting
-                                        price. If you offer a forever-free plan,
-                                        choose the “Free” option. If your app
-                                        does not fit one of our options, specify
-                                        your details in a few words in the
-                                        “Other” selection.
-                                    - type: callout
-                                      data:
-                                        body: >-
-                                          If you need to specify more detail on
-                                          your pricing options, save it for your
-                                          app description.
-                                    - type: text
-                                      data: >-
-                                        ### App Summary
-
-                                        A short tagline description of your app
-                                        that will be used on your app card in
-                                        category and search results within the
-                                        Marketplace. 128 characters max.
-
-
-                                        ### App Icon
-
-                                        Your app icon will be included on the
-                                        main app detail page and the sidebar in
-                                        the BigCommerce control panel once the
-                                        app is installed. This should be a
-                                        square 200 x 200px image.
-
-
-                                        ### Category
-
-                                        Choose the most appropriate category for
-                                        your app. Take a look at the live
-                                        [Marketplace](https://www.bigcommerce.com/apps/)
-                                        for an idea of where solutions are
-                                        currently assigned to help decide the
-                                        right category. The category selection
-                                        will also be a search attribute for your
-                                        listing. BigCommerce will review your
-                                        category assignment and may
-                                        re-categorize your listing prior to
-                                        launch. One category maximum.
-                                - title: Details
-                                  blocks:
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536260365610
-                                      header:
-                                        anchor: app-details
-                                    - type: text
-                                      data: >-
-                                        ### App Details
-
-                                        A more in-depth value proposition for
-                                        your listing, including how your
-                                        solution works, why your solution stands
-                                        out in its category, and why a merchant
-                                        should choose you over other
-                                        competitors. Avoid using fluff or
-                                        buzzwords, as this field will not be
-                                        indexed for search. 200 words max
-                                        recommended.
-
-
-                                        ### Videos
-
-                                        Include videos that highlight the
-                                        purpose and value of your solution.
-                                        Select the video hosting platform
-                                        (YouTube or Vimeo) and enter the video
-                                        ID.
-
-
-                                        #### Video Best Practices
-
-
-                                        **YouTube**
-
-
-                                        Turn off ads for any videos you've
-                                        already uploaded. 
-
-
-                                        1. Sign in to YouTube.
-
-
-                                        2. In the top right, click your account
-                                        icon > Creator Studio.
-
-
-                                        3. On the left, select Video Manager.
-
-
-                                        4. Select the video(s) where you want to
-                                        turn ads off.
-
-
-                                        5. Click Actions > More actions >
-                                        Monetization.
-
-
-                                        6. Select Off.
-
-
-                                        7. Click Submit.
-
-
-                                        **Vimeo**
-
-
-                                        Per Vimeo’s guidelines, businesses may
-                                        not use Basic or Plus accounts to host
-                                        videos. If you want to upload commercial
-                                        videos, you must use Vimeo PRO or
-                                        Business. Commercial content includes:
-
-
-                                        Videos promoting or representing a
-                                        for-profit business or brand 
-
-                                        Videos containing any form of
-                                        advertising 
-
-                                        Videos hosted on behalf of a business
-                                        (i.e., uploaded to Vimeo and embedded on
-                                        your company’s website) 
-
-                                        Product demos and tutorials
-
-
-                                        *Note:* Ads appear to viewers based on
-                                        their level of Vimeo membership - not
-                                        yours. Basic and non-logged in viewers
-                                        may see ad banners below the video
-                                        player.
-
-
-                                        ### Case Studies
-
-                                        These can either be “Thought Leadership”
-                                        case studies and/or traditional case
-                                        studies that demonstrate how BigCommerce
-                                        merchants have benefited from using your
-                                        solution with their business. Use the +
-                                        ​icon to add a case study, and the x
-                                        ​icon to remove. Four case studies
-                                        maximum.
-                                    - type: callout
-                                      data:
-                                        type: warning
-                                        body: >-
-                                          Case studies that include competitor
-                                          platforms are not allowed and will be
-                                          removed. Partners will be required to
-                                          repurpose general case studies, remove
-                                          competitor platform mentions, and
-                                          republish the asset accordingly.
-                                    - type: text
-                                      data: >-
-                                        ### Features
-
-                                        Use these fields to enumerate the major
-                                        features your platform or solution has
-                                        to offer. Include a brief title for each
-                                        feature, and a description of the
-                                        feature to accompany it. The feature
-                                        title will be search indexed in the
-                                        Marketplace, so be specific with your
-                                        feature names and include major
-                                        functions potential users will search
-                                        for. Use the + icon to add a feature,
-                                        and the x icon to remove. Utilize the
-                                        rich text editing of these fields to
-                                        bold, underline, or italicize copy as
-                                        needed. 
-
-                                        Up to five features can be added.
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536260434551
-                                    - type: text
-                                      data: >-
-                                        ### Legal Terms & Privacy 
-
-                                        Links to your privacy policy and terms
-                                        of service. This requirement is in place
-                                        due to legal liability and is
-                                        non-optional. 
-
-
-                                        ### International Optimization
-
-                                        Please add the countries for which your
-                                        solution is optimized and those which
-                                        your solution does not currently
-                                        support. 
-                                    - type: callout
-                                      data:
-                                        type: info
-                                        body: >-
-                                          This feature will not currently be
-                                          utilized in the Marketplace, but will be
-                                          a part of planned internationalization
-                                          updates.
-                                    - type: text
-                                      data: >-
-                                        ### Help Guides
-
-                                        Links to your User and Installation
-                                        Guides as a reference for existing users
-                                        and prospects.
-
-                                        We now ask that you include links to
-                                        your solution’s user installation guide
-                                        (PDF, support articles, etc.) and
-                                        standard user guide for prospective
-                                        users to review before installation. If
-                                        you do not submit links, this field will
-                                        not be displayed on your listing detail
-                                        page, however we highly recommend
-                                        including these with your submission.
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536260486010
-                                    - type: text
-                                      data: >-
-                                        ### App Screenshot
-
-                                        Add screenshots of your solution’s
-                                        functionality or user interface as it
-                                        appears when integrated with BigCommerce
-                                        so users know what to expect.
-
-
-                                        ### Alternate Logo
-
-                                        Your alternate logo will be used if your
-                                        app is featured on the homepage carousel
-                                        of the Marketplace. This image should be
-                                        259 x 158px (or larger at this ratio)
-                                        with a dark background and white or
-                                        light branding in the foreground. The
-                                        logo should only include branding, no
-                                        taglines necessary.
-                                - title: Technical
-                                  blocks:
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536260547856
-                                      header:
-                                        anchor: app-technical
-                                    - type: text
-                                      data: >-
-                                        ### Multiple Users
-
-
-                                        By default, your app will only be
-                                        accessible to the store owner (i.e., the
-                                        user who created the store). Optionally,
-                                        you can allow your app to be accessible
-                                        to other store users. Consider the
-                                        following before enabling [multi-user
-                                        support](/api-docs/getting-started/building-apps-bigcommerce/building-apps#multi-user-support):
-
-
-                                        -   Once you enable multi-user support,
-                                        a store admin will still need to grant
-                                        access to other users from within the
-                                        store control panel. For each user
-                                        account, there are settings that grant
-                                        access to specific apps.
-                                            
-                                        -   Your app should be aware that when
-                                        it receives the [Load
-                                        Callback](/api-docs/getting-started/building-apps-bigcommerce/building-apps#load-uninstall-removal-requests),
-                                        the user information passed in might not
-                                        be the store owner’s. You’ll need to
-                                        determine how to respond if you see a
-                                        different user. For example, you may
-                                        want to provision a new user account in
-                                        order to personalize the experience.
-                                            
-                                        -   You can optionally specify a [Remove
-                                        User Callback
-                                        URI](/api-docs/getting-started/building-apps-bigcommerce/building-apps#load-uninstall-removal-requests)
-                                        to receive a callback when a store admin
-                                        revokes a user’s access.
-                                            
-                                        ### App Type
-
-
-                                        Select the type of app. We recommend
-                                        [Single Click
-                                        Apps](/api-docs/getting-started/building-apps-bigcommerce/types-of-apps#single-click-apps)
-                                        although some qualify to [Connector
-                                        Apps.](/api-docs/getting-started/building-apps-bigcommerce/types-of-apps#connector)
-
-
-                                        ### Callback URLS
-
-
-                                        You must have an [Auth Callback
-                                        URI](/api-docs/getting-started/building-apps-bigcommerce/building-apps#installation-update-sequence)
-                                        and a [Load Callback
-                                        URI](/api-docs/getting-started/building-apps-bigcommerce/building-apps#installation-update-sequence)
-                                        to register your app.
-
-
-                                        #### Public URIs Required before
-                                        Submission
-
-
-                                        Because the Auth Callback URI and Load
-                                        Callback URI requests originate from the
-                                        browser and not from BigCommerce, you
-                                        can use non–publicly-available URIs and
-                                        a self-signed certificate for a quick
-                                        start. However, you must switch to – and
-                                        test your app with – a publicly
-                                        available Auth Callback URI and Load
-                                        Callback URI before submitting your app
-                                        for consideration in the App
-                                        Marketplace.
-
-
-                                        If you want to receive a callback when
-                                        the store owner uninstalls your app, you
-                                        can provide an [Uninstall Callback
-                                        URI](/api-docs/getting-started/building-apps-bigcommerce/building-apps#load-uninstall-removal-requests).
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536260600336
-                                    - type: text
-                                      data: >-
-                                        ### OAuth Scopes
-
-                                        If you know the [OAuth
-                                        scopes](/api-docs/getting-started/about-api/authentication#oauth-scopes)
-                                        that your app requires, you should
-                                        select these. If you do not yet know the
-                                        scopes that you need, you can just
-                                        request minimal permissions (such as
-                                        Information: Read-Only) to get started.
-                                        However, once you determine the scopes
-                                        you need, you must:
-
-                                        - Modify the scopes of your app in My
-                                        Apps and save the changes.
-
-                                        - Obtain the new OAuth token during the
-                                        [App Installation or Update
-                                        flow](https://developer.bigcommerce.com/api/#app-installation-and-update-sequence).
-
-                                        - Retest your app to make sure it still
-                                        functions properly with the new token.
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536260650757
-                                    - type: text
-                                      data: >-
-                                        Add in any instructions needed to test
-                                        the app thoroughly. 
-                                - title: Review
-                                  blocks:
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536260677950
-                                      header:
-                                        anchor: app-review
-                                    - type: text
-                                      data: >-
-                                        Review the information added before
-                                        submitting the app. Look over this page
-                                        carefully, once the app is submitted, if
-                                        it is rejected there will be another fee
-                                        for submission.
-                                - title: Preview
-                                  blocks:
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536261272003
-                                      header:
-                                        anchor: app-preview
-                                    - type: text
-                                      data: >-
-                                        This is an approximation of what the
-                                        app’s page will look like in the
-                                        BigCommerce Marketplace.
-                                - title: Payment & Submission
-                                  blocks:
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1536261347648
-                                      header:
-                                        anchor: app-payment
-                                    - type: text
-                                      data: >-
-                                        At this point you make sure the
-                                        information has been filled out
-                                        completely and the app has been
-                                        thoroughly tested before submitting for
-                                        review. Updates to the App will not
-                                        require the submission fee again. 
               - title: Building Apps With BigCommerce
                 route:
                   path: /building-apps-bigcommerce
@@ -12428,6 +11435,942 @@ pages:
                             header:
                               title: store/shipment/created
                               anchor: shipment-created
+        - title: Partner Information
+          route:
+            path: /partner
+          data:
+            children:
+              - title: Becoming A Partner
+                route:
+                  path: /becoming-a-partner
+                data:
+                  blocks:
+                    - type: html
+                      data: "<h1>Becoming a Partner</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#becoming-a-partner_apply-technology-partner-program\">Apply to the Technology Partner Program </a></li>\n\t\t<li><a href=\"#becoming-a-partner_types-of-apps-looking-for\">Types of Apps We Are Looking For</a></li>\n\t\t<li><a href=\"#becoming-a-partner_getting-sandbox-store\">Getting a Sandbox Store</a></li>\n\t\t<li><a href=\"#becoming-a-partner_app-store-approval-requirements\">App Store Approval Requirements</a></li>\n\t\t<li><a href=\"#becoming-a-partner_partner-program-troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        The following sections outline the steps required to
+                        become a vendor of Single-Click Apps on the BigCommerce
+                        platform. Doing so requires a partnership application,
+                        but acceptance will authorize you to provide
+                        best-of-breed solutions to the fast-growing online
+                        businesses we host.
+
+
+                        ## Apply to the Technology Partner Program
+
+
+                        Before you can submit an app to the BigCommerce App
+                        Marketplace (which merchants also know as our “app
+                        store”), you must become an official Partner.
+                        BigCommerce offers app developers free sandbox stores
+                        through its Technology Partner Program. To be approved
+                        as a partner, you will need:
+
+
+                        * A website
+
+                        * Intent to offer your app publicly
+
+                        * Ability to support users of your app
+
+                        * Evidence of expertise in app development
+
+
+                        Once approved, you will receive one or more emails
+                        listing your partner credentials and next steps. Your
+                        Partner ID will be required to submit your app for App
+                        Marketplace consideration. If you do not receive these
+                        credentials by email, please contact <a
+                        href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>.
+                      header:
+                        anchor: becoming-a-partner_apply-technology-partner-program
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Getting a Sandbox Store
+
+
+                        To build a Marketplace app, you will need to have a
+                        sandbox store, a developer account at
+                        devtools.bigcommerce.com, and be accepted as a
+                        BigCommerce partner. We encourage you to create your
+                        sandbox store and your Dev Tools account using the same
+                        login credentials. A sandbox store cannot process
+                        transactions and is for developing and testing apps
+                        without the 15-day time time limit of a trial store. 
+                      header:
+                        anchor: becoming-a-partner_getting-sandbox-store
+                    - type: callout
+                      data:
+                        type: warning
+                        body: >-
+                          A sandbox store is not required for app development,
+                          but if you develop on a trial store instead, after 15
+                          days the store will be erased along with the data and
+                          a new store will need to be created. Applying to be a
+                          partner and getting a sandbox store is best practice. 
+                    - type: text
+                      data: >-
+                        ### Create a Sandbox Store
+
+
+                        1. Navigate to the [BigCommerce Pricing
+                        page](https://www.bigcommerce.com/pricing/).
+
+                        2. Select **START YOUR FREE TRIAL**.
+
+                        3. Where prompted for an email address, enter the same
+                        email that you used when applying to become a Technology
+                        Partner. 
+
+                        4. Select **CONTINUE TO STORE DETAILS**.
+
+                        5. In the trial store setup form, enter a store name,
+                        password, and other details. Then select **CREATE YOUR
+                        STORE**.
+
+                        6. Log in to the [Partner
+                        Portal](https://partners.bigcommerce.com) and navigate
+                        to Support > Create a Case > Issue Type = Portal and
+                        Membership. In the case description, enter your new
+                        sandbox store’s friendly URL (for example:
+                        http://your-store-name.mybigcommerce.com) and request
+                        conversion to a Sandbox. We will flag this as a sandbox
+                        store to ensure your continued access to the store, as
+                        opposed to the normal 15-day trial. This can take around
+                        two days.
+
+                        7. When you log into your new store, use the same email
+                        that you used for step 3 above.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## App Store Approval Requirements
+
+
+                        ### Prerequisites
+
+
+                        Make sure you’ve applied and been approved for our
+                        [Technology Partner
+                        Program](https://partners.bigcommerce.com/English/register_email.aspx)
+                        before you’re ready to submit your app - you’ll need a
+                        valid Partner ID to do so. You’ll also need to accept
+                        the Terms & Conditions in the [Partner
+                        Portal](https://partners.bigcommerce.com/English/)
+                        before we can publish your app.
+
+
+                        ### General Requirements
+
+
+                        -   Support resources should be available throughout the
+                        app experience, including in your onboarding flow and
+                        the app’s dashboard.
+                            
+                        -   Make sure to reference BigCommerce using the proper
+                        formatting. You can visit our [Media
+                        Kit](https://www.bigcommerce.com/press/media-kit/) for
+                        any BigCommerce branding assets needed.
+                            
+                        -   The app and app listing should make no references to
+                        competitor platforms.
+
+
+                        -   Use the brand name you’ve given your app for your
+                        app title throughout your app content. This listing name
+                        should be a concise title for easy identification and
+                        should not include additional taglines or descriptors.
+                        The name will always appear alongside your summary, so
+                        there’s no need to muddy your app’s branding with
+                        duplicate content when that tagline is already displayed
+                        with it!  
+                              
+                            - If your solution is a connector to a specific third-party service, or you’re offering only a specific feature, make sure to include both the name of the third party service or feature and your company name (Ex: “Marketplace by BigCommerce”, “Search by BigCommerce”), with your company name following the feature.
+                            
+                        -   Your app, including any storefront components,
+                        should be compatible with all [browsers](#stencil-link)
+                        that the BigCommerce platform supports.
+
+
+                        ### Listing Requirements
+
+
+                        #### Name
+
+                        - The brand name for your app integration. 
+                            
+                        #### App Images
+
+                        - Your primary app logo should be 350x130px (or larger
+                        at this ratio) with a white background and dark branding
+                        in the foreground. The logo should only include
+                        branding, no taglines necessary.
+
+                        - Your app icon will be included on the main app detail
+                        page and the sidebar in the BigCommerce control panel
+                        once the app is installed. This should be a square
+                        200x200px image.
+
+                        - Your alternate logo will be used if your app is
+                        featured on the homepage carousel of the Marketplace.
+                        This image should be 259x158px (or larger at this ratio)
+                        with a dark background and white or light branding in
+                        the foreground. The logo should only include branding,
+                        no taglines necessary.
+                            
+                        #### Pricing & Categorization
+
+                        - Select one of our pre-formatted pricing options to
+                        call out your app’s starting price. If you offer a
+                        forever-free plan, choose the “Free” option. If your app
+                        does not fit one of our formatted options, specify your
+                        details in a few words in the “Other” selection.
+
+                        - Choose the most appropriate category for your app.
+                      header:
+                        anchor: becoming-a-partner_app-store-approval-requirements
+                    - type: callout
+                      data:
+                        body: >-
+                          If you need to specify more detail on your pricing
+                          options, save it for your app description.  
+                    - type: text
+                      data: >-
+                        #### App Details
+                            
+                        -   Summary - A short tagline description of your app
+                        that will be used on your app card in category and
+                        search results within the Marketplace. 128 characters
+                        max.
+                            
+                        -   Description - A more in-depth value proposition for
+                        your listing, including how your solution works, why
+                        your solution stands out in its category, and why a
+                        merchant should choose you over other competitors. Avoid
+                        using fluff or buzzwords, as this field will not be
+                        indexed for search. 200 words max recommended.
+                            
+                        -   Features - Up to 5 separate feature headings and
+                        short descriptions to highlight stand-out details about
+                        your app.
+                            
+                        -   Guides - Links to your User and Installation Guides
+                        as a reference for existing users and prospects.
+                            
+
+                        #### Partner Information
+                            
+
+                        -   A support email and website for users to reach out
+                        as needed. These will be publicly visible on the
+                        Marketplace, so make sure to stay away from personal
+                        emails or non-support URLs.
+                            
+                        -   Links to your privacy policy and terms of service.
+                            
+                        ### Installation
+
+
+                        -   Apps should be Single-Click and use our OAuth token
+                        exchange flow to authenticate the user
+                            
+                        -   Single-Click does not mean everything  completed in
+                        one click, but that authentication is handled in that
+                        click - other tasks can be handled post-auth with the
+                        user
+                            
+                        -   When the app is installed, a styled HTML page must
+                        be returned in the iframe of the BigCommerce control
+                        panel - this content cannot be blank and must follow our
+                        [user-interface
+                        constraints](/api-docs/getting-started/building-apps-bigcommerce/building-apps#user-interface-constraints).
+                            
+                        -   During the OAuth handshake, be sure to store the
+                        user’s token against their store hash - rather than
+                        their email address - to avoid any problems with
+                        ownership changes or multi-user support.
+                    - type: callout
+                      data:
+                        body: >-
+                          If your app cannot meet these requirements, please
+                          reach out to <a
+                          href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>
+                          in order to discuss the potential for a Connector app
+                          listing. In the majority of cases, a Single-Click app
+                          will be the more appropriate solution and put your
+                          integration on par with other Marketplace partners,
+                          but exceptions may be made under certain circumstances
+                    - type: text
+                      data: >-
+                        ### Functionality
+
+
+                        -   Your app must work as intended, be free of defects,
+                        and not conflict with or break any default BigCommerce
+                        functionality, including the BigCommerce storefront and
+                        checkout.
+                            
+                        -   Utilize any V3 API resources that are currently
+                        available for the data you need from a BigCommerce
+                        store.
+                            
+                        -   The dashboard and callback URLs for your app should
+                        operate strictly over HTTPS using a valid SSL
+                        certificate.
+                            
+                        -   Apps should offer [multi-user
+                        support](/api-docs/getting-started/building-apps-bigcommerce/building-apps#multi-user-support)
+                        so that permissions for the app can be distributed by
+                        the store owner to additional users, from the
+                        BigCommerce control panel.
+                            
+                        -   Any apps that process transactions or handle credit
+                        card data will need to pass a PCI Compliance review with
+                        our Security team, and also be compatible with our
+                        Optimized One-Page Checkout.
+                            
+                        -   Avoid copy/paste for storefront code - use the [V3
+                        Scripts API](/api-docs/api-reference/v3-api/content-api)
+                        to programmatically inject code snippets into a store’s
+                        Script Manager and storefront theme.
+                            
+                        -   If your app requires payment, you’ll need to collect
+                        payment from the user within your app. More info on
+                        [monetizing your app
+                        here](/api-docs/getting-started/partner/becoming-a-partner#app-store-approval-requirements).  
+
+
+                        ### Recommendations
+
+
+                        -   Have a form to fill out for new users? We recommend
+                        auto-filling user input fields with data from the [Store
+                        Information API resource](), which already contains much
+                        of the info you might need from a new user.
+                            
+                        -   No account approval process needed for your app?
+                        Consider automatically generating accounts for stores
+                        that install your app and don’t match an existing store
+                        in your database.
+                            
+                        -   Require login on launch? Use the information in the
+                        BigCommerce payload to your callback URL to authenticate
+                        the user without asking for a username and password each
+                        time.
+                            
+                        -   Want to share user testimonials? Add a link to your
+                        full case study in the Case Studies field, with a title
+                        and short description.
+
+
+
+                        ### Technical
+
+
+                        You will have already provided much of the information
+                        during the initial app registration. Before submitting
+                        your app, please review the information that you
+                        initially provided, to make sure that all of the URIs
+                        are publicly available, fully qualified, and served over
+                        TLS/SSL. Also, ensure that your app is requesting all of
+                        the scopes that it needs now, as well as the scopes that
+                        you anticipate needing in the future.
+
+
+                        Before submission, you must also provide detailed
+                        testing instructions, as well as test accounts.
+                    - type: callout
+                      data:
+                        body: >-
+                          Changing scopes once your app is launched will require
+                          all of your current users to re-authorize the app
+                          before they can launch it again.
+                    - type: text
+                      data: >-
+                        ###  Submitting your App
+
+
+                        Our submission guidelines aim to protect the merchant
+                        experience and to provide enough structure for you to
+                        develop apps efficiently and effectively. Before
+                        submitting your app, please be sure to carefully review
+                        the App Requirements, to avoid having your app rejected
+                        and going through resubmission. A fee of $99 is required
+                        for each submission. If the app is rejected you will be
+                        charged for a new submission. You can submit an app
+                        through [Dev Tools](https://devtools.bigcommerce.com).
+
+                          
+                        ###  Monetizing Your App
+
+
+                        If you want to charge merchants for your app, please
+                        note that BigCommerce expects you to handle the billing
+                        aspects of the transaction. Your app needs to take care
+                        of collecting the fee from the merchant.
+
+
+                        Under BigCommerce’s Technology Partner Program, within
+                        30 days of collecting this revenue, you must send
+                        BigCommerce 20% and retain the remaining 80% for
+                        yourself. Once your app is published, a mandatory
+                        revenue-share reporting form will be sent to the primary
+                        contact on your partner account, at the beginning of
+                        each month.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ##  Troubleshooting
+
+
+                        ### Are all fields required?
+
+
+                        While not all fields are required to publish edits for
+                        your listing, they are all highly recommended. Without
+                        filling in all fields, your listing will be missing
+                        information that merchants have seen on other listings
+                        and expect to see throughout the Marketplace.
+
+
+                        ###  I’ve logged in to Dev Tools, but I don’t see my
+                        published listing. Where is it?
+
+
+                        You may be logged in with the wrong account. Each
+                        listing can only be owned by one user, so it is likely
+                        assigned to another email address. If you’re unable to
+                        track down the correct owner account for your solution,
+                        please reach out to <a
+                        href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>.
+
+
+                        ### I saved my changes, but my listing detail page on
+                        BigCommerce.com/Apps has not updated yet. What’s the
+                        problem?
+
+
+                        The changes will be effective immediately in your
+                        control panel app card, but the updates can take up to
+                        24 hours to appear on the public BigCommerce
+                        Marketplace. Feel free to use this as a grace period to
+                        make additional edits as needed.
+                      header:
+                        anchor: becoming-a-partner_partner-program-troubleshooting
+                    - type: callout
+                      data:
+                        type: success
+                        body: >-
+                          Questions? Please contact <a
+                          href="mailto:appstore@bigcommerce.com">appstore@bigcommerce.com</a>
+              - title: Dev Tools Walkthrough
+                route:
+                  path: /using-dev-tools
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Dev Tools Walkthrough</h1>
+                    - type: text
+                      data: >-
+                        Dev Tools can be found by clicking [My
+                        Apps](https://devtools.bigcommerce.com/) in the upper
+                        right corner of the page. 
+
+
+                        Dev Tools is where the Client Id and Client Secret,
+                        submission form and a list of apps that you have created
+                        are located.
+                    - type: text
+                      data: '---'
+                    - type: tabs
+                      data:
+                        children:
+                          - title: App Summary
+                            blocks:
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536259683439
+                                header:
+                                  anchor: app-summary
+                              - type: text
+                                data: >-
+                                  ### Contact Name
+
+                                  Use the email address that was created when
+                                  applying for your Partner Id. 
+
+
+                                  ### Partner Name
+
+                                  List the name of your company​, as you want it
+                                  to be attributed on the detail page.
+
+
+                                  ### Partner Website
+
+                                  Provide the URL for your homepage so users can
+                                  learn more about your company.
+
+
+                                  ### Support email
+
+                                  Email where users can get help with the app.
+                                  This should be a formal group email at your
+                                  company domain (Ex: support@app-partner.com)
+                                  rather than a personal email. If not provided,
+                                  this option will not be displayed.
+
+
+                                  ### Support website
+
+                                  A Support email and website for users to reach
+                                  out as needed.
+
+                                  These will be publicly visible on the
+                                  Marketplace, so make sure to stay away from
+                                  personal emails or non-support URLs. Your
+                                  public detail page will include a button for
+                                  users to “Get Support,” which will take them
+                                  to this URL in a new tab. If not provided, the
+                                  button will not be displayed on your detail
+                                  page.
+
+
+                                  ### Partner ID
+
+                                  When you’re ready to submit your listing for
+                                  review, you will need to enter your [Partner
+                                  ID](https://partners.bigcommerce.com/English/register_email.aspx)
+                                  for your Technology Partner account. This
+                                  field is not required to create, save, or edit
+                                  a Draft prior to submission. 
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536259722234
+                              - type: text
+                                data: >-
+                                  ### App Name
+
+                                  Use the brand name you’ve given your app for
+                                  your app title throughout your app content.
+                                  This listing name should be a concise title
+                                  for easy identification and should not include
+                                  additional taglines or descriptors. The name
+                                  will always appear alongside your summary, so
+                                  there’s no need to muddy your app’s branding
+                                  with duplicate content when that tagline is
+                                  already displayed with it.
+                              - type: callout
+                                data:
+                                  body: >-
+                                    If your solution is a connector to a
+                                    specific third-party service, or you’re
+                                    offering only a particular feature, make
+                                    sure to include both the name of the third
+                                    party service or feature and your company
+                                    name​ (Ex: “Marketplace by BigCommerce,”
+                                    “Search by BigCommerce”). The company name
+                                    needs to follow the feature.
+                              - type: text
+                                data: >-
+                                  ### App Logo
+
+                                  Your primary app logo should be 350 x 130px
+                                  (or larger at this ratio) with a white
+                                  background and dark branding in the
+                                  foreground. The logo should only include
+                                  branding, no taglines necessary.
+
+
+                                  ### Price
+
+                                  Select one of our pre-formatted pricing
+                                  options to call out your app’s starting price.
+                                  If you offer a forever-free plan, choose the
+                                  “Free” option. If your app does not fit one of
+                                  our options, specify your details in a few
+                                  words in the “Other” selection.
+                              - type: callout
+                                data:
+                                  body: >-
+                                    If you need to specify more detail on your
+                                    pricing options, save it for your app
+                                    description.
+                              - type: text
+                                data: >-
+                                  ### App Summary
+
+                                  A short tagline description of your app that
+                                  will be used on your app card in category and
+                                  search results within the Marketplace. 128
+                                  characters max.
+
+
+                                  ### App Icon
+
+                                  Your app icon will be included on the main app
+                                  detail page and the sidebar in the BigCommerce
+                                  control panel once the app is installed. This
+                                  should be a square 200 x 200px image.
+
+
+                                  ### Category
+
+                                  Choose the most appropriate category for your
+                                  app. Take a look at the live
+                                  [Marketplace](https://www.bigcommerce.com/apps/)
+                                  for an idea of where solutions are currently
+                                  assigned to help decide the right category.
+                                  The category selection will also be a search
+                                  attribute for your listing. BigCommerce will
+                                  review your category assignment and may
+                                  re-categorize your listing prior to launch.
+                                  One category maximum.
+                          - title: Details
+                            blocks:
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536260365610
+                                header:
+                                  anchor: app-details
+                              - type: text
+                                data: >-
+                                  ### App Details
+
+                                  A more in-depth value proposition for your
+                                  listing, including how your solution works,
+                                  why your solution stands out in its category,
+                                  and why a merchant should choose you over
+                                  other competitors. Avoid using fluff or
+                                  buzzwords, as this field will not be indexed
+                                  for search. 200 words max recommended.
+
+
+                                  ### Videos
+
+                                  Include videos that highlight the purpose and
+                                  value of your solution. Select the video
+                                  hosting platform (YouTube or Vimeo) and enter
+                                  the video ID.
+
+
+                                  #### Video Best Practices
+
+
+                                  **YouTube**
+
+
+                                  Turn off ads for any videos you've already
+                                  uploaded. 
+
+
+                                  1. Sign in to YouTube.
+
+
+                                  2. In the top right, click your account icon >
+                                  Creator Studio.
+
+
+                                  3. On the left, select Video Manager.
+
+
+                                  4. Select the video(s) where you want to turn
+                                  ads off.
+
+
+                                  5. Click Actions > More actions >
+                                  Monetization.
+
+
+                                  6. Select Off.
+
+
+                                  7. Click Submit.
+
+
+                                  **Vimeo**
+
+
+                                  Per Vimeo’s guidelines, businesses may not use
+                                  Basic or Plus accounts to host videos. If you
+                                  want to upload commercial videos, you must use
+                                  Vimeo PRO or Business. Commercial content
+                                  includes:
+
+
+                                  Videos promoting or representing a for-profit
+                                  business or brand 
+
+                                  Videos containing any form of advertising 
+
+                                  Videos hosted on behalf of a business (i.e.,
+                                  uploaded to Vimeo and embedded on your
+                                  company’s website) 
+
+                                  Product demos and tutorials
+
+
+                                  *Note:* Ads appear to viewers based on their
+                                  level of Vimeo membership - not yours. Basic
+                                  and non-logged in viewers may see ad banners
+                                  below the video player.
+
+
+                                  ### Case Studies
+
+                                  These can either be “Thought Leadership” case
+                                  studies and/or traditional case studies that
+                                  demonstrate how BigCommerce merchants have
+                                  benefited from using your solution with their
+                                  business. Use the + ​icon to add a case study,
+                                  and the x ​icon to remove. Four case studies
+                                  maximum.
+                              - type: callout
+                                data:
+                                  type: warning
+                                  body: >-
+                                    Case studies that include competitor
+                                    platforms are not allowed and will be
+                                    removed. Partners will be required to
+                                    repurpose general case studies, remove
+                                    competitor platform mentions, and republish
+                                    the asset accordingly.
+                              - type: text
+                                data: >-
+                                  ### Features
+
+                                  Use these fields to enumerate the major
+                                  features your platform or solution has to
+                                  offer. Include a brief title for each feature,
+                                  and a description of the feature to accompany
+                                  it. The feature title will be search indexed
+                                  in the Marketplace, so be specific with your
+                                  feature names and include major functions
+                                  potential users will search for. Use the +
+                                  icon to add a feature, and the x icon to
+                                  remove. Utilize the rich text editing of these
+                                  fields to bold, underline, or italicize copy
+                                  as needed. 
+
+                                  Up to five features can be added.
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536260434551
+                              - type: text
+                                data: >-
+                                  ### Legal Terms & Privacy 
+
+                                  Links to your privacy policy and terms of
+                                  service. This requirement is in place due to
+                                  legal liability and is non-optional. 
+
+
+                                  ### International Optimization
+
+                                  Please add the countries for which your
+                                  solution is optimized and those which your
+                                  solution does not currently support. 
+                              - type: callout
+                                data:
+                                  type: info
+                                  body: >-
+                                    This feature will not currently be utilized
+                                    in the Marketplace, but will be a part of
+                                    planned internationalization updates.
+                              - type: text
+                                data: >-
+                                  ### Help Guides
+
+                                  Links to your User and Installation Guides as
+                                  a reference for existing users and prospects.
+
+                                  We now ask that you include links to your
+                                  solution’s user installation guide (PDF,
+                                  support articles, etc.) and standard user
+                                  guide for prospective users to review before
+                                  installation. If you do not submit links, this
+                                  field will not be displayed on your listing
+                                  detail page, however we highly recommend
+                                  including these with your submission.
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536260486010
+                              - type: text
+                                data: >-
+                                  ### App Screenshot
+
+                                  Add screenshots of your solution’s
+                                  functionality or user interface as it appears
+                                  when integrated with BigCommerce so users know
+                                  what to expect.
+
+
+                                  ### Alternate Logo
+
+                                  Your alternate logo will be used if your app
+                                  is featured on the homepage carousel of the
+                                  Marketplace. This image should be 259 x 158px
+                                  (or larger at this ratio) with a dark
+                                  background and white or light branding in the
+                                  foreground. The logo should only include
+                                  branding, no taglines necessary.
+                          - title: Technical
+                            blocks:
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536260547856
+                                header:
+                                  anchor: app-technical
+                              - type: text
+                                data: >-
+                                  ### Multiple Users
+
+
+                                  By default, your app will only be accessible
+                                  to the store owner (i.e., the user who created
+                                  the store). Optionally, you can allow your app
+                                  to be accessible to other store users.
+                                  Consider the following before enabling
+                                  [multi-user
+                                  support](/api-docs/getting-started/building-apps-bigcommerce/building-apps#multi-user-support):
+
+
+                                  -   Once you enable multi-user support, a
+                                  store admin will still need to grant access to
+                                  other users from within the store control
+                                  panel. For each user account, there are
+                                  settings that grant access to specific apps.
+                                      
+                                  -   Your app should be aware that when it
+                                  receives the [Load
+                                  Callback](/api-docs/getting-started/building-apps-bigcommerce/building-apps#load-uninstall-removal-requests),
+                                  the user information passed in might not be
+                                  the store owner’s. You’ll need to determine
+                                  how to respond if you see a different user.
+                                  For example, you may want to provision a new
+                                  user account in order to personalize the
+                                  experience.
+                                      
+                                  -   You can optionally specify a [Remove User
+                                  Callback
+                                  URI](/api-docs/getting-started/building-apps-bigcommerce/building-apps#load-uninstall-removal-requests)
+                                  to receive a callback when a store admin
+                                  revokes a user’s access.
+                                      
+                                  ### App Type
+
+
+                                  Select the type of app. We recommend [Single
+                                  Click
+                                  Apps](/api-docs/getting-started/building-apps-bigcommerce/types-of-apps#single-click-apps)
+                                  although some qualify to [Connector
+                                  Apps.](/api-docs/getting-started/building-apps-bigcommerce/types-of-apps#connector)
+
+
+                                  ### Callback URLS
+
+
+                                  You must have an [Auth Callback
+                                  URI](/api-docs/getting-started/building-apps-bigcommerce/building-apps#installation-update-sequence)
+                                  and a [Load Callback
+                                  URI](/api-docs/getting-started/building-apps-bigcommerce/building-apps#installation-update-sequence)
+                                  to register your app.
+
+
+                                  #### Public URIs Required before Submission
+
+
+                                  Because the Auth Callback URI and Load
+                                  Callback URI requests originate from the
+                                  browser and not from BigCommerce, you can use
+                                  non–publicly-available URIs and a self-signed
+                                  certificate for a quick start. However, you
+                                  must switch to – and test your app with – a
+                                  publicly available Auth Callback URI and Load
+                                  Callback URI before submitting your app for
+                                  consideration in the App Marketplace.
+
+
+                                  If you want to receive a callback when the
+                                  store owner uninstalls your app, you can
+                                  provide an [Uninstall Callback
+                                  URI](/api-docs/getting-started/building-apps-bigcommerce/building-apps#load-uninstall-removal-requests).
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536260600336
+                              - type: text
+                                data: >-
+                                  ### OAuth Scopes
+
+                                  If you know the [OAuth
+                                  scopes](/api-docs/getting-started/about-api/authentication#oauth-scopes)
+                                  that your app requires, you should select
+                                  these. If you do not yet know the scopes that
+                                  you need, you can just request minimal
+                                  permissions (such as Information: Read-Only)
+                                  to get started. However, once you determine
+                                  the scopes you need, you must:
+
+                                  - Modify the scopes of your app in My Apps and
+                                  save the changes.
+
+                                  - Obtain the new OAuth token during the [App
+                                  Installation or Update
+                                  flow](https://developer.bigcommerce.com/api/#app-installation-and-update-sequence).
+
+                                  - Retest your app to make sure it still
+                                  functions properly with the new token.
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536260650757
+                              - type: text
+                                data: >-
+                                  Add in any instructions needed to test the app
+                                  thoroughly. 
+                          - title: Review
+                            blocks:
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536260677950
+                                header:
+                                  anchor: app-review
+                              - type: text
+                                data: >-
+                                  Review the information added before submitting
+                                  the app. Look over this page carefully, once
+                                  the app is submitted, if it is rejected there
+                                  will be another fee for submission.
+                          - title: Preview
+                            blocks:
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536261272003
+                                header:
+                                  anchor: app-preview
+                              - type: text
+                                data: >-
+                                  This is an approximation of what the app’s
+                                  page will look like in the BigCommerce
+                                  Marketplace.
+                          - title: Payment & Submission
+                            blocks:
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6012/1536261347648
+                                header:
+                                  anchor: app-payment
+                              - type: text
+                                data: >-
+                                  At this point you make sure the information
+                                  has been filled out completely and the app has
+                                  been thoroughly tested before submitting for
+                                  review. Updates to the App will not require
+                                  the submission fee again. 
         - title: Catalog
           route:
             path: /catalog
