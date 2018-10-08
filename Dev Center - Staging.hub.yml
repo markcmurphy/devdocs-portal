@@ -8736,66 +8736,85 @@ pages:
                               ## OAuth Summary
 
 
-                              API Authentication is only available for [store
-                              owners](https://forum.bigcommerce.com/s/article/Store-API-Accounts#creating).
-                              To test an app before release apply for a
-                              [sandbox](https://www.bigcommerce.com/partners/)
-                              store. An app can request authentication “on
-                              behalf” of a store-owner. This will allow the app
-                              to make API requests against the store data.
+                              API token creation is a permission reserved for
+                              the [store
+                              owner](https://forum.bigcommerce.com/s/article/Store-API-Accounts#creating)
+                              user account. An app can request authentication
+                              “on behalf” of a store owner, allowing the app to
+                              make API requests against the store data.
+
+
+                              To test an app before release, apply for a
+                              [sandbox](link-needed) store.
                                
-                              - A merchant installs the app that kicks off a
-                              [/GET
-                              request](#building-apps_recieving-get-request)
-                              your app should be able to receive. 
+                              - When a merchant clicks your app's Install button
+                              in the control panel, a [/GET
+                              request](#building-apps_recieving-get-request) is
+                              sent to your app's [Auth callback
+                              URL](#building-apps_recieving-get-request). 
 
-                              - BigCommerce sends a `code` or temporary access
-                              token, `client_id`, `client_secret`, `scopes` and
-                              [other
-                              information](#building-apps_recieving-get-request)
-                              to the [Auth Callback
-                              URL](#building-apps_recieving-get-request) in the
-                              /GET request. Your app URL needs to be https. You
-                              should also have access to the server logs which
-                              will allow you to see the information in the
-                              request.
+                              - The /GET request sent from BigCommerce contains
+                              a `code` or temporary access token, `client_id`,
+                              `client_secret`, `scopes` and [other
+                              information](#building-apps_recieving-get-request).
+                              Your Auth Callback URL needs to be served over
+                              https. You should also have access to your app's
+                              server logs which will allow you to see the
+                              information in the request.
 
-                              - The app needs to
+                              - Your app needs to
                               [respond](#building-apps_recieving-get-request) to
-                              the /GET  with HTML that will be rendered in the
-                              iframe of the store.
+                              the /GET  with HTML that will be rendered in an
+                              iframe in the store's control panel.
 
-                              - The app then needs to make a /POST request back
+                              - Your app then needs to make a /POST request back
                               to BigCommerce that contains the code, client_id
-                              and client secret back to BigCommerce. This should
-                              be done programmatically. 
+                              and client secret. This should be done
+                              programmatically. 
 
-                              - BigCommerce will respond with a permanent token
-                              that can be used for that store only to make API
-                              requests. 
+                              - BigCommerce will respond with a permanent Oauth
+                              token authorized against the store that has
+                              installed your app.
 
-                              - The data such as the store_hash and access_token
-                              should be stored somewhere secure so the app does
-                              not lose its authorization. 
+                              - After installation, the store_hash and
+                              access_token should be stored somewhere secure so
+                              the app does not lose its authorization. 
 
 
 
                               ### FAQ's
 
-                              How can I make API calls?   
+                              **How can I make API calls?**   
 
                               We have built several [Hello
                               World](/tools-resources) apps to get you started
-                              quickly. 
+                              quickly. You can use these apps as a starting
+                              point or an example for building a Single-click
+                              app. 
 
 
-                              How can I sell this app?  
+                              If you'd like to make test API requests without
+                              the overhead of installing a draft app, you can
+                              generate [API
+                              Credentials](/api-docs/getting-started/about-api/authentication#authentication_getting-api-credentials)
+                              by creating an API Account in your store's control
+                              panel.
 
-                              You can apply to the BigCommerce [partner
+
+                              **How can I sell my app?**  
+
+                              The first step to listing an app in the
+                              BigCommerce App Marketplace is to apply to the
+                              BigCommerce [partner
                               program](https://www.bigcommerce.com/partners/). 
 
 
-                              Need a deeper dive on app installation?  
+                              For more details on including your app in the
+                              Marketplace, see [App Store Approval
+                              Requirements](link-needed).
+
+
+                              **Need a deeper dive on app installation?**  
 
                               Keep reading below.
                             header:
@@ -8805,16 +8824,17 @@ pages:
                               ## Request Headers
 
 
-                              Public API requests are authenticated by the
-                              following HTTP headers:
+                              API requests are authenticated by the following
+                              HTTP headers:
 
 
                               ```
 
-                              X-Auth-Client: The Client ID of the request app. 
+                              X-Auth-Client: The Client ID of the requesting
+                              app. 
 
-                              X-Auth-Token: Access token authorizing the app the
-                              access resources on behalf of a user
+                              X-Auth-Token: Access token authorizing an app to
+                              access store data on behalf of a user
 
                               ```
 
@@ -8822,7 +8842,9 @@ pages:
                               In addition, while not all resources require the
                               Accept and Content-Type headers, many do. To
                               ensure that your calls succeed, always include
-                              these headers. 
+                              these headers. For more details on request headers
+                              and their accepted values, see [Request
+                              Headers](/api-docs/getting-started/about-api/api-environment#api-environment_request-headers).
                             header:
                               anchor: building-apps_request-headers
                           - type: text
@@ -8862,7 +8884,7 @@ pages:
                               explicitly logs out of the BigCommerce control
                               panel, or is automatically logged out. The
                               callback will allow your app to respond to this
-                              logout.
+                              logout appropriately.
                             header:
                               anchor: building-apps_session-timeouts
                           - type: text
@@ -8878,14 +8900,15 @@ pages:
                               Tools. 
 
 
-                              A user at a store’s control panel kicks off the
-                              installation or update sequence by clicking the
-                              “Install” button from your app details page, or by
-                              clicking an installed app to update its scopes.
-                              BigCommerce redirects the user to the Auth
-                              Callback URI provided during app registration. The
-                              Auth Callback URI must be publicly available,
-                              fully qualified, and served over TLS.
+                              A user kicks off the installation or update
+                              sequence from within a store's control panel by
+                              clicking the “Install” button from your app
+                              details page, or by clicking an installed app to
+                              update its scopes. BigCommerce redirects the user
+                              to the Auth Callback URI provided during app
+                              registration. The Auth Callback URI must be
+                              publicly available, fully qualified, and served
+                              over TLS.
                             header:
                               anchor: building-apps_installation-update-sequence
                           - type: image
@@ -8904,7 +8927,7 @@ pages:
                               while testing your app.
 
 
-                              For security, Auth and Load callback should be
+                              For security, Auth and Load callbacks should be
                               handled server-side. If you are building a
                               client-side application (such as an AngularJS
                               Single Page App), you should handle Auth and Load
@@ -8958,7 +8981,7 @@ pages:
                               this along with a context path, as follows:
                               `stores/{store_hash}`. Save the store hash value,
                               because you will need to pass it in all your
-                              requests to the Stores API. |
+                              requests to the API. |
 
 
                               ### Example – Initial Installation
@@ -9046,7 +9069,7 @@ pages:
                               ```
 
                               Make the POST request to the following address:
-                              `https://login.bigcommerce.com/oauth2/token`.
+                              `https://login.bigcommerce.com/oauth2/token`
 
 
                               ### Initial Installation
@@ -9288,7 +9311,7 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: "## Load, Uninstall, and User Removal Requests\nIn addition to the Auth Callback URI, the following URI’s are required for BigCommerce Apps:\n\n| Name | Required? | Event Discussion |\n| --- | --- | --- |\n| Load Callback URI | Yes | Called when the store owner or user clicks to load your app. |\n| Uninstall Callback URI | No | Called when the store owner clicks to uninstall your app. |\n| Remove User Callback URI | No | Called when the store admin revokes a user's access to your app. |\n\nEach BigCommerce request is a GET request and includes a signed payload that allows your app to:\n- Verify that the request came from BigCommerce.\n- Identify the store.\n- Identify the store owner or user.\n\n### Load Request and Response\n\nOnce your app has been installed, the store owner or user can click its icon in the control panel to launch it. This causes BigCommerce to send a GET request to the Load Callback URI that you provided. In a production environment, the Load Callback URI must be publicly available, fully qualified, and served over TLS/SSL.\n\n```\nThe GET request contains a signed payload, as shown below.\nGET /load?signed_payload=hw9fhkx2ureq.t73sk8y80jx9 HTTP/1.1\nHost: app.example.com\n```\n\nUpon receiving a GET request to the Load Callback URI, your app needs to [process the signed payload](#building-apps_processing-signed-payloadd). After processing the payload, your app returns its user interface as HTML. BigCommerce renders this inside of an iframe. Please see [User Interface Constraints](#building-apps_user-interface-constraints) for important information about your app’s user interface.\n\n### Uninstall Request (Optional)\n\nStore owners have the option to uninstall any app at any time. When a store owner uninstalls an app, the app’s OAuth token is revoked and the app cannot make requests to the Stores API on the store’s behalf anymore.\n\nYou do not need to provide an Uninstall Callback URI. The lack of an Uninstall Callback URI does not prevent uninstallation. Instead, the Uninstall Callback URI allows you to track store owners who uninstall your app and to run cleanup operations, such as removing the store’s user accounts from your system.\nShould you choose to avail of this option and provide an Uninstall Callback URI, please note that it must be publicly available, fully qualified, and served over TLS/SSL. If provided, BigCommerce will send a GET request to your Uninstall Callback URI when a store owner clicks to uninstall your app.\n\nExample of a GET Request sent to the Uninstall Callback URI\n```\nGET /uninstall?signed_payload=hw9fhkx2ureq.t73sk8y80jx9 HTTP/1.1\n\tHost: app.example.com\n```\nUpon receiving the GET request, your app will need to process the signed payload."
+                            data: "## Load, Uninstall, and User Removal Requests\nIn addition to the Auth Callback URI, the following URI’s are required for BigCommerce Apps:\n\n| Name | Required? | Event Discussion |\n| --- | --- | --- |\n| Load Callback URI | Yes | Called when the store owner or user clicks to load your app. |\n| Uninstall Callback URI | No | Called when the store owner clicks to uninstall your app. |\n| Remove User Callback URI | No | Called when the store admin revokes a user's access to your app. |\n\nEach event listed here triggers a GET request from BigCommerce containing a signed payload that allows your app to:\n- Verify that the request came from BigCommerce.\n- Identify the store.\n- Identify the store owner or user.\n\n### Load Request and Response\n\nOnce your app has been installed, the store owner or user can click its icon in the control panel to launch it. This causes BigCommerce to send a GET request to the Load Callback URI that you provided during app registration. In a production environment, the Load Callback URI must be publicly available, fully qualified, and served over TLS/SSL.\n\n```\nThe GET request contains a signed payload, as shown below.\nGET /load?signed_payload=hw9fhkx2ureq.t73sk8y80jx9 HTTP/1.1\nHost: app.example.com\n```\n\nUpon receiving a GET request to the Load Callback URI, your app needs to [process the signed payload](#building-apps_processing-signed-payload). After processing the payload, your app returns its user interface as HTML. BigCommerce renders this inside of an iframe. Please see [User Interface Constraints](#building-apps_user-interface-constraints) for important information about your app’s user interface.\n\n### Uninstall Request (Optional)\n\nStore owners have the option to uninstall any app at any time. When a store owner uninstalls an app, the app’s OAuth token is revoked and the app cannot make requests to the Stores API on the store’s behalf anymore.\n\nYou do not need to provide an Uninstall Callback URI. The lack of an Uninstall Callback URI does not prevent uninstallation. Instead, the Uninstall Callback URI allows you to track store owners who uninstall your app and to run cleanup operations, such as removing the store’s user accounts from your system.\n\nShould you choose to avail of this option and provide an Uninstall Callback URI, please note that it must be publicly available, fully qualified, and served over TLS/SSL. If provided, BigCommerce will send a GET request to your Uninstall Callback URI when a store owner clicks to uninstall your app.\n\nExample of a GET Request sent to the Uninstall Callback URI\n```\nGET /uninstall?signed_payload=hw9fhkx2ureq.t73sk8y80jx9 HTTP/1.1\n\tHost: app.example.com\n```\nUpon receiving the GET request, your app will need to process the signed payload."
                             header:
                               anchor: building-apps_load-uninstall-removal-requests
                           - type: callout
@@ -9343,17 +9366,17 @@ pages:
 
 
                               Processing the signed payload involves splitting
-                              and decoding it verifying the HMAC signature, and
+                              and decoding it, verifying the HMAC signature, and
                               processing the JSON object.
 
 
                               ### Splitting and Decoding the Signed Payload
 
 
-                              The signed payload is a string containing a
-                              base64url-encoded JSON string and a
-                              base64url-encoded HMAC signature. The parts are
-                              delimited by the .character:
+                              The signed payload is a string containing a base64
+                              url-encoded JSON string and a base64 url-encoded
+                              HMAC signature. The parts are delimited by the `.`
+                              character:
 
 
                               ```
@@ -9367,18 +9390,18 @@ pages:
                               To decode the signed payload, complete the
                               following steps:
 
-                              * Split signed_payload into its two parts at the
+                              1. Split signed_payload into its two parts at the
                               `.` delimiter.
 
-                              * Decode encoded_json_string using base64url.
+                              2. Decode encoded_json_string using base64url.
 
-                              * Convert the decoded JSON string into an object.
+                              3. Convert the decoded JSON string into an object.
                               See Processing the JSON object for more about this
                               object.
 
-                              * Decode encoded_hmac_signature using base64url.
+                              4. Decode encoded_hmac_signature using base64url.
 
-                              * Use your client secret to verify the signature.
+                              5. Use your client secret to verify the signature.
                               See the next section for more details.
 
 
@@ -9580,13 +9603,14 @@ pages:
                               the store owner – to load the app. 
 
 
-                              As soon as you enable multi-user support, this
-                              affects the control panel of any store that has
-                              your app installed. If you already have an app
-                              published in the App Marketplace, be aware that
-                              this setting takes effect immediately. Therefore,
-                              we recommend testing your multi-user support using
-                              a separate app that is in draft status.
+                              As soon as you enable multi-user support, the
+                              control panel of any store that has your app
+                              installed will be affected. If you already have an
+                              app published in the App Marketplace, be aware
+                              that this setting takes effect immediately.
+                              Therefore, we recommend testing your multi-user
+                              support using a separate app that is in draft
+                              status.
 
 
                               Let your customers know that you’ve enabled this
@@ -9594,9 +9618,10 @@ pages:
                               start granting access to users.
 
 
-                              If this is added after the app has launched, then
-                              during update the app scope will change and users
-                              will be alerted of the new permission request.
+                              If multi-user support is added after your app has
+                              launched, the update will cause the app scopes to
+                              change and users will be alerted of the new
+                              permission request.
 
 
                               ### The Control Panel Experience
@@ -9614,13 +9639,14 @@ pages:
 
                               ### The Load Request
 
-                              Apps with multiple users enabled can expect more
-                              than just the store owner’s email and ID in the
-                              JSON object sent in the load request. If a load
-                              request is sent with information for a user you
-                              haven’t seen yet, you should provision the user
-                              account and associate it with the store in your
-                              database.
+                              Apps that support multiple users can expect the
+                              email and ID of the user that initiated the
+                              callback in addition to the owner’s email and ID
+                              in the JSON object sent in the load request. If a
+                              load request is sent with information for a user
+                              you haven’t seen yet, you should provision the
+                              user account and associate it with the store in
+                              your database.
 
 
                               Because you know the store owner’s email and ID
@@ -9665,11 +9691,13 @@ pages:
 
 
                               Apps can be installed from outside the BigCommerce
-                              control panel. An example of this would be having
-                              an install link on your company’s site that
-                              directs the merchant to download your app. 
+                              control panel. For example, you could create an
+                              install link on your company’s site that directs
+                              the merchant to download your app. 
 
-                              Render Success/Failure Pages
+
+                              ### Render Success/Failure Pages
+
 
                               Modify your application code to serve either a
                               success or failure page, depending on whether the
@@ -9733,11 +9761,11 @@ pages:
                               ## User Interface Constraints
 
 
-                              Auth apps benefit from a high level of integration
-                              with the BigCommerce platform. Users interacting
-                              with your app will enjoy a seamless experience.
-                              BigCommerce achieves this by rendering your
-                              app&#39;s user interface inside of an iframe
+                              Single-click apps benefit from a high level of
+                              integration with the BigCommerce platform. Users
+                              interacting with your app will enjoy a seamless
+                              experience. BigCommerce achieves this by rendering
+                              your app&#39;s user interface inside of an iframe
                               within the control panel. To ensure acceptance
                               into the App Marketplace, your app should be able
                               to perform all of its functions inside of the
@@ -9799,7 +9827,7 @@ pages:
                               our merchants do use it to access the control
                               panel. If your app needs to set a cookie, you will
                               need to craft a <a
-                              href=http://en.wikipedia.org/wiki/P3P"
+                              href="http://en.wikipedia.org/wiki/P3P"
                               target="_blank">P3P policy</a>. Otherwise, your
                               app will experience issues on Internet Explorer.
                               Please see the following pages for more
