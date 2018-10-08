@@ -2692,7 +2692,17 @@ pages:
                     - type: html
                       data: <h1><code>config.json</code> Resource Interactions</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#choosing-dev-path\"> Choosing a Development Path</a></li>\n\t\t<li><a href=\"#front-matter-quick-start\">Front-Matter Quick Start</a></li>\n    <li><a href=\"#front-matter-quick-start\">Handlebars Quick Start</a></li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#config_choosing\">Choosing a Development Path</a></li>\n\t\t<li><a href=\"#config_front-matter\">Front-Matter Quick Start</a></li>\n    <li><a href=\"#front-matter-quick-start\">Handlebars Quick Start</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        ## config.json Reference
+
+
+                        Below is a table of all the the key/value pairs in the
+                        config.json file with example values included for
+                        reference.
+                    - type: html
+                      data: "<table>\n  <tr>\n    <th>Property</th>\n    <th>Format</th>\n    <th>Default/Examples</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td class=\"\">name</td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"Stencil\"</td>\n    <td class=\"\">Theme’s name, as it will appear in the Theme Marketplace.<br><br>\n\n(<b>Note:</b> Theme names should be composed of only the following characters: a-z, A-Z, 0-9, hyphen.)</td>\n  </tr>\n  <tr>\n    <td class=\"\">version</td>\n    <td class=\"\"><a href=\"http://semver.org/\">SemVer</a></td>\n    <td class=\"\">\"1.0.0\"</td>\n    <td class=\"\">Theme’s version number, formatted as <span class=\"inline-code\">major.minor.patch</span>.</td>\n  </tr>\n  <tr>\n    <td class=\"\"><a name=\"config-theme-meta\"></a>meta</td>\n    <td class=\"\">Object</td>\n    <td class=\"\"></td>\n    <td class=\"\">BigCommerce will use this metadata to list themes in Theme Marketplace.<br><br>\n      \n(Theme variations also have their <a href=\"#config-var-meta\">own metadata collections</a>.)</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">price</span></td>\n    <td class=\"\">Number</td>\n    <td class=\"\">15000</td>\n    <td class=\"\">Price, in cents, to purchase this theme in Theme Marketplace.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\">    <span class=\"indent1\">documentation_url</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"https://support.bigcommerce.com/articles/Public/Cornerstone-Theme-Manual\"</td>\n    <td class=\"\">URL of theme developer’s documentation site.<br><br>\n\n(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">    <span class=\"indent1\">author_name</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"eCommerce Themes, Inc.\"</td>\n    <td class=\"\">Name of the developer or partner creating the theme.<br><br>\n\n(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">    <span class=\"indent1\">author_email</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"support@example.com\"</td>\n    <td class=\"\">Contact/support email address for the developer or partner creating the theme.<br><br>\n\n(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">    <span class=\"indent1\">author_support_url</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"http://example.com/contactus\"</td>\n    <td class=\"\">Contact form/support URL for the developer or partner creating the theme.<br><br>\n\n(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>    \n  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">composed_image</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"composed_image.png\"</td>\n    <td class=\"\">File name for a composed/mosaic screenshot of all variations of the theme, to appear on the \"My Themes\" page of purchased themes.<br><br>\n\nThe file-name value is arbitrary, but it must match the name of a file located in the <span class=\"inline-code\">&lt;theme‑name&gt;/meta/</span> subdirectory.\n\nThe actual file’s resolution must be 600 x 760 pixels (horizontal x vertical).</td>\n  </tr>\n  <tr>\n    <td class=\"\"> <span class=\"indent1\" id=\"features\">features</span></td>\n    <td class=\"\">Array</td>\n    <td class=\"\">[<NOBR>\"fully_responsive\"</nobr>, <NOBR>\"mega_navigation\"</nobr>, <NOBR>\"multi_tiered_sidebar_menu\"</nobr>, <NOBR>\"masonry_design\"</nobr>, <NOBR>\"frontpage_slideshow\"</nobr>, <NOBR>\"quick_add_to_cart\"</nobr>, <NOBR>\"switchable_product_view\"</nobr>, <NOBR>\"product_comparison_table\"</nobr>, <NOBR>\"complex_search_filtering\"</nobr>, <NOBR>\"customizable_product_selector\"</nobr>, <NOBR>\"cart_suggested_products\"</nobr>, <NOBR>\"free_customer_support\"</nobr>, <NOBR>\"free_theme_upgrades\"</nobr>, <NOBR>\"high_res_product_images\"</nobr>, <NOBR>\"product_filtering\"</nobr>, <NOBR>\"advanced_quick_view\"</nobr>, <NOBR>\"product_showcase\"</nobr>, <NOBR>\"persistent_cart\"</nobr>, <NOBR>\"one_page_check_out\"</nobr>, <NOBR>\"customized_check_out\"</nobr>, <NOBR>\"product_videos\"</nobr>]</td>\n    <td class=\"\">Array of exact feature names supported in this theme. <NOBR>The \"Default/Examples\"</nobr> column lists the complete namespace. At least one of the values listed there must be present. <br><br>\n\nThese values are used as metadata for <NOBR>Theme Marketplace</nobr> searches. <br><br> \n      The <span class=\"inline-code\">\"customized_check_out\"</span> value has a second function: It must be present if you want to enable <a href=\"https://support.bigcommerce.com/articles/Public/Optimized-Single-Page-Checkout\" target=\"_blank\">Optimized One-Page Checkout</a> for your theme.</td>\n  </tr>\n  <tr>\n    <td class=\"\">css_compiler</td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"scss\"</td>\n    <td class=\"\">CSS preprocessor; defaults to SCSS.</td>\n  </tr>\n  <tr>\n    <td class=\"\">autoprefixer_cascade</td>\n    <td class=\"\">Boolean</td>\n    <td class=\"\">true</td>\n    <td class=\"\">Whether to enable the Autoprefixer CSS postprocessor, to add vendor prefixes to CSS rules.</td>\n  </tr>\n  <tr>\n    <td class=\"\">autoprefixer_browsers</td>\n    <td class=\"\">Array</td>\n    <td class=\"\">[\"last 3 versions\"]</td>\n    <td class=\"\">Which legacy browsers <a href=\"https://github.com/postcss/autoprefixer\">Autoprefixer</a> should support, specified in <a href=\"https://github.com/ai/browserslist\">Browserslist</a> query format.</td>\n  </tr>\n  \n<!-- jspm object removed here:\n\t<tr>\n    <td class=\"\">jspm</td>\n    <td class=\"\">Object</td>\n    <td class=\"\"></td>\n    <td class=\"\">Configuration options for optional <a href=\"http://jspm.io/\">jspm</a> JavaScript transpiler/package manager.</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">dev</span></td>\n    <td class=\"\">Object</td>\n    <td class=\"\"></td>\n    <td class=\"\">Specifies development rules.</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">&nbsp; &nbsp; &nbsp; dep_location</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"assets/js/dependency-bundle.js\"</td>\n    <td class=\"\">Specifies <span class=\"inline-code\">.../assets/...</span> path to a bundle combining all vendors’ JS modules. jspm can preload this for faster page loads in development mode.</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">&nbsp; &nbsp; &nbsp;  bootstrap</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"js/app\"</td>\n    <td class=\"\">Path to the <span class=\"inline-code\">app.js</span> bootstrap file – relative to the <span class=\"inline-code\">...&lt;theme‑name&gt;/assets/</span> directory, and omitting the file’s <span class=\"inline-code\">.js</span> extension.</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">&nbsp; &nbsp; &nbsp; bundle_location</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"assets/js/bundle.js\"</td>\n    <td class=\"\">Running the jspm bundle will minify/mangle all your JavaScript into this one file, which you point to in production. (Specify the path relative to your theme’s top-level directory.)</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">&nbsp; &nbsp; &nbsp; jspm_packages_path</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"assets/jspm_packages\"</td>\n    <td class=\"\">Path where jspm installs its packages. (Specify the path relative to your theme’s top-level directory.)</td>\n  </tr> \n :jspm object removed here -->\n  \n  <tr>\n    <td class=\"\"><a name=\"config-theme-settings\"></a>settings</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">Display-oriented key names, and values, that you can arbitrarily set for your theme. Handlebars accesses the combined settings as the context variable <span class=\"inline-code\">{{theme_settings}}</span>.<br><br>\n      \nVariations also have their <a href=\"#config-var-settings\">own </a> <span class=\"inline-code\">settings</span> sections. Values that you set at the variation level will override global values that you set here (for corresponding key names, and within the scope of that variation).<br><br>\n\nIf you want to create a custom variable to use in Handlebars, either add it here within this theme-level <span class=\"inline-code\">settings</span> section, or add it down in a <a href=\"#config-var-settings\">variation-level</a> <span class=\"inline-code\">settings</span> section.<br><br>\n\nYou would access your arbitrarily named custom variable in Handlebars as <span class=\"inline-code\">{{theme_settings.&lt;variablename&gt;}}</span>.\n\nHere is an example of a custom variable in the default theme’s <span class=\"inline-code\">config.json</span>:<br><br>\n\n<span class=\"inline-code\">\"settings\": { \"homepage_featured_products_count\": 6,\n}</span><br><br>\n\nHere is the corresponding front matter in <span class=\"inline-code\">home.html</span> that calls this variable. (Note that this is pure YAML – the <span class=\"inline-code\">{{...}}</span> used to reference <span class=\"inline-code\">config.json</span> variables within pages’ front matter do not constitute a Handlebars statement:)<br><br>\n\n<pre>\n---\nproducts:\n  featured:\n      limit: {{theme_settings.homepage_featured_products_count}}\n---\n</pre></td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">homepage_new_products_count</span></td>\n    <td class=\"\">Number</td>\n    <td class=\"\">12</td>\n    <td class=\"\">Number of products to include in home page’s New Products section.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"><NOBR><span class=\"indent1\">homepage_&lt;section-name&gt;_count,</span></nobr><br> <NOBR><span class=\"indent1\">homepage_&lt;section-name&gt;_column_count</span></nobr></td>\n    <td class=\"\">Number</td>\n    <td class=\"\">[Varies]</td>\n    <td class=\"\">Number of products, or columns, to include in the specified home-page section.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"><NOBR><span class=\"indent1\">productpage_&lt;section-name&gt;_count</span></nobr></td>\n    <td class=\"\">Number</td>\n    <td class=\"\">[Varies]</td>\n    <td class=\"\">Number of products to include in the specified section of product-details pages.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"><NOBR><span class=\"indent1\">categorypage_products_per_page,</span></nobr><br> <NOBR><span class=\"indent1\">brandpage_products_per_page,</span></nobr><br> <NOBR><span class=\"indent1\">searchpage_products_per_page</span></nobr></td>\n    <td class=\"\">Number</td>\n    <td class=\"\">12</td>\n    <td class=\"\">Number of products to include on each specified page type.</td>\n  </tr>\n  \n\t<tr>\n    <td class=\"\"> <span class=\"indent1\">homepage_show_carousel</span></td>\n    <td class=\"\">Boolean</td>\n    <td class=\"\">true</td>\n    <td class=\"\">Defines whether to display an image carousel on the home page.</td>\n  </tr>  \n\n\t<tr>\n    <td class=\"\"> <span class=\"indent1\">show_product_quick_view</span></td>\n    <td class=\"\">Boolean</td>\n    <td class=\"\">true</td>\n    <td class=\"\">Defines whether to offer customers product Quick View modal windows.</td>\n  </tr>  \n\n\t<tr>\n    <td class=\"\"> <span class=\"indent1\">show_powered_by</span></td>\n    <td class=\"\">Boolean</td>\n    <td class=\"\">true</td>\n    <td class=\"\">Defines whether to display a \"Powered by BigCommerce\" credit in the sitewide footer.</td>\n  </tr>  \n  \n\t<tr>\n    <td class=\"\"> <span class=\"indent1\"><NOBR>show_accept_amex,</nobr></span><br>\n      <span class=\"indent1\"><NOBR>show_accept_visa,</nobr></span><br> <span class=\"indent1\">etc.</span>\n    </td>\n    <td class=\"\">Boolean</td>\n    <td class=\"\">false</td>\n    <td class=\"\">Each of these keys displays or hides a payment-method icon in the sitewide footer. The icons respectively identify credit-card issuers, PayPal, etc. If these keys are defined in <a href=\"/docs/schemajson-metadata-for-theme-editor\">schema.json</a>, merchants can use the <a href=\"/docs/what-is-theme-editor\">Theme Editor</a> GUI to toggle each payment icon's visibility.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">product_list_display_mode</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"grid\"</td>\n    <td class=\"\">Default display mode for product lists. A <span class=\"inline-code\">\"grid\"</span> value specifies grid format. Other entries trigger list format.</td>\n  </tr>\n   \n  <tr>\n    <td class=\"\"><span class=\"indent1\">logo-position</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"center\", \"left\", \"right\"</td>\n    <td class=\"\">Sets (horizontal) display alignment for store logo throughout the theme.</td>\n  </tr>\n \n<!-- Begin images section/intro: -->\n  <tr>\n    <td class=\"\"> <span class=\"indent1\"> <a name=\"config-images\"></a> [images]</td>\n    <td colspan=\"3\">\n    The following keys' values define storewide dimensions for named sizes. The <span class=\"inline-code\">{{getImage}}</span> Handlebars helper can use member keys’ values to dynamically resize any images, up to a maximum target size of 4096x4096 pixels.<br><br>\n    \n<!--The <span class=\"inline-code\">_images</span> key name is reserved. Child key--> Key names like <span class=\"inline-code\">\"logo_size\"</span> and <span class=\"inline-code\">\"thumb_size\"</span> are arbitrary.<br><br>\n\nFor example, this Handlebars expression:<br>\n\n<span class=\"inline-code\">{{getImage product.image \"thumb_size\"}}</span><br><br>\n\n...will output the path to a 100x100-pixel image (assuming the <span class=\"inline-code\">\"thumb_size\"</span> key retains its default value of <span class=\"inline-code\">\"100x100\"</span>).<br><br>\n\nBy defining or redefining these named sizes' values, in the format outlined below, you can automatically replicate the new sizes throughout your theme.</td>\n  </tr>\n  <!-- :End images intro: -->\n  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">logo_size</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">250x100</td>\n    <td class=\"\">Key/value pair defining global (storewide) display dimensions for the store logo. The value is a string defining the width and height &ndash; in that order &ndash; in pixels.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">gallery_size</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">300x300</td>\n    <td class=\"\">Key/value pair defining storewide display dimensions for blog images (also available for other uses).</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"><span class=\"indent1\">productgallery_size</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">300x300</td>\n    <td class=\"\">Key/value pair defining storewide display dimensions for product-gallery images.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"><span class=\"indent1\">product_size</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">500x659</td>\n    <td class=\"\">Key/value pair defining storewide display dimensions for standard/medium-sized product images.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">productthumb_size</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">100x100</td>\n    <td class=\"\">Key/value pair defining storewide display dimensions for product-image thumbnails on the product details page.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"><span class=\"indent1\">thumb_size</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">100x100</td>\n    <td class=\"\">Key/value pair defining storewide display dimensions for swatches, and for brand and category thumbnails.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">zoom_size</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">1280x1280</td>\n    <td class=\"\">Key/value pair defining storewide display dimensions for zoomable product images on the product details page.</td>\n  </tr>\n<!-- :End images section-->\n\n<!-- Begin image URLs section: -->    \n  <tr>\n    <td class=\"\"><span class=\"indent1\">product_list_display_mode</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"grid\"</td>\n    <td class=\"\">Default display mode for product lists. A <span class=\"inline-code\">\"grid\"</span> value specifies grid format. Other entries trigger list format.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"> <span class=\"indent1\"> default_image_brand</td>\n    <td class=\"\">String</td>\n    <td class=\"\">/assets/img/BrandDefault.gif</td>\n    <td class=\"\">Relative path to a default image representing brands.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"> <span class=\"indent1\"> default_image_product</td>\n    <td class=\"\">String</td>\n    <td class=\"\">/assets/img/ProductDefault.gif</td>\n    <td class=\"\">Relative path to a default image representing products.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"> <span class=\"indent1\"> default_image_gift_certificate</td>\n    <td class=\"\">String</td>\n    <td class=\"\">/assets/img/GiftCertificate.png</td>\n    <td class=\"\">Relative path to a default image representing gift certificates.</td>\n  </tr>\n<!-- :End image URLs section -->    \n  \n<!-- Begin fonts section: -->\n  <tr>\n    <td class=\"\">         <a name=\"config-json-fonts\"></a><span class=\"indent1\">body-font</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"Google_Karla_400\"</td>\n    <td class=\"\">Font-family keys, with corresponding values.\nKeys are named by display purpose, and keys' names should end in <span class=\"inline-code\">-font</span>. But naming is otherwise arbitrary. So you can freely define additional font families for your theme.<br>\n\n      <p></p>Values should follow the format:<br> \n<pre>&lt;ProviderName&gt;_&lt;Font+FamilyName&gt;\n    _&lt;OptionalWeightNumber&gt;\n</pre>\n\n<!--      <span class=\"inline-code\">&lt;ProviderName&gt;_&lt;Font+FamilyName&gt;_&lt;OptionalWeightNumber&gt;</span><br><br> -->\n\nAs in this example:<br>\n      <pre>Google_Open+Sans_700</pre>\n\n<!--      <span class=\"inline-code\">Google_Open+Sans_700</span><br><br> -->\n\n      ...which specifies <span class=\"inline-code\">Google Fonts</span> as the Provider, <span class=\"inline-code\">Open Sans</span> as the Font Family, and <span class=\"inline-code\">800</span> as the (optional) Weight attribute.<br><br>\n\n(<b>Note:</b> The Provider &ndash; also called \"Foundry\" &ndash; is currently limited to Google Fonts.)<br><br>\n      \nStencil’s <a href=\"/docs/custom-sass-functions#FontFamily\">custom Sass functions</a> can process these keys’ values. E.g., to <span class=\"inline-code\">stencilFontFamily</span>, you could pass the (arbitrary) key name <span class=\"inline-code\">\"body-font\"</span>, and the function would process the value.<br><br>\n      \nNote that Sass requires explicit typing of inputs and outputs – e.g., <span class=\"inline-code\">stencilNumber</span> defaults to pixels – so you must specify any other units. Thus, for a<br><p></p>\n\n      <pre>\"font‑size\" = 3</pre>\n      <p></p>\n\n<!--      <span class=\"indent1\"><span class=\"inline-code\">\"font‑size\" = 3</span></span><br> -->\n\n...this statement:<br><p></p>\n\n    <pre>stencilNumber(\"font-size\",\"rem\")\n    * 3</pre><p></p>\n\n<!--    <span class=\"indent1\"><span class=\"inline-code\">stencilNumber(\"font-size\",\"rem\")</span></span><br>   \n    <span class=\"indent1\"><span class=\"inline-code\">* 3</span></span><br> -->\n\n...will output:<br><p></p>\n\n    <pre>9rem</pre>\n    <p></p>\n\n<!--    <span class=\"indent1\"><span class=\"inline-code\">9rem</span></span><br><br> -->\n\n      (<b>Note:</b> To enable merchants to customize your themes' fonts via <NOBR>Theme Editor</nobr>, we recommend that you rely on Google Fonts, with no more than 25 typefaces per theme.)</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">headings-font</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"Google_Montserrat_400\"</td>\n    <td class=\"\">Arbitrary key name, and value, for a font family and (optional) weight that can be applied to headings.</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">logo-font</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"Google_Oswald_300\"</td>\n    <td class=\"\">Arbitrary key name, and value, for a font family and (optional) weight for logo text.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">         <span class=\"indent1\"><NOBR>fontSize-root,</nobr></span><br> <span class=\"indent1\"><NOBR>fontSize-h1</nobr>..</span><NOBR>fontSize-h6,</nobr><br> <span class=\"indent1\">etc.</span> </td>\n    <td class=\"\">Number</td>\n    <td class=\"\">14</td>\n    <td class=\"\">Font-size keys, with corresponding values.<br><br>\n      \nThese keys' values provide defaults for options selectable in the Theme Editor GUI. Also, Stencil’s <a href=\"#CustomSassFn\">custom Sass functions</a> can process these values.<br><br> \n      \n      Here again, these keys are named by display purpose, but arbitrarily. So you can freely define additional font sizes for your theme.</td>\n  </tr>\n\n  <!--\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">fontFamily-serif</span></td>\n    <td class=\"\">Integer[? Number?]</td>\n    <td class=\"\">\"Georgia, serif\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">fontFamily-mono</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"Menlo, monospace\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">fontFamily-headings</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"Montserrat, sans-serif\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">fontFamily-hero</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"Oswald, sans-serif\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n-->\n<!-- :End fonts section -->\n  \n  \n<!--Begin colors section:-->  \n  <tr>\n    <td class=\"\">\n      <span class=\"indent1\"><NOBR>color-textBase</nobr></span>\n    </td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"#4f4f4f\"</td>\n    <td class=\"\">Color definitions, with corresponding hex values. These keys' values provide defaults for options selectable in the Theme Editor GUI.<br><br> \n      \n      Also, Stencil’s <a href=\"#CustomSassFn\">custom Sass functions</a> can process these values. E.g., to <span class=\"inline-code\">stencilColor</span>, you could pass the key name <span class=\"inline-code\">\"color-textBase\"</span>, and the function would return the <span class=\"inline-code\">\"#4f4f4f\"</span> value defined here.<br><br>\n      \n      The keys are named by display purpose &ndash; defining consistent colors for various parts of the theme in different states. But the keys are also named arbitrarily. So you can freely name and define new color keys for your theme.<br><br> \n      \n      (<b>Note:</b> Only a subset of the default <span class=\"inline-code\">config.json</span> file’s color definitions are listed here.) </td>\n  </tr>\n\n  <tr>\n    <td class=\"\">   <span class=\"indent1\"><NOBR>color-textBase--hover,</nobr></span> <span class=\"indent1\"><NOBR>color-textBase--active,</nobr></span><br> <span class=\"indent1\">..</span><br> <span class=\"indent1\"><NOBR>color-textLink--active,</nobr></span><br> <span class=\"indent1\"><NOBR>color-textHeading,</nobr></span><br> <span class=\"indent1\">etc.</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">[Varies]</td>\n    <td class=\"\">\"</td>\n  </tr>\n\n  <tr>\n    <td class=\"\">   <span class=\"indent1\">color-primary</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"#4f4f4f\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">         <span class=\"indent1\">color-primaryDark</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"#454545\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">color-primaryDarker</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"#2d2d2d\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">color-primaryLight</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"#a5a5a5\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">color-secondary</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"#ffffff\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">color-secondaryDark</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"#f2f2f2\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">color-secondaryDarker</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"#f2f2f2\"</td>\n    <td class=\"\">\"</td>\n  </tr>\n<!-- :End colors section -->\n\n<!-- Begin Optimized checkout subsection/intro: -->\n  <tr>\n    <td class=\"\"> <span class=\"indent1\"> <a name=\"config-uco\"></a> [Optimized Checkout]</td>\n    <td colspan=\"3\">\n    The following are examples of keys that define default style properties for the Optimized Checkout page. Each key/value pair here corresponds to a class in the <span class=\"inline-code\">&lt;theme‑name&gt;/assets/scss/optimized-checkout.scss</span> file.\n\t</td>\n  </tr>\n  <!-- :End Optimized Checkout intro. -->\n  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">optimizedCheckout-header-backgroundColor</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">#f7f7f7</td>\n    <td class=\"\">Key/value pair defining default background color for the Optimized Checkout page's header.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">optimizedCheckout-show-backgroundImage</span></td>\n    <td class=\"\">Boolean</td>\n    <td class=\"\">false</td>\n    <td class=\"\">Key/value pair defining whether to display a background image on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"><span class=\"indent1\">optimizedCheckout-backgroundImage</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\"> &ndash; </td>\n    <td class=\"\">Key/value pair containing file name of background image for the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"><span class=\"indent1\">optimizedCheckout-backgroundImage-size</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">1000x400</td>\n    <td class=\"\">Key/value pair defining display size for background image on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"><span class=\"indent1\">optimizedCheckout-show-logo</span></td>\n    <td class=\"\">enum</td>\n    <td class=\"\">none</td>\n    <td class=\"\">Key/value pair defining whether to show logo on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"><span class=\"indent1\">optimizedCheckout-logo</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\"> &ndash; </td>\n    <td class=\"\">Key/value pair containing file name of background image for the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"><span class=\"indent1\">[...]</span></td>\n    <td class=\"\">[...]</td>\n    <td class=\"\"> [...] </td>\n    <td class=\"\">[...]<br> \n      (Multiple similar key/value pairs. For a more-complete list of the classes available, please see <a href=\"/docs/optimized-checkout-customization\">Optimized One-Page Checkout Customization</a>.)</td>\n  </tr>\n<!-- :end Optimized checkout subsection -->  \n\n<!-- Begin read-only subsection-->\n  <tr>\n    <td class=\"\"><span class=\"indent1\" id=\"readonly\">read_only_files</span></td>\n    <td class=\"\">String array</td>\n    <td class=\"\"> \"/assets/scss/components/citadel\",<br> \"/assets/scss/components/foundation\",<br> \"/assets/scss/components/vendor\",<br> \"/assets/scss/vendor\",<br> \"/assets/scss/settings/citadel\",<br> \"/assets/scss/settings/foundation\",<br> \"/assets/scss/settings/vendor\",<br> \"/assets/scss/settings/normalize\" </td>\n    <td class=\"\">Files and paths specified in this array will be viewable in the <a href=\"/docs/what-is-theme-editor\">Theme Editor</a> GUI, but not editable. Add any theme files/paths that you want to make read-only for store administrators using that editor.</td>\n  </tr>\n<!-- :end read-only subsection -->\n  \n<!-- Begin resources: section -->\n  <tr>\n    <td class=\"\">resources</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">Global resources, inherited by all pages located directly within your <span class=\"inline-code\">&lt;theme‑name&gt;/templates/pages/</span> <a href=\"#Pages-Subdir\">subdirectory</a>.<br><br>\n\n(This inheritance spares you from having to define them in front matter on every page. Here, the resources are defined in JSON rather than YAML format.)<br><br>\n\nYou are free to add more global resources here – for example: <span class=\"inline-code\">\"brands\": true</span> to display a brands list; or\n<span class=\"inline-code\">\"blog\": \"posts\": \"limit\": 3</span> to display the top 3 blog posts. For syntax, see <a href=\"/docs/front-matter-variables#Front-ref-global\">Front-Matter Global Attributes</a>.</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">cart</span></td>\n    <td class=\"\">Boolean</td>\n    <td class=\"\">true</td>\n    <td class=\"\">Defines whether to retrieve/display cart data <!--to display a shopping-cart icon/link--> in pages' chrome.</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">shop_by_brand</span></td>\n    <td class=\"\">Boolean</td>\n    <td class=\"\">true</td>\n    <td class=\"\">Defines whether to include a quick-navigation list of brands in the footer. Adding this optional filter defines how many brands to load:<br>\n        <span class=\"inline-code\">limit: &lt;number&gt;</span></td>\n  </tr>\n    \n  <tr>\n    <td class=\"\"><a name=\"config-variations\"></a>variations</td>\n    <td class=\"\">Object</td>\n    <td class=\"\"></td>\n    <td class=\"\">Collection of variation objects. Each contained object defines one variation on this overall theme. (A theme must contain at least one variation, and may contain up to four.)</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">name</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"Light\", \"Bold\",\"Warm\" (etc.)</td>\n    <td class=\"\">An arbitrary name for this variation. This name is used in the Themes Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\">id</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"light\", \"bold\", \"warm\" (etc.)</td>\n    <td class=\"\">A string ID for this variation. Arbitrarily named, but must be unique to this variation.\nThe Stencil framework’s database uses this unique ID to identify and process updates to variations.<br><br> \n\nWhen you submit an updated version of your theme to BigCommerce, IDs and settings for previously submitted variations must match those in previous submissions of your theme. You may add, but not remove, variations and settings in such resubmissions. You may rename variations for clarity.\n</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\"><a name=\"config-var-settings\"></a>settings</span></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">Variation-level counterpart to this theme’s <a href=\"#config-theme-settings\">theme-level</a> <span class=\"inline-code\">\"settings\"</span> object.<br><br>\n\nValues that you set here will override <a href=\"#config-theme-settings\">theme-wide</a> values for corresponding key names,  within the scope of this variation.<br><br>\n\nYou can also create custom variables here, whose scope will be limited to this variation. Syntax is the same as for <a href=\"#config-theme-settings\">theme-wide</a> custom variables.</td>\n  </tr>\n  <tr>\n    <td class=\"\">         <span class=\"indent1\"><a name=\"config-var-meta\"></a>meta</span></td>\n    <td class=\"\">Object</td>\n    <td class=\"\"></td>\n    <td class=\"\">Variation-level counterpart to this theme’s <a href=\"#config-theme-meta\">top-level</a> <span class=\"inline-code\">\"meta\"</span> collection.\nBigCommerce will similarly use this collection’s values when listing themes in Theme Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent2\"> \"desktop_screenshot\"</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"desktop_screenshot.png\"</td>\n    <td class=\"\">File name for a screenshot of this variation’s large-format layout.\nThe key name is fixed. The file-name value is arbitrary, but it must match the name of a file located in the <span class=\"inline-code\">&lt;theme‑name&gt;/meta/</span> subdirectory. <NOBR>(If you</nobr> are updating a variation, be sure to match this value to the intended file name.) The screenshot’s required dimensions are 2048 x 2600 pixels.</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent2\"> \"mobile_screenshot\"</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"mobile_screenshot.png\",</td>\n    <td class=\"\">File name for a screenshot of this variation’s mobile-format layout.\nThe key name is fixed. The file-name value is arbitrary, but it must match the name of a file located in the <span class=\"inline-code\">&lt;theme‑name&gt;/meta/</span> subdirectory. <NOBR>(If you</nobr> are updating a variation, be sure to match this value to the intended file name.) The screenshot’s required dimensions are 304 x 540 pixels.</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent2\"> \"description\" </span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"This is the light style of the Stencil Theme\"</td>\n    <td class=\"\">Arbitrary text description for this variation. This description will appear in Themes Marketplace and <NOBR>Theme Editor.</nobr></td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent2\"> \"demo_url\"</span></td>\n    <td class=\"\">String</td>\n    <td class=\"\">\"https://stencil-light.mybigcommerce.com\"</td>\n    <td class=\"\">URL of your demo store, as set up on bigcommerce.com.</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent2\"> \"optimized_for”</span></td>\n    <td class=\"\">Array</td>\n    <td class=\"\">[<NOBR>\"arts_crafts\",</nobr> <NOBR>\"animals_pets\",</nobr> <NOBR>\"automotive_industrial\",</nobr> <NOBR>\"electronics_computers\",</nobr> <NOBR>\"fashion_jewelry\",</nobr> <NOBR>\"food_beverage\",</nobr> <NOBR>\"gifts_specialty\",</nobr> <NOBR>\"health_beauty\",</nobr> <NOBR>\"home_garden\",</nobr> <NOBR>\"books_entertainment\",</nobr> <NOBR>\"sports_recreation\",</nobr> <NOBR>\"toys_games\",</nobr> <NOBR>\"multi_purpose\",</nobr> <NOBR>\"chrome_firefox_safari_ie_10\",</nobr> <NOBR>\"mobile_tablet_desktop\",</nobr> <NOBR>\"sales_discounts\",</nobr> <NOBR>\"wholesale\",</nobr> <NOBR>\"single_product\",</nobr> <NOBR>\"large_catalog\",</nobr> <NOBR>\"mobile\",</nobr> <NOBR>\"clothing\",</nobr> <NOBR>\"cosmetics\",</nobr> <NOBR>\"home_appliances\",</nobr> <NOBR>\"home_furnishings\",</nobr> <NOBR>\"movies\",</nobr> <NOBR>\"music\",</nobr> <NOBR>\"digital_downloads\",</nobr> <NOBR>\"outdoor_sports\",</nobr> <NOBR>\"hunting_fishing\",</nobr> <NOBR>\"video_games\"]</nobr></td>\n    <td class=\"\">Array of metadata for Theme Marketplace searches &ndash; exact names of storefront types compatible with this theme. <NOBR>The \"Default/Examples\"</nobr> column lists the complete namespace. At least one of the values listed there must be present.</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent2\"> “industries\"</span></td>\n    <td class=\"\">Array</td>\n    <td class=\"\">[<NOBR>\"arts_crafts\",</nobr> <NOBR>\"animals_pets\",</nobr> <NOBR>\"automotive_industrial\",</nobr> <NOBR>\"electronics_computers\",</nobr> <NOBR>\"fashion_jewelry\",</nobr> <NOBR>\"food_beverage\",</nobr> <NOBR>\"gifts_specialty\",</nobr> <NOBR>\"health_beauty\",</nobr> <NOBR>\"home_garden\",</nobr> <NOBR>\"books_entertainment\",</nobr> <NOBR>\"sports_recreation\",</nobr> <NOBR>\"toys_games\"]</nobr></td>\n    <td class=\"\">Array of optional metadata for <NOBR>Theme Marketplace,</nobr> where these values will be used to support faceted searches. You may submit up to four values from the complete namespace listed in the \"Default/Examples\"</nobr> column.</td>\n  </tr>\n</table>"
               - title: Editing Your Theme
                 route:
                   path: /editing-your-theme
@@ -2755,6 +2765,520 @@ pages:
                       data: <h1>Managing Theme Variations</h1>
                     - type: html
                       data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#choosing-dev-path\"> Choosing a Development Path</a></li>\n\t\t<li><a href=\"#front-matter-quick-start\">Front-Matter Quick Start</a></li>\n    <li><a href=\"#front-matter-quick-start\">Handlebars Quick Start</a></li>\n\t</ul>\n</div>"
+        - title: Editing Your Theme's Template Files
+          route:
+            path: /templates-directory
+          data:
+            children:
+              - title: Templates Directory Overview
+                route:
+                  path: /templates-directory-overview
+                data:
+                  children:
+                    - title: Components Subdirectory
+                      route:
+                        path: /new-subpage-3
+                      data: {}
+                    - title: Layout Subdirectory
+                      route:
+                        path: /new-subpage-2
+                      data: {}
+                    - title: Pages Subdirectory
+                      route:
+                        path: /new-subpage-1
+                      data: {}
+                    - title: Stencil with Disqus
+                      route:
+                        path: /new-subpage
+                      data: {}
+              - title: Custom Templates
+                route:
+                  path: /components-and-compilation
+                data:
+                  children:
+                    - title: 'Authoring, Testing, and Uploading Custom Templates'
+                      route:
+                        path: /new-subpage-2
+                      data: {}
+                    - title: Assigning Templates to Pages
+                      route:
+                        path: /new-subpage-1
+                      data: {}
+                    - title: Switching Themes with Custom Templates
+                      route:
+                        path: /new-subpage
+                      data: {}
+                    - title: Theme Updates with  Custom Templates
+                      route:
+                        path: /new-subpage
+                      data: {}
+                    - title: Limitations on Custom Templates
+                      route:
+                        path: /new-subpage-3
+                      data: {}
+              - title: Stencil Checkout
+                route:
+                  path: /new-subpage
+                data:
+                  children:
+                    - title: Preparing Stencil for Optimized One-Page Checkout
+                      route:
+                        path: /new-subpage
+                      data: {}
+                    - title: Optimized One Page Checkout
+                      route:
+                        path: /new-subpage
+                      data: {}
+                    - title: Currency Conversion
+                      route:
+                        path: /new-subpage
+                      data: {}
+                    - title: Multi Language Checkout
+                      route:
+                        path: /new-subpage
+                      data: {}
+                    - title: Checkout/Confirmation Injection Options
+                      route:
+                        path: /new-subpage-1
+                      data: {}
+                    - title: Implement a Custom Checkout with React
+                      route:
+                        path: /implement-a-custom-checkout
+                      data:
+                        blocks:
+                          - type: html
+                            data: >-
+                              <h1>Implementing a Custom React.js Checkout to
+                              Cornerstone using the BigCommerce Checkout
+                              SDK</h1>
+                          - type: html
+                            data: "<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"implement_tutorial-overview\">Tutorial Overview</a></li>\n    <li><a href=\"implement_steps\">Steps to Implement a Custom React Checkout</a></li>\n    <li><a href=\"implement_additional\">Additional Resources</a></li>\t\n</ul>\n</div>\n"
+                          - type: text
+                            data: >-
+                              ## Tutorial Overview
+
+
+                              This tutorial will take you through the steps to
+                              implement a custom checkout built with React to
+                              the Cornerstone Theme. The checkout will utilize
+                              BigCommerce's Checkout SDK. This tutorial assumes
+                              Cornerstone 2.4.0 as a starting point.
+                            header:
+                              anchor: implement_tutorial-overview
+                          - type: callout
+                            data:
+                              type: error
+                              body: >-
+                                Please note that the provided checkout example
+                                is a good starting and reference point, but is
+                                **NOT production ready**. You should **not** use
+                                this custom checkout in production as it stands.
+                              title: Checkout Example NOT production ready!
+                          - type: text
+                            data: >-
+                              ## Steps to Implement a Custom React Checkout in
+                              Cornerstone
+
+
+                              ### Tutorial Prerequisites
+
+
+                              Before beginning this tutorial, you will need to
+                              have the Stencil CLI installed.
+
+
+                              If you do not yet have Stencil CLI installed,
+                              complete the steps in [Installing the Stencil
+                              CLI](stencil-docs/getting-started/installing-and-launching/installing-the-stencil-cli).
+
+
+                              ### Install Dependencies
+
+
+                              The React app used to demonstrate the Checkout SDK
+                              has a few additional dependencies.
+
+                              In your theme directory (e.g.
+                              /stencil/cornerstone), run the following command:
+
+
+                              `npm install --save react react-dom
+                              react-text-mask classnames accounting
+                              babel-preset-react css-loader node-sass
+                              sass-loader style-loader
+                              @bigcommerce/checkout-sdk`
+
+
+
+                              ### Update webpack.common.js
+
+
+                              The React app includes .jsx files which will not
+                              be resolved using the default webpack
+                              configuration in Cornerstone. Additionally,
+                              loaders must be registered for .jsx and .scss
+                              files.
+
+
+                              **Note:** _Cornerstone 2.0 and above uses Webpack
+                              4 which does **not** use a `webpack.conf.js` file
+                              like earlier Webpack versions. Instead, we will
+                              modify `webpack.common.js`._
+
+
+                              #### Register .jsx and .scss loaders
+
+
+                              In webpack.common.js, add the following objects to
+                              the `rules` array:
+
+
+                              ```
+
+                              {
+                                test: /\.jsx$/,
+                                exclude: /node_modules/,
+                                use: {
+                                    loader: "babel-loader",
+                                    options: {
+                                        presets: ['react'],
+                                    },
+                                }
+                              },
+
+
+                              {
+                                test: /\.scss$/,
+                                use:  [
+                                    'style-loader',
+                                    {
+                                        loader: 'css-loader',
+                                        options: {
+                                            modules: true
+                                        }
+                                    },
+                                    'sass-loader'
+                                ],
+                              },
+
+                              ```
+
+
+                              Next, in webpack.common.js, add the following
+                              property to the `resolve` object:
+
+
+
+                              `extensions: ['.js', '.jsx']`
+
+
+
+                              ### Add React Checkout Components to Theme
+
+
+                              1. Clone or download BigCommerce's [Checkout SDK
+                              JS
+                              Example](https://github.com/bigcommerce/checkout-sdk-js-example)
+                              **outside** of your theme directory
+
+
+                              `git clone
+                              git@github.com:bigcommerce/checkout-sdk-js-example.git`
+
+
+                              2. In your theme directory, navigate to
+                              `/assets/js/` and create a `checkout-app`
+                              directory (i.e. `/assets/js/checkout-app`)
+
+
+                              3. Copy the contents of
+                              `/checkout-sdk-js-example/src` into your new
+                              `/assets/js/checkout-app` directory 
+
+
+
+                              ### Import Dependencies
+
+
+                              Edit `/assets/js/app.js` and add the following
+                              lines toward the beginning with the other import
+                              statements:
+
+
+                              ```
+
+                              import React from 'react';
+
+                              import ReactDOM from 'react-dom';
+
+                              import Checkout from
+                              './checkout-app/Checkout/checkout';
+
+                              ```
+
+
+                              ### Define a Function to Initialize React
+
+
+                              Edit `/assets/js/app.js` and add the following
+                              lines to the end:
+
+
+                              ```
+
+                              window.initReact = function initReact() {
+                                  ReactDOM.render(
+                                      React.createElement(Checkout, null, null),
+                                      document.getElementById('checkout-app')
+                                  );
+                              };
+
+                              ```
+
+
+                              ### Customize the Checkout Template
+
+
+                              1. Edit `/templates/pages/checkout.html` and add
+                              the following lines between `{{{ footer.scripts
+                              }}}` and `{{/partial}}`
+
+
+                              ```
+
+                              <script src="{{cdn
+                              'assets/dist/theme-bundle.main.js'}}"></script>
+                               
+                              <script type="text/javascript" defer>
+                                  // Exported in app.js
+                                  window.initReact();
+                              </script>
+
+                              ```
+
+
+                              2. In `/templates/pages/checkout.html`, replace
+                              `{{{ checkout.checkout_content }}}` with the
+                              following:
+
+
+                              ```<div id="checkout-app"></div>```
+
+
+                              ### Congratulations!
+
+
+                              You should now be able to view your example React
+                              checkout by running the `stencil start` command in
+                              your theme directory and navigating to your
+                              storefront at
+                              [http://localhost:3000](http://localhost:3000).
+
+
+                              You can make further customizations to the
+                              checkout by modifying the React components in
+                              `/assets/js/checkout-app`.
+                            header:
+                              anchor: implement_steps
+                          - type: tabs
+                            data:
+                              children:
+                                - title: webpack.common.js
+                                  blocks:
+                                    - type: code
+                                      data: >
+                                        LodashPlugin =
+                                        require('lodash-webpack-plugin'),
+
+                                        path = require('path'),
+
+                                        webpack = require('webpack');
+
+
+                                        // Common configuration, with extensions
+                                        in webpack.dev.js and webpack.prod.js.
+
+                                        module.exports = {
+
+                                        bail: true,
+
+                                        context: __dirname,
+
+                                        entry: {
+                                          main: './assets/js/app.js',
+                                        },
+
+                                        module: {
+                                          rules: [
+                                              {
+                                                  test: /\.js$/,
+                                                  include: /(assets\/js|assets\\js|stencil-utils)/,
+                                                  use: {
+                                                      loader: 'babel-loader',
+                                                      options: {
+                                                          plugins: [
+                                                              'dynamic-import-webpack', // Needed for dynamic imports.
+                                                              'lodash', // Automagically tree-shakes lodash.
+                                                              'transform-regenerator', // Transforms async and generator functions.
+                                                          ],
+                                                          presets: [
+                                                              ['env', {
+                                                                  loose: true, // Enable "loose" transformations for any plugins in this preset that allow them.
+                                                                  modules: false, // Don't transform modules; needed for tree-shaking.
+                                                                  useBuiltIns: true, // Tree-shake babel-polyfill.
+                                                              }],
+                                                          ],
+                                                      },
+                                                  },
+                                              },
+                                              {
+                                                  test: /jquery-migrate/,
+                                                  use: 'imports-loader?define=>false',
+                                              },
+                                              {
+                                                  test: /\.jsx$/,
+                                                  exclude: /node_modules/,
+                                                  use: {
+                                                      loader: "babel-loader",
+                                                      options: {
+                                                          presets: ['react'],
+                                                      },
+                                                  }
+                                              },
+                                              {
+                                                  test: /\.scss$/,
+                                                  use:  [
+                                                      'style-loader',
+                                                      {
+                                                          loader: 'css-loader',
+                                                          options: {
+                                                              modules: true
+                                                          }
+                                                      },
+                                                      'sass-loader'
+                                                  ]
+                                              }
+                                          ],
+                                        },
+
+                                        output: {
+                                          chunkFilename: 'theme-bundle.chunk.[name].js',
+                                          filename: 'theme-bundle.[name].js',
+                                          path: path.resolve(__dirname, 'assets/dist'),
+                                        },
+
+                                        plugins: [
+                                          new CleanPlugin(['assets/dist'], {
+                                              verbose: false,
+                                              watch: false,
+                                          }),
+                                          new LodashPlugin, // Complements babel-plugin-lodash by shrinking its cherry-picked builds further.
+                                          new webpack.ProvidePlugin({
+                                              $: 'jquery',
+                                              jQuery: 'jquery',
+                                              'window.jQuery': 'jquery',
+                                          }),
+                                        ],
+
+                                        resolve: {
+                                          alias: {
+                                              'jquery-migrate': path.resolve(__dirname, 'node_modules/jquery-migrate/dist/jquery-migrate.min.js'),
+                                              jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
+                                              lazysizes: path.resolve(__dirname, 'node_modules/lazysizes/lazysizes.min.js'),
+                                              pace: path.resolve(__dirname, 'node_modules/pace/pace.min.js'),
+                                              'slick-carousel': path.resolve(__dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
+                                              'svg-injector': path.resolve(__dirname, 'node_modules/svg-injector/dist/svg-injector.min.js'),
+                                              sweetalert2: path.resolve(__dirname, 'node_modules/sweetalert2/dist/sweetalert2.min.js'),
+                                          },
+                                          extensions: ['.js', '.jsx'],
+                                        },
+
+                                        };
+                                      header:
+                                        title: webpack.common.js
+                                - title: app.js
+                                  blocks: []
+                                - title: checkout.html
+                                  blocks:
+                                    - type: code
+                                      data: >-
+                                        {{#partial "head"}}
+                                         
+                                        {{{ checkout.checkout_head }}}
+
+                                        {{{ stylesheet
+                                        '/assets/css/optimized-checkout.css' }}}
+
+                                        {{ getFontsCollection }}
+                                         
+                                        <script type="text/javascript">
+                                            window.language = {{{langJson 'optimized_checkout'}}};
+                                        </script>
+                                         
+                                        {{{head.scripts}}}
+                                         
+                                        {{/partial}}
+                                         
+                                        {{#partial "page"}}
+
+                                        <header class="checkoutHeader
+                                        optimizedCheckout-header">
+                                            <div class="checkoutHeader-content">
+                                                <h1 class="is-srOnly">{{lang 'checkout.title'}}</h1>
+                                                <h2 class="checkoutHeader-heading">
+                                                    <a class="checkoutHeader-link" href="{{urls.home}}">
+                                                        {{#if checkout.header_image}}
+                                                            <img alt="{{settings.store_logo.title}}" class="checkoutHeader-logo" id="logoImage" src="{{ checkout.header_image }}"/>
+                                                        {{ else }}
+                                                            <span class="header-logo-text">{{settings.store_logo.title}}</span>
+                                                        {{/if}}
+                                                    </a>
+                                                </h2>
+                                            </div>
+                                        </header>
+                                         
+                                        <div id="checkout-app"></div>
+                                         
+                                        {{{ footer.scripts }}}
+
+                                        <script src="{{cdn
+                                        'assets/dist/theme-bundle.main.js'}}"></script>
+                                         
+                                        <script type="text/javascript" defer>
+                                            // Exported in app.js
+                                            window.initReact();
+                                        </script>
+
+                                        {{/partial}}
+                                         
+                                        {{> layout/empty}}
+                                      header:
+                                        title: checkout.html
+                            header:
+                              title: Examples of files after completing this tutorial
+                          - type: text
+                            data: >-
+                              ## Additional Resources
+
+
+                              * [www.reactjs.org](www.reactjs.org)
+
+                              *
+                              [www.reactjs.org/tutorial/tutorial.html](www.reactjs.org/tutorial/tutorial.html)
+                              (Excellent tutorial on the basics of React)
+
+                              *
+                              [https://webpack.js.org/concepts/](https://webpack.js.org/concepts/)
+                            header:
+                              anchor: implement_additional"
+                    - title: Styling the Apple Pay Button
+                      route:
+                        path: /new-subpage-3
+                      data: {}
+                    - title: Customizing Invoices and Packing Slips
+                      route:
+                        path: /new-subpage-4
+                      data: {}
         - title: 'Using the Stencil Theme Editor '
           route:
             path: /theme-editor-configuration
@@ -4371,520 +4895,6 @@ pages:
                 route:
                   path: /new-subpage
                 data: {}
-        - title: Editing Your Theme's Template Files
-          route:
-            path: /templates-directory
-          data:
-            children:
-              - title: Templates Directory Overview
-                route:
-                  path: /templates-directory-overview
-                data:
-                  children:
-                    - title: Components Subdirectory
-                      route:
-                        path: /new-subpage-3
-                      data: {}
-                    - title: Layout Subdirectory
-                      route:
-                        path: /new-subpage-2
-                      data: {}
-                    - title: Pages Subdirectory
-                      route:
-                        path: /new-subpage-1
-                      data: {}
-                    - title: Stencil with Disqus
-                      route:
-                        path: /new-subpage
-                      data: {}
-              - title: Custom Templates
-                route:
-                  path: /components-and-compilation
-                data:
-                  children:
-                    - title: 'Authoring, Testing, and Uploading Custom Templates'
-                      route:
-                        path: /new-subpage-2
-                      data: {}
-                    - title: Assigning Templates to Pages
-                      route:
-                        path: /new-subpage-1
-                      data: {}
-                    - title: Switching Themes with Custom Templates
-                      route:
-                        path: /new-subpage
-                      data: {}
-                    - title: Theme Updates with  Custom Templates
-                      route:
-                        path: /new-subpage
-                      data: {}
-                    - title: Limitations on Custom Templates
-                      route:
-                        path: /new-subpage-3
-                      data: {}
-              - title: Stencil Checkout
-                route:
-                  path: /new-subpage
-                data:
-                  children:
-                    - title: Preparing Stencil for Optimized One-Page Checkout
-                      route:
-                        path: /new-subpage
-                      data: {}
-                    - title: Optimized One Page Checkout
-                      route:
-                        path: /new-subpage
-                      data: {}
-                    - title: Currency Conversion
-                      route:
-                        path: /new-subpage
-                      data: {}
-                    - title: Multi Language Checkout
-                      route:
-                        path: /new-subpage
-                      data: {}
-                    - title: Checkout/Confirmation Injection Options
-                      route:
-                        path: /new-subpage-1
-                      data: {}
-                    - title: Implement a Custom Checkout with React
-                      route:
-                        path: /implement-a-custom-checkout
-                      data:
-                        blocks:
-                          - type: html
-                            data: >-
-                              <h1>Implementing a Custom React.js Checkout to
-                              Cornerstone using the BigCommerce Checkout
-                              SDK</h1>
-                          - type: html
-                            data: "<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"implement_tutorial-overview\">Tutorial Overview</a></li>\n    <li><a href=\"implement_steps\">Steps to Implement a Custom React Checkout</a></li>\n    <li><a href=\"implement_additional\">Additional Resources</a></li>\t\n</ul>\n</div>\n"
-                          - type: text
-                            data: >-
-                              ## Tutorial Overview
-
-
-                              This tutorial will take you through the steps to
-                              implement a custom checkout built with React to
-                              the Cornerstone Theme. The checkout will utilize
-                              BigCommerce's Checkout SDK. This tutorial assumes
-                              Cornerstone 2.4.0 as a starting point.
-                            header:
-                              anchor: implement_tutorial-overview
-                          - type: callout
-                            data:
-                              type: error
-                              body: >-
-                                Please note that the provided checkout example
-                                is a good starting and reference point, but is
-                                **NOT production ready**. You should **not** use
-                                this custom checkout in production as it stands.
-                              title: Checkout Example NOT production ready!
-                          - type: text
-                            data: >-
-                              ## Steps to Implement a Custom React Checkout in
-                              Cornerstone
-
-
-                              ### Tutorial Prerequisites
-
-
-                              Before beginning this tutorial, you will need to
-                              have the Stencil CLI installed.
-
-
-                              If you do not yet have Stencil CLI installed,
-                              complete the steps in [Installing the Stencil
-                              CLI](stencil-docs/getting-started/installing-and-launching/installing-the-stencil-cli).
-
-
-                              ### Install Dependencies
-
-
-                              The React app used to demonstrate the Checkout SDK
-                              has a few additional dependencies.
-
-                              In your theme directory (e.g.
-                              /stencil/cornerstone), run the following command:
-
-
-                              `npm install --save react react-dom
-                              react-text-mask classnames accounting
-                              babel-preset-react css-loader node-sass
-                              sass-loader style-loader
-                              @bigcommerce/checkout-sdk`
-
-
-
-                              ### Update webpack.common.js
-
-
-                              The React app includes .jsx files which will not
-                              be resolved using the default webpack
-                              configuration in Cornerstone. Additionally,
-                              loaders must be registered for .jsx and .scss
-                              files.
-
-
-                              **Note:** _Cornerstone 2.0 and above uses Webpack
-                              4 which does **not** use a `webpack.conf.js` file
-                              like earlier Webpack versions. Instead, we will
-                              modify `webpack.common.js`._
-
-
-                              #### Register .jsx and .scss loaders
-
-
-                              In webpack.common.js, add the following objects to
-                              the `rules` array:
-
-
-                              ```
-
-                              {
-                                test: /\.jsx$/,
-                                exclude: /node_modules/,
-                                use: {
-                                    loader: "babel-loader",
-                                    options: {
-                                        presets: ['react'],
-                                    },
-                                }
-                              },
-
-
-                              {
-                                test: /\.scss$/,
-                                use:  [
-                                    'style-loader',
-                                    {
-                                        loader: 'css-loader',
-                                        options: {
-                                            modules: true
-                                        }
-                                    },
-                                    'sass-loader'
-                                ],
-                              },
-
-                              ```
-
-
-                              Next, in webpack.common.js, add the following
-                              property to the `resolve` object:
-
-
-
-                              `extensions: ['.js', '.jsx']`
-
-
-
-                              ### Add React Checkout Components to Theme
-
-
-                              1. Clone or download BigCommerce's [Checkout SDK
-                              JS
-                              Example](https://github.com/bigcommerce/checkout-sdk-js-example)
-                              **outside** of your theme directory
-
-
-                              `git clone
-                              git@github.com:bigcommerce/checkout-sdk-js-example.git`
-
-
-                              2. In your theme directory, navigate to
-                              `/assets/js/` and create a `checkout-app`
-                              directory (i.e. `/assets/js/checkout-app`)
-
-
-                              3. Copy the contents of
-                              `/checkout-sdk-js-example/src` into your new
-                              `/assets/js/checkout-app` directory 
-
-
-
-                              ### Import Dependencies
-
-
-                              Edit `/assets/js/app.js` and add the following
-                              lines toward the beginning with the other import
-                              statements:
-
-
-                              ```
-
-                              import React from 'react';
-
-                              import ReactDOM from 'react-dom';
-
-                              import Checkout from
-                              './checkout-app/Checkout/checkout';
-
-                              ```
-
-
-                              ### Define a Function to Initialize React
-
-
-                              Edit `/assets/js/app.js` and add the following
-                              lines to the end:
-
-
-                              ```
-
-                              window.initReact = function initReact() {
-                                  ReactDOM.render(
-                                      React.createElement(Checkout, null, null),
-                                      document.getElementById('checkout-app')
-                                  );
-                              };
-
-                              ```
-
-
-                              ### Customize the Checkout Template
-
-
-                              1. Edit `/templates/pages/checkout.html` and add
-                              the following lines between `{{{ footer.scripts
-                              }}}` and `{{/partial}}`
-
-
-                              ```
-
-                              <script src="{{cdn
-                              'assets/dist/theme-bundle.main.js'}}"></script>
-                               
-                              <script type="text/javascript" defer>
-                                  // Exported in app.js
-                                  window.initReact();
-                              </script>
-
-                              ```
-
-
-                              2. In `/templates/pages/checkout.html`, replace
-                              `{{{ checkout.checkout_content }}}` with the
-                              following:
-
-
-                              ```<div id="checkout-app"></div>```
-
-
-                              ### Congratulations!
-
-
-                              You should now be able to view your example React
-                              checkout by running the `stencil start` command in
-                              your theme directory and navigating to your
-                              storefront at
-                              [http://localhost:3000](http://localhost:3000).
-
-
-                              You can make further customizations to the
-                              checkout by modifying the React components in
-                              `/assets/js/checkout-app`.
-                            header:
-                              anchor: implement_steps
-                          - type: tabs
-                            data:
-                              children:
-                                - title: webpack.common.js
-                                  blocks:
-                                    - type: code
-                                      data: >
-                                        LodashPlugin =
-                                        require('lodash-webpack-plugin'),
-
-                                        path = require('path'),
-
-                                        webpack = require('webpack');
-
-
-                                        // Common configuration, with extensions
-                                        in webpack.dev.js and webpack.prod.js.
-
-                                        module.exports = {
-
-                                        bail: true,
-
-                                        context: __dirname,
-
-                                        entry: {
-                                          main: './assets/js/app.js',
-                                        },
-
-                                        module: {
-                                          rules: [
-                                              {
-                                                  test: /\.js$/,
-                                                  include: /(assets\/js|assets\\js|stencil-utils)/,
-                                                  use: {
-                                                      loader: 'babel-loader',
-                                                      options: {
-                                                          plugins: [
-                                                              'dynamic-import-webpack', // Needed for dynamic imports.
-                                                              'lodash', // Automagically tree-shakes lodash.
-                                                              'transform-regenerator', // Transforms async and generator functions.
-                                                          ],
-                                                          presets: [
-                                                              ['env', {
-                                                                  loose: true, // Enable "loose" transformations for any plugins in this preset that allow them.
-                                                                  modules: false, // Don't transform modules; needed for tree-shaking.
-                                                                  useBuiltIns: true, // Tree-shake babel-polyfill.
-                                                              }],
-                                                          ],
-                                                      },
-                                                  },
-                                              },
-                                              {
-                                                  test: /jquery-migrate/,
-                                                  use: 'imports-loader?define=>false',
-                                              },
-                                              {
-                                                  test: /\.jsx$/,
-                                                  exclude: /node_modules/,
-                                                  use: {
-                                                      loader: "babel-loader",
-                                                      options: {
-                                                          presets: ['react'],
-                                                      },
-                                                  }
-                                              },
-                                              {
-                                                  test: /\.scss$/,
-                                                  use:  [
-                                                      'style-loader',
-                                                      {
-                                                          loader: 'css-loader',
-                                                          options: {
-                                                              modules: true
-                                                          }
-                                                      },
-                                                      'sass-loader'
-                                                  ]
-                                              }
-                                          ],
-                                        },
-
-                                        output: {
-                                          chunkFilename: 'theme-bundle.chunk.[name].js',
-                                          filename: 'theme-bundle.[name].js',
-                                          path: path.resolve(__dirname, 'assets/dist'),
-                                        },
-
-                                        plugins: [
-                                          new CleanPlugin(['assets/dist'], {
-                                              verbose: false,
-                                              watch: false,
-                                          }),
-                                          new LodashPlugin, // Complements babel-plugin-lodash by shrinking its cherry-picked builds further.
-                                          new webpack.ProvidePlugin({
-                                              $: 'jquery',
-                                              jQuery: 'jquery',
-                                              'window.jQuery': 'jquery',
-                                          }),
-                                        ],
-
-                                        resolve: {
-                                          alias: {
-                                              'jquery-migrate': path.resolve(__dirname, 'node_modules/jquery-migrate/dist/jquery-migrate.min.js'),
-                                              jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
-                                              lazysizes: path.resolve(__dirname, 'node_modules/lazysizes/lazysizes.min.js'),
-                                              pace: path.resolve(__dirname, 'node_modules/pace/pace.min.js'),
-                                              'slick-carousel': path.resolve(__dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
-                                              'svg-injector': path.resolve(__dirname, 'node_modules/svg-injector/dist/svg-injector.min.js'),
-                                              sweetalert2: path.resolve(__dirname, 'node_modules/sweetalert2/dist/sweetalert2.min.js'),
-                                          },
-                                          extensions: ['.js', '.jsx'],
-                                        },
-
-                                        };
-                                      header:
-                                        title: webpack.common.js
-                                - title: app.js
-                                  blocks: []
-                                - title: checkout.html
-                                  blocks:
-                                    - type: code
-                                      data: >-
-                                        {{#partial "head"}}
-                                         
-                                        {{{ checkout.checkout_head }}}
-
-                                        {{{ stylesheet
-                                        '/assets/css/optimized-checkout.css' }}}
-
-                                        {{ getFontsCollection }}
-                                         
-                                        <script type="text/javascript">
-                                            window.language = {{{langJson 'optimized_checkout'}}};
-                                        </script>
-                                         
-                                        {{{head.scripts}}}
-                                         
-                                        {{/partial}}
-                                         
-                                        {{#partial "page"}}
-
-                                        <header class="checkoutHeader
-                                        optimizedCheckout-header">
-                                            <div class="checkoutHeader-content">
-                                                <h1 class="is-srOnly">{{lang 'checkout.title'}}</h1>
-                                                <h2 class="checkoutHeader-heading">
-                                                    <a class="checkoutHeader-link" href="{{urls.home}}">
-                                                        {{#if checkout.header_image}}
-                                                            <img alt="{{settings.store_logo.title}}" class="checkoutHeader-logo" id="logoImage" src="{{ checkout.header_image }}"/>
-                                                        {{ else }}
-                                                            <span class="header-logo-text">{{settings.store_logo.title}}</span>
-                                                        {{/if}}
-                                                    </a>
-                                                </h2>
-                                            </div>
-                                        </header>
-                                         
-                                        <div id="checkout-app"></div>
-                                         
-                                        {{{ footer.scripts }}}
-
-                                        <script src="{{cdn
-                                        'assets/dist/theme-bundle.main.js'}}"></script>
-                                         
-                                        <script type="text/javascript" defer>
-                                            // Exported in app.js
-                                            window.initReact();
-                                        </script>
-
-                                        {{/partial}}
-                                         
-                                        {{> layout/empty}}
-                                      header:
-                                        title: checkout.html
-                            header:
-                              title: Examples of files after completing this tutorial
-                          - type: text
-                            data: >-
-                              ## Additional Resources
-
-
-                              * [www.reactjs.org](www.reactjs.org)
-
-                              *
-                              [www.reactjs.org/tutorial/tutorial.html](www.reactjs.org/tutorial/tutorial.html)
-                              (Excellent tutorial on the basics of React)
-
-                              *
-                              [https://webpack.js.org/concepts/](https://webpack.js.org/concepts/)
-                            header:
-                              anchor: implement_additional"
-                    - title: Styling the Apple Pay Button
-                      route:
-                        path: /new-subpage-3
-                      data: {}
-                    - title: Customizing Invoices and Packing Slips
-                      route:
-                        path: /new-subpage-4
-                      data: {}
         - title: Javascript Customization
           route:
             path: /javascript-customization
