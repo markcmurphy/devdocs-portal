@@ -4964,26 +4964,51 @@ pages:
             path: /javascript-customization
           data:
             children:
-              - title: Adding Javascript to Stencil Theme
+              - title: Adding Javascript to Your Stencil Theme
                 route:
-                  path: /new-subpage-4
-                data: {}
+                  path: /adding-javascript
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
               - title: Basic Non NPM Example
                 route:
                   path: /new-subpage-3
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
               - title: Basic NPM example
                 route:
                   path: /new-subpage-2
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
               - title: Advanced NPM Example
                 route:
                   path: /new-subpage-1
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
               - title: Page Types and Life Cycle
                 route:
                   path: /new-subpage
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
         - title: Internationalization/Localization
           route:
             path: /internationalization-and-localization
@@ -4992,23 +5017,105 @@ pages:
               - title: Localizing Stores
                 route:
                   path: /new-subpage-3
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
               - title: Basis for Internationalization
                 route:
                   path: /new-subpage-2
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
               - title: Required Subdirectories
                 route:
                   path: /new-subpage-1
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
               - title: Localization File Structure
                 route:
                   path: /new-subpage
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
               - title: Invoking Translation Keys
                 route:
                   path: /new-subpage-4
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Invoking Translation Keys</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: text
+                      data: >-
+                        ## Translation Syntax
+
+
+                        Once keys and values are defined in the appropriate
+                        .json translation files, you invoke dynamic translation
+                        strings using the Stencil framework’s `{{lang}}` custom
+                        Handlebars helper. Your invocation would follow this
+                        generic format:
+
+
+                        `{{lang "translation.key"
+                        optionalVariable=”someValue”}}`
+
+
+                        Here is how this works. In a non-internationalized
+                        theme, a storefront page might include a static/dynamic
+                        string like this:
+
+
+                        `<a href="{{ urls.account }}">Welcome Back <span>{{
+                        customer.name }}</span></a>`
+
+
+                        The corresponding internationalized version – ready to
+                        work with any language – would substitute the fully
+                        dynamic `{{ lang... }}` Handlebars helper shown below:
+
+
+                        `<a href="{{ urls.account }}">{{ lang
+                        "header.welcome_back" name=customer.name }}</a>`
+                    - type: text
+                      data: >-
+                        ## Video Demo
+
+
+                        Watch a video demonstration of how JSON translation
+                        files' key/value pairs interact with your templates'
+                        Handlebars statements to localize your storefront
+                        pages: 
+
+
+                        <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/ygiRGfSrmnA"
+                        frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
+                    - type: callout
+                      data:
+                        body: >-
+                          Be sure to set permission 644 (rw-r–r–) on any new
+                          translation files that you add. Without these
+                          permissions, running your theme locally will fail,
+                          with multiple error messages. Bundling your theme will
+                          also fail, blocking its upload to a store.
+                        type: warning
+                        title: File Permissions Required
       blocks:
         - type: html
           data: <h1>Welcome to the BigCommerce Stencil Developer Documentation</h1>
