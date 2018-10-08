@@ -15659,6 +15659,8 @@ pages:
                                   subtitle: >-
                                     /POST
                                     https://api.bigcommerce.com/stores/{store_hash}/v3/carts
+                              - type: text
+                                data: "To get the `option_id` and `optionValue` run a /GET request aganist the `product_id`:\n\n`https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/195?include=variants`\n\nThis will return a variants array with the `id` and `option_id`.\n\n```\n\"option_values\": [\n\t\t{\n\t\t\t\t\"id\": 180,\n\t\t\t\t\"label\": \"Red\",\n\t\t\t\t\"option_id\": 232,\n\t\t\t\t\"option_display_name\": \"Color\"\n\t\t},\n\t\t{\n\t\t\t\t\"id\": 192,\n\t\t\t\t\"label\": \"Small\",\n\t\t\t\t\"option_id\": 233,\n\t\t\t\t\"option_display_name\": \"T-Shirt Size\"\n\t\t}\n]\n```\n\nThe id in the variants array corresponds to the option_id in the Cart. The optionValue corresponds to the option_id in the variants arary."
                       header:
                         title: Create a Cart
                     - type: text
