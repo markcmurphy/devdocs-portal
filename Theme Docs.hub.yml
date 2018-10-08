@@ -5184,18 +5184,80 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: <h1>Basis for Internationalization/h1>
+                      data: <h1>Basis for Internationalization</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#invoking_translation\">Translation Syntax</a></li>\n    <li><a href=\"#invoking_video\">Video Demo/a></li>\n\t</ul>\n</div>"
-              - title: Required Subdirectories
-                route:
-                  path: /required-subdirectories
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1>Required Subdirectories</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#invoking_translation\">Translation Syntax</a></li>\n    <li><a href=\"#invoking_video\">Video Demo/a></li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#basis_what-translates\">What Does and Doesn't Translate</a></li>\n    <li><a href=\"#basis_required\">Required Subdirectory</a></li>\n    <li><a href=\"#basis_schema\">The Schema</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        ## What Does and Doesn't Translate
+
+
+                        The Stencil framework allows you to define multiple
+                        translations for each theme based on a predefined
+                        schema. Theme developers are not required to localize a
+                        theme in order to make it work. BigCommerce does not
+                        provide translations for the theme’s content, however,
+                        you have the option of localizing your themes for
+                        desired target languages, based on the provided schema.
+
+
+                        * In order for theme translation to occur, you must
+                        create a JSON file for each language you choose to
+                        support and include key/value pairs for the text
+                        blocks/parameters that you choose to translate. The
+                        following pages provide details for these steps.
+
+
+                        * The translated values will be displayed to visitors
+                        who have selected the corresponding language in their
+                        browser's locale preferences. The Stencil framework
+                        automatically detects the Accept-Language request HTTP
+                        header from the visitor's browser.
+
+
+                        * Where a Stencil theme contains no JSON file matching
+                        any of the visitor's preferred languages, it will fall
+                        back to the values in the default English-language JSON
+                        file.
+
+
+                        * Stencil's multi-language capabilities are currently
+                        limited to these particular strings that you specify
+                        within the theme. The Stencil framework does not
+                        currently translate content rendered from a store's
+                        catalog database – for example, products' names.
+
+
+                        * If you want to fully support multiple languages, we
+                        recommend that you set up a separate storefront for each
+                        language. This will enable you to thoroughly customize
+                        all of your content (including your product catalog) for
+                        each target audience.
+                    - type: text
+                      data: >
+                        ## Required Subdirectory
+
+
+                        Within each theme, a top level `/lang/` subdirectory is
+                        reserved for internationalization. This `.../lang/`
+                        subdirectory, with its contained en.json file (which
+                        contains English-language defaults), must be present in
+                        order for a Stencil theme to function.
+
+
+                        You can localize a theme by providing other appropriate
+                        .json translation files in the `.../lang/` subdirectory.
+                        One file is required for each language that you want to
+                        support. (These can include non-U.S. versions of
+                        English, each with their own spellings.)
+
+
+                        Within these files, you would define key values
+                        corresponding to the text blocks in your theme's
+                        templates that you choose to abstract into translatable
+                        keys.
+                    - type: text
+                      data: "## The Schema\n\nName your translation files based on the <a href=\"https://tools.ietf.org/html/bcp47\">BCP47 specification</a> of language and region codes. For a summary of how these codes are designed, see the World Wide Web Consortium’s <a href=\"http://www.w3.org/International/articles/language-tags/\">overview</a>.<br>\n\n <br>\n\nYou can find a list of code subtags in the <a href=\"http://www.iana.org/assignments/language-subtag-registry\">IANA Language Subtag Registry</a>. These subtags are primitives that you can combine to create file names’ prefixes for individual regions. Here are some examples:\n\n<table>\n\t\t<tr>\n    <th>Localization file name</th>\n    <th>Corresponding regional language variant</th>\n    <th>Subtags used</th>\n  </tr>\n  <tr>\n    <td class=\"\">en.json</td>\n    <td class=\"\">English (default file)</td>\n    <td class=\"\">en (English)</td>\n  </tr>\n  <tr>\n    <td class=\"\">en-US.json</td>\n    <td class=\"\">American English</td>\n    <td class=\"\">en (English) + US (United States)</td>\n  </tr>\n  <tr>\n    <td class=\"\">en-AU.json</td>\n    <td class=\"\">Australian English</td>\n    <td class=\"\">en (English) + AU (Australia)</td>\n  </tr>\n  <tr>\n    <td class=\"\">fr.json</td>\n    <td class=\"\">French</td>\n    <td class=\"\">en (French)</td>\n  </tr>\n  <tr>\n    <td class=\"\">fr-CA.json</td>\n    <td class=\"\">Canadian French</td>\n    <td class=\"\">fr (French) + CA (Canada)</td>\n  </tr>\n</table>\n\n\nFor more examples of frequently-used codes, see the following linked table’s \"LCID string\" (middle) column: <a href=\"http://www.science.co.il/Language/Locale-codes.asp\">http://www.science.co.il/Language/Locale-codes.asp</a>."
               - title: Localization File Structure
                 route:
                   path: /localization-file-structure
