@@ -8662,15 +8662,21 @@ pages:
                               the Stores API on behalf of the user. Store this
                               value securely. |
 
-                              | scope | string | List of authorization scopes. |
+                              | user | object | The user object |
 
                               | id | integer | Unique identifier for the user.
                               Store this value to identify the user at load and
                               uninstall. |
 
+                              | username | Username of the account requesting
+                              the acess_token. This is most likely the email
+                              address. |
+
                               | email | string | The user’s email address. Store
                               this value to identify the user at load and
                               uninstall. |
+
+                              | scope | string | List of authorization scopes. |
 
                               | context | string | The store hash, as well as a
                               base path: `stores/{_store_hash_}` |
@@ -8679,13 +8685,14 @@ pages:
                           - type: code
                             data: |-
                               {
-                                "access_token": "ACCESS_TOKEN",
-                                "scope": "store_v2_orders",
-                                "user": {
-                                  "id": 24654,
-                                  "email": "merchant@mybigcommerce.com"
-                                },
-                                "context": "stores/STORE_HASH"
+                                  "access_token": "2z1tjsu08vhyu7qei0q698ci0i8nvmd",
+                                  "scope": "store_v2_default store_v2_products",
+                                  "user": {
+                                      "id": 493246,
+                                      "username": "jane.doe@bigcommerce.com",
+                                      "email": "jane.doe@bigcommerce.com"
+                                  },
+                                  "context": "stores/{store_hash}"
                               }
                             header:
                               title: Initial Installation
