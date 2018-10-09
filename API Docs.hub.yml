@@ -16418,11 +16418,46 @@ pages:
             path: /api-reference
           data:
             children:
+              - title: Catalog
+                route:
+                  path: /catalog-api
+                data:
+                  $ref: ./V3 Catalog.oas2.yml
+              - title: Store
+                route:
+                  path: /store-api
+                data:
+                  children:
+                    - title: Store
+                      route:
+                        path: /v2-store
+                      data:
+                        $ref: ./V2 Store.oas2.yml
+                    - title: ' Currency'
+                      route:
+                        path: /v2-currency
+                      data:
+                        $ref: ./V2 Currency.oas2.yml
+                        children: []
+                    - title: Geography
+                      route:
+                        path: /v2-geography
+                      data:
+                        $ref: ./V2 Geography.oas2.yml
+                    - title: Tax Class
+                      route:
+                        path: /v2-tax-classes
+                      data:
+                        $ref: ./V2 Tax.oas2.yml
               - title: Cart & Checkout
                 route:
                   path: /cart-checkout
                 data:
                   children:
+                    - title: Content & Marketing
+                      route:
+                        path: /content-marketing
+                      data: {}
                     - title: Storefront Cart
                       route:
                         path: /storefront-cart
@@ -16443,11 +16478,6 @@ pages:
                         path: /server-server-checkout
                       data:
                         $ref: ./Server to Server Checkout.oas2.yml
-              - title: Catalog
-                route:
-                  path: /catalog-api
-                data:
-                  $ref: ./V3 Catalog.oas2.yml
               - title: Order Transactions
                 route:
                   path: /order-transactions
@@ -16493,16 +16523,6 @@ pages:
             path: /content-api
           data:
             $ref: ./V3 Content.oas2.yml
-        - title: Themes
-          route:
-            path: /themes-api
-          data:
-            $ref: ./V3 Themes.oas2.yml
-        - title: Geography
-          route:
-            path: /v2-geography
-          data:
-            $ref: ./V2 Geography.oas2.yml
         - title: Marketing
           route:
             path: /v2-marketing
@@ -16523,21 +16543,11 @@ pages:
             path: /v2-store-content
           data:
             $ref: ./V2 Store Content.oas2.yml
-        - title: Tax Class
+        - title: Themes
           route:
-            path: /v2-tax-classes
+            path: /themes-api
           data:
-            $ref: ./V2 Tax.oas2.yml
-        - title: ' Currency'
-          route:
-            path: /v2-currency
-          data:
-            $ref: ./V2 Currency.oas2.yml
-        - title: Store
-          route:
-            path: /v2-store
-          data:
-            $ref: ./V2 Store.oas2.yml
+            $ref: ./V3 Themes.oas2.yml
   /changelog:
     title: Changelog
     data:
