@@ -16131,12 +16131,37 @@ pages:
                         whatever website the function is being run on. 
 
 
-                        The other is `data`. Note that with `data`, the other
-                        curly braces, {}, have already been defined, so they can
-                        be left out.  Data includes the lineItems array which
-                        has a `productId` and `quantity`. This uses a simplified
+                        The other is `data`. Note that with `data`, the curly
+                        braces, {}, have already been defined, so they can be
+                        left out.  Data includes the lineItems array which has a
+                        `productId` and `quantity`. This uses a simplified
                         example. For more in-depth examples see the [Create
-                        Cart]() endpoint.  
+                        Cart](/api-docs/api-reference/cart-checkout-api/storefront-cart/cart/postcarts)
+                        endpoint.  
+                    - type: text
+                      data: >-
+                        After then line items, fetch uses
+                        (then)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then]
+                        which accepts the data that is returned and print it to
+                        the console. 
+
+                        If there is an error the next line
+                        (catch())[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch]
+                        will print the return error to the console. 
+
+
+                        Next, the function postData is created. As explained it
+                        accepts the store URL and data object. It returns fetch.
+                        Fetch takes a URL, method, in this case, POST since it
+                        is creating a cart.
+
+
+                        [Credentials](https://github.com/github/fetch#sending-cookies)
+                        are set to [same-origin](). The credentials that are set
+                        will depend on your app setup. Review your app setup
+                        carefully, otherwise, this will cause
+                        [CORs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+                        errors. 
                     - type: code
                       data: |
                         postData(`/api/storefront/cart`, {
