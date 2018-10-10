@@ -16124,6 +16124,23 @@ pages:
                           defined.
                     - type: text
                       data: >-
+                        ```
+
+                        postData("/api/storefront/cart", {
+                                "lineItems": [
+                                {
+                                    "quantity": 1,
+                                    "productId": 196
+                                },
+                                {
+                                    "quantity": 1,
+                                    "productId": 184
+                                }
+                                ]}
+                            )
+                        ```
+
+
                         The function accepts two inputs. The first is a URL
                         string, in this case, is `/api/storefront/cart`. There
                         is no need to write out the entire store URL when making
@@ -16138,8 +16155,14 @@ pages:
                         example. For more in-depth examples see the [Create
                         Cart](/api-docs/api-reference/cart-checkout-api/storefront-cart/cart/postcarts)
                         endpoint.  
-                    - type: text
-                      data: >-
+
+
+                        ```
+                          .then(data => console.log(JSON.stringify(data))) 
+                          .catch(error => console.error(error));
+                        ```
+
+
                         After then line items, fetch uses
                         (then)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then]
                         which accepts the data that is returned and print it to
@@ -16147,7 +16170,22 @@ pages:
 
                         If there is an error the next line
                         (catch())[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch]
-                        will print the return error to the console. 
+                        will print the return error to the console.
+
+
+                        ```
+
+                        function postData(url = ``, data = {}) {
+                              return fetch(url, {
+                                  method: "POST", // *GET, POST, PUT, DELETE, etc.
+                                  credentials: "same-origin",
+                                  headers: {
+                                      "Content-Type": "application/json; charset=utf-8",          },
+                                  body: JSON.stringify(data), // body data type must match "Content-Type" header
+                              })
+                              .then(response => response.json()); // parses response to JSON
+                          }
+                        ```
 
 
                         Next, the function postData is created. As explained it
@@ -16162,6 +16200,35 @@ pages:
                         carefully, otherwise, this will cause
                         [CORs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
                         errors. 
+
+
+
+                        | Credential | When to Use |
+
+                        | -- | -- |
+
+                        | same-origin | If the request and response server is
+                        the same. Ex. bigcommerce.com => bigcommerce.com |
+
+                        | include | If the request and response domain are
+                        different. Ex. bigcommerce.com =>
+                        developers.bigcommerce.com  |
+
+                        | omit | To disable sending cookies to any domain |
+
+
+                        Content-Type is set to application/json. This is
+                        optional and does not change if the data is returned or
+                        not. 
+
+
+                        `body: (JSON.stringify()` converts [JavaScript
+                        values](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+
+                        to a string.
+
+
+                        `.then()` is parsing the response to JSON. 
                     - type: code
                       data: |
                         postData(`/api/storefront/cart`, {
