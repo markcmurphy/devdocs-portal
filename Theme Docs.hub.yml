@@ -5147,6 +5147,8 @@ pages:
                       header:
                         anchor: adding_bundling-and-minification
                     - type: text
+                      data: '---'
+                    - type: text
                       data: >-
                         ## Development Options
 
@@ -5176,6 +5178,8 @@ pages:
                       header:
                         anchor: adding_development-options
                     - type: text
+                      data: '---'
+                    - type: text
                       data: >-
                         ## Using npm (Node Package Manager)
 
@@ -5202,6 +5206,8 @@ pages:
                       header:
                         anchor: adding_using-npm
                     - type: text
+                      data: '---'
+                    - type: text
                       data: >-
                         ## Placing Modules in assets/js/
 
@@ -5210,6 +5216,10 @@ pages:
                         `assets/js/`, to contain new JavaScript modules. The
                         constraint is that all JavaScript files in each module
                         must use the `.js` file extension.
+                      header:
+                        anchor: adding_placing-modules
+                    - type: text
+                      data: '---'
                     - type: text
                       data: >-
                         ## Theme-Specific JavaScript Modules
@@ -5221,6 +5231,10 @@ pages:
                         types. Others are common modules that can be used in
                         other modules. Still others are global modules that are
                         available on every page.
+                      header:
+                        anchor: adding_theme-specific-js
+                    - type: text
+                      data: '---'
                     - type: text
                       data: >-
                         ## Mapping Page Types to JavaScript Modules
@@ -5323,8 +5337,16 @@ pages:
                                 const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
                                 [...]
                         ```
+                      header:
+                        anchor: adding_mapping-page
+                    - type: text
+                      data: '---'
                     - type: text
                       data: "## Mapping Custom Templates to JavaScript Modules\n\nIf you add [custom page templates]() to your theme, you can edit the same `assets/js/app.js` file to map each custom template to an appropriate JavaScript module.\n\nIn the example below, we have added the highlighted `if` statement to map a file called `my-custom-template`:\n\n```\nwindow.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {\n    const context = JSON.parse(contextJSON || {});\n\n    return {\n        load() {\n            $(async () => {\n                let globalClass;\n                let pageClass;\n                let PageClass;\n\n\nif (context.template === 'pages/custom/page/my-custom-template') {\n           // do something, import a file, call a function ...\n}\n\n                [...] \n```\n\nIn the theme's `templates/layout/base.html` template, we've added the `{{inject 'template' template}}` just above `{{{snippet 'htmlhead'}}}` statement to inject the custom template:\n\n```\n<head>\n        <title>{{ head.title }}</title>\n        {{{ head.meta_tags }}}\n        {{{ head.config }}}\n\n        [...]\n\n        {{{head.scripts}}}\n        {{{head.rsslinks}}}\n\n        {{inject 'themeSettings' theme_settings}}\n        {{inject 'genericError' (lang 'common.generic_error')}}\n        {{inject 'maintenanceMode' settings.maintenance}}\n        {{inject 'urls' urls}}\n        {{inject 'template' template}} //injects the custom template\n        {{{snippet 'htmlhead'}}}\n    </head> \n\t\t\n\t\t```\n\n\n"
+                      header:
+                        anchor: adding_mapping-custom
+                    - type: text
+                      data: '---'
                     - type: text
                       data: >-
                         ## Summary
@@ -5362,6 +5384,8 @@ pages:
 
                         * You can map JavaScript modules to custom page
                         templates by editing the same `assets/js/app.js` file.
+                      header:
+                        anchor: adding_summary
               - title: Basic Non NPM Example
                 route:
                   path: /new-subpage-3
