@@ -10491,7 +10491,8 @@ pages:
 
 
                               *Never worked with webhooks before? Check out the
-                              tutorial on creating webhooks.*
+                              [tutorial on creating
+                              webhooks](/api-docs/getting-started/webhooks/setting-up-webhooks).*
 
 
                               All webhooks requests must include the following
@@ -10545,7 +10546,7 @@ pages:
                             config:
                               mode: json
                           - type: text
-                            data: "| Name |Description | Type\n|--|--|--|\n| id | A read-only value that uniquely identifies a webhook object. Do not attempt to set this value in a PUT or POST. | integer|\n| client_id | The OAuth client ID that uniquely identifies your application. BigCommerce returns this name-value pair in the JSON body of its responses. | string |\n| store_hash | \tThe hash value that uniquely identifies the store. Your application does not need to set this value via the JSON object; instead, you pass it in the path of your API requests. | string |\n|scope| Value is the event you would like to listen for. See List of Webhook Events for the full list of possibilities. Wild Cards are supported for scope. **(Required)** | string |\n| destination | value is the callback’s fully qualified URI. This should be an endpoint configured on your app server to receive webhook payloads. **(Required)** | string |\n| headers |The headers object contains one or more name-value pairs, both string values. If you choose to include a headers object, BigCommerce will include the name-value pair(s) in the HTTP header of its POST requests to your callback URI at runtime. While this feature could be used for any purpose, one is to use it to set a secret authorization key and check it at runtime. This provides an additional level of assurance that the POST request came from BigCommerce instead of some other party, such as a malicious actor. (Optional) | string |\n|is_active | Value specifies whether a webhook is active or inactive. By default, new webhooks will be set to be inactive and will have a blank value. If you want to create a webhook that should be active initially, you can pass the following name-value pair: \"is_active\": true. (Optional) | boolean |\n| created_at | The time at which the webhook was created.| date-time Unix Epoch|\n| updated_at | The time at which the webhook was last updated. | date-time Unix Epock|"
+                            data: "| Name |Description | Type\n|--|--|--|\n| id | A read-only value that uniquely identifies a webhook object. Do not attempt to set this value in a PUT or POST. | integer|\n| client_id | The OAuth client ID that uniquely identifies your application. BigCommerce returns this name-value pair in the JSON body of its responses. | string |\n| store_hash | \tThe hash value that uniquely identifies the store. Your application does not need to set this value via the JSON object; instead, you pass it in the path of your API requests. | string |\n|scope| Value is the event you would like to listen for. See List of Webhook Events for the full list of possibilities. Wild Cards are supported for scope. **(Required)** | string |\n| destination | Value is the callback’s fully qualified URI. This should be an endpoint configured on your app server to receive webhook payloads. **(Required)** | string |\n| headers |The headers object contains one or more name-value pairs, both string values. If you choose to include a headers object, BigCommerce will include the name-value pair(s) in the HTTP header of its POST requests to your callback URI at runtime. While this feature could be used for any purpose, one is to use it to set a secret authorization key and check it at runtime. This provides an additional level of assurance that the POST request came from BigCommerce instead of some other party, such as a malicious actor. (Optional) | string |\n|is_active | Value specifies whether a webhook is active or inactive. By default, new webhooks will be set to be inactive and will have a blank value. If you want to create a webhook that should be active initially, you can pass the following name-value pair: \"is_active\": true. (Optional) | boolean |\n| created_at | The time at which the webhook was created.| date-time Unix Epoch|\n| updated_at | The time at which the webhook was last updated. | date-time Unix Epock|"
                           - type: text
                             data: >-
                               An HTTP 201 response indicates that the webhook
@@ -10671,16 +10672,15 @@ pages:
                               mode: json
                           - type: text
                             data: >-
-                              There is not a way to delete all webhooks on a
-                              store. Run a GET request for the webhook id, then
-                              send a request to the delete URI to remove each
-                              one. It returns a 200 OK for the response with the
-                              deleted hook. When requesting a list of hook, the
-                              hook id is not available.
+                              Webhooks must be deleted individually, by ID. Run
+                              a GET request to the hooks resource to retrieve
+                              the webhook IDs, then send a request to the delete
+                              URI to remove each one. Each successfully deleted
+                              hook will return a 200 OK. 
 
 
                               If webhooks are no longer being used, either
-                              delete them or set `is_active:false`.
+                              delete them or set `"is_active":false`.
                           - type: text
                             data: '---'
                           - type: text
@@ -10694,8 +10694,8 @@ pages:
 
 
                               Need to set up a quick destination URL for
-                              testing? See Tools for Debugging and Testing
-                              Webhooks.
+                              testing? See [Tools for Debugging and Testing
+                              Webhooks](#about-webhooks_tools-for-debugging-and-testing-webhooks).
                             header:
                               anchor: about-webhooks_receiving-the-callback
                           - type: text
@@ -10703,11 +10703,6 @@ pages:
                           - type: text
                             data: >-
                               ## Respond to Webhook Callbacks
-
-
-                              You’ll need to build an application and configure
-                              your server to receive the callback we send when
-                              events are triggered.
 
 
                               To acknowledge that you received the webhook
@@ -10719,11 +10714,6 @@ pages:
                               you did not receive the webhook. When a webhook is
                               not received (for whatever reason), we will retry
                               the callback as described below.
-
-
-                              Need to set up a quick destination URL for
-                              testing? See [Tools for testing
-                              webhooks.](#about-webhooks_tools-for-debugging-and-testing-webhooks)
                             header:
                               anchor: about-webhooks_respond-to-webhook-callbacks
                           - type: text
@@ -10739,14 +10729,14 @@ pages:
                               received, the dispatch service will take the
                               following actions:
 
-                              If an app server responds to a webhook payload
+                              * If an app server responds to a webhook payload
                               with anything other than a 2_xx_ response, or
                               times out, the app will be blocked for 60 seconds.
 
-                              Webhooks created during that 60-second block will
-                              be queued up to send on the next scheduled retry
-                              attempt after the block expires, so that webhooks
-                              are not lost.
+                              * Webhooks created during that 60-second block
+                              will be queued up to send on the next scheduled
+                              retry attempt after the block expires, so that
+                              webhooks are not lost.
 
 
                               The webhook dispatcher will then attempt several
@@ -10805,8 +10795,10 @@ pages:
 
 
                               * Webhook payloads contain minimal information
-                              about the store and event, for example the ID
-                              identifying the order or cart. To access
+                              about the store and event. For example, in the
+                              case of a webhook that listens for changes to an
+                              order or cart, we send only the ID identifying the
+                              order or cart that's been modified. To access
                               potentially sensitive information on a store, a
                               malicious actor would need to be fully
                               authenticated against that store’s API in order to
@@ -10918,14 +10910,15 @@ pages:
                               is required.
 
 
-                              Need help on ngrok and webhooks see our
+                              For more details on ngrok and webhooks, see our
                               [tutorial](/api-docs/getting-started/webhooks/setting-up-webhooks).
 
 
                               **[Webhook Tester](https://webhook.site/#/)**  
 
-                              This allows for webhooks to be quickly tested or
-                              checked. 
+                              Webhook Tester is a service that generates a
+                              temporary destination URL, allowing webhooks to be
+                              quickly tested or checked. 
                             header:
                               anchor: >-
                                 about-webhooks_tools-for-debugging-and-testing-webhooks
