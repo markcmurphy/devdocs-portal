@@ -5395,6 +5395,51 @@ pages:
                       data: <h1>Hello World!</h1>
                     - type: html
                       data: <h1>Hello World!</h1>
+                    - type: text
+                      data: '## Locating Page-Specific JavaScript '
+                    - type: text
+                      data: >-
+                        ## Adding Custom JS Functions 
+
+
+                        In the code example below, we have added three custom
+                        JavaScript functions (`blogHello`, `blogGreatday` and
+                        `blogGoodbye`) to the page by populating `PageManager`.
+                        Note how each function is called at a different time
+                        during the page's life cycle:
+
+
+
+                        ```
+
+                        import PageManager from '../page-manager';
+
+
+                        export default class Blog extends PageManager {
+                            blogHello() {
+                                alert('Hello world from blog.js');
+                            }
+                            blogGreatday() {
+                                alert('Have a great day from blog.js');
+                            }
+                            blogGoodbye() {
+                                alert('Goodbye world from blog.js');
+                            }
+                            before(next) {
+                                this.blogHello();
+                                next();
+                            }
+                            loaded(next) {
+                                this.blogGreatday();
+                                next();
+                            }
+                            after(next) {
+                                this.blogGoodbye();
+                                next();
+                            }
+                        }
+
+                        ```
               - title: Basic NPM example
                 route:
                   path: /new-subpage-2
