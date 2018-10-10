@@ -16104,7 +16104,71 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
-                      data: '## '
+                      data: >-
+                        ## Basic Fetch API
+
+
+                        [Below](#working-fetch-api_create-cart) is the basic
+                        function we will be using to work with the storefront
+                        APIs.
+
+
+                        First, we have `postData()` which is calling the
+                        function. 
+                    - type: callout
+                      data:
+                        body: >-
+                          JavaScript allows for function declarations to be
+                          [hoisted](https://scotch.io/tutorials/understanding-hoisting-in-javascript#toc-hoisting-functions),
+                          so the function postData can be called before being
+                          defined.
+                    - type: text
+                      data: >-
+                        The function accepts two inputs. The first is a URL
+                        string, in this case, is `/api/storefront/cart`. There
+                        is no need to write out the entire store URL when making
+                        the request from the browser since it will append to
+                        whatever website the function is being run on. 
+
+
+                        The other is `data`. Note that with `data`, the other
+                        curly braces, {}, have already been defined, so they can
+                        be left out.  Data includes the lineItems array which
+                        has a `productId` and `quantity`. This uses a simplified
+                        example. For more in-depth examples see the [Create
+                        Cart]() endpoint.  
+                    - type: code
+                      data: |
+                        postData(`/api/storefront/cart`, {
+                                "lineItems": [
+                                {
+                                    "quantity": 1,
+                                    "productId": 196
+                                },
+                                {
+                                    "quantity": 1,
+                                    "productId": 184
+                                }
+                                ]}
+                            )
+                          .then(data => console.log(JSON.stringify(data))) 
+                          .catch(error => console.error(error));
+
+                        function postData(url = ``, data = {}) {
+                              return fetch(url, {
+                                  method: "POST", // *GET, POST, PUT, DELETE, etc.
+                                  credentials: "same-origin",
+                                  headers: {
+                                      "Content-Type": "application/json; charset=utf-8",          },
+                                  body: JSON.stringify(data), // body data type must match "Content-Type" header
+                              })
+                              .then(response => response.json()); // parses response to JSON
+                          }
+                      header:
+                        title: Create a Cart
+                        anchor: working-fetch-api_create-cart
+                      config:
+                        mode: js
         - title: Orders
           route:
             path: /orders
