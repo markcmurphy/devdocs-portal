@@ -10935,7 +10935,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro/a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Fire Webhooks</a></li>\n        <li><a href=\"#setting-up-webhooks_update-via-api\">Update Via the API</a></li>\n        <li><a href=\"#setting-up-webhooks_next-steps\">Next Steps</a></li>\n        <li><a href=\"#setting-up-webhooks_roubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro/a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_register-a-webhook\">Register a Webhook</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Trigger a Webook Event</a></li>\n        <li><a href=\"#setting-up-webhooks_next-steps\">Next Steps</a></li>\n        <li><a href=\"#setting-up-webhooks_roubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ## Intro
@@ -10943,7 +10943,8 @@ pages:
 
                               Webhooks allow your application to receive
                               real-time notifications when an event, like a new
-                              order or a change to product inventory, occurs.
+                              order or a change to product inventory, occurs on
+                              a BigCommerce store.
 
 
                               When testing your application locally, ngrok is a
@@ -10956,8 +10957,8 @@ pages:
 
 
                               In this tutorial, we'll install ngrok, register a
-                              webhook on your store, and then observe the
-                              response when the webhook event is triggered.
+                              webhook on your store, and observe the response
+                              when the webhook event is triggered.
                             header:
                               anchor: setting-up-webhooks_intro
                           - type: text
@@ -11006,23 +11007,15 @@ pages:
                               ## Install ngrok
 
 
-                              There are three ways to install ngrok: 
-
-                              - Install manually and then set the $PATH so ngrok
-                              can be used globally. 
-
-                              - Download as an
-                              [npm](https://www.npmjs.com/package/ngrok)
-                              module. 
-
-                              - Download manually and place in the project
-                              folder. (Method we are using)
+                              Download ngrok and place it in your project
+                              folder:
 
 
                               ### Mac/Linux
 
 
-                              1. Visit https://ngrok.com/ and click on download.
+                              1. Visit https://ngrok.com/ and click
+                              **download**.
 
                               2. Choose the version for your operating system.
 
@@ -11038,6 +11031,22 @@ pages:
                               `unzip
                               /Users/your-computer/Downloads/ngrok-stable-darwin-amd64.zip
                               -d /Users/your-computer/Documents/webhooks-test`
+
+
+                              ### Windows
+
+
+                              1. Visit https://ngrok.com/ and click
+                              **download**.
+
+                              2. Choose the version for your operating system.
+
+                              3. Unzip ngrok and place the application in the
+                              project folder that you created.
+
+                              4. Make sure the folder is set in your [$PATH
+                              environment
+                              variable](https://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them).  
                             header:
                               anchor: setting-up-webhooks_install-ngrok
                           - type: callout
@@ -11050,15 +11059,15 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: "## Create Express App\n\n1. In the terminal run `npm init`. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js. `touch index.js` or `copy nul > index.js` for Windows.\n4. Install [Express](https://expressjs.com/en/starter/installing.html) using the terminal in the same project folder. `npm install express --save`\t\t\t "
+                            data: "## Create Express App\n\n1. In the terminal run `npm init`. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in \"main\", `index.js`. \n3. Create a file in your project folder called index.js. `touch index.js` or `copy nul > index.js` for Windows.\n4. Install [Express](https://expressjs.com/en/starter/installing.html) using the terminal in the same project folder. `npm install express --save`\t\t\t "
                             header:
                               anchor: setting-up-webhooks_create-express-app
                           - type: callout
                             data:
                               type: success
                               body: >-
-                                At this point your project folder should have
-                                similar contents:
+                                At this point your project folder should contain
+                                the following:
 
                                 index.js
 
@@ -11105,8 +11114,8 @@ pages:
 
 
 
-                              From Express
-                              [Website](https://expressjs.com/en/starter/basic-routing.html):
+                              From [Express
+                              website](https://expressjs.com/en/starter/basic-routing.html):
 
                               `app.METHOD(PATH, HANDLER)`
 
@@ -11127,19 +11136,15 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
-                              ## Start the App and ngrok
+                              ## Start the App and ngrok 
 
 
-                              We are going to start the app and visit the ngrok
-                              url to see the status of our webhooks. 
+                              1. Open two terminal tabs. In each tab, naviagate
+                              to your project folder. 
 
+                              2. In one tab run the app: `node index.js`
 
-                              1. Open two terminal tabs. They both should be in
-                              your project folder. 
-
-                              2. In one tab run the app. `node index.js`
-
-                              3. In the other start ngrok. `./ngrok http 3000`
+                              3. In the other start ngrok: `./ngrok http 3000`
                             header:
                               anchor: setting-up-webhooks_start-the-app-ngrok
                           - type: tabs
@@ -11168,19 +11173,22 @@ pages:
                                         title: nrgok terminal
                           - type: text
                             data: >-
-                              ngrok returns two values we need for webhooks. 
+                              The terminal tab running ngrok returns two values
+                              we will need to register a webhook and view the
+                              response: 
 
                               - Web Interface: Where you can monitor the hook
                               from a browser. `https://127.0.0.1:4040`
 
                               - Forwarding: The webhook destination. Make note
-                              of the https version. In this example its
-                              https://6a35e97b.ngrok.io.
+                              of the https version, for example
+                              `https://6a35e97b.ngrok.io`.
 
 
-                              4. Open a web browser and copy in your Web
-                              Interface URL. `http://127.0.0.1:4040` -  This is
-                              where the webhooks will appear when they fire.
+                              4. Open a web browser and paste in your Web
+                              Interface URL. `http://127.0.0.1:4040` -  The web
+                              interface records HTTP requests to your tunnel
+                              URL.
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500191661
@@ -11194,17 +11202,28 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
-                              The webhook we are going to subscribe to is
-                              `store/product/updated`. 
+                              ## Register a webhook
 
 
-                              1. Create a POST request using the try it now box
-                              below or your api enviroment of
-                              choice.`https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks`.
-                              Replace store_hash with your store.
+                              The webhook event we'll subscribe to is
+                              `store/product/updated`. The
+                              `store/product/updated` event occurs when product
+                              details such as name, price, or description are
+                              edited.
 
-                              2. Create a body request with the webhook we are
-                              subscribing to and your forwarding url:
+
+                              1. Create a POST request to the following request
+                              URL using the Try it Now box below or your API
+                              client of choice:
+
+                              `https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks`
+                              Replace {{store_hash}} with the correct value from
+                              your store's API path.
+
+                              2. Create the POST request body, where "scope" is
+                              the webhook event we are subscribing to and
+                              "destination" is your ngrok forwarding URL with
+                              the `/webhooks` path appended:
 
 
                               ```
@@ -11215,26 +11234,23 @@ pages:
                                "is_active": true
                               }
 
-                              ```
+                              ```  
 
 
-                              The destination url is the forwarding url from
-                              ngrok and /webhooks, matching the URL path set in
-                              the app POST.  
-
-
-                              3. Update the headers to have:
+                              3. Update the request headers to contain:
 
                               ```
                                   Accept: application/json
                                   Content-Type: application/json
-                                  X-Auth-Client: {{the OAuth client id}}
-                                  X-Auth-Token: {{the OAuth token}}
+                                  X-Auth-Client: {{your OAuth client id}}
+                                  X-Auth-Token: {{your OAuth token}}
                               ```
 
-                              4. Check all the values and then hit POST. The
-                              response will be 201 Created if headers and scope
-                              are correct.
+                              4. Check all values and then hit POST. If your
+                              request was successful, the response will be 201
+                              Created.
+                            header:
+                              anchor: setting-up-webhooks_register-a-webhook
                           - type: http
                             data:
                               method: post
@@ -11274,20 +11290,27 @@ pages:
                               mode: json
                           - type: text
                             data: >-
-                              ## Fire Webhooks
+                              ## Trigger a Webhook Event
 
-                              You can fire the webhook in two ways. Either the
-                              API or the store’s control panel. We are going to
-                              cover both.
+                              Webhooks can be triggered when a subscribed event
+                              occurs due to user activity on the storefront or
+                              in the control panel, or by actions performed via
+                              API. To illustrate this, we'll trigger the
+                              `store/product/updated` webhook in both ways.
 
 
-                              ### Update via the Control Panel
+                              ### Update Via the Control Panel
 
 
-                              1. From your store’s control panel, navigate to
-                              Products > View. Choose a product and change some
-                              of the information. In this case, the word Hoodie
-                              was added to the product name. Then click save.
+                              1. In your store’s control panel, navigate to
+                              Products > View. Choose a product and edit the
+                              product name, description or other details. For a
+                              full list of product fields that can trigger a
+                              `store/product/updated` event, see the list of
+                              [product Webhook
+                              Events](/api-docs/getting-started/webhooks/webhook-events#webhook-events_products). 
+
+                              2. Click **Save**.
                             header:
                               anchor: setting-up-webhooks_fire-webhooks
                           - type: image
@@ -11302,7 +11325,7 @@ pages:
                               subtitle: Products > View
                           - type: text
                             data: >-
-                              2. Visit the Ngrok web interface address (in the
+                              2. Visit the ngrok web interface address (in the
                               sample app it’s http://127.0.0.1:4040), and check
                               for a 200 response. 
                           - type: image
@@ -11316,14 +11339,18 @@ pages:
                               title: ngrok Web Interface
                           - type: text
                             data: >-
-                              Under Summary you can see the webhook has fired.
-                              It returned the text OK. This can be changed. In
-                              the original app, res.send(‘OK’). This can be
-                              changed to say something different or even post
-                              the response to another app.  
+                              The Summary shows that the webhook has fired and
+                              our Express app has returned a 200 response along
+                              with the text OK. The response is generated by
+                              `res.send(‘OK’)` in our app code, but this text
+                              can be changed to say something different or even
+                              post the response to another app. For more info,
+                              see [Express
+                              routing](https://expressjs.com/en/guide/routing.html).  
 
 
-                              The response will also show in the terminal. 
+                              The record of the HTTP request will also show in
+                              the terminal tab running ngrok. 
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500989467
@@ -11336,24 +11363,7 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: >-
-                              ## Update Via the API
-
-                              Create a PUT request to the product that needs to
-                              be updated. 
-
-
-                              `https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/124`
-
-
-                              In this example, the price of product_id 124 is
-                              being changed to 12.99.
-
-
-                              After hitting send, check the ngrok web interface.
-                              You may have more or less events based on how many
-                              times the product has been updated in the previous
-                              step. 
+                            data: "### Update Via the API\nCreate a PUT request to a product you'd like to update using the following request URL, replacing `124` with the product's ID: \n\n`https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/124`\n\nIn this example, the price of product_id 124 is being changed to 12.99:\n\n```\n{\n\t\"price\": 12.99\n}\n```\n\nAfter hitting send, check the ngrok web interface. You may see a single event or several based on how many times the product has been updated in the previous step. "
                             header:
                               anchor: 'setting-up-webhooks_update-via-api '
                           - type: http
@@ -11384,19 +11394,23 @@ pages:
                               maxHeight: '800'
                           - type: text
                             data: >-
-                              That’s it. In this walkthrough you created a
-                              webhook, setup a server to accept the response and
-                              used Express. Some extra things are to change the
-                              text in res.send() to have a custom response,
-                              print the response to a webpage or setup a
-                              different webhook. 
+                              That’s it! In this walkthrough you created a
+                              webhook, set up a server to accept the response,
+                              and used ngrok to observe the webhook payload. 
+
+
+                              Want to keep going? Try changing the text in
+                              res.send() to a custom response, print the
+                              response to a webpage, or register a different
+                              webhook event. 
                           - type: callout
                             data:
                               body: >-
-                                Unless you have paid for Ngrok, the URL is only
-                                valid for a few hours. After that, the webhook
-                                will stop working. Send a [DELETE]() request to
-                                the specific webhook id. 
+                                Unless you have a paid ngrok account, the
+                                destination URL will only be valid for a few
+                                hours. After that, the webhook will stop
+                                working. Send a [DELETE]() request to the
+                                specific webhook ID to disable the hook. 
                               type: warning
                               title: URL Timeout
                           - type: http
@@ -11422,12 +11436,12 @@ pages:
 
 
                               Additionally, you can change the text in
-                              res.send() to have a custom response, print the
-                              response to a webpage or set up a different
+                              res.send() to a custom response, print the
+                              response to a webpage, or set up a different
                               webhook. You can also send in custom headers as a
                               way to verify the hook or get custom hook
                               information back. Setup the destination using a
-                              permanent url such as creating an
+                              permanent url such as creating a
                               [Heroku](https://www.heroku.com/) app, then having
                               the response print to the screen. 
 
