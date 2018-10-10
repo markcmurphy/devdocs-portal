@@ -16274,6 +16274,53 @@ pages:
                         anchor: working-fetch-api_create-cart
                       config:
                         mode: js
+                    - type: text
+                      data: '---'
+                    - type: code
+                      data: >-
+                        fetch('/api/storefront/cart?include=lineItems.digitalItems.options,lineItems.physicalItems.options',
+                        {credentials: 'include'})
+                          .then(function(response) {
+                            return response.json();
+                          })
+                          .then(function(myJson) {
+                            console.log(JSON.stringify(myJson));
+                          });
+                      header:
+                        title: Get a Cart
+                    - type: code
+                      data: >-
+                        deleteCartItem(`/api/storefront/carts/`,
+                        `c057c316-71d8-4b58-86e1-f6f2ed003683`,
+                        `94bf4255-13a0-4109-b37a-5122ee3dd18c`)
+                          .then(data => console.log(JSON.stringify(data)))
+                          .then(handleErrors) 
+                          .catch(error => console.error(error));
+
+                        function handleErrors(response) {
+                            if (!response.ok) {
+                                throw Error(response.statusText);
+                            }
+                            return response;
+                        }
+
+
+                        function deleteCartItem(url = ``, cartId = ``, itemId =
+                        ``) {
+                              return fetch(url + cartId + '/items/' + itemId , {
+                                  method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+                                  credentials: "include",
+                                  headers: {
+                                      "Content-Type": "application/json; charset=utf-8",          
+                                      },
+                                  // body: JSON.stringify(data),
+                              })
+                              .then(response => response.json()); // parses response to JSON
+                          }
+                      header:
+                        title: Delete Cart Item
+                    - type: text
+                      data: '## Storefront Checkout'
         - title: Orders
           route:
             path: /orders
