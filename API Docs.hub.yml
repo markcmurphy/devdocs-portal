@@ -15598,12 +15598,6 @@ pages:
             path: /cart-and-checkout
           data:
             children:
-              - title: Working with the Fetch API
-                route:
-                  path: /working-fetch-api
-                config:
-                  sidebar:
-                    token: GUIDE
               - title: Overview
                 route:
                   path: /cart-and-checkout-overview
@@ -16072,6 +16066,45 @@ pages:
                         `myawesomestore.com/cart.php?action=buy&sku=SHIRT-SM-RED&source=JULY-EMAIL-NEWSLETTER`
                       header:
                         anchor: add-specific-sku-checkout-source
+              - title: Working with the Fetch API
+                route:
+                  path: /working-fetch-api
+                config:
+                  sidebar:
+                    token: GUIDE
+                data:
+                  blocks:
+                    - type: text
+                      data: >-
+                        ## Prerequisites:
+
+                        - Chrome/Firefox/Safari - Fetch does not work every
+                        version [Internet
+                        Explorer](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Browser_compatibility).
+                        It is recommended to install
+                        [polyfil](https://github.com/github/fetch#html)l then
+                        use fetch as normal.
+
+                        - BigCommerce Store with at least two products and a
+                        [shipping option]() available. 
+
+
+                        This will go over a basic fetch() functions and how to
+                        use it for several storefront actions.
+
+
+                        Interaction with the Storefront APIs should be done
+                        using JavaScript. The storefront APIs do not require API
+                        Tokens to work. The URL should be served over https and
+                        be on the [permanent
+                        URL](https://forum.bigcommerce.com/s/article/Changing-Domains),
+                        otherwise, it can cause
+                        [CORs](https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api#cross-origin_requests)
+                        errors in the console.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: '## '
         - title: Orders
           route:
             path: /orders
