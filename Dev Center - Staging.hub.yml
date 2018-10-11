@@ -11052,7 +11052,7 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: "## Create Express App\n\n1. In the terminal run `npm init`. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js. `touch index.js` or `copy nul > index.js` for Windows.\n4. Install [Express](https://expressjs.com/en/starter/installing.html) using the terminal in the same project folder. `npm install express --save`\t\t\t "
+                            data: "## Create Express App\n\n1. In the terminal run `npm init`. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default values.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js. `touch index.js` or `copy nul > index.js` for Windows.\n4. Install [Express](https://expressjs.com/en/starter/installing.html) using the terminal in the same project folder. `npm install express --save`\t\t\t "
                             header:
                               anchor: setting-up-webhooks_create-express-app
                           - type: callout
@@ -11418,66 +11418,6 @@ pages:
                                 original /POST response or by sending a /GET
                                 request to the hooks resource
                               anchor: delete-webhook
-                          - type: text
-                            data: >-
-                              ## Next Steps
-
-
-                              Additionally, you can change the text in
-                              res.send() to have a custom response, print the
-                              response to a webpage or set up a different
-                              webhook. You can also send in custom headers as a
-                              way to verify the hook or get custom hook
-                              information back. Setup the destination using a
-                              permanent url such as creating an
-                              [Heroku](https://www.heroku.com/) app, then having
-                              the response print to the screen. 
-
-
-                              To send in custom headers, during the /POST or
-                              /PUT request add in:
-
-
-                              ```
-
-                              {
-                                "scope": "store/order/*",
-                                "headers": {
-                                  "X-Custom-Auth-Header": "{secret_auth_password}"
-                                },
-                                "destination": "https://app.example.com/orders",
-                                "is_active": true
-                              }
-
-                              ```
-
-                              The custom header can be anything you choose. It
-                              can be used to check the security of an incoming
-                              webhook. Anything without the custom header should
-                              be rejected.
-
-
-
-                              Response:
-
-
-                              ```
-
-                              {
-                                  "id": 14422996,
-                                  "client_id": "{{client_id}}",
-                                  "store_hash": "{{store-hash}}",
-                                  "scope": "store/product/updated",
-                                  "destination": "https://6a35e97b.ngrok.io/webhooks",
-                                  "headers": {
-                                      "A-Custom-Header": "some-secret-password"
-                                  },
-                                  "is_active": true,
-                                  "created_at": 1533142869,
-                                  "updated_at": 1533142869
-                              }
-                            header:
-                              anchor: setting-up-webhooks_next-steps
                           - type: text
                             data: >-
                               ## Troubleshooting
