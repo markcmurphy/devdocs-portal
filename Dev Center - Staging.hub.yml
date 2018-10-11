@@ -16897,11 +16897,16 @@ pages:
             path: /pricelists-api
           data:
             $ref: ./V3 Price Lists.oas2.yml
-        - title: Scripts
+        - title: Content
           route:
-            path: /content-api
+            path: /content
           data:
-            $ref: ./V3 Content.oas2.yml
+            children:
+              - title: Scripts
+                route:
+                  path: /content-scripts-api
+                data:
+                  $ref: ./V3 Content.oas2.yml
         - title: Marketing
           route:
             path: /v2-marketing
@@ -16935,6 +16940,9 @@ pages:
     title: Tools & Resources
     data:
       $ref: ./Tools & Resources.html
+  /new-page-jqlph:
+    title: Price Lists
+    data: {}
 theme:
   background: '#3550b6'
   primary: '#4b71fc'
