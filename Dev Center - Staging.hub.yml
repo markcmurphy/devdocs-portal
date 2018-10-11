@@ -16359,6 +16359,53 @@ pages:
                         .then() is parsing the response to JSON. 
                       header:
                         anchor: fetch-api-sf_create-postdata
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Storefront Cart
+
+
+                        ### Create Cart
+
+                        To create a cart a product and the quantity of that
+                        product must be added. If there are [variants]() then
+                        the variantId or optionId with optionValue need to be
+                        added.
+                      header:
+                        anchor: fetch-api-sf_sf-cart
+                    - type: code
+                      data: |
+                        postData(`/api/storefront/cart`, {
+                                "lineItems": [
+                                {
+                                    "quantity": 1,
+                                    "productId": 196
+                                },
+                                {
+                                    "quantity": 1,
+                                    "productId": 184
+                                }
+                                ]}
+                            )
+                          .then(data => console.log(JSON.stringify(data))) 
+                          .catch(error => console.error(error));
+
+                        function postData(url = ``, data = {}) {
+                              return fetch(url, {
+                                  method: "POST", // *GET, POST, PUT, DELETE
+                                  credentials: "same-origin",
+                                  headers: {
+                                      "Content-Type": "application/json; charset=utf-8",          },
+                                  body: JSON.stringify(data), // body data type must match "Content-Type" header
+                              })
+                              .then(response => response.json()); 
+                          }
+                      header:
+                        title: Create a Cart
+                        anchor: fetch-api-sf_create-cart
+                      config:
+                        mode: js
                 config:
                   sidebar:
                     token: GUIDE
