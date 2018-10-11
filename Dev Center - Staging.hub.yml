@@ -16268,6 +16268,31 @@ pages:
                           [hoisted](https://scotch.io/tutorials/understanding-hoisting-in-javascript#toc-hoisting-functions),
                           so the function postData can be called before being
                           defined.
+                    - type: text
+                      data: >-
+                        The function accepts two inputs. The first is a URL
+                        string, in this case, is `/api/storefront/cart`. There
+                        is no need to write out the entire store URL when making
+                        the request from the browser since it will append to
+                        whatever website the function is being run on. 
+
+
+                        The other is `data`. Note that with `data`, outer curly
+                        braces have already been defined, so they can be left
+                        out.  Data includes the `lineItems` array which has a
+                        `productId` and `quantity`. This uses a simplified
+                        example. For more in-depth examples see the [Create
+                        Cart]() endpoint.  
+
+
+                        After then line items, fetch uses
+                        [then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+                        which accepts the data that is returned and prints it to
+                        the console. 
+
+                        If there is an error the next line
+                        [catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
+                        will print the return error to the console. 
                 config:
                   sidebar:
                     token: GUIDE
