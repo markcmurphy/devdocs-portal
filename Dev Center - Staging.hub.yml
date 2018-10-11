@@ -16198,7 +16198,7 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: "<h1>Working with the Fetch API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#fetch_api_sf_prerequisites\">Prerequisites</a></li>\n\t\t<li><a href=\"#fetch_api_sf_call_postdata\">Call postData()</a></li>\n\t\t<li><a href=\"#where-to-get\">Where Can I Get the SDK?\n</a></li>\n    <li><a href=\"#support-customization\">Support and Customization\n</a></li>\n\t</ul>\n</div>"
+                      data: "<h1>Working with the Fetch API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#fetch-api-sf_prerequisites\">Prerequisites</a></li>\n\t\t<li><a href=\"#fetch-api-sf-call_postdata\">Call postData()</a></li>\n\t\t<li><a href=\"#fetch-api-sf_create-postdata\">Create postData()</a></li>\n    <li><a href=\"#support-customization\">Support and Customization\n</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         ## Prerequisites:
@@ -16230,7 +16230,7 @@ pages:
                         [CORs](https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api#cross-origin_requests)
                         errors in the console.
                       header:
-                        anchor: fetch_api_sf_prerequisites
+                        anchor: fetch-api-sf_prerequisites
                     - type: text
                       data: '---'
                     - type: text
@@ -16260,7 +16260,7 @@ pages:
                         First, we have `postData()` which is calling the
                         function.
                       header:
-                        anchor: fetch_api_sf_call_postdata
+                        anchor: fetch-api-sf-call_postdata
                     - type: callout
                       data:
                         body: >-
@@ -16293,6 +16293,72 @@ pages:
                         If there is an error the next line
                         [catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
                         will print the return error to the console. 
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create postData()
+
+
+                        ```
+
+                        function postData(url = ``, data = {}) {
+                              return fetch(url, {
+                                  method: "POST", // *GET, POST, PUT, DELETE, etc.
+                                  credentials: "same-origin",
+                                  headers: {
+                                      "Content-Type": "application/json; charset=utf-8",          },
+                                  body: JSON.stringify(data), // body data type must match "Content-Type" header
+                              })
+                              .then(response => response.json()); 
+                          }
+                        ```
+
+
+                        Next, the function postData is created. Here the
+                        arguments for url and data are defined. In later
+                        examples, you will see we can pass in different items
+                        depending on what we need in the fetch request. The
+                        postData() returns another function, fetch(). Fetch
+                        takes a URL, method and a body. Other
+                        [arguments](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Supplying_request_options)
+                        can be added such as credentials, headers, etc. 
+
+
+                        [Credentials](https://github.com/github/fetch#sending-cookies)
+                        are set to [same-origin](). The credentials that are set
+                        will depend on your app setup. Review your app setup
+                        carefully, otherwise, this will cause
+                        [CORs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+                        errors. Below is a simplified guide on when to use each
+                        type of credential.
+
+
+                        | Credential | When to Use |
+
+                        | -- | -- |
+
+                        | same-origin | If the request and response server is
+                        the same. Ex. bigcommerce.com => bigcommerce.com |
+
+                        | include | If the request and response domain are
+                        different. Ex. bigcommerce.com =>
+                        developers.bigcommerce.com  |
+
+                        | omit | To disable sending cookies to any domain |
+
+
+                        Content-Type is set to application/json. This is because
+                        the body data needs to match the content-type.
+
+
+                        [body:JSON.stringify(data)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+                        converts JavaScript values to a string. 
+
+
+                        .then() is parsing the response to JSON. 
+                      header:
+                        anchor: fetch-api-sf_create-postdata
                 config:
                   sidebar:
                     token: GUIDE
