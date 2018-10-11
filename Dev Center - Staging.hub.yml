@@ -10937,7 +10937,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Fire Webhooks</a></li>\n        <li><a href=\"#setting-up-webhooks_update-via-api\">Update Via the API</a></li>\n        <li><a href=\"#setting-up-webhooks_roubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Trigger the Webhook Event</a></li>\n        <li><a href=\"#setting-up-webhooks_update-via-api\">Update Via the API</a></li>\n        <li><a href=\"#setting-up-webhooks_roubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ## Intro
@@ -11269,20 +11269,23 @@ pages:
                               mode: json
                           - type: text
                             data: >-
-                              ## Fire Webhooks
+                              ## Trigger the Webhook Event
 
-                              You can fire the webhook in two ways. Either the
-                              API or the store’s control panel. We are going to
-                              cover both.
+                              Webhooks can be triggered by actions performed by
+                              a shopper on the storefront or user within the
+                              control panel, or actions performed via API. To
+                              illustrate this point, we'll demonstrate both
+                              methods.
 
 
                               ### Update via the Control Panel
 
 
                               1. From your store’s control panel, navigate to
-                              Products > View. Choose a product and change some
-                              of the information. In this case, the word Hoodie
-                              was added to the product name. Then click save.
+                              Products > View. Choose a product and edit product
+                              details like name or description. 
+
+                              2. Click **Save**.
                             header:
                               anchor: setting-up-webhooks_fire-webhooks
                           - type: image
@@ -11297,9 +11300,8 @@ pages:
                               subtitle: Products > View
                           - type: text
                             data: >-
-                              2. Visit the Ngrok web interface address (in the
-                              sample app it’s http://127.0.0.1:4040), and check
-                              for a 200 response. 
+                              3. Visit the ngrok web interface address  and
+                              check for a 200 response. 
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500945565
@@ -11311,14 +11313,18 @@ pages:
                               title: ngrok Web Interface
                           - type: text
                             data: >-
-                              Under Summary you can see the webhook has fired.
-                              It returned the text OK. This can be changed. In
-                              the original app, res.send(‘OK’). This can be
-                              changed to say something different or even post
-                              the response to another app.  
+                              The Summary shows that the webhook has fired and
+                              our Express app has returned a 200 response along
+                              with the text OK. The response is generated by
+                              res.send(‘OK’) in our app code, but this text can
+                              be changed to say something different or even post
+                              the response to another app. For more info, see
+                              [Express
+                              Routing](https://expressjs.com/en/guide/routing.html).
 
 
-                              The response will also show in the terminal. 
+                              The record of the HTTP request will also show in
+                              the terminal tab running ngrok.
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500989467
@@ -11331,24 +11337,7 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: >-
-                              ## Update Via the API
-
-                              Create a PUT request to the product that needs to
-                              be updated. 
-
-
-                              `https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/124`
-
-
-                              In this example, the price of product_id 124 is
-                              being changed to 12.99.
-
-
-                              After hitting send, check the ngrok web interface.
-                              You may have more or less events based on how many
-                              times the product has been updated in the previous
-                              step. 
+                            data: "## Update Via the API\nCreate a PUT request to the product to be updated, replacing 124 with the product’s ID: \n\n`https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/124`\n\nIn this example, the price of product_id 124 is being changed to 12.99:\n\n```\n{\n\t\"price\": 12.99\n}\n```\n\nAfter hitting send, check the ngrok web interface. You may have more or less events based on how many times the product has been updated in the previous step. "
                             header:
                               anchor: 'setting-up-webhooks_update-via-api '
                           - type: http
