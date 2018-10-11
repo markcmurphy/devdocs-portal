@@ -16894,9 +16894,14 @@ pages:
                   $ref: ./V3 Subscribers.oas2.yml
         - title: Price Lists
           route:
-            path: /pricelists-api
+            path: /price-lists
           data:
-            $ref: ./V3 Price Lists.oas2.yml
+            children:
+              - title: Price Lists
+                route:
+                  path: /pricelists-api
+                data:
+                  $ref: ./V3 Price Lists.oas2.yml
         - title: Content
           route:
             path: /content
@@ -16932,17 +16937,14 @@ pages:
             path: /themes-api
           data:
             $ref: ./V3 Themes.oas2.yml
-  /changelog:
-    title: Changelog
-    data:
-      $ref: ./Changelog.html
   /tools-resources:
     title: Tools & Resources
     data:
       $ref: ./Tools & Resources.html
-  /new-page-jqlph:
-    title: Price Lists
-    data: {}
+  /changelog:
+    title: Changelog
+    data:
+      $ref: ./Changelog.html
 theme:
   background: '#3550b6'
   primary: '#4b71fc'
