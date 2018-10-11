@@ -11552,9 +11552,9 @@ pages:
                               ### Notes on
                               `store/product/inventory/order/updated`
 
-                              Included in the response for
-                              `store/product/inventory/order/updated` is an
-                              inventory object:
+                              The response for
+                              `store/product/inventory/order/updated` includes
+                              an inventory object containing:
 
 
                               **value**: the number of items that the inventory
@@ -11573,6 +11573,10 @@ pages:
 
 
                               ### Product Updated Events
+
+
+                              Changes to any of the following fields will
+                              trigger a `store/product/updated` event:
 
 
                               - _Brand_
@@ -11695,6 +11699,9 @@ pages:
                               store/product/inventory/order/updated webhook. |
 
 
+                              ### Notes on `store/sku/inventory/order/updated`
+
+
                               Included in the response is a data object:
 
 
@@ -11753,7 +11760,9 @@ pages:
                               | store/customer/created | A new customer is
                               created|
 
-                              | store/customer/updated | Customer is updated |
+                              | store/customer/updated | Customer is updated.
+                              Does not currently track changes to the customer
+                              address. |
 
                               |store/customer/deleted | Customer is deleted |
                             header:
@@ -11790,34 +11799,72 @@ pages:
                               store is cancelled and uninstalled from the
                               platform |
 
-                              |store/information/updated | Events that fire this
-                              webhook: |
+                              |store/information/updated | Occurs when changes
+                              are made to store settings. For a full list of
+                              fields that can trigger this event, see **Store
+                              Information Updated Events** below |
 
-                              | *Store Name* | *Store Address* |
 
-                              | *Store Phone Number* | *Admin Email* |
+                              ### Store Information Updated Events
 
-                              | *Order Email* | *Display Date Format* |
 
-                              | *Export Date Format* | *Store DTS Correction* |
+                              Changes to the following store settings will
+                              trigger a `store/information/updated` event:
 
-                              | *Store Time Zone* | *Language* |
 
-                              | *Default Currency* | *Currency Token* |
+                              * *Store Name*
 
-                              | *Decimal Token* | *Thousands Place* |
+                              * *Store Address*
 
-                              | *Currency Location* | *Weight Measurement* |
+                              * *Store Address*
 
-                              | *Length Measurement* | *Length Measurement* |
+                              * *Store Phone Number*
 
-                              | *Dimensions Decimal Places* | *Dimensions
-                              Decimal Token* |
-                               *Plan Name* | *Plan Level* |
-                              | *Store Logo* | *Mobile Template Logo* |
+                              * *Admin Email*
 
-                              | *Tax Entered With Prices* | *Stencil Template
-                              Enabled* 
+                              * *Order Email*
+
+                              * *Display Date Format*
+
+                              * *Export Date Format*
+
+                              * *Store DTS Correction*
+
+                              * *Store Time Zone*
+
+                              * *Language*
+
+                              * *Default Currency*
+
+                              * *Currency Token*
+
+                              * *Decimal Token*
+
+                              * *Thousands Place*
+
+                              * *Currency Location*
+
+                              * *Weight Measurement*
+
+                              * *Length Measurement*
+
+                              * *Length Measurement*
+
+                              * *Dimensions Decimal Places*
+
+                              * *Dimensions Decimal Token*
+
+                              * *Plan Name*
+
+                              * *Plan Level*
+
+                              * *Store Logo*
+
+                              * *Mobile Template Logo*
+
+                              * *Tax Entered With Prices*
+
+                              * *Stencil Template Enabled* 
                             header:
                               anchor: webhook-events_store
                           - type: code
