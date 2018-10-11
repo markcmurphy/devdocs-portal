@@ -6273,9 +6273,6 @@ pages:
                               * Check the request url for errors.
                             header:
                               anchor: making-requests_troubleshooting
-                      config:
-                        sidebar:
-                          token: GUIDE
                     - title: V2 versus V3
                       route:
                         path: /v2-v3
@@ -10494,8 +10491,7 @@ pages:
 
 
                               *Never worked with webhooks before? Check out the
-                              [tutorial on creating
-                              webhooks](/api-docs/getting-started/webhooks/setting-up-webhooks).*
+                              tutorial on creating webhooks.*
 
 
                               All webhooks requests must include the following
@@ -10549,7 +10545,7 @@ pages:
                             config:
                               mode: json
                           - type: text
-                            data: "| Name |Description | Type\n|--|--|--|\n| id | A read-only value that uniquely identifies a webhook object. Do not attempt to set this value in a PUT or POST. | integer|\n| client_id | The OAuth client ID that uniquely identifies your application. BigCommerce returns this name-value pair in the JSON body of its responses. | string |\n| store_hash | \tThe hash value that uniquely identifies the store. Your application does not need to set this value via the JSON object; instead, you pass it in the path of your API requests. | string |\n|scope| Value is the event you would like to listen for. See List of Webhook Events for the full list of possibilities. Wild Cards are supported for scope. **(Required)** | string |\n| destination | Value is the callback’s fully qualified URI. This should be an endpoint configured on your app server to receive webhook payloads. **(Required)** | string |\n| headers |The headers object contains one or more name-value pairs, both string values. If you choose to include a headers object, BigCommerce will include the name-value pair(s) in the HTTP header of its POST requests to your callback URI at runtime. While this feature could be used for any purpose, one is to use it to set a secret authorization key and check it at runtime. This provides an additional level of assurance that the POST request came from BigCommerce instead of some other party, such as a malicious actor. (Optional) | string |\n|is_active | Value specifies whether a webhook is active or inactive. By default, new webhooks will be set to be inactive and will have a blank value. If you want to create a webhook that should be active initially, you can pass the following name-value pair: \"is_active\": true. (Optional) | boolean |\n| created_at | The time at which the webhook was created.| date-time Unix Epoch|\n| updated_at | The time at which the webhook was last updated. | date-time Unix Epock|"
+                            data: "| Name |Description | Type\n|--|--|--|\n| id | A read-only value that uniquely identifies a webhook object. Do not attempt to set this value in a PUT or POST. | integer|\n| client_id | The OAuth client ID that uniquely identifies your application. BigCommerce returns this name-value pair in the JSON body of its responses. | string |\n| store_hash | \tThe hash value that uniquely identifies the store. Your application does not need to set this value via the JSON object; instead, you pass it in the path of your API requests. | string |\n|scope| Value is the event you would like to listen for. See List of Webhook Events for the full list of possibilities. Wild Cards are supported for scope. **(Required)** | string |\n| destination | value is the callback’s fully qualified URI. This should be an endpoint configured on your app server to receive webhook payloads. **(Required)** | string |\n| headers |The headers object contains one or more name-value pairs, both string values. If you choose to include a headers object, BigCommerce will include the name-value pair(s) in the HTTP header of its POST requests to your callback URI at runtime. While this feature could be used for any purpose, one is to use it to set a secret authorization key and check it at runtime. This provides an additional level of assurance that the POST request came from BigCommerce instead of some other party, such as a malicious actor. (Optional) | string |\n|is_active | Value specifies whether a webhook is active or inactive. By default, new webhooks will be set to be inactive and will have a blank value. If you want to create a webhook that should be active initially, you can pass the following name-value pair: \"is_active\": true. (Optional) | boolean |\n| created_at | The time at which the webhook was created.| date-time Unix Epoch|\n| updated_at | The time at which the webhook was last updated. | date-time Unix Epock|"
                           - type: text
                             data: >-
                               An HTTP 201 response indicates that the webhook
@@ -10675,15 +10671,16 @@ pages:
                               mode: json
                           - type: text
                             data: >-
-                              Webhooks must be deleted individually, by ID. Run
-                              a GET request to the hooks resource to retrieve
-                              the webhook IDs, then send a request to the delete
-                              URI to remove each one. Each successfully deleted
-                              hook will return a 200 OK. 
+                              There is not a way to delete all webhooks on a
+                              store. Run a GET request for the webhook id, then
+                              send a request to the delete URI to remove each
+                              one. It returns a 200 OK for the response with the
+                              deleted hook. When requesting a list of hook, the
+                              hook id is not available.
 
 
                               If webhooks are no longer being used, either
-                              delete them or set `"is_active":false`.
+                              delete them or set `is_active:false`.
                           - type: text
                             data: '---'
                           - type: text
@@ -10697,8 +10694,8 @@ pages:
 
 
                               Need to set up a quick destination URL for
-                              testing? See [Tools for Debugging and Testing
-                              Webhooks](#about-webhooks_tools-for-debugging-and-testing-webhooks).
+                              testing? See Tools for Debugging and Testing
+                              Webhooks.
                             header:
                               anchor: about-webhooks_receiving-the-callback
                           - type: text
@@ -10706,6 +10703,11 @@ pages:
                           - type: text
                             data: >-
                               ## Respond to Webhook Callbacks
+
+
+                              You’ll need to build an application and configure
+                              your server to receive the callback we send when
+                              events are triggered.
 
 
                               To acknowledge that you received the webhook
@@ -10717,6 +10719,11 @@ pages:
                               you did not receive the webhook. When a webhook is
                               not received (for whatever reason), we will retry
                               the callback as described below.
+
+
+                              Need to set up a quick destination URL for
+                              testing? See [Tools for testing
+                              webhooks.](#about-webhooks_tools-for-debugging-and-testing-webhooks)
                             header:
                               anchor: about-webhooks_respond-to-webhook-callbacks
                           - type: text
@@ -10732,14 +10739,14 @@ pages:
                               received, the dispatch service will take the
                               following actions:
 
-                              * If an app server responds to a webhook payload
+                              If an app server responds to a webhook payload
                               with anything other than a 2_xx_ response, or
                               times out, the app will be blocked for 60 seconds.
 
-                              * Webhooks created during that 60-second block
-                              will be queued up to send on the next scheduled
-                              retry attempt after the block expires, so that
-                              webhooks are not lost.
+                              Webhooks created during that 60-second block will
+                              be queued up to send on the next scheduled retry
+                              attempt after the block expires, so that webhooks
+                              are not lost.
 
 
                               The webhook dispatcher will then attempt several
@@ -10798,10 +10805,8 @@ pages:
 
 
                               * Webhook payloads contain minimal information
-                              about the store and event. For example, in the
-                              case of a webhook that listens for changes to an
-                              order or cart, we send only the ID identifying the
-                              order or cart that's been modified. To access
+                              about the store and event, for example the ID
+                              identifying the order or cart. To access
                               potentially sensitive information on a store, a
                               malicious actor would need to be fully
                               authenticated against that store’s API in order to
@@ -10913,15 +10918,14 @@ pages:
                               is required.
 
 
-                              For more details on ngrok and webhooks, see our
+                              Need help on ngrok and webhooks see our
                               [tutorial](/api-docs/getting-started/webhooks/setting-up-webhooks).
 
 
                               **[Webhook Tester](https://webhook.site/#/)**  
 
-                              Webhook Tester is a service that generates a
-                              temporary destination URL, allowing webhooks to be
-                              quickly tested or checked. 
+                              This allows for webhooks to be quickly tested or
+                              checked. 
                             header:
                               anchor: >-
                                 about-webhooks_tools-for-debugging-and-testing-webhooks
@@ -10931,7 +10935,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_register-a-webhook\">Register a Webhook</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Trigger a Webook Event</a></li>\n        <li><a href=\"#setting-up-webhooks_next-steps\">Next Steps</a></li>\n        <li><a href=\"#setting-up-webhooks_roubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro/a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Fire Webhooks</a></li>\n        <li><a href=\"#setting-up-webhooks_update-via-api\">Update Via the API</a></li>\n        <li><a href=\"#setting-up-webhooks_next-steps\">Next Steps</a></li>\n        <li><a href=\"#setting-up-webhooks_roubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ## Intro
@@ -10939,8 +10943,7 @@ pages:
 
                               Webhooks allow your application to receive
                               real-time notifications when an event, like a new
-                              order or a change to product inventory, occurs on
-                              a BigCommerce store.
+                              order or a change to product inventory, occurs.
 
 
                               When testing your application locally, ngrok is a
@@ -10953,8 +10956,8 @@ pages:
 
 
                               In this tutorial, we'll install ngrok, register a
-                              webhook on your store, and observe the response
-                              when the webhook event is triggered.
+                              webhook on your store, and then observe the
+                              response when the webhook event is triggered.
                             header:
                               anchor: setting-up-webhooks_intro
                           - type: text
@@ -11003,15 +11006,23 @@ pages:
                               ## Install ngrok
 
 
-                              Download ngrok and place it in your project
-                              folder:
+                              There are three ways to install ngrok: 
+
+                              - Install manually and then set the $PATH so ngrok
+                              can be used globally. 
+
+                              - Download as an
+                              [npm](https://www.npmjs.com/package/ngrok)
+                              module. 
+
+                              - Download manually and place in the project
+                              folder. (Method we are using)
 
 
                               ### Mac/Linux
 
 
-                              1. Visit https://ngrok.com/ and click
-                              **download**.
+                              1. Visit https://ngrok.com/ and click on download.
 
                               2. Choose the version for your operating system.
 
@@ -11027,22 +11038,6 @@ pages:
                               `unzip
                               /Users/your-computer/Downloads/ngrok-stable-darwin-amd64.zip
                               -d /Users/your-computer/Documents/webhooks-test`
-
-
-                              ### Windows
-
-
-                              1. Visit https://ngrok.com/ and click
-                              **download**.
-
-                              2. Choose the version for your operating system.
-
-                              3. Unzip ngrok and place the application in the
-                              project folder that you created.
-
-                              4. Make sure the folder is set in your [$PATH
-                              environment
-                              variable](https://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them).  
                             header:
                               anchor: setting-up-webhooks_install-ngrok
                           - type: callout
@@ -11055,15 +11050,15 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: "## Create Express App\n\n1. In the terminal run `npm init`. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in \"main\", `index.js`. \n3. Create a file in your project folder called index.js. `touch index.js` or `copy nul > index.js` for Windows.\n4. Install [Express](https://expressjs.com/en/starter/installing.html) using the terminal in the same project folder. `npm install express --save`\t\t\t "
+                            data: "## Create Express App\n\n1. In the terminal run `npm init`. You will be prompted with several questions about the app setup. Feel free to hit return to accept the default value.  The final screen will look something like this: \n\n```\n{\n  \"name\": \"webhooks-test\",\n  \"version\": \"1.0.0\",\n  \"description\": \"webhooks-test\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n```\n\n2. Take note of the value in main, `index.js`. \n3. Create a file in your project folder called index.js. `touch index.js` or `copy nul > index.js` for Windows.\n4. Install [Express](https://expressjs.com/en/starter/installing.html) using the terminal in the same project folder. `npm install express --save`\t\t\t "
                             header:
                               anchor: setting-up-webhooks_create-express-app
                           - type: callout
                             data:
                               type: success
                               body: >-
-                                At this point your project folder should contain
-                                the following:
+                                At this point your project folder should have
+                                similar contents:
 
                                 index.js
 
@@ -11110,8 +11105,8 @@ pages:
 
 
 
-                              From [Express
-                              website](https://expressjs.com/en/starter/basic-routing.html):
+                              From Express
+                              [Website](https://expressjs.com/en/starter/basic-routing.html):
 
                               `app.METHOD(PATH, HANDLER)`
 
@@ -11132,15 +11127,19 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
-                              ## Start the App and ngrok 
+                              ## Start the App and ngrok
 
 
-                              1. Open two terminal tabs. In each tab, naviagate
-                              to your project folder. 
+                              We are going to start the app and visit the ngrok
+                              url to see the status of our webhooks. 
 
-                              2. In one tab run the app: `node index.js`
 
-                              3. In the other start ngrok: `./ngrok http 3000`
+                              1. Open two terminal tabs. They both should be in
+                              your project folder. 
+
+                              2. In one tab run the app. `node index.js`
+
+                              3. In the other start ngrok. `./ngrok http 3000`
                             header:
                               anchor: setting-up-webhooks_start-the-app-ngrok
                           - type: tabs
@@ -11169,22 +11168,19 @@ pages:
                                         title: nrgok terminal
                           - type: text
                             data: >-
-                              The terminal tab running ngrok returns two values
-                              we will need to register a webhook and view the
-                              response: 
+                              ngrok returns two values we need for webhooks. 
 
                               - Web Interface: Where you can monitor the hook
                               from a browser. `https://127.0.0.1:4040`
 
                               - Forwarding: The webhook destination. Make note
-                              of the https version, for example
-                              `https://6a35e97b.ngrok.io`.
+                              of the https version. In this example its
+                              https://6a35e97b.ngrok.io.
 
 
-                              4. Open a web browser and paste in your Web
-                              Interface URL. `http://127.0.0.1:4040` -  The web
-                              interface records HTTP requests to your tunnel
-                              URL.
+                              4. Open a web browser and copy in your Web
+                              Interface URL. `http://127.0.0.1:4040` -  This is
+                              where the webhooks will appear when they fire.
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500191661
@@ -11198,28 +11194,17 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
-                              ## Register a webhook
+                              The webhook we are going to subscribe to is
+                              `store/product/updated`. 
 
 
-                              The webhook event we'll subscribe to is
-                              `store/product/updated`. The
-                              `store/product/updated` event occurs when product
-                              details such as name, price, or description are
-                              edited.
+                              1. Create a POST request using the try it now box
+                              below or your api enviroment of
+                              choice.`https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks`.
+                              Replace store_hash with your store.
 
-
-                              1. Create a POST request to the following request
-                              URL using the Try it Now box below or your API
-                              client of choice:
-
-                              `https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks`
-                              Replace {{store_hash}} with the correct value from
-                              your store's API path.
-
-                              2. Create the POST request body, where "scope" is
-                              the webhook event we are subscribing to and
-                              "destination" is your ngrok forwarding URL with
-                              the `/webhooks` path appended:
+                              2. Create a body request with the webhook we are
+                              subscribing to and your forwarding url:
 
 
                               ```
@@ -11230,23 +11215,26 @@ pages:
                                "is_active": true
                               }
 
-                              ```  
+                              ```
 
 
-                              3. Update the request headers to contain:
+                              The destination url is the forwarding url from
+                              ngrok and /webhooks, matching the URL path set in
+                              the app POST.  
+
+
+                              3. Update the headers to have:
 
                               ```
                                   Accept: application/json
                                   Content-Type: application/json
-                                  X-Auth-Client: {{your OAuth client id}}
-                                  X-Auth-Token: {{your OAuth token}}
+                                  X-Auth-Client: {{the OAuth client id}}
+                                  X-Auth-Token: {{the OAuth token}}
                               ```
 
-                              4. Check all values and then hit POST. If your
-                              request was successful, the response will be 201
-                              Created.
-                            header:
-                              anchor: setting-up-webhooks_register-a-webhook
+                              4. Check all the values and then hit POST. The
+                              response will be 201 Created if headers and scope
+                              are correct.
                           - type: http
                             data:
                               method: post
@@ -11286,27 +11274,20 @@ pages:
                               mode: json
                           - type: text
                             data: >-
-                              ## Trigger a Webhook Event
+                              ## Fire Webhooks
 
-                              Webhooks can be triggered when a subscribed event
-                              occurs due to user activity on the storefront or
-                              in the control panel, or by actions performed via
-                              API. To illustrate this, we'll trigger the
-                              `store/product/updated` webhook in both ways.
+                              You can fire the webhook in two ways. Either the
+                              API or the store’s control panel. We are going to
+                              cover both.
 
 
-                              ### Update Via the Control Panel
+                              ### Update via the Control Panel
 
 
-                              1. In your store’s control panel, navigate to
-                              Products > View. Choose a product and edit the
-                              product name, description or other details. For a
-                              full list of product fields that can trigger a
-                              `store/product/updated` event, see the list of
-                              [product Webhook
-                              Events](/api-docs/getting-started/webhooks/webhook-events#webhook-events_products). 
-
-                              2. Click **Save**.
+                              1. From your store’s control panel, navigate to
+                              Products > View. Choose a product and change some
+                              of the information. In this case, the word Hoodie
+                              was added to the product name. Then click save.
                             header:
                               anchor: setting-up-webhooks_fire-webhooks
                           - type: image
@@ -11321,7 +11302,7 @@ pages:
                               subtitle: Products > View
                           - type: text
                             data: >-
-                              2. Visit the ngrok web interface address (in the
+                              2. Visit the Ngrok web interface address (in the
                               sample app it’s http://127.0.0.1:4040), and check
                               for a 200 response. 
                           - type: image
@@ -11335,18 +11316,14 @@ pages:
                               title: ngrok Web Interface
                           - type: text
                             data: >-
-                              The Summary shows that the webhook has fired and
-                              our Express app has returned a 200 response along
-                              with the text OK. The response is generated by
-                              `res.send(‘OK’)` in our app code, but this text
-                              can be changed to say something different or even
-                              post the response to another app. For more info,
-                              see [Express
-                              routing](https://expressjs.com/en/guide/routing.html).  
+                              Under Summary you can see the webhook has fired.
+                              It returned the text OK. This can be changed. In
+                              the original app, res.send(‘OK’). This can be
+                              changed to say something different or even post
+                              the response to another app.  
 
 
-                              The record of the HTTP request will also show in
-                              the terminal tab running ngrok. 
+                              The response will also show in the terminal. 
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531500989467
@@ -11359,7 +11336,24 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: "### Update Via the API\nCreate a PUT request to a product you'd like to update using the following request URL, replacing `124` with the product's ID: \n\n`https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/124`\n\nIn this example, the price of product_id 124 is being changed to 12.99:\n\n```\n{\n\t\"price\": 12.99\n}\n```\n\nAfter hitting send, check the ngrok web interface. You may see a single event or several based on how many times the product has been updated in the previous step. "
+                            data: >-
+                              ## Update Via the API
+
+                              Create a PUT request to the product that needs to
+                              be updated. 
+
+
+                              `https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/124`
+
+
+                              In this example, the price of product_id 124 is
+                              being changed to 12.99.
+
+
+                              After hitting send, check the ngrok web interface.
+                              You may have more or less events based on how many
+                              times the product has been updated in the previous
+                              step. 
                             header:
                               anchor: 'setting-up-webhooks_update-via-api '
                           - type: http
@@ -11390,23 +11384,19 @@ pages:
                               maxHeight: '800'
                           - type: text
                             data: >-
-                              That’s it! In this walkthrough you created a
-                              webhook, set up a server to accept the response,
-                              and used ngrok to observe the webhook payload. 
-
-
-                              Want to keep going? Try changing the text in
-                              res.send() to a custom response, print the
-                              response to a webpage, or register a different
-                              webhook event. 
+                              That’s it. In this walkthrough you created a
+                              webhook, setup a server to accept the response and
+                              used Express. Some extra things are to change the
+                              text in res.send() to have a custom response,
+                              print the response to a webpage or setup a
+                              different webhook. 
                           - type: callout
                             data:
                               body: >-
-                                Unless you have a paid ngrok account, the
-                                destination URL will only be valid for a few
-                                hours. After that, the webhook will stop
-                                working. Send a [DELETE]() request to the
-                                specific webhook ID to disable the hook. 
+                                Unless you have paid for Ngrok, the URL is only
+                                valid for a few hours. After that, the webhook
+                                will stop working. Send a [DELETE]() request to
+                                the specific webhook id. 
                               type: warning
                               title: URL Timeout
                           - type: http
@@ -11432,12 +11422,12 @@ pages:
 
 
                               Additionally, you can change the text in
-                              res.send() to a custom response, print the
-                              response to a webpage, or set up a different
+                              res.send() to have a custom response, print the
+                              response to a webpage or set up a different
                               webhook. You can also send in custom headers as a
                               way to verify the hook or get custom hook
                               information back. Setup the destination using a
-                              permanent url such as creating a
+                              permanent url such as creating an
                               [Heroku](https://www.heroku.com/) app, then having
                               the response print to the screen. 
 
@@ -11506,8 +11496,7 @@ pages:
                               ```
 
 
-                              2. Getting `error ngrok not found`?
-
+                              2. Getting error ngrok not found?
 
                               There are two ways to fix this. Your local setup
                               will determine which command will work.
@@ -11527,9 +11516,6 @@ pages:
                                   - [What are PATH and other environment variables, and how can I set or use them?](https://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them)
                             header:
                               anchor: setting-up-webhooks_troubleshooting
-                      config:
-                        sidebar:
-                          token: GUIDE
                     - title: Webhook Events
                       route:
                         path: /webhook-events
@@ -11549,8 +11535,8 @@ pages:
                               | store/order/* | Subscribe to all store/order
                               events  |
 
-                              | store/order/created | A new order is created,
-                              either manually or on the storefront | 
+                              | store/order/created | A new order is created. It
+                              can be manual or created on the storefront | 
 
                               | store/order/update| Order is updated |
 
@@ -11609,11 +11595,11 @@ pages:
                               | store/product/updated |Events that fire this
                               webhook are below: |
 
-                              | _Brand_ | _Product Type_ |
+                              | _Brand Changed_ | _Product Type_ |
 
                               | _Category_ | _Inventory_ |
 
-                              | _Number Sold_ | _Availability_ |
+                              | _Number Sold_ | _Availibility_ |
 
                               | _Thumbnail Changed_ | _Visibility_ |
 
@@ -11630,8 +11616,8 @@ pages:
 
                               | store/product/inventory/order/updated| When an
                               order is placed and product inventory is changed.
-                              The webhook will fire for products where inventory
-                              is being tracked by sku or base product. |
+                              If subscribed the webhook will fire for products
+                              where inventory is being tracked by sku or not. |
 
                               Included in the response for
                               `store/product/inventory/order/updated` is an
@@ -13179,6 +13165,33 @@ pages:
                               anchor: code-add-product-image
                           - type: text
                             data: '---'
+                          - type: text
+                            data: >-
+                              ## Create Multiple Images
+
+
+                              A product can support multiple images. When adding
+                              images, more than one can be added by expanding
+                              the images array.
+                            header:
+                              anchor: create-multiple-images
+                          - type: http
+                            data:
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/images
+                              headers:
+                                Accepts: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{CLIENT ID}'
+                                X-Auth-Token: '{{ACCESS TOKEN}}'
+                              method: put
+                              body: "{\n\"images\":[\n\t\t\t{\n\t\t\t\t\"is_thumbnail\": true,\n\t\t\t\t\"image_url\": \"https://your-custom-image/image_name.png\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"is_thumbnail\": false,\n\t\t\t\t\"image_url\": \"https://your-custom-image/image_name.png\"\n\t\t\t}\n\t\t]\n}"
+                            header:
+                              title: Try it Now
+                              subtitle: >-
+                                Use this to add a Multiple Images to your
+                                Product. Replace the test data with your own.
+                              anchor: code-add-multiple-images
                           - type: text
                             data: '---'
                           - type: text
@@ -15885,9 +15898,6 @@ pages:
                         a source of truth.
                       header:
                         anchor: troubleshooting-customer-login-api"
-                config:
-                  sidebar:
-                    token: GUIDE
               - title: Current Customer API
                 route:
                   path: /current-customer-api
@@ -16192,590 +16202,23 @@ pages:
                         * Products
                         * Checkout Content
                         * Order Transactions
-              - title: Using Fetch with the Storefront
+              - title: Fetch API with Storefront
                 route:
-                  path: /fetch-storefront-cart-checkout
+                  path: /using-sf-cart-checkout
                 data:
                   blocks:
-                    - type: html
-                      data: "<h1>Working with the Fetch API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#fetch-api-sf_prerequisites\">Prerequisites</a></li>\n\t\t<li><a href=\"#fetch-api-sf_call-postdata\">Call postData()</a></li>\n\t\t<li><a href=\"#fetch-api-sf_create-postdata\">Create postData()</a></li>\n    <li><a href=\"#fetch-api-sf_cart\">Storefront Cart</a></li>\n    <li><a href=\"#fetch-api-sf_checkout\">Storefront Checkout</a></li>\n    <li><a href=\"#fetch-api-sf_troubleshooting\">Troubleshooting</a></li>\n    <li><a href=\"fetch-api-sf_next-steps\">Next Steps</a></li>\n  </ul>\n</div>"
                     - type: text
                       data: >-
-                        ## Prerequisites:
-
-
-                        - Chrome/Firefox/Safari - Fetch does not work every
-                        version [Internet
-                        Explorer](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Browser_compatibility).
-                        It is recommended to install
-                        [polyfil](https://github.com/github/fetch#html)l then
-                        use fetch as normal.
-
-                        - BigCommerce Store with at least two products and at
-                        least one [shipping option]() available. 
-
-
-                        This will go over the fetch() api and how to use it for
-                        different storefront actions. The fetch() api can be
-                        used in different ways and this will walk through a few
-                        scenarios. 
-
-
-                        Interaction with the Storefront APIs should be done
-                        using JavaScript. The storefront APIs do not require API
-                        Tokens to work. The URL should be served over https and
-                        be on the [permanent
-                        URL](https://forum.bigcommerce.com/s/article/Changing-Domains),
-                        otherwise, it can cause
-                        [CORs](https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api#cross-origin_requests)
-                        errors in the console.
-                      header:
-                        anchor: fetch-api-sf_prerequisites
-                    - type: text
-                      data: '---'
+                        This will detail using the Fetch JavaScript API to
+                        manage storefront carts and checkout. 
                     - type: text
                       data: >-
-                        ## Call postData()
+                        ## Prerequistes
 
+                        * BigCommerce Store
 
-                        ```
-
-                        postData(`/api/storefront/cart`, {
-                                "lineItems": [
-                                {
-                                    "quantity": 1,
-                                    "productId": 196
-                                },
-                                {
-                                    "quantity": 1,
-                                    "productId": 184
-                                }
-                                ]}
-                            )
-                          .then(data => console.log(JSON.stringify(data))) 
-                          .catch(error => console.error(error));
-                        ```
-
-
-                        First, we have `postData()` which is calling the
-                        function.
-                      header:
-                        anchor: fetch-api-sf_call-postdata
-                    - type: callout
-                      data:
-                        body: >-
-                          JavaScript allows for function declarations to be
-                          [hoisted](https://scotch.io/tutorials/understanding-hoisting-in-javascript#toc-hoisting-functions),
-                          so the function postData can be called before being
-                          defined.
-                    - type: text
-                      data: >-
-                        The function accepts two inputs. The first is a URL
-                        string, in this case, is `/api/storefront/cart`. There
-                        is no need to write out the entire store URL when making
-                        the request from the browser since it will append to
-                        whatever website the function is being run on. 
-
-
-                        The other is `data`. Note that with `data`, outer curly
-                        braces have already been defined, so they can be left
-                        out.  Data includes the `lineItems` array which has a
-                        `productId` and `quantity`. This uses a simplified
-                        example. For more in-depth examples see the [Create
-                        Cart]() endpoint.  
-
-
-                        After then line items, fetch uses
-                        [then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
-                        which accepts the data that is returned and prints it to
-                        the console. 
-
-                        If there is an error the next line
-                        [catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
-                        will print the return error to the console. 
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Create postData()
-
-
-                        ```
-
-                        function postData(url = ``, data = {}) {
-                              return fetch(url, {
-                                  method: "POST", // *GET, POST, PUT, DELETE, etc.
-                                  credentials: "same-origin",
-                                  headers: {
-                                      "Content-Type": "application/json; charset=utf-8",          },
-                                  body: JSON.stringify(data), 
-                              })
-                              .then(response => response.json()); 
-                          }
-                        ```
-
-
-                        Next, the function postData is created. Here the
-                        arguments for url and data are defined. In later
-                        examples, you will see we can pass in different items
-                        depending on what we need in the fetch request. The
-                        postData() returns another function, fetch(). Fetch
-                        takes a URL, method and a body. Other
-                        [arguments](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Supplying_request_options)
-                        can be added such as credentials, headers, etc. 
-
-
-                        [Credentials](https://github.com/github/fetch#sending-cookies)
-                        are set to [same-origin](). The credentials that are set
-                        will depend on your app setup. Review your app setup
-                        carefully, otherwise, this will cause
-                        [CORs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
-                        errors. Below is a simplified guide on when to use each
-                        type of credential.
-
-
-                        | Credential | When to Use |
-
-                        | -- | -- |
-
-                        | same-origin | If the request and response server is
-                        the same. Ex. bigcommerce.com => bigcommerce.com |
-
-                        | include | If the request and response domain are
-                        different. Ex. bigcommerce.com =>
-                        developers.bigcommerce.com  |
-
-                        | omit | To disable sending cookies to any domain |
-
-
-                        Content-Type is set to application/json. This is because
-                        the body data needs to match the content-type.
-
-
-                        [body:JSON.stringify(data)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
-                        converts JavaScript values to a string. 
-
-
-                        .then() is parsing the response to JSON. 
-                      header:
-                        anchor: fetch-api-sf_create-postdata
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Storefront Cart
-
-
-                        ### Create Cart
-
-                        To create a cart a product and the quantity of that
-                        product must be added. If there are [variants]() then
-                        the variantId or optionId with optionValue need to be
-                        added.
-                      header:
-                        anchor: fetch-api-sf_cart
-                    - type: code
-                      data: |-
-                        postData(`/api/storefront/cart`, {
-                                "lineItems": [
-                                {
-                                    "quantity": 1,
-                                    "productId": 196
-                                },
-                                {
-                                    "quantity": 1,
-                                    "productId": 184
-                                }
-                                ]}
-                            )
-                          .then(data => console.log(JSON.stringify(data))) 
-                          .catch(error => console.error(error));
-
-                        function postData(url = ``, data = {}) {
-                              return fetch(url, {
-                                  method: "POST", // *GET, POST, PUT, DELETE
-                                  credentials: "same-origin",
-                                  headers: {
-                                      "Content-Type": "application/json; charset=utf-8",          },
-                                  body: JSON.stringify(data), 
-                              })
-                              .then(response => response.json()); 
-                          }
-                      header:
-                        title: Create a Cart
-                        anchor: fetch-api-sf_create-cart
-                      config:
-                        mode: js
-                    - type: text
-                      data: >-
-                        ### Get Cart 
-
-
-                        This will return a cart on the store URL. This function
-                        is slightly different. The postData() that was present
-                        in the Create a Cart was removed since it only needs to
-                        print the data to the console. The credentials are also
-                        updated to include since the request is coming from a
-                        different url. 
-
-
-                        To return the full product data in a cart, an includes
-                        must be added. See [Get Cart]() for more details. 
-                    - type: code
-                      data: >-
-                        fetch('/api/storefront/cart?include=lineItems.digitalItems.options,lineItems.physicalItems.options',
-                        {credentials: 'include'})
-                          .then(function(response) {
-                            return response.json();
-                          })
-                          .then(function(myJson) {
-                            console.log(JSON.stringify(myJson));
-                          });
-                      header:
-                        title: Get a Cart
-                        anchor: fetch-api-sf_get-cart
-                      config:
-                        mode: js
-                    - type: text
-                      data: >-
-                        ### Delete Cart Item
-
-
-                        In the code below there are a few changes. One is the
-                        arguments for deleteCartItem now accept a URL, cartId,
-                        and itemId. Those are passed in to the deleteCartItem()
-                        at the top. The url is being built in the fetch()
-                        below. 
-
-
-                        We have also introduced a new way to handle errors.
-                        Error handling in fetch can be pulled out into its own
-                        function and be used to return any data or messages you
-                        want as a way to keep the code
-                        [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). 
-                      header: {}
-                    - type: callout
-                      data:
-                        type: warning
-                        body: Deleting the last item in your cart removes the cart.
-                    - type: code
-                      data: >-
-                        deleteCartItem(`/api/storefront/carts/`,
-                        `c057c316-71d8-4b58-86e1-f6f2ed003683`,
-                        `94bf4255-13a0-4109-b37a-5122ee3dd18c`)
-                          .then(data => console.log(JSON.stringify(data)))
-                          .then(handleErrors) 
-                          .catch(error => console.error(error));
-
-                        function handleErrors(response) {
-                            if (!response.ok) {
-                                throw Error(response.statusText);
-                            }
-                            return response;
-                        }
-
-
-                        function deleteCartItem(url = ``, cartId = ``, itemId =
-                        ``) {
-                              return fetch(url + cartId + '/items/' + itemId , {
-                                  method: "DELETE", // *GET, POST, PUT, DELETE
-                                  credentials: "include",
-                                  headers: {
-                                      "Content-Type": "application/json; charset=utf-8",          
-                                      },
-                                  body: JSON.stringify(data),
-                              })
-                              .then(response => response.json());
-                          }
-                      header:
-                        title: Delete Cart Item
-                        anchor: fetch-api-sf_delete-cart-item
-                      config:
-                        mode: js
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Storefront Checkout
-
-
-                        Make sure you have created a cart using the storefront
-                        cart, add two different lineItems and have a shipping
-                        method setup on the store. [See above]() if you deleted
-                        your cart and need to make a new one.
-                      header:
-                        anchor: fetch-api-sf_checkout
-                    - type: text
-                      data: |-
-                        ### Add billing address to checkout
-                        A billing address is required create a checkout.
-                    - type: code
-                      data: >
-                        postData(`/api/storefront/checkouts/`,
-                        `e8b7c677-f67a-4e39-a5ed-f405c9a06bcf`, {
-
-                        "firstName": "Jane",
-                                    "lastName": "Doe",
-                                    "email": "janedoe@email.com",
-                                    "company": "BigCommerce",
-                                    "address1": "123 Main Street",
-                                    "address2": "Apt 1",
-                                    "city": "Austin",
-                                    "stateOrProvinceCode": "Austin",
-                                    "countryCode": "USA",
-                                    "postalCode": "78751"
-                        })
-                          .then(data => console.log(JSON.stringify(data))) 
-                          .catch(error => console.error(error));
-
-                        function postData(url = ``, checkoutId = ``, data = {},)
-                        {
-                            return fetch(url + checkoutId + `/billing-address`,  {
-                                method: "POST", // *GET, POST, PUT, DELETE
-                                credentials: "include",
-                                headers: {
-                                    "Content-Type": "application/json; charset=utf-8",
-                                },
-                                body: JSON.stringify(data),
-                            })
-                            .then(response => response.json()); 
-                        }
-                      header:
-                        title: Add billing address
-                        anchor: fetch-api-sf_checkout-add-billing-address
-                      config:
-                        mode: js
-                    - type: text
-                      data: >-
-                        ### Add shipping address or consignment to checkout. 
-
-
-                        A consignment is a shipping address with the associated
-                        lineItems. 
-
-
-                        A shipping address and lineItems make one consignment.
-                        If multiple shipping locations are being used, match
-                        each lineItem with the correct shipping address as shown
-                        in the example below to create multiple consignments.
-                        For more examples see [Create Consignment]().
-
-
-                        When adding a shipping address to the checkout
-                        `?include=consignments.availableShippingOptions`must be
-                        included to return the shipping options available for
-                        each address. To add the shipping option a [put
-                        request]() must be sent for each consignment. 
-                    - type: code
-                      data: "postData(`/api/storefront/checkouts/`, `e8b7c677-f67a-4e39-a5ed-f405c9a06bcf`,\n[{\n        \"shippingAddress\": {\n            \"firstName\": \"Jane\",\n            \"lastName\": \"Doe\",\n            \"email\": \"janedoe@email.com\",\n            \"company\": \"BigCommerce\",\n            \"address1\": \"123 Main Street\",\n            \"address2\": \"Apt 1\",\n            \"city\": \"Austin\",\n            \"stateOrProvinceCode\": \"TX\",\n            \"countryCode\": \"US\",\n            \"postalCode\": \"78751\"\n        },\n        \"lineItems\": [{\n            \"itemId\": \"fb924c6c-10fb-456a-bccb-02d9fb426199\",\n            \"quantity\": 1\n        }]\n    },\n    {\n        \"shippingAddress\": {\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\",\n            \"email\": \"johnedoe@email.com\",\n            \"company\": \"BigCommerce\",\n            \"address1\": \"123 South Street\",\n            \"address2\": \"Apt 5\",\n            \"city\": \"Austin\",\n            \"stateOrProvinceCode\": \"TX\",\n            \"countryCode\": \"US\",\n            \"postalCode\": \"78726\"\n        },\n        \"lineItems\": [{\n            \"itemId\": \"98ceac68-cac9-49af-9050-95494f32474c\",\n            \"quantity\": 1\n        }]\n    }\n\t]\n\n)\n  .then(data => console.log(JSON.stringify(data))) \n  .catch(error => console.error(error));\n\nfunction postData(url = ``, checkoutId = ``, data = {},) {\n    return fetch(url + checkoutId + `/consignments?include=consignments.availableShippingOptions`,   {\n        method: \"POST\", // *GET, POST, PUT, DELETE, etc.\n        mode: \"cors\",\n        cache: \"no-cache\",\n        credentials: \"include\",\n        headers: {\n            \"Content-Type\": \"application/json; charset=utf-8\",\n        },\n        body: JSON.stringify(data), \n    })\n    .then(response => response.json()); }\n"
-                      header:
-                        title: Create Consignment
-                        anchor: fetch-api-sf_checkout-create-consignment
-                      config:
-                        mode: js
-                    - type: text
-                      data: >-
-                        ### Update consignment to add shipping option
-
-
-                        Since the address and line items are assigned. Now we
-                        are going to do two PUT requests to assign a shipping
-                        option to each. Only one consignment can be updated at a
-                        time. 
-
-
-                        If you sent in the query
-                        `?include=consignments.availableShippingOptions` with
-                        the previous request then pick the appropriate
-                        `shippingOptionId` for each consignment. 
-
-
-                        Below is the consignment portion of the response from
-                        creating a consignment. On line 27 are the
-                        `availableShippingOptions` with an id for each. This
-                        will be passed in for each consigmnent to give it the
-                        correct shipping option.
-                    - type: code
-                      data: |2-
-                          "consignments": [
-                            {
-                              "id": "5bbe2ead3433c",
-                              "shippingCost": 0,
-                              "handlingCost": 0,
-                              "couponDiscounts": [],
-                              "discounts": [],
-                              "lineItemIds": [
-                                "fb924c6c-10fb-456a-bccb-02d9fb426199"
-                              ],
-                              "shippingAddress": {
-                                "firstName": "Jane",
-                                "lastName": "Doe",
-                                "email": "janedoe@email.com",
-                                "company": "BigCommerce",
-                                "address1": "123 Main Street",
-                                "address2": "Apt 1",
-                                "city": "Austin",
-                                "stateOrProvince": "Texas",
-                                "stateOrProvinceCode": "TX",
-                                "country": "United States",
-                                "countryCode": "US",
-                                "postalCode": "78751",
-                                "phone": "",
-                                "customFields": []
-                              },
-                              "availableShippingOptions": [
-                                {
-                                  "id": "195402b6-5819-4792-93d5-aeb7e1691b8a",
-                                  "type": "shipping_byweight",
-                                  "description": "Ship by Weight",
-                                  "imageUrl": "",
-                                  "cost": 8,
-                                  "transitTime": "",
-                                  "isRecommended": false
-                                },
-                                {
-                                  "id": "a1074cda-2cb7-4b92-8bdc-83bd370a2b81",
-                                  "type": "shipping_flatrate",
-                                  "description": "Flat Rate",
-                                  "imageUrl": "",
-                                  "cost": 12,
-                                  "transitTime": "",
-                                  "isRecommended": false
-                                },
-                                {
-                                  "id": "41e5e000-bebf-426c-a929-117ba921fa0f",
-                                  "type": "shipping_upsready",
-                                  "description": "UPS® (UPS Next Day Air®)",
-                                  "imageUrl": "/img/shipping-providers/upsready_70x70.png",
-                                  "cost": 44.52,
-                                  "transitTime": "1 business day",
-                                  "isRecommended": false
-                                }
-                              ]
-                            },
-                            {
-                              "id": "5bbe2ead39943",
-                              "shippingCost": 0,
-                              "handlingCost": 0,
-                              "couponDiscounts": [],
-                              "discounts": [],
-                              "lineItemIds": [
-                                "98ceac68-cac9-49af-9050-95494f32474c"
-                              ],
-                              "shippingAddress": {
-                                "firstName": "John",
-                                "lastName": "Doe",
-                                "email": "johnedoe@email.com",
-                                "company": "BigCommerce",
-                                "address1": "123 South Street",
-                                "address2": "Apt 5",
-                                "city": "Austin",
-                                "stateOrProvince": "Texas",
-                                "stateOrProvinceCode": "TX",
-                                "country": "United States",
-                                "countryCode": "US",
-                                "postalCode": "78726",
-                                "phone": "",
-                                "customFields": []
-                              },
-                              "availableShippingOptions": [
-                                {
-                                  "id": "4294109d-1d4d-46ff-8b3a-fcacf05e5d5f",
-                                  "type": "shipping_byweight",
-                                  "description": "Ship by Weight",
-                                  "imageUrl": "",
-                                  "cost": 8,
-                                  "transitTime": "",
-                                  "isRecommended": false
-                                },
-                                {
-                                  "id": "5567babb-ee81-4c31-8356-dc139f80cae7",
-                                  "type": "shipping_flatrate",
-                                  "description": "Flat Rate",
-                                  "imageUrl": "",
-                                  "cost": 12,
-                                  "transitTime": "",
-                                  "isRecommended": false
-                                },
-                                {
-                                  "id": "e1ae7924-cb99-48df-ae5a-ec0aa37b64eb",
-                                  "type": "shipping_upsready",
-                                  "description": "UPS® (UPS Next Day Air®)",
-                                  "imageUrl": "/img/shipping-providers/upsready_70x70.png",
-                                  "cost": 44.52,
-                                  "transitTime": "1 business day",
-                                  "isRecommended": false
-                                }
-                              ]
-                            }
-                          ],
-                      header:
-                        title: Example Response
-                        subtitle: ' /consignments?include=consignments.availableShippingOptions'
-                      config:
-                        mode: json
-                        highlightRange:
-                          - from: '27'
-                            to: '56'
-                    - type: code
-                      data: >-
-                        postData(`/api/storefront/checkouts/`,
-                        `e8b7c677-f67a-4e39-a5ed-f405c9a06bcf`,
-                        `5bbe2ead39943`,{"shippingOptionId":
-                        "e1ae7924-cb99-48df-ae5a-ec0aa37b64eb"})
-                          .then(data => console.log(JSON.stringify(data)))
-                          .catch(error => console.error(error));
-
-                        function postData(url = ``, checkoutId = ``,
-                        consignmentId = ``, data = {},) {
-                            return fetch(url + checkoutId + `/consignments/` + consignmentId,   {
-                                method: "PUT", // *GET, POST, PUT, DELETE, etc.
-                                credentials: "include",
-                                headers: {
-                                    "Content-Type": "application/json; charset=utf-8",
-                                },
-                                body: JSON.stringify(data), 
-                            })
-                            .then(response => response.json());
-                        }
-                      header:
-                        title: Update Consignment
-                        anchor: fetch-api-sf_checkout-update-consignment
-                      config:
-                        mode: js
-                    - type: text
-                      data: >-
-                        ## Troubleshooting
-
-
-                        Did you get a CORs error response? 
-
-                        - Check to make sure you have the right credentials
-                        setup. Most will use same-origin or include. 
-
-
-                        Did you get a 404?
-
-                        - Make sure you have at least one item in your cart.
-                        Deleting all items removed the cart and returns a 404 in
-                        the browser console.
-                      header:
-                        anchor: fetch-api-sf_troubleshooting
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Next Steps
-
-
-                        See the Storefront [Cart](http://) and
-                        [Checkout](http://) API’s for a full list of the
-                        available actions.
-                      header:
-                        anchor: fetch-api-sf_next-steps
-                config:
-                  sidebar:
-                    token: GUIDE
+                        * Browser - not fetch does not work with some versions
+                        of Internet Explorer. 
               - title: Checkout SDK
                 route:
                   path: /checkout-sdk
@@ -17348,136 +16791,135 @@ pages:
                       data: "{\n\t\"data\": [{\n\t\t\t\"id\": 51,\n\t\t\t\"key\": \"shipping-origins\",\n\t\t\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping origins associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-19T17:56:08+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 52,\n\t\t\t\"key\": \"shipping-groups\",\n\t\t\t\"value\": \"[\\\"SHIPPING GROUP NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping group rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 53,\n\t\t\t\"key\": \"shipping-dimensional-rules\",\n\t\t\t\"value\": \"[\\\"DIMENSIONAL RULES NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ dimensional rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t}\n\t],\n\t\"meta\": {\n\t\t\"pagination\": {\n\t\t\t\"total\": 3,\n\t\t\t\"count\": 3,\n\t\t\t\"per_page\": 50,\n\t\t\t\"current_page\": 1,\n\t\t\t\"total_pages\": 1,\n\t\t\t\"links\": {\n\t\t\t\t\"current\": \"?page=1&limit=50\"\n\t\t\t}\n\t\t}\n\t}\n}"
                       header:
                         title: SHQ Add Metafield Response
-        - title: API Reference
+  /api-reference:
+    title: API Reference
+    data:
+      children:
+        - title: Catalog
           route:
-            path: /api-reference
+            path: /catalog-api
+          data:
+            $ref: ./V3 Catalog.oas2.yml
+        - title: Store
+          route:
+            path: /store-api
           data:
             children:
-              - title: Catalog API
+              - title: Store Infomation
                 route:
-                  path: /catalog-api
+                  path: /v2-store
                 data:
-                  $ref: ./V3 Catalog.oas2.yml
-              - title: Store APIs
+                  $ref: ./V2 Store.oas2.yml
+              - title: ' Currency'
                 route:
-                  path: /store-api
+                  path: /v2-currency
                 data:
-                  children:
-                    - title: Store Infomation
-                      route:
-                        path: /v2-store
-                      data:
-                        $ref: ./V2 Store.oas2.yml
-                    - title: ' Currency'
-                      route:
-                        path: /v2-currency
-                      data:
-                        $ref: ./V2 Currency.oas2.yml
-                    - title: Geography
-                      route:
-                        path: /v2-geography
-                      data:
-                        $ref: ./V2 Geography.oas2.yml
-                    - title: Tax Class
-                      route:
-                        path: /v2-tax-classes
-                      data:
-                        $ref: ./V2 Tax.oas2.yml
-              - title: Cart & Checkout APIs
+                  $ref: ./V2 Currency.oas2.yml
+              - title: Geography
                 route:
-                  path: /cart-checkout-api
+                  path: /v2-geography
                 data:
-                  children:
-                    - title: Storefront Cart
-                      route:
-                        path: /storefront-cart
-                      data:
-                        $ref: ./Storefront Cart API.oas2.yml
-                    - title: Storefront Checkout
-                      route:
-                        path: /storefront-checkout
-                      data:
-                        $ref: ./Storefront Checkout API.oas2.yml
-                    - title: Server to Server Cart
-                      route:
-                        path: /server-server-cart
-                      data:
-                        $ref: ./Server to Server Cart.oas2.yml
-                    - title: Server to Server Checkout
-                      route:
-                        path: /server-server-checkout
-                      data:
-                        $ref: ./Server to Server Checkout.oas2.yml
-              - title: Order APIs
+                  $ref: ./V2 Geography.oas2.yml
+              - title: Tax Class
                 route:
-                  path: /orders
+                  path: /v2-tax-classes
                 data:
-                  children:
-                    - title: Orders
-                      route:
-                        path: /v2-orders
-                      data:
-                        $ref: ./V2 Orders.oas2.yml
-                    - title: Order Transactions
-                      route:
-                        path: /orders-transactions-api
-                      data:
-                        $ref: ./V3 Orders.oas2.yml
-                    - title: Storefront Orders
-                      route:
-                        path: /storefront-orders
-                      data:
-                        $ref: ./Storefront Orders.oas2.yml
-              - title: Customer & Subscriber APIs
+                  $ref: ./V2 Tax.oas2.yml
+        - title: Cart & Checkout
+          route:
+            path: /cart-checkout-api
+          data:
+            children:
+              - title: Storefront Cart
                 route:
-                  path: /customer-subscribers
+                  path: /storefront-cart
                 data:
-                  children:
-                    - title: Customers
-                      route:
-                        path: /v2-customers
-                      data:
-                        $ref: ./V2 Customers.oas2.yml
-                    - title: Subscribers
-                      route:
-                        path: /customers-api
-                      data:
-                        $ref: ./V3 Subscribers.oas2.yml
-              - title: Price List API
+                  $ref: ./Storefront Cart API.oas2.yml
+              - title: Storefront Checkout
                 route:
-                  path: /pricelists-api
+                  path: /storefront-checkout
                 data:
-                  $ref: ./V3 Price Lists.oas2.yml
-              - title: Script API
+                  $ref: ./Storefront Checkout API.oas2.yml
+              - title: Server to Server Cart
                 route:
-                  path: /content-api
+                  path: /server-server-cart
                 data:
-                  $ref: ./V3 Content.oas2.yml
-              - title: Marketing API
+                  $ref: ./Server to Server Cart.oas2.yml
+              - title: Server to Server Checkout
                 route:
-                  path: /v2-marketing
+                  path: /server-server-checkout
                 data:
-                  $ref: ./V2 Marketing.oas2.yml
-              - title: Payment Methods API
+                  $ref: ./Server to Server Checkout.oas2.yml
+        - title: Orders
+          route:
+            path: /orders
+          data:
+            children:
+              - title: Orders
                 route:
-                  path: /v2-payment-methods
+                  path: /v2-orders
                 data:
-                  $ref: ./V2 Payment Methods.oas2.yml
-              - title: Shipping APIs
+                  $ref: ./V2 Orders.oas2.yml
+              - title: Order Transactions
                 route:
-                  path: /v2-shipping
+                  path: /orders-transactions-api
                 data:
-                  $ref: ./V2 Shipping.oas2.yml
-              - title: Store Content APIs
+                  $ref: ./V3 Orders.oas2.yml
+              - title: Storefront Orders
                 route:
-                  path: /v2-store-content
+                  path: /storefront-orders
                 data:
-                  $ref: ./V2 Store Content.oas2.yml
-              - title: Themes API
+                  $ref: ./Storefront Orders.oas2.yml
+        - title: Customers & Subscribers
+          route:
+            path: /customer-subscribers
+          data:
+            children:
+              - title: Customers
                 route:
-                  path: /themes-api
+                  path: /v2-customers
                 data:
-                  $ref: ./V3 Themes.oas2.yml
+                  $ref: ./V2 Customers.oas2.yml
+              - title: Subscribers
+                route:
+                  path: /customers-api
+                data:
+                  $ref: ./V3 Subscribers.oas2.yml
+        - title: Price Lists
+          route:
+            path: /pricelists-api
+          data:
+            $ref: ./V3 Price Lists.oas2.yml
+        - title: Scripts
+          route:
+            path: /content-api
+          data:
+            $ref: ./V3 Content.oas2.yml
+        - title: Marketing
+          route:
+            path: /v2-marketing
+          data:
+            $ref: ./V2 Marketing.oas2.yml
+        - title: Payment Methods
+          route:
+            path: /v2-payment-methods
+          data:
+            $ref: ./V2 Payment Methods.oas2.yml
+        - title: Shipping
+          route:
+            path: /v2-shipping
+          data:
+            $ref: ./V2 Shipping.oas2.yml
+        - title: Store Content
+          route:
+            path: /v2-store-content
+          data:
+            $ref: ./V2 Store Content.oas2.yml
+        - title: Themes
+          route:
+            path: /themes-api
+          data:
+            $ref: ./V3 Themes.oas2.yml
   /changelog:
     title: Changelog
     data:
