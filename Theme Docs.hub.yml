@@ -5453,7 +5453,7 @@ pages:
                     - type: html
                       data: <h1>Basic <code>npm</code> Example</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#basic_what-were-building\">What We're Building</a></li>\n    <li><a href=\"#basic_set-up\"></a>Set Up Your Store</li>\n    <li><a href=\"#basic_install-\"></a>Install Dependencies</li>\n    <li><a href=\"#basic_\"></a>Configure Webpack loaders in webpack.conf.js</li>\n    <li><a href=\"#basic_\"></a>Import the Dependencies</li>\n    <li><a href=\"#basic_\"></a>Configure the loaded() Method</li>\n\t</ul>\n</div>\n\n\n\n\n\n\n\n"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#basic_what-were-building\">What We're Building</a></li>\n    <li><a href=\"#basic_set-up\"></a>Set Up Your Store</li>\n    <li><a href=\"#basic_install-dependencies\"></a>Install Dependencies</li>\n    <li><a href=\"#basic_configure-webpack\"></a>Configure Webpack loaders in webpack.conf.js</li>\n    <li><a href=\"#basic_import-dependencies\"></a>Import Dependencies</li>\n    <li><a href=\"#basic_configured-loaded-method\"></a>Configure the loaded() Method</li>\n\t</ul>\n</div>\n\n\n\n\n\n\n\n"
                     - type: callout
                       data:
                         title: >-
@@ -5483,14 +5483,76 @@ pages:
                         title: Screenshot of final product
                       config:
                         bordered: true
+                        maxWidth: '700'
+                        maxHeight: '700'
+                        centered: true
+                        fluid: true
                     - type: text
-                      data: '## Set Up Your Store'
+                      data: >-
+                        ## Set Up Your Store
+
+
+                        To test this example, you'll want your (sandbox or
+                        production) store to include at least a couple of
+                        products that have a `Delivery/Event Date` configured.
+                        (In production, you'd typically use this feature for
+                        things like seasonally themed products, temporary
+                        promotions, or event tickets.)
+
+
+                        For product configuration steps in the BigCommerce
+                        control panel, please see this support article.
                     - type: text
-                      data: '## Install Dependencies'
+                      data: "## Install Dependencies\n\nUse the following command to install this example's required dependencies:\n\n`npm install --save-dev css-loader moment foundation-datepicker style-loader`\n\nThe above command's options are:\n\n* `--save-dev` saves the dependencies as `DevDependencies`; this flags them as required for development, but not at runtime. [This stack overflow thread](https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies) provides further context to this concept.\n\n* `css-loader` and `style-loader` are webpack loaders, used together:\n\t* [`css-loader`](https://github.com/webpack-contrib/css-loader) resolves `@import` and `url()` expressions in CSS files.\n\t* [`style-loader`](https://github.com/webpack-contrib/style-loader) generically loads stylesheets by injecting a `<style>` tag.\n\n* [`moment`](https://momentjs.com/) is a JavaScript component parses, validates, and displays dates and times.\n\n* `foundation-datepicker` specifies the datepicker package to install."
                     - type: text
-                      data: '## Configure Webpack loaders in webpack.conf.js'
+                      data: >-
+                        ## Configure Webpack loaders in webpack.conf.js
+
+
+                        The [css]() and [style]() loaders are used to import CSS
+                        and to inject it into the DOM, respectively:
+
+
+                        ```
+
+                        {
+                            test: /\.css$/,
+                            loader: 'style-loader!css-loader',
+                        }
+
+                        ```
+                    - type: image
+                      data: >-
+                        //s3.amazonaws.com/user-content.stoplight.io/6116/1539280227448
+                      header:
+                        title: CSS and style loaders in context
                     - type: text
-                      data: '## Import the Dependencies'
+                      data: >-
+                        ## Import the Dependencies
+
+
+                        Import these new dependencies into
+                        `<theme-name>/assets/js/theme/product.js`.
+
+
+                        In `<theme-name>/assets/js/app.js`, notice that there is
+                        a mapping between the product page and the `product.js`
+                        script:
+
+
+                        ```
+
+                        const PageClasses = {
+                            mapping: {
+                                ...
+                                'pages/product': product,
+                        ```
+
+
+                        That is, when a user navigates to the product page, the
+                        `product.js` script is run. First its constructor will
+                        be run, followed by the methods `before`, `loaded`, and
+                        `after` – in that order.
                     - type: text
                       data: >-
                         ## Configure the loaded() Method
@@ -5587,7 +5649,45 @@ pages:
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6116/1539275148248
                       header:
-                        title: Code addition to loaded method.
+                        title: Code addition to loaded method in product.js
+                    - type: text
+                      data: >
+                        Update the
+                        `<theme-name>/templates/components/products/product-view.html`
+                        template, replacing the existing `{{#if
+                        product.event_date}}` block with the following:
+
+
+                        ```
+
+                        {{#if product.event_date}}
+                            {{inject 'product' product}}
+                            <div class="form-field">
+                                <label class="form-label form-label--alternate form-label--inlineSmall">
+                                {{product.event_date.name}}:
+                                <small>{{lang 'common.required'}}</small>
+                                </label>
+                                <input type="text" class="form-input" id="deliveryDate" name="EventDate[Date]" required>
+                                <input type="hidden" id="deliveryDateMth" name="EventDate[Mth]">
+                                <input type="hidden" id="deliveryDateDay" name="EventDate[Day]">
+                                <input type="hidden" id="deliveryDateYr" name="EventDate[Yr]">
+                            </div>
+                        {{/if}}
+
+                        ```
+
+
+                        Note that we're "injecting" the product here, so we have
+                        access to its properties. This could be done closer to
+                        the root of the tree, but it's been placed here for
+                        proximity to the code that requires it.
+
+
+                        We also needed to add form fields for the
+                        `EventDate[Mth]`, `EventDate[Day]`, and `EventDate[Yr]`
+                        data, which we update whenever the `changeDate` event
+                        occurs. This conforms to the data format that the server
+                        expects. These fields are hidden from the user.
               - title: Advanced NPM Example
                 route:
                   path: /new-subpage-1
