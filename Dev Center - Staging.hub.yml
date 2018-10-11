@@ -16582,11 +16582,135 @@ pages:
                         `?include=consignments.availableShippingOptions` with
                         the previous request then pick the appropriate
                         `shippingOptionId` for each consignment. 
+
+
+                        Below is the consignment portion of the response from
+                        creating a consignment. On line 27 are the
+                        `availableShippingOptions` with an id for each. This
+                        will be passed in for each consigmnent to give it the
+                        correct shipping option. 
                     - type: code
-                      data: ''
+                      data: |2-
+                          "consignments": [
+                            {
+                              "id": "5bbe2ead3433c",
+                              "shippingCost": 0,
+                              "handlingCost": 0,
+                              "couponDiscounts": [],
+                              "discounts": [],
+                              "lineItemIds": [
+                                "fb924c6c-10fb-456a-bccb-02d9fb426199"
+                              ],
+                              "shippingAddress": {
+                                "firstName": "Jane",
+                                "lastName": "Doe",
+                                "email": "janedoe@email.com",
+                                "company": "BigCommerce",
+                                "address1": "123 Main Street",
+                                "address2": "Apt 1",
+                                "city": "Austin",
+                                "stateOrProvince": "Texas",
+                                "stateOrProvinceCode": "TX",
+                                "country": "United States",
+                                "countryCode": "US",
+                                "postalCode": "78751",
+                                "phone": "",
+                                "customFields": []
+                              },
+                              "availableShippingOptions": [
+                                {
+                                  "id": "195402b6-5819-4792-93d5-aeb7e1691b8a",
+                                  "type": "shipping_byweight",
+                                  "description": "Ship by Weight",
+                                  "imageUrl": "",
+                                  "cost": 8,
+                                  "transitTime": "",
+                                  "isRecommended": false
+                                },
+                                {
+                                  "id": "a1074cda-2cb7-4b92-8bdc-83bd370a2b81",
+                                  "type": "shipping_flatrate",
+                                  "description": "Flat Rate",
+                                  "imageUrl": "",
+                                  "cost": 12,
+                                  "transitTime": "",
+                                  "isRecommended": false
+                                },
+                                {
+                                  "id": "41e5e000-bebf-426c-a929-117ba921fa0f",
+                                  "type": "shipping_upsready",
+                                  "description": "UPS® (UPS Next Day Air®)",
+                                  "imageUrl": "/img/shipping-providers/upsready_70x70.png",
+                                  "cost": 44.52,
+                                  "transitTime": "1 business day",
+                                  "isRecommended": false
+                                }
+                              ]
+                            },
+                            {
+                              "id": "5bbe2ead39943",
+                              "shippingCost": 0,
+                              "handlingCost": 0,
+                              "couponDiscounts": [],
+                              "discounts": [],
+                              "lineItemIds": [
+                                "98ceac68-cac9-49af-9050-95494f32474c"
+                              ],
+                              "shippingAddress": {
+                                "firstName": "John",
+                                "lastName": "Doe",
+                                "email": "johnedoe@email.com",
+                                "company": "BigCommerce",
+                                "address1": "123 South Street",
+                                "address2": "Apt 5",
+                                "city": "Austin",
+                                "stateOrProvince": "Texas",
+                                "stateOrProvinceCode": "TX",
+                                "country": "United States",
+                                "countryCode": "US",
+                                "postalCode": "78726",
+                                "phone": "",
+                                "customFields": []
+                              },
+                              "availableShippingOptions": [
+                                {
+                                  "id": "4294109d-1d4d-46ff-8b3a-fcacf05e5d5f",
+                                  "type": "shipping_byweight",
+                                  "description": "Ship by Weight",
+                                  "imageUrl": "",
+                                  "cost": 8,
+                                  "transitTime": "",
+                                  "isRecommended": false
+                                },
+                                {
+                                  "id": "5567babb-ee81-4c31-8356-dc139f80cae7",
+                                  "type": "shipping_flatrate",
+                                  "description": "Flat Rate",
+                                  "imageUrl": "",
+                                  "cost": 12,
+                                  "transitTime": "",
+                                  "isRecommended": false
+                                },
+                                {
+                                  "id": "e1ae7924-cb99-48df-ae5a-ec0aa37b64eb",
+                                  "type": "shipping_upsready",
+                                  "description": "UPS® (UPS Next Day Air®)",
+                                  "imageUrl": "/img/shipping-providers/upsready_70x70.png",
+                                  "cost": 44.52,
+                                  "transitTime": "1 business day",
+                                  "isRecommended": false
+                                }
+                              ]
+                            }
+                          ],
                       header:
                         title: Example Response
                         subtitle: ' /consignments?include=consignments.availableShippingOptions'
+                      config:
+                        mode: js
+                        highlightRange:
+                          - from: '27'
+                            to: '56'
                 config:
                   sidebar:
                     token: GUIDE
