@@ -16406,6 +16406,34 @@ pages:
                         anchor: fetch-api-sf_create-cart
                       config:
                         mode: js
+                    - type: text
+                      data: >-
+                        ### Get Cart 
+
+
+                        This will return a cart on the store URL. This function
+                        is slightly different. The postData() that was present
+                        in the Create a Cart was removed since it only needs to
+                        print the data to the console. The credentials are also
+                        updated to include since the request is coming from a
+                        different url. 
+
+
+                        To return the full product data in a cart, an includes
+                        must be added. See [Get Cart]() for more details. 
+                    - type: code
+                      data: >
+                        fetch('/api/storefront/cart?include=lineItems.digitalItems.options,lineItems.physicalItems.options',
+                        {credentials: 'include'})
+                          .then(function(response) {
+                            return response.json();
+                          })
+                          .then(function(myJson) {
+                            console.log(JSON.stringify(myJson));
+                          });
+                      header:
+                        title: Get a Cart
+                        anchor: fetch-api-sf_get-cart
                 config:
                   sidebar:
                     token: GUIDE
