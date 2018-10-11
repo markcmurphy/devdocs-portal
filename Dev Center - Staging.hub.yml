@@ -16548,11 +16548,11 @@ pages:
                         lineItems. 
 
 
-                        A shipping address can only be added to a checkout with
-                        lineItems. If multiple shipping locations are being
-                        used, match each lineItem with the correct shipping
-                        address as shown in the example below. For more examples
-                        see [Create Consignment]().
+                        A shipping address and lineItems make one consignment.
+                        If multiple shipping locations are being used, match
+                        each lineItem with the correct shipping address as shown
+                        in the example below to create multiple consignments.
+                        For more examples see [Create Consignment]().
 
 
                         When adding a shipping address to the checkout
@@ -16561,7 +16561,7 @@ pages:
                         each address. To add the shipping option a [put
                         request]() must be sent for each consignment. 
                     - type: code
-                      data: ''
+                      data: "postData(`/api/storefront/checkouts/`, `e8b7c677-f67a-4e39-a5ed-f405c9a06bcf`,\n[{\n        \"shippingAddress\": {\n            \"firstName\": \"Jane\",\n            \"lastName\": \"Doe\",\n            \"email\": \"janedoe@email.com\",\n            \"company\": \"BigCommerce\",\n            \"address1\": \"123 Main Street\",\n            \"address2\": \"Apt 1\",\n            \"city\": \"Austin\",\n            \"stateOrProvinceCode\": \"TX\",\n            \"countryCode\": \"US\",\n            \"postalCode\": \"78751\"\n        },\n        \"lineItems\": [{\n            \"itemId\": \"fb924c6c-10fb-456a-bccb-02d9fb426199\",\n            \"quantity\": 1\n        }]\n    },\n    {\n        \"shippingAddress\": {\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\",\n            \"email\": \"johnedoe@email.com\",\n            \"company\": \"BigCommerce\",\n            \"address1\": \"123 South Street\",\n            \"address2\": \"Apt 5\",\n            \"city\": \"Austin\",\n            \"stateOrProvinceCode\": \"TX\",\n            \"countryCode\": \"US\",\n            \"postalCode\": \"78726\"\n        },\n        \"lineItems\": [{\n            \"itemId\": \"98ceac68-cac9-49af-9050-95494f32474c\",\n            \"quantity\": 1\n        }]\n    }\n\t]\n\n)\n  .then(data => console.log(JSON.stringify(data))) \n  .catch(error => console.error(error));\n\nfunction postData(url = ``, checkoutId = ``, data = {},) {\n    return fetch(url + checkoutId + `/consignments?include=consignments.availableShippingOptions`,   {\n        method: \"POST\", // *GET, POST, PUT, DELETE, etc.\n        mode: \"cors\",\n        cache: \"no-cache\",\n        credentials: \"include\",\n        headers: {\n            \"Content-Type\": \"application/json; charset=utf-8\",\n        },\n        body: JSON.stringify(data), \n    })\n    .then(response => response.json()); }\n"
                       header:
                         title: Create Consignment
                         anchor: fetch-api-sf_checkout-create-consignment
