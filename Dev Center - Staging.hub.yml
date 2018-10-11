@@ -16434,6 +16434,58 @@ pages:
                       header:
                         title: Get a Cart
                         anchor: fetch-api-sf_get-cart
+                    - type: text
+                      data: >-
+                        ### Delete Cart Item
+
+
+                        In the code below there are a few changes. One is the
+                        arguments for deleteCartItem now accept a URL, cartId,
+                        and itemId. Those are passed in to the deleteCartItem()
+                        at the top. The url is being built in the fetch()
+                        below. 
+
+
+                        We have also introduced a new way to handle errors.
+                        Error handling in fetch can be pulled out into its own
+                        function and be used to return any data or messages you
+                        want as a way to keep the code
+                        [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). 
+                      header:
+                        anchor: fetch-api-sf_delete-cart
+                    - type: callout
+                      data:
+                        type: warning
+                        body: Deleting the last item in your cart removes the cart.
+                    - type: code
+                      data: >-
+                        deleteCartItem(`/api/storefront/carts/`,
+                        `c057c316-71d8-4b58-86e1-f6f2ed003683`,
+                        `94bf4255-13a0-4109-b37a-5122ee3dd18c`)
+                          .then(data => console.log(JSON.stringify(data)))
+                          .then(handleErrors) 
+                          .catch(error => console.error(error));
+
+                        function handleErrors(response) {
+                            if (!response.ok) {
+                                throw Error(response.statusText);
+                            }
+                            return response;
+                        }
+
+
+                        function deleteCartItem(url = ``, cartId = ``, itemId =
+                        ``) {
+                              return fetch(url + cartId + '/items/' + itemId , {
+                                  method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+                                  credentials: "include",
+                                  headers: {
+                                      "Content-Type": "application/json; charset=utf-8",          
+                                      },
+                                  body: JSON.stringify(data),
+                              })
+                              .then(response => response.json());
+                          }
                 config:
                   sidebar:
                     token: GUIDE
