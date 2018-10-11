@@ -11190,17 +11190,22 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
-                              The webhook we are going to subscribe to is
-                              `store/product/updated`. 
+                              Subscribe to the `store/product/updated` event: 
 
 
                               1. Create a POST request using the try it now box
-                              below or your api enviroment of
-                              choice.`https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks`.
-                              Replace store_hash with your store.
+                              below or your API enviroment of choice to the
+                              request
+                              URL:`https://api.bigcommerce.com/stores/{{store_hash}}/v2/hooks`. 
 
-                              2. Create a body request with the webhook we are
-                              subscribing to and your forwarding url:
+                              Replace store_hash with the value from your
+                              store's API path.
+
+                              2. Create a request body where "scope" is the
+                              webhook event we are subscribing to and
+                              "destination" is your ngrok forwarding url with
+                              /webhooks appended (the route specified in our
+                              Express app):
 
 
                               ```
@@ -11212,14 +11217,9 @@ pages:
                               }
 
                               ```
+                               
 
-
-                              The destination url is the forwarding url from
-                              ngrok and /webhooks, matching the URL path set in
-                              the app POST.  
-
-
-                              3. Update the headers to have:
+                              3. Update the request headers to contain:
 
                               ```
                                   Accept: application/json
@@ -11228,9 +11228,8 @@ pages:
                                   X-Auth-Token: {{the OAuth token}}
                               ```
 
-                              4. Check all the values and then hit POST. The
-                              response will be 201 Created if headers and scope
-                              are correct.
+                              4. Check all the values and then hit POST. If
+                              successful, the response will be 201 Created.
                           - type: http
                             data:
                               method: post
