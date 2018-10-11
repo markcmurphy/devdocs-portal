@@ -5453,7 +5453,105 @@ pages:
                     - type: html
                       data: <h1>Basic <code>npm</code> Example</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#adding_bundling-and-minification\">Bundling and Minification</a></li>\n    <li><a href=\"#adding_development-options\"></a>Development Options</li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#basic_what-were-building\">What We're Building</a></li>\n    <li><a href=\"#basic_set-up\"></a>Set Up Your Store</li>\n    <li><a href=\"#basic_install-\"></a>Install Dependencies</li>\n    <li><a href=\"#basic_\"></a>Configure Webpack loaders in webpack.conf.js</li>\n    <li><a href=\"#basic_\"></a>Import the Dependencies</li>\n    <li><a href=\"#basic_\"></a>Configure the loaded() Method</li>\n\t</ul>\n</div>\n\n\n\n\n\n\n\n"
+                    - type: text
+                      data: '## What We''re Building'
+                    - type: text
+                      data: '## Set Up Your Store'
+                    - type: text
+                      data: '## Install Dependencies'
+                    - type: text
+                      data: '## Configure Webpack loaders in webpack.conf.js'
+                    - type: text
+                      data: '## Import the Dependencies'
+                    - type: text
+                      data: >-
+                        ## Configure the loaded() Method
+
+
+                        We'll use the `loaded` method to initialize our
+                        datepicker widget:
+
+
+                        ```
+
+                        import $ from 'jquery';
+
+                        import PageManager from '../page-manager';
+
+                        import Review from './product/reviews';
+
+                        import collapsibleFactory from './common/collapsible';
+
+                        import ProductDetails from './common/product-details';
+
+                        import videoGallery from './product/video-gallery';
+
+                        import { classifyForm } from './common/form-utils';
+
+                        import
+                        'foundation-datepicker/js/foundation-datepicker.min.js';
+
+                        import
+                        'foundation-datepicker/css/foundation-datepicker.min.css';
+
+                        import moment from 'moment';
+
+
+                        ...
+
+
+                        loaded(next) {
+                            let validator;
+
+                            // Init collapsible
+                            collapsibleFactory();
+
+                            this.productDetails = new ProductDetails($('.productView'), this.context);
+
+                            videoGallery();
+
+                            const $reviewForm = classifyForm('.writeReview-form');
+                            const review = new Review($reviewForm);
+
+                            $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
+                                validator = review.registerValidation();
+                            });
+
+                            $reviewForm.on('submit', () => {
+                                if (validator) {
+                                    validator.performCheck();
+                                    return validator.areAll('valid');
+                                }
+
+                                return false;
+                            });
+
+                            let $deliveryDateMth = $('#deliveryDateMth');
+                            let $deliveryDateDay = $('#deliveryDateDay');
+                            let $deliveryDateYr = $('#deliveryDateYr');
+                            let earliestDate = moment(this.context.product.event_date.date_start, "MMM Do YYYY");
+                            let latestDate = moment(this.context.product.event_date.date_end, "MMM Do YYYY");
+
+                            $('#deliveryDate').fdatepicker({
+                                leftArrow:'<<',
+                                rightArrow:'>>',
+                                onRender: function (date) {
+                                    return moment(date).isBetween(earliestDate, latestDate, null, '[]') ? '' : 'disabled';
+                                }
+                            })
+                            .on('changeDate', function(event) {
+                                let date = event.date;
+                                $deliveryDateMth.val(date.getMonth() + 1);
+                                $deliveryDateDay.val(date.getDate());
+                                $deliveryDateYr.val(date.getFullYear());
+                            })
+                            .data('datepicker');
+
+                            next();
+                        }
+
+                        ```
               - title: Advanced NPM Example
                 route:
                   path: /new-subpage-1
