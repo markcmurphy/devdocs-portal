@@ -16501,6 +16501,72 @@ pages:
                         your cart and need to make a new one.
                       header:
                         anchor: fetch-api-sf_checkout
+                    - type: text
+                      data: |-
+                        ### Add billing address to checkout
+                        A billing address is required create a checkout.
+                    - type: code
+                      data: >
+                        postData(`/api/storefront/checkouts/`,
+                        `e8b7c677-f67a-4e39-a5ed-f405c9a06bcf`, {
+
+                        "firstName": "Jane",
+                                    "lastName": "Doe",
+                                    "email": "janedoe@email.com",
+                                    "company": "BigCommerce",
+                                    "address1": "123 Main Street",
+                                    "address2": "Apt 1",
+                                    "city": "Austin",
+                                    "stateOrProvinceCode": "Austin",
+                                    "countryCode": "USA",
+                                    "postalCode": "78751"
+                        })
+                          .then(data => console.log(JSON.stringify(data))) 
+                          .catch(error => console.error(error));
+
+                        function postData(url = ``, checkoutId = ``, data = {},)
+                        {
+                            return fetch(url + checkoutId + `/billing-address`,  {
+                                method: "POST", // *GET, POST, PUT, DELETE
+                                credentials: "include",
+                                headers: {
+                                    "Content-Type": "application/json; charset=utf-8",
+                                },
+                                body: JSON.stringify(data),
+                            })
+                            .then(response => response.json()); 
+                        }
+                      header:
+                        title: Add billing address
+                        anchor: fetch-api-sf_checkout-add-billing-address
+                    - type: text
+                      data: >-
+                        ### Add shipping address or consignment to checkout. 
+
+
+                        A consignment is a shipping address with the associated
+                        lineItems. 
+
+
+                        A shipping address can only be added to a checkout with
+                        lineItems. If multiple shipping locations are being
+                        used, match each lineItem with the correct shipping
+                        address as shown in the example below. For more examples
+                        see [Create Consignment]().
+
+
+                        When adding a shipping address to the checkout
+                        `?include=consignments.availableShippingOptions`must be
+                        included to return the shipping options available for
+                        each address. To add the shipping option a [put
+                        request]() must be sent for each consignment. 
+                    - type: code
+                      data: ''
+                      header:
+                        title: Create Consignment
+                        anchor: fetch-api-sf_checkout-create-consignment
+                      config:
+                        mode: js
                 config:
                   sidebar:
                     token: GUIDE
