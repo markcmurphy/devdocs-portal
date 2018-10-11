@@ -16588,7 +16588,7 @@ pages:
                         creating a consignment. On line 27 are the
                         `availableShippingOptions` with an id for each. This
                         will be passed in for each consigmnent to give it the
-                        correct shipping option. 
+                        correct shipping option.
                     - type: code
                       data: |2-
                           "consignments": [
@@ -16711,6 +16711,27 @@ pages:
                         highlightRange:
                           - from: '27'
                             to: '56'
+                    - type: code
+                      data: >
+                        postData(`/api/storefront/checkouts/`,
+                        `e8b7c677-f67a-4e39-a5ed-f405c9a06bcf`,
+                        `5bbe2ead39943`,{"shippingOptionId":
+                        "e1ae7924-cb99-48df-ae5a-ec0aa37b64eb"})
+                          .then(data => console.log(JSON.stringify(data)))
+                          .catch(error => console.error(error));
+
+                        function postData(url = ``, checkoutId = ``,
+                        consignmentId = ``, data = {},) {
+                            return fetch(url + checkoutId + `/consignments/` + consignmentId,   {
+                                method: "PUT", // *GET, POST, PUT, DELETE, etc.
+                                credentials: "include",
+                                headers: {
+                                    "Content-Type": "application/json; charset=utf-8",
+                                },
+                                body: JSON.stringify(data), 
+                            })
+                            .then(response => response.json()); // parses response to JSON
+                        }
                 config:
                   sidebar:
                     token: GUIDE
