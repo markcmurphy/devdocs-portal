@@ -16198,7 +16198,7 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: "<h1>Working with the Fetch API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#fetch_api_sf_prerequisites\">Prerequisites</a></li>\n\t\t<li><a href=\"#fetch_api_sf_prerequisites\"></a></li>\n\t\t<li><a href=\"#where-to-get\">Where Can I Get the SDK?\n</a></li>\n    <li><a href=\"#support-customization\">Support and Customization\n</a></li>\n\t</ul>\n</div>"
+                      data: "<h1>Working with the Fetch API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#fetch_api_sf_prerequisites\">Prerequisites</a></li>\n\t\t<li><a href=\"#fetch_api_sf_call_postdata\">Call postData()</a></li>\n\t\t<li><a href=\"#where-to-get\">Where Can I Get the SDK?\n</a></li>\n    <li><a href=\"#support-customization\">Support and Customization\n</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         ## Prerequisites:
@@ -16231,6 +16231,43 @@ pages:
                         errors in the console.
                       header:
                         anchor: fetch_api_sf_prerequisites
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Call postData()
+
+
+                        ```
+
+                        postData(`/api/storefront/cart`, {
+                                "lineItems": [
+                                {
+                                    "quantity": 1,
+                                    "productId": 196
+                                },
+                                {
+                                    "quantity": 1,
+                                    "productId": 184
+                                }
+                                ]}
+                            )
+                          .then(data => console.log(JSON.stringify(data))) 
+                          .catch(error => console.error(error));
+                        ```
+
+
+                        First, we have `postData()` which is calling the
+                        function.
+                      header:
+                        anchor: fetch_api_sf_call_postdata
+                    - type: callout
+                      data:
+                        body: >-
+                          JavaScript allows for function declarations to be
+                          [hoisted](https://scotch.io/tutorials/understanding-hoisting-in-javascript#toc-hoisting-functions),
+                          so the function postData can be called before being
+                          defined.
                 config:
                   sidebar:
                     token: GUIDE
