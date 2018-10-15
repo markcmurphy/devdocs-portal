@@ -8829,7 +8829,7 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: "<h1> Customer Login API </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#jwt\"> JWT</a></li>\n\t\t<li><a href=\"#oauth-scope\">OAuth Scope</a></li>\n    <li><a href=\"#sample-code\">Sample Code</a></li>\n    <li><a href=\"#access-url\">Acces URL</a></li>\n    <li><a href=\"#logging-in-a-customer\">Loggin In a Customer</a></li>\n    <li><a href=\"#troubleshooting-customer-login-api\">Troubleshooting</a></li>\n\t</ul>\n</div>"
+                      data: "<h1> Customer Login API </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#customer-login_jwt\"> JWT</a></li>\n\t\t<li><a href=\"#customer-login_oauth-scope\">OAuth Scope</a></li>\n    <li><a href=\"#customer-login_sample-code\">Sample Code</a></li>\n    <li><a href=\"#customer-login_access-url\">Acces URL</a></li>\n    <li><a href=\"#customer-login_logging-in-a-customer\">Loggin In a Customer</a></li>\n    <li><a href=\"#customer-login_troubleshooting-customer-login-api\">Troubleshooting</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         The Customer Login API enables single sign-on (SSO). It
@@ -8876,7 +8876,7 @@ pages:
                         separated by periods (“.”), which correspond to the
                         encoded header, the encoded payload, and the signature.
                       header:
-                        anchor: jwt
+                        anchor: customer-login_jwt
                     - type: image
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6012/1535390918772
@@ -8899,8 +8899,7 @@ pages:
                         maxHeight: '400'
                     - type: text
                       data: "### Header\n\nThe header specifies the type of token (JWT) and the hashing algorithm.\n\n```\n{\n\t\"typ\": \"JWT\",\n\t\"alg\": \"HS256\" \n}\n```\n\nThe type and algorithm are always JWT and HS256. Those are the only values BigCommerce supports."
-                      header:
-                        anchor: header
+                      header: {}
                     - type: text
                       data: >-
                         ### Payload
@@ -8928,8 +8927,7 @@ pages:
                         setting this IP address value, but doing so is optional,
                         to support those cases where this information is not
                         available.
-                      header:
-                        anchor: payload
+                      header: {}
                     - type: code
                       data: |
                         {
@@ -8988,8 +8986,7 @@ pages:
                         BigCommerce will check that it matches the browser
                         trying to log in. If there is not a match, it will be
                         rejected |
-                      header:
-                        anchor: payload-fields
+                      header: {}
                     - type: text
                       data: >-
                         ### Signature
@@ -8998,8 +8995,7 @@ pages:
                         The signature is created by signing the header and
                         payload with the hashing algorithm specified in the
                         header (HS256) and your application’s Client Secret. 
-                      header:
-                        anchor: signature
+                      header: {}
                     - type: text
                       data: '---'
                     - type: text
@@ -9009,7 +9005,7 @@ pages:
                         Your OAuth API credentials must include the
                         [customers_login](http://) scope.
                       header:
-                        anchor: oauth-scope
+                        anchor: customer-login_oauth-scope
                     - type: text
                       data: '---'
                     - type: text
@@ -9027,7 +9023,7 @@ pages:
                         `https://storedomain.com/login/token/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                         .eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ`
                       header:
-                        anchor: access-url
+                        anchor: customer-login_access-url
                     - type: text
                       data: '---'
                     - type: text
@@ -9048,7 +9044,7 @@ pages:
                         Client ID and Client Secret generated from the store
                         with the scope set to [Customers Login]().
                       header:
-                        anchor: logging-in-a-customer
+                        anchor: customer-login_logging-in-a-customer
                     - type: text
                       data: >-
                         ### Create a JWT Token
@@ -9057,8 +9053,7 @@ pages:
                         1. Run a /GET request against the [Customers](http://)
                         resource (V2). Choose a customer and make note of the
                         customer_id. 
-                      header:
-                        anchor: create-jwt-token
+                      header: {}
                     - type: callout
                       data:
                         type: success
@@ -9066,8 +9061,7 @@ pages:
                           If you are unsure how to make a /GET request see our
                           tutorial on [making your first request]().
                         title: Making a /GET request
-                      header:
-                        anchor: making-a-get-request
+                      header: {}
                     - type: text
                       data: >-
                         2. Create the payload by filling in the PAYLOAD:DATA on
@@ -9090,7 +9084,6 @@ pages:
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6012/1535469059335
                       header:
-                        anchor: jwt-image
                         subtitle: JTW.io fields
                       config:
                         centered: true
@@ -9153,7 +9146,7 @@ pages:
 
                         Client libraries in many other languages are at JWT.io.
                       header:
-                        anchor: sample-code
+                        anchor: customer-login_sample-code
                     - type: tabs
                       data:
                         children:
@@ -9287,7 +9280,6 @@ pages:
                                   mode: ruby
                       header:
                         title: JWT Token Sample Code
-                        anchor: token-samples
                     - type: text
                       data: '---'
                     - type: text
