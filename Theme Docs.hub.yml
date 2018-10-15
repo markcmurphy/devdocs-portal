@@ -3793,7 +3793,44 @@ pages:
                     - type: html
                       data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#theme-editor_\">Empty Drop-Down List in Theme Editor Panel</a></li>\n    <li><a href=\"#theme-editor_\">Configured Control Missing from Theme Editor Panel</a></li>\n    <li><a href=\"#theme-editor_\">Theme Changes Not Saved from Theme Editor UI</a></li>\n\t</ul>\n</div>"
                     - type: text
-                      data: ''
+                      data: '## Empty Drop-Down List in Theme Editor Panel'
+                    - type: text
+                      data: >-
+                        ## Configured Control Missing from Theme Editor Panel
+
+
+                        * **Symptom:** A control that you have configured within
+                        schema.json is completely absent from the Theme Editor
+                        UI.
+
+                        * **Likely Cause:** The specified "type" is one of:
+                        text, text area, radio [button], or image.
+
+                        (Theme Editor does not currently support these data
+                        types.)
+
+                        * **Resolution:** Display the user option via one of the
+                        supported data types: color, font, select [drop-down
+                        list], or checkbox.
+                    - type: text
+                      data: >-
+                        ## Theme Changes Not Saved from Theme Editor UI
+
+
+                        * **Symptom:** Changes saved in a browser's Theme Editor
+                        panel are not reflected in the storefront.
+
+                        * **Likely Cause:** Check whether multiple users are
+                        simultaneously using Theme Editor to customize the same
+                        storefront.
+
+                        * **Resolution:** We strongly recommend opening only one
+                        instance of Theme Editor, at a time, per storefront.
+                        BigCommerce currently provides no synchronization
+                        mechanism for configuration changes from multiple Theme
+                        Editor instances. So the storefront's schema.json will
+                        record the last changes made by any instance – but
+                        changes saved earlier by other instances might be lost.
         - title: Front-Matter Attributes
           route:
             path: /front-matter-attributes
