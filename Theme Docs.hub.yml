@@ -5377,10 +5377,99 @@ pages:
             path: /event-hooks
           data:
             children:
-              - title: Hook Examples
+              - title: Event Hook Examples
                 route:
-                  path: /hook-examples
-                data: {}
+                  path: /event-hook-examples
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: text
+                      data: >-
+                        ## Hook Example 1: Cookie Notification
+
+
+                        In the JavaScript-only example below, the
+                        `cookie-privacy-notification` hook enables customization
+                        of the alert window that displays European
+                        Union–required cookie notifications:
+
+
+                        First, ensure you have loaded the `stencil-utils`
+                        package with the following command:
+
+
+                        `import utils from '@bigcommerce/stencil-utils';`
+
+
+                        European websites must notify users of cookies to comply
+                        with European Union law.
+
+                        The following code implements hook that will alert
+                        shoppers that the website uses cookies.
+
+
+                        ```
+
+                        export default function() {
+
+                          // Here you can override the default browser alert box by
+                          // hooking to the 'cookie-privacy-notification' hook.
+                          utils.hooks.on('cookie-privacy-notification', (event, privacyMessage) => {
+
+                            // You can make your own custom modal or alert box
+                            // appear in your theme using the privacyMessage provided
+                            myCustomAlert(privacyMessage);
+
+                            // Call event.preventDefault() to prevent the default
+                            // browser alert from occurring in stencil-utils
+                            event.preventDefault();
+                          });
+                        }
+
+                        ```
+                    - type: text
+                      data: >
+                        ## Hook Example 2: Cart Dialog
+
+
+                        In the following code snippet from Cornerstone in
+                        `templates/components/products/product-view.html`, note
+                        the data tag named `data‑cart‑item‑add`:
+
+
+                        ```
+
+                        <form class="form" method="post"
+                        action="{{product.cart_url}}"
+                            enctype="multipart/form-data" data-cart-item-add>
+                        ```
+
+
+                        This data tag enables the emission of the
+                        `cart‑item‑add` event in this next snippet:
+
+
+                        ```
+
+                        /*  
+                         * Import all product-specific js 
+                         */
+                        [...]
+
+                        import utils from '@bigcommerce/stencil-utils';
+
+                        [...]
+
+                        addProductToCart() {
+                            utils.hooks.on('cart-item-add', (event) => {
+                                event.preventDefault();
+                            });
+                        }
+
+                        ```
               - title: Remote API Example
                 route:
                   path: /remote-api-example
