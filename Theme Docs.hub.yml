@@ -9241,7 +9241,26 @@ pages:
                     - type: html
                       data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#troubleshooting-theme-uploads_restrictions\">Restrictions</a></li>\n    <li><a href=\"#troubleshooting-theme-uploads_error-codes\">Error Codes</a></li>\n    <li><a href=\"#troubleshooting-theme-uploads_warnings\">Warnings</a></li>\n    <li><a href=\"#troubleshooting-theme-uploads_workarounds\">Workarounds and Further Info</a></li>\n\t</ul>\n</div>"
                     - type: text
-                      data: '## Restrictions'
+                      data: >-
+                        ## Restrictions
+
+
+                        Custom theme uploads must meet these restrictions:
+
+
+                        * You may upload a maximum of 20 custom themes at a time
+                        to the control panel's Store Design > My Themes section.
+
+                        * If you reach this maximum, you can delete custom
+                        themes, to make room for more uploads.
+
+                        * Before uploading, you must package custom themes into
+                        a Stencil-specific .zip file format, using Stencil CLI's
+                        stencil bundle command.
+
+                        * A theme's .zip file must be no larger than 50 MB. If
+                        your file exceeds that size, please use either a WebDAV
+                        or a CDN upload to exclude large static assets.
                     - type: text
                       data: |
                         ## Error Codes
@@ -9341,7 +9360,88 @@ pages:
                           </tr>
                          </table>
                     - type: text
-                      data: '## Warnings'
+                      data: >-
+                        ## Warnings
+
+
+                        Warnings will not block a theme's upload, but these
+                        onscreen and/or log messages notify you of problems
+                        within the zipped theme. Here are the warnings and their
+                        meanings:
+
+
+                        | Warning |
+
+                        |---|
+
+                        | (These messages do not have numeric codes) |
+
+                        | Issue in processing this theme's thumbnail screenshot
+                        (`composed_image`). |
+
+                        | Issue in processing this theme's full-size screenshot
+                        (`desktop_screenshot`). |
+
+                        | Issue in processing this theme's mobile
+                        [screenshot](/docs/configjson-reference#config-var-meta)
+                        (`mobile_screenshot`). |
+
+                        | Missing file: This theme does not support Theme
+                        Editor, as it is missing its required `[schema.json]`
+                        file. |
+
+                        | One or more of this theme's screenshots are not image
+                        files. |
+
+                        | Theme is missing a valid thumbnail image
+                        `composed_image`). |
+
+                        | Theme is missing a valid full-size image
+                        `desktop_screenshot`). |
+
+                        | Theme is missing a valid mobile image
+                        (`mobile_screenshot`). |
+
+                        | One or more of this theme's images is not of a
+                        supported file type. Valid filetypes are: `.jpg`,
+                        `.jpeg`, `.png`, `.gif`. |
+
+                        | Thumbnail (`composed_image`) image dimensions are not
+                        right. Expected 600 x 760 pixels. |
+
+                        | Full-size (`desktop_screenshot`) image dimensions are
+                        not right. Expected 2048 x 2600 pixels. |
+
+                        | Mobile (`mobile_screenshot`) image dimensions are not
+                        right. Expected 304 x 540 pixels. |
+
+                        | Too-large image file size for a theme screenshot
+                        `composed_image` (thumbnails), `desktop_screenshot`, or
+                        `mobile_screenshot`] . The maximum supported size is x,
+                        but the file's actual size is y. |
+
+
+                        ## <a name="workarounds"></a> Workarounds and Further
+                        Info
+
+
+                        If a custom theme does not render properly after you
+                        upload and apply it to a storefront: Please make sure
+                        you have created the theme's .zip file using the <span
+                        class="inline-code">[stencil
+                        bundle](/docs/bundling-submitting#ship-zip-small)</span>
+                        command, on a Mac OS or Linux computer or virtual
+                        machine. (This will exclude Windows-specific errors that
+                        have occurred on some bundles.)
+
+
+                        If you repeatedly encounter the same error or warning,
+                        and neither this page nor our <a
+                        href="https://support.bigcommerce.com/articles/Public/Custom-Theme-Upload"
+                        target="_blank">KB</a> resolves the problem:
+                        Please&#160;see&#160;support&#160;resources for theme
+                        developers
+                        [here](https://developer.bigcommerce.com/support/).
                     - type: text
                       data: >-
                         ## Workarounds and Further Info
