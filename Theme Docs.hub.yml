@@ -3995,9 +3995,43 @@ pages:
                         ```
                       header:
                         anchor: front-matter-overview_filtering-attributes
+                    - type: callout
+                      data:
+                        body: >-
+                          To keep your pages lightweight, specify only the
+                          attributes you need per page. Also, use the limit key
+                          (with appropriate values) for attributes that accept
+                          it.
+                        title: Filtering for Faster Page Loads
                     - type: text
-                      data: |
+                      data: >-
                         ## Combining Front Matter with Handlebars Attributes
+
+
+                        The next example builds on front-matter object
+                        invocation and filtering, by showing a corresponding
+                        Handlebars statement in HTML. Here is how you would
+                        declare the `products` object to return four new
+                        products, and to then display each product’s name:
+
+
+                        ```
+
+                        ---
+
+                        products:
+                            new:
+                                limit: 4
+                        ---
+
+
+                        <h1> This is the HTML for the new-products example </h1>
+
+                        {{#each products.new}}
+                            <p>{{ name }}</p>
+                        {{/each}}
+
+                        ```
                       header:
                         anchor: front-matter-overview_combining-front-matter
                     - type: text
