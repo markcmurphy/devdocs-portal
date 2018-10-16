@@ -4076,6 +4076,35 @@ pages:
                         `<img src="{{getImage image 'gallery'}}">` relies on
                         Stencil's `{{getImage}}` custom Handlebars helper:
 
+
+                        ```
+
+                        ---
+
+                        product:
+                           reviews:
+                               limit: 9
+                           related_products:
+                               limit: 10
+                        ---
+
+
+
+                        <h2>{{ product.name }}</h2>
+
+                        {{#each product.reviews.list}}
+                            <p>{{text}}</p>
+                        {{/each}}
+
+                        <h3>Related Products</h3>
+
+                        {{#each product.related_products}}
+                          <img src="{{getImage image 'gallery'}}">
+                          <p>{{ name }}</p>
+                        {{/each}}
+
+                        ```
+
                       header:
                         anchor: front-matter-overview_declaring-multiple
               - title: Front Matter Reference
