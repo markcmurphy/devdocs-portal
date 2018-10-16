@@ -3887,7 +3887,7 @@ pages:
                       header:
                         anchor: front-matter-overview_declaring-objects
                     - type: text
-                      data: >-
+                      data: >+
                         ## YAML Syntax – Requirements
 
 
@@ -3913,6 +3913,39 @@ pages:
                         key:value pairs.)
 
                         Identifiers are case-sensitive.
+
+
+                        ### Restrictions
+
+
+                        You can use front matter to specify attributes on the
+                        tops of pages in your
+
+                        `<theme-name>/templates/pages/` subdirectory.
+
+
+                        You **cannot** use front matter to accomplish this on
+                        pages in the following subdirectories:
+
+                        * `<theme-name>/templates/components/`
+
+                        * `<theme-name>/templates/layout/`
+
+                        * `<theme-name>/templates/pages/custom/` 
+
+
+                        * Indent using only spaces, not tabs. (YAML forbids
+                        tabs, to avoid inconsistent encoding of tabs across
+                        platforms.) An indent of even one space indicates a
+                        child.
+
+
+                        * Front matter on a given page cannot exceed 64 KB.
+
+
+                        * If a front-matter directive contains an invalid
+                        option, Stencil CLI will silently ignore that option.
+
                       header:
                         anchor: front-matter-overview_yaml-syntax
                     - type: text
