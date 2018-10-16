@@ -5653,6 +5653,1302 @@ pages:
                       data: <h1>Hello World!</h1>
                     - type: html
                       data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#remote_remote-api-example\"></a>Stencil Data Tags and Event Hooks</li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        <h2> <A NAME="API-js"></a>API [api.js]</h2>
+
+
+                        The <span class="inline-code">api.getPage()</span>
+                        function allows you to add Ajax functionality to your
+                        themes.<br>
+
+
+                        <br> <span id="getpage"> <b>getPage Signature</b>
+                        </span> <br>
+
+
+                        The following statement passes <span
+                        class="inline-code">url</span> and <span
+                        class="inline-code">options</span> arguments to the
+                        <span class="inline-code">api.getPage()</span>
+                        function:<br><p></p>
+
+
+                        <pre>utils.api.getPage(url, options, callback)
+
+                        </pre><br>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">url</td>
+                            <td class="">String</td>
+                            <td class="">URL to which you want to send a request (for example: localhost:4000/cart.php)</td>
+                          </tr>
+                          <tr>
+                            <td class="">options</td>
+                            <td class="">Object</td>
+                            <td class="">Can contain <span class="inline-code">template</span>, <span class="inline-code"><a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData</a></span> (for POST methods), <span class="inline-code">params</span>&nbsp;(for GET methods), and/or <span class="inline-code">config</span>. <br><br>    
+                              The <span class="inline-code">template</span> option allows you to select a particular template, or an array of templates, for rendering one page. Each value must correspond to a file present in the theme's <span class="inline-code">templates/components/</span> subdirectory. <br><br>
+                              The <span class="inline-code">config</span> option can be used to pass extra resources, corresponding to attributes that are valid in a page's <a href="/docs/using-yaml-front-matter">front matter</a>, as an object.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+                        The <span class="inline-code">config</span> argument
+                        works like front matter: it encapsulates JSON. For a
+                        usage example of <span
+                        class="inline-code">config</span>, see <NOBR><a
+                        href="/docs/remote-api-example">Remote API
+                        Example</a></nobr>. <br><br>
+
+
+
+                        <span id="getPageEx"> <b>getPage Example</b> </span>
+                        <br>
+
+
+                        In the following example (from <span
+                        class="inline-code">common/faceted-search.js</span>),
+                        <span class="inline-code">api.getPage()</span> is called
+                        to help execute an <span
+                        class="inline-code">updateView()</span>
+                        function:<br><p></p>
+
+
+                        <pre>    updateView() {
+                                $(this.options.blockerSelector).show();
+
+                                api.getPage(urlUtils.getUrl(), this.requestOptions, (err, content) => {
+                                    $(this.options.blockerSelector).hide();
+
+                                    if (err) {
+                                        throw new Error(err);
+                                    }
+
+                                    // Refresh view with new content
+                                    this.refreshView(content);
+                                });
+                            }</pre><p></p>
+
+
+                        <h2> <A NAME="Cart-API"></a>Cart API </h2>
+
+
+                        The following functions allow your theme to work with
+                        cart contents in customized ways.<br><br>
+
+
+                        <b>itemAdd Signature</b><br>
+
+
+                        The <span class="inline-code">itemAdd</span> function
+                        allows your code to add an item to the cart, with
+                        options:<br><p></p>
+
+
+                        <pre>utils.api.cart.itemAdd(<a
+                        href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData</a>,
+                        callback)</pre>
+
+                        <br>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class=""><A NAME="CartAPI-FormData"></a>formData</td>
+                            <td class=""><a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData</a> object </td>
+                            <td class="">Contains all details about the added item and its product options</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        <span id="itemAddEx"> <b>itemAdd Example</b> </span>
+                        <br>
+
+
+                        <span class="inline-code">itemAdd</span> is called at
+                        the head of the following example (from <span
+                        class="inline-code">common/product-details.js</span>) to
+                        populate the cart:<br><p></p>
+
+
+                        <pre>        // Add item to cart
+                                utils.api.cart.itemAdd(new FormData(form), (err, response) => {
+                                    const errorMessage = err || response.data.error;
+
+                                    $addToCartBtn
+                                        .val(originalBtnVal)
+                                        .prop('disabled', false);
+
+                                    this.$overlay.hide();
+
+                                    // Guard statement
+                                    if (errorMessage) {
+                                        // Strip the HTML from the error message
+                                        const tmp = document.createElement('DIV');
+                                        tmp.innerHTML = errorMessage;
+
+                                        return alert(tmp.textContent || tmp.innerText);
+                                    }
+
+                                    // Open preview modal and update content
+                                    if (this.previewModal) {
+                                        this.previewModal.open();
+
+                                        this.updateCartContent(this.previewModal, response.data.cart_item.hash);
+                                    } else {
+                                        this.$overlay.show();
+                                        // if no modal, redirect to the cart page
+                                        this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
+                                    }
+                                }); </pre><br>
+
+
+                        <b>itemUpdate Signature</b><br>
+
+
+                        The <span class="inline-code">itemUpdate</span> function
+                        allows your code to update a specified cart item’s
+                        quantity:<br>
+
+
+                        <p></p><pre>utils.api.cart.itemUpdate(itemId, qty,
+                        callback)</pre>
+
+                        <br>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">itemId</td>
+                            <td class="">String</td>
+                            <td class="">The item’s ID</td>
+                          </tr>
+                          <tr>
+                            <td class="">qty</td>
+                            <td class="">Integer</td>
+                            <td class="">The item’s quantity in the cart</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+                        <span id="itemUpdateEx"> <b>itemUpdate  Example</b>
+                        </span> <br>
+
+
+                        In the following example (from <span
+                        class="inline-code">cart.js</span>), <span
+                        class="inline-code">itemUpdate</span> is called just
+                        before the final if/else test for an empty
+                        cart:<br><p></p>
+
+
+                        <pre>    cartUpdate($target) {
+                                const itemId = $target.data('cartItemid');
+                                const $el = $(`#qty-${itemId}`);
+                                const oldQty = parseInt($el.val(), 10);
+                                const maxQty = parseInt($el.data('quantityMax'), 10);
+                                const minQty = parseInt($el.data('quantityMin'), 10);
+                                const minError = $el.data('quantityMinError');
+                                const maxError = $el.data('quantityMaxError');
+                                const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
+
+                                // Does not quality for min/max quantity
+                                if (newQty < minQty) {
+                                    return swal({
+                                        text: minError,
+                                        type: 'error',
+                                    });
+                                } else if (maxQty > 0 && newQty > maxQty) {
+                                    return swal({
+                                        text: maxError,
+                                        type: 'error',
+                                    });
+                                }
+
+                                this.$overlay.show();
+
+                                utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
+                                    this.$overlay.hide();
+
+                                    if (response.data.status === 'succeed') {
+                                        // if the quantity is changed "1" from "0", we have to remove the row.
+                                        const remove = (newQty === 0);
+
+                                        this.refreshContent(remove);
+                                    } else {
+                                        $el.val(oldQty);
+                                        swal({
+                                            text: response.data.errors.join('\n'),
+                                            type: 'error',
+                                        });
+                                    }
+                                });
+                            } </pre><br>
+
+
+                        <b>itemRemove Signature</b><br>
+
+
+                        The <span class="inline-code">itemRemove</span> function
+                        allows your code to remove items from the cart:<br>
+
+
+                        <p></p><pre>utils.api.cart.itemRemove(itemId,
+                        callback)</pre>
+                         <br>
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">itemId</td>
+                            <td class="">String</td>
+                            <td class="">The item’s ID</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        <span id="itemRemoveEx"> <b>itemRemove Example</b>
+                        </span><br>
+
+
+                        In the following example (from <span
+                        class="inline-code">cart.js</span>), <span
+                        class="inline-code">itemRemove</span> is called before
+                        the if/else test:<br><p></p>
+
+
+                        <pre>    cartRemoveItem(itemId) {
+                                this.$overlay.show();
+                                utils.api.cart.itemRemove(itemId, (err, response) => {
+                                    if (response.data.status === 'succeed') {
+                                        this.refreshContent(true);
+                                    } else {
+                                        alert(response.data.errors.join('\n'));
+                                    }
+                                });
+                            } </pre><br>
+
+
+                        <b>update Signature</b><br>
+
+
+                        The <span class="inline-code">update</span> function
+                        allows your code to update the set of items in the
+                        cart:<br>
+
+
+                        <p></p><pre>utils.api.cart.update(itemId, qty,
+                        callback)</pre>
+
+                         <br>
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">items</td>
+                            <td class="">Array</td>
+                            <td class="">The items in the cart</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        <b>update Example</b><br>
+
+
+                        The following example shows a call to <span
+                        class="inline-code">update</span> within the <span
+                        class="inline-code">itemUpdate</span>
+                        function:<br><p></p>
+
+
+                        <pre>    /**
+                            itemUpdate(itemId, qty, callback) {
+                                let callbackArg = callback;
+                                let items;
+
+                                if (Array.isArray(itemId) && typeof qty === 'function') {
+                                    callbackArg = qty;
+                                    items = itemId;
+                                } else {
+                                    items = [
+                                        {
+                                            id: itemId,
+                                            quantity: qty,
+                                        },
+                                    ];
+                                }
+
+                                this.update(items, (err, response) => {
+                                    const emitData = {
+                                        items,
+                                        err,
+                                        response,
+                                    };
+
+                                    Hooks.emit('cart-item-update-remote', emitData);
+                                    callbackArg(err, response);
+                                });
+                            } </pre><br>
+
+
+                        <b>getItemGiftWrappingOptions Signature</b><br>
+
+
+                        The <span
+                        class="inline-code">getItemGiftWrappingOptions</span>
+                        function allows your code to retrieve gift-wrapping
+                        options for the current cart item, in customized
+                        ways:<br><p></p>
+
+
+
+                        <pre>utils.api.cart.getItemGiftWrappingOptions(itemId,
+                        callback)</pre>
+
+                        <br>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">itemId</td>
+                            <td class="">String</td>
+                            <td class="">The cart item</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        <b>getItemGiftWrappingOptions Example</b> <br>
+
+
+                        The following example (from <span
+                        class="inline-code">cart.js</span>) calls <span
+                        class="inline-code">getItemGiftWrappingOptions</span> to
+                        display gift-wrapping options in a modal:<br><p></p>
+
+
+                        <pre>    bindGiftWrappingEvents() {
+                                const modal = defaultModal();
+
+                                $('[data-item-giftwrap]').on('click', (event) => {
+                                    const itemId = $(event.currentTarget).data('item-giftwrap');
+                                    const options = {
+                                        template: 'cart/modals/gift-wrapping-form',
+                                    };
+
+                                    event.preventDefault();
+
+                                    modal.open();
+
+                                    utils.api.cart.getItemGiftWrappingOptions(itemId, options, (err, response) => {
+                                        modal.updateContent(response.content);
+
+                                        this.bindGiftWrappingForm();
+                                    });
+                                });
+                            } </pre><br>
+
+
+                        <b>submitItemGiftWrappingOption Signature</b><br>
+
+
+                        The <span
+                        class="inline-code">submitItemGiftWrappingOption</span>
+                        function allows your code to handle the customer’s
+                        gift-wrapping selection for the current cart
+                        item:<br><p></p>
+
+
+                        <pre>utils.api.cart.submitItemGiftWrappingOption(itemId,
+                        qty, callback)</pre>
+
+                        <br>
+
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">itemId</td>
+                            <td class="">String</td>
+                            <td class="">The cart item</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        <b>submitItemGiftWrappingOption Example</b> <br>
+
+
+                        This commented example shows a simple call to <span
+                        class="inline-code">submitItemGiftWrappingOption</span>:
+
+
+                        <pre>    /**
+                             * Submit giftwrapping options
+                             *
+                             * @param {String} itemId
+                             * @param {Function} callback
+                             */
+                            submitItemGiftWrappingOption(itemId, params, callback) {
+                                this.remoteRequest(`/gift-wrapping/${itemId}`, 'POST', { params }, callback);
+                            } </pre><br>
+
+
+                        <b>getContent Signature</b><br>
+
+
+                        The <span class="inline-code">getContent</span> function
+                        allows your code to display the cart contents in
+                        customized ways:<br>
+
+
+                        <p></p><pre>utils.api.cart.getContent(options,
+                        callback)</pre>
+
+                        <br>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class=""><A NAME="getContent-options"></a>options</td>
+                            <td class="">Object</td>
+                            <td class="">Template containing content and totals children</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+                        <span id="getContentEx"> <b>getContent Examples</b>
+                        </span> <br>
+
+
+                        The following example (from <span
+                        class="inline-code">common/product-details.js</span>) a
+                        call to <span class="inline-code">getContent</span>, set
+                        up by a prior call to <span
+                        class="inline-code">getCartContent</span>:<br><p></p>
+
+
+                        <pre>    /**
+                             * Get cart contents
+                             *
+                             * @param {String} cartItemHash
+                             * @param {Function} onComplete
+                             */
+                            getCartContent(cartItemHash, onComplete) {
+                                const options = {
+                                    template: 'cart/preview',
+                                    params: {
+                                        suggest: cartItemHash,
+                                    },
+                                    config: {
+                                        cart: {
+                                            suggestions: {
+                                                limit: 4,
+                                            },
+                                        },
+                                    },
+                                };
+
+                                utils.api.cart.getContent(options, onComplete);
+                            } </pre><p></p>
+
+                        This example (from <span
+                        class="inline-code">cart.js</span>) shows a call to
+                        <span class="inline-code">getContent</span> within the
+                        <span class="inline-code">refreshContent</span>
+                        function:<br><p></p>
+
+
+                        <pre>    refreshContent(remove) {
+                                const $cartItemsRows = $('[data-item-row]', this.$cartContent);
+                                const $cartPageTitle = $('[data-cart-page-title]');
+                                const options = {
+                                    template: {
+                                        content: 'cart/content',
+                                        totals: 'cart/totals',
+                                        pageTitle: 'cart/page-title',
+                                        statusMessages: 'cart/status-messages',
+                                    },
+                                };
+
+                                this.$overlay.show();
+
+                                // Remove last item from cart? Reload
+                                if (remove && $cartItemsRows.length === 1) {
+                                    return window.location.reload();
+                                }
+
+                                utils.api.cart.getContent(options, (err, response) => {
+                                    this.$cartContent.html(response.content);
+                                    this.$cartTotals.html(response.totals);
+                                    this.$cartMessages.html(response.statusMessages);
+
+                                    $cartPageTitle.replaceWith(response.pageTitle);
+                                    this.bindEvents();
+                                    this.$overlay.hide();
+
+                                    const quantity = $('[data-cart-quantity]', this.$cartContent).data('cart-quantity') || 0;
+
+                                    $('body').trigger('cart-quantity-update', quantity);
+                                });
+                            } </pre><p></p> 
+
+                        Here is a final example of a call to <span
+                        class="inline-code">getContent</span>, from <span
+                        class="inline-code">global/cart-preview.js</span>:<br><p></p>
+
+
+                        <pre>    $cart.on('click', (event) => {
+                                const options = {
+                                    template: 'common/cart-preview',
+                                };
+
+                                // Redirect to full cart page
+                                //
+                                // https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent
+                                // In summary, we recommend looking for the string 'Mobi' anywhere in the User Agent to detect a mobile device.
+                                if (/Mobi/i.test(navigator.userAgent)) {
+                                    return event.stopPropagation();
+                                }
+
+                                event.preventDefault();
+
+                                $cartDropdown
+                                    .addClass(loadingClass)
+                                    .html($cartLoading);
+                                $cartLoading
+                                    .show();
+
+                                utils.api.cart.getContent(options, (err, response) => {
+                                    $cartDropdown
+                                        .removeClass(loadingClass)
+                                        .html(response);
+                                    $cartLoading
+                                        .hide();
+                                });
+                            }); </pre><br>
+
+
+                        <b><A NAME="getShippingQuotes"></a>getShippingQuotes
+                        Signature</b><br>
+
+
+                        The <span class="inline-code">getShippingQuotes</span>
+                        function allows your code to retrieve shipping-cost
+                        quotes for the cart’s contents. It returns <span
+                        class="inline-code">shippingQuote</span> objects that
+                        contain IDs. You must follow <span
+                        class="inline-code">getShippingQuotes</span> by calling
+                        <span class="inline-code"><a
+                        href="#submitShippingQuotes">submitShippingQuote</a></span>
+                        on a <span class="inline-code">quoteId</span>:<br>
+
+
+                        <p></p><pre>utils.api.cart.getShippingQuotes(params,
+                        renderWith, callback)</pre>
+
+                        <br>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">params</td>
+                            <td class="">Object</td>
+                            <td class="">Contains country_id, state_id, and zip_code</td>
+                          </tr>
+                          <tr>
+                            <td class="">template</td>
+                            <td class="">String/  Array/ Object</td>
+                            <td class="">The template to use for rendering</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        <b>getShippingQuotes and submitShippingQuote Example</b>
+                        <br><p></p>
+
+
+                        The following example (from <span
+                        class="inline-code">cart/shipping-estimator.js</span>)
+                        shows calls to both <span
+                        class="inline-code">getShippingQuotes</span> and <span
+                        class="inline-code">submitShippingQuote</span>:<br><p></p>
+
+
+                        <pre>    bindEstimatorEvents() {
+                                const $estimatorContainer = $('.shipping-estimator');
+                                const $estimatorForm = $('.estimator-form');
+
+                                $estimatorForm.on('submit', (event) => {
+                                    const params = {
+                                        country_id: $('[name="shipping-country"]', $estimatorForm).val(),
+                                        state_id: $('[name="shipping-state"]', $estimatorForm).val(),
+                                        city: $('[name="shipping-city"]', $estimatorForm).val(),
+                                        zip_code: $('[name="shipping-zip"]', $estimatorForm).val(),
+                                    };
+
+                                    event.preventDefault();
+
+                                    utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {
+                                        $('.shipping-quotes').html(response.content);
+
+                                        // bind the select button
+                                        $('.select-shipping-quote').on('click', (clickEvent) => {
+                                            const quoteId = $('.shipping-quote:checked').val();
+
+                                            clickEvent.preventDefault();
+
+                                            utils.api.cart.submitShippingQuote(quoteId, () => {
+                                                location.reload();
+                                            });
+                                        });
+                                    });
+                                }); </pre><br>
+
+                        <A NAME="submitShippingQuote"></a>
+                        <b>submitShippingQuote Signature</b><br>
+
+
+                        The <span class="inline-code">submitShippingQuote</span>
+                        function must be called after <span
+                        class="inline-code"><a
+                        href="#getShippingQuotes">getShippingQuote</a></span>,
+                        which returns <span
+                        class="inline-code">shippingQuote</span> objects that
+                        contain IDs. The cart page renders the shipping quotes.
+                        When the user selects one of the quotes, this function
+                        sends that <span class="inline-code">quoteId</span> to
+                        the backend:<br>
+
+
+                        <p></p><pre>utils.api.cart.submitShippingQuote(quoteId,
+                        callback)</pre>
+
+                         <br>
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">quoteId</td>
+                            <td class="">Number</td>
+                            <td class="">ID for a shipping quote returned by <span class="inline-code"><a href="#getShippingQuotes">getShippingQuotes</a></span></td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+                        (For sample code, please see <b>getShippingQuotes and
+                        submitShippingQuote Example</b>, above.)<br><br>
+
+
+
+                        <b>applyCode Signature</b><br>
+
+
+                        The <span class="inline-code">applyCode</span> function
+                        applies a coupon code or gift certificate to the
+                        cart:<br>
+
+
+                        <p></p><pre>utils.api.cart.applyCode(code,
+                        callback)</pre>
+
+                        <br>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">code</td>
+                            <td class="">String</td>
+                            <td class="">Alphanumeric representation of the coupon or gift-certificate code</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+                        In the following example (from <span
+                        class="inline-code">cart.js</span>),  <span
+                        class="inline-code">applyCode</span> is called before
+                        the final if/else test to apply a coupon
+                        code:<br><p></p>
+
+
+                        <pre>    bindPromoCodeEvents() {
+                                const $couponContainer = $('.coupon-code');
+                                const $couponForm = $('.coupon-form');
+                                const $codeInput = $('[name="couponcode"]', $couponForm);
+
+                                $('.coupon-code-add').on('click', (event) => {
+                                    event.preventDefault();
+
+                                    $(event.currentTarget).hide();
+                                    $couponContainer.show();
+                                    $('.coupon-code-cancel').show();
+                                    $codeInput.focus();
+                                });
+
+                                $('.coupon-code-cancel').on('click', (event) => {
+                                    event.preventDefault();
+
+                                    $couponContainer.hide();
+                                    $('.coupon-code-cancel').hide();
+                                    $('.coupon-code-add').show();
+                                });
+
+                                $couponForm.on('submit', (event) => {
+                                    const code = $codeInput.val();
+
+                                    event.preventDefault();
+
+                                    // Empty code
+                                    if (!code) {
+                                        return alert($codeInput.data('error'));
+                                    }
+
+                                    utils.api.cart.applyCode(code, (err, response) => {
+                                        if (response.data.status === 'success') {
+                                            this.refreshContent();
+                                        } else {
+                                            alert(response.data.errors.join('\n'));
+                                        }
+                                    });
+                                });
+                            } </pre><p></p>
+
+
+                        <h2> <A NAME="Cookie"></a>Cookie Resource</h2>
+
+
+                        This resource allows you to override a browser’s default
+                        alert box for cookie notifications.<br><p></p>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">privacyMessage</td>
+                            <td class="">Merchant-defined message informing customers of storefront’s cookie usage (e.g., to comply with E.U. notification requirement)</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        <b>Cookie Examples:</b> <br><p></p>
+
+
+                        The following commented example (from <span
+                        class="inline-code">global/cookieNotification.js)</span>
+                        shows a call to <span
+                        class="inline-code">utils.hooks.on('cookie-privacy-notification',
+                        (event, privacyMessage)</span> to help comply with
+                        European Union privacy requirements:<br><p></p>
+
+
+                        <pre>/**
+                         * European websites must notify users of cookies to comply with European Union law.
+                         * This will alert shoppers that this website uses cookies.
+                         */
+                        export default function () {
+                            /*
+                            // Here you can override the default browser alert box by hooking to the 'cookie-privacy-notification' hook.
+                            utils.hooks.on('cookie-privacy-notification', (event, privacyMessage) => {
+                                // You can make your own custom modal or alert box appear in your theme using the privacyMessage provided
+                                myCustomAlert(privacyMessage);
+
+                                // Call event.preventDefault() to prevent the default browser alert from occurring in stencil-utils
+                                event.preventDefault();
+                            });
+                            */
+
+                            utils.hooks.on('cookie-privacy-notification', (event) => {
+                                event.preventDefault();
+
+                                const $privacyDialog = $('.cookieMessage');
+                                $privacyDialog.show();
+
+                                $('body').on('click', '[data-privacy-accept]', () => {
+                                    utils.hooks.emit('cookie-privacy-accepted');
+                                    $privacyDialog.hide();
+                                });
+                            });
+                        } </pre><p></p> 
+
+
+
+                        <h2> <A NAME="Countries"></a>Countries Resources</h2>
+
+
+                        These functions allow your theme or app to retrieve
+                        standardized country names, by numeric ID or by
+                        string.<br>
+
+
+                        <br><b>getById Signature</b><br>
+
+
+                        The <span class="inline-code">getById</span> function
+                        retrieves standardized country names by numeric ID:<br>
+
+
+                        <p></p><pre>utils.api.countries.getById(countryId,
+                        callback)</pre>
+
+                         <br>
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">countryId</td>
+                            <td class="">Number</td>
+                            <td class="">Country code</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        The following example a call to <span
+                        class="inline-code">getById</span>, followed by a call
+                        to the <span class="inline-code">getByName</span>
+                        function (described below):<br><p></p>
+
+
+                        <pre>    /**
+                             *
+                             * Get country data by id wrapper
+                             *
+                             * @param {Number} id
+                             * @param {Function} callback
+                             */
+                            getById(id, callback) {
+                                const url = this.endpoint + id;
+
+                                this.remoteRequest(url, 'GET', {}, callback);
+                            }
+
+                            /**
+                             * Get country data by country name
+                             * @param name
+                             * @param callback
+                             */
+                            getByName(name, callback) {
+                                const url = this.endpoint + name;
+
+                                this.remoteRequest(url, 'GET', {}, callback);
+                            }
+                        }
+                         </pre><br>
+
+
+                        <b>getByName Signature</b><br>
+
+
+                        The <span class="inline-code">getByName</span> function
+                        retrieves states by country name, and returns an array
+                        of states that can be used in the callback:<br>
+
+
+                        <p></p><pre>utils.api.countries.getByName(countryName,
+                        callback)</pre>
+
+                         <br>
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">countryName</td>
+                            <td class="">String</td>
+                            <td class="">Country name</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        In the following example (from <span
+                        class="inline-code">common/state-country.js</span>,
+                        <span class="inline-code">getByName</span> is called
+                        after the initial if test:<br><p></p>
+
+
+                        <pre>   
+                        $('select[data-field-type="Country"]').on('change',
+                        (event) => {
+                                const countryName = $(event.currentTarget).val();
+
+                                if (countryName === '') {
+                                    return;
+                                }
+
+                                utils.api.country.getByName(countryName, (err, response) => {
+                                    if (err) {
+                                        alert(context.state_error);
+
+                                        return callback(err);
+                                    }
+
+                                    const $currentInput = $('[data-field-type="State"]');
+
+                                    if (!_.isEmpty(response.data.states)) {
+                                        // The element may have been replaced with a select, reselect it
+                                        const $selectElement = makeStateRequired($currentInput, context);
+
+                                        addOptions(response.data, $selectElement, options);
+                                        callback(null, $selectElement);
+                                    } else {
+                                        const newElement = makeStateOptional($currentInput, context);
+
+                                        callback(null, newElement);
+                                    }
+                                });
+                            }); </pre><p></p> 
+
+
+                        <h2> <A NAME="ProdAttrib"></a>Product Attributes
+                        Resource</h2>
+
+
+                        The <span class="inline-code">optionChange</span>
+                        function is fired when the customer selects a product
+                        option for the current cart item (for example, changing
+                        a shirt’s color from a default "yellow" to
+                        "green"):<br><br>
+
+
+                        <b>optionChange Signature</b><br>
+
+
+                        <p></p><pre>utils.api.productAttributes.optionChange(productId,
+                        params, callback)</pre>
+
+                        <br>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">params</td>
+                            <td class="">Object</td>
+                            <td class="">Contains a collection of IDs that map to product properties (color, size, etc.)</td>
+                          </tr>
+                          <tr>
+                            <td class="">productId</td>
+                            <td class="">Number</td>
+                            <td class="">ID for this product</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        <b>optionChange Examples</b><br>
+
+
+                        In this example (from <span
+                        class="inline-code">common/product-details.js</span>),
+                        <span class="inline-code">optionChange</span> is called
+                        to update options in a Quick View modal:<br><p></p>
+
+
+                        <pre>        // Update product attributes. If we're in
+                        quick view and the product has options, then also update
+                        the initial view in case items are oos
+                                if (_.isEmpty(productAttributesData) && hasOptions) {
+                                    const $productId = $('[name="product_id"]', $form).val();
+
+                                    utils.api.productAttributes.optionChange($productId, $form.serialize(), (err, response) => {
+                                        const attributesData = response.data || {};
+
+                                        this.updateProductAttributes(attributesData);
+                                        this.updateView(attributesData);
+                                    });
+                                } else {
+                                    this.updateProductAttributes(productAttributesData);
+                                } </pre><p></p>
+
+
+                        In this example (from <span
+                        class="inline-code">cart.js</span>), <span
+                        class="inline-code">optionChange</span> is called before
+                        the final if test:<br><p></p>
+
+
+                        <pre>    cartEditOptions(itemId) {
+                                const modal = defaultModal();
+                                const options = {
+                                    template: 'cart/modals/configure-product',
+                                };
+
+                                modal.open();
+
+                                utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {
+                                    modal.updateContent(response.content);
+
+                                    this.bindGiftWrappingForm();
+                                });
+
+                                utils.hooks.on('product-option-change', (event, option) => {
+                                    const $changedOption = $(option);
+                                    const $form = $changedOption.parents('form');
+                                    const $submit = $('input.button', $form);
+                                    const $messageBox = $('.alertMessageBox');
+                                    const item = $('[name="item_id"]', $form).attr('value');
+
+                                    utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {
+                                        const data = result.data || {};
+
+                                        if (err) {
+                                            alert(err);
+                                            return false;
+                                        }  </pre><p></p>
+
+
+                        <h2> <A NAME="Product"></a>Product Resource</h2>
+
+
+                        The <span class="inline-code">product.getById</span>
+                        function allows your code to retrieve, and to present,
+                        detailed product information by product ID.<br>
+
+
+                        <br><b>getById Signature</b><br>
+
+
+                        <p></p><pre>utils.api.product.getById(productId, params,
+                        callback)</pre>
+
+                        <br>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">productId</td>
+                            <td class="">Number</td>
+                            <td class="">ID for this product</td>
+                          </tr>
+                          <tr>
+                            <td class="">params</td>
+                            <td class="">Object</td>
+                            <td class="">Contains request options and/or presentation template</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody></table>
+
+
+
+                        The following example (from <span
+                        class="inline-code">global/quick-view.js</span>) calls
+                        <span class="inline-code">product.getById</span> to
+                        populate the Quick View modal:<br><p></p>
+
+
+                        <pre>    $('body').on('click', '.quickview', (event) =>
+                        {
+                                event.preventDefault();
+
+                                const productId = $(event.currentTarget).data('product-id');
+
+                                modal.open({ size: 'large' });
+
+                                utils.api.product.getById(productId, { template: 'products/quick-view' }, (err, response) => {
+                                    modal.updateContent(response);
+
+                                    modal.$content.find('.productView').addClass('productView--quickView');
+
+                                    return new ProductDetails(modal.$content.find('.quickView'), context);
+                                });
+                            }); </pre><p></p>
+
+
+                        <h2> <A NAME="Search"></a>Search Resource</h2>
+
+
+                        The <span class="inline-code">search</span> function
+                        allows you to present a customized user interface for
+                        search results.<br>
+
+
+                        <br><b>search Signature</b><br>
+
+
+                        <p></p><pre>utils.api.search.search(query, params,
+                        callback)</pre>
+
+                        <br>
+
+
+                        <table>
+                          <tbody><tr>
+                            <td class="">Argument</td>
+                            <td class="">Type</td>
+                            <td class="">Description/Usage</td>
+                          </tr>
+                          <tr>
+                            <td class="">query</td>
+                            <td class="">String</td>
+                            <td class="">Contains the customer’s search query</td>
+                          </tr>
+                          <tr>
+                            <td class="">params</td>
+                            <td class="">Object</td>
+                            <td class="">Contains request options and/or presentation template</td>
+                          </tr>
+                          <tr>
+                            <td class="">callback</td>
+                            <td class="">Function</td>
+                            <td class="">Asynchronous function call to handle the results</td>
+                          </tr>
+                        </tbody>
+
+                        </table>
         - title: CSS And Design Assets
           route:
             path: /css-and-design-assets
