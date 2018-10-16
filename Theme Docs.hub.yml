@@ -8674,33 +8674,34 @@ pages:
                         <theme‑name> directory before proceeding.
 
 
-                        Examine your theme's /assets/ subdirectory and/or its
+                        Examine your theme's `/assets/` subdirectory and/or its
                         intended contents. Check for large static assets like
-                        images (especially in /assets/img/) and videos that are
-                        likely culprits in causing a bundled .zip file to go
-                        toward or beyond BigCommerce's 50 MB limit.
+                        images (especially in `/assets/img/`) and videos that
+                        are likely culprits in causing a bundled `.zip` file to
+                        go toward or beyond BigCommerce's 50 MB limit.
 
 
                         Use WebDAV to upload these items to WebDAV's remote
                         `/content/` directory. For WebDAV specifics, please see
                         BigCommerce's Knowledge Base articles on:
 
-                        Connecting to WebDav
+                        * [Connecting to WebDav]()
 
-                        WebDAV Folder Structure
+                        * [WebDAV Folder Structure]()
 
 
                         Throughout your theme, reference each of these assets
-                        using Stencil's cdn custom Handlebars helper –
-                        prepending the webdav: option to the assetPath
+                        using Stencil's `cdn` custom Handlebars helper –
+                        prepending the `webdav:` option to the `assetPath`
                         parameter.
 
-                        Prepending webdav: will build a URL in the remote WebDAV
-                        directory. This allows your theme's deployed topology to
-                        diverge from any your local directory structure. As
-                        noted above, the cdn helper will treat /content/ as the
-                        default/root WebDAV directory. So, for example, this
-                        statement:
+
+                        Prepending `webdav:` will build a URL in the remote
+                        WebDAV directory. This allows your theme's deployed
+                        topology to diverge from any your local directory
+                        structure. As noted above, the `cdn` helper will treat
+                        `/content/` as the default/root WebDAV directory. So,
+                        for example, this statement:
 
 
                         `<img src="{{cdn "webdav:img/image.jpg"}}">`
@@ -8714,32 +8715,34 @@ pages:
 
 
                         On your local machine, move the large static assets to a
-                        location where the stencil bundle command will ignore
+                        location where the `stencil bundle` command will ignore
                         them.
 
-                        This can be a location outside your <theme-name>
-                        directory, or it can be the <theme-name>/assets/cdn/
-                        subdirectory, which stencil bundle excludes from
-                        bundling. (Separating these assets is necessary to
-                        exclude them from the next step.)
+                        This can be a location outside your `<theme-name>`
+                        directory, or it can be the `<theme-name>/assets/cdn/
+                        subdirectory`, which stencil bundle excludes from
+                        bundling. Separating these assets is necessary to
+                        exclude them from the next step.
 
 
-                        Run or re-run the stencil bundle command, from inside
-                        your streamlined <theme‑name> directory.
+                        Run or re-run the `stencil bundle` command, from inside
+                        your streamlined `<theme‑name>` directory.
 
-                        Once your resulting .zip file is 50 MB or smaller,
-                        upload it to BigCommerce, as described here.
+                        Once your resulting `.zip` file is 50 MB or smaller,
+                        upload it to BigCommerce, as described [here]().
                     - type: callout
                       data:
                         type: warning
                         body: >-
                           Both in production and locally, subdirectories of your
-                          theme's assets/ directory – like img/, js/, and fonts/
-                          – are parallel to its scss/ subdirectory. So within
-                          your CSS, path references to such assets should
-                          reflect this parallel relationship – for example:
-                          ../img/test.jpg.
+                          theme's `assets/` directory – like `img/`,` js/`, and
+                          `fonts/` – are parallel to its `scss/` subdirectory.
+                          So within your CSS, path references to such assets
+                          should reflect this parallel relationship – for
+                          example: `../img/test.jpg`.
                         title: URL References to Assets
+                    - type: text
+                      data: '---'
                     - type: text
                       data: >-
                         ## WebDAV Folders and Stencil Themes
@@ -8791,13 +8794,11 @@ pages:
                           </tr>
                          </table>
 
-                        <i>The overall difference is that the WebDAV</i> <span
-                        class="inline-code">/template/</span> and <span
-                        class="inline-code">/mobile_template/</span>
-                        <i>directories are <b>not</b> available for Stencil
-                        themes. These templates must reside and remain within
-                        your Stencil theme's local directory and file
-                        structure.</i>
+                        <i>The overall difference is that the WebDAV
+                        `/template/` and `/mobile_template/` directories are
+                        <b>not</b> available for Stencil themes. These templates
+                        must reside and remain within your Stencil theme's local
+                        directory and file structure.</i>
               - title: Staging A Theme for CDN Delivery
                 route:
                   path: /staging-a-theme
