@@ -3949,8 +3949,46 @@ pages:
                       header:
                         anchor: front-matter-overview_yaml-syntax
                     - type: text
-                      data: |
+                      data: >
                         ## Filtering Attributes
+
+
+                        Some attributes can accept indented keys, or key-value
+                        pairs, to further define the attribute. For example,
+                        limit is a key commonly used to restrict the number of
+                        objects to return for an attribute.
+
+                        To return products similar to the product that a
+                        customer is currently viewing – with a limit of six –
+                        you would declare front matter as follows:
+
+
+                        ```
+
+                        ---
+
+                        products:
+                            similar_by_views:
+                                limit: 6
+                        ---
+
+                        ```
+
+
+                        Most keys have a default value, as listed in the [Front
+                        Matter Attributes]() Reference. Specifying the key
+                        without a value will call that default value. The
+                        default value for `similar_by_views:limit:` happens to
+                        be `4`, so inserting `limit` with no integer will
+                        display four products:
+
+
+                        ---
+
+                        products:
+                            similar_by_views:
+                                limit:
+                        ---
                       header:
                         anchor: front-matter-overview_filtering-attributes
                     - type: text
