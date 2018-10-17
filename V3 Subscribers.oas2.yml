@@ -1,607 +1,805 @@
-swagger: '2.0'
-info:
-  title: BigCommerce V3 Subscribers
-  version: 3.0.0b
-  description: >-
-    The Subscribers API returns information on customers subscribed to the store
-    newsletter and the actions associated with them. 
-
-
-    A subscriber can be defined as anyone who has signed up for a store's
-    newsletter. To programmatically log a customer into a store account, get
-    information about a current logged-in customer, or any other action not
-    associated with newsletter subscriptions, please see the Customers
-    Reference.
-
-
-    Subscribers can be added to the list by:
-
-    * Signing up for the newsletter via the signup box located in the footer of
-    most storefront themes
-
-    * Signing up for the newsletter during checkout
-
-    * POSTing to the Subscribers API 
-
-
-    Where possible, the API will indicate the origin of the subscriber. If the
-    subscriber was added during a checkout, the Order ID from when they were
-    added is included.
-  termsOfService: ''
-  license:
-    name: ''
-host: api.bigcommerce.com
-basePath: '/stores/{store_hash}/v3'
-tags:
-  - name: Subscribers
-    description: BigCommerce Customers API Definition.
-schemes:
-  - https
-produces:
-  - application/json
-consumes:
-  - application/json
-paths:
-  /customers/subscribers:
-    get:
-      description: >-
-        Get all subscribers from your store. Optional parameters may be passed
-        in.
-      operationId: getSubscribers
-      parameters:
-        - $ref: '#/parameters/FilterEmailParam'
-        - $ref: '#/parameters/FilterFirstNameParam'
-        - $ref: '#/parameters/FilterLastNameParam'
-        - $ref: '#/parameters/FilterSourceParam'
-        - $ref: '#/parameters/FilterOrderIdParam'
-        - $ref: '#/parameters/FilterDateCreatedParam'
-        - $ref: '#/parameters/FilterDateModifiedParam'
-        - $ref: '#/parameters/PageParam'
-        - $ref: '#/parameters/LimitParam'
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/SubscriberCollectionResponse'
-          examples:
-            application/json:
-              data:
-                - id: 1
-                  email: janedoe@email.com
-                  first_name: jane
-                  last_name: ''
-                  source: storefront
-                  order_id: null
-                  date_created: '2018-09-14T19:45:59+00:00'
-                  date_modified: '2018-09-14T19:45:59+00:00'
-                - id: 2
-                  email: johndoe@email.com
-                  first_name: jane
-                  last_name: ''
-                  source: storefront
-                  order_id: null
-                  date_created: '2018-09-14T19:46:07+00:00'
-                  date_modified: '2018-09-14T19:46:07+00:00'
-              meta:
-                pagination:
-                  total: 2
-                  count: 2
-                  per_page: 50
-                  current_page: 1
-                  total_pages: 1
-                  links:
-                    current: '?page=1&limit=50'
-      tags:
-        - Subscribers
-      summary: Get All Subscribers
-      security:
-        - X-Auth-Client: []
-        - X-Auth-Token: []
-    post:
-      description: Create a subscriber.
-      operationId: createSubscriber
-      parameters:
-        - name: subscriber
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/SubscriberPost'
-          x-examples:
-            application/json:
-              email: janedoe2@email.com
-              first_name: Jane
-              last_name: Doe
-              source: mailchimp
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/SubscriberResponse'
-          examples:
-            application/json:
-              data:
-                id: 3
-                email: janedoe2@email.com
-                first_name: Jane
-                last_name: Doe
-                source: mailchimp
-                order_id: null
-                date_created: '2018-09-14T19:49:45+00:00'
-                date_modified: '2018-09-14T19:49:45+00:00'
-              meta: {}
-        '409':
-          description: >
-            The `Subscriber` was in conflict with another subscriber. This is
-            the result of duplicate unique values, such as email.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          description: >
-            The `Subscriber` was not valid. This is the result of missing
-            required fields, or of invalid data. See the response for more
-            details.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      tags:
-        - Subscribers
-      summary: Create a Subscriber
-      security:
-        - X-Auth-Client: []
-        - X-Auth-Token: []
-    delete:
-      description: >-
-        Delete a subscriber(s). Filter parameters are recommened to only target
-        certain subscribers.
-      operationId: deleteSubscribers
-      parameters:
-        - $ref: '#/parameters/FilterEmailParam'
-        - $ref: '#/parameters/FilterFirstNameParam'
-        - $ref: '#/parameters/FilterLastNameParam'
-        - $ref: '#/parameters/FilterSourceParam'
-        - $ref: '#/parameters/FilterOrderIdParam'
-        - $ref: '#/parameters/FilterDateCreatedParam'
-        - $ref: '#/parameters/FilterDateModifiedParam'
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '204':
-          description: ''
-      tags:
-        - Subscribers
-      summary: Delete All Subscribers
-      security:
-        - X-Auth-Client: []
-        - X-Auth-Token: []
-  '/customers/subscribers/{subscriber_id}':
-    parameters:
-      - $ref: '#/parameters/SubscriberIdParam'
-    get:
-      description: Get a subscriber using the `subscriber_id`.
-      operationId: getSubscriberById
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/SubscriberResponse'
-          examples:
-            application/json:
-              data:
-                id: 2
-                email: johndoe@email.com
-                first_name: jane
-                last_name: ''
-                source: storefront
-                order_id: null
-                date_created: '2018-09-14T19:46:07+00:00'
-                date_modified: '2018-09-14T19:46:07+00:00'
-              meta: {}
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/NotFound'
-      tags:
-        - Subscribers
-      summary: Get a Subscriber by Id
-      security:
-        - X-Auth-Client: []
-        - X-Auth-Token: []
-      parameters:
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-    put:
-      operationId: updateSubscriber
-      parameters:
-        - name: subscriber
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/SubscriberPut'
-          x-examples:
-            application/json:
-              email: janed@email.com
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/SubscriberResponse'
-          examples:
-            application/json:
-              data:
-                id: 2
-                email: jane2@email.com
-                first_name: jane
-                last_name: ''
-                source: storefront
-                order_id: null
-                date_created: '2018-09-14T19:46:07+00:00'
-                date_modified: '2018-09-14T19:46:07+00:00'
-              meta: {}
-        '404':
-          description: |
-            The resource was not found.
-          schema:
-            $ref: '#/definitions/NotFound'
-        '409':
-          description: >
-            The `Subscriber` was in conflict with another subscriber. This is
-            the result of duplicate unique values, such as `email`.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        '422':
-          description: >
-            The `Subscriber` was not valid. This is the result of missing
-            required fields, or of invalid data. See the response for more
-            details.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      tags:
-        - Subscribers
-      summary: Update a Subscriber
-      description: Updates a subscriber using the `subscriber_id`.
-      security:
-        - X-Auth-Client: []
-        - X-Auth-Token: []
-    delete:
-      description: Delete a subscriber using the `subscriber_id`.
-      operationId: deleteSubscriberById
-      responses:
-        '204':
-          description: ''
-      tags:
-        - Subscribers
-      summary: Delete Subscriber by Id
-      security:
-        - X-Auth-Client: []
-        - X-Auth-Token: []
-      parameters:
-        - $ref: '#/parameters/Content-Type'
-        - $ref: '#/parameters/Accept'
-parameters:
-  FilterEmailParam:
-    name: email
-    description: |
-      Filter items by email.
-    required: false
-    in: query
-    type: string
-  FilterFirstNameParam:
-    name: first_name
-    description: |
-      Filter items by first_name.
-    required: false
-    in: query
-    type: string
-  FilterLastNameParam:
-    name: last_name
-    description: |
-      Filter items by last_name.
-    required: false
-    in: query
-    type: string
-  FilterSourceParam:
-    name: source
-    description: |
-      Filter items by source.
-    required: false
-    in: query
-    type: string
-  FilterOrderIdParam:
-    name: order_id
-    description: |
-      Filter items by order_id.
-    required: false
-    in: query
-    type: integer
-  FilterDateModifiedParam:
-    name: date_modified
-    description: >-
-      Filter items by date_modified. For example
-      `v3/catalog/products?date_last_imported:min=2018-06-15`
-    required: false
-    in: query
-    type: string
-    format: date-time
-  FilterDateCreatedParam:
-    name: date_created
-    description: |
-      Filter items by date_created.
-    required: false
-    in: query
-    type: string
-    format: date-time
-  PageParam:
-    name: page
-    description: Specifies the page number in a limited (paginated) list of products.
-    required: false
-    in: query
-    type: integer
-  LimitParam:
-    name: limit
-    description: >-
-      Controls the number of items per page in a limited (paginated) list of
-      products.
-    required: false
-    in: query
-    type: integer
-  ScriptsSortKeyParam:
-    name: sort
-    description: |
-      Scripts field name to sort by.
-    required: false
-    in: query
-    type: string
-    enum:
-      - name
-      - description
-      - date_created
-      - date_modified
-  DirectionParam:
-    name: direction
-    description: |
-      Sort direction. Acceptable values are: `asc`, `desc`.
-    required: false
-    in: query
-    type: string
-    enum:
-      - asc
-      - desc
-  SubscriberIdParam:
-    name: subscriber_id
-    in: path
-    description: |
-      The ID of the `Subscriber` requested.
-    required: true
-    type: integer
-  Accept:
-    in: header
-    type: string
-    name: Accept
-    default: application/json
-  Content-Type:
-    name: Content-Type
-    in: header
-    type: string
-    default: application/json
-definitions:
-  SubscriberCollectionResponse:
-    description: |
-      Response payload for the BigCommerce API.
-    type: object
-    properties:
-      data:
-        type: array
-        items:
-          $ref: '#/definitions/Subscriber'
-      meta:
-        $ref: '#/definitions/CollectionMeta'
-    title: Subscriber Collection Response
-  SubscriberResponse:
-    type: object
-    properties:
-      data:
-        $ref: '#/definitions/Subscriber'
-      meta:
-        $ref: '#/definitions/Meta'
-    title: Subscriber Response
-  SubscriberBase:
-    type: object
-    description: Common Subscriber properties.
-    properties:
-      id:
-        type: integer
-        description: |
-          The unique numeric ID of the subscriber; increments sequentially.
-        x-required:
-          - put
-      email:
-        type: string
-        description: |
-          The email of the subscriber. Must be unique.
-        x-required:
-          - post
-      first_name:
-        type: string
-        description: |
-          The first name of the subscriber.
-        minLength: 0
-        maxLength: 255
-      last_name:
-        type: string
-        description: |
-          The last name of the subscriber.
-        minLength: 0
-        maxLength: 255
-      source:
-        type: string
-        description: >
-          The source of the subscriber. Values are: `storefront`, `order`, or
-          `custom`.
-        minLength: 0
-        maxLength: 255
-      order_id:
-        type: integer
-        description: |
-          The ID of the source order, if source was an order.
-        x-nullable: true
-        minimum: 1
-        maximum: 2147483647
-    title: Subscriber Base
-  Subscriber:
-    type: object
-    allOf:
-      - $ref: '#/definitions/SubscriberBase'
-      - type: object
-        properties:
-          date_modified:
-            type: string
-            format: date-time
-            description: |
-              The date on which the subscriber was modified.
-          date_created:
-            type: string
-            format: date-time
-            description: |
-              The date of which the subscriber was created.
-  SubscriberPost:
-    type: object
-    description: |
-      The model for a POST to create a subscriber.
-    allOf:
-      - $ref: '#/definitions/SubscriberBase'
-    title: Subscriber Post
-  SubscriberPut:
-    type: object
-    description: |
-      The model for a PUT to update a subscriber.
-    allOf:
-      - $ref: '#/definitions/SubscriberBase'
-    title: Subscriber Put
-  CollectionMeta:
-    type: object
-    description: 'Data about the response, including pagination and collection totals.'
-    properties:
-      pagination:
-        $ref: '#/definitions/Pagination'
-    title: Collection Meta
-  Pagination:
-    type: object
-    description: 'Data about the response, including pagination and collection totals.'
-    title: Pagination
-    properties:
-      total:
-        type: integer
-        description: |
-          Total number of items in the result set.
-        example: 36
-      count:
-        type: integer
-        description: |
-          Total number of items in the collection response.
-        example: 36
-      per_page:
-        type: integer
-        description: >
-          The amount of items returned in the collection per page, controlled by
-          the limit parameter.
-        example: 50
-      current_page:
-        type: integer
-        description: |
-          The page you are currently on within the collection.
-        example: 1
-      total_pages:
-        type: integer
-        description: |
-          The total number of pages in the collection.
-        example: 1
-      links:
-        type: object
-        description: >
-          Pagination links for the previous and next parts of the whole
-          collection.
-        properties:
-          previous:
-            type: string
-            description: |
-              Link to the previous page returned in the response.
-          current:
-            type: string
-            description: |
-              Link to the current page returned in the response.
-            example: '?page=1&limit=50'
-          next:
-            type: string
-            description: |
-              Link to the next page returned in the response.
-  Meta:
-    type: object
-    description: Empty meta object; may be used later.
-    title: Meta
-  ErrorResponse:
-    allOf:
-      - $ref: '#/definitions/BaseError'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/definitions/DetailedErrors'
-    title: Error Response
-  BaseError:
-    type: object
-    description: |
-      Error payload for the BigCommerce API.
-    properties:
-      status:
-        description: |
-          The HTTP status code.
-        type: integer
-      title:
-        description: |
-          The error title describing the particular error.
-        type: string
-      type:
-        type: string
-      instance:
-        type: string
-    title: Base Error
-  NotFound:
-    description: Error payload for the BigCommerce API.
-    type: object
-    properties:
-      status:
-        description: |
-          404 HTTP status code.
-        type: integer
-      title:
-        description: The error title describing the particular error.
-        type: string
-      type:
-        type: string
-      instance:
-        type: string
-    title: Not Found
-  DetailedErrors:
-    type: object
-    title: Detailed Errors
-    properties:
-      additionalProperties:
-        type: string
-securityDefinitions:
-  X-Auth-Client:
-    type: apiKey
-    name: X-Auth-Client
-    in: header
-  X-Auth-Token:
-    type: apiKey
-    name: X-Auth-Token
-    in: header
-security:
-  - X-Auth-Client: []
-  - X-Auth-Token: []
-responses: {}
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Subscribers",
+    "version": "",
+    "description": "The Subscribers API returns information on customers subscribed to the store newsletter and the actions associated with them. \n\nA subscriber can be defined as anyone who has signed up for a store's newsletter. To programmatically log a customer into a store account, get information about a current logged-in customer, or any other action not associated with newsletter subscriptions, please see the Customers Reference.\n\nSubscribers can be added to the list by:\n* Signing up for the newsletter via the signup box located in the footer of most storefront themes\n* Signing up for the newsletter during checkout\n* POSTing to the Subscribers API \n\nWhere possible, the API will indicate the origin of the subscriber. If the subscriber was added during a checkout, the Order ID from when they were added is included.",
+    "termsOfService": "",
+    "license": {
+      "name": ""
+    }
+  },
+  "host": "api.bigcommerce.com",
+  "basePath": "/stores/{store_hash}/v3",
+  "tags": [
+    {
+      "name": "Subscribers",
+      "description": "BigCommerce Customers API Definition."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/customers/subscribers": {
+      "get": {
+        "description": "Get all subscribers from your store. Optional parameters may be passed in.",
+        "operationId": "getSubscribers",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FilterEmailParam"
+          },
+          {
+            "$ref": "#/parameters/FilterFirstNameParam"
+          },
+          {
+            "$ref": "#/parameters/FilterLastNameParam"
+          },
+          {
+            "$ref": "#/parameters/FilterSourceParam"
+          },
+          {
+            "$ref": "#/parameters/FilterOrderIdParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateCreatedParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateModifiedParam"
+          },
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SubscriberCollectionResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 1,
+                    "email": "janedoe@email.com",
+                    "first_name": "jane",
+                    "last_name": "",
+                    "source": "storefront",
+                    "order_id": null,
+                    "date_created": "2018-09-14T19:45:59+00:00",
+                    "date_modified": "2018-09-14T19:45:59+00:00"
+                  },
+                  {
+                    "id": 2,
+                    "email": "johndoe@email.com",
+                    "first_name": "jane",
+                    "last_name": "",
+                    "source": "storefront",
+                    "order_id": null,
+                    "date_created": "2018-09-14T19:46:07+00:00",
+                    "date_modified": "2018-09-14T19:46:07+00:00"
+                  }
+                ],
+                "meta": {
+                  "pagination": {
+                    "total": 2,
+                    "count": 2,
+                    "per_page": 50,
+                    "current_page": 1,
+                    "total_pages": 1,
+                    "links": {
+                      "current": "?page=1&limit=50"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Subscribers"
+        ],
+        "summary": "Get All Subscribers",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create a subscriber.",
+        "operationId": "createSubscriber",
+        "parameters": [
+          {
+            "name": "subscriber",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SubscriberPost"
+            },
+            "x-examples": {
+              "application/json": {
+                "email": "janedoe2@email.com",
+                "first_name": "Jane",
+                "last_name": "Doe",
+                "source": "mailchimp"
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SubscriberResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": 3,
+                  "email": "janedoe2@email.com",
+                  "first_name": "Jane",
+                  "last_name": "Doe",
+                  "source": "mailchimp",
+                  "order_id": null,
+                  "date_created": "2018-09-14T19:49:45+00:00",
+                  "date_modified": "2018-09-14T19:49:45+00:00"
+                },
+                "meta": {}
+              }
+            }
+          },
+          "409": {
+            "description": "The `Subscriber` was in conflict with another subscriber. This is the result of duplicate unique values, such as email.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "The `Subscriber` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Subscribers"
+        ],
+        "summary": "Create a Subscriber",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a subscriber(s). Filter parameters are recommened to only target certain subscribers.",
+        "operationId": "deleteSubscribers",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FilterEmailParam"
+          },
+          {
+            "$ref": "#/parameters/FilterFirstNameParam"
+          },
+          {
+            "$ref": "#/parameters/FilterLastNameParam"
+          },
+          {
+            "$ref": "#/parameters/FilterSourceParam"
+          },
+          {
+            "$ref": "#/parameters/FilterOrderIdParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateCreatedParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateModifiedParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subscribers"
+        ],
+        "summary": "Delete All Subscribers",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
+        ]
+      }
+    },
+    "/customers/subscribers/{subscriber_id}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/SubscriberIdParam"
+        }
+      ],
+      "get": {
+        "description": "Get a subscriber using the `subscriber_id`.",
+        "operationId": "getSubscriberById",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SubscriberResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": 2,
+                  "email": "johndoe@email.com",
+                  "first_name": "jane",
+                  "last_name": "",
+                  "source": "storefront",
+                  "order_id": null,
+                  "date_created": "2018-09-14T19:46:07+00:00",
+                  "date_modified": "2018-09-14T19:46:07+00:00"
+                },
+                "meta": {}
+              }
+            }
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        },
+        "tags": [
+          "Subscribers"
+        ],
+        "summary": "Get a Subscriber by Id",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "updateSubscriber",
+        "parameters": [
+          {
+            "name": "subscriber",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SubscriberPut"
+            },
+            "x-examples": {
+              "application/json": {
+                "email": "janed@email.com"
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SubscriberResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": 2,
+                  "email": "jane2@email.com",
+                  "first_name": "jane",
+                  "last_name": "",
+                  "source": "storefront",
+                  "order_id": null,
+                  "date_created": "2018-09-14T19:46:07+00:00",
+                  "date_modified": "2018-09-14T19:46:07+00:00"
+                },
+                "meta": {}
+              }
+            }
+          },
+          "404": {
+            "description": "The resource was not found.\n",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          },
+          "409": {
+            "description": "The `Subscriber` was in conflict with another subscriber. This is the result of duplicate unique values, such as `email`.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "The `Subscriber` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Subscribers"
+        ],
+        "summary": "Update a Subscriber",
+        "description": "Updates a subscriber using the `subscriber_id`.",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a subscriber using the `subscriber_id`.",
+        "operationId": "deleteSubscriberById",
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subscribers"
+        ],
+        "summary": "Delete Subscriber by Id",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "FilterEmailParam": {
+      "name": "email",
+      "description": "Filter items by email.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterFirstNameParam": {
+      "name": "first_name",
+      "description": "Filter items by first_name.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterLastNameParam": {
+      "name": "last_name",
+      "description": "Filter items by last_name.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterSourceParam": {
+      "name": "source",
+      "description": "Filter items by source.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterOrderIdParam": {
+      "name": "order_id",
+      "description": "Filter items by order_id.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterDateModifiedParam": {
+      "name": "date_modified",
+      "description": "Filter items by date_modified. For example `v3/catalog/products?date_last_imported:min=2018-06-15`",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "format": "date-time"
+    },
+    "FilterDateCreatedParam": {
+      "name": "date_created",
+      "description": "Filter items by date_created.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "format": "date-time"
+    },
+    "PageParam": {
+      "name": "page",
+      "description": "Specifies the page number in a limited (paginated) list of products.",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "LimitParam": {
+      "name": "limit",
+      "description": "Controls the number of items per page in a limited (paginated) list of products.",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "ScriptsSortKeyParam": {
+      "name": "sort",
+      "description": "Scripts field name to sort by.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "name",
+        "description",
+        "date_created",
+        "date_modified"
+      ]
+    },
+    "DirectionParam": {
+      "name": "direction",
+      "description": "Sort direction. Acceptable values are: `asc`, `desc`.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "asc",
+        "desc"
+      ]
+    },
+    "SubscriberIdParam": {
+      "name": "subscriber_id",
+      "in": "path",
+      "description": "The ID of the `Subscriber` requested.\n",
+      "required": true,
+      "type": "integer"
+    },
+    "Accept": {
+      "in": "header",
+      "type": "string",
+      "name": "Accept",
+      "default": "application/json"
+    },
+    "Content-Type": {
+      "name": "Content-Type",
+      "in": "header",
+      "type": "string",
+      "default": "application/json"
+    }
+  },
+  "definitions": {
+    "SubscriberCollectionResponse": {
+      "description": "Response payload for the BigCommerce API.\n",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Subscriber"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/CollectionMeta"
+        }
+      },
+      "title": "Subscriber Collection Response"
+    },
+    "SubscriberResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Subscriber"
+        },
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        }
+      },
+      "title": "Subscriber Response"
+    },
+    "SubscriberBase": {
+      "type": "object",
+      "description": "Common Subscriber properties.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The unique numeric ID of the subscriber; increments sequentially.\n",
+          "x-required": [
+            "put"
+          ]
+        },
+        "email": {
+          "type": "string",
+          "description": "The email of the subscriber. Must be unique.\n",
+          "x-required": [
+            "post"
+          ]
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The first name of the subscriber.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The last name of the subscriber.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "source": {
+          "type": "string",
+          "description": "The source of the subscriber. Values are: `storefront`, `order`, or `custom`.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "order_id": {
+          "type": "integer",
+          "description": "The ID of the source order, if source was an order.\n",
+          "x-nullable": true,
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      },
+      "title": "Subscriber Base"
+    },
+    "Subscriber": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/SubscriberBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "date_modified": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The date on which the subscriber was modified.\n"
+            },
+            "date_created": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The date of which the subscriber was created.\n"
+            }
+          }
+        }
+      ]
+    },
+    "SubscriberPost": {
+      "type": "object",
+      "description": "The model for a POST to create a subscriber.\n",
+      "allOf": [
+        {
+          "$ref": "#/definitions/SubscriberBase"
+        }
+      ],
+      "title": "Subscriber Post"
+    },
+    "SubscriberPut": {
+      "type": "object",
+      "description": "The model for a PUT to update a subscriber.\n",
+      "allOf": [
+        {
+          "$ref": "#/definitions/SubscriberBase"
+        }
+      ],
+      "title": "Subscriber Put"
+    },
+    "CollectionMeta": {
+      "type": "object",
+      "description": "Data about the response, including pagination and collection totals.",
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/Pagination"
+        }
+      },
+      "title": "Collection Meta"
+    },
+    "Pagination": {
+      "type": "object",
+      "description": "Data about the response, including pagination and collection totals.",
+      "title": "Pagination",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "Total number of items in the result set.\n",
+          "example": 36
+        },
+        "count": {
+          "type": "integer",
+          "description": "Total number of items in the collection response.\n",
+          "example": 36
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The amount of items returned in the collection per page, controlled by the limit parameter.\n",
+          "example": 50
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The page you are currently on within the collection.\n",
+          "example": 1
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages in the collection.\n",
+          "example": 1
+        },
+        "links": {
+          "type": "object",
+          "description": "Pagination links for the previous and next parts of the whole collection.\n",
+          "properties": {
+            "previous": {
+              "type": "string",
+              "description": "Link to the previous page returned in the response.\n"
+            },
+            "current": {
+              "type": "string",
+              "description": "Link to the current page returned in the response.\n",
+              "example": "?page=1&limit=50"
+            },
+            "next": {
+              "type": "string",
+              "description": "Link to the next page returned in the response.\n"
+            }
+          }
+        }
+      }
+    },
+    "Meta": {
+      "type": "object",
+      "description": "Empty meta object; may be used later.",
+      "title": "Meta"
+    },
+    "ErrorResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseError"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "errors": {
+              "$ref": "#/definitions/DetailedErrors"
+            }
+          }
+        }
+      ],
+      "title": "Error Response"
+    },
+    "BaseError": {
+      "type": "object",
+      "description": "Error payload for the BigCommerce API.\n",
+      "properties": {
+        "status": {
+          "description": "The HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the particular error.\n",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "Base Error"
+    },
+    "NotFound": {
+      "description": "Error payload for the BigCommerce API.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "404 HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the particular error.",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "Not Found"
+    },
+    "DetailedErrors": {
+      "type": "object",
+      "title": "Detailed Errors",
+      "properties": {
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "X-Auth-Client": {
+      "type": "apiKey",
+      "name": "X-Auth-Client",
+      "in": "header"
+    },
+    "X-Auth-Token": {
+      "type": "apiKey",
+      "name": "X-Auth-Token",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "X-Auth-Client": []
+    },
+    {
+      "X-Auth-Token": []
+    }
+  ],
+  "responses": {}
+}
