@@ -8219,19 +8219,68 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
-                      data: ''
+                      data: >-
+                        ## Calling Theme Icons 
+
+
+                        A Stencil theme's icons are delivered via a single SVG
+                        sprite, which is embedded on the page in
+
+                        `<theme-name>templates/layout/base.html`. This sprite is
+                        generated via the Grunt task `grunt svgstore`.
+
+
+                        The task takes individual SVG files for each icon (in
+                        the theme's `assets/icons/` subdirectory) and bundles
+
+                        them together, to be inlined on the top of the theme,
+                        inside a Handlebars partial.
+
+
+                        You can then call each icon in a similar way to an
+                        inline image, via:
+
+
+                        `<svg><use xlink:href="#icon-svgFileName" /></svg>`
+
+
+                        The ID of each SVG icon you call is based on the
+                        filename of the icon you want, with `icon-` prepended.
+
+                        For example:
+
+
+                        `xlink:href="#icon-facebook"`
                       header:
                         anchor: using-and-updating-icons_calling-theme-icons
                     - type: text
                       data: '---'
                     - type: text
-                      data: ''
+                      data: >-
+                        ## Adding New Icons
+
+
+                        Simply add your new icon SVG file to the `assets/icons/
+                        `folder. Then, from your theme's root directory, run
+                        `grunt svgstore` or just `grunt`.
                       header:
                         anchor: using-and-updating-icons_adding-new-icons
                     - type: text
                       data: '---'
                     - type: text
-                      data: ''
+                      data: >
+                        ## Video Demo
+
+
+                        Watch a video demonstration of installing Grunt and
+                        using it to update your theme's SVG sprite with custom
+                        icons: 
+
+
+                        <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/-w7Hbn_p_pw"
+                        frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
                       header:
                         anchor: using-and-updating-icons_video-demo
         - title: 'Custom Javascript Implementations '
