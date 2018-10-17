@@ -8068,7 +8068,27 @@ pages:
                     - type: html
                       data: <h1>Page Composition and Styling</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#page-composition_\">Referencing a CSS Stylesheet</a></li>\n    <li><a href=\"#page-composition_\">Template Composition</a></li>\n    <li><a href=\"#page-composition_\">Defining Content Blocks</a></li>\n    <li><a href=\"#page-composition_\">Replacing Content Blocks</a></li>\n    <li><a href=\"#page-composition_\">Matching Partials with Blocks</a></li>\n\t</ul>\n</div>\n\n\n\n\n"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#page-composition_referencing-css-stylesheet\">Referencing a CSS Stylesheet</a></li>\n    <li><a href=\"#page-composition_template-composition\">Template Composition</a></li>\n\t</ul>\n</div>\n\n\n\n\n"
+                    - type: text
+                      data: >-
+                        ## Referencing a CSS Stylesheet
+
+
+                        To apply CSS styling to a page in your theme, make sure
+                        that page's code includes a reference to the stylesheet
+                        you want to use. This example does so using the
+                        `{{partial}}` and `{{cdn}}` custom Handlebars helpers:
+
+
+                        ```
+
+                        {{#partial "head"}}
+                            <link href="{{cdn '/assets/css/invoice.css'}}" rel="stylesheet">
+                        {{/partial}}
+
+                        ```
+                    - type: text
+                      data: "## Template Composition\n\nTemplate composition is a valuable Stencil feature. By defining blocks of overrideable content, your themes can insert templates on a per-page basis, while sharing code that is common to the whole theme.\n\n### Defining Content Blocks\n\nA base template defines content blocks by name. The following snippet uses `{{block}}` custom Handlebars helpers to define three content blocks, respectively named `head`, `hero`, and `page`:\n\n```\n// templates/layout/base.html\n<!DOCTYPE html>\n<html>\n    <head>\n        <title>{{ head.title }}</title>\n        {{#block \"head\"}} {{/block}}\n    </head>\n    <body>\n        <div class=\"body\">\n\t\t    {{#block \"hero\"}} {{/block}}\n\t\t    <div class=\"container\">\n\t\t        {{#block \"page\"}} {{/block}}\n\t\t    </div>\n\t\t    {{> components/common/modal}}\n        </div>\n    </body>\n</html>\n```\n\n### Replacing Content Blocks\n\nPages can use a base template, replacing the defined blocks with their own content. This example replaces content for the head and page blocks:\n\n```\n//templates/pages/account/orders/invoice.html\n{{#partial \"head\"}}\n    <link href=\"{{cdn '/assets/css/invoice.css'}}\" rel=\"stylesheet\">\n{{/partial}}\n\n{{#partial \"page\"}}\n    <p>An invoice for a particular order would go here</p>\n{{/partial}}\n{{> layout/empty}}\n```\n\n### Matching Partials with Blocks\n\nWe recommend that, for any given name defined within the template rendering path, you maintain a 1:1 mapping of partials to blocks."
               - title: Using Custom Fonts
                 route:
                   path: /using-custom-fonts
