@@ -32,7 +32,7 @@ pages:
               <div class="cBrLandingTiles">
                 <div class="ui-widget">
                   <div>
-                    <div style="padding: 62px 0px 0px;">
+                    <div style="padding: 62px 0px 70px;">
                       <div>
                         <h1 class="h1 panel-title__text-dark">API Documentation</h1>
                       </div>
@@ -176,9 +176,8 @@ pages:
 
                               |--|--|
 
-                              |
-                              [Catalog](https://devcenter-staging-demo.docs.stoplight.io/api-reference/catelog/catalog-api)
-                              | The Catalog API manages products, brands and
+                              | [Catalog](/api-reference/catelog/catalog-api) |
+                              The Catalog API manages products, brands and
                               categories for a store. |
 
                               | [Store
@@ -640,10 +639,9 @@ pages:
 
                               ### Next Steps
 
-
                               * Try including other filter paramters such as
                               name or include and exclude. See [Get All
-                              Products](/api-reference/catelog/catalog-api/products/getproducts)
+                              Products](/api-reference/catalog/catalog-api/products/getproducts)
                               for a full list of available filters. 
                           - type: text
                             data: '---'
@@ -1151,7 +1149,7 @@ pages:
                                 we strongly recommend migrating to OAuth as soon
                                 as possible.
                           - type: text
-                            data: "### Migrating to OAuth comes with several benefits:\n\n* All OAuth requests are sent to a common hostname: `https://api.bigcommerce.com`. Using a single hostname prevents any interruption of service when the domain or SSL on a particular store changes or expires.\n\n* All of BigCommerce’s newest V3 APIs are exclusively available via OAuth.\n\n* OAuth API accounts have access to subscribe to BigCommerce’s Webhooks for real-time event notifications\n\n* The ability to use new APIs that require a shared secret, such as the Storefront Login API or the Storefront Current Customer identification endpoint.\n\n* Gzip compression on API responses to reduce bandwidth usage\n\n* Better security as all OAuth tokens are scoped to particular endpoints\n\n### How to Migrate\n\nFirst, consider whether your application should reside within the public App Marketplace, where any BigCommerce merchant can quickly discover and install it. To learn more about how to set up this kind of app, see [Becoming a Partner](/api-docs/partner/becoming-a-partner).\n\nIf you would like to update your API connection from Basic Authentication to OAuth, you will need to make the following changes:\n\n- Get a Client ID and an Access Token, by creating an API Account within the control panel. You’ll want to make sure the account has the correct Scopes for the API endpoints you need to access. We recommend that you provide the minimum scopes that your application requires to function, as a good security practice.\n- If you use one of the Client Libraries, follow the relevant guide (within the library’s documentation) for establishing an OAuth connection.\n- If you have created your connection, you’ll want to update your connection parameters:\n\t- Where you previously used the BigCommerce store’s secure hostname, you will instead use the `https://api.bigcommerce.com` gateway URL.\nAs an example, requests to `https://store-abc123.mybigcommerce.com/api/v2/orders/123` or `https://my-custom-store-domain.com/api/v2/orders/123 `would instead go to `https://api.bigcommerce.com/stores/{store_hash}/v2/orders/123`.\n- With Basic Auth, you use an Authentication HTTP Header to authenticate your connection. With OAuth, you’ll want to use two headers:\n\t- X-Client-Id for your Client ID, and the \n\t- X-Auth-Token header for your Access Token. You can read more [here](/api-docs/getting-started/about-api/authentication).\n\nRate limiting of API requests works differently for OAuth API connections. To become familiar with the OAuth system, please see the [Rate Limits](/api-docs/getting-started/about-api/best-practices#best-practices_rate-limits)."
+                            data: "### Migrating to OAuth comes with several benefits:\n\n* All OAuth requests are sent to a common hostname: `https://api.bigcommerce.com`. Using a single hostname prevents any interruption of service when the domain or SSL on a particular store changes or expires.\n\n* All of BigCommerce’s newest V3 APIs are exclusively available via OAuth.\n\n* OAuth API accounts have access to subscribe to BigCommerce’s Webhooks for real-time event notifications\n\n* The ability to use new APIs that require a shared secret, such as the Storefront Login API or the Storefront Current Customer identification endpoint.\n\n* Gzip compression on API responses to reduce bandwidth usage\n\n* Better security as all OAuth tokens are scoped to particular endpoints\n\n### How to Migrate\n\nFirst, consider whether your application should reside within the public App Marketplace, where any BigCommerce merchant can quickly discover and install it. To learn more about how to set up this kind of app, see [Becoming a Partner](/api-docs/partner/becoming-a-partner).\n\nIf you would like to update your API connection from Basic Authentication to OAuth, you will need to make the following changes:\n\n- Get a Client ID and an Access Token, by creating an API Account within the control panel. You’ll want to make sure the account has the correct Scopes for the API endpoints you need to access. We recommend that you provide the minimum scopes that your application requires to function, as a good security practice.\n- If you use one of the Client Libraries, follow the relevant guide (within the library’s documentation) for establishing an OAuth connection.\n- If you have created your connection, you’ll want to update your connection parameters:\n\t- Where you previously used the BigCommerce store’s secure hostname, you will instead use the `https://api.bigcommerce.com` gateway URL.\nAs an example, requests to `https://store-abc123.mybigcommerce.com/api/v2/orders/123` or `https://my-custom-store-domain.com/api/v2/orders/123 `would instead go to `https://api.bigcommerce.com/stores/{store_hash}/v2/orders/123`.\n- With Basic Auth, you use an Authentication HTTP Header to authenticate your connection. With OAuth, you’ll want to use two headers:\n\t- X-Client-Id for your Client ID, and the \n\t- X-Auth-Token header for your Access Token. You can read more [here](/api-docs/getting-started/about-api/authentication#authentication_client-id-secret).\n\nRate limiting of API requests works differently for OAuth API connections. To become familiar with the OAuth system, please see the [Rate Limits](/api-docs/getting-started/about-api/best-practices#best-practices_rate-limits)."
                           - type: text
                             data: '---'
                           - type: text
@@ -1507,13 +1505,13 @@ pages:
 
                               | X-Retry-After | integer | Rate limited response,
                               indicating the number of seconds before the quota
-                              refreshes. See [Platform
+                              refreshes. See [Rate
                               Limits](/api-docs/getting-started/about-api/best-practices#best-practices_rate-limits)
                               for more information. | `15` |
 
                               | X-BC-ApiLimit-Remaining | integer | The number
                               of API requests remaining for the current period
-                              (rolling one hour). See [Platform
+                              (rolling one hour). See [Rate
                               Limits](/api-docs/getting-started/about-api/best-practices#best-practices_rate-limits)
                               for more information. | `987` |
 
@@ -2466,7 +2464,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Hello World!</h1><h1>Types of Apps</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#types-of-apps_single-click-apps\"> Single Click Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_private-apps\"> Private Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_hidden-marketplace-apps\"> Hidden Marketplace Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_scripts\"> Scripts</a></li>\n\t\t<li><a href=\"#types-of-apps_connector\"> Connector and OAuth Apps</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Types of Apps</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#types-of-apps_single-click-apps\"> Single Click Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_private-apps\"> Private Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_hidden-marketplace-apps\"> Hidden Marketplace Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_scripts\"> Scripts</a></li>\n\t\t<li><a href=\"#types-of-apps_connector\"> Connector and OAuth Apps</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ## Single Click Apps
@@ -2683,7 +2681,7 @@ pages:
                               - The /GET request sent from BigCommerce contains
                               a `code` or temporary access token, `client_id`,
                               `client_secret`, `scopes` and [other
-                              information](##building-apps_recieving-get-request).
+                              information](#building-apps_recieving-get-request).
                               Your Auth Callback URL needs to be served over
                               https. You should also have access to your app's
                               server logs which will allow you to see the
@@ -3628,6 +3626,8 @@ pages:
                               First, embed an install button like the one below,
                               at any Web location from which you’d like to
                               enable app installation:
+                            header:
+                              anchor: building-apps_external-app-installation
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6490/1539297285625
@@ -3695,8 +3695,7 @@ pages:
 
                               Below is a sample code snippet of an auth callback
                               that does this:
-                            header:
-                              anchor: building-apps_external-app-installation
+                            header: {}
                           - type: code
                             data: |2-
                                  if params['external_install']
@@ -4376,7 +4375,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Trigger the Webhook Event</a></li>\n        <li><a href=\"#setting-up-webhooks_roubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Trigger the Webhook Event</a></li>\n        <li><a href=\"#setting-up-webhooks_troubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ## Intro
@@ -5466,7 +5465,7 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: "<h1>Becoming a Partner</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#becoming-a-partner_apply-technology-partner-program\">Apply to the Technology Partner Program </a></li>\n\t\t<li><a href=\"#becoming-a-partner_types-of-apps-looking-for\">Types of Apps We Are Looking For</a></li>\n\t\t<li><a href=\"#becoming-a-partner_getting-sandbox-store\">Getting a Sandbox Store</a></li>\n\t\t<li><a href=\"#becoming-a-partner_app-store-approval-requirements\">App Store Approval Requirements</a></li>\n\t\t<li><a href=\"#becoming-a-partner_partner-program-troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
+                      data: "<h1>Becoming a Partner</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#becoming-a-partner_apply-technology-partner-program\">Apply to the Technology Partner Program </a></li>\n\t\t<li><a href=\"#becoming-a-partner_getting-sandbox-store\">Getting a Sandbox Store</a></li>\n\t\t<li><a href=\"#becoming-a-partner_app-store-approval-requirements\">App Store Approval Requirements</a></li>\n\t\t<li><a href=\"#becoming-a-partner_partner-program-troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         The following sections outline the steps required to
@@ -9314,6 +9313,9 @@ pages:
                         a source of truth.
                       header:
                         anchor: troubleshooting-customer-login-api"
+                config:
+                  sidebar:
+                    token: GUIDE
               - title: Current Customer API
                 route:
                   path: /current-customer-api
@@ -9884,10 +9886,52 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: "<h1>Orders</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#orders_sf-orders-api\">Storefront Orders API</a></li>\n        <li><a href=\"#orders_server-server-checkout\">Server to Server Checkout Orders</a></li>\n        <li><a href=\"#orders_v2-orders\">V2 Orders API</a></li>\n        <li><a href=\"#orders_oauth-scopes\">OAuth Scopes</a></li>\n        <li><a href=\"#orders_available-webhooks\">Webhooks Available</a></li>\n\t</ul>\n</div>"
+                      data: "<h1>Orders</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    \t\t<li><a href=\"#order-overview_what-is-a-order\">What is a Order?</a></li>\n    \t\t<li><a href=\"#order-overview_available-endpoints\">Available Endpoints</a></li>\n        <li><a href=\"#order-overview_storefront-orders\">Storefront Orders API</a></li>\n        <li><a href=\"#order-overview_server-server-checkout\">Server to Server Checkout Orders</a></li>\n        <li><a href=\"#order-overview_v2-orders\">Orders API</a></li>\n    \t\t<li><a href=\"#order-overview_transactions\">Order Transactions</a></li>\n        <li><a href=\"#order-overview_oauth-scopes\">OAuth Scopes</a></li>\n        <li><a href=\"#order-overview_available-webhooks\">Webhooks Available</a></li>\n\t</ul>\n</div>"
                     - type: text
-                      data: |
-                        What is an Order?
+                      data: >-
+                        ## What is an Order?
+
+                        An order is a collection of items that can be digital or
+                        physical. Digital items are delivered via email and do
+                        not require a shipping address. Physical items require a
+                        shipping address and a delivery method. 
+
+
+
+                        An order can be created in two ways. Using the Server to
+                        Server Checkout or using the Orders API
+                      header:
+                        anchor: order-overview_what-is-a-order
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Available Endpoints
+
+
+                        | Name | Description |
+
+                        | -- | -- |
+
+                        | [Storefront
+                        Orders](/api-reference/orders/storefront-orders-api) |
+                        Scrape order information from the storefront using
+                        JavaScript. |
+
+                        | [Server to Server
+                        Checkout](/api-reference/cart-checkout/server-server-checkout-api/checkout/postcheckoutscheckoutidorders)
+                        | Create an order from an existing checkout |
+
+                        | [Orders API](/api-reference/orders/orders-api) | For
+                        the creation and management of orders. Can manage orders
+                        created via API or the Control Panel |
+
+                        | [Order
+                        Transactions](/api-reference/orders/orders-transactions-api)
+                        | To get transaction information existing orders. Read
+                        Only Endpoint |
+                      header:
+                        anchor: order-overview_available-endpoints
                     - type: text
                       data: '---'
                     - type: text
@@ -9902,8 +9946,15 @@ pages:
 
                         Use the Fetch API to log orders to the console. See
                         [Storefront Orders API](http://) for more.
+
+
+                        ### When to Use:
+
+                        * Scrape Order Information
+
+                        * Return information to the customer immediately
                       header:
-                        anchor: orders_sf-orders-api
+                        anchor: order-overview_storefront-orders
                     - type: code
                       data: >-
                         <script>
@@ -9940,27 +9991,57 @@ pages:
                         From there the order can be managed by either working in
                         the Control Panel or using the V2 Orders API. [See
                         Server to Server Checkout](http://) for more.
+
+
+                        ### When to Use:
+
+                        * Create an order from an existing checkout
                       header:
-                        anchor: orders_server-server-checkout
+                        anchor: order-overview_server-server-checkout
                     - type: text
                       data: '---'
                     - type: text
                       data: >-
 
-                        ## V2 Orders API
+                        ## Orders API
 
                         This API can be used to create an order from scratch. It
                         allows you to manage an orders billing address,
-                        products, coupons, and taxes. See [V2 Orders
-                        API](http://) for more.
+                        products, coupons, and taxes. See [Orders
+                        API](/api-reference/orders/orders-api) for more.
+
+
+                        For a guide on order management see the [Orders
+                        API](http://). 
+
+
+                        ### When to Use: 
+
+                        * Create an order from scratch and by pass creating a
+                        cart and checkout
+
+                        * Making changes to existing orders
+
+                        * Viewing order information
                       header:
-                        anchor: orders_v2-orders
+                        anchor: order-overview_v2-orders
                     - type: text
                       data: '---'
                     - type: text
-                      data: "## Order Scenarios\n\nThese just provide a quick overview of the steps. For more details see each endpoint.\n\n1. [Create](/api-docs/api-reference/v2-api/v2-orders/orders/postorders) an Order\n\t2. Existing store products and new store products can be added.\n\t3. Billing Address is required.\n\t4. Shipping Address. This is an optional step and this can also be added using [Update Order](/api-docs/api-reference/v2-api/v2-orders/orders/putordersid).\n\n2. Edit Order Products\n\t3. Currently there is not a way to edit order products using the api. Product can be added using [Update Order](/api-docs/api-reference/v2-api/v2-orders/orders/putordersid).\n4. Edit Order Shipping Addresses\n\t5. There is not a way to edit order shipping addresses using the api."
+                      data: >-
+                        ## Order Transactions
+
+                        This is a read only endpoint that returns transaction or
+                        payment data about an order. The data returned does not
+                        include payment tokens for a third party such as
+                        Braintree. 
+
+
+                        ### When to Use:
+
+                        * View transaction information about an Order. 
                       header:
-                        anchor: order_scenarios
+                        anchor: order-overview_transactions
                     - type: text
                       data: '---'
                     - type: text
@@ -9976,7 +10057,7 @@ pages:
                         -
                         [Checkouts](/api-docs/getting-started/about-api/authentication#authentication_oauth-scopes)
                       header:
-                        anchor: orders-oauth-scopes
+                        anchor: order-oauth-scopes
                     - type: text
                       data: '---'
                     - type: text
@@ -9986,7 +10067,470 @@ pages:
                         -
                         [Orders](/api-docs/getting-started/webhooks/webhook-events#webhook-events_orders)
                       header:
-                        anchor: orders-webhooks-available
+                        anchor: order-webhooks-available
+                  children: []
+              - title: Orders API
+                route:
+                  path: /orders-guide
+                config:
+                  sidebar:
+                    token: GUIDE
+                data:
+                  blocks:
+                    - type: text
+                      data: >-
+                        An order can be created using the /orders endpoint. It
+                        requires a list of products and a billing address for a
+                        valid order.
+
+
+                        This endpoint will accept existing products or custom
+                        products created using the products array. Custom
+                        products are not added to the existing store’s catalog. 
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Create an Order
+
+                        **POST /v2/orders**
+
+
+                        At a minimum, an order needs products and billing
+                        addresses. 
+
+
+                        For this example, we will create an order using a custom
+                        product, existing store product and add a billing
+                        address. 
+
+
+                        ### Create a custom product
+
+
+                        - **name**: Product Name
+
+                        - **quantity**: Number of items
+
+                        - **price_inc_tax**: Price including tax
+
+                        - **price_ex_tax**: Price excluding tax
+                    - type: callout
+                      data:
+                        type: warning
+                        body: >-
+                          Creating a custom product does not add it to the
+                          catalog. Only to the current order
+                    - type: code
+                      data: |2-
+                                  {
+                                      "name": "BigCommerce Poster",
+                                      "quantity": 1,
+                                      "price_inc_tax": 10.98,
+                                      "price_ex_tax": 10.00
+                                  }
+                      header:
+                        title: Create Custom Product
+                      config:
+                        mode: json
+                    - type: text
+                      data: >-
+                        ### Add an Existing Product with Options
+
+                        To add an existing product with options, first, make a
+                        request to
+                        `https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/variants`
+
+
+                        Make note of the `option_values` > `id` and
+                        `option_values` > `option_id`. These will be passed into
+                        the products array. 
+                    - type: code
+                      data: |-
+                        {
+                            "data": [
+                                {
+                                    "id": 421,
+                                    "product_id": 184,
+                                    "sku": "RED",
+                                    "sku_id": 383,
+                                    "price": null,
+                                    "calculated_price": 249,
+                                    "sale_price": null,
+                                    "retail_price": null,
+                                    "map_price": null,
+                                    "weight": null,
+                                    "calculated_weight": 15,
+                                    "width": null,
+                                    "height": null,
+                                    "depth": null,
+                                    "is_free_shipping": false,
+                                    "fixed_cost_shipping_price": null,
+                                    "purchasing_disabled": false,
+                                    "purchasing_disabled_message": "",
+                                    "image_url": "",
+                                    "cost_price": 0,
+                                    "upc": "",
+                                    "mpn": "",
+                                    "gtin": "",
+                                    "inventory_level": 0,
+                                    "inventory_warning_level": 0,
+                                    "bin_picking_number": "",
+                                    "option_values": [
+                                        {
+                                            "id": 180,
+                                            "label": "Red",
+                                            "option_id": 200,
+                                            "option_display_name": "Color"
+                                        },
+                                        {
+                                            "id": 192,
+                                            "label": "Small",
+                                            "option_id": 230,
+                                            "option_display_name": "T-Shirt Size"
+                                        }
+                                    ]
+                                }
+                        ...
+                      header:
+                        title: 'Example /GET Variants Response '
+                        subtitle: >-
+                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/variants
+                      config:
+                        mode: json
+                        highlightRange:
+                          - from: '30'
+                            to: '42'
+                    - type: text
+                      data: >-
+                        Then create the products array which includes the custom
+                        product and the existing product with product options.
+                        Using the option_id and option_value id from the
+                        previous request we can build the products array. 
+
+
+                        `product_options` > `id` = `option_values` > `option_id`
+
+                        `product_options` > `value` = `option_values` > `id`
+
+
+                        The `product_options` > `value` must be passed in as a
+                        string.
+                    - type: code
+                      data: |-
+                        "products":[
+                                  {
+                                      "name": "BigCommerce Poster",
+                                      "quantity": 1,
+                                      "price_inc_tax": 10.98,
+                                      "price_ex_tax": 10.00
+                                  },
+                                  {
+                                      "product_id": 184,
+                                        "product_options":[
+                                            {
+                                                "id": 200,
+                                                "value": "180"
+                                            },
+                                            {
+                                                "id": 230,
+                                                "value": "192"
+                                            }
+                                        ]
+
+                                  }
+                              ]
+                      header:
+                        title: Example Products Array
+                    - type: http
+                      data:
+                        headers:
+                          X-Auth-Client: '{X-Auth-Client}'
+                          X-Auth-Token: '{X-Auth-Token}'
+                          Content-Type: application/json
+                          Accept: application/json
+                        method: post
+                        url: >-
+                          https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders
+                        body: |-
+                          {
+                            "billing_address": {
+                              "first_name": "Jane",
+                              "last_name": "Does",
+                              "company": "",
+                              "street_1": "123 Main Street",
+                              "street_2": "",
+                              "city": "Austin",
+                              "state": "Texas",
+                              "zip": "78751",
+                              "country": "United States",
+                              "country_iso2": "US",
+                              "email": "janedoe@email.com"
+                            },
+                            "products": [
+                              {
+                                "name": "BigCommerce Poster",
+                                "quantity": 1,
+                                "price_inc_tax": 10.98,
+                                "price_ex_tax": 10
+                              },
+                              {
+                                "product_id": //Add your product,
+                                "product_options": [
+                                  {
+                                    "id": //Add your product,
+                                    "value": ""//Add your product
+                                  },
+                                  {
+                                    "id": //Add your product,
+                                    "value": "" //Add your product
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                      header:
+                        title: Try it Now
+                        subtitle: Create an Order
+                    - type: text
+                      data: >-
+                        The response will have abbreviated order contents with
+                        sub-resources available to get the full order
+                        information. The order is automatically set to a status
+                        of 1 or Pending. It also returns an id which is the
+                        order id. In the example below, the order id is 193. 
+
+
+                        * The order products sub-resource will list the products
+                        added. 
+
+                        * The shipping_addresses sub-resource will have the
+                        shipping addresses.
+
+                        * The coupons sub-resource will have any coupons added
+                        to the order.
+                    - type: code
+                      data: |-
+                        {
+                            "id": 193,
+                            "customer_id": 0,
+                            "date_created": "Fri, 12 Oct 2018 19:06:23 +0000",
+                            "date_modified": "Fri, 12 Oct 2018 19:06:23 +0000",
+                            "date_shipped": "",
+                            "status_id": 1,
+                            "status": "Pending",
+                            "subtotal_ex_tax": "10.0000",
+                            "subtotal_inc_tax": "10.9800",
+                            "subtotal_tax": "0.9800",
+                            "base_shipping_cost": "0.0000",
+                            "shipping_cost_ex_tax": "0.0000",
+                            "shipping_cost_inc_tax": "0.0000",
+                            "shipping_cost_tax": "0.0000",
+                            "shipping_cost_tax_class_id": 0,
+                            "base_handling_cost": "0.0000",
+                            "handling_cost_ex_tax": "0.0000",
+                            "handling_cost_inc_tax": "0.0000",
+                            "handling_cost_tax": "0.0000",
+                            "handling_cost_tax_class_id": 0,
+                            "base_wrapping_cost": "0.0000",
+                            "wrapping_cost_ex_tax": "0.0000",
+                            "wrapping_cost_inc_tax": "0.0000",
+                            "wrapping_cost_tax": "0.0000",
+                            "wrapping_cost_tax_class_id": 0,
+                            "total_ex_tax": "10.0000",
+                            "total_inc_tax": "10.9800",
+                            "total_tax": "0.9800",
+                            "items_total": 1,
+                            "items_shipped": 0,
+                            "payment_method": "Manual",
+                            "payment_provider_id": null,
+                            "payment_status": "",
+                            "refunded_amount": "0.0000",
+                            "order_is_digital": false,
+                            "store_credit_amount": "0.0000",
+                            "gift_certificate_amount": "0.0000",
+                            "ip_address": "",
+                            "geoip_country": "",
+                            "geoip_country_iso2": "",
+                            "currency_id": 1,
+                            "currency_code": "USD",
+                            "currency_exchange_rate": "1.0000000000",
+                            "default_currency_id": 1,
+                            "default_currency_code": "USD",
+                            "staff_notes": null,
+                            "customer_message": null,
+                            "discount_amount": "0.0000",
+                            "coupon_discount": "0.0000",
+                            "shipping_address_count": 1,
+                            "is_deleted": false,
+                            "ebay_order_id": "0",
+                            "cart_id": null,
+                            "billing_address": {
+                                "first_name": "Jane",
+                                "last_name": "Doe",
+                                "company": "",
+                                "street_1": "123 Main Street",
+                                "street_2": "",
+                                "city": "Austin",
+                                "state": "Texas",
+                                "zip": "78751",
+                                "country": "United States",
+                                "country_iso2": "US",
+                                "phone": "",
+                                "email": "janedoe@email.com",
+                                "form_fields": []
+                            },
+                            "is_email_opt_in": false,
+                            "credit_card_type": null,
+                            "order_source": "external",
+                            "external_source": null,
+                            "products": {
+                                "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/orders/193/products",
+                                "resource": "/orders/193/products"
+                            },
+                            "shipping_addresses": {
+                                "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/orders/193/shippingaddresses",
+                                "resource": "/orders/193/shippingaddresses"
+                            },
+                            "coupons": {
+                                "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/orders/193/coupons",
+                                "resource": "/orders/193/coupons"
+                            },
+                            "external_id": null,
+                            "external_merchant_id": null,
+                            "custom_status": "Pending"
+                        }
+                      header:
+                        title: Create Order Response
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: "## Update an Order\n\nIn the update, we are going to change the order status, customer_id and add an existing store product. \n\n### Order Status\n\nThe order status is currently set to `\"status\": \"Pending\"`. This is the default status for orders made using the API. To change this, the `status_id` needs to be updated with the corresponding id. In this example the status is set to 7 or Awaiting Payment. \n\nFor a full list of order statuses see [Order Status](/api-reference/orders/v2-orders/order-statues/getorderstatuses) endpoint. \n\n### Customer\n\nThe `customer_id` is set to 0. This is the default for orders created using the API. For a list of available customers in the store use the [Customers Endpoint](/api-reference/customer-subscribers/customers-api/customers/getcustomers). \n\n### Add a Product\n\nAn existing store product or a new custom product can be added during a /PUT request. The products must be added as an array of objects. To get a list of store products use the [Catalog Products](/api-reference/catalog/catalog-api/products/getproducts) endpoint. \n\n```\n{\n\t\"products\":[\n\t\t{\n\t\t\t\"product_id\": 196,\n\t\t\t\"quantity\": 1\n\n\t\t}\n\t]\n}\n```"
+                    - type: callout
+                      data:
+                        type: warning
+                        body: >-
+                          The shipping address cannot be updated or set using
+                          the API.  It will default to the billing address.
+                    - type: http
+                      data:
+                        headers:
+                          X-Auth-Client: '{X-Auth-Client}'
+                          X-Auth-Token: '{X-Auth-Token}'
+                          Content-Type: application/json
+                          Accept: application/json
+                        method: put
+                        url: >-
+                          https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/{order_id}
+                        body: " {\n   \"status_id\": 7,\n   \"customer_id\": // Add your customer_id here,\n  \t\"products\":[\n      {\n          \"product_id\": //Add your product id,\n          \"quantity\": 1\n\n      }\n  ]\n }\n"
+                      header:
+                        title: Try it Now
+                        subtitle: Update an Order
+                    - type: code
+                      data: |
+                        {
+                            "id": 193,
+                            "customer_id": 13,
+                            "date_created": "Fri, 12 Oct 2018 19:06:23 +0000",
+                            "date_modified": "Tue, 16 Oct 2018 17:05:30 +0000",
+                            "date_shipped": "",
+                            "status_id": 7,
+                            "status": "Awaiting Payment",
+                            "subtotal_ex_tax": "35.9900",
+                            "subtotal_inc_tax": "41.2500",
+                            "subtotal_tax": "5.2600",
+                            "base_shipping_cost": "0.0000",
+                            "shipping_cost_ex_tax": "0.0000",
+                            "shipping_cost_inc_tax": "0.0000",
+                            "shipping_cost_tax": "0.0000",
+                            "shipping_cost_tax_class_id": 0,
+                            "base_handling_cost": "0.0000",
+                            "handling_cost_ex_tax": "0.0000",
+                            "handling_cost_inc_tax": "0.0000",
+                            "handling_cost_tax": "0.0000",
+                            "handling_cost_tax_class_id": 0,
+                            "base_wrapping_cost": "0.0000",
+                            "wrapping_cost_ex_tax": "0.0000",
+                            "wrapping_cost_inc_tax": "0.0000",
+                            "wrapping_cost_tax": "0.0000",
+                            "wrapping_cost_tax_class_id": 0,
+                            "total_ex_tax": "35.9900",
+                            "total_inc_tax": "40.2700",
+                            "total_tax": "4.2800",
+                            "items_total": 2,
+                            "items_shipped": 0,
+                            "payment_method": "Manual",
+                            "payment_provider_id": null,
+                            "payment_status": "",
+                            "refunded_amount": "0.0000",
+                            "order_is_digital": false,
+                            "store_credit_amount": "0.0000",
+                            "gift_certificate_amount": "0.0000",
+                            "ip_address": "",
+                            "geoip_country": "",
+                            "geoip_country_iso2": "",
+                            "currency_id": 1,
+                            "currency_code": "USD",
+                            "currency_exchange_rate": "1.0000000000",
+                            "default_currency_id": 1,
+                            "default_currency_code": "USD",
+                            "staff_notes": null,
+                            "customer_message": null,
+                            "discount_amount": "0.0000",
+                            "coupon_discount": "0.0000",
+                            "shipping_address_count": 1,
+                            "is_deleted": false,
+                            "ebay_order_id": "0",
+                            "cart_id": null,
+                            "billing_address": {
+                                "first_name": "John",
+                                "last_name": "Doe",
+                                "company": "",
+                                "street_1": "123 Main Street",
+                                "street_2": "",
+                                "city": "Austin",
+                                "state": "Texas",
+                                "zip": "78751",
+                                "country": "United States",
+                                "country_iso2": "US",
+                                "phone": "",
+                                "email": "janedoe@email.com",
+                                "form_fields": []
+                            },
+                            "is_email_opt_in": false,
+                            "credit_card_type": null,
+                            "order_source": "external",
+                            "external_source": null,
+                            "products": {
+                                "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/orders/193/products",
+                                "resource": "/orders/193/products"
+                            },
+                            "shipping_addresses": {
+                                "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/orders/193/shippingaddresses",
+                                "resource": "/orders/193/shippingaddresses"
+                            },
+                            "coupons": {
+                                "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/orders/193/coupons",
+                                "resource": "/orders/193/coupons"
+                            },
+                            "external_id": null,
+                            "external_merchant_id": null,
+                            "custom_status": "Awaiting Payment"
+                        }
+                      header:
+                        title: Example Order Response
+                      config:
+                        mode: json
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Next Steps
+
+                        * Try updating the `billing_address`
+
+                        * Review the [Orders
+                        API](/api-reference/orders/orders-api)
         - title: Shipping
           route:
             path: /shipping
@@ -10223,170 +10767,6 @@ pages:
                       data: "{\n\t\"data\": [{\n\t\t\t\"id\": 51,\n\t\t\t\"key\": \"shipping-origins\",\n\t\t\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping origins associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-19T17:56:08+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 52,\n\t\t\t\"key\": \"shipping-groups\",\n\t\t\t\"value\": \"[\\\"SHIPPING GROUP NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping group rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 53,\n\t\t\t\"key\": \"shipping-dimensional-rules\",\n\t\t\t\"value\": \"[\\\"DIMENSIONAL RULES NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ dimensional rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t}\n\t],\n\t\"meta\": {\n\t\t\"pagination\": {\n\t\t\t\"total\": 3,\n\t\t\t\"count\": 3,\n\t\t\t\"per_page\": 50,\n\t\t\t\"current_page\": 1,\n\t\t\t\"total_pages\": 1,\n\t\t\t\"links\": {\n\t\t\t\t\"current\": \"?page=1&limit=50\"\n\t\t\t}\n\t\t}\n\t}\n}"
                       header:
                         title: SHQ Add Metafield Response
-  /api-reference:
-    title: API Reference
-    data:
-      children:
-        - title: Catalog
-          route:
-            path: /catalog
-          data:
-            children:
-              - title: Catalog API
-                route:
-                  path: /catalog-api
-                data:
-                  $ref: ./V3 Catalog.oas2.yml
-        - title: Store
-          route:
-            path: /store
-          data:
-            children:
-              - title: Store Information API
-                route:
-                  path: /store-information-api
-                data:
-                  $ref: ./V2 Store.oas2.yml
-              - title: ' Currency API'
-                route:
-                  path: /currency-api
-                data:
-                  $ref: ./V2 Currency.oas2.yml
-              - title: Geography API
-                route:
-                  path: /geography-api
-                data:
-                  $ref: ./V2 Geography.oas2.yml
-              - title: Tax Class API
-                route:
-                  path: /tax-classes-api
-                data:
-                  $ref: ./V2 Tax.oas2.yml
-        - title: Cart & Checkout
-          route:
-            path: /cart-checkout
-          data:
-            children:
-              - title: Storefront Cart API
-                route:
-                  path: /storefront-cart-api
-                data:
-                  $ref: ./Storefront Cart API.oas2.yml
-              - title: Storefront Checkout API
-                route:
-                  path: /storefront-checkout-api
-                data:
-                  $ref: ./Storefront Checkout API.oas2.yml
-              - title: Server to Server Cart API
-                route:
-                  path: /server-server-cart-api
-                data:
-                  $ref: ./Server to Server Cart.oas2.yml
-              - title: Server to Server Checkout API
-                route:
-                  path: /server-server-checkout-api
-                data:
-                  $ref: ./Server to Server Checkout.oas2.yml
-        - title: Orders
-          route:
-            path: /orders
-          data:
-            children:
-              - title: Orders API
-                route:
-                  path: /orders-api
-                data:
-                  $ref: ./V2 Orders.oas2.yml
-              - title: Order Transactions API
-                route:
-                  path: /orders-transactions-api
-                data:
-                  $ref: ./V3 Orders.oas2.yml
-              - title: Storefront Orders API
-                route:
-                  path: /storefront-orders-api
-                data:
-                  $ref: ./Storefront Orders.oas2.yml
-        - title: Customers & Subscribers
-          route:
-            path: /customer-subscribers
-          data:
-            children:
-              - title: Customers API
-                route:
-                  path: /customers-api
-                data:
-                  $ref: ./V2 Customers.oas2.yml
-              - title: Subscribers API
-                route:
-                  path: /subscribers-api
-                data:
-                  $ref: ./V3 Subscribers.oas2.yml
-        - title: Price Lists
-          route:
-            path: /price-lists
-          data:
-            children:
-              - title: Price Lists API
-                route:
-                  path: /pricelists-api
-                data:
-                  $ref: ./V3 Price Lists.oas2.yml
-        - title: Content
-          route:
-            path: /content
-          data:
-            children:
-              - title: Scripts API
-                route:
-                  path: /content-scripts-api
-                data:
-                  $ref: ./V3 Content.oas2.yml
-              - title: Store Content API
-                route:
-                  path: /store-content-api
-                data:
-                  $ref: ./V2 Store Content.oas2.yml
-        - title: Marketing
-          route:
-            path: /marketing
-          data:
-            children:
-              - title: Marketing API
-                route:
-                  path: /marketing-api
-                data:
-                  $ref: ./V2 Marketing.oas2.yml
-        - title: Payments
-          route:
-            path: /payments
-          data:
-            children:
-              - title: Payment Methods API
-                route:
-                  path: /payment-methods-api
-                data:
-                  $ref: ./V2 Payment Methods.oas2.yml
-        - title: Shipping
-          route:
-            path: /shipping
-          data:
-            children:
-              - title: Shipping API
-                route:
-                  path: /shipping-api
-                data:
-                  $ref: ./V2 Shipping.oas2.yml
-        - title: Themes
-          route:
-            path: /themes
-          data:
-            children:
-              - title: Themes API
-                route:
-                  path: /themes-api
-                data:
-                  $ref: ./V3 Themes.oas2.yml
   /stencil-docs:
     title: Stencil Docs
     data:
