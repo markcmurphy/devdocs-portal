@@ -7310,17 +7310,26 @@ pages:
             path: /css-and-design-assets
           data:
             children:
-              - title: Stencil Design Patterns
+              - title: Assets Directory
+                route:
+                  path: /assets-directory
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Navigating Stencil Design Assets</h1>
+                    - type: html
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#navigating-stencil-design_\"></a></li>\n\t</ul>\n</div>"
+              - title: Components Directory & Design Patterns
                 route:
                   path: /stencil-design-patterns
                 data:
                   blocks:
                     - type: html
-                      data: <h1>Design Patterns</h1>
+                      data: <h1>Components Directory and Design Patterns</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#navigating-stencil-design_\"></a></li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#components_design-patterns\">Design Patterns</a></li>\n    <li><a href=\"#components_design-patterns\">Design Patterns</a></li>\n    <li><a href=\"#components_design-patterns\">Design Patterns</a></li>\n    <li><a href=\"#components_design-patterns\">Design Patterns</a></li>\n\t</ul>\n</div>"
                     - type: text
-                      data: >+
+                      data: >-
                         ## Design Patterns
 
 
@@ -7332,7 +7341,7 @@ pages:
                         own mixins, extensible components, and utilities.
 
 
-                        **Note:**_Citadel is based specifically on Foundation
+                        **Note:** _Citadel is based specifically on Foundation
                         5.5.3, which installs with the Stencil framework.
                         (Direct download link is
                         [here](https://github.com/zurb/foundation-sites/releases/tag/v5.5.3);
@@ -7347,64 +7356,87 @@ pages:
                         design/style language underlying these Citadel resources
                         is the Sass/SCSS (Syntactically Awesome StyleSheets) CSS
                         preprocessor.
+                    - type: text
+                      data: >-
+                        ## Components Directory 
 
 
                         Citadel design patterns reside in the
-                        `<theme-name>/assets/scss/components/` subdirectory,
-                        whose own subdirectories are named `/citadel/`,
-                        `/foundation/`, `/stencil/`, and `/vendor/`. You can see
-                        these folders present in the [Cornerstone
+                        `<theme-name>/assets/scss/components/` subdirectory. The
+                        components subdirectory contains the 4 following
+                        subdirectories:
+
+                        * `/citadel/`, 
+
+                        * `/foundation/`,
+
+                        * `/stencil/`, and 
+
+                        * `/vendor/`.
+
+
+
+                        You can see these folders present in the [Cornerstone
                         theme](https://github.com/bigcommerce/cornerstone/tree/master/assets/scss/components).
-
                     - type: text
-                      data: >
-                        ## Citadel Subdirectory/Naming Conventions
+                      data: >+
+                        ## The `citadel` Subdirectory and Naming Conventions
 
 
-                        This subdirectory contains Citadel-specific resources.
-                        They are named according to our style guide, which
-                        follows BEM and SUIT CSS naming conventions: Class names
-                        are structured, and hyphens are meaningful (that is,
-                        hyphens are not used merely to separate words). 
+                        The `components/citadel` subdirectory contains
+                        Citadel-specific resources. The resources are named
+                        according to our [style
+                        guide](https://github.com/bigcommerce/sass-style-guide),
+                        which follows [BEM](http://getbem.com/naming/) and [SUIT
+                        CSS](https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md)
+                        naming conventions: Class names are structured, and
+                        hyphens are meaningful (that is, hyphens are not used
+                        merely to separate words). 
 
 
                         As a general rule, classes here are named functionally,
                         not based on their visual presentation or their content.
                         Here are some prototypes and examples:
 
-                        componentName (for example: .dropdown or .buttonGroup)
 
-                        componentName--modifierName (for example:
-                        .dropdown--dropUp or .button--primary)
+                        * `componentName` (for example: `.dropdown or
+                        .buttonGroup`)
 
-                        componentName-descendantName (for example:
-                        .dropdown-item)
 
-                        componentName.is-stateOfComponent (for example:
-                        .dropdown.is-active)
+                        * `componentName--modifierName` (for example:
+                        `.dropdown--dropUp` or `.button--primary`)
 
-                        u-utilityName (for example: .u-textTruncate)
 
-                        Abstractly:
-                        [<namespace>-]<componentName>[--modifierName|-descendentName]
-              - title: Components Directory
-                route:
-                  path: /stencil-design-patterns
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1>Stencil Design Patterns</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#navigating-stencil-design_\"></a></li>\n\t</ul>\n</div>"
-              - title: Assets Directory
-                route:
-                  path: /assets-directory
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1>Navigating Stencil Design Assets</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#navigating-stencil-design_\"></a></li>\n\t</ul>\n</div>"
+                        * `componentName-descendantName` (for example:
+                        `.dropdown-item`)
+
+
+                        * `componentName.is-stateOfComponent` (for example:
+                        `.dropdown.is-active`)
+
+
+                        * `u-utilityName` (for example: `.u-textTruncate`)
+
+
+                        * Abstractly:
+                        `[<namespace>-]<componentName>[--modifierName|-descendentName]`
+
+
+                        ### Components versus Utilities
+
+
+                    - type: text
+                      data: >
+                        ## `foundation` Subdirectory
+
+
+                        The `/components/foundation/` subdirectory contains
+                        files installed by the [ZURB
+                        Foundation](https://foundation.zurb.com/showcase/about.html)
+                        framework. (Stencil's Foundation support is limited to
+                        version 5.5.3.)
+                    - type: text
+                      data: '## `stencil` Subdirectory'
               - title: Layouts Directory
                 route:
                   path: /layouts-directory
