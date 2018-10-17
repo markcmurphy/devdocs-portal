@@ -10550,18 +10550,19 @@ pages:
                       data: >-
                         ## What is a Shipment?
 
-                        A shipment is a grouping of physical items sent out to
-                        one or more customers. A shipment can only be created
-                        for an order.
+                        Shipments are created from orders. A shipment represents
+                        a grouping of order line items that are shipped to a
+                        customer, and multiple shipments can be created from a
+                        single order.
 
 
-                        V2 Shipping API allows for setting up Shipping Zones,
+                        The V2 Shipping API allows you to manage Shipping Zones,
                         Shipping Methods, and Shipping Carrier Connections.
 
 
-                        Order Shipments allows for a shipment to created for an
-                        order. The shipping provider, tracking number and
-                        shipping address id create a shipment.
+                        The Order Shipments resource creates a shipment for an
+                        order. You can specify the shipping provider, tracking
+                        number and shipping address id when creating a shipment.
 
 
                         For more see:
@@ -10574,15 +10575,30 @@ pages:
                       data: '---'
                     - type: text
                       data: >-
-                        ## Storefront Checkout and Server to Server Checkout
+                        ## Storefront Checkout and Server-to-Server Checkout API
 
 
-                        A shipment cannot be created from these endpoints. A
-                        Consignment can be created during the Checkout portion.
-                        A Consignment supports multiple shipping addresses, with
-                        each address having its own line items. A Checkout will
-                        always have one Consignment assigned to it, which is the
-                        first shipping address.
+                        The Storefront and Server-to-Server Checkout APIs
+                        provide methods for managing a checkout up until the
+                        point when it is finalized into an order. Because
+                        shipments can only be created from finalized orders, a
+                        shipment cannot be created from Checkout API endpoints. 
+
+
+                        However, both the Storefront and Server-to-Server
+                        Checkout APIs provide methods for creating a
+                        Consignment, which specifies the line items that should
+                        ship to a particular address. Creating a Consignment
+                        corresponds with the actions that a shopper might take
+                        when filling out the storefront checkout page, assigning
+                        the items in their basket to their respective shipping
+                        destinations. 
+
+
+                        A Checkout will always have one Consignment assigned to
+                        it, which is the first shipping address. A Consignment
+                        supports multiple shipping addresses, with each address
+                        having its own line items.
 
 
                         For more see:
