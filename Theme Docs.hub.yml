@@ -7340,16 +7340,62 @@ pages:
                         ### The `cdn` Subdirectory
 
 
+                        The `/cdn/` subdirectory is designed to contain large
+                        static assets that you will upload to a content delivery
+                        network, separately from the rest of your theme. For
+                        this reason – and by design – the contents of this
+                        directory (only) are excluded from theme bundling. For
+                        details, see Staging a Theme for CDN Delivery.
+
+
                         ### The `fonts` Subdirectory
+
+
+                        The `/fonts/` subdirectory contains local versions of
+                        theme-specific fonts.
 
 
                         ### The `icons` Subdirectory
 
 
+                        The `/icons/` subdirectory contains .svg files for icons
+                        used within a theme.
+
+
+                        ### The `img` Subdirectory
+
+
+                        The `/img/` subdirectory contains images used in the
+                        theme’s display – background images, sprites, and other
+                        images not related to store content.
+
+
+                        You would typically reference these image assets using
+                        Stencil's cdn Handlebars helper. For example,
+                        generically:
+
+
+                        `<img src="{{cdn 'assets/img/image.jpg'}}">`
+
+
+                        Or, with a realistic file name:
+
+
+                        `<img src="{{cdn 'assets/img/size-chart.png'}}">`
+
+
                         ### The `js` Subdirectory
 
 
+                        The `/js/` subdirectory contains general JavaScript
+                        files used in the theme.
+
+
                         ### The `scss` Subdirectory
+
+
+                        The `/scss/` subdirectory contains theme-specific CSS
+                        resources.
                       header:
                         anchor: assets_the-assets-directory
                     - type: callout
