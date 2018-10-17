@@ -8090,6 +8090,8 @@ pages:
                       header:
                         anchor: page-composition_referencing-css-stylesheet
                     - type: text
+                      data: '---'
+                    - type: text
                       data: "## Template Composition\n\nTemplate composition is a valuable Stencil feature. By defining blocks of overrideable content, your themes can insert templates on a per-page basis, while sharing code that is common to the whole theme.\n\n### Defining Content Blocks\n\nA base template defines content blocks by name. The following snippet uses `{{block}}` custom Handlebars helpers to define three content blocks, respectively named `head`, `hero`, and `page`:\n\n```\n// templates/layout/base.html\n<!DOCTYPE html>\n<html>\n    <head>\n        <title>{{ head.title }}</title>\n        {{#block \"head\"}} {{/block}}\n    </head>\n    <body>\n        <div class=\"body\">\n\t\t    {{#block \"hero\"}} {{/block}}\n\t\t    <div class=\"container\">\n\t\t        {{#block \"page\"}} {{/block}}\n\t\t    </div>\n\t\t    {{> components/common/modal}}\n        </div>\n    </body>\n</html>\n```\n\n### Replacing Content Blocks\n\nPages can use a base template, replacing the defined blocks with their own content. This example replaces content for the head and page blocks:\n\n```\n//templates/pages/account/orders/invoice.html\n{{#partial \"head\"}}\n    <link href=\"{{cdn '/assets/css/invoice.css'}}\" rel=\"stylesheet\">\n{{/partial}}\n\n{{#partial \"page\"}}\n    <p>An invoice for a particular order would go here</p>\n{{/partial}}\n{{> layout/empty}}\n```\n\n### Matching Partials with Blocks\n\nWe recommend that, for any given name defined within the template rendering path, you maintain a 1:1 mapping of partials to blocks."
                       header:
                         anchor: page-composition_template-composition
@@ -8101,7 +8103,7 @@ pages:
                     - type: html
                       data: <h1>Using Custom Fonts</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#using-custom-fonts_\"></a></li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#using-custom-fonts_\">Stage the Fonts</a></li>\n\t</ul>\n</div>\n\n\nReference Fonts in Templates' <head>\nVideo Demo\nUpdate the CSS"
               - title: Using and Updating Icons
                 route:
                   path: /using-and-updating-icons
