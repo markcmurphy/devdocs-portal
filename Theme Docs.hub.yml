@@ -7464,14 +7464,16 @@ pages:
                           free to add new subdirectories and files, be sure to:
 
 
-                          Set newly added directories to permission 755
-                          (drwxr-xr-x).
+                          * Set newly added directories to permission `755
+                          (drwxr-xr-x)`.
 
-                          Set newly added files to permission 644 (rw-r--r--).
+                          * Set newly added files to permission `644
+                          (rw-r--r--)`.
 
-                          Without these permissions, running your theme locally
-                          will fail, with multiple error messages. Bundling your
-                          theme will also fail, blocking its upload to a store.
+                          * Without these permissions, running your theme
+                          locally will fail, with multiple error messages.
+                          Bundling your theme will also fail, blocking its
+                          upload to a store.
                         title: |2
                            Directory and File Restrictions/Permissions
               - title: Components Directory & Design Patterns
@@ -7784,15 +7786,45 @@ pages:
                         consumed version of framework components from your
                         chosen provider. There is some renaming of these
                         components to match Stencil naming conventions.
-              - title: Layouts Directory
+              - title: Layouts and Utilities Directories
                 route:
-                  path: /layouts-directory
+                  path: /layouts-and-utilities-directory
                 data:
                   blocks:
                     - type: html
-                      data: <h1>Layouts Directory</h1>
+                      data: >-
+                        <h1>The <code>layouts</code> and <code>utilities</code>
+                        Directories</h1>
                     - type: html
                       data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#navigating-stencil-design_\"></a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        ## The `layouts` Directory
+
+
+                        The `<theme-name>/assets/scss/layouts/` subdirectory
+                        contains `.scss` files that provide default styling for
+                        major layout components of theme pages. You can see the
+                        `/layouts/` subdirectory's internal structure on the
+                        [Cornerstone Github
+                        Repository](https://github.com/bigcommerce/cornerstone/tree/master/assets/scss/layouts)
+                    - type: text
+                      data: >-
+                        ## The `utilities` Directory
+
+
+                        The `<theme-name>/assets/scss/utilities` subdirectory
+                        contains mixins and tools, beyond the Citadel library,
+                        that help create UI’s. You can apply these CSS snippets
+                        to your HTML for quick prototyping when you need a
+                        unique, yet repeatable, style.
+
+
+                        Every utility in this subdirectory will have both a
+                        class and a mixin. For example, consider the utility
+                        truncatedText: You can use it by applying the class
+                        .u-truncatedText, or by applying the mixin @include
+                        u-truncatedText;.
               - title: Settings Directory
                 route:
                   path: /settings-directory
