@@ -7354,8 +7354,7 @@ pages:
                         A theme developer might use drop-down lists, forms, and
                         similar resources from Citadel’s design patterns. The
                         design/style language underlying these Citadel resources
-                        is the Sass/SCSS (Syntactically Awesome StyleSheets) CSS
-                        preprocessor.
+                        is the Sass/SCSS preprocessor.
                     - type: text
                       data: '---'
                     - type: text
@@ -7379,12 +7378,12 @@ pages:
 
 
                         You can see the components directory and its children
-                        present in the [Cornerstone theme's Github
-                        Repo](https://github.com/bigcommerce/cornerstone/tree/master/assets/scss/components).
+                        present in the [Cornerstone Theme Github
+                        Repository](https://github.com/bigcommerce/cornerstone/tree/master/assets/scss/components).
                     - type: text
                       data: '---'
                     - type: text
-                      data: >+
+                      data: >-
                         ## The `citadel` Subdirectory
 
 
@@ -7430,6 +7429,74 @@ pages:
                         ### Components versus Utilities
 
 
+                        Our naming scheme makes an architectural distinction
+                        between components and utilities. Components are defined
+                        as custom elements that enclose specific semantics,
+                        styling, and behavior. Our syntax for naming them is:
+
+
+                        `<componentName>[--modifierName|-descendantName]`
+
+
+                        Component names are in camel case. We have tried to
+                        choose names that are as short as possible, but as long
+                        as necessary. For example:
+
+
+                        * `.nav`, not `.navigation`; but:
+
+                        * `.button`, not `.btn`
+
+
+                        Utility classes are defined as low-level, structural and
+                        positional traits. Utilities can be applied directly to
+                        any element. Multiple utilities can be used together,
+                        and utilities can be used alongside component classes.
+
+
+                        To make HTML patterns as reusable as possible, we have
+                        used utility classes sparingly, reserving them for
+                        component-level styling.
+
+
+                        Our syntax for naming utilities is camel case, prefixed
+                        with a `u-` namespace:
+
+
+                        `u-<utilityName>`
+
+
+                        ### Variables and Mixins
+
+
+                        Citadel variables and mixins follow similar naming
+                        conventions.
+
+
+                        Variables are things that can change over time. Their
+                        names are in camel case, and show context:
+
+
+                        `
+                        [<componentName>[--modifierName][-descendentName]-<propertyName>
+
+                        -<variablename>[--<modifierName>]`
+
+
+                        Mixins follow regular camel-case naming conventions.
+                        Namespacing is not universally required for mixins.
+                        However, where a mixin has been created for a utility,
+                        its name matches the utility’s name, including `u-`
+                        namespacing:
+
+
+                        ```
+
+                        @mixin buttonVariant;
+
+                        @mixin u-textTruncate;
+
+                        ```
                     - type: text
                       data: '---'
                     - type: text
@@ -7453,7 +7520,7 @@ pages:
                         files unique to Stencil themes, which are used to create
                         specific page elements within the themes. You can view
                         this subdirectory and all its children in the
-                        [Cornerstone Github
+                        [Cornerstone Theme Github
                         Repository](https://github.com/bigcommerce/cornerstone/tree/master/assets/scss/components/stencil).
 
 
