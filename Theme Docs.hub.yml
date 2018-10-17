@@ -8103,7 +8103,70 @@ pages:
                     - type: html
                       data: <h1>Using Custom Fonts</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#using-custom-fonts_\">Stage the Fonts</a></li>\n    <li><a href=\"#using-custom-fonts_\">Reference Fonts in Templates' <code>head</code></a></li>\n    <li><a href=\"#using-custom-fonts_\">Video Demo</a></li>\n    <li><a href=\"#using-custom-fonts_\">Update the CSS</a></li>\n\t</ul>\n</div>\n"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#using-custom-fonts_stage-the-fonts\">Stage the Fonts</a></li>\n    <li><a href=\"#using-custom-fonts_reference-fonts\">Reference Fonts in Templates' <code>head</code></a></li>\n    <li><a href=\"#using-custom-fonts_video-demo\">Video Demo</a></li>\n    <li><a href=\"#using-custom-fonts_update-the-css\">Update the CSS</a></li>\n\t</ul>\n</div>\n"
+                    - type: text
+                      data: >
+                        ## Stage the Fonts
+
+
+                        First, acquire your custom fonts. In this logo scenario,
+                        we'll assume the single (nonexistent) font
+                        MyFontFile.ttf.
+
+                        Next, use WebDav to upload each custom font. (Upload to
+                        WebDAV's default /content/ folder.)
+                    - type: text
+                      data: "## Reference Fonts in Templates' `<head>`\n\nNext, edit the appropriate template files' <head> sections to reference your custom fonts. In this logo example, you would edit the .../cornerstone/templates/layout/base.html file's <head> section to insert the following code, which references the custom font you just uploaded:\n\t\n```\n<style type=\"text/css\" media=\"screen, print\">\n           @font-face {\n               font-family: \"MyFont\";\n               src: url(\"{{cdn 'webdav:MyFontFile.ttf'}}\");\n           }\n</style>\n```"
+                      header:
+                        anchor: using-custom-fonts_reference-fonts
+                    - type: text
+                      data: >-
+                        ## Video Demo
+
+
+                        Watch a video demonstration of referencing custom fonts
+                        in your template files' `<head>` sections: 
+
+
+                        <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/-w7Hbn_p_pw"
+                        frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
+                      header:
+                        anchor: using-custom-fonts_video-demo
+                    - type: text
+                      data: >-
+                        ## Update the CSS
+
+
+                        Finally, update the appropriate CSS to reference the
+                        same font. Here, you would edit the
+                        `/cornerstone/assets/scss/layouts/header/_header.scss`
+                        file to include the two lines below `.header-logo-text`:
+
+
+                        ```
+
+                        .header-logo-text {
+
+                        display: block;
+                           font-family: 'MyFont';
+                           [...]
+                        }
+
+                        ```
+                      header:
+                        anchor: using-custom-fonts_update-the-css
+                    - type: callout
+                      data:
+                        title: Notes
+                        body: >-
+                          * The cdn custom Handlebars helper assumes WebDAV's
+                          default /content/ folder, so there is no need to
+                          specify that folder.
+
+                          * Fonts staged via WebDAV, as in the above example,
+                          will not show up in the local version of your theme.
               - title: Using and Updating Icons
                 route:
                   path: /using-and-updating-icons
