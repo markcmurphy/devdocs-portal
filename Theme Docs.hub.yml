@@ -9394,22 +9394,25 @@ pages:
                         <h1>Dynamic Content Rendering on Stencil
                         Storefronts</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#dynamic-content_why-dynamic-content\">Why Dynamic Content?: Dropzones, Dynamic Tabs, and Snippets</a></li>\n    <li><a href=\"#dynamic-content_\">Dropzones</a></li>\n    <li><a href=\"#dynamic-content_\">Dynamic Tabs</a></li>\n    <li><a href=\"#dynamic-content_\">Snippets</a></li>\n  </ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#dynamic-content_why-dynamic-content\">Why Dynamic Content?: Dropzones, Dynamic Tabs, and Snippets</a></li>\n    <li><a href=\"#dynamic-content_dropzones\">Dropzones</a></li>\n    <li><a href=\"#dynamic-content_dynamic-tabs\">Dynamic Tabs</a></li>\n    <li><a href=\"#dynamic-content_snippets\">Snippets</a></li>\n    <li><a href=\"#dynamic-content_recap\">Recap</a></li>\n  </ul>\n</div>"
                     - type: text
                       data: >-
-                        We're gratefully sharing techniques devised by Ken
-                        Utting, Web Developer for BigCommerce client goruck.com:
+                        _We're gratefully sharing techniques devised by Ken
+                        Utting, Web Developer for BigCommerce client
+                        goruck.com_.
 
 
                         ## Why Dynamic Content?: Dropzones, Dynamic Tabs, and
                         Snippets
 
 
-                        At GORUCK, we've customized our Stencil theme (Merchant)
-                        to provide several ways to update our site content
-                        without requiring changes to the theme itself. This
-                        allows our content folks to make changes to our theme
-                        without having to wait on our software developers.
+                        At GORUCK, we've customized our Stencil theme (currently
+                        using the
+                        [Merchant](https://www.bigcommerce.com/theme/merchant-light/?_ga=2.52710120.1984523106.1539568940-967431010.1523308107)
+                        theme) to provide several ways to update our site
+                        content without requiring changes to the theme itself.
+                        This allows our content folks to make changes to our
+                        theme without having to wait on our software developers.
 
 
                         Also, by pushing content out of the theme, these
@@ -9433,7 +9436,8 @@ pages:
                         The BigCommerce control panel provides an HTML editor
                         where you can enter custom content for Products,
                         Categories, and custom static pages (Storefront > Web
-                        Pages). But we encountered these limitations:
+                        Pages). However, we encountered the following
+                        limitations:
 
 
                         The HTML editor will remove a number of tags,
@@ -9449,6 +9453,8 @@ pages:
                         HTML into our page, and to place that content at various
                         specific page locations. To achieve this, we developed
                         the three techniques described below.
+                      header:
+                        anchor: dynamic-content_why-dynamic-content
                     - type: text
                       data: >-
                         ## Dropzones
@@ -9472,16 +9478,22 @@ pages:
                         A more general solution we implemented was to create a
                         small set of custom pages: one for categories, one for
                         products, and so on. Each of the custom pages contains a
-                        few div elements that define dropzones for that page.
+                        few `div` elements that define dropzones for that page.
 
 
                         With these dropzones defined, we can then populate them
                         with dynamic content specific to any instance of the
                         page. Here is an example of a dropzone that places an
                         image gallery at the bottom of a category page:
+                      header:
+                        anchor: dynamic-content_dropzones
                     - type: image
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6116/1539874696853
+                      header:
+                        title: >-
+                          Dropzone that places an image gallery at the bottom of
+                          a category page
                     - type: text
                       data: >-
                         ### Dropzones HTML
@@ -9493,12 +9505,12 @@ pages:
                         `<div id="gr-dropzone-top"></div>`
 
 
-                        where the div's id defines the dropzone's name.
+                        where the div's `id` defines the dropzone's name.
 
 
-                        Then, using the BigCommerce control panel's custom HTML
-                        editor (in this example, the Categories editor), we
-                        place our content inside div tags that specify the
+                        Then, using the BigCommerce **control panel's custom
+                        HTML editor** (in this example, the Categories editor),
+                        we place our content inside div tags that specify the
                         dropzone where the content should be inserted. Here is a
                         simple example:
 
