@@ -5691,15 +5691,174 @@ pages:
                                         <td class="">BC-defined message to display when customer’s login fails</td>
                                       </tr>
                                     </table>
-                    - title: New Products Object
-                      route:
-                        path: /new-products-object
-                    - title: New Subpage
-                      route:
-                        path: /new-subpage
-                    - title: New Subpage
-                      route:
-                        path: /new-subpage-1
+                          - title: 'New Products '
+                            route:
+                              path: /new-products
+                            data:
+                              blocks:
+                                - type: text
+                                  data: >-
+                                    <A
+                                    NAME="NewProducts"></a><b>Description:</b> A
+                                    list of new products for the BigCommerce
+                                    storefront<br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{products.new}}</span><br>
+
+
+                                    <b>Object Properties:</b><b><em>
+                                    </em></b>References the  <a
+                                    href="/docs/common-product-card-model">product
+                                    card model</a>.<br><p></p>
+
+
+                                    <b> Usage Example: </b> <br>
+
+
+                                    To access the global <span
+                                    class="inline-code">{{products.new}}</span>
+                                    object on your page, you must first use <a
+                                    href="/docs/using-yaml-front-matter">front
+                                    matter</a> to declare the object at the top
+                                    of your page template. For example, you
+                                    would place this front-matter declaration at
+                                    the top of your template file:<p></p>
+
+
+                                    ```
+
+                                    <pre>
+
+                                    ---
+
+                                    products:
+                                        new:
+                                    ---</pre><p></p>
+
+                                    ```
+                          - title: Page Content Object
+                            route:
+                              path: /page-content
+                            data:
+                              blocks:
+                                - type: text
+                                  data: >-
+                                    <A NAME="PageContent"></a>
+
+                                    <b>Description: </b>Defines elements of
+                                    merchant’s store page<br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{page}}</span><br>
+
+
+                                    <b>Object Properties:</b><br><br>
+
+
+                                    <table>
+                                      <tr>
+                                        <td>Property</td>
+                                        <td>Description</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">title</td>
+                                        <td class="">Page title, to be used as the HTML <span class="inline-code">title</span> tag</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">description</td>
+                                        <td class="">Description for the page, to be used as the HTML <span class="inline-code">meta &gt; description</span> tag</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">content</td>
+                                        <td class="">HTML content of the page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">sub_pages</td>
+                                        <td class="">Array of child pages</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">title</span></td>
+                                        <td class="">Title of this child page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">url</span></td>
+                                        <td class="">URL of this child page</td>
+                                      </tr>
+                                    </table>
+                          - title: Pages
+                            route:
+                              path: /pages
+                            data:
+                              blocks:
+                                - type: text
+                                  data: >-
+                                    <A NAME="Pages"></a>
+
+                                    <b>Description:</b> A list of all web
+                                    content pages for the BigCommerce
+                                    storefront<br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{pages}}</span><br>
+
+
+                                    <b>Object Properties:</b><br><br>
+
+
+                                    <table>
+                                      <tr>
+                                        <td>Property</td>
+                                        <td>Description</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">name</td>
+                                        <td class="">Name of the page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">url</td>
+                                        <td class="">URL of the page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">children</td>
+                                        <td class="">List of child pages for this page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> name</span></td>
+                                        <td class="">Name of the child page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> url</span></td>
+                                        <td class="">URL of the child page</td>
+                                      </tr>
+                                    </table>
+                          - title: Page Type Property
+                            route:
+                              path: /page-type-property
+                            data:
+                              blocks:
+                                - type: text
+                                  data: >+
+                                    <b>Description:</b> A string representing
+                                    the type of page currently displayed. <br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{page_type}}</span><br>
+
+
+                                    <b>Values:</b> The four most-commonly-used
+                                    values for `{{page_type}}` are:
+
+                          - title: New Subpage
+                            route:
+                              path: /new-subpage-1
+                          - title: New Subpage
+                            route:
+                              path: /new-subpage-3
                     - title: Common Objects
                       route:
                         path: /common-objects
