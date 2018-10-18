@@ -6662,11 +6662,62 @@ pages:
                           - title: Template Property
                             route:
                               path: /template-property
+                            data:
+                              blocks:
+                                - type: text
+                                  data: >-
+                                    <b>Description:</b> A string containing the
+                                    name of the root template currently being
+                                    rendered in the page context. <br>
+
+
+                                    <b>Handlebars Expression:</b> `{{template}}`
+
+
+                                    <b>Values:</b> Values will reflect each
+                                    theme's specific directory structure.
+                                    Possible values include:
                           - title: Top Sellers
                             route:
                               path: /top-sellers
                             data:
                               children: []
+                              blocks:
+                                - type: text
+                                  data: >-
+                                    <b>Description:</b> Object to display a
+                                    sidebar of top-selling products<br>
+
+
+                                    <b>Handlebars Expression:</b>
+                                    `{{products.top_sellers}}`
+
+
+                                    <b>Object Properties:</b> References the
+                                    product card model</a>.
+
+
+                                    <b> Usage Example: </b> <br>
+
+
+                                    To access the
+                                    global`{{products.top_sellers}}` object on
+                                    your page, you must first use front matter
+                                    to declare the object at the top of your
+                                    page template. For example, you would place
+                                    this front-matter declaration at the top of
+                                    your template file:
+
+
+                                    ```
+
+                                    ---
+
+                                    products:
+                                        top_sellers:
+                                    ---
+
+                                    ```
                     - title: Common Objects
                       route:
                         path: /common-objects
