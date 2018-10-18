@@ -7405,12 +7405,12 @@ pages:
 
                                     <b>Description:</b> Objects to enable
                                     customers to shop by brand. Returns top 10
-                                    brands, by product count. <NOBR>(Called on
-                                    the</nobr> default
-                                    <NOBR>`<theme-name>/templates/components/brand/sidebar.html`
+                                    brands, by product count. (Called on the
+                                    default
+                                    `<theme-name>/templates/components/brand/sidebar.html`
                                     and
-                                    `<theme-name>/templates/components/common/footer.html`</nobr>
-                                    partials.) <br>
+                                    `<theme-name>/templates/components/common/footer.html`
+                                    partials.)
 
 
                                     <b>Handlebars Expression:</b>
@@ -7449,6 +7449,59 @@ pages:
                           - title: Cart Objects
                             route:
                               path: /cart-objects
+                            data:
+                              blocks:
+                                - type: text
+                                  data: >-
+                                    ## <div id="Cart_Status"></a>Cart Status
+                                    Message</h2>
+
+
+                                    <b>Description:</b> A list of relevant
+                                    messages for the cart in the current session
+
+
+                                    <b>Handlebars Expression:</b>
+                                    `{{cart.status_messages}}`
+
+
+                                    <b>Object Properties:</b>
+
+
+                                    <table>
+                                      <tr>
+                                        <th>Property</th>
+                                        <th>Description</th>
+                                      </tr>
+                                      <tr>
+                                        <td>message</td>
+                                        <td>System-generated messages for the cart</td>
+                                      </tr>
+                                      <tr>
+                                        <td>type</td>
+                                        <td>Type of message: error, info, or success</td>
+                                      </tr>
+                                    </table>
+
+
+
+                                    ## <div id="Suggested"></div>Suggested
+                                    Products
+
+
+                                    <b>Description:</b> A list of suggested
+                                    products, based on cart contents; displays
+                                    only if enabled by the `cart.suggestions`
+                                    front-matter attribute, and only immediately
+                                    after a product is added to the cart
+
+
+                                    <b>Handlebars Expression:</b>
+                                    `{{cart.suggested_products}}`
+
+
+                                    <b>Object Properties:</b> References
+                                    standard product card model.
                           - title: Customer Objects
                             route:
                               path: /customer-objects
