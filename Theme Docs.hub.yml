@@ -9479,8 +9479,125 @@ pages:
                         with dynamic content specific to any instance of the
                         page. Here is an example of a dropzone that places an
                         image gallery at the bottom of a category page:
+                    - type: image
+                      data: >-
+                        //s3.amazonaws.com/user-content.stoplight.io/6116/1539874696853
                     - type: text
-                      data: '## Dynamic Tabs'
+                      data: >-
+                        ### Dropzones HTML
+
+
+                        The HTML for a dropzone is simply something like:
+
+
+                        `<div id="gr-dropzone-top"></div>`
+
+
+                        where the div's id defines the dropzone's name.
+
+
+                        Then, using the BigCommerce control panel's custom HTML
+                        editor (in this example, the Categories editor), we
+                        place our content inside div tags that specify the
+                        dropzone where the content should be inserted. Here is a
+                        simple example:
+
+
+                        ```
+
+                        <div class="gr-dropzone" data-gr-zone="gr-dropzone-top">
+                            <p>This content will be placed in a dropzone at the top of the page, because that dropzone has the id matching our data-gr-zone attribute.</p>
+                        </div>
+
+                        ```
+
+
+                        ### Dropzones HTML Example
+
+
+                        Here is an example of some HTML that we actually use:
+
+
+                        ```
+
+                        <div class="gr-dropzone"
+                        data-gr-zone="gr-dropzone-bottom">
+                            <h3>GORUCK GEAR IN THE FIELD</h3>
+                            <div id="bv-grid-gallery" data-gr-groups="goruck-rm-group" data-gr-tags="gear"></div>
+                        </div>
+
+                        ```
+
+
+                        ### Dropzones JavaScript
+
+
+                        The content is moved from the default location to the
+                        dropzone by JavaScript we added to the PageManager
+                        class. In BigCommerce's Cornerstone base theme, Pixel
+                        Union's Merchant theme, and other Stencil themes,
+                        PageManager is the parent class of all page classes. So,
+                        its methods get invoked on every page. This makes it a
+                        great place to put code like this, which needs to run
+                        every time a page is loaded.
+
+
+                        We modified our theme's PageManager.before method to
+                        invoke a new method named `gr_moveHtmlToDropzones`:
+
+
+                        ```
+                         gr_moveHtmlToDropzones () {
+                                $(".gr-dropzone").each(function () {
+                                    const $this = $(this);
+                                    const zoneId = $this.data("gr-zone");
+                                    if (zoneId) {
+                                        $("#" + zoneId).html($this.html());   // copy the html to where it should be
+                                        $this.remove();             // remove the html from its temporary location
+                                    } else {
+                                        console.warn("PageManager.gr_moveHtmlToDropzones: dropzone has no target.");
+                                    }
+                                });
+                            }
+                        ```
+
+
+                        Finally, in our .scss file, we set the `.gr-dropzone`
+                        class to display: none. This prevents the content from
+                        appearing on the page in the wrong location before
+                        PageManager has a chance to move it into the dropzone.
+                    - type: text
+                      data: >-
+                        ## Dynamic Tabs
+
+
+                        Our Stencil base theme presents information on our
+                        product pages in several tabs. We wanted to introduce
+                        several new tabs, and to vary the tabs by product
+                        category and brand. Additionally, we wanted the ability
+                        to store a tab's content in an external file, on our
+                        WebDAV or CDN (content delivery network).
+
+
+                        By storing content in an external file, we can share
+                        identical content across pages, without copying and
+                        pasting. Also, changes to the content can be made just
+                        once, and be reflected on all our pages.
+
+
+                        So we implemented a feature we call Dynamic Tabs.
+                        Dynamic Tabs are similar to dropzones, in that they
+                        allow you to use the control panel's HTML editor to
+                        provide content, while moving it to a specific location
+                        on the page. In this case, our content will appear in a
+                        tab.
+
+
+                        In the example below, we use this technique to place the
+                        `RIGHT BY YOU` tab in the fourth position:
+                    - type: image
+                      data: >-
+                        //s3.amazonaws.com/user-content.stoplight.io/6116/1539874970240
                     - type: text
                       data: '## Snippets'
         - title: Internationalization/Localization
