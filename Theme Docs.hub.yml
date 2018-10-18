@@ -5125,6 +5125,9 @@ pages:
             path: /stencil-object-model-reference
           data:
             children:
+              - title: New Subpage
+                route:
+                  path: /new-subpage
               - title: Stencil Objects
                 route:
                   path: /stencil-objects
@@ -5140,8 +5143,10 @@ pages:
                               path: /banners
                             data:
                               blocks:
-                                - type: html
+                                - type: text
                                   data: >-
+                                    <A NAME="Banner"></a>
+
                                     <b>Description: </b>Elements of marketing
                                     banners at page’s top and/or bottom<br>
 
@@ -5172,29 +5177,15 @@ pages:
                                         <td class="">Array of HTML content/strings, for custom bottom-banner content; banners are populated from the BigCommerce control panel</td>
                                       </tr>
                                     </table>
-                                  header:
-                                    anchor: Banner
-                                  config: {}
-                                - type: callout
-                                  data:
-                                    type: warning
-                                    body: >-
-                                      Where a banner contains HTML, the <span
-                                      class="inline-code">banner</span> helper
-                                      must be placed in triple braces, as in
-                                      this 
-
-                                      example: <span
-                                      class="inline-code">{{{banner}}}</span>.
-                                      (Double braces would escape the HTML.)
-                                    title: Handlebars Formatting Exception
                           - title: Breadcrumbs
                             route:
                               path: /breadcrumbs
                             data:
                               blocks:
-                                - type: html
+                                - type: text
                                   data: >-
+                                    <a name="Stencil-Bread-ref"></a>
+
                                     <b>Description:</b> Defines a page's
                                     breadcrumbs – available on virtually all
                                     pages that have a breadcrumb trail<br>
@@ -5221,8 +5212,6 @@ pages:
                                         <td class="">URL of this breadcrumb element</td>
                                       </tr>
                                     </table>
-                                  header:
-                                    anchor: Stencil-Bread-ref
                           - title: Categories
                             route:
                               path: /categories
@@ -5300,8 +5289,10 @@ pages:
                               path: /currency-selector
                             data:
                               blocks:
-                                - type: html
+                                - type: text
                                   data: >-
+                                    <A NAME="CurrencySel"></a>
+
                                     <b>Description:</b> A list of all supported
                                     currencies, and the currency that is
                                     actively in use in the storefront<br>
@@ -5360,14 +5351,12 @@ pages:
                                         <td class="">Country flag used to visually represent the currency</td>
                                       </tr>
                                     </table>
-                                  header:
-                                    anchor: CurrencySel
                           - title: Faceted Search
                             route:
                               path: /new-subpage-6
                             data:
                               blocks:
-                                - type: html
+                                - type: text
                                   data: >-
                                     <A NAME="FacSearch"></a>
 
@@ -5405,15 +5394,15 @@ pages:
                                         <td class="">Currently enabled search facets</td>
                                       </tr>
                                     </table>
-                                  header:
-                                    anchor: FacetedSearch
                           - title: Featured Products
                             route:
                               path: /new-subpage-2
                             data:
                               blocks:
-                                - type: html
+                                - type: text
                                   data: >-
+                                    <A NAME="FeatProducts"></a>
+
                                     <b>Description:</b> A list of all the
                                     featured products for the BigCommerce
                                     storefront<br>
@@ -5426,10 +5415,8 @@ pages:
                                     <b>Object Properties:</b> References the <a
                                     href="/docs/common-product-card-model">product
                                     card model</a>.
-                                  header:
-                                    anchor: FeatProducts
-                                - type: text
-                                  data: >-
+
+
                                     <b> Usage Example: </b>
 
 
@@ -5500,7 +5487,7 @@ pages:
                               path: /footer
                             data:
                               blocks:
-                                - type: html
+                                - type: text
                                   data: >-
                                     <b>Description: </b>The footer content for
                                     each storefront page<br>
@@ -5532,8 +5519,10 @@ pages:
                               path: /home-slide-show
                             data:
                               blocks:
-                                - type: html
+                                - type: text
                                   data: >-
+                                    <A NAME="SlideShow"></a>
+
                                     <b>Description:</b> A list of images, text,
                                     and style assets for a storefront’s image
                                     slide show<br>
@@ -5599,14 +5588,12 @@ pages:
                                         <td class="">Color of the button</td>
                                       </tr>
                                     </table>
-                                  header:
-                                    anchor: SlideShow
                           - title: HTML Head
                             route:
                               path: /html-head
                             data:
                               blocks:
-                                - type: html
+                                - type: text
                                   data: >-
                                     <b>Description: </b>Data to be included in
                                     the HTML &lt;head&gt; element<br>
@@ -5659,8 +5646,10 @@ pages:
                               path: /is-ajax
                             data:
                               blocks:
-                                - type: html
+                                - type: text
                                   data: >-
+                                    <A NAME="IsAjax"></a>
+
                                     <b>Description: </b>Boolean; returns true if
                                     the current executing request is an Ajax
                                     request<br>
@@ -5668,12 +5657,40 @@ pages:
 
                                     <b>Handlebars Expression:</b> <span
                                     class="inline-code">{{is_ajax}}</span><br>
-                                  header:
-                                    anchor: IsAjax
                           - title: Login
                             route:
                               path: /login
-                            data: {}
+                            data:
+                              blocks:
+                                - type: text
+                                  data: >-
+                                    <A NAME="Login"></a>
+
+                                    <b>Description: </b>Object to handle
+                                    customer login details<br>
+
+
+                                    <b>Handlebars Expression</b><b>:</b> <span
+                                    class="inline-code">{{forms.login}}</span><br>
+
+
+                                    <b>Object Properties:</b><br><br>
+
+
+                                    <table>
+                                      <tr>
+                                        <td>Property</td>
+                                        <td>Description</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">came_from_checkout</td>
+                                        <td class="">Boolean indicating whether the customer submitted login information at checkout</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">error</td>
+                                        <td class="">BC-defined message to display when customer’s login fails</td>
+                                      </tr>
+                                    </table>
                     - title: Common Objects
                       route:
                         path: /common-objects
