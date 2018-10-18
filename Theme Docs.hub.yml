@@ -9257,7 +9257,75 @@ pages:
                     - type: html
                       data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#cart-price_cart-price-props\">Cart Price Properties: Relationships</a></li>\n\t</ul>\n</div>"
                     - type: text
-                      data: ''
+                      data: >+
+                        This page shows the relationship of price properties
+                        available on the `{{cart.items}}` object. These
+                        properties' values cascade as follows.
+
+
+                        For a single cart item, the `rrp` property contains the
+                        list price, also known as MSRP:
+
+
+                        ```
+
+                        "rrp": { 
+                          "formatted": "$130.00",
+                          "value": 130
+                        }
+
+                        ```
+
+
+                        Let's assume that the standard store price for this item
+                        is actually $100.00, and that these bulk discount rules
+                        are applied:
+
+
+                        ```
+
+                        "bulk_pricing": { 
+                          "base_price": {
+                            "formatted": "$100.00",
+                            "value": 100
+                          },
+                          "discount_percentage": 5,  
+                          "discount_amount": null
+                        }
+
+                        ```
+
+
+                        Within `{{cart.items}}`, the `price` property contains
+                        the item's price after bulk discounts, but before cart
+                        discounts and promotions:
+
+
+                        ```
+
+                        "price": { 
+                          "formatted": "$95.00",
+                          "value": 95
+                        }
+
+                        ```
+
+
+                        The `price_discounted` property contains the item's
+                        price after cart discounts and promotions:
+
+
+                        ```
+
+                        "price_discounted": {  
+                          "formatted": "$85.50",
+                          "value": 85.5
+                        }
+
+                        ```
+
+                      header:
+                        anchor: cart-price_cart-price-props
               - title: Calling Theme-Wide Variables via Handlebars
                 route:
                   path: /calling-theme-wide-variables
