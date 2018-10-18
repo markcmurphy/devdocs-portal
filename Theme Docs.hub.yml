@@ -8941,7 +8941,28 @@ pages:
                         include an example of building conditional logic around
                         a price property.
                     - type: text
-                      data: ''
+                      data: >-
+                        ## Cost Price
+
+
+                        The Cost Price property is never returned to the
+                        storefront. This is by design. Generally, merchants
+                        would not want to reveal the true cost of goods to
+                        shoppers. Rather, the cost price field is meant to be
+                        consumed by reports and third-party accounting
+                        integrations.
+                    - type: text
+                      data: >-
+                        ## Basic Price Example – No "Sale Price" Set 
+
+
+                        Assume that the merchant has defined a product’s price
+                        like this in the BigCommerce Control Panel:
+                    - type: image
+                      data: >-
+                        //s3.amazonaws.com/user-content.stoplight.io/6116/1539813608717
+                    - type: text
+                      data: "Note that:\n\n* The Price field contains this product’s standard store price.\n\n* The Excluding Tax indicator beside Price is applicable to the whole column of price fields.\n\n* The Cost Price field will not be returned, for reasons described above.\n\n* The Retail Price field contains the list price (also known as MSRP).\n\n* No Sale Price has been set here.\n\n* A corresponding Stencil price object for the product will be structured as follows:\n\n```\n\"product\": {\n\n  \"price\": {\n\t\"without_tax\": \n\t\t{\n\t\t \"formatted\": \"$150.00\",\"value\": 150\n\t\t},\n\t\"rrp_without_tax\": \n\t\t{\n\t\t\"formatted\": \"$250.00\",\"value\": 250\n\t\t},\n\t\"saved\": \n\t\t{\n\t\t\"formatted\": \"$100.00\",\"value\": 100\n\t\t},\n\t\t\"tax_label\": \"Tax\"\n\t\t}\n\t}\n```\nItems to note: \nThe without_tax property represents the standard store price (the control panel’s Price field).\nThe rrp_without_tax property represents the list price or MSRP. (Here, rrp is short for \"regular retail price.\")\nThe saved property is the computed difference between the without_tax versus rrp_without_tax values.\n\n"
               - title: 'Cart Price Properties: Relationships'
                 route:
                   path: /cart-price-relationships
