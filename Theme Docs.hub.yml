@@ -5971,14 +5971,12 @@ pages:
                               blocks:
                                 - type: text
                                   data: >
-                                    <A NAME="Search"></a>
-
-                                    <b>Description: </b>Defines search
+                                    <b>Description:</b> Defines search
                                     parameters for the merchant’s site<br>
 
 
-                                    <b>Handlebars Expression:</b> <span
-                                    class="inline-code">{{forms.search}}</span><br>
+                                    <b>Handlebars Expression:</b>
+                                    `{{forms.search}}`
 
 
                                     <b>Object Properties:</b><br><br>
@@ -6147,6 +6145,472 @@ pages:
                           - title: New Subpage
                             route:
                               path: /new-subpage
+                            data:
+                              blocks:
+                                - type: text
+                                  data: >-
+                                    <b>Description:</b> Common settings shared
+                                    across every BigCommerce storefront<br>
+
+
+                                    <b>Handlebars Expression:</b> `{{settings}}`
+
+
+                                    <b>Object Properties:</b><br><br>
+
+
+                                    <table>
+                                      <tr>
+                                        <td>Property</td>
+                                        <td>Description</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">account_creation_enabled</td>
+                                        <td class="">Site-wide boolean value that indicates whether to allow customers to create accounts</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">show_product_rating</td>
+                                        <td class="">Site-wide boolean value that indicates whether to display product ratings (in numeric or star format) to visitors</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">show_product_reviews</td>
+                                        <td class="">Site-wide boolean value that indicates whether to display full-text product reviews to visitors</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">show_newsletter_box</td>
+                                        <td class="">Site-wide boolean value that indicates whether to display a mailing-list invite to visitors</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""> gift_certificates_enabled</td>
+                                        <td class="">Site-wide boolean value that indicates whether to enable the gift certificate system for this store</td>
+                                      </tr>
+                                      
+                                      <tr>
+                                        <td class=""> blog_enabled</td>
+                                        <td class="">Site-wide boolean value that indicates whether the blog is visible for this store</td>
+                                      </tr>
+                                      
+                                      <tr>
+                                        <td class="">show_wishlist</td>
+                                        <td class="">Site-wide boolean value that indicates whether to allow customers to create wishlists</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">base_url</td>
+                                        <td class="">The normal shop URL</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">client_ip_address</td>
+                                        <td class="">IP address of the customer browsing the store</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">secure_base_url</td>
+                                        <td class="">The SSL-enabled, secure, shop URL</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">address</td>
+                                        <td class="">Store’s complete physical address, as entered by merchant in the Store Profile</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">store_name</td>
+                                        <td class="">Name of the BigCommerce store</td>
+                                      </tr>
+                                      
+                                      <tr>
+                                        <td class="">store_logo</td>
+                                        <td class="">The store’s logo</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">title</span></td>
+                                        <td class="">Title for the logo &ndash; the text configured in the control panel under <NOBR><span class="inline-code">Storefront Design</span></nobr> > <span class="inline-code">Design Options</span> > <span class="inline-code">Logo</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">image</span></td>
+                                        <td class="">Optional image file, as a <a href="/docs/stencil-image-common-object">Stencil image</a> object</td>
+                                      </tr>
+                                        
+                                      <tr>
+                                        <td class="">privacy_cookie</td>
+                                        <td class="">If enabled, a string containing merchant-customizable text for (European Union&ndash;required) cookie-setting notification; if disabled, a boolean with a value of <span class="inline-code">false</span></td>
+                                      </tr>
+                                    <!-- Next 2 sub-items moved up under
+                                    store_logo, where they belonged: -->
+                                      <!-- <tr>
+                                        <td class=""><span class="indent1">image</span></td>
+                                        <td class="">Optional image file, in <a href="/docs/stencil-image-common-object">Stencil image format</a></td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">title</span></td>
+                                        <td class="">Title for the logo</td>
+                                      </tr> -->
+                                      
+                                      <tr>
+                                        <td class="">urls</td>
+                                        <td class="">Global URLs that the template can access – for example, the template could link to the cart page using <span class="inline-code">{{urls.cart}}</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> home</span></td>
+                                        <td class="">Store’s home page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> account</span></td>
+                                        <td class="">Collection of (customer and storefront) account-related URLs:</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">index</span></td>
+                                        <td class="">Account index page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">orders</span></td>
+                                        <td class="">Collection of orders-related URLs:</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> all</span></td>
+                                        <td class="">List of all orders</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> save_new_return</span></td>
+                                        <td class="">URL to submit a New Return form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> update_action</span></td>
+                                        <td class="">URL to submit an Edit Account form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> returns</span></td>
+                                        <td class="">List of returns</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> addresses</span></td>
+                                        <td class="">List of addresses; default sorting is by address id, from lowest to highest</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> inbox</span></td>
+                                        <td class="">List of messages in customer’s inbox</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> send_message</span></td>
+                                        <td class="">URL to submit a message to the merchant</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> add_address</span></td>
+                                        <td class="">Link to Add Address form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> wishlists</span></td>
+                                        <td class="">Collection of wishlist-related URLs:</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> add</span></td>
+                                        <td class="">URL to the Add Wishlist form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> edit</span></td>
+                                        <td class="">URL to the Edit Wishlist form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> delete</span></td>
+                                        <td class="">URL to delete a wishlist</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> all</span></td>
+                                        <td class="">URL to view all wishlists</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> details</span></td>
+                                        <td class="">URL to the Edit Account form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> recent_items</span></td>
+                                        <td class="">URL to a list of recently viewed items</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> brands</span></td>
+                                        <td class="">URL to view all brands; default sorting is by brand id, from lowest to highest</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> gift_certificate</span></td>
+                                        <td class="">Collection of gift-certificate–related URLs:</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> purchase</span></td>
+                                        <td class="">URL to a form for purchasing a gift certificate</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> redeem</span></td>
+                                        <td class="">URL to view redemption information</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> balance</span></td>
+                                        <td class="">URL to check the balance of a gift certificate</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> auth</span></td>
+                                        <td class="">Collection of authorization-related URLs:</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> login</span></td>
+                                        <td class="">URL to the login form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> check_login</span></td>
+                                        <td class="">URL to which to submit the login form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> create_account</span></td>
+                                        <td class="">URL to the Create Account form page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> save_new_account</span></td>
+                                        <td class="">URL to which to submit the Create Account form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">forgot_password</span></td>
+                                        <td class="">URL to the Forgot Password form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">send_password_email</span></td>
+                                        <td class="">Submission URL for the Forgot Password form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">save_new_password</span></td>
+                                        <td class="">Submission URL for saving a new password</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> logout</span></td>
+                                        <td class="">URL for customer to log out of their account</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> product</span></td>
+                                        <td class="">Collection of product-related URLs</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> post_review</span></td>
+                                        <td class="">URL to submit a Write Review form </td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> cart</span></td>
+                                        <td class="">URL to the cart page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> checkout </span></td>
+                                        <td class="">Collection of checkout related URLs</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> single_address </span></td>
+                                        <td class="">URL for the customer to check out with a single shipping address</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> multiple_address </span></td>
+                                        <td class="">URL for the customer to check out with multiple shipping addresses </td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> rss</span></td>
+                                        <td class="">Collection of RSS-related URLs:</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> products</span></td>
+                                        <td class="">Collection of product-feed–related URLs:</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> new</span></td>
+                                        <td class="">RSS feed of new products</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> new_atom</span></td>
+                                        <td class="">RSS feed of new products, in Atom format</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> popular</span></td>
+                                        <td class="">RSS feed of popular products</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> popular_atom</span></td>
+                                        <td class="">RSS feed of popular products, in Atom format</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> featured</span></td>
+                                        <td class="">RSS feed of featured products</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> featured_atom</span></td>
+                                        <td class="">RSS feed of featured products, in Atom format</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> search</span></td>
+                                        <td class="">RSS feed of products matching the active search query</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3"> search_atom</span></td>
+                                        <td class="">RSS feed of products matching the active search query, in Atom format</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> blog</span></td>
+                                        <td class="">RSS feed of recent blog posts</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> blog_atom</span></td>
+                                        <td class="">RSS feed of recent blog posts, in Atom format</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> contact_us_submit</span></td>
+                                        <td class="">URL to submit the Contact Us form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> search</span></td>
+                                        <td class="">URL to submit a search request</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> compare</span></td>
+                                        <td class="">A string String containing the URL to the products comparison page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> sitemap</span></td>
+                                        <td class="">URL to the sitemap</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> subscribe</span></td>
+                                        <td class="">Collection of subscription-related URLs</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2"> action</span></td>
+                                        <td class="">URL to which the the newsletter subscription will be submitted</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">money</td>
+                                        <td class="">List of child items that define the store’s default currency formatting</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> currency_token</span></td>
+                                        <td class="">Symbol for the currency</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> currency_location</span></td>
+                                        <td class="">Whether currency symbol appears at left or right of the quantity</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> decimal_token</span></td>
+                                        <td class="">Symbol for decimal separator</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> decimal_places</span></td>
+                                        <td class="">Number of decimal places to display</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> thousands_token</span></td>
+                                        <td class="">Symbol for thousands separator</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">returns_enabled</td>
+                                        <td class="">Boolean that indicates whether the control-panel setting for the returns system is enabled</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">tax_label</td>
+                                        <td class="">Defines the Tax Label (VAT, Sales Tax, etc.) that a merchant can set in the control panel’s Settings > Tax page for display to customers</td>
+                                      </tr>
+                                      
+                                      <tr>
+                                        <td class="">add_this</td>
+                                        <td class="">Object that defines links for the AddThis social sharing component</td>
+                                      </tr>  
+                                      <tr>
+                                        <td class=""><span class="indent1"> buttons</span></td>
+                                        <td class="">Array of buttons to display for AddThis social sharing</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">  service</span></td>
+                                        <td class="">String containing the name of this button's social-media service (<span class="inline-code">facebook</span>, <span class="inline-code">email</span>, <span class="inline-code">print</span>, <span class="inline-code">twitter</span>, <span class="inline-code">linkedin</span>, <span class="inline-code">google</span>, etc.)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">  annotation</span></td>
+                                        <td class="">String containing HTML attributes associated with this button</td>
+                                      </tr>
+                                        
+                                      <tr>
+                                        <td class="">maintenance</td>
+                                        <td class="">Object that manages information about the store when in maintenance (offline) mode</td>
+                                      </tr>  
+                                      <tr>
+                                        <td class=""><span class="indent1"> header</span></td>
+                                        <td class="">If store is in maintenance mode, string containing header text for the <NOBR>"Down for Maintenance"</nobr> window displayed to visitors; otherwise, <span class="inline-code">null</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> message</span></td>
+                                        <td class="">If store is in maintenance mode, string containing merchant-customizable body text (and optionally, HTML) for the "Down for Maintenance" window displayed to visitors; otherwise, <span class="inline-code">null</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> notice</span></td>
+                                        <td class="">If store is in maintenance mode, one of three strings identifying the store's status, and generating a corresponding text notice to merchants about how to proceed: <span class="inline-code">AdminPrelaunchNotice</span> for preview stores, <span class="inline-code">AdminMaintenanceNotice</span> for active stores taken down for maintenance, or <span class="inline-code">AdminHibernationModeNotice</span> for deactivated stores; otherwise, <span class="inline-code">null</span></td>
+                                      </tr>
+                                        
+                                      <tr>
+                                        <td class="">phone_number</td>
+                                        <td class="">The contact phone number for the store</td>
+                                      </tr>  
+
+                                      <tr>
+                                        <td class="">rss_item_limit</td>
+                                        <td class="">An integer that sets a limit on the number of RSS items to display</td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="">password_requirements</td>
+                                        <td class="">Collection of properties representing BigCommerce requirements for customer-account passwords:</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> alpha</span></td>
+                                        <td class="">Regular expression representing required/acceptable alphabetic characters</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> numeric</span></td>
+                                        <td class="">Regular expression representing required/acceptable numeric characters</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> minlength</span></td>
+                                        <td class="">Integer representing minimum acceptable password length</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> error</span></td>
+                                        <td class="">String that passes a standard error message for noncompliant passwords</td>
+                                      </tr>
+                                      
+                                      <tr>
+                                        <td class="">measurements</td>
+                                        <td class="">Collection of units-of-measure definitions, to be used when displaying product details:</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> length</span></td>
+                                        <td class="">Units of measure for product length</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> weight</span></td>
+                                        <td class="">Units of measure for product weight</td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="">[Time and date settings]</td>
+                                        <td class="">[The four settings below are configured in the control panel under <NOBR><span class="inline-code">Store Setup</span> ></nobr> <NOBR><span class="inline-code">Store  Settings</span></nobr> > <span class="inline-code">Language & Date</span> > <span class="inline-code">Date Settings</span>. <NOBR>Date formats</nobr> follow conventions from <a href="http://us3.php.net/manual/en/function.date.php">http://www.php.net/date</a>:]</td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="">store_time_zone</td>
+                                        <td class="">Store's time zone, as selected in the control panel's <span class="inline-code">Your Timezone</span> drop-down list</td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="">store_dst_correction</td>
+                                        <td class="">Whether or not this time zone observes Daylight Saving Time (boolean), as set by the control panel's <span class="inline-code">Enable DST Correction</span> check box</td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="">display_date_format</td>
+                                        <td class="">Brief display format/pattern for dates, as configured in the control panel's <span class="inline-code">Display Date Format</span> field</td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="">extended_display_date_format</td>
+                                        <td class="">Extended display format/pattern for dates, as configured in the control panel's <span class="inline-code">Extended Display Date Format</span> field</td>
+                                      </tr>   
+                                    </table>
                     - title: Common Objects
                       route:
                         path: /common-objects
