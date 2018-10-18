@@ -8952,8 +8952,10 @@ pages:
                         consumed by reports and third-party accounting
                         integrations.
                     - type: text
+                      data: '---'
+                    - type: text
                       data: >-
-                        ## Basic Price Example – No "Sale Price" Set 
+                        ## Basic Price Example – No "Sale Price" Defined
 
 
                         Assume that the merchant has defined a product’s price
@@ -8961,8 +8963,159 @@ pages:
                     - type: image
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6116/1539813608717
+                      header:
+                        title: Item without sale price defined
+                      config:
+                        centered: true
+                        fluid: true
+                        bordered: true
+                        maxWidth: '650'
+                        maxHeight: '350'
                     - type: text
-                      data: "Note that:\n\n* The Price field contains this product’s standard store price.\n\n* The Excluding Tax indicator beside Price is applicable to the whole column of price fields.\n\n* The Cost Price field will not be returned, for reasons described above.\n\n* The Retail Price field contains the list price (also known as MSRP).\n\n* No Sale Price has been set here.\n\n* A corresponding Stencil price object for the product will be structured as follows:\n\n```\n\"product\": {\n\n  \"price\": {\n\t\"without_tax\": \n\t\t{\n\t\t \"formatted\": \"$150.00\",\"value\": 150\n\t\t},\n\t\"rrp_without_tax\": \n\t\t{\n\t\t\"formatted\": \"$250.00\",\"value\": 250\n\t\t},\n\t\"saved\": \n\t\t{\n\t\t\"formatted\": \"$100.00\",\"value\": 100\n\t\t},\n\t\t\"tax_label\": \"Tax\"\n\t\t}\n\t}\n```\nItems to note: \nThe without_tax property represents the standard store price (the control panel’s Price field).\nThe rrp_without_tax property represents the list price or MSRP. (Here, rrp is short for \"regular retail price.\")\nThe saved property is the computed difference between the without_tax versus rrp_without_tax values.\n\n"
+                      data: >+
+                        In the photo above:
+
+
+                        * The `Price` field contains this product’s standard
+                        store price.
+
+                        * The `Excluding Tax` indicator to the right of the
+                        `Price` field is applicable to the whole column of price
+                        fields.
+
+                        * The `Cost Price` field will not be returned, for
+                        reasons described above.
+
+                        * The `Retail Price` field contains the list price (also
+                        known as MSRP).
+
+                        * No `Sale Price has` been set here.
+
+
+
+                        A corresponding Stencil `price` object for the product
+                        will be structured as follows:
+
+
+                        ```
+
+                        "product": {
+                          "price": {
+                            "without_tax": {"formatted": "$150.00","value": 150},
+                            "rrp_without_tax": {"formatted": "$250.00","value": 250},
+                            "saved": {"formatted": "$100.00","value": 100},
+                            "tax_label": "Tax"
+                          }
+                        }
+
+                        ```
+
+                        Items to note about the Stencil `price` object above: 
+
+
+                        * The `without_tax` property represents the standard
+                        store price (the control panel’s `Price` field).
+
+                        * The `rrp_without_tax` property represents the list
+                        price or MSRP. (Here, `rrp` is short for "regular retail
+                        price.")
+
+                        * The `saved` property is the computed difference
+                        between the `without_tax` versus `rrp_without_tax`
+                        values.
+
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## "Sale Price" Defined
+
+
+                        This example below is identical, except that here the
+                        merchant has assigned the product a discounted `Sale
+                        Price` of `$123`:
+                    - type: image
+                      data: >-
+                        //s3.amazonaws.com/user-content.stoplight.io/6116/1539837943099
+                      header:
+                        title: Item with sale price defined
+                      config:
+                        maxWidth: '600'
+                        maxHeight: '300'
+                        centered: true
+                        fluid: true
+                        bordered: true
+                    - type: text
+                      data: >+
+                        A corresponding Stencil price object for the product
+                        will be structured as shown below. 
+
+
+                        ```
+
+                        "product": {
+                          "price": {
+                            "without_tax": {"formatted": "$123.00","value": 123},
+                            "non_sale_price_without_tax": {"formatted": "$150.00","value": 150},
+                            "rrp_without_tax": {"formatted": "$250.00","value": 250},
+                            "saved": {"formatted": "$127.00","value": 127},
+                            "tax_label": "Tax"
+                          }
+                        }
+
+                        ```
+
+
+                        Items to note regarding the Stencil `price` object
+                        above: 
+
+
+                        * The product’s effective price is the `Sale Price`
+                        which appears in the object’s `without_tax` property.
+
+                        * The regular store price is now displayed in an added
+                        property called `non_sale_price_without_tax`.
+
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Prices and Conditional Logic – Special for You! 
+
+
+                        Stencil structures product prices as described above for
+                        backward compatibility with the BigCommerce platform's
+                        traditional treatment of prices. As a theme developer,
+                        this behavior enables you to embed logic that determines
+                        whether to display a strikeout (struck-out) price on the
+                        storefront.
+
+
+                        The example below tests for the presence of the
+                        `non_sale_price_without_tax` property. If it is present,
+                        that means that the product has a sale price, so the
+                        page will display the regular store price struck-out:
+
+
+                        ```
+                          {{#if price.non_sale_price_without_tax}}
+                             ... [some code to display on-sale strikeout pricing] ...
+                          {{/if}}
+                        ```
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: '## Including and/or Excluding Tax '
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Tax/Sale Price Interactions 
+
+
+                        Here is the same example – values both including and
+                        excluding tax, and a flat 10% tax rate – but we have
+                        also defined a sale price for the product:
               - title: 'Cart Price Properties: Relationships'
                 route:
                   path: /cart-price-relationships
