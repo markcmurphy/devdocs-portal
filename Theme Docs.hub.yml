@@ -5964,9 +5964,185 @@ pages:
                                         <td class="">The page number of this link, based on an index starting at 1</td>
                                       </tr>
                                     </table>
-                          - title: New Subpage
+                          - title: 'Search '
                             route:
-                              path: /new-subpage-3
+                              path: /search
+                            data:
+                              blocks:
+                                - type: text
+                                  data: >
+                                    <A NAME="Search"></a>
+
+                                    <b>Description: </b>Defines search
+                                    parameters for the merchant’s site<br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{forms.search}}</span><br>
+
+
+                                    <b>Object Properties:</b><br><br>
+
+
+                                    <table>
+                                      <tr>
+                                        <td class="">Property</td>
+                                        <td class="">Description</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">query</td>
+                                        <td class="">Active search query, if available</td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="">section</td>
+                                        <td class="">Active search-results section: either content or product</td>
+                                      </tr>
+                                      
+                                      <tr>
+                                        <td class="">content_url</td>
+                                        <td class="">URL to the content section</td>
+                                      </tr>
+                                      
+                                      <tr>
+                                        <td class="">product_url</td>
+                                        <td class="">URL to the product section</td>
+                                      </tr>
+                                      
+                                      
+                                      <tr>
+                                        <td class="">name</td>
+                                        <td class="">Brand name</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">suggested_query</td>
+                                        <td class="">An alternative query – related to the current query – that can be offered to substitute for misspelled entries</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">has_suggestions</td>
+                                        <td class="">Boolean – true if there is at least one of brand results, category results, or a (non-null) suggested_query</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">brand_results</td>
+                                        <td class="">Array of brands that match the search query; default sorting is by brand id, from lowest to highest</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">url</td>
+                                        <td class="">URL of the brand</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">name</td>
+                                        <td class="">Displayed name for the brand</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">category_results</td>
+                                        <td class="">An array of category paths matching the search query; used to populate category suggestions</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">url</td>
+                                        <td class="">URL of the category</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">name</td>
+                                        <td class="">Displayed name for the category</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">values</td>
+                                        <td class="">Values of the submitted search form</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">brand</td>
+                                        <td class="">Any brand ID that customer has selected from drop-down list</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">price_from</td>
+                                        <td class="">Any minimum price the customer has specified</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">price_to</td>
+                                        <td class="">Any maximum price the customer has specified</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">featured_products</td>
+                                        <td class="">Whether customer has chosen to view featured products: null = no preference; 1 = only featured products; 2 = only non-featured products</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">free_shipping</td>
+                                        <td class="">Value indicating customer’s preference for free shipping within search results: null = no preference; 1 = free shipping only; 2 = paid shipping only</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">result_count</td>
+                                        <td class="">Combined number of returned results for product and content search</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><a name="Stencil-SearchCatOpt-ref"></a>category_options</td>
+                                        <td class="">Array of options to present to customer as search-by-category fields</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">id</td>
+                                        <td class="">Category ID</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">name</td>
+                                        <td class="">Displayed name of the category</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">state</td>
+                                        <td class="">If category contains children, and customer selects a child category: Whether that category’s display will default to closed (collapsed) or opened (expanded)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">children</td>
+                                        <td class="">Array of objects representing a child category; recursively replicates the structure of its parent</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">content_results</td>
+                                        <td class="">Search results across blog posts and storefront pages (not products or categories)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">title</td>
+                                        <td class="">Title of the result (title embedded in blog post or page)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">content</td>
+                                        <td class="">Summary of text from the blog post or page (first 200 characters)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">url</td>
+                                        <td class="">URL to the result</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">type</td>
+                                        <td class="">Either post (for blog posts) or page (for storefront pages)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">product_results</td>
+                                        <td class="">Results of customer’s last search by product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">products</span></td>
+                                        <td class="">List of search results for a product; points to <a href="/docs/common-product-card-model">product card model</a></td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">show_compare</span></td>
+                                        <td class="">Boolean corresponding to merchant’s control-panel selection whether or not to enable product comparisons </td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">faceted_search_enabled</span></td>
+                                        <td class="">Boolean that defines whether product-filtering search is enabled for the store</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">facets</span></td>
+                                        <td class="">All available search filters</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">pagination</span></td>
+                                        <td class="">References pagination model</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">selected</span></td>
+                                        <td class="">Currently selected filters</td>
+                                      </tr>
+                                    </table>
                     - title: Common Objects
                       route:
                         path: /common-objects
