@@ -9154,19 +9154,20 @@ pages:
                         ```
 
 
-                        Note that:
+                        Items to note:
 
 
-                        The `with_tax` property is new in this example, and
+                        * The `with_tax` property is new in this example, and
                         represents the `without_tax` value plus a 10% tax
                         markup.
 
-                        The rrp_with_tax property is new as well, and represents
-                        the rrp_without_tax value plus a 10% tax markup.
+                        * The `rrp_with_tax` property is new as well, and
+                        represents the `rrp_without_tax` value plus a 10% tax
+                        markup.
 
-                        You would see the same new properties and values if the
-                        control-panel setting had been Including tax, rather
-                        than Including and excluding tax. But these
+                        *You would see the same new properties and values if the
+                        control-panel setting had been `Including tax`, rather
+                        than `Including and excluding tax`. But these
                         properties/vaues would not be added for a control-panel
                         seting of Excluding tax.
                     - type: text
@@ -9179,6 +9180,53 @@ pages:
                         Here is the same example – values both including and
                         excluding tax, and a flat 10% tax rate – but we have
                         also defined a sale price for the product:
+
+
+                        ```
+
+                        "product": {
+                          "price": {
+                            "with_tax": {"formatted": "$135.30","value": 135.3},
+                            "without_tax": {"formatted": "$123.00","value": 123},
+                            "rrp_with_tax": {"formatted": "$275.00","value": 275},
+                            "rrp_without_tax": {"formatted": "$250.00","value": 250},
+                            "saved": {"formatted": "$139.70","value": 139.7},
+                            "non_sale_price_without_tax": {"formatted": "$150.00","value": 150},
+                            "non_sale_price_with_tax": {"formatted": "$165.00","value": 165},
+                            "tax_label": "Tax"
+                          }
+                        }
+
+                        ```
+
+
+                        Here again:
+
+
+                        * The `with_tax` property represents the without_tax
+                        value, plus a 10% tax markup.
+
+                        * The `rrp_with_tax` property represents the
+                        `rrp_without_tax` value, plus a 10% tax markup.
+
+
+                        New here:
+
+
+                        * The `non_sale_price_without_tax` and
+                        `non_sale_price_with_tax` properties are added, to
+                        represent the standard store price (respectively)
+                        without and with tax.
+
+                        * The saved value is now based on the difference between
+                        the `with_tax` versus `non_sale_price_with_tax` values.
+
+                        * You would see the same results if the control-panel
+                        setting had been Including tax, rather than Including
+                        and excluding tax. But these properties/values would not
+                        be added for a control-panel seting of Excluding tax.
+                    - type: text
+                      data: ''
               - title: 'Cart Price Properties: Relationships'
                 route:
                   path: /cart-price-relationships
