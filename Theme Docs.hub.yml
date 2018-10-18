@@ -8915,7 +8915,7 @@ pages:
                     - type: html
                       data: '<h1>Catalog Price Object: How Properties Interact</h1>'
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#catalog-price_price-prop-overview\">Price Properties Overview</a></li>\n    <li><a href=\"#catalog-price_price-prop-overview\">Cost Price</a></li>\n    <li><a href=\"#catalog-price_price-prop-overview\">Basic Price Example – No \"Sale Price\" Defined</a></li>\n    <li><a href=\"#catalog-price_price-prop-overview\">\"Sale Price\" Defined Example</a></li>\n    <li><a href=\"#catalog-price_price-prop-overview\">Prices and Conditional Logic – Special for You!</a></li>\n    <li><a href=\"#catalog-price_price-prop-overview\">Including and/or Excluding Tax</a></li>\n    <li><a href=\"#catalog-price_price-prop-overview\">Tax/Sale Price Interactions</a></li>\n    <li><a href=\"#catalog-price_price-prop-overview\">Mapping of Control-Panel Options to Catalog Price Properties</a></li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#catalog-price_price-prop-overview\">Price Properties Overview</a></li>\n    <li><a href=\"#catalog-price_cost-price\">Cost Price</a></li>\n    <li><a href=\"#catalog-price_basic-price-example\">Basic Price Example – No \"Sale Price\" Defined</a></li>\n    <li><a href=\"#catalog-price_sale-price-defined\">\"Sale Price\" Defined Example</a></li>\n    <li><a href=\"#catalog-price_prices-and-conditional\">Prices and Conditional Logic – Special for You!</a></li>\n    <li><a href=\"#catalog-price_including-and-or-excluding\">Including and/or Excluding Tax</a></li>\n    <li><a href=\"#catalog-price_tax-sale-price\">Tax/Sale Price Interactions</a></li>\n    <li><a href=\"#catalog-price_mapping-of-control\">Mapping of Control-Panel Options to Catalog Price Properties</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         ## Price Properties Overview
@@ -8940,6 +8940,8 @@ pages:
                         other, and with control-panel options. We will also
                         include an example of building conditional logic around
                         a price property.
+                      header:
+                        anchor: catalog-price_price-prop-overview
                     - type: text
                       data: '---'
                     - type: text
@@ -8953,6 +8955,8 @@ pages:
                         shoppers. Rather, the cost price field is meant to be
                         consumed by reports and third-party accounting
                         integrations.
+                      header:
+                        anchor: catalog-price_cost-price
                     - type: text
                       data: '---'
                     - type: text
@@ -8962,6 +8966,8 @@ pages:
 
                         Assume that the merchant has defined a product’s price
                         like this in the BigCommerce Control Panel:
+                      header:
+                        anchor: catalog-price_basic-price-example
                     - type: image
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6116/1539813608717
@@ -9036,6 +9042,8 @@ pages:
                         This example below is identical, except that here the
                         merchant has assigned the product a discounted `Sale
                         Price` of `$123`:
+                      header:
+                        anchor: catalog-price_sale-price-defined
                     - type: image
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6116/1539837943099
@@ -9104,6 +9112,8 @@ pages:
                              ... [some code to display on-sale strikeout pricing] ...
                           {{/if}}
                         ```
+                      header:
+                        anchor: catalog-price_prices-and-conditional
                     - type: text
                       data: '---'
                     - type: text
@@ -9121,6 +9131,8 @@ pages:
                         This setting affects not only how values are returned in
                         the Stencil framework, but also how the values appear on
                         storefront pages:
+                      header:
+                        anchor: catalog-price_including-and-or-excluding
                     - type: image
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6116/1539842045139
@@ -9227,10 +9239,14 @@ pages:
                         setting had been Including tax, rather than Including
                         and excluding tax. But these properties/values would not
                         be added for a control-panel seting of Excluding tax.
+                      header:
+                        anchor: catalog-price_tax-sale-price
                     - type: text
                       data: '---'
                     - type: text
                       data: "## Mapping of Control-Panel Options to Catalog Price Properties\n\nThis table shows how price options available in the BigCommerce control panel relate to properties returned on the Stencil framework.\n\n<table>\n  <tr>\n    <th>Control-Panel Field</th>\n    <th>Stencil Catalog Price Object and Property</th>\n    <th>Notes</th>\n  </tr>\n\n  <tr>\n    <td>Retail Price (excluding tax)</td>\n\t\t<td><code>{{ product.price.rrp_without_tax }}</code></td>\n    <td>Typically used to represent the product’s list price (MSRP).</td>\n  </tr>\n\n  <tr>\n    <td>Retail Price (including tax)</td>\n\t\t<td><code>{{ product.price.rrp_with_tax }}</code></td>\n    <td>Typically used to represent the product’s list price (MSRP), including tax.</td>\n  </tr>\n\n  <tr>\n    <td>Price (excluding tax)</td>\n\t\t<td><code>{{ product.price.non_sale_price_without_tax }}</code></td>\n    <td>The standard store price for the product.</td>\n  </tr>\n\n  <tr>\n    <td>Price (including tax)</td>\n\t\t<td><code>{{ product.price.non_sale_price_with_tax }}</code></td>\n    <td>The standard store price for the product, with tax.</td>\n  </tr>\n  \n  <tr>\n    <td>Sale Price (excluding tax)</td>\n\t\t<td><code>{{ product.price.without_tax }}</code></td>\n    <td>This product’s discounted/sale price.</td>\n  </tr>\n  \n  <tr>\n    <td>Sale Price (including tax)</td>\n    <td>{{ product.price.with_tax }}</td>\n    <td>This product’s discounted/sale price, with tax.</td>\n  </tr>\n  \n  <tr>\n    <td>[No control-panel field]</td>\n    <td>{{ product.price.saved }}</td>\n    <td>The customer’s savings on the effective price versus list price.</td>\n  </tr>\n</table>"
+                      header:
+                        anchor: catalog-price_mapping-of-control
               - title: 'Cart Price Properties: Relationships'
                 route:
                   path: /cart-price-relationships
