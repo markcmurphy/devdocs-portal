@@ -3313,9 +3313,56 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: "## Local Mapping and Testing\n\nTo test your custom templates locally, you must edit your `<theme-name>/.stencil` file to create mappings between each local template and a corresponding URL. Within the `.stencil` file, look for the following section:\n\n```\n\"customLayouts\": {\n    \"product\": {},\n    \"brand\": {},\n    \"category\": {},\n    \"page\": {}\n  }\n```\n\nIn this section, you would populate keys to create mappings. As a simple example, assume that you have a product custom template named alternate-`product.html`, and you want to see that template locally at the URL: http://localhost:3000/test-url/. In this case, you must populate the product key as follows:\n\n```\n    \"product\": {\n    \t\"alternate-product.html\":\"/test-url/\"\n    },\n```\n\n### Expanded Mapping Example\n\nHere is a more-complete example in which the `brand`, `page`, and `category` keys are also populated:\n\n```\n{\n  \"normalStoreUrl\": \"http://cornerstone-light-demo.mybigcommerce.com\",\n  \"port\": 3000,\n  \"username\": \"stencil\",\n  \"token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\n  \"customLayouts\": {\n    \"product\": {\n      \"custom-product.html\": \"/custom-product/\"\n    },\n    \"brand\": {\n      \"custom-brand.html\": \"/brands/custombrand/\"\n    },\n    \"page\": {\n      \"custom-page.html\": \"/custom-page/\"\n    },\n    \"category\": {\n      \"custom-category.html\": \"/custom-category/\"\n    }\n  }\n}\n```\n\n### Mapping Requirements and Options\n\nIn the .stencil mapping examples above:\n\n* Each mapped URL must be a URL for a brand, category, product, or static page that is _already configured in the store_. This means that you cannot insert a placeholder URL that is an arbitrary string of letters, such as /abcdefghijklmnop/.\n* Each URL’s trailing slash is _optional_.\n* The HTML files must reside in either the brand, category, product, or page subdirectories \n* All brand URLs are nested under the /brands/ parent. Use URL encoding with brand URLs.\n* That parent for brand URLs is /brands/ (plural), while the corresponding subdirectory for HTML files is /brand/ (singular).\n* After editing your .stencil file, you must restart stencil to see your changes locally. Enter `stencil start` on the command line, appending any appropriate switches for your workflow (e.g.: `stencil start -e -n`)."
+                            data: "## Local Mapping and Testing\n\nTo test your custom templates locally, you must edit your `<theme-name>/.stencil` file to create mappings between each local template and a corresponding URL. Within the `.stencil` file, look for the following section:\n\n```\n\"customLayouts\": {\n    \"product\": {},\n    \"brand\": {},\n    \"category\": {},\n    \"page\": {}\n  }\n```\n\nIn this section, you would populate keys to create mappings. As a simple example, assume that you have a product custom template named alternate-`product.html`, and you want to see that template locally at the URL: http://localhost:3000/test-url/. In this case, you must populate the product key as follows:\n\n```\n    \"product\": {\n    \t\"alternate-product.html\":\"/test-url/\"\n    },\n```\n\n### Expanded Mapping Example\n\nHere is a more-complete example in which the `brand`, `page`, and `category` keys are also populated:\n\n```\n{\n  \"normalStoreUrl\": \"http://cornerstone-light-demo.mybigcommerce.com\",\n  \"port\": 3000,\n  \"username\": \"stencil\",\n  \"token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\n  \"customLayouts\": {\n    \"product\": {\n      \"custom-product.html\": \"/custom-product/\"\n    },\n    \"brand\": {\n      \"custom-brand.html\": \"/brands/custombrand/\"\n    },\n    \"page\": {\n      \"custom-page.html\": \"/custom-page/\"\n    },\n    \"category\": {\n      \"custom-category.html\": \"/custom-category/\"\n    }\n  }\n}\n```\n\n### Mapping Requirements and Options\n\nIn the .stencil mapping examples above:\n\n* Each mapped URL must be a URL for a brand, category, product, or static page that is _already configured in the store_. This means that you cannot insert a placeholder URL that is an arbitrary string of letters, such as /abcdefghijklmnop/.\n* Each URL’s trailing slash is _optional_.\n* The HTML files must reside in either the brand, category, product, or page subdirectories.\n* All brand URLs are nested under the /brands/ parent. Use URL encoding with brand URLs.\n* That parent for brand URLs is /brands/ (plural), while the corresponding subdirectory for HTML files is /brand/ (singular).\n* After editing your `.stencil` file, you must restart stencil to see your changes locally. Enter `stencil start` on the command line, appending any appropriate switches for your workflow (e.g.: `stencil start -e -n`).\n\n### Why These URL Requirements?\n\nWhen you create a local custom template page for products, you expect that page to have access to all Stencil product objects. However, the server cannot readily determine the page type of each local custom template. So we give it a hint: We instruct the server to look at the page type of the URL to which you have mapped the template.\n\nIn the above `.stencil` configuration example’s final entry, the server will look at the URL `/custom‑category/` within the store, deduce that the page type is `category`, and return a category context to Stencil CLI. This allows Stencil CLI to properly display the page in the browser when you visit http://localhost:3000/custom‑category/ locally, or when shoppers visit the corresponding public store page.\n\n### Mapping Multiple URLs\nBeyond the single URL mapped to each template in the above examples, you have the option of mapping an array of URLs to each template. This is shown in the following example for the product template:\n\n```\n  \"customLayouts\": {\n    \"product\": {\n      \"featured-product.html\": [\"/special-product-one\", \"/special-product-two\"],\n      \"clearance-product.html\": \"/clearance-product\"\n    },\n    \"brands\": {},\n    \"categories\": {},\n    \"page\": {}\n  }\n}\n```"
                             header:
                               anchor: authoring-testing-uploading_local-mapping
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Theme Upload
+
+
+                              Finally, you must bundle and upload the theme to
+                              BigCommerce. See the Bundling and Uploading a
+                              Theme article for instructions on how to achieve
+                              this.
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Troubleshooting Template Authoring
+
+
+                              Here are solutions to some known problems in
+                              locally authoring and testing custom templates:
+
+
+                              ### Viewing Custom Brand Templates Locally
+
+
+                              If you are having trouble viewing custom brand
+                              templates locally, ensure that the URL used in
+                              your .stencil file is of the form:
+                              /brands/brandname. This is necessary because all
+                              the brand pages are located under the /brands/ URL
+                              path.
+
+                              Also, bear in mind that currently, all brand URLs
+                              are Unicode-encoded. So, for example, you should
+                              replace a hyphen with: %252d.
+
+
+                              ### Outdated Stencil CLI
+
+
+                              If you have an old version of Stencil CLI
+                              installed, it might lack support for custom
+                              templates. You can easily update your CLI by
+                              executing the following command:
+
+
+                              `npm install -g bigcommerce/stencil-cli`
                     - title: Assigning Templates to Pages
                       route:
                         path: /new-subpage-1
