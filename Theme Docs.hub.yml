@@ -10296,7 +10296,7 @@ pages:
                                 utils.api.cart.getContent(options, onComplete);
                             }
                         ```
-              - title: Data Tags/Event Hook Reference
+              - title: Data Tags & Event Hooks
                 route:
                   path: /data-tags-event-hooks-reference
                 data:
@@ -10309,7 +10309,10 @@ pages:
                       data: "## Stencil Data Tags and Event Hooks\nStencil themes provide the following chains of data tags, delegated DOM (Document Object Model) events, emitted Stencil event hooks, and Stencil event parameter(s).\n\n### Cart Item Added\n\nHook for items added to the customer’s shopping cart.\n\n**Function Signature:**\n\n```\nitemAdd() {\n    this.$body.on('submit', '[data-cart-item-add]', (event) => {\n        this.emit('cart-item-add', event, event.target);\n    });\n}\n```\n\n<table>\n\t<tr>\n\t\t<th>Data Tag</th>\n\t\t<th>Delegated DOM Event</th>\n\t\t<th>Stencil Event/Hook</th>\n\t\t<th>Stencil Event Parameter(s)</th>\n\t</tr>\n\t<tr>\n\t\t<td>data-cart-item-add</td>\n\t\t<td>submit</td>\n\t\t<td>cart-item-add</td>\n\t\t<td>event, event.target</td>\n\t</tr>\n</table>\n\n### Faceted-Search Events\n\nHooks for faceted-search selections that the customer initiates or submits.\n\n**Function Signature**\n\n```\nsearchEvents() {\n  this.$body.on('click', '[data-faceted-search-facet]', (event) => {\n        this.emit('facetedSearch-facet-clicked', event);\n  });\n \n  this.$body.on('submit', '[data-faceted-search-range]', (event) => {\n        this.emit('facetedSearch-range-submitted', event);\n  });\n}\n\n```\n\n<table>\n\t<tr>\n\t\t<th>Data Tag</th>\n\t\t<th>Delegated DOM Event</th>\n\t\t<th>Stencil Event/Hook</th>\n\t\t<th>Stencil Event Parameter(s)</th>\n\t</tr>\n\t<tr>\n\t\t<td>data-faceted-search-facet</td>\n\t\t<td>click</td>\n\t\t<td>facetedSearch-facet-clicked</td>\n\t\t<td>event</td>\n\t</tr>\n\t<tr>\n\t\t<td>data-faceted-search-range</td>\n\t\t<td>submit</td>\n\t\t<td>facetedSearch-range-submitted</td>\n\t\t<td>event</td>\n\t</tr>\n</table>"
                       header:
                         anchor: data_stencil-data-tags
-              - title: stencil-utils API Reference
+                config:
+                  sidebar:
+                    token: Reference
+              - title: stencil-utils
                 route:
                   path: /stencil-utils-api-reference
                 data:
@@ -11614,6 +11617,9 @@ pages:
                         </tbody>
 
                         </table>
+                config:
+                  sidebar:
+                    token: API Reference
         - title: 'Custom Javascript Implementations '
           route:
             path: /custom-javascript-implementations
