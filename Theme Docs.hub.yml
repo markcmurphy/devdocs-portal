@@ -3099,26 +3099,27 @@ pages:
                               you can copy and/or modify this prototype.
 
 
-                              **Note:** _You can use front matter to specify
-                              resources only on pages in the `/templates/pages/`
-                              subdirectory, but **not** on pages here in the
-                              `/templates/layout/` subdirectory. If a
-                              front-matter directive contains an invalid option,
-                              Stencil CLI will silently ignore that option._
+                              **Note:** _Be sure to set permission `755
+                              (drwxr-xr-x)` on any new _subdirectories_ that you
+                              add. Also, be sure to set permission `644
+                              (rw-r--r--)` on any new _files_ that you add.
+                              Without these permissions, running your theme
+                              locally will fail with multiple error messages.
+                              Bundling your theme will also fail, blocking its
+                              upload to a store._
                             header:
                               anchor: layout_layout-subdirectory
                           - type: callout
                             data:
                               body: >-
-                                Be sure to set permission `755 (drwxr-xr-x)` on
-                                any new _subdirectories_ that you add. Also, be
-                                sure to set permission `644 (rw-r--r--)` on any
-                                new _files_ that you add. Without these
-                                permissions, running your theme locally will
-                                fail with multiple error messages. Bundling your
-                                theme will also fail, blocking its upload to a
-                                store.
-                              title: ' Required Permissions'
+                                You can use front matter to specify resources
+                                only on pages in the `/templates/pages/`
+                                subdirectory, but **not** on pages here in the
+                                `/templates/layout/` subdirectory. If a
+                                front-matter directive contains an invalid
+                                option, Stencil CLI will silently ignore that
+                                option.
+                              title: Front Matter Restrictions
                               type: error
                     - title: Pages Subdirectory
                       route:
@@ -3130,7 +3131,12 @@ pages:
                           - type: html
                             data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#pages_pages-subdirectory\">Pages Subdirectory</a></li>\n\t</ul>\n</div>"
                           - type: text
-                            data: ''
+                            data: >
+                              The `/templates/pages/` subdirectory contains the
+                              complete set of base template pages used to
+                              construct a BigCommerce online store. These pages
+                              call resources from the `/templates/components/`
+                              and `/templates/layout/` subdirectories.
                     - title: Custom Templates
                       route:
                         path: /custom-templates
