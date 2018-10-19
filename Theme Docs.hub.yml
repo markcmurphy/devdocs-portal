@@ -2917,7 +2917,7 @@ pages:
                       header:
                         anchor: configuring_config-json
                     - type: text
-                      data: >+
+                      data: >-
                         ## Making Basic Design & Layout Changes
 
 
@@ -2929,16 +2929,95 @@ pages:
                         footer’s appearance.
 
 
-                        Next, open your <theme-name>/config.json in a text
+                        Next, open your `<theme-name>/config.json` in a text
                         editor. Change the page footer’s default background
-                        color to red, by changing the value "585858" to
-                        "#a96e6e" as indicated below:
+                        color to red, by changing the value `"585858"` to
+                        `"#a96e6e"` as indicated below:
 
+                        ```
+
+                        {
+                         "settings": {
+                          "footer-backgroundColor": "#a96e6e",
+                          }
+                        }
+
+                        ```
+
+
+                        This new value will propagate through the theme’s CSS
+                        files and will globally change your footer. Refresh your
+                        store’s home page in your browser to verify the change.
 
 
                         ### Changing the Product Image Size (config.json and
                         Handlebars)
 
+
+                        In the `<theme-name>/config.json` file’s `"settings"`
+                        section, you can define theme-wide image sizes for
+                        rendering dynamic content. The excerpt below shows this
+                        section’s predefined keys and values (dimensions in
+                        pixels) for product thumbnails, galleries, and other
+                        standard sizes.
+
+
+                        ```
+
+                        {
+                          "settings": {
+                             //...
+                            "logo_size": "250x100",
+                            "brand_size": "190x250",
+                            "gallery_size": "300x300",
+                            "productgallery_size": "500x659",
+                            "product_size": "500x659",
+                            "productthumb_size": "100x100",
+                            "thumb_size": "100x100",
+                            "zoom_size": "1280x1280",
+                            "blog_size": "190x250",
+                            // ...
+                          },
+                        }
+
+                        ```
+
+
+                        For definitions of each key’s usage, please see the
+                        `config.json` reference. You can also create theme-wide
+                        custom sizes by defining new key/value pair properties
+                        in the `config.json` file.
+
+
+                        Below is an example of code that calls one of the above
+                        variables, in
+                        Cornerstone's,`<theme-name>/templates/components/products/card.html`
+                        file. (This file defines the display of products’ panels
+                        or "cards" on multiple storefront pages.): 
+
+
+
+                        ```<img class="card-image" src="{{getImage image
+                        'productgallery_size' (cdn
+                        theme_settings.default_image_product)}}"
+                        alt="{{image.alt}}">
+
+                        ```
+
+
+                        Note the `{{getImage image 'productgallery_size'}}`
+                        statement, a Handlebars reference to the standard
+                        `productgallery_size` size defined in config.json.
+
+
+                        Further examples will guide you in customizing your
+                        storefront using the Handlebars templating language. 
+
+                        For now, open `config.json` and try redefining some of
+                        the default size values shown above. Then, refresh your
+                        storefront’s home page (or other pages or modals) in
+                        your browser, and note how the display of product images
+                        changes to match your new global size values.
 
 
                         ### Redesigning Page Elements (config.json and
@@ -3016,9 +3095,6 @@ pages:
 
                         In your browser, refresh the product page, and check the
                         new arrangement of these components.
-
-
-
                       header:
                         anchor: customizing_basic-changes
                   children: []
