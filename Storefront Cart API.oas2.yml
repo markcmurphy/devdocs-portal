@@ -1634,10 +1634,7 @@ definitions:
     title: Currency
   LineItem:
     type: object
-    required:
-      - physicalItems
-      - digitalItems
-      - giftCertificates
+    title: Line Item
     properties:
       physicalItems:
         type: array
@@ -1654,7 +1651,13 @@ definitions:
         description: Array of `ItemGiftCertificate` objects.
         items:
           $ref: '#/definitions/ItemGiftCertificate'
-    title: Line Item
+      customItems:
+        type: array
+        items: {}
+    required:
+      - physicalItems
+      - digitalItems
+      - giftCertificates
   ItemGiftCertificate:
     type: object
     required:
