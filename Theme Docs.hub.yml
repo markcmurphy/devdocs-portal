@@ -3268,17 +3268,48 @@ pages:
                           - type: html
                             data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#authoring-testing-uploading_authoring\"></a>Authoring Templates</li>\n    <li><a href=\"#authoring-testing-uploading_local-mapping\"></a>Local Mapping and Testing</li>\n\t\t<li><a href=\"#authoring-testing-uploading_theme-submission\"></a>Theme Submission</li>\n\t\t<li><a href=\"#authoring-testing-uploading_troubleshooting\"></a>Troubleshooting Template Authoring</li>\n\t</ul>\n</div>\n\n\n\n\n\n\n"
                           - type: text
-                            data: >
-                              ## Authoring Templates
+                            data: >-
+                              ## Authoring a Custom Template
 
 
                               As a the theme developer, you must first create
-                              the template HTML files, and then place them in
-                              the appropriate
+                              the `custom` subdirectory in the `templates/pages`
+                              directory, and four required subdirectories inside
+                              of it (brand, category, product, page), which will
+                              result in the following directory paths:
+
+
+                              * templates/pages/custom/brand 
+
+                              * custom/category/custom/category
+
+                              * custom/product/custom/product
+
+                              * custom/page/custom/page
+
+
+                              Next,  create the template HTML files, and then
+                              place them in the appropriate
                               `<theme-name>/templates/pages/custom/`
-                              subdirectories, corresponding to the types listed
-                              above. Those subdirectories are shown at the leaf
-                              level of the directory tree below:
+                              subdirectories corresponding to the types listed
+                              above. 
+                          - type: callout
+                            data:
+                              type: warning
+                              body: >-
+                                Be sure to set permission `755 (drwxr-x-r-x)` on
+                                any new subdirectories that you add.
+
+                                Also, be sure to set permission `644 (rw-r–r–)`
+                                on any new files that you add.
+
+
+                                Without these permissions, running your theme
+                                locally will fail with multiple error messages.
+
+                                Bundling your theme will also fail, blocking its
+                                upload to a store.
+                              title: Subdirectory/File Permissions Required
                     - title: Assigning Templates to Pages
                       route:
                         path: /new-subpage-1
@@ -13915,9 +13946,9 @@ pages:
                         languages.
                       header:
                         anchor: '#implementation_cornerstone-example'
-        - title: Shipping A Theme
+        - title: Prepare & Upload a Theme
           route:
-            path: /shipping-a-theme
+            path: /prepare-and-upload-a-theme
           data:
             children:
               - title: Sizing A Theme
