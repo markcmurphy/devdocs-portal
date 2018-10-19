@@ -3536,9 +3536,11 @@ pages:
                     - type: html
                       data: <h1>Rendering HTML with Ajax</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#choosing-dev-path\"> </a></li>\n\t\t<li><a href=\"#front-matter-quick-start\"></a></li>\n    <li><a href=\"#front-matter-quick-start\"></a></li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#rendering_rendering-html\">Rendering HTML with Ajax</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: "## Rendering HTML with Ajax\n\nStencil allows you to render dynamic components on the fly. For example, note this default code in `<theme-name>/templates/components/products/quick-view.html` (note also this file name, which Handlebars will reference later in this example):\n\n```\n<div class=\"modal-body quickView\">\n  <a href=\"#\" class=\"modal-close\" aria-label=\"Close\">&#215;</span></a>\n  {{> components/products/product-view}}\n</div>\n```\n\nTo render a different template, you would instead reference that template’s file name. For example, assume that you want to substitute a custom template that you’ve named: `<theme-name>/templates/components/products/quicker-view.html`.\n\nThis next code block is from the Stencil default theme’s `/assets/js/theme/global/quick-view.js` file. Note the statements deleted commented to swap in the new file name:\n\n```\nlet $modal = $('#modal'),\n  $modalContent = $('.modal-content', $modal),\n  $modalOverlay = $('.loadingOverlay', $modal),\n  modalModifierClasses = 'modal--large';\n\n$('body').on('click', '.quickview', (event) => {\n  let productId = $(event.currentTarget).data('product-id');\n\n  event.preventDefault();\n\n  // clear the modal\n  $modalContent.html('');\n  $modalOverlay.show();\n\n  // open modal\n  $modal.foundation('reveal', 'open');\n\n\t//quicker-view.html \n  utils.api.product.getById(productId, {template: 'products/quicker-view'}, function done(err, response) {\n      $modalOverlay.hide();\n      $modalContent.html(response);\n\n      return new ProductDetails($modalContent, context);\n  });\n});\nlet $modal = $('#modal'),\n  $modalContent = $('.modal-content', $modal),\n  $modalOverlay = $('.loadingOverlay', $modal),\n  modalModifierClasses = 'modal--large';\n\n$('body').on('click', '.quickview', (event) => {\n  let productId = $(event.currentTarget).data('product-id');\n\n  event.preventDefault();\n\n  // clear the modal\n  $modalContent.html('');\n  $modalOverlay.show();\n\n  // open modal\n  $modal.foundation('reveal', 'open');\n\n  utils.api.product.getById(productId, {template: 'products/quick-view'}, function done(err, response) {\n      $modalOverlay.hide();\n      $modalContent.html(response);\n      \n\n  utils.api.product.getById(productId, {template: 'products/quicker-view'}, function done(err, response) {\n      $modalOverlay.hide();\n      $modalContent.html(response);\n\n      return new ProductDetails($modalContent, context);\n  });\n});\n```"
+                      header:
+                        anchor: rendering_rendering-html
               - title: Testing and Debugging Your Theme
                 route:
                   path: /testing-and-debugging-your-theme
@@ -3611,7 +3613,94 @@ pages:
                     - type: html
                       data: <h1>Managing Theme Variations</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#choosing-dev-path\"> Choosing a Development Path</a></li>\n\t\t<li><a href=\"#front-matter-quick-start\">Front-Matter Quick Start</a></li>\n    <li><a href=\"#front-matter-quick-start\">Handlebars Quick Start</a></li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#choosing-dev-path\">Creating and Naming a New Theme Variation </a></li>\n\t\t<li><a href=\"#front-matter-quick-start\">Front-Matter Quick Start</a></li>\n    <li><a href=\"#front-matter-quick-start\">Handlebars Quick Start</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        ## Creating and Naming a New Theme Variation  (Cascading
+                        Settings from `config.json`)
+
+
+                        You define variations in your `<theme-name>/config.json`
+                        file. From the default Stencil theme’s config.json, here
+                        is the Light variation’s definition, followed by the
+                        head of the `Bold` variation’s definition:
+
+
+                        ```
+
+                        "variations": [
+
+                        {
+                          "name": "Light",
+                          "id": "light",
+                          "meta": {
+                            "desktop_screenshot": "desktop_screenshot.jpg",
+                            "mobile_screenshot": "mobile_screenshot.png",
+                            "description": "This is the light style of the Stencil Theme",
+                            "demo_url": "https://stencil-light.mybigcommerce.com",
+                            "optimized_for": ["fashion", "image_heavy", "etc"],
+                            "industries": []
+                          },
+                        {
+                          "name": "Bold",
+                          "id": "bold",
+                        ...
+
+                        ```
+
+
+                        Try inserting a new custom variation of your own, below
+                        the `"Light"` block shown above. Your variation’s
+                        definition might look something like this:
+
+
+                        ```
+
+                        "variations": [
+
+                        ...
+
+                        {
+                          "name": "MyCustomVariation",
+                          "id": "my_custom_variation",
+                          "meta": {
+                            "desktop_screenshot": "my_custom_desktop_screenshot.jpg",
+                            "mobile_screenshot": "my_custom_mobile_screenshot.png",
+                            "description": "This is a really cool custom style of the Stencil Theme",
+                            "demo_url": "https://stencil-custom.mybigcommerce.com",
+                            "optimized_for": ["fashion", "image_heavy", "etc"],
+                            "industries": []
+                          },
+                        {
+                          "name": "Bold",
+                          "id": "bold",
+                        ...
+
+                        "variations": [
+
+                        ...
+
+                        {
+                          "name": "MyCustomVariation",
+                          "id": "my_custom_variation",
+                          "meta": {
+                            "desktop_screenshot": "my_custom_desktop_screenshot.jpg",
+                            "mobile_screenshot": "my_custom_mobile_screenshot.png",
+                            "description": "This is a really cool custom style of the Stencil Theme",
+                            "demo_url": "https://stencil-custom.mybigcommerce.com",
+                            "optimized_for": ["fashion", "image_heavy", "etc"],
+                            "industries": []
+                          },
+                        {
+                          "name": "Bold",
+                          "id": "bold",
+                        ...
+
+                        ```
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: ''
         - title: Stencil's Template Files
           route:
             path: /templates-directory
