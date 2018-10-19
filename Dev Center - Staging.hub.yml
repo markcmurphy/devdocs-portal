@@ -9441,21 +9441,21 @@ pages:
                         [Checkout](/api-reference/cart-checkout/storefront-checkout-api)
 
 
-                        The Storefront API's are for managing the contents of
-                        managing a shopper's cart using JavaScript in the
-                        context of a storefront session. 
+                        The Storefront APIs are for managing the contents of a
+                        shopper's cart using JavaScript in the context of a
+                        storefront session. 
 
 
-                        ### When to Use the Storefront API's
+                        ### When to Use the Storefront APIs
 
 
                         * Analytics and Tracking
 
-                        * Displaying data (see Fetch below)
-
-                        * Needing to run a quick API call
+                        * Retrieving cart data client-side
 
                         * Quick Order Form
+
+                        * Upsell applications
 
 
                         ### Using the Fetch API
@@ -9463,21 +9463,25 @@ pages:
                         The [Fetch
                         API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
                         is an alternative to
-                        [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest).
-                        It uses less code and works well with CORS. You can use
-                        the Fetch API to interact with the Storefront API's and
-                        return a shoppers cart, checkout or order. If you are
-                        using Internet Explorer, the Fetch API will not work. It
-                        is recommended to use
-                        [Polyfill](https://github.com/github/fetch) for Internet
-                        Explorer 10+ and XMLHttpRequest for earlier versions.
+                        [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+                        for making http requests in JavaScript. You can use the
+                        Fetch API to interact with the Storefront APIs and
+                        return a shopper's cart, checkout or order. 
 
 
-                        Here we use `credentials: 'include'` to send them even
-                        when doing a cross origin request.
+                        Fetch API is supported by most modern browsers, but it
+                        is not supported in Internet Explorer. We recommend
+                        using a [Polyfill](https://github.com/github/fetch) for
+                        Internet Explorer 10+ and XMLHttpRequest for earlier
+                        versions.
 
-                        You can also use the [Scripts API](http://) to add them
-                        to a store in the footer section.
+
+                        Here we use `credentials: 'include'` to make a fetch
+                        request with credentials.
+
+                        You can run fetch requests from the browser console to
+                        test, or you can  use the [Scripts API](http://) to add
+                        inject JavaScript into your theme's footer.
                       header:
                         anchor: cart-checkout_storefront-cart-and-checkout
                     - type: code
@@ -9556,45 +9560,37 @@ pages:
                         title: Log Order Details to the Console
                       config:
                         mode: html
-                    - type: callout
-                      data:
-                        body: >-
-                          If the script is not rendering on the Stencil theme,
-                          footer scripts may need to be enabled. More on [footer
-                          and header
-                          scripts](https://stencil.bigcommerce.com/docs/checkoutconfirmation-injection-options-clone)
-                          in Stencil. 
                     - type: text
                       data: '---'
                     - type: text
                       data: >-
-                        ## Server to Server
+                        ## Server-to-Server
                         [Cart](/api-reference/cart-checkout/server-server-cart-api)
                         and
                         [Checkout](/api-reference/cart-checkout/storefront-checkout-api)
 
 
-                        The Server to Server API's are for managing the contents
-                        of shopping cart and checkout via OAuth. Using the Cart,
-                        Checkout and Payment API this allows for a fully
-                        headless ecommerce solution.
+                        The Server-to-Server APIs are for managing the contents
+                        of a shopping cart and checkout remotely, from a server.
+                        Using the Cart, Checkout and Payment API allows for a
+                        fully headless ecommerce solution.
 
 
                         ### CaaS
 
 
-                        Commerce-as-a-Service is possible with the Server to
-                        Server API's. It allows for the underlying cart,
-                        checkout, order and payment API's be called in a
-                        seperate app. This mean using any framework you can make
-                        API calls to lead a shopper through a custom experience
-                        without having to use the BigCommerce front-end
-                        checkout.
+                        [Commerce-as-a-Service](https://www.bigcommerce.com/commerce-as-a-service/)
+                        is made possible with the Server-to-Server APIs. It lets
+                        the underlying cart, checkout, order and payment APIs be
+                        called from a separate app, allowing you to create a
+                        completely custom checkout without ever touching the
+                        BigCommerce storefront.
+
 
 
                         ## When to Use
 
-                        * Modying cart contents such as price matching
+                        * Modifying cart contents, such as price matching
 
                         * Taking a shopper through cart and checkout using an
                         app
@@ -9602,23 +9598,25 @@ pages:
                         * Quote Builder - Building a cart then restoring it on
                         the storefront
 
-                        * Building custom apps
+                        * Native mobile apps
 
                         * Pre-filling customer information
                     - type: text
                       data: >-
                         ## Available Webhooks
 
-                        *
-                        [Orders](/api-docs/getting-started/webhooks/webhook-events#webhook-events_orders)
+                        * Orders
 
-                        *
-                        [SKU](/api-docs/getting-started/webhooks/webhook-events#webhook-events_sku)
+                        * SKU
 
-                        *
-                        [Cart](/api-docs/getting-started/webhooks/webhook-events#webhook-events_cart)
+                        * Cart
+
+
+                        For more details and a full list of available scopes,
+                        see [Oauth
+                        Scopes](api-docs/getting-started/about-api/authentication#authentication_oauth-scopes).
                     - type: text
-                      data: >-
+                      data: >+
                         ## OAuth Scopes
 
                         *
@@ -9635,6 +9633,7 @@ pages:
 
                         * [Order
                         Transactions](/api-docs/getting-started/about-api/authentication#authentication_oauth-scopes)
+
               - title: Checkout SDK
                 route:
                   path: /checkout-sdk
@@ -10060,7 +10059,7 @@ pages:
                         - Checkouts
 
 
-                        For more details and a full list of available scopes,
+                        For a more details and a full list of available scopes,
                         see [Oauth
                         Scopes](api-docs/getting-started/about-api/authentication#authentication_oauth-scopes).
                       header:
