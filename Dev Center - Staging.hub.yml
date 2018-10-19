@@ -4257,10 +4257,14 @@
                 {
                   "title": "Orders API",
                   "route": {
-                    "path": "/orders-guide"
+                    "path": "/orders-api-guide"
                   },
                   "data": {
                     "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Orders API Guide</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    \t\t<li><a href=\"#orders-guide_create-order\">Create an Order</a></li>\n    \t\t<li><a href=\"#orders-api-guide_update-order\">Update an Order</a></li>\n        <li><a href=\"#orders-api-guide_next-steps\">Next Steps</a></li>\n\t</ul>\n</div>"
+                      },
                       {
                         "type": "text",
                         "data": "An order can be created using the /orders endpoint. It requires a list of products and a billing address for a valid order.\n\nThis endpoint will accept existing products or custom products created using the products array. Custom products are not added to the existing store’s catalog. "
@@ -4271,7 +4275,10 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Create an Order\n**POST /v2/orders**\n\nAt a minimum, an order needs products and billing addresses. \n\nFor this example, we will create an order using a custom product, existing store product and add a billing address. \n\n### Create a custom product\n\n- **name**: Product Name\n- **quantity**: Number of items\n- **price_inc_tax**: Price including tax\n- **price_ex_tax**: Price excluding tax"
+                        "data": "## Create an Order\n**POST /v2/orders**\n\nAt a minimum, an order needs products and billing addresses. \n\nFor this example, we will create an order using a custom product, existing store product and add a billing address. \n\n### Create a custom product\n\n- **name**: Product Name\n- **quantity**: Number of items\n- **price_inc_tax**: Price including tax\n- **price_ex_tax**: Price excluding tax",
+                        "header": {
+                          "anchor": "orders-api-guide_create-order"
+                        }
                       },
                       {
                         "type": "callout",
@@ -4357,7 +4364,10 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Update an Order\n\nIn the update, we are going to change the order status, customer_id and add an existing store product. \n\n### Order Status\n\nThe order status is currently set to `\"status\": \"Pending\"`. This is the default status for orders made using the API. To change this, the `status_id` needs to be updated with the corresponding id. In this example the status is set to 7 or Awaiting Payment. \n\nFor a full list of order statuses see [Order Status](/api-reference/orders/v2-orders/order-statues/getorderstatuses) endpoint. \n\n### Customer\n\nThe `customer_id` is set to 0. This is the default for orders created using the API. For a list of available customers in the store use the [Customers Endpoint](/api-reference/customer-subscribers/customers-api/customers/getcustomers). \n\n### Add a Product\n\nAn existing store product or a new custom product can be added during a /PUT request. The products must be added as an array of objects. To get a list of store products use the [Catalog Products](/api-reference/catalog/catalog-api/products/getproducts) endpoint. \n\n```\n{\n\t\"products\":[\n\t\t{\n\t\t\t\"product_id\": 196,\n\t\t\t\"quantity\": 1\n\n\t\t}\n\t]\n}\n```"
+                        "data": "## Update an Order\n\nIn the update, we are going to change the order status, customer_id and add an existing store product. \n\n### Order Status\n\nThe order status is currently set to `\"status\": \"Pending\"`. This is the default status for orders made using the API. To change this, the `status_id` needs to be updated with the corresponding id. In this example the status is set to 7 or Awaiting Payment. \n\nFor a full list of order statuses see [Order Status](/api-reference/orders/v2-orders/order-statues/getorderstatuses) endpoint. \n\n### Customer\n\nThe `customer_id` is set to 0. This is the default for orders created using the API. For a list of available customers in the store use the [Customers Endpoint](/api-reference/customer-subscribers/customers-api/customers/getcustomers). \n\n### Add a Product\n\nAn existing store product or a new custom product can be added during a /PUT request. The products must be added as an array of objects. To get a list of store products use the [Catalog Products](/api-reference/catalog/catalog-api/products/getproducts) endpoint. \n\n```\n{\n\t\"products\":[\n\t\t{\n\t\t\t\"product_id\": 196,\n\t\t\t\"quantity\": 1\n\n\t\t}\n\t]\n}\n```",
+                        "header": {
+                          "anchor": "orders-api-guide_update-order"
+                        }
                       },
                       {
                         "type": "callout",
@@ -4400,9 +4410,17 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Next Steps\n* Try updating the `billing_address`\n* Review the [Orders API](/api-reference/orders/orders-api)"
+                        "data": "## Next Steps\n* Try updating the `billing_address`\n* Review the [Orders API](/api-reference/orders/orders-api)",
+                        "header": {
+                          "anchor": "orders-api-guide_next-steps"
+                        }
                       }
                     ]
+                  },
+                  "config": {
+                    "sidebar": {
+                      "token": "GUIDE"
+                    }
                   }
                 }
               ]
