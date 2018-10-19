@@ -3422,7 +3422,105 @@ pages:
                     - type: html
                       data: <h1>Customizing Javascript</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#choosing-dev-path\"> Choosing a Development Path</a></li>\n\t\t<li><a href=\"#front-matter-quick-start\">Front-Matter Quick Start</a></li>\n    <li><a href=\"#front-matter-quick-start\">Handlebars Quick Start</a></li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#choosing-dev-path\">Customizing Javascript</a></li>\n\t\t<li><a href=\"#front-matter-quick-start\">Front-Matter Quick Start</a></li>\n    <li><a href=\"#front-matter-quick-start\">Handlebars Quick Start</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: "## Customizing JavaScript for Individual Pages\n\nHere is a very simple example of customizing the JavaScript provided in the default Stencil theme.\nIn a text editor, open the <theme-name>/assets/js/theme/product.js file. At the top of the Product class, insert the \"Hello World\" statement shown in bold below:\n\n\t\n```\n\texport default class Product extends PageManager {\n  constructor() {\n      super();\n  }\n\n  before(next) {\n      next();\n  }\n\n  loaded(next) {\n      console.log(\"Hello World\");\n    // Init collapsible\n    collapsible();\n    [...]\n}\n```\n\t\nIn your browser, refresh any product-details pop-up or page to see your new `\"Hello World\"` message.\n"
+                      header: {}
+                    - type: text
+                      data: >
+                        ## Bringing Handlebars Context Values into JavaScript
+
+
+                        Within Stencil pages, you can inject any variables from
+                        the Handlebars context into your client-side JavaScript.
+                        You do so by calling the Stencil custom Handlebars
+                        helper named `inject`, shown below:
+
+
+                        `{{inject 'productThumbSize'
+                        theme_settings.productthumb_size}}`
+
+
+                        You could inject the above statement into a page
+                        template rendered with `page_type = "Product"` (for
+                        example: `<theme-name>/templates/pages/product.html`).
+                        Stencil’s `PageManager` class will be provided this
+                        context:
+
+
+                        ```
+
+                        export default class Product extends PageManager {
+                          constructor() {
+                              super();
+                          }
+
+                          before(next) {
+                              next();
+                          }
+
+                          loaded(next) {
+                              console.log("Hello World");
+                              console.log(this.context.productThumbSize);
+                          }
+
+                        }
+
+                        ```
+
+
+                        Note that the
+                        `console.log(this.context.themeImageSizes)`; statement
+                        will report your configured image size, following the
+                        `"Hello World"` message that you previously defined in
+                        the Customizing JavaScript for Individual Pages above.
+                    - type: text
+                      data: >+
+                        ## Installing Various JavaScript Libraries
+
+
+                        Once you have installed the default Stencil theme, you
+                        can add custom JavaScript libraries. To see how this
+                        works, find your favorite library on GitHub – for
+                        example: https://github.com/jquery/jquery.
+
+
+                        To install this particular library for Stencil themes,
+                        you would entering the following on the command line:
+
+
+                        `npm install jquery`
+
+
+                        Next, you would open
+                        `<theme-name>/assets/js/theme/product.js`, and insert
+                        the statements excerpted below:
+
+
+                        ```
+
+                        import $ from 'jquery';
+
+
+                        $('.myElement').click(() => {
+                            alert("You clicked myElement");
+                        });
+
+                        ```
+
+
+                        As always, for specifics, refer to your chosen library’s
+                        documentation.
+
+
+                    - type: text
+                      data: >-
+                        ## Example Links 
+
+
+                        For more-extended examples of adding custom JavaScript
+                        (whether your own or third-party) to a theme, please see
+                        this documentation's JavaScript Customization section.
               - title: Rendering HTML with Ajax
                 route:
                   path: /rendering-html-with-ajax
