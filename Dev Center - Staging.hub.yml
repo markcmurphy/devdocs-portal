@@ -7155,8 +7155,7 @@ pages:
                             data: "<h1> Variants </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#variants_introduction\">Introduction</a></li>\n    <li><a href-\"#variants_create-a-variant\">Create a Variant</a></li>\n    <li><a href-\"#variants_create-variant-product-endpoint\">Create a Variant Using the Product Endpoint</a></li>\n    <li><a href=\"#variant_webhooks\">Available Webhooks </a></li>\n\t\t<li><a href=\"#variant_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
-                              ##
-                              [/catalog/products/{product_id}/variants](/api-reference/catalog/catalog-api/product-variants/createvariant)
+                              ## Introduction
 
 
                               Variants represent an item as it sits on the shelf
@@ -7361,9 +7360,10 @@ pages:
                                 this endpoint. Only one variant option at a time
                                 can be created; individual variant options will
                                 contain an array of multiple values. To use a
-                                variant array and create them at the same time
-                                use the [/catalog/product]() endpoint during
-                                product creation.
+                                variant array and create variants in the same
+                                call as the base product, use the
+                                [/catalog/product](/api-reference/catalog/catalog-api/products/createproduct)
+                                endpoint during product creation.
                           - type: http
                             data:
                               headers:
@@ -7406,7 +7406,7 @@ pages:
                                 Replace the test data with your own.
                               anchor: code-create-variants
                           - type: text
-                            data: "The `option_values` array is a combination of Small and Blue. Together they create the SKU SMALL-BLUE. The id in the option_values array is the id from the variant option response option_values > id. The option_id is the id of the option. \n\n```\n {\n            \"id\": 193, //option_id\n            \"product_id\": 134,\n            \"name\": \"Size1533313432-134\",\n            \"display_name\": \"Size\",\n            \"type\": \"rectangles\",\n            \"sort_order\": 0,\n            \"option_values\": [\n                {\n                    \"id\": 163, //id\n                    \"label\": \"S\",\n                    \"sort_order\": 0,\n                    \"value_data\": null,\n                    \"is_default\": false\n                }\n\t\t\t\t\t\t\t\t...\n```"
+                            data: "The `option_values` array combines the options Small and Blue to create the SKU SMALL-BLUE. The id in the option_values array is the id from the variant option response option_values > id. The option_id is the id of the option. \n\n```\n {\n            \"id\": 193, //option_id\n            \"product_id\": 134,\n            \"name\": \"Size1533313432-134\",\n            \"display_name\": \"Size\",\n            \"type\": \"rectangles\",\n            \"sort_order\": 0,\n            \"option_values\": [\n                {\n                    \"id\": 163, //id\n                    \"label\": \"S\",\n                    \"sort_order\": 0,\n                    \"value_data\": null,\n                    \"is_default\": false\n                }\n\t\t\t\t\t\t\t\t...\n```"
                           - type: text
                             data: '---'
                           - type: text
@@ -7418,8 +7418,8 @@ pages:
                               variant options, and variants in a single call to
                               the /products endpoint. You can use this method to
                               create a product and its variants in a single call
-                              without creating variant options first, but not
-                              all option types are supported by this method.
+                              without creating variant options first, but the
+                              option display type will default to radio button.
                             header:
                               anchor: variants_create-variant-product-endpoint
                           - type: callout
@@ -7490,6 +7490,16 @@ pages:
                               [SKU](/api-docs/getting-started/webhooks/webhook-events#webhook-events_sku)
                             header:
                               anchor: variant_webhooks
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Related Endpoints
+
+                              * [Create
+                              Variant](/api-reference/catalog/catalog-api/product-variants/createvariant)
+                          - type: text
+                            data: '---'
                           - type: text
                             data: '## Object Properties'
                             header:
