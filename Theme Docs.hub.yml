@@ -1596,7 +1596,7 @@ pages:
                           - type: html
                             data: <h1>Troubleshooting Your Setup</h1>
                           - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#troubleshooting_\">Unsupported Node Version</a></li>\n    <li><a href=\"#troubleshooting_\">npm install errors (\"Unmet Peer Dependency\")</a></li>\n    <li><a href=\"#troubleshooting_\">npm install/stencil init Errors/a></li>\n    <li><a href=\"#troubleshooting_\">npm install permissions Errors</a></li>\n    <li><a href=\"#troubleshooting_\">\"Uncaught TypeError: Illegal invocation\" error: Re-run npm install inside Theme Directory</a></li>\n    <li><a href=\"#troubleshooting_\">\"js/bundle\" Errors upon stencil init</a></li>\n    <li><a href=\"#troubleshooting_\">stencil init/stencil start Errors</a></li>\n    <li><a href=\"#troubleshooting_\">Mac OS:\"Xcode/iOS license...\" Errors upon Stencil Commands</a></li>\n\t</ul>\n</div>"
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#troubleshooting_unsupported\">Unsupported Node Version</a></li>\n    <li><a href=\"#troubleshooting_npm-install\">npm install errors (\"Unmet Peer Dependency\")</a></li>\n    <li><a href=\"#troubleshooting_npm-install-stencil-init\">npm install/stencil init Errors/a></li>\n    <li><a href=\"#troubleshooting_npm-install-permissions\">npm install permissions Errors</a></li>\n    <li><a href=\"#troubleshooting_uncaught\">\"Uncaught TypeError: Illegal invocation\" error: Re-run npm install inside Theme Directory</a></li>\n    <li><a href=\"#troubleshooting_js-bundle\">\"js/bundle\" Errors upon stencil init</a></li>\n    <li><a href=\"#troubleshooting_stencil-init\">stencil init/stencil start Errors</a></li>\n    <li><a href=\"#troubleshooting_mac-os\">Mac OS:\"Xcode/iOS license...\" Errors upon Stencil Commands</a></li>\n\t</ul>\n</div>"
                           - type: callout
                             data:
                               title: First Check the Terminal Window
@@ -1615,8 +1615,33 @@ pages:
                                 for error messages that may not be helpful in
                                 revealing the issue you're experiencing.
                           - type: text
-                            data: |
+                            data: >-
                               ## Unsupported Node Version
+
+
+                              If you receive the following error message, please
+                              reinstall Node.js to a supported "LTS" ("Long-Term
+                              Support") version:
+
+
+                              ```
+
+                              Debug: internal, implementation, error
+                                      TypeError: Uncaught error: Object #<Object> has no method 'parse'
+                                      at internals.implementation 
+                                      (/usr/local/lib/node_modules/stencil-cli/server/plugins/CssCompiler/index.js:32:26)
+                              ```
+
+
+                              On Mac OS, we have tested Stencil CLI most
+                              robustly on Node.js version 4.4.0. On Linux, we
+                              have tested most robustly on version 4.1.2. On
+                              Windows, we have tested most robustly on version
+                              4.6.1. You’ll find detailed steps (for each
+                              operating system) in these instructions'
+                              Installing Stencil Prerequisites by OS section.
+                            header:
+                              anchor: troubleshooting_unsupported
                           - type: text
                             data: >-
                               ## `npm install` Errors
@@ -1642,6 +1667,8 @@ pages:
 
 
                               * Re-run `npm install`
+                            header:
+                              anchor: troubleshooting_npm-install
                           - type: text
                             data: >-
                               ## `npm install` and `stencil init` Errors
@@ -1652,6 +1679,19 @@ pages:
                               above to see platform-specific recommendations –
                               if you get unexpected error messages when issuing
                               the npm install or stencil init commands.
+                            header:
+                              anchor: troubleshooting_npm-install-stencil-init
+                          - type: text
+                            data: >-
+                              ## npm install Permissions (EPERM or EACCES)
+                              Errors
+
+
+                              If you get file-permissions errors such as `EPERM`
+                              or `EACCES` when issuing the `npm install`
+                              command, try one of the workarounds listed on this
+                              [external](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
+                              page. 
                           - type: text
                             data: >
                               ## "Uncaught TypeError: Illegal invocation" error
@@ -1665,6 +1705,8 @@ pages:
                               your theme's `/node_modules/` subdirectory, then
                               re-run `npm install` inside your theme's
                               directory.
+                            header:
+                              anchor: troubleshooting_uncaught
                           - type: text
                             data: >+
                               ## "js/bundle" Errors upon `stencil init`
@@ -1724,6 +1766,8 @@ pages:
                               8. Verify your theme's launch at:
                               http://localhost:3000.
 
+                            header:
+                              anchor: troubleshooting_js-bundle
                           - type: text
                             data: >-
                               ## stencil init/stencil start Errors
@@ -1739,6 +1783,8 @@ pages:
                               One way of checking what directory you are working
                               in is by running the `pwd` command in your
                               terminal.
+                            header:
+                              anchor: troubleshooting_stencil-init
                           - type: text
                             data: >-
                               ## stencil start/missing module Errors
