@@ -9044,7 +9044,7 @@
             "data": {
               "children": [
                 {
-                  "title": "Catalog Price Object: How Properties interact",
+                  "title": "Catalog Price Object: How Properties Interact",
                   "route": {
                     "path": "/catalog-price-object"
                   },
@@ -9052,19 +9052,149 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Catalog Price Object: How Properties interact</h1>"
+                        "data": "<h1>Catalog Price Object: How Properties Interact</h1>"
                       },
                       {
                         "type": "html",
-                        "data": "<h1>Hello World!</h1>"
+                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#catalog-price_price-prop-overview\">Price Properties Overview</a></li>\n    <li><a href=\"#catalog-price_cost-price\">Cost Price</a></li>\n    <li><a href=\"#catalog-price_basic-price-example\">Basic Price Example – No \"Sale Price\" Defined</a></li>\n    <li><a href=\"#catalog-price_sale-price-defined\">\"Sale Price\" Defined Example</a></li>\n    <li><a href=\"#catalog-price_prices-and-conditional\">Prices and Conditional Logic – Special for You!</a></li>\n    <li><a href=\"#catalog-price_including-and-or-excluding\">Including and/or Excluding Tax</a></li>\n    <li><a href=\"#catalog-price_tax-sale-price\">Tax/Sale Price Interactions</a></li>\n    <li><a href=\"#catalog-price_mapping-of-control\">Mapping of Control-Panel Options to Catalog Price Properties</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
-                        "data": ""
+                        "data": "## Price Properties Overview\n\nFor each product in a catalog, merchants can use BigCommerce's control panel options to set multiple prices for a product. \n\nAs a theme developer seeking ways to more effectively merchandise products, you might want to engineer your theme to utilize this information and highlight the savings that a merchant is providing over the list price, commonly known as the manufacturer's suggested retail price (MSRP). In order to do this, you will need to reference the correct property that the Stencil catalog price object returns for each product. \n\nThis page explains how the properties interact with each other, and with control-panel options. We will also include an example of building conditional logic around a price property.",
+                        "header": {
+                          "anchor": "catalog-price_price-prop-overview"
+                        }
                       },
                       {
                         "type": "text",
-                        "data": ""
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Cost Price\n\nThe Cost Price property is never returned to the storefront. This is by design. Generally, merchants would not want to reveal the true cost of goods to shoppers. Rather, the cost price field is meant to be consumed by reports and third-party accounting integrations.",
+                        "header": {
+                          "anchor": "catalog-price_cost-price"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Basic Price Example – No `Sale Price` Defined\n\nAssume that the merchant has defined a product’s price like this in the BigCommerce Control Panel:",
+                        "header": {
+                          "anchor": "catalog-price_basic-price-example"
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1539813608717",
+                        "header": {
+                          "title": "Item without sale price defined"
+                        },
+                        "config": {
+                          "centered": true,
+                          "fluid": true,
+                          "bordered": true,
+                          "maxWidth": "650",
+                          "maxHeight": "350"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "In the photo above:\n\n* The `Price` field contains this product’s standard store price.\n* The `Excluding Tax` indicator to the right of the `Price` field is applicable to the whole column of price fields.\n* The `Cost Price` field will not be returned, for reasons described above.\n* The `Retail Price` field contains the list price (also known as MSRP).\n* No `Sale Price has` been set here.\n\n\nA corresponding Stencil `price` object for the product will be structured as follows:\n\n```\n\"product\": {\n  \"price\": {\n    \"without_tax\": {\"formatted\": \"$150.00\",\"value\": 150},\n    \"rrp_without_tax\": {\"formatted\": \"$250.00\",\"value\": 250},\n    \"saved\": {\"formatted\": \"$100.00\",\"value\": 100},\n    \"tax_label\": \"Tax\"\n  }\n}\n```\nItems to note about the Stencil `price` object above: \n\n* The `without_tax` property represents the standard store price (the control panel’s `Price` field).\n* The `rrp_without_tax` property represents the list price or MSRP. (Here, `rrp` is short for \"regular retail price.\")\n* The `saved` property is the computed difference between the `without_tax` versus `rrp_without_tax` values.\n\n"
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## `Sale Price` Defined Example\n\nThis example below is identical, except that here the merchant has assigned the product a discounted `Sale Price` of `$123`:",
+                        "header": {
+                          "anchor": "catalog-price_sale-price-defined"
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1539837943099",
+                        "header": {
+                          "title": "Item with sale price defined"
+                        },
+                        "config": {
+                          "maxWidth": "600",
+                          "maxHeight": "300",
+                          "centered": true,
+                          "fluid": true,
+                          "bordered": true
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "A corresponding Stencil price object for the product will be structured as shown below. \n\n```\n\"product\": {\n  \"price\": {\n    \"without_tax\": {\"formatted\": \"$123.00\",\"value\": 123},\n    \"non_sale_price_without_tax\": {\"formatted\": \"$150.00\",\"value\": 150},\n    \"rrp_without_tax\": {\"formatted\": \"$250.00\",\"value\": 250},\n    \"saved\": {\"formatted\": \"$127.00\",\"value\": 127},\n    \"tax_label\": \"Tax\"\n  }\n}\n```\n\nItems to note regarding the Stencil `price` object above: \n\n* The product’s effective price is the `Sale Price` which appears in the object’s `without_tax` property.\n* The regular store price is now displayed in an added property called `non_sale_price_without_tax`.\n\n"
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Prices and Conditional Logic – Special for You! \n\nStencil structures product prices as described above for backward compatibility with the BigCommerce platform's traditional treatment of prices. As a theme developer, this behavior enables you to embed logic that determines whether to display a strikeout (struck-out) price on the storefront.\n\nThe example below tests for the presence of the `non_sale_price_without_tax` property. If it is present, that means that the product has a sale price, so the page will display the regular store price struck-out:\n\n```\n  {{#if price.non_sale_price_without_tax}}\n     ... [some code to display on-sale strikeout pricing] ...\n  {{/if}}\n```",
+                        "header": {
+                          "anchor": "catalog-price_prices-and-conditional"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Including and/or Excluding Tax \n\nDepending on how the store has been set up in the control panel’s `Store Setup > Tax > Configure Tax Display Settings`, the price object’s properties will represent prices including tax, excluding tax, or in both ways.\n\nThis setting affects not only how values are returned in the Stencil framework, but also how the values appear on storefront pages:",
+                        "header": {
+                          "anchor": "catalog-price_including-and-or-excluding"
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1539842045139",
+                        "header": {
+                          "title": "Configure Tax Display Settings"
+                        },
+                        "config": {
+                          "centered": true,
+                          "fluid": true,
+                          "bordered": true,
+                          "maxWidth": "600",
+                          "maxHeight": "400"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "Below is an example of a Stencil `price` object that returns properties’ values both including, and excluding, tax. Here, we have configured a flat 10% tax rate:\n\n```\n\"product\": {\n  \"price\": {\n    \"with_tax\": {\"formatted\": \"$165.00\",\"value\": 165},\n    \"without_tax\": {\"formatted\": \"$150.00\",\"value\": 150},\n    \"rrp_with_tax\": {\"formatted\": \"$275.00\",\"value\": 275},\n    \"rrp_without_tax\": {\"formatted\": \"$250.00\",\"value\": 250},\n    \"saved\": {\"formatted\": \"$110.00\",\"value\": 110},\n    \"tax_label\": \"Tax\"\n  }\n}\n```\n\nItems to note:\n\n* The `with_tax` property is new in this example, and represents the `without_tax` value plus a 10% tax markup.\n* The `rrp_with_tax` property is new as well, and represents the `rrp_without_tax` value plus a 10% tax markup.\n*You would see the same new properties and values if the control-panel setting had been `Including tax`, rather than `Including and excluding tax`. But these properties/vaues would not be added for a control-panel seting of Excluding tax."
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Tax/Sale Price Interactions \n\nHere is the same example – values both including and excluding tax, and a flat 10% tax rate – but we have also defined a sale price for the product:\n\n```\n\"product\": {\n  \"price\": {\n    \"with_tax\": {\"formatted\": \"$135.30\",\"value\": 135.3},\n    \"without_tax\": {\"formatted\": \"$123.00\",\"value\": 123},\n    \"rrp_with_tax\": {\"formatted\": \"$275.00\",\"value\": 275},\n    \"rrp_without_tax\": {\"formatted\": \"$250.00\",\"value\": 250},\n    \"saved\": {\"formatted\": \"$139.70\",\"value\": 139.7},\n    \"non_sale_price_without_tax\": {\"formatted\": \"$150.00\",\"value\": 150},\n    \"non_sale_price_with_tax\": {\"formatted\": \"$165.00\",\"value\": 165},\n    \"tax_label\": \"Tax\"\n  }\n}\n```\n\nHere again:\n\n* The `with_tax` property represents the without_tax value, plus a 10% tax markup.\n* The `rrp_with_tax` property represents the `rrp_without_tax` value, plus a 10% tax markup.\n\nNew here:\n\n* The `non_sale_price_without_tax` and `non_sale_price_with_tax` properties are added, to represent the standard store price (respectively) without and with tax.\n* The saved value is now based on the difference between the `with_tax` versus `non_sale_price_with_tax` values.\n* You would see the same results if the control-panel setting had been Including tax, rather than Including and excluding tax. But these properties/values would not be added for a control-panel seting of Excluding tax.",
+                        "header": {
+                          "anchor": "catalog-price_tax-sale-price"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Mapping of Control-Panel Options to Catalog Price Properties\n\nThis table shows how price options available in the BigCommerce control panel relate to properties returned on the Stencil framework.\n\n<table>\n  <tr>\n    <th>Control-Panel Field</th>\n    <th>Stencil Catalog Price Object and Property</th>\n    <th>Notes</th>\n  </tr>\n\n  <tr>\n    <td>Retail Price (excluding tax)</td>\n\t\t<td><code>{{ product.price.rrp_without_tax }}</code></td>\n    <td>Typically used to represent the product’s list price (MSRP).</td>\n  </tr>\n\n  <tr>\n    <td>Retail Price (including tax)</td>\n\t\t<td><code>{{ product.price.rrp_with_tax }}</code></td>\n    <td>Typically used to represent the product’s list price (MSRP), including tax.</td>\n  </tr>\n\n  <tr>\n    <td>Price (excluding tax)</td>\n\t\t<td><code>{{ product.price.non_sale_price_without_tax }}</code></td>\n    <td>The standard store price for the product.</td>\n  </tr>\n\n  <tr>\n    <td>Price (including tax)</td>\n\t\t<td><code>{{ product.price.non_sale_price_with_tax }}</code></td>\n    <td>The standard store price for the product, with tax.</td>\n  </tr>\n  \n  <tr>\n    <td>Sale Price (excluding tax)</td>\n\t\t<td><code>{{ product.price.without_tax }}</code></td>\n    <td>This product’s discounted/sale price.</td>\n  </tr>\n  \n  <tr>\n    <td>Sale Price (including tax)</td>\n    <td>{{ product.price.with_tax }}</td>\n    <td>This product’s discounted/sale price, with tax.</td>\n  </tr>\n  \n  <tr>\n    <td>[No control-panel field]</td>\n    <td>{{ product.price.saved }}</td>\n    <td>The customer’s savings on the effective price versus list price.</td>\n  </tr>\n</table>",
+                        "header": {
+                          "anchor": "catalog-price_mapping-of-control"
+                        }
                       }
                     ]
                   }
@@ -9078,11 +9208,18 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Hello World!</h1>"
+                        "data": "<h1>Cart Price Properties: Relationships</h1>"
                       },
                       {
                         "type": "html",
-                        "data": "<h1>Hello World!</h1>"
+                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#cart-price_cart-price-props\">Cart Price Properties: Relationships</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "This page shows the relationship of price properties available on the `{{cart.items}}` object. These properties' values cascade as follows.\n\nFor a single cart item, the `rrp` property contains the list price, also known as MSRP:\n\n```\n\"rrp\": { \n  \"formatted\": \"$130.00\",\n  \"value\": 130\n}\n```\n\nLet's assume that the standard store price for this item is actually $100.00, and that these bulk discount rules are applied:\n\n```\n\"bulk_pricing\": { \n  \"base_price\": {\n    \"formatted\": \"$100.00\",\n    \"value\": 100\n  },\n  \"discount_percentage\": 5,  \n  \"discount_amount\": null\n}\n```\n\nWithin `{{cart.items}}`, the `price` property contains the item's price after bulk discounts, but before cart discounts and promotions:\n\n```\n\"price\": { \n  \"formatted\": \"$95.00\",\n  \"value\": 95\n}\n```\n\nThe `price_discounted` property contains the item's price after cart discounts and promotions:\n\n```\n\"price_discounted\": {  \n  \"formatted\": \"$85.50\",\n  \"value\": 85.5\n}\n```\n\n",
+                        "header": {
+                          "anchor": "cart-price_cart-price-props"
+                        }
                       }
                     ]
                   }
@@ -9096,11 +9233,18 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Hello World!</h1>"
+                        "data": "<h1>Calling Theme-Wide Variables via Handlebars</h1>"
                       },
                       {
                         "type": "html",
-                        "data": "<h1>Hello World!</h1>"
+                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#calling-theme-wide_calling-theme-wide\">Calling Theme-Wide Variables via Handlebars</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Calling Theme-Wide Variables via Handlebars\n\nAs shown in an earlier Quick Start example, you can reference variables from `config.json` in a theme template's front matter. But you can also call any `config.json` variable within a template's HTML/Handlebars body, by using a Handlebars expression that precedes the variable with `theme_settings`.\n\nBelow, from Cornerstone's `templates/pages/home.html`, is a code snippet that provides three examples:\n\n```\n<div class=\"main full\">\n    {{#if products.featured}}\n        {{> components/products/featured products=products.featured\n            columns=theme_settings.homepage_featured_products_column_count}}\n    {{/if}}\n\n    {{#if products.top_sellers}}\n        {{> components/products/top products=products.top_sellers\n            columns=theme_settings.homepage_top_products_column_count}}\n    {{/if}}\n\n    {{#if products.new}}\n        {{> components/products/new products=products.new \n            columns=theme_settings.homepage_new_products_column_count}}\n    {{/if}}\n</div> \n```\n\nAbove, each `if` conditional statement tests whether one of the three products attributes (Featured Products, Top Sellers/Popular Brands, or New Products) is declared within this template's front matter. If so, for the corresponding section on this page, it sets the local column count to match the theme-wide `theme_settings...._column_count value` defined in `config.json`.",
+                        "header": {
+                          "anchor": "calling-theme-wide_calling-theme-wide"
+                        }
                       }
                     ]
                   }
@@ -9114,11 +9258,71 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Hello World!</h1>"
+                        "data": "<h1>Dynamic Content Rendering on Stencil Storefronts</h1>"
                       },
                       {
                         "type": "html",
-                        "data": "<h1>Hello World!</h1>"
+                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#dynamic-content_why-dynamic-content\">Why Dynamic Content?: Dropzones, Dynamic Tabs, and Snippets</a></li>\n    <li><a href=\"#dynamic-content_dropzones\">Dropzones</a></li>\n    <li><a href=\"#dynamic-content_dynamic-tabs\">Dynamic Tabs</a></li>\n    <li><a href=\"#dynamic-content_snippets\">Snippets</a></li>\n    <li><a href=\"#dynamic-content_recap\">Recap</a></li>\n  </ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "_We're gratefully sharing techniques devised by Ken Utting, Web Developer for BigCommerce client goruck.com_.\n\n## Why Dynamic Content?: Dropzones, Dynamic Tabs, and Snippets\n\nAt GORUCK, we've customized our Stencil theme (currently using the [Merchant](https://www.bigcommerce.com/theme/merchant-light/?_ga=2.52710120.1984523106.1539568940-967431010.1523308107) theme) to provide several ways to update our site content without requiring changes to the theme itself. This allows our content folks to make changes to our theme without having to wait on our software developers.\n\nAlso, by pushing content out of the theme, these techniques reduce the differences between our customized theme and the out-of-the-box (base) theme – which makes it easier to integrate ongoing updates into our theme. Finally, these techniques allow us share identical content across pages without copying and pasting.\n\nThree techniques in particular have proven useful to us. We call them Dropzones, Dynamic Tabs, and Snippets. There is nothing particularly special to GORUCK about these techniques, so there is no reason you can't adopt them for your own store/theme.\n\n### Building on the Control Panel\n\nThe BigCommerce control panel provides an HTML editor where you can enter custom content for Products, Categories, and custom static pages (Storefront > Web Pages). However, we encountered the following limitations:\n\nThe HTML editor will remove a number of tags, particularly style and script tags.\n\nWithout changes like the ones we made at GORUCK (described below), all the content will be placed in a single location on the page.\n\nAt GORUCK, we needed the ability to inject arbitrary HTML into our page, and to place that content at various specific page locations. To achieve this, we developed the three techniques described below.",
+                        "header": {
+                          "anchor": "dynamic-content_why-dynamic-content"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Dropzones\n\nLet's say that at the top of your category pages, you want to display a full-width, category-specific, image. And at the bottom of these pages, you want to display a category-specific message or image gallery.\n\nOne possibility is to define a custom page for every category. But aside from the work involved to set this up, every time you added or removed a category, you would need to add or remove a custom page from your theme. And of course, it's possible that you would also want control like this on product pages, and on other pages on your storefront.\n\nA more general solution we implemented was to create a small set of custom pages: one for categories, one for products, and so on. Each of the custom pages contains a few `div` elements that define dropzones for that page.\n\nWith these dropzones defined, we can then populate them with dynamic content specific to any instance of the page. Here is an example of a dropzone that places an image gallery at the bottom of a category page:",
+                        "header": {
+                          "anchor": "dynamic-content_dropzones"
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1539874696853",
+                        "header": {
+                          "title": "Dropzone that places an image gallery at the bottom of a category page"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "### Dropzones HTML\n\nThe HTML for a dropzone is simply something like:\n\n`<div id=\"gr-dropzone-top\"></div>`\n\nwhere the div's `id` defines the dropzone's name.\n\nThen, using the BigCommerce **control panel's custom HTML editor** (in this example, the Categories editor), we place our content inside div tags that specify the dropzone where the content should be inserted. Here is a simple example:\n\n```\n<div class=\"gr-dropzone\" data-gr-zone=\"gr-dropzone-top\">\n    <p>This content will be placed in a dropzone at the top of the page, because that dropzone has the id matching our data-gr-zone attribute.</p>\n</div>\n```\n\n### Dropzones HTML Example\n\nHere is an example of some HTML that we actually use:\n\n```\n<div class=\"gr-dropzone\" data-gr-zone=\"gr-dropzone-bottom\">\n    <h3>GORUCK GEAR IN THE FIELD</h3>\n    <div id=\"bv-grid-gallery\" data-gr-groups=\"goruck-rm-group\" data-gr-tags=\"gear\"></div>\n</div>\n```\n\n### Dropzones JavaScript\n\nThe content is moved from the default location to the dropzone by JavaScript we added to the PageManager class. In BigCommerce's Cornerstone base theme, Pixel Union's Merchant theme, and other Stencil themes, PageManager is the parent class of all page classes. So, its methods get invoked on every page. This makes it a great place to put code like this, which needs to run every time a page is loaded.\n\nWe modified our theme's PageManager.before method to invoke a new method named `gr_moveHtmlToDropzones`:\n\n```\n gr_moveHtmlToDropzones () {\n        $(\".gr-dropzone\").each(function () {\n            const $this = $(this);\n            const zoneId = $this.data(\"gr-zone\");\n            if (zoneId) {\n                $(\"#\" + zoneId).html($this.html());   // copy the html to where it should be\n                $this.remove();             // remove the html from its temporary location\n            } else {\n                console.warn(\"PageManager.gr_moveHtmlToDropzones: dropzone has no target.\");\n            }\n        });\n    }\n```\n\nFinally, in our .scss file, we set the `.gr-dropzone` class to display: none. This prevents the content from appearing on the page in the wrong location before PageManager has a chance to move it into the dropzone."
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Dynamic Tabs\n\nOur Stencil base theme presents information on our product pages in several tabs. We wanted to introduce several new tabs, and to vary the tabs by product category and brand. Additionally, we wanted the ability to store a tab's content in an external file, on our WebDAV or CDN (content delivery network).\n\nBy storing content in an external file, we can share identical content across pages, without copying and pasting. Also, changes to the content can be made just once, and be reflected on all our pages.\n\nSo we implemented a feature we call Dynamic Tabs. Dynamic Tabs are similar to dropzones, in that they allow you to use the control panel's HTML editor to provide content, while moving it to a specific location on the page. In this case, our content will appear in a tab.\n\nIn the example below, we use this technique to place the `RIGHT BY YOU` tab in the fourth position:"
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1539874970240"
+                      },
+                      {
+                        "type": "text",
+                        "data": "### Dynamic Tabs HTML\n\nThere are two versions of the HTML. The first is designed for a tab you want to drop in using a page's own HTML:\n\n```\n<div class=\"gr-tab\" data-gr-position=\"POSITION\" data-gr-title=\"TITLE\"> \n     CONTENT \n</div>\n```\n\nThe second version is designed for a tab that gets its content from an external file:\n\n```\n<div class=\"gr-tab\" data-gr-content=\"CONTENT URL\">\n</div>\n```\n\nIn this second case, the HTML in that external file must start with the POSITION and TITLE information:\n\n```\n<input id=\"gr-tab-data\" type=\"hidden\" data-gr-position=\"POSITION\" data-gr-title=\"TITLE\" /> \n CONTENT\n```\n\n### Dynamic Tabs Parameters\n\nPOSITION is a number, which determines where the dynamic tab will be put. For example, a POSITION of 3 means that the tab will be placed after the third tab.\n\nWe use a POSITION of 0 to place a tab ahead of the first tab. If the POSITION attribute is omitted, the tab will be placed after all the other tabs. (Note that if you add multiple dynamic tabs, any POSITION that you specify must account for the previously inserted dynamic tabs.)\n\nTITLE is the text you want to display as the tab's title. For example: Our Guarantee.\n\nCONTENT is any arbitrary HTML, and is displayed when the user clicks on the tab's title.\n\n### Dynamic Tabs HTML Example\n\nTo create the RIGHT BY YOU tab in the screenshot above, we added this code to our base theme's templates/pages/product.html template:\n\n```\n<!-- GORUCK Customization: pull in a dynamic tab -->\n  <div class=\"gr-tab\" data-gr-content=\"/content/tabs/dynamicTab1.html?v=14\">\n  </div>\n```\n\nThis tells our code to pull in a file named `dynamicTab1.html`, located in our WebDAV's `/content/tabs/` folder. The querystring is used just to defeat caching.\n\nHere are the contents of our `dynamicTab1.html` file:\n\n```\n<input id=\"gr-tab-data\" type=\"hidden\" data-gr-position=\"3\" data-gr-title=\"Right By You\"/>\n<div class=\"container container-small gr-rightbyyou\">\n  <div style=\"display: flex; flex-direction: column\">\n    <div style=\"display: flex\">\n      <div>\n        <img style=\"display: block; width: 100px; max-width: 100px; margin-right: 24px\" \n        src=\"https://content.goruck.com/2017site/products/free-returns-icon.png\" height=\"auto\"/>\n      </div>\n    <div>\n      <h3 style=\"margin-top: 0\">Free &amp; Easy Returns</h3>\n      <p>Don't like it? Send it back for free. Returnable in like-new condition within 30 days and \n      every order comes with a free return shipping label. Too easy.</p>\n    </div>\n  </div>\n\n  <div style=\"display: flex; margin-top: 12px\">\n    <div>\n      <img style=\"display: block; width: 100px; max-width: 100px; margin-right: 24px\" \n      src=\"https://content.goruck.com/2017site/products/challenge-excellence.png\" height=\"auto\"/>\n    </div>\n\n    <div>\n      <h3 style=\"margin-top: 0\">Challenge Excellence</h3>\n      <p>We have two grades, A and F and A- rounds down. Excellence is the standard and please hold us to it, \n      we want you to love your gear as much as we do.</p>\n    </div>\n  </div>\n\n  <div style=\"display: flex; margin-top: 12px\">\n    <div>\n      <img style=\"display: block; width: 100px; max-width: 100px; margin-right: 24px\" \n      src=\"https://content.goruck.com/2017site/products/customer-service-icon.png\" height=\"auto\"/>\n    </div>\n      <div>\n        <h3 style=\"margin-top: 0\">Do Right By People</h3>\n        <p>Our goal is to run a company our grandfathers would be proud of. And the central tenet \n        &mdash; an oldie but a goodie &mdash; is that we do whatever it takes to do right by people.\n        Contact us at <a href=\"https://goruck.zendesk.com/hc/en-us/requests/new\" target=\"_blank\">\n        team@goruck.com</a> with any questions and we'll get back to you ASAP.</p>\n      </div>\n    </div>\n  </div>\n</div>\n```\n\n### Dynamic Tabs Javascript \n\nAgain, the JavaScript code to implement Dynamic Tabs is invoked in the PageManager class' before method. The Dynamic Tabs code is more complex, and it relies on other classes we wrote to get content from the external server and cache it in the browser.\n\nNevertheless, none of it is rocket science. The three classes involved are 250 lines of code. Interested readers are invited to contact me via the BigCommerce Developers forum for more information about the implementation.\n\n"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Snippets\n\nSnippets are similar to Dynamic Tabs, in that they allow you to use the BigCommerce control panel's HTML editor to provide content, but pull it from a separate file. This allows you to share common content across multiple pages.\n\nAlso, because the control panel's HTML editor strips out stylesheets, this is a good way to provide page-specific styles for a page.\n\nWe use snippets at GORUCK to display our sizing charts, as shown below. This makes sense since because we have a handful of charts that need to be shared across many products, so we don't want to copy and paste each chart for every product that needs it."
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1539878331668",
+                        "config": {
+                          "centered": true,
+                          "fluid": true,
+                          "bordered": true,
+                          "maxWidth": "650",
+                          "maxHeight": "350"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Snippets HTML\n\nHere is the format of the HTML that needs to placed on each page that uses the snippet:\n\n```\n<div class=\"gr-snippet\" data-gr-content=\"CONTENT URL\">\n     <em>Loading...</em>\n</div>\n```\n\nThe external file can contain any arbitrary HTML and CSS, and the styled HTML is displayed in the page location where the `gr-snippet` div is located.\n\n## Snippets JavaScript\n\nLike Dropzones and Dynamic Tabs, the Snippets code is invoked in `PageManager`'s `before` method. Snippets adds just another 50 lines of JavaScript code to the theme, also relying on the same code that Dynamic Tabs uses to get the external file and cache it in the browser.\n\n"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Recap \n\nAt GORUCK, we've developed a number of techniques that allow us to separate our content from our theme. These techniques have proved valuable to us, because they allow us to:\n\n* Keep our content development and software development workflows separate.\n* Reduce modifications to our theme, which simplifies merging updates from our theme provider.\n* Share content across multiple pages.\n* Tailor our content based on product category and brand."
                       }
                     ]
                   }
