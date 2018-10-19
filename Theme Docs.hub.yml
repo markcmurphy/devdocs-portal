@@ -3310,6 +3310,12 @@ pages:
                                 Bundling your theme will also fail, blocking its
                                 upload to a store.
                               title: Subdirectory/File Permissions Required
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: "## Local Mapping and Testing\n\nTo test your custom templates locally, you must edit your `<theme-name>/.stencil` file to create mappings between each local template and a corresponding URL. Within the `.stencil` file, look for the following section:\n\n```\n\"customLayouts\": {\n    \"product\": {},\n    \"brand\": {},\n    \"category\": {},\n    \"page\": {}\n  }\n```\n\nIn this section, you would populate keys to create mappings. As a simple example, assume that you have a product custom template named alternate-`product.html`, and you want to see that template locally at the URL: http://localhost:3000/test-url/. In this case, you must populate the product key as follows:\n\n```\n    \"product\": {\n    \t\"alternate-product.html\":\"/test-url/\"\n    },\n```\n"
+                            header:
+                              anchor: authoring-testing-uploading_local-mapping
                     - title: Assigning Templates to Pages
                       route:
                         path: /new-subpage-1
