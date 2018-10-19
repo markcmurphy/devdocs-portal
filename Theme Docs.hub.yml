@@ -2857,7 +2857,7 @@ pages:
                     - type: html
                       data: <h1>Customizing a Theme</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#configuring_before\">Before You Begin</a></li>\n    <li><a href=\"#configuring_before\">Before You Begin</a></li>\n\t\t<li><a href=\"#configuring_config-json\">Configuring config.json Keys</a></li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#customizing_before\">Before You Begin</a></li>\n    <li><a href=\"#customizing_video\">Customizing a Theme: Video Series</a></li>\n\t\t<li><a href=\"#customizing_config-json\">Configuring config.json Keys</a></li>\n    <li><a href=\"#customizing_basic-changes\">Making Basic Design/Layout Changes</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         ## Before You Begin
@@ -2910,20 +2910,107 @@ pages:
                         Continue reading if you would like information to
                         supplement the videos, or if you would get started
                         customizing your theme by reading and following along.
+                      header:
+                        anchor: customizing_video
                     - type: text
                       data: "## Configuring config.json Keys\n\n**Note:** these instructions will refer to the top-level theme directory as _cornerstone_.\n\nThe first thing you must do when beginning theme developement is configure certain values in the [cornerstone/config.json file](https://github.com/bigcommerce/cornerstone/blob/master/config.json). For example, here are the first few key/value sets in Cornerstone's config.json:\n\n```\n{\n\"name\": \"Cornerstone\",\n\"version\": \"1.0.0\",\n\"meta\": {\n  \"price\": 0,\n   \"documentation_url\": \t\t\n   \"https://support.bigcommerce.com/articles/Public/Cornerstone-\n   \tTheme-Manual\",\n  ...\n  }\n}\n```\n\nFor further details about `config.json` settings and a breakdown of each key/value set, please see the [in-depth config.json reference](). \n\nThe next code block shows how you might change these values to reflect your own theme’s name, version number, price on Theme Marketplace, and documentation URL:\n\n```\n{\n\"name\": \"MyTheme\",\n\"version\": \"1.1.2\",\n\"meta\": {\n  \"price\": 10000,\n  \"documentation_url\": \"https://www.mywebsite.com/theme-docs/my-theme.html\",\n  ...\n  }\n}\n```"
                       header:
                         anchor: configuring_config-json
+                    - type: text
+                      data: >+
+                        ## Making Basic Design & Layout Changes
+
+
+                        ### Changing the Footer’s Background Color (config.json)
+
+
+
+                        ### Changing the Product Image Size (config.json and
+                        Handlebars)
+
+
+
+                        ### Redesigning Page Elements (config.json and
+                        Handlebars)
+
+
+                        The following example demonstrates how to redesign a
+                        storefront page’s layout by editing Handlebars
+                        statements in the page’s HTML. The goal here is simply
+                        to move the Product landing page’s "Customers Also
+                        Viewed" panel above that page’s "Product Reviews" panel.
+
+
+                        With your storefront’s local version loaded in a
+                        browser, click through to any product, and note the
+                        relative positions of the "Product Reviews" and
+                        "Customers Also Viewed" panels.
+
+
+                        Next, open your working theme’s
+                        `<theme-name>/templates/components/products/tabs.html
+                        file`. As indicated below, **delete or comment out** the
+                        `similar_by_views` component:
+
+
+                        ```
+
+                        // ...
+                          {{#if product.similar_by_views}}
+                              <li class="tab" role="presentational">
+                                  <a class="tab-title" href="#tab-similar" role="tab" tabindex="0" aria-selected="false" controls="tab-similar">{{lang 'products.similar_by_views'}}</a>
+                              </li>
+                          {{/if}}
+                        </ul>
+
+
+
+                        // ...
+
+
+                        {{#if product.similar_by_views}}
+                          <div role="tabpanel" aria-hidden="true" class="tab-content has-jsContent" id="tab-similar">
+                              {{> components/products/carousel products=product.similar_by_views columns=6}}
+                          </div>
+                        {{/if}}
+
+                        </div>
+
+                        ```
+
+
+                        Now open your `/templates/pages/product.html` file. As
+                        indicated below (in bold), add the `similar_by_views`
+                        component with a reusable carousel wrapper:
+
+
+                        ```
+
+                        {{#if product.videos.list.length}}
+                          {{> components/products/videos product.videos}}
+                        {{/if}}
+
+
+                        {{#if product.similar_by_views}}
+                           {{> components/products/carousel products=product.similar_by_views columns=6}}
+                        {{/if}}
+
+
+                        {{#if settings.show_product_reviews}}
+                          {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                        {{/if}}
+
+                        ```
+
+
+                        In your browser, refresh the product page, and check the
+                        new arrangement of these components.
+
+
+
+                      header:
+                        anchor: customizing_basic-changes
                   children: []
-              - title: Making Basic Design & Layout Changes
-                route:
-                  path: /making-basic-design-and-layout-changes
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1>Making Basic Design and Layout Changes</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#choosing-dev-path\">Changing the Footer’s Background Color (config.json)</a></li>\n\t\t<li><a href=\"#front-matter-quick-start\">Changing the Product Image Size (config.json and Handlebars)\n</a></li>\n    <li><a href=\"#front-matter-quick-start\">Redesigning Page Elements (config.json and Handlebars)\n</a></li>\n\t</ul>\n</div>"
               - title: config.json Resource Interactions
                 route:
                   path: /config-json-resource-interactions
