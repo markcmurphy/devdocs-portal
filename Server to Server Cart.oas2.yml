@@ -827,10 +827,7 @@ definitions:
     title: Currency
   LineItem:
     type: object
-    required:
-      - physical_items
-      - digital_items
-      - gift_certificates
+    title: Line Item
     properties:
       physical_items:
         type: array
@@ -844,7 +841,13 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/ItemGiftCertificate'
-    title: Line Item
+      virtual_item:
+        type: array
+        items: {}
+    required:
+      - physical_items
+      - digital_items
+      - gift_certificates
   ItemGiftCertificate:
     type: object
     required:
