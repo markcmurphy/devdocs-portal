@@ -7513,11 +7513,10 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1> Modifier Options </h1>\n\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#modifier_introduction\">Introduction</a></li>\n        <li><a href=\"#modifier_add-modifer\">Add Modifier to Existing Product</a></li>\n        <li><a href=\"#modifier_422-error\">422 Error</a></li>\n\t\t<li><a href=\"#modifier_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                            data: "<h1> Modifier Options </h1>\n\n<div class=\"otp\" id=\"no-index\">\n\t<h3>On This Page</h3>\n\t<ul>\n\t\t<li><a href=\"#modifier_introduction\">Introduction</a></li>\n        <li><a href=\"#modifier_add-modifer\">Add Modifier to Existing Product</a></li>\n        <li><a href=\"#modifier_422-error\">Troubleshooting: 422 Error</a></li>\n\t\t<li><a href=\"#modifier_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
-                              ##
-                              [/catalog/products/{product_id}/modifiers](/api-reference/catalog/catalog-api/product-modifiers/getmodifiers)
+                              ## Introduction
 
 
                               Modifier options are any choices that the shopper
@@ -7550,30 +7549,39 @@ pages:
 
 
                               An adjuster can be added to a modifier option to
-                              change things such as adding to the price,
-                              changing the weight or shipping rules.  Adjusters
-                              cannot be applied to all modifiers.
+                              change things such as increasing the price,
+                              changing the weight, or shipping rules.  Adjusters
+                              cannot be applied to all modifier types.
                             header:
                               anchor: modifier_introduction
                           - type: callout
                             data:
-                              title: Modifiers that use Adjusters
+                              title: Modifiers that support Adjusters
                               body: >-
                                 Swatch, radio buttons, rectangle list,
                                 drop-down, product list, product list with
                                 images
                           - type: text
                             data: >-
-                              ## Add a modifier to an existing product with
-                              price adjuster
+                              ## Add a modifier with price adjuster to an
+                              existing product
 
 
-                              The following example shows how to add a modifier
-                              - checkbox with a price adjuster - increase price
-                              by five dollars. Checkboxes have to made in two
-                              steps.  The reason is that it creates more than
-                              one modifier. A checkbox is a yes or no which is
-                              listed as two different `option_values`. 
+                              The following example shows how to add a modifier,
+                              a checkbox with a price adjuster, that will
+                              increase the product's price by five dollars. 
+
+
+                              Creating a checkbox with an adjuster requires two
+                              separate calls: one to create the checkbox and a
+                              second to add the adjuster. Adjusters are defined
+                              within the `option_values` array, but
+                              `option_values` are not allowed in the request to
+                              create a checkbox modifier because creating a
+                              checkbox automatically generates two mandatory
+                              option values: a Yes and a No. Once the checkbox
+                              has been created along with its option values, you
+                              can update the modifier to add an adjuster. 
                             header:
                               anchor: modifier_add-modifer
                           - type: callout
@@ -7582,7 +7590,9 @@ pages:
                                 swatch, radio buttons, drop-down, rectangle
                                 list, product list, product list with images,
                                 and checkbox.
-                              title: Modifiers that have to be created in two steps
+                              title: >-
+                                Modifiers that require a second step to add an
+                                adjuster
                           - type: text
                             data: 'First, a POST to create the modifier. '
                           - type: http
@@ -7615,8 +7625,8 @@ pages:
                           - type: text
                             data: >-
                               Since this is a checkbox which has two states,
-                              checked/unchecked or yes/no two option values are
-                              created. The adjuster values are null. 
+                              checked/unchecked or yes/no, two option values are
+                              created. The default adjuster values are null. 
                           - type: code
                             data: |
                               {
@@ -7698,9 +7708,9 @@ pages:
                               mode: json
                           - type: text
                             data: >-
-                              Then a PUT to update the modifier value created.
-                              This increases the price by $5 when the yes
-                              modifier is selected.
+                              Next send a PUT request to update the modifier
+                              value. This increases the price by $5 when the Yes
+                              option value is selected.
                           - type: http
                             data:
                               headers:
@@ -7731,7 +7741,7 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
-                              ## 422 Error
+                              ## Troubleshooting: 422 Error
 
 
                               ```
@@ -7759,6 +7769,12 @@ pages:
                               anchor: modifier_422-error
                           - type: text
                             data: '---'
+                          - type: text
+                            data: >-
+                              ## Related Endpoints
+
+                              * [Get
+                              Modifiers](/api-reference/catalog/catalog-api/product-modifiers/getmodifiers)
                           - type: text
                             data: '## Object Properties'
                             header:
