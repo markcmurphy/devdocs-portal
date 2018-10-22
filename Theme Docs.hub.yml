@@ -4411,14 +4411,17 @@ pages:
                           - type: html
                             data: <h1>Optimized One-Page Checkout</h1>
                           - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#optimized_opt-into\">Opt Into Optimized One Page Checkout</a></li>\n\t</ul>\n</div>"
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#optimized_opt-into\">Opt Into Optimized One Page Checkout</a></li>\n    <li><a href=\"#optimized_opt-into\">Opt Into Optimized One Page Checkout</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >
                               ## Opt Into Optimized One Page Checkout
 
 
-                              To opt into BigCommerce's Optimized One-Page
-                              Checkout option, use the following steps:
+                              In order to customize Stencil's Optimized One Page
+                              Checkout, you must first opt into BigCommerce's
+                              Optimized One-Page Checkout option if your store
+                              is not already running on Optimized One Page
+                              Checkout. To do so, use the following steps:
 
 
                               1. Update your Stencil CLI installation to the
@@ -4467,12 +4470,13 @@ pages:
 
 
                               **Note:** _For Optimized One-Page Checkout to work
-                              properly, the order-confirmation.html template
-                              must be present in your theme. If this template is
-                              absent, shoppers will receive a server error upon
-                              submitting their order.(The corresponding template
-                              was named order-complete.html in earlier versions
-                              of Stencil themes. But that minimal template is
+                              properly, the `order-confirmation.html` template
+                              **must** be present in your theme. If this
+                              template is absent, shoppers will receive a server
+                              error upon submitting their order.(The
+                              corresponding template was named
+                              `order-complete.html` in earlier versions of
+                              Stencil themes. But that minimal template is
                               **not** a substitute for the required current
                               template.)_
                             header:
@@ -4484,8 +4488,26 @@ pages:
                               title: >-
                                 Choosing Optimized One Page Checkout in the
                                 Control Panel
+                              subtitle: 'Step #2 in the above description'
+                            config:
+                              centered: true
+                              fluid: true
+                              bordered: true
                           - type: text
-                            data: ''
+                            data: >
+                              ## Working with the Theme SCSS File 
+
+
+                              Stencil's Cornerstone theme includes an SCSS file
+                              that styles the Optimized Checkout page. In your
+                              local installation, this file is located at
+                              `<theme-name>/assets/scss/optimized-checkout.scss`.
+
+
+                              You can access the most recent version of this
+                              file in the Cornerstone Repo
+                              [here](https://github.com/bigcommerce/cornerstone/blob/master/assets/scss/theme.scss),
+                              even if your theme is not based on Cornerstone.
                     - title: Currency Conversion
                       route:
                         path: /currency-conversion
