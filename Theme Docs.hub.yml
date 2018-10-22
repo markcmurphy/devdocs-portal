@@ -3743,9 +3743,9 @@ pages:
                         theme, refer to [Bundling and
                         Uploading](/stencil-docs/prepare-and-upload-a-theme/bunding-and-uploading)
                         a Theme.
-        - title: Stencil's Template Files
+        - title: Template Files
           route:
-            path: /templates-directory
+            path: /template-files
           data:
             children:
               - title: Templates Directory
@@ -4265,17 +4265,6 @@ pages:
                               control panel.
                             header:
                               anchor: assigning_troubleshooting
-                    - title: Switching Themes with Custom Templates
-                      route:
-                        path: /switching-themes
-                      data:
-                        blocks:
-                          - type: html
-                            data: <h1>Switching Themes with Custom Templates</h1>
-                          - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#switching-themes_\"></a></li>\n\t</ul>\n</div>"
-                          - type: text
-                            data: ''
                     - title: Using Disqus with Stencil
                       route:
                         path: /new-subpage
@@ -5343,12 +5332,156 @@ pages:
                         path: /checkout-js-sdk
                       data:
                         children:
-                          - title: Vanilla.js Custom Checkout
+                          - title: Getting Started in Vanilla JS
                             route:
-                              path: /vanilla-js-custom
+                              path: /getting-started-in-vanilla-js
                             config:
                               sidebar:
-                                token: tutorial
+                                token: Guide
+                            data:
+                              blocks:
+                                - type: html
+                                  data: <h1>Getting Started in Vanilla JS</h1>
+                                - type: html
+                                  data: "<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"getting-started_tutorial-overview\">Installing the Checkout JS SDK</a></li>\n    <li><a href=\"getting-started_creating\">Creating a <code>checkout.js</code> file</a></li>\n    <li><a href=\"getting-started_mapping\">Mapping the <code>checkout.js</code> file to the checkout page type</a></li>\t\n    <li><a href=\"getting-started_preparing\">Preparing the <code>checkout.html</code> template file</a></li>\t\n    <li><a href=\"getting-started_logging\">Logging the Checkout Object</a></li>\t\n</ul>\n</div>\n\n\n\n\n\n\n"
+                                - type: text
+                                  data: >
+                                    The Checkout JS SDK is a JavaScript library
+                                    of methods for performing actions related to
+                                    checkout. It includes methods for logging in
+                                    a customer, adding addresses to the checkout
+                                    object, and surfacing the shipping and
+                                    payment methods that a merchant has
+                                    configured. It’s everything you need to
+                                    build your own custom checkout page on
+                                    BigCommerce.
+
+
+                                    We have provided a sample checkout app built
+                                    in React; the React sample app is a great
+                                    place to get started if you prefer to build
+                                    within a framework. However, because the SDK
+                                    is built in vanilla JS, it’s framework
+                                    agnostic. To illustrate that point, this
+                                    tutorial will walk through the first steps
+                                    for building a custom checkout directly into
+                                    the theme files using vanilla JS. At the end
+                                    of the tutorial, you will have installed the
+                                    Checkout SDK, created a new JavaScript
+                                    module for your icustom checkout, and
+                                    console logged the checkout object.
+
+
+                                    Before we get started, you’ll need to set up
+                                    your theme for local development using
+                                    Stencil CLI. Please see the links below for
+                                    detailed steps on installing Stencil CLI,
+                                    customizing JavaScript, and bundling a theme
+                                    for upload:
+                                - type: text
+                                  data: >
+                                    ## Installing the Checkout JS SDK
+
+
+                                    1. Open your terminal and navigate to your
+                                    theme’s directory.
+
+
+                                    For example, `cd cornerstone`
+
+
+                                    2. Run the following command: 
+
+
+                                    `npm install --save
+                                    @bigcommerce/checkout-sdk`
+                                - type: text
+                                  data: "## Creating a `checkout.js` file\n\n1. In your text editor, open your theme and create a new file in the assets/js/theme directory.\n\n2. Save the file as checkout.js. You can name your checkout JavaScript file anything you like, but the subsequent steps of this tutorial will assume the filename checkout.js.\n\n3. Add the following to your `checkout.js` file:\n\n```\nimport PageManager from './page-manager';\nimport { createCheckoutService } from '@bigcommerce/checkout-sdk';\n\nconst service = createCheckoutService();\n\nexport default class Checkout extends PageManager {\n\tasync onReady() {\n\t\tconst state = await service.loadCheckout();\nconsole.log(state.data.getCheckout());\n\t}\n}\n```\n\nImporting and extending the PageManager abstract class sets the page context for the checkout.js module. We also import { createCheckoutService } from the Checkout SDK. \n\nThe async keyword ensures that onReady() returns a Promise; the await keyword waits until the Promise resolves to load the checkout. Async/await is supported in nearly all modern browsers, but if you need to support older browsers like IE, you will require the Promise polyfill.\n\n4. Save the file. "
+                                - type: text
+                                  data: >-
+                                    ## Mapping the `checkout.js` file to the
+                                    checkout page type
+
+
+                                    1. Open the app.js file in your text editor.
+
+
+                                    2. Add the following to map your checkout.js
+                                    file to the checkout page type:
+
+                                    `checkout: () =>
+                                    import('./theme/checkout'),`
+                                - type: image
+                                  data: >-
+                                    //s3.amazonaws.com/user-content.stoplight.io/6116/1540242854920
+                                  config:
+                                    centered: true
+                                    fluid: true
+                                    bordered: true
+                                - type: text
+                                  data: 3. Save the file.
+                                - type: text
+                                  data: >+
+                                    ## Preparing the `checkout.html` template
+                                    file
+
+
+                                    1. Open the checkout.html file in your text
+                                    editor.
+
+                                    2. Comment out the `{{{
+                                    checkout.checkout_content }}}` statement:
+
+                                    <!--{{{ checkout.checkout_content }}}-->
+
+
+                                    3. On the next line, add the following:
+
+                                    ```
+
+                                    <script>window.__webpack_public_path__ =
+                                    "{{cdn 'assets/dist/'}}";</script>
+
+                                    <script src="{{cdn
+                                    'assets/dist/theme-bundle.main.js'}}"></script>
+
+
+                                    <script>
+                                        window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+                                    </script>
+
+
+                                    ```
+
+
+                                    4. Save the file.
+
+                                - type: text
+                                  data: >
+                                    ## Logging the Checkout Object
+
+
+                                    1. Navigate to the storefront and open your
+                                    browser console.
+
+                                    2. Add an item to your cart and proceed to
+                                    the checkout page. The checkout page will be
+                                    blank below the header.
+
+                                    3. Note the checkout object logged to the
+                                    console. 
+                                - type: text
+                                  data: >-
+                                    ## Next Steps
+
+
+                                    Build out your custom checkout page by
+                                    entering your HTML into the checkout.html
+                                    file and JavaScript into checkout.js. For
+                                    detailed documentation on all of the
+                                    Checkout SDK library methods visit the [SDK
+                                    GitHub
+                                    repository](https://github.com/bigcommerce/checkout-sdk-js).
                           - title: React.js Custom Checkout
                             route:
                               path: /implement-a-custom-checkout
