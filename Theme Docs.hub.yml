@@ -1631,10 +1631,17 @@ pages:
                               ## `npm install` Errors
 
 
+                              ### "Unmet Peer Dependency"
+
+
                               If you get any `Unmet Peer Dependency` errors when
                               issuing the `npm install` command – or at other
                               times – make sure you are running the `npm
                               install` command **inside** your theme directory.
+
+
+                              ### Other Potential Issues and Resolving
+                              Techniques with `npm install`
 
 
                               If running the `npm install ` command inside your
@@ -1658,11 +1665,11 @@ pages:
                               ## `npm install` and `stencil init` Errors
 
 
-                              Please similarly check and adjust your Node.js
-                              version – by following the Prerequisites link
-                              above to see platform-specific recommendations –
-                              if you get unexpected error messages when issuing
-                              the `npm install` or `stencil init` commands.
+                              If you get unexpected error messages when issuing
+                              the `npm install` or `stencil init` commands,
+                              check your Node.js version and ensure it aligns
+                              with a version that is compatible for the Stencil
+                              framework.
                             header:
                               anchor: troubleshooting_npm-install-stencil-init
                           - type: text
@@ -2041,53 +2048,40 @@ pages:
                               Cornerstone version. 
                           - type: text
                             data: >-
-                              ## JavaScript Diagnostics Too Terse: Switch
-                              Webpack Sourcemap 
+                              ## Short or Undescriptive JavaScript Diagnostics
+
+
+                              If JavaScript errors in your browser's developer
+                              tools are not reporting filenames and line
+                              numbers, try changing your `webpack.conf.js`
+                              file's sourcemap entry from:
+
+
+                              `devtool: 'eval-cheap-module-source-map'`
+
+
+                              to:
+
+
+                              `devtool: 'eval-source-map'`
+
+
+                              The `eval-cheap-module-source-map` option performs
+                              faster rebuilds, but omits line numbers. The
+                              `eval-source-map` option is slower, but more
+                              verbose. 
                           - type: text
-                            data: '## TR-300 Error upon Theme Upload'
-                          - type: text
-                            data: >
-                              ## Early Access Participants
+                            data: >-
+                              ## TR-300 Error upon Theme Upload
 
 
-                              If you were a participant in our Developer Early
-                              Access program, thank you for your contributions.
-                              The Stencil framework is now available to
-                              everyone. Therefore, BigCommerce has moved most
-                              Stencil components out of private GitHub repo's,
-                              and is now distributing them as npm modules.
-
-
-                              To continue receiving Stencil updates, please
-                              reinstall Stencil to pick up the npm
-                              configuration, as follows. 
-
-                              (Please note that our supported versions of some
-                              dependencies have changed.)
-
-
-                              1. Back up your current theme
-                              directory/directories. 
-
-                              (In a default installation, the theme directory is
-                              named `.../cornerstone/`. Prior to March 2017,
-                              this directory's name defaulted to
-                              `.../stencil/`.)
-
-
-                              2. To ensure that you reinstall supported versions
-                              of Stencil's dependencies, we recommend that you
-                              delete your `<theme-name>/node_modules/`
-                              subdirectory. You can check installed versions of
-                              dependencies by examining your
-                              `<theme-name>/package.json` file.
-
-
-                              3.  Follow the updated installation process, as
-                              documented on this section's preceding pages.
-
-
-                              4. Re-launch your theme.
+                              If uploading your theme triggers a TR-300 error,
+                              this can indicate an included source-map file
+                              (`bundle.js.map`) that exceeds its size limit of 5
+                              MB. If your `bundle.js.map` exceeds that limit,
+                              the workaround is to move this file outside your
+                              theme directory before re-running `stencil
+                              bundle`. 
                           - type: callout
                             data:
                               title: Alternative Options
