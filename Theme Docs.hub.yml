@@ -4143,6 +4143,831 @@ pages:
                         a Theme.
                       header:
                         anchor: managing_bundling-and-uploading
+        - title: 'Stencil Theme Editor '
+          route:
+            path: /stencil-theme-editor
+          data:
+            children:
+              - title: Stencil Theme Editor Overview
+                route:
+                  path: /stencil-theme-editor-overview
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Stencil Theme Editor Overview</h1>
+                    - type: html
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#stencil_stencil-theme-editor-overview\">Stencil Theme Editor</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        ## Stencil Theme Editor
+
+                        The [Stencil Theme
+                        Editor](https://forum.bigcommerce.com/s/article/Stencil-Themes?_ga=2.258361674.1984523106.1539568940-967431010.1523308107)
+                        is a Graphical User Interface (GUI) that allows
+                        BigCommerce merchants to modify a storefront's look and
+                        feel without manually entering any code. A merchant
+                        using the Stencil Theme Editor can customize a
+                        storefront theme by modifying characteristics from a
+                        variety of menu options such as Styles, Colors,
+                        Typography, Buttons, and more. Furthermore, the Stencil
+                        Theme Editor is a useful rapid-customization tool for
+                        developers. 
+
+
+                        As a theme developer, you not only have the opportunity
+                        to _use_ the theme editor to rapidly customize your
+                        theme, but also _configure your own settings_ for the
+                        Theme Editor. This will give merchants who download your
+                        theme the ability to use the Theme Editor with your
+                        theme in the ways you provide access to. Like previously
+                        mentioned, the Theme Editor by default allows merchants
+                        to customize everything from Styles, Colors, Typography,
+                        Buttons, and more. As a theme developer, you can choose
+                        and configure what features can be modified via the
+                        Theme Editor for the theme that you develop.
+
+
+                        To configure and work with the Theme Editor GUI locally,
+                        run `stencil start -e` , and point your browser to
+                        `localhost:8181`, as described here. This allows you to
+                        see and test your personally configured Theme Editor
+                        from a merchant's point of view. 
+
+
+                        The remainder of this section guides you, as a
+                        developer, through configuring your own theme options.
+                      header:
+                        anchor: stencil_stencil-theme-editor-overview
+                    - type: callout
+                      data:
+                        type: error
+                        body: >-
+                          Open only one instance of Theme Editor at a time
+                          against each storefront. There is currently no
+                          synchronization mechanism for configuration changes
+                          made by multiple Theme Editor instances.
+                        title: ' Single Instance per Storefront'
+              - title: Configuring Stencil Theme Editor
+                route:
+                  path: /configuring-stencil-theme-editor
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Configuring the Stencil Theme Editor</h1>
+                    - type: html
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#configuring_configuration-files\">Configuration Files</a></li>\n    <li><a href=\"#configuring_managing-keys\">Managing Keys between Versions</a></li>\n    <li><a href=\"#configuring_persistent-settings\">Persistent Settings Storage</a></li>\n    <li><a href=\"#configuring_theme-upgrades\">Theme Upgrades and Settings</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        ## Configuration Files
+
+
+                        Each theme contains two related JSON files of key-value
+                        pairs: `config.json` and `schema.json`. These files'
+                        keys provide the following features:
+
+
+                        Keys that you include in `schema.json` – together with
+                        their corresponding `config.json` default values –
+                        define the settings that merchants can customize through
+                        the Theme Editor graphical interface.
+
+                        Other `config.json` keys contain metadata about the
+                        theme, such as the theme's name, version, and resource
+                        controls.
+
+                        Keys located under the `config.json > variations` object
+                        define variations of the theme. For example, a theme
+                        might have a "Light" variation and a "Bold" variation,
+                        each with different typography and colors. Each theme
+                        can include as many variations as you like.
+
+                        Keys located under both files' `settings` objects define
+                        the theme's look, feel, and functionality.
+
+
+                        For documentation on the principal keys included in
+                        Stencil's reference Cornerstone theme, see this
+                        section's [config.json Metadata]() and [schema.json
+                        Metadata]() entries. For an introduction to the
+                        graphical editor, see
+
+                        [Stencil Theme Editor Overview]().
+                      header:
+                        anchor: configuring_configuration-files
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Managing Keys between Versions
+
+
+                        To make sure revisions to your theme are
+                        backward-compatibile, we generally recommend that you
+                        manage keys in both your `config.json` and `schema.json`
+                        files in an additive way. Specific recommendations:
+
+
+                        Adding new keys is generally fine. (However, each key in
+                        `schema.json` must have a matching default in
+                        `config.json`, as outlined in [Enabling Theme
+                        Editor]().)
+
+                        * Use caution in deleting any key. Doing so can break
+                        your new theme version's backward compatibility.
+
+                        * We do not recommend renaming keys. Instead, we
+                        recommend introducing a new key, while maintaining the
+                        old key until it is no longer in use by anyone using an
+                        older version of your theme.
+
+                        * Each object within your `config.json` > [variations]()
+                        object defines one theme variation. If you are adapting
+                        an existing theme and consciously want to remove one or
+                        more variations, you can do so by removing the
+                        corresponding key(s).
+                      header:
+                        anchor: configuring_managing-keys
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Persistent Settings Storage
+
+
+                        When store administrators use Theme Editor to customize
+                        your theme for their store, the store's resulting
+                        configuration settings are saved to a separate
+                        configuration service at BigCommerce.
+                      header:
+                        anchor: configuring_persistent-settings
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Theme Upgrades and Settings
+
+
+                        When a merchant upgrades your theme to a newer version,
+                        all key-value pairs that were saved to the BigCommerce
+                        configuration service are carried forward. For example,
+                        assume this customization/upgrade scenario:
+
+
+                        You release your Star Glow theme, version 1. This
+                        theme's `config.json` includes a key named `logo_size`,
+                        establishing a default value of 100x250. The combination
+                        of the key and the value compose a `logo_size` setting.
+
+                        The merchant uses Theme Editor to change the `logo_size`
+                        setting to 175x275. This customized setting is stored in
+                        the BigCommerce configuration service.
+
+                        You release Star Glow, version 1.1. In this theme
+                        revision, you have changed the `logo_size` to 300x300.
+
+                        When the merchant applies Star Glow version 1.1 to their
+                        store, their custom `logo_size` setting of 175x275
+                        remains in effect.
+
+                        If you the merchant creates a second store and applies
+                        Star Glow version 1.1 to it, that store has no custom
+                        `logo_size` setting – so it will default to the new
+                        theme version's 300x300 value.
+                      header:
+                        anchor: configuring_theme-upgrades
+              - title: config.json Metadata
+                route:
+                  path: /config-json-metadata
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1><code>config.json</code> Metadata</h1>
+                    - type: html
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#config_configjson-overview\">config.json Overview</a></li>\n    <li><a href=\"#config_keys-and-example\">Keys and Example Values</a></li>\n    <li><a href=\"#config_requirements-and-restrictions\">Requirements and Restrictions</a></li>\n    <li><a href=\"#config_video-demo\">Video Demo</a></li>\n\t</ul>\n</div>\n\n\n"
+                    - type: text
+                      data: >
+                        ## `config.json` Overview
+
+
+                        You configure the `/<theme‑name>/config.json` file to
+                        properly manage each of your custom theme's front-end
+                        aspects. This `config.json` file’s functions are to:
+
+
+                        * Provide global context for Stencil’s CSS and
+                        Handlebars resources.
+
+                        * Provide values for the Theme Editor GUI to manage.
+
+                        * Provide metadata for your theme’s listing in the Theme
+                        Marketplace.
+
+                        * Define variations included in your theme.
+                      header:
+                        anchor: config_configjson-overview
+                    - type: text
+                      data: "<table>\n  <tr>\n    <th>Property</th>\n    <th>Format</th>\n    <th>Default/Examples</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>String</td>\n    <td>\"Stencil\"</td>\n\t\t<td>Theme’s name, as it will appear in the Theme Marketplace. (<b>Note:</b> Theme names should be composed of only the following characters: a-z, A-Z, 0-9, hyphen.)</td>\n  </tr>\n  <tr>\n    <td>version</td>\n    <td><a href=\"http://semver.org/\">SemVer</a></td>\n    <td>\"1.0.0\"</td>\n    <td>Theme’s version number, formatted asmajor.minor.patch.</td>\n  </tr>\n  <tr>\n    <td>meta</td>\n    <td>Object</td>\n    <td></td>\n    <td>BigCommerce will use this metadata to list themes in Theme Marketplace.(Theme variations also have their own metadata collections.)</td>\n  </tr>\n  <tr>\n    <td>price</td>\n    <td>Number</td>\n    <td>15000</td>\n    <td>Price, in cents, to purchase this theme in Theme Marketplace.</td>\n  </tr>\n  <tr>\n    <td>documentation_url</td>\n\t\t<td>String</td>\n\t\t<td><a href=\"https://support.bigcommerce.com/articles/Public/Cornerstone-Theme-Manual\">Cornerstone Theme Manual</a>\n\t\t</td>\n\t\t<td>URL of theme developer’s documentation site. This key is required to have a value.)</td>\n  </tr>\n  <tr>\n    <td>author_name</td>\n    <td>String</td>\n    <td>\"eCommerce Themes, Inc.\"</td>\n    <td>Name of the developer or partner creating the theme.(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>\n  <tr>\n    <td>author_email</td>\n    <td>String</td>\n    <td>\"support@example.com\"</td>\n    <td>Contact/support email address for the developer or partner creating the theme.\n(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>\n  <tr>\n    <td>author_support_url</td>\n    <td>String</td>\n    <td>\"http://example.com/contactus\"</td>\n    <td>Contact form/support URL for the developer or partner creating the theme.\n(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>    \n  <tr>\n    <td>composed_image</td>\n    <td>String</td>\n    <td>\"composed_image.png\"</td>\n    <td>File name for a composed/mosaic screenshot of all variations of the theme, to appear on the \"My Themes\" page of purchased themes. The file-name value is arbitrary, but it must match the name of a file located in the <code>theme‑name/meta/</code> subdirectory.The actual file’s resolution must be 600 x 760 pixels (horizontal x vertical).</td>\n  </tr>\n  <tr>\n    <td>features</td>\n    <td>Array</td>\n    <td> [\"fully_responsive\", \"mega_navigation\", \"multi_tiered_sidebar_menu\", \"masonry_design\",\"frontpage_slideshow\",\"quick_add_to_cart\",\"switchable_product_view\",\"product_comparison_table\",\"complex_search_filtering\", \"customizable_product_selector\", \"cart_suggested_products\", \"free_customer_support\", \"free_theme_upgrades\", \"high_res_product_images\", \"product_filtering\", \"advanced_quick_view\", \"product_showcase\", \"persistent_cart\", \"one_page_check_out\", \"customized_check_out\", \"product_videos\"]</td>\n    <td>Array of exact feature names supported in this theme. The \"Default/Examples\" column lists the complete namespace. At least one of the values listed there must be present.</td>\n\t<td>These values are used as metadata for Theme Marketplace searches.</td>\n     <td> The <code>\"customized_check_out\"</code> value has a second function: It must be present if you want to enable <a href=\"https://support.bigcommerce.com/articles/Public/Optimized-Single-Page-Checkout\">Optimized One-Page Checkout</a> for your theme.</td>\n  </tr>\n  <tr>\n    <td>css_compiler</td>\n    <td>String</td>\n    <td>\"scss\"</td>\n    <td>CSS preprocessor; defaults to SCSS.</td>\n  </tr>\n  <tr>\n    <td>autoprefixer_cascade</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Whether to enable the Autoprefixer CSS postprocessor, to add vendor prefixes to CSS rules.</td>\n  </tr>\n  <tr>\n    <td>autoprefixer_browsers</td>\n    <td>Array</td>\n    <td>[\"last 3 versions\"]</td>\n    <td>Which legacy browsers <a href=\"https://github.com/postcss/autoprefixer\">Autoprefixer</a> should support, specified in <a href=\"https://github.com/ai/browserslist\">Browserslist</a> query format.</td>\n  </tr>\n  \n  <tr>\n    <td>settings</td>\n    <td></td>\n    <td></td>\n    <td>Display-oriented key names, and values, that you can arbitrarily set for your theme. Handlebars accesses the combined settings as the context variable <code>{{theme_settings}}</code>.Variations also have their own<code>settings</code> sections. Values that you set at the variation level will override global values that you set here (for corresponding key names, and within the scope of that variation).If you want to create a custom variable to use in Handlebars, either add it here within this theme-level <code>settings</code> section, or add it down in a variation-level <code>\">settings</code> section. You would access your arbitrarily named custom variable in Handlebars as <code>{{theme_settings.variablename}}</code>.\n\n\t\t\tHere is an example of a custom variable in the default theme’s <code>config.json</code>:\n\n<code>\"settings\": { \"homepage_featured_products_count\": 6,\n}</code>\n\nHere is the corresponding front matter in <code>home.html</code> that calls this variable. (Note that this is pure YAML – the <code>{{...}}</code> used to reference <code>config.json</code> variables within pages’ front matter do not constitute a Handlebars statement:)\n\n<code>\n---\nproducts:\n  featured:\n      limit: {{theme_settings.homepage_featured_products_count}}\n---\n</code> </td>\n</tr>\n  <tr>\n    <td>homepage_new_products_count</td>\n    <td>Number</td>\n    <td>12</td>\n    <td>Number of products to include in home page’s New Products section.</td>\n  </tr>\n  <tr>\n    <td>homepage_section-name_count,homepage_section-name_column_count</td>\n    <td>Number</td>\n    <td>[Varies]</td>\n    <td>Number of products, or columns, to include in the specified home-page section.</td>\n  </tr>\n  <tr>\n    <td>productpage_section-name_count</td>\n    <td>Number</td>\n    <td>[Varies]</td>\n    <td>Number of products to include in the specified section of product-details pages.</td>\n  </tr>\n  <tr>\n    <td>categorypage_products_per_page, brandpage_products_per_page, searchpage_products_per_page</td>\n    <td>Number</td>\n    <td>12</td>\n    <td>Number of products to include on each specified page type.</td>\n  </tr>\n\t<tr>\n    <td>homepage_show_carousel</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to display an image carousel on the home page.</td>\n  </tr>  \n\t<tr>\n    <td>show_product_quick_view</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to offer customers product Quick View modal windows.</td>\n  </tr>  \n\t<tr>\n    <td>show_powered_by</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to display a \"Powered by BigCommerce\" credit in the sitewide footer.</td>\n  </tr>  \n\t<tr>\n    <td>show_accept_amex,\n      show_accept_visa, etc.\n    </td>\n    <td>Boolean</td>\n    <td>false</td>\n    <td>Each of these keys displays or hides a payment-method icon in the sitewide footer. The icons respectively identify credit-card issuers, PayPal, etc. If these keys are defined in schema.json, merchants can use the Theme Editor GUI to toggle each payment icon's visibility.</td>\n  </tr>\n  <tr>\n    <td>product_list_display_mode</td>\n    <td>String</td>\n    <td>\"grid\"</td>\n    <td>Default display mode for product lists. A <code>\"grid\"</code> value specifies grid format. Other entries trigger list format.</td>\n  </tr>\n  <tr>\n    <td>logo-position</td>\n    <td>String</td>\n    <td>\"center\", \"left\", \"right\"</td>\n    <td>Sets (horizontal) display alignment for store logo throughout the theme.</td>\n  </tr>\n \n<!-- Begin images section/intro: -->\n  <tr>\n    <td>[images]</td>\n    <td>\n    The following keys' values define storewide dimensions for named sizes. The <code>{{getImage}}</code> Handlebars helper can use member keys’ values to dynamically resize any images, up to a maximum target size of 4096x4096 pixels.\n    \nKey names like <code>\"logo_size\"</code> and <code>\"thumb_size\"</code> are arbitrary.\n\nFor example, this Handlebars expression:\n\n\t\t\t<code>{{getImage product.image \"thumb_size\"}}</code> will output the path to a 100x100-pixel image (assuming the <code>\"thumb_size\"</code> key retains its default value of <code>\"100x100\"</code>).\n\nBy defining or redefining these named sizes' values, in the format outlined below, you can automatically replicate the new sizes throughout your theme.</td>\n  </tr>\n  <!-- :End images intro: -->\n  \n  <tr>\n    <td><span class=\"indent1\">logo_size</span></td>\n    <td>String</td>\n    <td>250x100</td>\n    <td>Key/value pair defining global (storewide) display dimensions for the store logo. The value is a string defining the width and height &ndash; in that order &ndash; in pixels.</td>\n  </tr>\n  \n  <tr>\n    <td>gallery_size</td>\n    <td>String</td>\n    <td>300x300</td>\n    <td>Key/value pair defining storewide display dimensions for blog images (also available for other uses).</td>\n  </tr>\n\n  <tr>\n    <td>productgallery_size</td>\n    <td>String</td>\n    <td>300x300</td>\n    <td>Key/value pair defining storewide display dimensions for product-gallery images.</td>\n  </tr>\n\n  <tr>\n    <td>product_size</td>\n    <td>String</td>\n    <td>500x659</td>\n    <td>Key/value pair defining storewide display dimensions for standard/medium-sized product images.</td>\n  </tr>\n  \n  <tr>\n    <td>productthumb_size</td>\n    <td>String</td>\n    <td>100x100</td>\n    <td>Key/value pair defining storewide display dimensions for product-image thumbnails on the product details page.</td>\n  </tr>\n\n  <tr>\n    <td>thumb_size</td>\n    <td>String</td>\n    <td>100x100</td>\n    <td>Key/value pair defining storewide display dimensions for swatches, and for brand and category thumbnails.</td>\n  </tr>\n  \n  <tr>\n    <td>zoom_size</td>\n    <td>String</td>\n    <td>1280x1280</td>\n    <td>Key/value pair defining storewide display dimensions for zoomable product images on the product details page.</td>\n  </tr>\n<!-- :End images section-->\n\n<!-- Begin image URLs section: -->    \n  <tr>\n    <td>product_list_display_mode</td>\n    <td>String</td>\n    <td>\"grid\"</td>\n    <td>Default display mode for product lists. A <code>\"grid\"</code> value specifies grid format. Other entries trigger list format.</td>\n  </tr>\n  <tr>\n    <td>default_image_brand</td>\n    <td>String</td>\n    <td>/assets/img/BrandDefault.gif</td>\n    <td>Relative path to a default image representing brands.</td>\n  </tr>\n  <tr>\n    <td> <span class=\"indent1\"> default_image_product</td>\n    <td>String</td>\n    <td>/assets/img/ProductDefault.gif</td>\n    <td>Relative path to a default image representing products.</td>\n  </tr>\n  <tr>\n    <td>default_image_gift_certificate</td>\n    <td>String</td>\n    <td>/assets/img/GiftCertificate.png</td>\n    <td>Relative path to a default image representing gift certificates.</td>\n  </tr>\n<!-- :End image URLs section -->    \n  \n<!-- Begin fonts section: -->\n  <tr>\n    <td>body-font</td>\n    <td>String</td>\n    <td>\"Google_Karla_400\"</td>\n    <td>Font-family keys, with corresponding values.\nKeys are named by display purpose, and keys' names should end in <code>-font</code>. But naming is otherwise arbitrary. So you can freely define additional font families for your theme.Values should follow the format:\n\t\t\t<code>\n\t\t\t\tProviderName_Font+FamilyName\n    _OptionalWeightNumber\n\t\t\t\t</code>\n\nAs in this example:\n      <code>Google_Open+Sans_700</code> which specifies <code>Google Fonts</code> as the Provider, <code>Open Sans</code> as the Font Family, and <code>800</code> as the (optional) Weight attribute.\n\n(<b>Note:</b> The Provider; also called \"Foundry\" - is currently limited to Google Fonts.)\nStencil’s <a href=\"/docs/custom-sass-functions#FontFamily\">custom Sass functions</a> can process these keys’ values. E.g., to <span class=\"inline-code\">stencilFontFamily</span>, you could pass the (arbitrary) key name <span class=\"inline-code\">\"body-font\"</span>, and the function would process the value. Note that Sass requires explicit typing of inputs and outputs – e.g., <span class=\"inline-code\">stencilNumber</span> defaults to pixels – so you must specify any other units. Thus, for a\n\n      <pre>\"font‑size\" = 3</pre>\n      <p></p>\n\n<!--      <span class=\"indent1\"><span class=\"inline-code\">\"font‑size\" = 3</span></span><br> -->\n\n...this statement:<br><p></p>\n\n    <pre>stencilNumber(\"font-size\",\"rem\")\n    * 3</pre><p></p>\n\n<!--    <span class=\"indent1\"><span class=\"inline-code\">stencilNumber(\"font-size\",\"rem\")</span></span><br>   \n    <span class=\"indent1\"><span class=\"inline-code\">* 3</span></span><br> -->\n\n...will output:<br><p></p>\n\n    <pre>9rem</pre>\n    <p></p>\n\n<!--    <span class=\"indent1\"><span class=\"inline-code\">9rem</span></span><br><br> -->\n\n      (<b>Note:</b> To enable merchants to customize your themes' fonts via <NOBR>Theme Editor</nobr>, we recommend that you rely on Google Fonts, with no more than 25 typefaces per theme.)</td>\n  </tr>\n  <tr>\n    <td>         <span class=\"indent1\">headings-font</span></td>\n    <td>String</td>\n    <td>\"Google_Montserrat_400\"</td>\n    <td>Arbitrary key name, and value, for a font family and (optional) weight that can be applied to headings.</td>\n  </tr>\n  <tr>\n    <td>         <span class=\"indent1\">logo-font</span></td>\n    <td>String</td>\n    <td>\"Google_Oswald_300\"</td>\n    <td>Arbitrary key name, and value, for a font family and (optional) weight for logo text.</td>\n  </tr>\n  \n  <tr>\n    <td>         <span class=\"indent1\"><NOBR>fontSize-root,</nobr></span><br> <span class=\"indent1\"><NOBR>fontSize-h1</nobr>..</span><NOBR>fontSize-h6,</nobr><br> <span class=\"indent1\">etc.</span> </td>\n    <td>Number</td>\n    <td>14</td>\n    <td>Font-size keys, with corresponding values.<br><br>\n      \nThese keys' values provide defaults for options selectable in the Theme Editor GUI. Also, Stencil’s <a href=\"#CustomSassFn\">custom Sass functions</a> can process these values.<br><br> \n      \n      Here again, these keys are named by display purpose, but arbitrarily. So you can freely define additional font sizes for your theme.</td>\n  </tr>\n  \n  \n<!--Begin colors section:-->  \n  <tr>\n    <td>\n      <span class=\"indent1\"><NOBR>color-textBase</nobr></span>\n    </td>\n    <td>String</td>\n    <td>\"#4f4f4f\"</td>\n    <td>Color definitions, with corresponding hex values. These keys' values provide defaults for options selectable in the Theme Editor GUI.<br><br> \n      \n      Also, Stencil’s <a href=\"#CustomSassFn\">custom Sass functions</a> can process these values. E.g., to <span class=\"inline-code\">stencilColor</span>, you could pass the key name <span class=\"inline-code\">\"color-textBase\"</span>, and the function would return the <span class=\"inline-code\">\"#4f4f4f\"</span> value defined here.<br><br>\n      \n      The keys are named by display purpose &ndash; defining consistent colors for various parts of the theme in different states. But the keys are also named arbitrarily. So you can freely name and define new color keys for your theme.<br><br> \n      \n      (<b>Note:</b> Only a subset of the default <span class=\"inline-code\">config.json</span> file’s color definitions are listed here.) </td>\n  </tr>\n\n  <tr>\n    <td>   <span class=\"indent1\"><NOBR>color-textBase--hover,</nobr></span> <span class=\"indent1\"><NOBR>color-textBase--active,</nobr></span><br> <span class=\"indent1\">..</span><br> <span class=\"indent1\"><NOBR>color-textLink--active,</nobr></span><br> <span class=\"indent1\"><NOBR>color-textHeading,</nobr></span><br> <span class=\"indent1\">etc.</span></td>\n    <td>String</td>\n    <td>[Varies]</td>\n    <td>\"</td>\n  </tr>\n\n  <tr>\n    <td>color-primary</td>\n    <td>String</td>\n    <td>\"#4f4f4f\"</td>\n    <td>\"</td>\n  </tr>\n  \n  <tr>\n    <td>color-primaryDark</td>\n    <td>String</td>\n    <td>\"#454545\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-primaryDarker</td>\n    <td>String</td>\n    <td>\"#2d2d2d\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-primaryLight</td>\n    <td>String</td>\n    <td>\"#a5a5a5\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-secondary</td>\n    <td>String</td>\n    <td>\"#ffffff\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-secondaryDark</td>\n    <td>String</td>\n    <td>\"#f2f2f2\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>         <span class=\"indent1\">color-secondaryDarker</span></td>\n    <td>String</td>\n    <td>\"#f2f2f2\"</td>\n    <td>\"</td>\n  </tr>\n<!-- :End colors section -->\n\n<!-- Begin Optimized checkout subsection/intro: -->\n  <tr>\n    <td> <span class=\"indent1\"> <a name=\"config-uco\"></a> [Optimized Checkout]</td>\n    <td colspan=\"3\">\n    The following are examples of keys that define default style properties for the Optimized Checkout page. Each key/value pair here corresponds to a class in the <span class=\"inline-code\">&lt;theme‑name&gt;/assets/scss/optimized-checkout.scss</span> file.\n\t</td>\n  </tr>\n  <!-- :End Optimized Checkout intro. -->\n  \n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-header-backgroundColor</span></td>\n    <td>String</td>\n    <td>#f7f7f7</td>\n    <td>Key/value pair defining default background color for the Optimized Checkout page's header.</td>\n  </tr>\n  \n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-show-backgroundImage</span></td>\n    <td>Boolean</td>\n    <td>false</td>\n    <td>Key/value pair defining whether to display a background image on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-backgroundImage</span></td>\n    <td>String</td>\n    <td> &ndash; </td>\n    <td>Key/value pair containing file name of background image for the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-backgroundImage-size</span></td>\n    <td>String</td>\n    <td>1000x400</td>\n    <td>Key/value pair defining display size for background image on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-show-logo</span></td>\n    <td>enum</td>\n    <td>none</td>\n    <td>Key/value pair defining whether to show logo on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-logo</span></td>\n    <td>String</td>\n    <td> &ndash; </td>\n    <td>Key/value pair containing file name of background image for the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td><span class=\"indent1\">[...]</span></td>\n    <td>[...]</td>\n    <td> [...] </td>\n    <td>[...]<br> \n      (Multiple similar key/value pairs. For a more-complete list of the classes available, see Optimized One-Page Checkout Customization)</td>\n  </tr>\n<!-- :end Optimized checkout subsection -->  \n\n<!-- Begin read-only subsection-->\n  <tr>\n    <td>read_only_files</td>\n    <td>String array</td>\n    <td> \"/assets/scss/components/citadel\",<br> \"/assets/scss/components/foundation\",<br> \"/assets/scss/components/vendor\",<br> \"/assets/scss/vendor\",<br> \"/assets/scss/settings/citadel\",<br> \"/assets/scss/settings/foundation\",<br> \"/assets/scss/settings/vendor\",<br> \"/assets/scss/settings/normalize\" </td>\n    <td>Files and paths specified in this array will be viewable in the <a href=\"/docs/what-is-theme-editor\">Theme Editor</a> GUI, but not editable. Add any theme files/paths that you want to make read-only for store administrators using that editor.</td>\n  </tr>\n<!-- :end read-only subsection -->\n  \n<!-- Begin resources: section -->\n  <tr>\n    <td>resources</td>\n    <td></td>\n    <td></td>\n    <td>Global resources, inherited by all pages located directly within your <code><theme‑name>/templates/pages/</code> subdirectory.\n\n(This inheritance spares you from having to define them in front matter on every page. Here, the resources are defined in JSON rather than YAML format.)\n\nYou are free to add more global resources here – for example: <code>\"brands\": true</code> to display a brands list; or\n\t\t\t<code>\"blog\": \"posts\": \"limit\": 3</code> to display the top 3 blog posts. For syntax, see <a href=\"/docs/front-matter-variables#Front-ref-global\">Front-Matter Global Attributes</a>.</td>\n  </tr>\n  <tr>\n    <td>cart</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to retrieve/display cart data <!--to display a shopping-cart icon/link--> in pages' chrome.</td>\n  </tr>\n  <tr>\n    <td>shop_by_brand</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to include a quick-navigation list of brands in the footer. Adding this optional filter defines how many brands to load:\n\t\t\t<code>limit: number</code></td>\n  </tr>\n    \n  <tr>\n    <td>variations</td>\n    <td>Object</td>\n    <td></td>\n    <td>Collection of variation objects. Each contained object defines one variation on this overall theme. (A theme must contain at least one variation, and may contain up to four.)</td>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>String</td>\n    <td>\"Light\", \"Bold\",\"Warm\" (etc.)</td>\n    <td>An arbitrary name for this variation. This name is used in the Themes Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td>id</td>\n    <td>String</td>\n    <td>\"light\", \"bold\", \"warm\" (etc.)</td>\n    <td>A string ID for this variation. Arbitrarily named, but must be unique to this variation.\nThe Stencil framework’s database uses this unique ID to identify and process updates to variations.<br><br> \n\nWhen you submit an updated version of your theme to BigCommerce, IDs and settings for previously submitted variations must match those in previous submissions of your theme. You may add, but not remove, variations and settings in such resubmissions. You may rename variations for clarity.\n</td>\n  </tr>\n  <tr>\n    <td>settings</td>\n    <td></td>\n    <td></td>\n    <td>Variation-level counterpart to this theme’s theme-level <code>\"settings\"</code> object.\n\nValues that you set here will override theme-wide values for corresponding key names,  within the scope of this variation.\n\nYou can also create custom variables here, whose scope will be limited to this variation. Syntax is the same as for theme-wide custom variables.</td>\n  </tr>\n  <tr>\n    <td>meta</td>\n    <td>Object</td>\n    <td></td>\n    <td>Variation-level counterpart to this theme’s top-leve \"meta\" collection.\nBigCommerce will similarly use this collection’s values when listing themes in Theme Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td>\"desktop_screenshot\"</td>\n    <td>String</td>\n    <td>\"desktop_screenshot.png\"</td>\n    <td>File name for a screenshot of this variation’s large-format layout.\nThe key name is fixed. The file-name value is arbitrary, but it must match the name of a file located in the <code>theme‑name/meta/</code> subdirectory. If you are updating a variation, be sure to match this value to the intended file name.) The screenshot’s required dimensions are 2048 x 2600 pixels.</td>\n  </tr>\n  <tr>\n    <td>\"mobile_screenshot\"</td>\n    <td>String</td>\n    <td>\"mobile_screenshot.png\",</td>\n    <td>File name for a screenshot of this variation’s mobile-format layout.\nThe key name is fixed. The file-name value is arbitrary, but it must match the name of a file located in the <code>&lt;theme‑name&gt;/meta/</code> subdirectory. (If you are updating a variation, be sure to match this value to the intended file name.) The screenshot’s required dimensions are 304 x 540 pixels.</td>\n  </tr>\n  <tr>\n    <td>\"description\"</td>\n    <td>String</td>\n    <td>\"This is the light style of the Stencil Theme\"</td>\n    <td>Arbitrary text description for this variation. This description will appear in Themes Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td>\"demo_url\"</td>\n    <td>String</td>\n    <td>\"https://stencil-light.mybigcommerce.com\"</td>\n    <td>URL of your demo store, as set up on bigcommerce.com.</td>\n  </tr>\n  <tr>\n    <td>\"optimized_for”</td>\n    <td>Array</td>\n    <td>[\"arts_crafts\", \"animals_pets\", \"automotive_industrial\", \"electronics_computers\", \"fashion_jewelry\", \"food_beverage\",\"gifts_specialty\", \"health_beauty\",\"home_garden\", \"books_entertainment\",\"sports_recreation\",\"toys_games\",\"multi_purpose\",\"chrome_firefox_safari_ie_10\",\"mobile_tablet_desktop\",\"sales_discounts\",\"wholesale\",\"single_product\", \"large_catalog\", \"mobile\",\"clothing\",\"cosmetics\", \"home_appliances\",\"home_furnishings\", \"movies\",\"music\",\"digital_downloads\",\"outdoor_sports\",\"hunting_fishing\",\"video_games\"]</td>\n    <td>Array of metadata for Theme Marketplace searches - exact names of storefront types compatible with this theme. The \"Default/Examples\" column lists the complete namespace. At least one of the values listed there must be present.\n\t</td>\n  </tr>\n  <tr>\n    <td>“industries\"</td>\n    <td>Array</td>\n    <td>[\"arts_crafts\",\"animals_pets\",\"automotive_industrial\",\"electronics_computers\",\"fashion_jewelry\",\"food_beverage\",\"gifts_specialty\",\"health_beauty\",\"home_garden\",\"books_entertainment\",\"sports_recreation\",\"toys_games\"]\n\t</td>\n    <td>Array of optional metadata for Theme Marketplace, where these values will be used to support faceted searches. You may submit up to four values from the complete namespace listed in the \"Default/Examples\" column.</td>\n  </tr>\n</table>"
+                      header:
+                        anchor: config_keys-and-example
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Requirements and Restrictions
+
+
+                        Your theme's config.json file must meet the following
+                        requirements:
+
+
+                        * It must be named `config.json`, must reside in the
+                        root of your `<theme-name>` top level subdirectory
+                        (e.g.: `/cornerstone/config.json` or
+                        `/stencil/config.json`), and must be valid JSON.
+
+                        * The maximum allowable size for a theme's `config.json`
+                        file is 64 KB. Exceeding this limit will trigger an
+                        error upon uploading the theme to BigCommerce.
+
+                        * Each key's value is restricted to 64 characters.
+                        Exceeding this limit will similarly trigger an upload
+                        error.
+
+                        * Other than these size constraints, there is no limit
+                        on the number of keys and values that you can place in a
+                        theme's `config.json`.
+
+
+                        _Carefully check your theme against all the requirements
+                        listed here – including the required keys within the
+                        `meta` object and `variations` array. While some
+                        requirements are not enforced in local development, they
+                        will be validated (and will trigger errors) when you
+                        later upload your theme to BigCommerce._
+
+
+                        ### Required Themewide Keys
+
+                        The `config.json` file must contain at least the
+                        following keys, with appropriate values (as outlined
+                        above):
+
+
+                        *name
+
+                        * `version`
+
+                        * `settings` (which must itself be a valid JSON object)
+
+                        * `variations` (an array of at least one, and at most
+                        four, variation objects)
+
+                        * `meta` (an object; see specific requirements below)
+
+
+                        ### Required `meta` Keys
+
+
+                        The meta object must contain at least the following
+                        keys, with appropriate values:
+
+
+                        * `price`
+
+                        * `author_name`
+
+                        * `author_email`
+
+                        * `author_support_url`
+
+                        * `documentation_url`
+
+
+                        For illustration, here is a commented excerpt:
+
+
+                        ```
+
+                        {
+                          ...
+                          "meta": {
+                            "price": 15000, // in cents; non-negative integer, minimum 0
+                            "author_name:" "eCommerce Themes, Inc.", // Must be a string, not null
+                            "author_email": "support@example.com", // Must be a string, should be a valid email address, not null
+                            "author_support_url": "http://example.com/contactus", //  Must be a string, should be a valid URL, not null
+                            "documentation_url": "http://example.com/guide", // Must be a string, limit of 255 characters,
+                                  not null
+                            "composed_image": "path/to/composed.png", // Must be a string path to the composed-image file
+                            "features": [ // Array of feature strings, all of which must be in the list enumerated here: 
+                                  https://github.com/bigcommerce/theme-registry/blob/master/app/schemas/theme_config.json#L33
+                              "fully_responsive" // Must include at least one feature, and no duplicate entries
+                            ]
+                          },
+                          ...
+                        }
+
+                        ```
+
+
+                        ### Required `variation` Keys
+
+
+                        For each variation that you choose to include in your
+                        theme (at least one is required), you must provide at
+                        least the following keys and sub-element, with
+                        appropriate values:
+
+
+                        * `name`
+
+                        * `id`
+
+                        * `meta` (an object, containing at least:)
+
+                        * `description`
+
+
+                        For illustration, here is a redacted excerpt from
+                        Cornerstone:
+
+
+                        ```
+
+                        "variations": [
+                            {
+                              "name": "Light",
+                              "id": "light",
+                              "meta": {
+                                "desktop_screenshot": "desktop_light.png",
+                                "mobile_screenshot": "mobile_light.png",
+                                "description": "Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. ....",
+                            ...
+                            }
+                          ]
+                        ```
+                      header:
+                        anchor: config_requirements-and-restrictions
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Video Demo
+
+
+                        <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/VZYZsDoEOpQ"
+                        frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
+                      header:
+                        anchor: config_video-demo
+              - title: Preparing Thumbnail Images
+                route:
+                  path: /preparing-thumbnail-images
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Preparing Thumbnail Images</h1>
+                    - type: html
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#preparing_where-and-how-merchants\">Where and How Merchants See Your Theme's Thumbnail Images</a></li>\n    <li><a href=\"#preparing_general-image\">General Image Requirements</a></li>\n    <li><a href=\"#preparing_themewide-composite\">Themewide Composite Image</a></li>\n    <li><a href=\"#preparing_variations\">Variations: Desktop/Mobile Screenshots</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        ## Where and How Merchants See Your Theme's Thumbnail
+                        Images
+
+
+                        A complete Stencil theme includes screenshots to show
+                        off the theme on cards that appear in two locations
+                        within the BigCommerce Control Panel:
+
+
+                        * `Storefront` > `My Themes`: Each individual card
+                        displays a _themewide composite image_, which is an
+                        image that contains combination of screenshots of the
+                        theme's multiple variations. 
+
+                        `Storefront` > `Themes Marketplace`: Each card displays
+                        one variation of your theme. The three variations of
+                        Cornerstone (Light, Warm, and Bold) are displayed across
+                        three 
+                      header:
+                        anchor: preparing_where-and-how-merchants
+                    - type: tabs
+                      data:
+                        children:
+                          - title: Desktop View of 'My Themes'
+                            blocks:
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6116/1539625143199
+                                header:
+                                  title: Storefront > My Themes
+                                  subtitle: >-
+                                    Each card contains a themewide composite
+                                    image, showing all the variations of the
+                                    theme in each. In this image, we see 3
+                                    variations for the Cornerstone theme and 4
+                                    for the Showroom theme.
+                                config:
+                                  centered: true
+                                  fluid: true
+                                  bordered: true
+                                  maxWidth: '600'
+                                  maxHeight: '900'
+                          - title: Desktop View of Themes Marketplace
+                            blocks:
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6116/1539624737619
+                                header:
+                                  title: Storefront > Themes Marketplace
+                          - title: Mobile View of Themes Marketplace
+                            blocks:
+                              - type: image
+                                data: >-
+                                  //s3.amazonaws.com/user-content.stoplight.io/6116/1539625004658
+                                config:
+                                  centered: true
+                                  fluid: true
+                                  bordered: true
+                                  maxWidth: '500'
+                                  maxHeight: '1000'
+                      header:
+                        title: >-
+                          How your theme will appear in the Control Panel and
+                          Theme Marketplace
+                    - type: text
+                      data: >-
+                        ## General Image Requirements
+
+
+                        Below are details about:
+
+                        * how to size and save these images to stage them within
+                        your theme's directory structure
+
+                        * how to reference them in your config.json file.
+
+
+                        All screenshots described below must meet the following
+                        specifications in order for the `stencil bundle` command
+                        to be able to process them:
+
+
+                        * Saved to a supported image file type: .jpg/.jpeg,
+                        .png, or .gif.
+
+                        * Stored in your <theme‑name>/meta/ subdirectory.
+
+
+
+                        Also note that all of these screenshots must be in
+                        **portrait aspect ratio**, with specific resolutions
+                        listed below.
+                      header:
+                        anchor: preparing_general-image
+                    - type: text
+                      data: "## Themewide Composite Image\n\nThe themewide composite image represents your theme in the Control Panel's `Storefront` > `My Themes` area, which shows merchants their currently available themes (including any custom uploaded themes). \n\nThis file will normally be a mosaic of screenshots from multiple variations within your theme. It must meet the following requirements, beyond the general specifications above:\n\n* Resolution of 600 x 760 pixels (horizontal x vertical).\n* File size smaller than 2 MB.\n* Arbitrary filename prefix, referenced in your config.json file as the \nmeta > composed_image key's value.\n\nHere is an example of a compliant file type and location:\n\n`<theme‑name>/meta/composed.png`\n\nHere is how you would reference this file within `config.json`:\n\n```\n{\n  [...]\n  \"meta\": {\n    [...]\n    \"composed_image\": \"composed.png\",\t\n    [...]\n}\n```"
+                      header:
+                        anchor: preparing_themewide-composite
+                    - type: text
+                      data: "## Variations: Desktop/Mobile Screenshots\n\nEach variation within your theme must be represented by two additional screenshots if you want that variation to appear in the control panel > Storefront > Themes Marketplace area, which shows merchants the themes that are available for download.\n\n### Desktop Screenshot\n\nThe first screenshot, showing your theme on a desktop viewport, must meet the following requirements beyond the general specifications above: \nResolution of 2048 x 2600 pixels (horizontal x vertical).\nFile size smaller than 5 MB.\nArbitrary filename prefix, referenced in your config.json file as the \n`<variation-name> > meta > desktop_screenshot` key's value.\n\t\n### Mobile Screenshot\n\nThe second screenshot, showing your theme on a mobile viewport, must meet the following requirements beyond the general specifications above: \n* Resolution of 304 x 540 pixels (horizontal x vertical).\n* File size smaller than 1 MB.\n* Arbitrary filename prefix, referenced in your config.json file as the \n`<variation-name> > meta > mobile_screenshot` key's value.\n\nHere is an example showing two files of compliant types and location:\n\n* `<theme‑name>/meta/desktop_bright.png`\n* `<theme‑name>/meta/mobile_bright.png`\t\n\nHere is how you would reference these files within `config.json`, for a variation named `Bright`:\n\n```\n [...]\n  \"variations\": [\n    {\n      \"name\": \"Bright\",\n      \"id\": \"bright\",\n      \"meta\": {\n        \"desktop_screenshot\": \"desktop_bright.png\",\n        \"mobile_screenshot\": \"mobile_bright.jpg\",\n    [...]\n    }\n  ]\n```\n"
+                      header:
+                        anchor: preparing_variations
+              - title: Theme Editor Troubleshooting
+                route:
+                  path: /theme-editor-troubleshooting
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Theme Editor Troubleshooting</h1>
+                    - type: html
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#theme-editor_empty\">Empty Drop-Down List in Theme Editor Panel</a></li>\n    <li><a href=\"#theme-editor_configured\">Configured Control Missing from Theme Editor Panel</a></li>\n    <li><a href=\"#theme-editor_theme-changes\">Theme Changes Not Saved from Theme Editor UI</a></li>\n\t</ul>\n</div>"
+                    - type: callout
+                      data:
+                        title: Check the Terminal Window
+                        body: >-
+                          For any unexpected behavior that you encounter while
+                          developing your Stencil theme, please also check the
+                          terminal window where you started Stencil CLI. In some
+                          cases, the terminal will provide a verbose error
+                          message specifying where to look for problems. For
+                          less-detailed error messages, we list diagnostic
+                          suggestions in this documentation.
+                    - type: text
+                      data: >-
+                        ## Empty Drop-Down List in Theme Editor Panel
+
+
+                        * **Symptom:** A drop-down list's outline appears below
+                        its configured label. However, the list appears to be
+                        empty.
+
+                        * **Likely Cause:** A default value specified in the
+                        theme's config.json file is not enumerated in the
+                        schema.json file.
+
+                        * **Resolution:** Update schema.json to include the
+                        config.json value.
+                      header:
+                        anchor: theme-editor_empty
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Configured Control Missing from Theme Editor Panel
+
+
+                        * **Symptom:** A control that you have configured within
+                        schema.json is completely absent from the Theme Editor
+                        UI.
+
+                        * **Likely Cause:** The specified "type" is one of:
+                        text, text area, radio [button], or image.
+
+                        (Theme Editor does not currently support these data
+                        types.)
+
+                        * **Resolution:** Display the user option via one of the
+                        supported data types: color, font, select [drop-down
+                        list], or checkbox.
+                      header:
+                        anchor: theme-editor_configured
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Theme Changes Not Saved from Theme Editor UI
+
+
+                        * **Symptom:** Changes saved in a browser's Theme Editor
+                        panel are not reflected in the storefront.
+
+                        * **Likely Cause:** Check whether multiple users are
+                        simultaneously using Theme Editor to customize the same
+                        storefront.
+
+                        * **Resolution:** We strongly recommend opening only one
+                        instance of Theme Editor, at a time, per storefront.
+                        BigCommerce currently provides no synchronization
+                        mechanism for configuration changes from multiple Theme
+                        Editor instances. So the storefront's `schema.json` will
+                        record the last changes made by any instance – but
+                        changes saved earlier by other instances might be lost.
+                      header:
+                        anchor: theme-editor_theme-changes
+        - title: Front Matter
+          route:
+            path: /front-matter
+          data:
+            children:
+              - title: Front Matter Overview
+                route:
+                  path: /front-matter-overview
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Front Matter Overview</h1>
+                    - type: html
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#front-matter-overview_declaring-objects\">Declaring Objects</a></li>\n    <li><a href=\"#front-matter-overview_yaml-syntax\">YAML Syntax – Requirements</a></li>\n    <li><a href=\"#front-matter-overview_filtering-attributes\">Filtering Attributes</a></li>\n    <li><a href=\"#front-matter-overview_combining-front-matter\">Combining Front Matter with Handlebars Attributes</a></li>\n    <li><a href=\"#front-matter-overview_default-versus-custom\">Default versus Custom Attributes, per Page</a></li>\n    <li><a href=\"#front-matter-overview_declaring-multiple\">Declaring Multiple Attributes</a></li>\n\t</ul>\n</div>\n\n\n\n\n\n\n"
+                    - type: text
+                      data: "## Declaring Front-Matter Objects\n\nWhen you create a store page that requires specific attributes (such as 'New Products') to be displayed, you must first declare the object and attribute on the page in a front-matter block at the top of the page's HTML template file. The front matter block makes the attribute accessible on the page. Then, to display the attribute on the storefront page, you will reference the the object using Handlebars within the page's HTML.\nFor example, to display 'new products' on a storefront's home page, you first need to make new products accessible on the home page. To achieve this, include the following front matter block at the top of the [home.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/home.html) file to declare the products object with its new attribute. This allows a storefront's home page to access a store's \"New Products.\"\n\n```\n---\nproducts:\n    new:\n    \tlimit: {{theme_settings.homepage_new_products_count}}\n---\n```\n\n**Note:** A 'limit' is required for Product Objects to render on a storefront page. You can hard code the limit value or utilize handlebars.js to reference it from the theme's config.json file. In this case, the limit value is being referenced from the `settings` JSON object in the `config.json` file using handlebars.js. Information on required attributes is detailed in the Front Matter Attributes Reference. \n\nAfter including the front matter block at the top of the home.html file, the New Products attribute will be accessible in the home page's context. As previously stated, simply including the front matter block will not display the attribute on the page. In order to actually display the new products on the desired storefront page, you will refernce the attribute using Handlebars in the same file you have added the front matter block to.\nIn this example, we will include the following code in Cornerstone's [home.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/home.html) file to display New Products on our store's home page. \n\n\n```\n  {{#if products.new}}\n        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}\n    {{/if}}\n```\n"
+                      header:
+                        anchor: front-matter-overview_declaring-objects
+                    - type: text
+                      data: >+
+                        ## YAML Syntax – Requirements
+
+
+                        Stencil front matter uses the conventions of [YAML]()
+                        (short for the recursive "YAML Ain't Markup Language").
+                        Here are the YAML conventions you must follow in front
+                        matter:
+
+
+                        Place the front-matter block at the top of your
+                        template.
+
+                        Fence the beginning and end of the front-matter block
+                        with a row of three hyphens (---), as you see in the
+                        examples here.
+
+                        Show attribute > key relationship (or object > property
+                        relationship) by indenting the children. In the example
+                        above, products is the object,
+
+                        Place a colon (:) directly after each attribute name,
+                        and directly after each key name. (Colons separate
+                        key:value pairs.)
+
+                        Identifiers are case-sensitive.
+
+
+                        ### Restrictions
+
+
+                        You can use front matter to specify attributes on the
+                        tops of pages in your
+
+                        `<theme-name>/templates/pages/` subdirectory.
+
+
+                        You **cannot** use front matter to accomplish this on
+                        pages in the following subdirectories:
+
+                        * `<theme-name>/templates/components/`
+
+                        * `<theme-name>/templates/layout/`
+
+                        * `<theme-name>/templates/pages/custom/` 
+
+
+                        * Indent using only spaces, not tabs. (YAML forbids
+                        tabs, to avoid inconsistent encoding of tabs across
+                        platforms.) An indent of even one space indicates a
+                        child.
+
+
+                        * Front matter on a given page cannot exceed 64 KB.
+
+
+                        * If a front-matter directive contains an invalid
+                        option, Stencil CLI will silently ignore that option.
+
+                      header:
+                        anchor: front-matter-overview_yaml-syntax
+                    - type: text
+                      data: >
+                        ## Filtering Attributes
+
+
+                        Some attributes can accept indented keys, or key-value
+                        pairs, to further define the attribute. For example,
+                        limit is a key commonly used to restrict the number of
+                        objects to return for an attribute.
+
+                        To return products similar to the product that a
+                        customer is currently viewing – with a limit of six –
+                        you would declare front matter as follows:
+
+
+                        ```
+
+                        ---
+
+                        products:
+                            similar_by_views:
+                                limit: 6
+                        ---
+
+                        ```
+
+
+                        Most keys have a default value, as listed in the [Front
+                        Matter Attributes]() Reference. Specifying the key
+                        without a value will call that default value. The
+                        default value for `similar_by_views:limit:` happens to
+                        be `4`, so inserting `limit` with no integer will
+                        display four products:
+
+
+                        ```
+
+                        ---
+
+                        products:
+                            similar_by_views:
+                                limit:
+                        ---
+
+                        ```
+                      header:
+                        anchor: front-matter-overview_filtering-attributes
+                    - type: callout
+                      data:
+                        body: >-
+                          To keep your pages lightweight, specify only the
+                          attributes you need per page. Also, use the limit key
+                          (with appropriate values) for attributes that accept
+                          it.
+                        title: Filtering for Faster Page Loads
+                    - type: text
+                      data: >-
+                        ## Combining Front Matter with Handlebars Attributes
+
+
+                        The next example builds on front-matter object
+                        invocation and filtering, by showing a corresponding
+                        Handlebars statement in HTML. Here is how you would
+                        declare the `products` object to return four new
+                        products, and to then display each product’s name:
+
+
+                        ```
+
+                        ---
+
+                        products:
+                            new:
+                                limit: 4
+                        ---
+
+
+                        <h1> This is the HTML for the new-products example </h1>
+
+                        {{#each products.new}}
+                            <p>{{ name }}</p>
+                        {{/each}}
+
+                        ```
+                      header:
+                        anchor: front-matter-overview_combining-front-matter
+                    - type: callout
+                      data:
+                        body: >-
+                          In the above HTML, the {{ name }} identifier calls an
+                          attribute of Stencil’s common product card model,
+                          which consolidates details about a given product. For
+                          this and other objects that you can access through
+                          HTML, please see our reference section on Handlebars
+                          objects.
+                        title: ' Reading the Handlebars'
+                    - type: text
+                      data: >-
+                        ## Default versus Custom Attributes, per Page
+
+
+                        To make templates readily useful, they automatically
+                        include a page’s default attributes. For example, a
+                        theme’s
+                        [product.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/product.html)
+                        page will automatically include a product attribute.
+
+
+                        However, if you want to include additional attributes on
+                        a page, you can declare those attributes in front matter
+                        using the conventions shown above. [The Declaring
+                        Objects](#front-matter-overview_declaring-objects)
+                        example shows the only way to display a "new products"
+                        storefront section, which requires front-matter
+                        invocation.
+                      header:
+                        anchor: front-matter-overview_default-versus-custom
+                    - type: text
+                      data: >+
+                        ## Declaring Multiple Attributes
+
+
+                        Below is an example that assumes you want to include a
+                        product’s reviews and also related products. To display
+                        images for the related products, the HTML statement
+                        `<img src="{{getImage image 'gallery'}}">` relies on
+                        Stencil's `{{getImage}}` custom Handlebars helper:
+
+
+                        ```
+
+                        ---
+
+                        product:
+                           reviews:
+                               limit: 9
+                           related_products:
+                               limit: 10
+                        ---
+
+
+
+                        <h2>{{ product.name }}</h2>
+
+                        {{#each product.reviews.list}}
+                            <p>{{text}}</p>
+                        {{/each}}
+
+                        <h3>Related Products</h3>
+
+                        {{#each product.related_products}}
+                          <img src="{{getImage image 'gallery'}}">
+                          <p>{{ name }}</p>
+                        {{/each}}
+
+                        ```
+
+                      header:
+                        anchor: front-matter-overview_declaring-multiple
+              - title: Front Matter Attributes
+                route:
+                  path: /front-matter-attributes-reference
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Front Matter Attributes Reference</h1>
+                    - type: html
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#front-matter-attributes-reference_global\">Global Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_blog\">Blog Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_category\">Category Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_product\">Product Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_brand\">Brand Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_brand-list\">Brand List Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_cart\">Cart Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_search\">Search Attributes</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: "<h2> <a name=\"Front-ref-global\"></a>Global Attributes </h2>\n\nGlobal attributes are available on all pages. <br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details and Other \nAllowable Values/Results</td>\n  </tr>\n  <tr>\n    <td class=\"\">customer:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">Customer attributes are always included, and are available if the active shopper is logged in.</td>\n  </tr>\n\n  <tr>\n  \t<td class=\"\"></td>\n  \t<td class=\"\">addresses: true</td>\n    <td class=\"\">true – on address page<br><p></p>\n\nnull – on all other pages</td>\n    <td class=\"\">Boolean indicating whether to retrieve addresses for this customer.<br><p></p> \n\nNo filtering available. Default sorting is by address id, from lowest to highest.<br><p></p>\n\nnull or false: Do not retrieve addresses.\ntrue: Retrieve addresses.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">returns: true</td>\n    <td class=\"\">true – on returns page<br><p></p>\n\nnull – on all other pages</td>\n    <td class=\"\">Boolean indicating whether to retrieve product-return requests for this customer.<br><p></p> \n      \n      No filtering available.<br><p></p>\n      \n      true: Retrieve requests.<br><p></p>\n      \n      null or false: <NOBR>Do not</nobr> retrieve requests.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">wishlists: <br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: No wishlists displayed.\n      <br><p></p>\n      &lt;number&gt; limits the number of wishlists displayed.\n      <br><p></p>\n      If &lt;number&gt; is not defined, retrieves an unlimited number of wishlists.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">orders: <br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">null</td>\n    <td class=\"\">Contains all orders, complete or not.\n      <br><p></p>\n      null: no orders displayed.\n      <br><p></p>\n      &lt;number&gt; limits the number of orders displayed.\n      <br><p></p>\n      If &lt;number&gt; is not defined, displays 20 orders. (Default sorting is by order id, from lowest to highest.)</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">recently_viewed_products:</td>\n    <td class=\"\">null</td>\n    <td class=\"\">Boolean indicating whether to display recently viewed products.<br><p></p>\n\nNo filtering available.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\">products:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">(When filtering/limiting, products' default sorting is by order id, from lowest to highest.)</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">featured: <br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: No featured products displayed.<br><p></p>\n&lt;number&gt; limits the number of featured products displayed.\n      <br><p></p>\n      If &lt;number&gt; is not set, defaults to 4 products.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">new:<br>\n      <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\nnull</td>\n    <td class=\"\">null: No new products displayed.<br><p></p>\n&lt;number&gt; limits the number of new products displayed. Maximum allowable value is 25.\n      <br><p></p>\n      If &lt;number&gt; is not defined, defaults to 8 products.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">top_sellers: <br>\n      <span class=\"indent1\">limit:  &lt;number&gt;</span></td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: No top-selling products displayed.\n      <br><p></p>\n      &lt;number&gt; limits the number of top sellers displayed.\n      <br><p></p>\n      If &lt;number&gt; is not defined, defaults to all top sellers.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">carousel: true</td>\n    <td class=\"\"></td>\n  <td class=\"\">null</td>\n    <td class=\"\">Boolean indicating whether to display a carousel on storefront.\n      <br><p></p>\n      No filtering available.\n      <br><p></p>\n      null or false: No carousel display.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">blog:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">(Default sorting is by published_date, from most-recent to earliest.)</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">recent_posts:<br>\n      <span class=\"indent1\">limit: &lt;number&gt;</span>\n    </td>\n    <td class=\"\">20</td>\n    <td class=\"\">null: No recent blog posts displayed.\n      <br><p></p>      \n      &lt;number&gt; limits the number of recent blog posts displayed.\n      <br><p></p>      \n      If &lt;number&gt; is not defined, defaults to the maximum of 20 blog posts.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">summary: &lt;number&gt;</td>\n    <td class=\"\">100</td>\n    <td class=\"\"><!-- null: No summary characters displayed.<br><p></p> -->      \n      &lt;number&gt; sets the number of characters to display in each blog-post summary.\n      <br><p></p>\n      If &lt;number&gt; is not defined, displays 100 characters.</td>\n  </tr>\n  \n  <!-- <tr>\n    <td class=\"\">brands:<br>\n        <span class=\"indent1\">&lt;number&gt;</span></td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: Do not display a brand list.<br><p></p>\n&lt;number&gt; limits the number of brands to return.<br><p></p>\nIf &lt;number&gt; is not defined, returns all brands.</td>\n  </tr> -->\n  \n  <tr>\n    <td class=\"\">cart: true</td>\n    <td class=\"\"></td>\n    <td class=\"\">false</td>\n    <td class=\"\">Boolean indicating whether to retrieve cart data.<br><p></p>\ntrue: Return cart data.<br><p></p>\nfalse: Do not return cart data.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">categories: true</td>\n    <td class=\"\"></td>\n    <td class=\"\">false</td>\n    <td class=\"\">Boolean indicating whether to retrieve the <a href=\"docs/global-resources#Categories\">category tree</a> during an AJAX request.\n      <br><p></p>\n      true: Retrieve the category tree.\n      <br><p></p>\n      false: Do not retrieve the category tree.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">description: true</td>\n    <td class=\"\">\nfalse</td>\n    <td class=\"\">\nBoolean indicating whether to retrieve category descriptions dynamically from the database.\n      <br><p></p>\n      Set to true for themes that must display category descriptions when pages render. (This can slow page loads.)</td>\n  </tr>\n    \n  <tr>\n    <td class=\"\">shop_by_brand:</td>\n    <td class=\"\">limit: &lt;number&gt;</td>\n    <td class=\"\">null</td>\n    <td class=\"\">Typically used in a footer or sidebar.<br><p></p>\nnull: Do not display this brand list.<br><p></p>\n&lt;number&gt; limits the number of brands to return.<br><p></p>\nIf &lt;number&gt; is not defined, returns 10 brands, ordered by the number of products per brand.</td>\n  </tr>\n\n  <!-- <tr>\n    <td class=\"\">suggested_products:<br>\n  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; limit: &lt;number&gt;</td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: Do not display suggested products.<br><p></p>\n&lt;number&gt; limits the number of suggested products to return.<br><p></p>\nIf &lt;number&gt; is not defined, returns 4 suggested products.</td>\n  </tr> -->\n</table>\n\n\n<h2> <a name=\"Front-ref-cat\"></a>Category Attributes</h2>\n\nCategory attributes are available in the context of a category.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">category:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">shop_by_price:</td>\n    <td class=\"\">\nfalse</td>\n    <td class=\"\">\nBoolean indicating whether to display Shop-by-Price controls.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">products:<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\n16</td>\n    <td class=\"\">\nDefines the number of products displayed per page for this category. Range of possible values is 1&ndash;100 products.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-blog\"></a>Blog Attributes</h2>\n\nBlog attributes are available in the context of a blog.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Sub-Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">blog:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">posts:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">(Default sorting is by published_date, from most-recent to earliest.)</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">limit: &lt;number&gt;</td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: No blog posts displayed.<br><p></p>\n      &lt;number&gt; limits the number of blog posts displayed.<br><p></p>\n      Maximum is 20 blog posts per page.\n    </td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">pages: &lt;number&gt;</td>\n    <td class=\"\">5</td>\n    <td class=\"\">\nnull: No pagination.<br><p></p>\n      \n      &lt;number&gt; sets the number of pages to display in pagination links.<br><p></p>\n      \n      If &lt;number&gt; is not defined, defaults to 5 pages.\n    </td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">summary: &lt;number&gt;</td>\n    <td class=\"\">250</td>\n    <td class=\"\"> <!-- null: No summary characters displayed.<br><p></p> -->  \n      &lt;number&gt; sets the number of characters to display in each blog-post summary.<br><p></p>\nIf &lt;number&gt; is not defined, displays 250 characters.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-prod\"></a>Product Attributes</h2>\n\nProduct attributes are available in the context of a product.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">product:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">(When filtering/limiting, products' default sorting is by order id, from lowest to highest.)</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">videos:<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\n[unlimited]</td>\n    <td class=\"\">If product.videos is not defined, no videos are returned.<br><p></p>\n      \n      If product.videos is defined, the default behavior is to return all videos. <!-- Check & correct this. --> <br><p></p>\n      \n      If product.videos.limit is also defined, &lt;number&gt; sets the maximum number of videos returned.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">images:<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\n[unlimited]</td>\n    <td class=\"\">If product.images is not defined, no images are returned.<br><p></p>\n      \n      If product.images is defined, you must also define product.images.limit, which throttles the number of images returned. <br><p></p>\nThe maximum allowable value for this option's &lt;number&gt; parameter is 5 images.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">reviews: true<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">[false]</td>\n    <td class=\"\">Boolean indicating whether to display product reviews.\n      <br><p></p>      \n      If product.reviews is present, and is not explicitly set to \"false\", reviews will appear.\n      <br><p></p>      \n      If &lt;number&gt; is not defined, defaults to 10 reviews.<br><p></p>\n      (When filtering/limiting reviews, default sorting is by review id, from lowest to highest.)</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">related_products:<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\n[unlimited]</td>\n    <td class=\"\">Displays products that are related by name.<br><p></p>\n      \n      &lt;number&gt; limits the number of products displayed.<br><p></p>\n      \n      If &lt;limit&gt; is absent or undefined, the default behavior is to display all related products.<br><p></p> \n\nInserting “limit:” with no integer will display 0 products. </td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">similar_by_views:<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">[unlimited]</td>\n    <td class=\"\">Displays products similar to those displayed in the current page context.<br><p></p>\n      \n      &lt;number&gt; limits the number of products displayed.<br><p></p>\n      \n      If &lt;limit&gt; is absent or undefined, default is to display 4 products.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-brand\"></a>Brand Attributes</h2>\n\nBrand attributes are available in the context of a brand.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">brand:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">products: <br>\n      <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\n50</td>\n    <td class=\"\">\nDefines the number of products displayed per page for this brand. Range of possible values is 1&ndash;50 products.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-brandlist\"></a>Brand List Attributes</h2>\n\nThese attributes are available in the context of a list of brands.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">brands:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">(When retrieving a collection of brands, default sorting is by brand id, from lowest to highest.)</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">limit: &lt;number&gt;</td>\n    <td class=\"\">50</td>\n    <td class=\"\">\nSets the number of brands displayed in the list. If &lt;limit&gt; is not defined, returns all brands, up to a maximum of 50.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-cart\"></a>Cart Attributes</h2>\n\nCart attributes are available in the context of a shopper's cart.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Sub-Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">cart</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">suggestions:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">Suggested products to display to shopper, based on cart contents. <NOBR>(If enabled,</nobr> these suggestions appear only immediately after the shopper adds an item to the cart.)</td>\n  </tr>\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">limit: &lt;number&gt;</td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: Do not display suggested products.<br><p></p>\n&lt;number&gt; limits the number of suggested products to return.<br><p></p>\nIf &lt;number&gt; is not defined, returns 4 suggested products.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-search\"></a>Search Attributes</h2>\n\nSearch attributes are available in the context of a search results page.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Sub-Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">search</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">product_results:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">limit: &lt;number&gt;</td>\n    <td class=\"\">16</td>\n    <td class=\"\">\nDefines the number of product search results displayed per page. Range of possible values is 1&ndash;100 products.</td>\n  </tr>\n</table>"
+                config:
+                  sidebar:
+                    token: Reference
         - title: Template Files
           route:
             path: /template-files
@@ -6384,831 +7209,6 @@ pages:
                             config:
                               sidebar:
                                 token: tutorial
-        - title: 'Stencil Theme Editor '
-          route:
-            path: /stencil-theme-editor
-          data:
-            children:
-              - title: Stencil Theme Editor Overview
-                route:
-                  path: /stencil-theme-editor-overview
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1>Stencil Theme Editor Overview</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#stencil_stencil-theme-editor-overview\">Stencil Theme Editor</a></li>\n\t</ul>\n</div>"
-                    - type: text
-                      data: >-
-                        ## Stencil Theme Editor
-
-                        The [Stencil Theme
-                        Editor](https://forum.bigcommerce.com/s/article/Stencil-Themes?_ga=2.258361674.1984523106.1539568940-967431010.1523308107)
-                        is a Graphical User Interface (GUI) that allows
-                        BigCommerce merchants to modify a storefront's look and
-                        feel without manually entering any code. A merchant
-                        using the Stencil Theme Editor can customize a
-                        storefront theme by modifying characteristics from a
-                        variety of menu options such as Styles, Colors,
-                        Typography, Buttons, and more. Furthermore, the Stencil
-                        Theme Editor is a useful rapid-customization tool for
-                        developers. 
-
-
-                        As a theme developer, you not only have the opportunity
-                        to _use_ the theme editor to rapidly customize your
-                        theme, but also _configure your own settings_ for the
-                        Theme Editor. This will give merchants who download your
-                        theme the ability to use the Theme Editor with your
-                        theme in the ways you provide access to. Like previously
-                        mentioned, the Theme Editor by default allows merchants
-                        to customize everything from Styles, Colors, Typography,
-                        Buttons, and more. As a theme developer, you can choose
-                        and configure what features can be modified via the
-                        Theme Editor for the theme that you develop.
-
-
-                        To configure and work with the Theme Editor GUI locally,
-                        run `stencil start -e` , and point your browser to
-                        `localhost:8181`, as described here. This allows you to
-                        see and test your personally configured Theme Editor
-                        from a merchant's point of view. 
-
-
-                        The remainder of this section guides you, as a
-                        developer, through configuring your own theme options.
-                      header:
-                        anchor: stencil_stencil-theme-editor-overview
-                    - type: callout
-                      data:
-                        type: error
-                        body: >-
-                          Open only one instance of Theme Editor at a time
-                          against each storefront. There is currently no
-                          synchronization mechanism for configuration changes
-                          made by multiple Theme Editor instances.
-                        title: ' Single Instance per Storefront'
-              - title: Configuring Stencil Theme Editor
-                route:
-                  path: /configuring-stencil-theme-editor
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1>Configuring the Stencil Theme Editor</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#configuring_configuration-files\">Configuration Files</a></li>\n    <li><a href=\"#configuring_managing-keys\">Managing Keys between Versions</a></li>\n    <li><a href=\"#configuring_persistent-settings\">Persistent Settings Storage</a></li>\n    <li><a href=\"#configuring_theme-upgrades\">Theme Upgrades and Settings</a></li>\n\t</ul>\n</div>"
-                    - type: text
-                      data: >-
-                        ## Configuration Files
-
-
-                        Each theme contains two related JSON files of key-value
-                        pairs: `config.json` and `schema.json`. These files'
-                        keys provide the following features:
-
-
-                        Keys that you include in `schema.json` – together with
-                        their corresponding `config.json` default values –
-                        define the settings that merchants can customize through
-                        the Theme Editor graphical interface.
-
-                        Other `config.json` keys contain metadata about the
-                        theme, such as the theme's name, version, and resource
-                        controls.
-
-                        Keys located under the `config.json > variations` object
-                        define variations of the theme. For example, a theme
-                        might have a "Light" variation and a "Bold" variation,
-                        each with different typography and colors. Each theme
-                        can include as many variations as you like.
-
-                        Keys located under both files' `settings` objects define
-                        the theme's look, feel, and functionality.
-
-
-                        For documentation on the principal keys included in
-                        Stencil's reference Cornerstone theme, see this
-                        section's [config.json Metadata]() and [schema.json
-                        Metadata]() entries. For an introduction to the
-                        graphical editor, see
-
-                        [Stencil Theme Editor Overview]().
-                      header:
-                        anchor: configuring_configuration-files
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Managing Keys between Versions
-
-
-                        To make sure revisions to your theme are
-                        backward-compatibile, we generally recommend that you
-                        manage keys in both your `config.json` and `schema.json`
-                        files in an additive way. Specific recommendations:
-
-
-                        Adding new keys is generally fine. (However, each key in
-                        `schema.json` must have a matching default in
-                        `config.json`, as outlined in [Enabling Theme
-                        Editor]().)
-
-                        * Use caution in deleting any key. Doing so can break
-                        your new theme version's backward compatibility.
-
-                        * We do not recommend renaming keys. Instead, we
-                        recommend introducing a new key, while maintaining the
-                        old key until it is no longer in use by anyone using an
-                        older version of your theme.
-
-                        * Each object within your `config.json` > [variations]()
-                        object defines one theme variation. If you are adapting
-                        an existing theme and consciously want to remove one or
-                        more variations, you can do so by removing the
-                        corresponding key(s).
-                      header:
-                        anchor: configuring_managing-keys
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Persistent Settings Storage
-
-
-                        When store administrators use Theme Editor to customize
-                        your theme for their store, the store's resulting
-                        configuration settings are saved to a separate
-                        configuration service at BigCommerce.
-                      header:
-                        anchor: configuring_persistent-settings
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Theme Upgrades and Settings
-
-
-                        When a merchant upgrades your theme to a newer version,
-                        all key-value pairs that were saved to the BigCommerce
-                        configuration service are carried forward. For example,
-                        assume this customization/upgrade scenario:
-
-
-                        You release your Star Glow theme, version 1. This
-                        theme's `config.json` includes a key named `logo_size`,
-                        establishing a default value of 100x250. The combination
-                        of the key and the value compose a `logo_size` setting.
-
-                        The merchant uses Theme Editor to change the `logo_size`
-                        setting to 175x275. This customized setting is stored in
-                        the BigCommerce configuration service.
-
-                        You release Star Glow, version 1.1. In this theme
-                        revision, you have changed the `logo_size` to 300x300.
-
-                        When the merchant applies Star Glow version 1.1 to their
-                        store, their custom `logo_size` setting of 175x275
-                        remains in effect.
-
-                        If you the merchant creates a second store and applies
-                        Star Glow version 1.1 to it, that store has no custom
-                        `logo_size` setting – so it will default to the new
-                        theme version's 300x300 value.
-                      header:
-                        anchor: configuring_theme-upgrades
-              - title: config.json Metadata
-                route:
-                  path: /config-json-metadata
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1><code>config.json</code> Metadata</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#config_configjson-overview\">config.json Overview</a></li>\n    <li><a href=\"#config_keys-and-example\">Keys and Example Values</a></li>\n    <li><a href=\"#config_requirements-and-restrictions\">Requirements and Restrictions</a></li>\n    <li><a href=\"#config_video-demo\">Video Demo</a></li>\n\t</ul>\n</div>\n\n\n"
-                    - type: text
-                      data: >
-                        ## `config.json` Overview
-
-
-                        You configure the `/<theme‑name>/config.json` file to
-                        properly manage each of your custom theme's front-end
-                        aspects. This `config.json` file’s functions are to:
-
-
-                        * Provide global context for Stencil’s CSS and
-                        Handlebars resources.
-
-                        * Provide values for the Theme Editor GUI to manage.
-
-                        * Provide metadata for your theme’s listing in the Theme
-                        Marketplace.
-
-                        * Define variations included in your theme.
-                      header:
-                        anchor: config_configjson-overview
-                    - type: text
-                      data: "<table>\n  <tr>\n    <th>Property</th>\n    <th>Format</th>\n    <th>Default/Examples</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>String</td>\n    <td>\"Stencil\"</td>\n\t\t<td>Theme’s name, as it will appear in the Theme Marketplace. (<b>Note:</b> Theme names should be composed of only the following characters: a-z, A-Z, 0-9, hyphen.)</td>\n  </tr>\n  <tr>\n    <td>version</td>\n    <td><a href=\"http://semver.org/\">SemVer</a></td>\n    <td>\"1.0.0\"</td>\n    <td>Theme’s version number, formatted asmajor.minor.patch.</td>\n  </tr>\n  <tr>\n    <td>meta</td>\n    <td>Object</td>\n    <td></td>\n    <td>BigCommerce will use this metadata to list themes in Theme Marketplace.(Theme variations also have their own metadata collections.)</td>\n  </tr>\n  <tr>\n    <td>price</td>\n    <td>Number</td>\n    <td>15000</td>\n    <td>Price, in cents, to purchase this theme in Theme Marketplace.</td>\n  </tr>\n  <tr>\n    <td>documentation_url</td>\n\t\t<td>String</td>\n\t\t<td><a href=\"https://support.bigcommerce.com/articles/Public/Cornerstone-Theme-Manual\">Cornerstone Theme Manual</a>\n\t\t</td>\n\t\t<td>URL of theme developer’s documentation site. This key is required to have a value.)</td>\n  </tr>\n  <tr>\n    <td>author_name</td>\n    <td>String</td>\n    <td>\"eCommerce Themes, Inc.\"</td>\n    <td>Name of the developer or partner creating the theme.(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>\n  <tr>\n    <td>author_email</td>\n    <td>String</td>\n    <td>\"support@example.com\"</td>\n    <td>Contact/support email address for the developer or partner creating the theme.\n(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>\n  <tr>\n    <td>author_support_url</td>\n    <td>String</td>\n    <td>\"http://example.com/contactus\"</td>\n    <td>Contact form/support URL for the developer or partner creating the theme.\n(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>    \n  <tr>\n    <td>composed_image</td>\n    <td>String</td>\n    <td>\"composed_image.png\"</td>\n    <td>File name for a composed/mosaic screenshot of all variations of the theme, to appear on the \"My Themes\" page of purchased themes. The file-name value is arbitrary, but it must match the name of a file located in the <code>theme‑name/meta/</code> subdirectory.The actual file’s resolution must be 600 x 760 pixels (horizontal x vertical).</td>\n  </tr>\n  <tr>\n    <td>features</td>\n    <td>Array</td>\n    <td> [\"fully_responsive\", \"mega_navigation\", \"multi_tiered_sidebar_menu\", \"masonry_design\",\"frontpage_slideshow\",\"quick_add_to_cart\",\"switchable_product_view\",\"product_comparison_table\",\"complex_search_filtering\", \"customizable_product_selector\", \"cart_suggested_products\", \"free_customer_support\", \"free_theme_upgrades\", \"high_res_product_images\", \"product_filtering\", \"advanced_quick_view\", \"product_showcase\", \"persistent_cart\", \"one_page_check_out\", \"customized_check_out\", \"product_videos\"]</td>\n    <td>Array of exact feature names supported in this theme. The \"Default/Examples\" column lists the complete namespace. At least one of the values listed there must be present.</td>\n\t<td>These values are used as metadata for Theme Marketplace searches.</td>\n     <td> The <code>\"customized_check_out\"</code> value has a second function: It must be present if you want to enable <a href=\"https://support.bigcommerce.com/articles/Public/Optimized-Single-Page-Checkout\">Optimized One-Page Checkout</a> for your theme.</td>\n  </tr>\n  <tr>\n    <td>css_compiler</td>\n    <td>String</td>\n    <td>\"scss\"</td>\n    <td>CSS preprocessor; defaults to SCSS.</td>\n  </tr>\n  <tr>\n    <td>autoprefixer_cascade</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Whether to enable the Autoprefixer CSS postprocessor, to add vendor prefixes to CSS rules.</td>\n  </tr>\n  <tr>\n    <td>autoprefixer_browsers</td>\n    <td>Array</td>\n    <td>[\"last 3 versions\"]</td>\n    <td>Which legacy browsers <a href=\"https://github.com/postcss/autoprefixer\">Autoprefixer</a> should support, specified in <a href=\"https://github.com/ai/browserslist\">Browserslist</a> query format.</td>\n  </tr>\n  \n  <tr>\n    <td>settings</td>\n    <td></td>\n    <td></td>\n    <td>Display-oriented key names, and values, that you can arbitrarily set for your theme. Handlebars accesses the combined settings as the context variable <code>{{theme_settings}}</code>.Variations also have their own<code>settings</code> sections. Values that you set at the variation level will override global values that you set here (for corresponding key names, and within the scope of that variation).If you want to create a custom variable to use in Handlebars, either add it here within this theme-level <code>settings</code> section, or add it down in a variation-level <code>\">settings</code> section. You would access your arbitrarily named custom variable in Handlebars as <code>{{theme_settings.variablename}}</code>.\n\n\t\t\tHere is an example of a custom variable in the default theme’s <code>config.json</code>:\n\n<code>\"settings\": { \"homepage_featured_products_count\": 6,\n}</code>\n\nHere is the corresponding front matter in <code>home.html</code> that calls this variable. (Note that this is pure YAML – the <code>{{...}}</code> used to reference <code>config.json</code> variables within pages’ front matter do not constitute a Handlebars statement:)\n\n<code>\n---\nproducts:\n  featured:\n      limit: {{theme_settings.homepage_featured_products_count}}\n---\n</code> </td>\n</tr>\n  <tr>\n    <td>homepage_new_products_count</td>\n    <td>Number</td>\n    <td>12</td>\n    <td>Number of products to include in home page’s New Products section.</td>\n  </tr>\n  <tr>\n    <td>homepage_section-name_count,homepage_section-name_column_count</td>\n    <td>Number</td>\n    <td>[Varies]</td>\n    <td>Number of products, or columns, to include in the specified home-page section.</td>\n  </tr>\n  <tr>\n    <td>productpage_section-name_count</td>\n    <td>Number</td>\n    <td>[Varies]</td>\n    <td>Number of products to include in the specified section of product-details pages.</td>\n  </tr>\n  <tr>\n    <td>categorypage_products_per_page, brandpage_products_per_page, searchpage_products_per_page</td>\n    <td>Number</td>\n    <td>12</td>\n    <td>Number of products to include on each specified page type.</td>\n  </tr>\n\t<tr>\n    <td>homepage_show_carousel</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to display an image carousel on the home page.</td>\n  </tr>  \n\t<tr>\n    <td>show_product_quick_view</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to offer customers product Quick View modal windows.</td>\n  </tr>  \n\t<tr>\n    <td>show_powered_by</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to display a \"Powered by BigCommerce\" credit in the sitewide footer.</td>\n  </tr>  \n\t<tr>\n    <td>show_accept_amex,\n      show_accept_visa, etc.\n    </td>\n    <td>Boolean</td>\n    <td>false</td>\n    <td>Each of these keys displays or hides a payment-method icon in the sitewide footer. The icons respectively identify credit-card issuers, PayPal, etc. If these keys are defined in schema.json, merchants can use the Theme Editor GUI to toggle each payment icon's visibility.</td>\n  </tr>\n  <tr>\n    <td>product_list_display_mode</td>\n    <td>String</td>\n    <td>\"grid\"</td>\n    <td>Default display mode for product lists. A <code>\"grid\"</code> value specifies grid format. Other entries trigger list format.</td>\n  </tr>\n  <tr>\n    <td>logo-position</td>\n    <td>String</td>\n    <td>\"center\", \"left\", \"right\"</td>\n    <td>Sets (horizontal) display alignment for store logo throughout the theme.</td>\n  </tr>\n \n<!-- Begin images section/intro: -->\n  <tr>\n    <td>[images]</td>\n    <td>\n    The following keys' values define storewide dimensions for named sizes. The <code>{{getImage}}</code> Handlebars helper can use member keys’ values to dynamically resize any images, up to a maximum target size of 4096x4096 pixels.\n    \nKey names like <code>\"logo_size\"</code> and <code>\"thumb_size\"</code> are arbitrary.\n\nFor example, this Handlebars expression:\n\n\t\t\t<code>{{getImage product.image \"thumb_size\"}}</code> will output the path to a 100x100-pixel image (assuming the <code>\"thumb_size\"</code> key retains its default value of <code>\"100x100\"</code>).\n\nBy defining or redefining these named sizes' values, in the format outlined below, you can automatically replicate the new sizes throughout your theme.</td>\n  </tr>\n  <!-- :End images intro: -->\n  \n  <tr>\n    <td><span class=\"indent1\">logo_size</span></td>\n    <td>String</td>\n    <td>250x100</td>\n    <td>Key/value pair defining global (storewide) display dimensions for the store logo. The value is a string defining the width and height &ndash; in that order &ndash; in pixels.</td>\n  </tr>\n  \n  <tr>\n    <td>gallery_size</td>\n    <td>String</td>\n    <td>300x300</td>\n    <td>Key/value pair defining storewide display dimensions for blog images (also available for other uses).</td>\n  </tr>\n\n  <tr>\n    <td>productgallery_size</td>\n    <td>String</td>\n    <td>300x300</td>\n    <td>Key/value pair defining storewide display dimensions for product-gallery images.</td>\n  </tr>\n\n  <tr>\n    <td>product_size</td>\n    <td>String</td>\n    <td>500x659</td>\n    <td>Key/value pair defining storewide display dimensions for standard/medium-sized product images.</td>\n  </tr>\n  \n  <tr>\n    <td>productthumb_size</td>\n    <td>String</td>\n    <td>100x100</td>\n    <td>Key/value pair defining storewide display dimensions for product-image thumbnails on the product details page.</td>\n  </tr>\n\n  <tr>\n    <td>thumb_size</td>\n    <td>String</td>\n    <td>100x100</td>\n    <td>Key/value pair defining storewide display dimensions for swatches, and for brand and category thumbnails.</td>\n  </tr>\n  \n  <tr>\n    <td>zoom_size</td>\n    <td>String</td>\n    <td>1280x1280</td>\n    <td>Key/value pair defining storewide display dimensions for zoomable product images on the product details page.</td>\n  </tr>\n<!-- :End images section-->\n\n<!-- Begin image URLs section: -->    \n  <tr>\n    <td>product_list_display_mode</td>\n    <td>String</td>\n    <td>\"grid\"</td>\n    <td>Default display mode for product lists. A <code>\"grid\"</code> value specifies grid format. Other entries trigger list format.</td>\n  </tr>\n  <tr>\n    <td>default_image_brand</td>\n    <td>String</td>\n    <td>/assets/img/BrandDefault.gif</td>\n    <td>Relative path to a default image representing brands.</td>\n  </tr>\n  <tr>\n    <td> <span class=\"indent1\"> default_image_product</td>\n    <td>String</td>\n    <td>/assets/img/ProductDefault.gif</td>\n    <td>Relative path to a default image representing products.</td>\n  </tr>\n  <tr>\n    <td>default_image_gift_certificate</td>\n    <td>String</td>\n    <td>/assets/img/GiftCertificate.png</td>\n    <td>Relative path to a default image representing gift certificates.</td>\n  </tr>\n<!-- :End image URLs section -->    \n  \n<!-- Begin fonts section: -->\n  <tr>\n    <td>body-font</td>\n    <td>String</td>\n    <td>\"Google_Karla_400\"</td>\n    <td>Font-family keys, with corresponding values.\nKeys are named by display purpose, and keys' names should end in <code>-font</code>. But naming is otherwise arbitrary. So you can freely define additional font families for your theme.Values should follow the format:\n\t\t\t<code>\n\t\t\t\tProviderName_Font+FamilyName\n    _OptionalWeightNumber\n\t\t\t\t</code>\n\nAs in this example:\n      <code>Google_Open+Sans_700</code> which specifies <code>Google Fonts</code> as the Provider, <code>Open Sans</code> as the Font Family, and <code>800</code> as the (optional) Weight attribute.\n\n(<b>Note:</b> The Provider; also called \"Foundry\" - is currently limited to Google Fonts.)\nStencil’s <a href=\"/docs/custom-sass-functions#FontFamily\">custom Sass functions</a> can process these keys’ values. E.g., to <span class=\"inline-code\">stencilFontFamily</span>, you could pass the (arbitrary) key name <span class=\"inline-code\">\"body-font\"</span>, and the function would process the value. Note that Sass requires explicit typing of inputs and outputs – e.g., <span class=\"inline-code\">stencilNumber</span> defaults to pixels – so you must specify any other units. Thus, for a\n\n      <pre>\"font‑size\" = 3</pre>\n      <p></p>\n\n<!--      <span class=\"indent1\"><span class=\"inline-code\">\"font‑size\" = 3</span></span><br> -->\n\n...this statement:<br><p></p>\n\n    <pre>stencilNumber(\"font-size\",\"rem\")\n    * 3</pre><p></p>\n\n<!--    <span class=\"indent1\"><span class=\"inline-code\">stencilNumber(\"font-size\",\"rem\")</span></span><br>   \n    <span class=\"indent1\"><span class=\"inline-code\">* 3</span></span><br> -->\n\n...will output:<br><p></p>\n\n    <pre>9rem</pre>\n    <p></p>\n\n<!--    <span class=\"indent1\"><span class=\"inline-code\">9rem</span></span><br><br> -->\n\n      (<b>Note:</b> To enable merchants to customize your themes' fonts via <NOBR>Theme Editor</nobr>, we recommend that you rely on Google Fonts, with no more than 25 typefaces per theme.)</td>\n  </tr>\n  <tr>\n    <td>         <span class=\"indent1\">headings-font</span></td>\n    <td>String</td>\n    <td>\"Google_Montserrat_400\"</td>\n    <td>Arbitrary key name, and value, for a font family and (optional) weight that can be applied to headings.</td>\n  </tr>\n  <tr>\n    <td>         <span class=\"indent1\">logo-font</span></td>\n    <td>String</td>\n    <td>\"Google_Oswald_300\"</td>\n    <td>Arbitrary key name, and value, for a font family and (optional) weight for logo text.</td>\n  </tr>\n  \n  <tr>\n    <td>         <span class=\"indent1\"><NOBR>fontSize-root,</nobr></span><br> <span class=\"indent1\"><NOBR>fontSize-h1</nobr>..</span><NOBR>fontSize-h6,</nobr><br> <span class=\"indent1\">etc.</span> </td>\n    <td>Number</td>\n    <td>14</td>\n    <td>Font-size keys, with corresponding values.<br><br>\n      \nThese keys' values provide defaults for options selectable in the Theme Editor GUI. Also, Stencil’s <a href=\"#CustomSassFn\">custom Sass functions</a> can process these values.<br><br> \n      \n      Here again, these keys are named by display purpose, but arbitrarily. So you can freely define additional font sizes for your theme.</td>\n  </tr>\n  \n  \n<!--Begin colors section:-->  \n  <tr>\n    <td>\n      <span class=\"indent1\"><NOBR>color-textBase</nobr></span>\n    </td>\n    <td>String</td>\n    <td>\"#4f4f4f\"</td>\n    <td>Color definitions, with corresponding hex values. These keys' values provide defaults for options selectable in the Theme Editor GUI.<br><br> \n      \n      Also, Stencil’s <a href=\"#CustomSassFn\">custom Sass functions</a> can process these values. E.g., to <span class=\"inline-code\">stencilColor</span>, you could pass the key name <span class=\"inline-code\">\"color-textBase\"</span>, and the function would return the <span class=\"inline-code\">\"#4f4f4f\"</span> value defined here.<br><br>\n      \n      The keys are named by display purpose &ndash; defining consistent colors for various parts of the theme in different states. But the keys are also named arbitrarily. So you can freely name and define new color keys for your theme.<br><br> \n      \n      (<b>Note:</b> Only a subset of the default <span class=\"inline-code\">config.json</span> file’s color definitions are listed here.) </td>\n  </tr>\n\n  <tr>\n    <td>   <span class=\"indent1\"><NOBR>color-textBase--hover,</nobr></span> <span class=\"indent1\"><NOBR>color-textBase--active,</nobr></span><br> <span class=\"indent1\">..</span><br> <span class=\"indent1\"><NOBR>color-textLink--active,</nobr></span><br> <span class=\"indent1\"><NOBR>color-textHeading,</nobr></span><br> <span class=\"indent1\">etc.</span></td>\n    <td>String</td>\n    <td>[Varies]</td>\n    <td>\"</td>\n  </tr>\n\n  <tr>\n    <td>color-primary</td>\n    <td>String</td>\n    <td>\"#4f4f4f\"</td>\n    <td>\"</td>\n  </tr>\n  \n  <tr>\n    <td>color-primaryDark</td>\n    <td>String</td>\n    <td>\"#454545\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-primaryDarker</td>\n    <td>String</td>\n    <td>\"#2d2d2d\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-primaryLight</td>\n    <td>String</td>\n    <td>\"#a5a5a5\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-secondary</td>\n    <td>String</td>\n    <td>\"#ffffff\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-secondaryDark</td>\n    <td>String</td>\n    <td>\"#f2f2f2\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>         <span class=\"indent1\">color-secondaryDarker</span></td>\n    <td>String</td>\n    <td>\"#f2f2f2\"</td>\n    <td>\"</td>\n  </tr>\n<!-- :End colors section -->\n\n<!-- Begin Optimized checkout subsection/intro: -->\n  <tr>\n    <td> <span class=\"indent1\"> <a name=\"config-uco\"></a> [Optimized Checkout]</td>\n    <td colspan=\"3\">\n    The following are examples of keys that define default style properties for the Optimized Checkout page. Each key/value pair here corresponds to a class in the <span class=\"inline-code\">&lt;theme‑name&gt;/assets/scss/optimized-checkout.scss</span> file.\n\t</td>\n  </tr>\n  <!-- :End Optimized Checkout intro. -->\n  \n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-header-backgroundColor</span></td>\n    <td>String</td>\n    <td>#f7f7f7</td>\n    <td>Key/value pair defining default background color for the Optimized Checkout page's header.</td>\n  </tr>\n  \n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-show-backgroundImage</span></td>\n    <td>Boolean</td>\n    <td>false</td>\n    <td>Key/value pair defining whether to display a background image on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-backgroundImage</span></td>\n    <td>String</td>\n    <td> &ndash; </td>\n    <td>Key/value pair containing file name of background image for the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-backgroundImage-size</span></td>\n    <td>String</td>\n    <td>1000x400</td>\n    <td>Key/value pair defining display size for background image on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-show-logo</span></td>\n    <td>enum</td>\n    <td>none</td>\n    <td>Key/value pair defining whether to show logo on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td><span class=\"indent1\">optimizedCheckout-logo</span></td>\n    <td>String</td>\n    <td> &ndash; </td>\n    <td>Key/value pair containing file name of background image for the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td><span class=\"indent1\">[...]</span></td>\n    <td>[...]</td>\n    <td> [...] </td>\n    <td>[...]<br> \n      (Multiple similar key/value pairs. For a more-complete list of the classes available, see Optimized One-Page Checkout Customization)</td>\n  </tr>\n<!-- :end Optimized checkout subsection -->  \n\n<!-- Begin read-only subsection-->\n  <tr>\n    <td>read_only_files</td>\n    <td>String array</td>\n    <td> \"/assets/scss/components/citadel\",<br> \"/assets/scss/components/foundation\",<br> \"/assets/scss/components/vendor\",<br> \"/assets/scss/vendor\",<br> \"/assets/scss/settings/citadel\",<br> \"/assets/scss/settings/foundation\",<br> \"/assets/scss/settings/vendor\",<br> \"/assets/scss/settings/normalize\" </td>\n    <td>Files and paths specified in this array will be viewable in the <a href=\"/docs/what-is-theme-editor\">Theme Editor</a> GUI, but not editable. Add any theme files/paths that you want to make read-only for store administrators using that editor.</td>\n  </tr>\n<!-- :end read-only subsection -->\n  \n<!-- Begin resources: section -->\n  <tr>\n    <td>resources</td>\n    <td></td>\n    <td></td>\n    <td>Global resources, inherited by all pages located directly within your <code><theme‑name>/templates/pages/</code> subdirectory.\n\n(This inheritance spares you from having to define them in front matter on every page. Here, the resources are defined in JSON rather than YAML format.)\n\nYou are free to add more global resources here – for example: <code>\"brands\": true</code> to display a brands list; or\n\t\t\t<code>\"blog\": \"posts\": \"limit\": 3</code> to display the top 3 blog posts. For syntax, see <a href=\"/docs/front-matter-variables#Front-ref-global\">Front-Matter Global Attributes</a>.</td>\n  </tr>\n  <tr>\n    <td>cart</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to retrieve/display cart data <!--to display a shopping-cart icon/link--> in pages' chrome.</td>\n  </tr>\n  <tr>\n    <td>shop_by_brand</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to include a quick-navigation list of brands in the footer. Adding this optional filter defines how many brands to load:\n\t\t\t<code>limit: number</code></td>\n  </tr>\n    \n  <tr>\n    <td>variations</td>\n    <td>Object</td>\n    <td></td>\n    <td>Collection of variation objects. Each contained object defines one variation on this overall theme. (A theme must contain at least one variation, and may contain up to four.)</td>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>String</td>\n    <td>\"Light\", \"Bold\",\"Warm\" (etc.)</td>\n    <td>An arbitrary name for this variation. This name is used in the Themes Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td>id</td>\n    <td>String</td>\n    <td>\"light\", \"bold\", \"warm\" (etc.)</td>\n    <td>A string ID for this variation. Arbitrarily named, but must be unique to this variation.\nThe Stencil framework’s database uses this unique ID to identify and process updates to variations.<br><br> \n\nWhen you submit an updated version of your theme to BigCommerce, IDs and settings for previously submitted variations must match those in previous submissions of your theme. You may add, but not remove, variations and settings in such resubmissions. You may rename variations for clarity.\n</td>\n  </tr>\n  <tr>\n    <td>settings</td>\n    <td></td>\n    <td></td>\n    <td>Variation-level counterpart to this theme’s theme-level <code>\"settings\"</code> object.\n\nValues that you set here will override theme-wide values for corresponding key names,  within the scope of this variation.\n\nYou can also create custom variables here, whose scope will be limited to this variation. Syntax is the same as for theme-wide custom variables.</td>\n  </tr>\n  <tr>\n    <td>meta</td>\n    <td>Object</td>\n    <td></td>\n    <td>Variation-level counterpart to this theme’s top-leve \"meta\" collection.\nBigCommerce will similarly use this collection’s values when listing themes in Theme Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td>\"desktop_screenshot\"</td>\n    <td>String</td>\n    <td>\"desktop_screenshot.png\"</td>\n    <td>File name for a screenshot of this variation’s large-format layout.\nThe key name is fixed. The file-name value is arbitrary, but it must match the name of a file located in the <code>theme‑name/meta/</code> subdirectory. If you are updating a variation, be sure to match this value to the intended file name.) The screenshot’s required dimensions are 2048 x 2600 pixels.</td>\n  </tr>\n  <tr>\n    <td>\"mobile_screenshot\"</td>\n    <td>String</td>\n    <td>\"mobile_screenshot.png\",</td>\n    <td>File name for a screenshot of this variation’s mobile-format layout.\nThe key name is fixed. The file-name value is arbitrary, but it must match the name of a file located in the <code>&lt;theme‑name&gt;/meta/</code> subdirectory. (If you are updating a variation, be sure to match this value to the intended file name.) The screenshot’s required dimensions are 304 x 540 pixels.</td>\n  </tr>\n  <tr>\n    <td>\"description\"</td>\n    <td>String</td>\n    <td>\"This is the light style of the Stencil Theme\"</td>\n    <td>Arbitrary text description for this variation. This description will appear in Themes Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td>\"demo_url\"</td>\n    <td>String</td>\n    <td>\"https://stencil-light.mybigcommerce.com\"</td>\n    <td>URL of your demo store, as set up on bigcommerce.com.</td>\n  </tr>\n  <tr>\n    <td>\"optimized_for”</td>\n    <td>Array</td>\n    <td>[\"arts_crafts\", \"animals_pets\", \"automotive_industrial\", \"electronics_computers\", \"fashion_jewelry\", \"food_beverage\",\"gifts_specialty\", \"health_beauty\",\"home_garden\", \"books_entertainment\",\"sports_recreation\",\"toys_games\",\"multi_purpose\",\"chrome_firefox_safari_ie_10\",\"mobile_tablet_desktop\",\"sales_discounts\",\"wholesale\",\"single_product\", \"large_catalog\", \"mobile\",\"clothing\",\"cosmetics\", \"home_appliances\",\"home_furnishings\", \"movies\",\"music\",\"digital_downloads\",\"outdoor_sports\",\"hunting_fishing\",\"video_games\"]</td>\n    <td>Array of metadata for Theme Marketplace searches - exact names of storefront types compatible with this theme. The \"Default/Examples\" column lists the complete namespace. At least one of the values listed there must be present.\n\t</td>\n  </tr>\n  <tr>\n    <td>“industries\"</td>\n    <td>Array</td>\n    <td>[\"arts_crafts\",\"animals_pets\",\"automotive_industrial\",\"electronics_computers\",\"fashion_jewelry\",\"food_beverage\",\"gifts_specialty\",\"health_beauty\",\"home_garden\",\"books_entertainment\",\"sports_recreation\",\"toys_games\"]\n\t</td>\n    <td>Array of optional metadata for Theme Marketplace, where these values will be used to support faceted searches. You may submit up to four values from the complete namespace listed in the \"Default/Examples\" column.</td>\n  </tr>\n</table>"
-                      header:
-                        anchor: config_keys-and-example
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Requirements and Restrictions
-
-
-                        Your theme's config.json file must meet the following
-                        requirements:
-
-
-                        * It must be named `config.json`, must reside in the
-                        root of your `<theme-name>` top level subdirectory
-                        (e.g.: `/cornerstone/config.json` or
-                        `/stencil/config.json`), and must be valid JSON.
-
-                        * The maximum allowable size for a theme's `config.json`
-                        file is 64 KB. Exceeding this limit will trigger an
-                        error upon uploading the theme to BigCommerce.
-
-                        * Each key's value is restricted to 64 characters.
-                        Exceeding this limit will similarly trigger an upload
-                        error.
-
-                        * Other than these size constraints, there is no limit
-                        on the number of keys and values that you can place in a
-                        theme's `config.json`.
-
-
-                        _Carefully check your theme against all the requirements
-                        listed here – including the required keys within the
-                        `meta` object and `variations` array. While some
-                        requirements are not enforced in local development, they
-                        will be validated (and will trigger errors) when you
-                        later upload your theme to BigCommerce._
-
-
-                        ### Required Themewide Keys
-
-                        The `config.json` file must contain at least the
-                        following keys, with appropriate values (as outlined
-                        above):
-
-
-                        *name
-
-                        * `version`
-
-                        * `settings` (which must itself be a valid JSON object)
-
-                        * `variations` (an array of at least one, and at most
-                        four, variation objects)
-
-                        * `meta` (an object; see specific requirements below)
-
-
-                        ### Required `meta` Keys
-
-
-                        The meta object must contain at least the following
-                        keys, with appropriate values:
-
-
-                        * `price`
-
-                        * `author_name`
-
-                        * `author_email`
-
-                        * `author_support_url`
-
-                        * `documentation_url`
-
-
-                        For illustration, here is a commented excerpt:
-
-
-                        ```
-
-                        {
-                          ...
-                          "meta": {
-                            "price": 15000, // in cents; non-negative integer, minimum 0
-                            "author_name:" "eCommerce Themes, Inc.", // Must be a string, not null
-                            "author_email": "support@example.com", // Must be a string, should be a valid email address, not null
-                            "author_support_url": "http://example.com/contactus", //  Must be a string, should be a valid URL, not null
-                            "documentation_url": "http://example.com/guide", // Must be a string, limit of 255 characters,
-                                  not null
-                            "composed_image": "path/to/composed.png", // Must be a string path to the composed-image file
-                            "features": [ // Array of feature strings, all of which must be in the list enumerated here: 
-                                  https://github.com/bigcommerce/theme-registry/blob/master/app/schemas/theme_config.json#L33
-                              "fully_responsive" // Must include at least one feature, and no duplicate entries
-                            ]
-                          },
-                          ...
-                        }
-
-                        ```
-
-
-                        ### Required `variation` Keys
-
-
-                        For each variation that you choose to include in your
-                        theme (at least one is required), you must provide at
-                        least the following keys and sub-element, with
-                        appropriate values:
-
-
-                        * `name`
-
-                        * `id`
-
-                        * `meta` (an object, containing at least:)
-
-                        * `description`
-
-
-                        For illustration, here is a redacted excerpt from
-                        Cornerstone:
-
-
-                        ```
-
-                        "variations": [
-                            {
-                              "name": "Light",
-                              "id": "light",
-                              "meta": {
-                                "desktop_screenshot": "desktop_light.png",
-                                "mobile_screenshot": "mobile_light.png",
-                                "description": "Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. ....",
-                            ...
-                            }
-                          ]
-                        ```
-                      header:
-                        anchor: config_requirements-and-restrictions
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Video Demo
-
-
-                        <iframe width="560" height="315"
-                        src="https://www.youtube.com/embed/VZYZsDoEOpQ"
-                        frameborder="0" allow="autoplay; encrypted-media"
-                        allowfullscreen></iframe>
-                      header:
-                        anchor: config_video-demo
-              - title: Preparing Thumbnail Images
-                route:
-                  path: /preparing-thumbnail-images
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1>Preparing Thumbnail Images</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#preparing_where-and-how-merchants\">Where and How Merchants See Your Theme's Thumbnail Images</a></li>\n    <li><a href=\"#preparing_general-image\">General Image Requirements</a></li>\n    <li><a href=\"#preparing_themewide-composite\">Themewide Composite Image</a></li>\n    <li><a href=\"#preparing_variations\">Variations: Desktop/Mobile Screenshots</a></li>\n\t</ul>\n</div>"
-                    - type: text
-                      data: >-
-                        ## Where and How Merchants See Your Theme's Thumbnail
-                        Images
-
-
-                        A complete Stencil theme includes screenshots to show
-                        off the theme on cards that appear in two locations
-                        within the BigCommerce Control Panel:
-
-
-                        * `Storefront` > `My Themes`: Each individual card
-                        displays a _themewide composite image_, which is an
-                        image that contains combination of screenshots of the
-                        theme's multiple variations. 
-
-                        `Storefront` > `Themes Marketplace`: Each card displays
-                        one variation of your theme. The three variations of
-                        Cornerstone (Light, Warm, and Bold) are displayed across
-                        three 
-                      header:
-                        anchor: preparing_where-and-how-merchants
-                    - type: tabs
-                      data:
-                        children:
-                          - title: Desktop View of 'My Themes'
-                            blocks:
-                              - type: image
-                                data: >-
-                                  //s3.amazonaws.com/user-content.stoplight.io/6116/1539625143199
-                                header:
-                                  title: Storefront > My Themes
-                                  subtitle: >-
-                                    Each card contains a themewide composite
-                                    image, showing all the variations of the
-                                    theme in each. In this image, we see 3
-                                    variations for the Cornerstone theme and 4
-                                    for the Showroom theme.
-                                config:
-                                  centered: true
-                                  fluid: true
-                                  bordered: true
-                                  maxWidth: '600'
-                                  maxHeight: '900'
-                          - title: Desktop View of Themes Marketplace
-                            blocks:
-                              - type: image
-                                data: >-
-                                  //s3.amazonaws.com/user-content.stoplight.io/6116/1539624737619
-                                header:
-                                  title: Storefront > Themes Marketplace
-                          - title: Mobile View of Themes Marketplace
-                            blocks:
-                              - type: image
-                                data: >-
-                                  //s3.amazonaws.com/user-content.stoplight.io/6116/1539625004658
-                                config:
-                                  centered: true
-                                  fluid: true
-                                  bordered: true
-                                  maxWidth: '500'
-                                  maxHeight: '1000'
-                      header:
-                        title: >-
-                          How your theme will appear in the Control Panel and
-                          Theme Marketplace
-                    - type: text
-                      data: >-
-                        ## General Image Requirements
-
-
-                        Below are details about:
-
-                        * how to size and save these images to stage them within
-                        your theme's directory structure
-
-                        * how to reference them in your config.json file.
-
-
-                        All screenshots described below must meet the following
-                        specifications in order for the `stencil bundle` command
-                        to be able to process them:
-
-
-                        * Saved to a supported image file type: .jpg/.jpeg,
-                        .png, or .gif.
-
-                        * Stored in your <theme‑name>/meta/ subdirectory.
-
-
-
-                        Also note that all of these screenshots must be in
-                        **portrait aspect ratio**, with specific resolutions
-                        listed below.
-                      header:
-                        anchor: preparing_general-image
-                    - type: text
-                      data: "## Themewide Composite Image\n\nThe themewide composite image represents your theme in the Control Panel's `Storefront` > `My Themes` area, which shows merchants their currently available themes (including any custom uploaded themes). \n\nThis file will normally be a mosaic of screenshots from multiple variations within your theme. It must meet the following requirements, beyond the general specifications above:\n\n* Resolution of 600 x 760 pixels (horizontal x vertical).\n* File size smaller than 2 MB.\n* Arbitrary filename prefix, referenced in your config.json file as the \nmeta > composed_image key's value.\n\nHere is an example of a compliant file type and location:\n\n`<theme‑name>/meta/composed.png`\n\nHere is how you would reference this file within `config.json`:\n\n```\n{\n  [...]\n  \"meta\": {\n    [...]\n    \"composed_image\": \"composed.png\",\t\n    [...]\n}\n```"
-                      header:
-                        anchor: preparing_themewide-composite
-                    - type: text
-                      data: "## Variations: Desktop/Mobile Screenshots\n\nEach variation within your theme must be represented by two additional screenshots if you want that variation to appear in the control panel > Storefront > Themes Marketplace area, which shows merchants the themes that are available for download.\n\n### Desktop Screenshot\n\nThe first screenshot, showing your theme on a desktop viewport, must meet the following requirements beyond the general specifications above: \nResolution of 2048 x 2600 pixels (horizontal x vertical).\nFile size smaller than 5 MB.\nArbitrary filename prefix, referenced in your config.json file as the \n`<variation-name> > meta > desktop_screenshot` key's value.\n\t\n### Mobile Screenshot\n\nThe second screenshot, showing your theme on a mobile viewport, must meet the following requirements beyond the general specifications above: \n* Resolution of 304 x 540 pixels (horizontal x vertical).\n* File size smaller than 1 MB.\n* Arbitrary filename prefix, referenced in your config.json file as the \n`<variation-name> > meta > mobile_screenshot` key's value.\n\nHere is an example showing two files of compliant types and location:\n\n* `<theme‑name>/meta/desktop_bright.png`\n* `<theme‑name>/meta/mobile_bright.png`\t\n\nHere is how you would reference these files within `config.json`, for a variation named `Bright`:\n\n```\n [...]\n  \"variations\": [\n    {\n      \"name\": \"Bright\",\n      \"id\": \"bright\",\n      \"meta\": {\n        \"desktop_screenshot\": \"desktop_bright.png\",\n        \"mobile_screenshot\": \"mobile_bright.jpg\",\n    [...]\n    }\n  ]\n```\n"
-                      header:
-                        anchor: preparing_variations
-              - title: Theme Editor Troubleshooting
-                route:
-                  path: /theme-editor-troubleshooting
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1>Theme Editor Troubleshooting</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#theme-editor_empty\">Empty Drop-Down List in Theme Editor Panel</a></li>\n    <li><a href=\"#theme-editor_configured\">Configured Control Missing from Theme Editor Panel</a></li>\n    <li><a href=\"#theme-editor_theme-changes\">Theme Changes Not Saved from Theme Editor UI</a></li>\n\t</ul>\n</div>"
-                    - type: callout
-                      data:
-                        title: Check the Terminal Window
-                        body: >-
-                          For any unexpected behavior that you encounter while
-                          developing your Stencil theme, please also check the
-                          terminal window where you started Stencil CLI. In some
-                          cases, the terminal will provide a verbose error
-                          message specifying where to look for problems. For
-                          less-detailed error messages, we list diagnostic
-                          suggestions in this documentation.
-                    - type: text
-                      data: >-
-                        ## Empty Drop-Down List in Theme Editor Panel
-
-
-                        * **Symptom:** A drop-down list's outline appears below
-                        its configured label. However, the list appears to be
-                        empty.
-
-                        * **Likely Cause:** A default value specified in the
-                        theme's config.json file is not enumerated in the
-                        schema.json file.
-
-                        * **Resolution:** Update schema.json to include the
-                        config.json value.
-                      header:
-                        anchor: theme-editor_empty
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Configured Control Missing from Theme Editor Panel
-
-
-                        * **Symptom:** A control that you have configured within
-                        schema.json is completely absent from the Theme Editor
-                        UI.
-
-                        * **Likely Cause:** The specified "type" is one of:
-                        text, text area, radio [button], or image.
-
-                        (Theme Editor does not currently support these data
-                        types.)
-
-                        * **Resolution:** Display the user option via one of the
-                        supported data types: color, font, select [drop-down
-                        list], or checkbox.
-                      header:
-                        anchor: theme-editor_configured
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Theme Changes Not Saved from Theme Editor UI
-
-
-                        * **Symptom:** Changes saved in a browser's Theme Editor
-                        panel are not reflected in the storefront.
-
-                        * **Likely Cause:** Check whether multiple users are
-                        simultaneously using Theme Editor to customize the same
-                        storefront.
-
-                        * **Resolution:** We strongly recommend opening only one
-                        instance of Theme Editor, at a time, per storefront.
-                        BigCommerce currently provides no synchronization
-                        mechanism for configuration changes from multiple Theme
-                        Editor instances. So the storefront's `schema.json` will
-                        record the last changes made by any instance – but
-                        changes saved earlier by other instances might be lost.
-                      header:
-                        anchor: theme-editor_theme-changes
-        - title: Front Matter
-          route:
-            path: /front-matter
-          data:
-            children:
-              - title: Front Matter Overview
-                route:
-                  path: /front-matter-overview
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1>Front Matter Overview</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#front-matter-overview_declaring-objects\">Declaring Objects</a></li>\n    <li><a href=\"#front-matter-overview_yaml-syntax\">YAML Syntax – Requirements</a></li>\n    <li><a href=\"#front-matter-overview_filtering-attributes\">Filtering Attributes</a></li>\n    <li><a href=\"#front-matter-overview_combining-front-matter\">Combining Front Matter with Handlebars Attributes</a></li>\n    <li><a href=\"#front-matter-overview_default-versus-custom\">Default versus Custom Attributes, per Page</a></li>\n    <li><a href=\"#front-matter-overview_declaring-multiple\">Declaring Multiple Attributes</a></li>\n\t</ul>\n</div>\n\n\n\n\n\n\n"
-                    - type: text
-                      data: "## Declaring Front-Matter Objects\n\nWhen you create a store page that requires specific attributes (such as 'New Products') to be displayed, you must first declare the object and attribute on the page in a front-matter block at the top of the page's HTML template file. The front matter block makes the attribute accessible on the page. Then, to display the attribute on the storefront page, you will reference the the object using Handlebars within the page's HTML.\nFor example, to display 'new products' on a storefront's home page, you first need to make new products accessible on the home page. To achieve this, include the following front matter block at the top of the [home.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/home.html) file to declare the products object with its new attribute. This allows a storefront's home page to access a store's \"New Products.\"\n\n```\n---\nproducts:\n    new:\n    \tlimit: {{theme_settings.homepage_new_products_count}}\n---\n```\n\n**Note:** A 'limit' is required for Product Objects to render on a storefront page. You can hard code the limit value or utilize handlebars.js to reference it from the theme's config.json file. In this case, the limit value is being referenced from the `settings` JSON object in the `config.json` file using handlebars.js. Information on required attributes is detailed in the Front Matter Attributes Reference. \n\nAfter including the front matter block at the top of the home.html file, the New Products attribute will be accessible in the home page's context. As previously stated, simply including the front matter block will not display the attribute on the page. In order to actually display the new products on the desired storefront page, you will refernce the attribute using Handlebars in the same file you have added the front matter block to.\nIn this example, we will include the following code in Cornerstone's [home.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/home.html) file to display New Products on our store's home page. \n\n\n```\n  {{#if products.new}}\n        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}\n    {{/if}}\n```\n"
-                      header:
-                        anchor: front-matter-overview_declaring-objects
-                    - type: text
-                      data: >+
-                        ## YAML Syntax – Requirements
-
-
-                        Stencil front matter uses the conventions of [YAML]()
-                        (short for the recursive "YAML Ain't Markup Language").
-                        Here are the YAML conventions you must follow in front
-                        matter:
-
-
-                        Place the front-matter block at the top of your
-                        template.
-
-                        Fence the beginning and end of the front-matter block
-                        with a row of three hyphens (---), as you see in the
-                        examples here.
-
-                        Show attribute > key relationship (or object > property
-                        relationship) by indenting the children. In the example
-                        above, products is the object,
-
-                        Place a colon (:) directly after each attribute name,
-                        and directly after each key name. (Colons separate
-                        key:value pairs.)
-
-                        Identifiers are case-sensitive.
-
-
-                        ### Restrictions
-
-
-                        You can use front matter to specify attributes on the
-                        tops of pages in your
-
-                        `<theme-name>/templates/pages/` subdirectory.
-
-
-                        You **cannot** use front matter to accomplish this on
-                        pages in the following subdirectories:
-
-                        * `<theme-name>/templates/components/`
-
-                        * `<theme-name>/templates/layout/`
-
-                        * `<theme-name>/templates/pages/custom/` 
-
-
-                        * Indent using only spaces, not tabs. (YAML forbids
-                        tabs, to avoid inconsistent encoding of tabs across
-                        platforms.) An indent of even one space indicates a
-                        child.
-
-
-                        * Front matter on a given page cannot exceed 64 KB.
-
-
-                        * If a front-matter directive contains an invalid
-                        option, Stencil CLI will silently ignore that option.
-
-                      header:
-                        anchor: front-matter-overview_yaml-syntax
-                    - type: text
-                      data: >
-                        ## Filtering Attributes
-
-
-                        Some attributes can accept indented keys, or key-value
-                        pairs, to further define the attribute. For example,
-                        limit is a key commonly used to restrict the number of
-                        objects to return for an attribute.
-
-                        To return products similar to the product that a
-                        customer is currently viewing – with a limit of six –
-                        you would declare front matter as follows:
-
-
-                        ```
-
-                        ---
-
-                        products:
-                            similar_by_views:
-                                limit: 6
-                        ---
-
-                        ```
-
-
-                        Most keys have a default value, as listed in the [Front
-                        Matter Attributes]() Reference. Specifying the key
-                        without a value will call that default value. The
-                        default value for `similar_by_views:limit:` happens to
-                        be `4`, so inserting `limit` with no integer will
-                        display four products:
-
-
-                        ```
-
-                        ---
-
-                        products:
-                            similar_by_views:
-                                limit:
-                        ---
-
-                        ```
-                      header:
-                        anchor: front-matter-overview_filtering-attributes
-                    - type: callout
-                      data:
-                        body: >-
-                          To keep your pages lightweight, specify only the
-                          attributes you need per page. Also, use the limit key
-                          (with appropriate values) for attributes that accept
-                          it.
-                        title: Filtering for Faster Page Loads
-                    - type: text
-                      data: >-
-                        ## Combining Front Matter with Handlebars Attributes
-
-
-                        The next example builds on front-matter object
-                        invocation and filtering, by showing a corresponding
-                        Handlebars statement in HTML. Here is how you would
-                        declare the `products` object to return four new
-                        products, and to then display each product’s name:
-
-
-                        ```
-
-                        ---
-
-                        products:
-                            new:
-                                limit: 4
-                        ---
-
-
-                        <h1> This is the HTML for the new-products example </h1>
-
-                        {{#each products.new}}
-                            <p>{{ name }}</p>
-                        {{/each}}
-
-                        ```
-                      header:
-                        anchor: front-matter-overview_combining-front-matter
-                    - type: callout
-                      data:
-                        body: >-
-                          In the above HTML, the {{ name }} identifier calls an
-                          attribute of Stencil’s common product card model,
-                          which consolidates details about a given product. For
-                          this and other objects that you can access through
-                          HTML, please see our reference section on Handlebars
-                          objects.
-                        title: ' Reading the Handlebars'
-                    - type: text
-                      data: >-
-                        ## Default versus Custom Attributes, per Page
-
-
-                        To make templates readily useful, they automatically
-                        include a page’s default attributes. For example, a
-                        theme’s
-                        [product.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/product.html)
-                        page will automatically include a product attribute.
-
-
-                        However, if you want to include additional attributes on
-                        a page, you can declare those attributes in front matter
-                        using the conventions shown above. [The Declaring
-                        Objects](#front-matter-overview_declaring-objects)
-                        example shows the only way to display a "new products"
-                        storefront section, which requires front-matter
-                        invocation.
-                      header:
-                        anchor: front-matter-overview_default-versus-custom
-                    - type: text
-                      data: >+
-                        ## Declaring Multiple Attributes
-
-
-                        Below is an example that assumes you want to include a
-                        product’s reviews and also related products. To display
-                        images for the related products, the HTML statement
-                        `<img src="{{getImage image 'gallery'}}">` relies on
-                        Stencil's `{{getImage}}` custom Handlebars helper:
-
-
-                        ```
-
-                        ---
-
-                        product:
-                           reviews:
-                               limit: 9
-                           related_products:
-                               limit: 10
-                        ---
-
-
-
-                        <h2>{{ product.name }}</h2>
-
-                        {{#each product.reviews.list}}
-                            <p>{{text}}</p>
-                        {{/each}}
-
-                        <h3>Related Products</h3>
-
-                        {{#each product.related_products}}
-                          <img src="{{getImage image 'gallery'}}">
-                          <p>{{ name }}</p>
-                        {{/each}}
-
-                        ```
-
-                      header:
-                        anchor: front-matter-overview_declaring-multiple
-              - title: Front Matter Attributes
-                route:
-                  path: /front-matter-attributes-reference
-                data:
-                  blocks:
-                    - type: html
-                      data: <h1>Front Matter Attributes Reference</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#front-matter-attributes-reference_global\">Global Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_blog\">Blog Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_category\">Category Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_product\">Product Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_brand\">Brand Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_brand-list\">Brand List Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_cart\">Cart Attributes</a></li>\n    <li><a href=\"#front-matter-attributes-reference_search\">Search Attributes</a></li>\n\t</ul>\n</div>"
-                    - type: text
-                      data: "<h2> <a name=\"Front-ref-global\"></a>Global Attributes </h2>\n\nGlobal attributes are available on all pages. <br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details and Other \nAllowable Values/Results</td>\n  </tr>\n  <tr>\n    <td class=\"\">customer:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">Customer attributes are always included, and are available if the active shopper is logged in.</td>\n  </tr>\n\n  <tr>\n  \t<td class=\"\"></td>\n  \t<td class=\"\">addresses: true</td>\n    <td class=\"\">true – on address page<br><p></p>\n\nnull – on all other pages</td>\n    <td class=\"\">Boolean indicating whether to retrieve addresses for this customer.<br><p></p> \n\nNo filtering available. Default sorting is by address id, from lowest to highest.<br><p></p>\n\nnull or false: Do not retrieve addresses.\ntrue: Retrieve addresses.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">returns: true</td>\n    <td class=\"\">true – on returns page<br><p></p>\n\nnull – on all other pages</td>\n    <td class=\"\">Boolean indicating whether to retrieve product-return requests for this customer.<br><p></p> \n      \n      No filtering available.<br><p></p>\n      \n      true: Retrieve requests.<br><p></p>\n      \n      null or false: <NOBR>Do not</nobr> retrieve requests.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">wishlists: <br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: No wishlists displayed.\n      <br><p></p>\n      &lt;number&gt; limits the number of wishlists displayed.\n      <br><p></p>\n      If &lt;number&gt; is not defined, retrieves an unlimited number of wishlists.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">orders: <br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">null</td>\n    <td class=\"\">Contains all orders, complete or not.\n      <br><p></p>\n      null: no orders displayed.\n      <br><p></p>\n      &lt;number&gt; limits the number of orders displayed.\n      <br><p></p>\n      If &lt;number&gt; is not defined, displays 20 orders. (Default sorting is by order id, from lowest to highest.)</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">recently_viewed_products:</td>\n    <td class=\"\">null</td>\n    <td class=\"\">Boolean indicating whether to display recently viewed products.<br><p></p>\n\nNo filtering available.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\">products:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">(When filtering/limiting, products' default sorting is by order id, from lowest to highest.)</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">featured: <br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: No featured products displayed.<br><p></p>\n&lt;number&gt; limits the number of featured products displayed.\n      <br><p></p>\n      If &lt;number&gt; is not set, defaults to 4 products.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">new:<br>\n      <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\nnull</td>\n    <td class=\"\">null: No new products displayed.<br><p></p>\n&lt;number&gt; limits the number of new products displayed. Maximum allowable value is 25.\n      <br><p></p>\n      If &lt;number&gt; is not defined, defaults to 8 products.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">top_sellers: <br>\n      <span class=\"indent1\">limit:  &lt;number&gt;</span></td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: No top-selling products displayed.\n      <br><p></p>\n      &lt;number&gt; limits the number of top sellers displayed.\n      <br><p></p>\n      If &lt;number&gt; is not defined, defaults to all top sellers.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">carousel: true</td>\n    <td class=\"\"></td>\n  <td class=\"\">null</td>\n    <td class=\"\">Boolean indicating whether to display a carousel on storefront.\n      <br><p></p>\n      No filtering available.\n      <br><p></p>\n      null or false: No carousel display.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">blog:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">(Default sorting is by published_date, from most-recent to earliest.)</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">recent_posts:<br>\n      <span class=\"indent1\">limit: &lt;number&gt;</span>\n    </td>\n    <td class=\"\">20</td>\n    <td class=\"\">null: No recent blog posts displayed.\n      <br><p></p>      \n      &lt;number&gt; limits the number of recent blog posts displayed.\n      <br><p></p>      \n      If &lt;number&gt; is not defined, defaults to the maximum of 20 blog posts.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">summary: &lt;number&gt;</td>\n    <td class=\"\">100</td>\n    <td class=\"\"><!-- null: No summary characters displayed.<br><p></p> -->      \n      &lt;number&gt; sets the number of characters to display in each blog-post summary.\n      <br><p></p>\n      If &lt;number&gt; is not defined, displays 100 characters.</td>\n  </tr>\n  \n  <!-- <tr>\n    <td class=\"\">brands:<br>\n        <span class=\"indent1\">&lt;number&gt;</span></td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: Do not display a brand list.<br><p></p>\n&lt;number&gt; limits the number of brands to return.<br><p></p>\nIf &lt;number&gt; is not defined, returns all brands.</td>\n  </tr> -->\n  \n  <tr>\n    <td class=\"\">cart: true</td>\n    <td class=\"\"></td>\n    <td class=\"\">false</td>\n    <td class=\"\">Boolean indicating whether to retrieve cart data.<br><p></p>\ntrue: Return cart data.<br><p></p>\nfalse: Do not return cart data.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">categories: true</td>\n    <td class=\"\"></td>\n    <td class=\"\">false</td>\n    <td class=\"\">Boolean indicating whether to retrieve the <a href=\"docs/global-resources#Categories\">category tree</a> during an AJAX request.\n      <br><p></p>\n      true: Retrieve the category tree.\n      <br><p></p>\n      false: Do not retrieve the category tree.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">description: true</td>\n    <td class=\"\">\nfalse</td>\n    <td class=\"\">\nBoolean indicating whether to retrieve category descriptions dynamically from the database.\n      <br><p></p>\n      Set to true for themes that must display category descriptions when pages render. (This can slow page loads.)</td>\n  </tr>\n    \n  <tr>\n    <td class=\"\">shop_by_brand:</td>\n    <td class=\"\">limit: &lt;number&gt;</td>\n    <td class=\"\">null</td>\n    <td class=\"\">Typically used in a footer or sidebar.<br><p></p>\nnull: Do not display this brand list.<br><p></p>\n&lt;number&gt; limits the number of brands to return.<br><p></p>\nIf &lt;number&gt; is not defined, returns 10 brands, ordered by the number of products per brand.</td>\n  </tr>\n\n  <!-- <tr>\n    <td class=\"\">suggested_products:<br>\n  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; limit: &lt;number&gt;</td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: Do not display suggested products.<br><p></p>\n&lt;number&gt; limits the number of suggested products to return.<br><p></p>\nIf &lt;number&gt; is not defined, returns 4 suggested products.</td>\n  </tr> -->\n</table>\n\n\n<h2> <a name=\"Front-ref-cat\"></a>Category Attributes</h2>\n\nCategory attributes are available in the context of a category.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">category:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">shop_by_price:</td>\n    <td class=\"\">\nfalse</td>\n    <td class=\"\">\nBoolean indicating whether to display Shop-by-Price controls.</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">products:<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\n16</td>\n    <td class=\"\">\nDefines the number of products displayed per page for this category. Range of possible values is 1&ndash;100 products.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-blog\"></a>Blog Attributes</h2>\n\nBlog attributes are available in the context of a blog.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Sub-Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">blog:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">posts:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">(Default sorting is by published_date, from most-recent to earliest.)</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">limit: &lt;number&gt;</td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: No blog posts displayed.<br><p></p>\n      &lt;number&gt; limits the number of blog posts displayed.<br><p></p>\n      Maximum is 20 blog posts per page.\n    </td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">pages: &lt;number&gt;</td>\n    <td class=\"\">5</td>\n    <td class=\"\">\nnull: No pagination.<br><p></p>\n      \n      &lt;number&gt; sets the number of pages to display in pagination links.<br><p></p>\n      \n      If &lt;number&gt; is not defined, defaults to 5 pages.\n    </td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">summary: &lt;number&gt;</td>\n    <td class=\"\">250</td>\n    <td class=\"\"> <!-- null: No summary characters displayed.<br><p></p> -->  \n      &lt;number&gt; sets the number of characters to display in each blog-post summary.<br><p></p>\nIf &lt;number&gt; is not defined, displays 250 characters.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-prod\"></a>Product Attributes</h2>\n\nProduct attributes are available in the context of a product.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">product:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">(When filtering/limiting, products' default sorting is by order id, from lowest to highest.)</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">videos:<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\n[unlimited]</td>\n    <td class=\"\">If product.videos is not defined, no videos are returned.<br><p></p>\n      \n      If product.videos is defined, the default behavior is to return all videos. <!-- Check & correct this. --> <br><p></p>\n      \n      If product.videos.limit is also defined, &lt;number&gt; sets the maximum number of videos returned.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">images:<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\n[unlimited]</td>\n    <td class=\"\">If product.images is not defined, no images are returned.<br><p></p>\n      \n      If product.images is defined, you must also define product.images.limit, which throttles the number of images returned. <br><p></p>\nThe maximum allowable value for this option's &lt;number&gt; parameter is 5 images.</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">reviews: true<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">[false]</td>\n    <td class=\"\">Boolean indicating whether to display product reviews.\n      <br><p></p>      \n      If product.reviews is present, and is not explicitly set to \"false\", reviews will appear.\n      <br><p></p>      \n      If &lt;number&gt; is not defined, defaults to 10 reviews.<br><p></p>\n      (When filtering/limiting reviews, default sorting is by review id, from lowest to highest.)</td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">related_products:<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\n[unlimited]</td>\n    <td class=\"\">Displays products that are related by name.<br><p></p>\n      \n      &lt;number&gt; limits the number of products displayed.<br><p></p>\n      \n      If &lt;limit&gt; is absent or undefined, the default behavior is to display all related products.<br><p></p> \n\nInserting “limit:” with no integer will display 0 products. </td>\n  </tr>\n  \n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">similar_by_views:<br>\n        <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">[unlimited]</td>\n    <td class=\"\">Displays products similar to those displayed in the current page context.<br><p></p>\n      \n      &lt;number&gt; limits the number of products displayed.<br><p></p>\n      \n      If &lt;limit&gt; is absent or undefined, default is to display 4 products.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-brand\"></a>Brand Attributes</h2>\n\nBrand attributes are available in the context of a brand.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">brand:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">products: <br>\n      <span class=\"indent1\">limit: &lt;number&gt;</span></td>\n    <td class=\"\">\n50</td>\n    <td class=\"\">\nDefines the number of products displayed per page for this brand. Range of possible values is 1&ndash;50 products.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-brandlist\"></a>Brand List Attributes</h2>\n\nThese attributes are available in the context of a list of brands.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">brands:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">(When retrieving a collection of brands, default sorting is by brand id, from lowest to highest.)</td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">limit: &lt;number&gt;</td>\n    <td class=\"\">50</td>\n    <td class=\"\">\nSets the number of brands displayed in the list. If &lt;limit&gt; is not defined, returns all brands, up to a maximum of 50.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-cart\"></a>Cart Attributes</h2>\n\nCart attributes are available in the context of a shopper's cart.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Sub-Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">cart</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">suggestions:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">Suggested products to display to shopper, based on cart contents. <NOBR>(If enabled,</nobr> these suggestions appear only immediately after the shopper adds an item to the cart.)</td>\n  </tr>\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">limit: &lt;number&gt;</td>\n    <td class=\"\">null</td>\n    <td class=\"\">null: Do not display suggested products.<br><p></p>\n&lt;number&gt; limits the number of suggested products to return.<br><p></p>\nIf &lt;number&gt; is not defined, returns 4 suggested products.</td>\n  </tr>\n</table>\n\n\n<h2> <a name=\"Front-ref-search\"></a>Search Attributes</h2>\n\nSearch attributes are available in the context of a search results page.<br><br>\n\n<table>\n  <tr>\n    <td>Attribute</td>\n    <td>Sub-Attribute</td>\n    <td>Option with Sample Assignment</td>\n    <td>Default Value</td>\n    <td>Details</td>\n  </tr>\n  <tr>\n    <td class=\"\">search</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\">product_results:</td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n  </tr>\n\n  <tr>\n    <td class=\"\"></td>\n    <td class=\"\"></td>\n    <td class=\"\">limit: &lt;number&gt;</td>\n    <td class=\"\">16</td>\n    <td class=\"\">\nDefines the number of product search results displayed per page. Range of possible values is 1&ndash;100 products.</td>\n  </tr>\n</table>"
-                config:
-                  sidebar:
-                    token: Reference
         - title: Handlebars Syntax and Helpers
           route:
             path: /handlebars-syntax-and-helpers
