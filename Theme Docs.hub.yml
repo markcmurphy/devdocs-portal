@@ -6947,112 +6947,150 @@ pages:
             path: /handlebars-syntax-and-helpers
           data:
             children:
-              - title: 'Handlebars.js '
+              - title: Handlebars Helpers
                 route:
                   path: /handlebars-overview
                 data:
-                  blocks:
-                    - type: html
-                      data: <h1>Handlebars.js Overview</h1>
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_\"></a>Handlebars.js</li>\n    <li><a href=\"#handlebars_\"></a>Template Logic</li>\n    <li><a href=\"#handlebars_\"></a>Custom Handlebars Helpers</li>\n    <li><a href=\"#handlebars_\"></a>Stencil Handlebars Resources</li>\n    <li><a href=\"#handlebars_\"></a>Rendering Special Characters</li>\n\t</ul>\n</div>"
-                    - type: text
-                      data: >-
-                        ## Handlebars.js
+                  blocks: []
+                  children:
+                    - title: Handlebars.js
+                      route:
+                        path: /new-subpage
+                      config:
+                        sidebar:
+                          token: Overview
+                      data:
+                        blocks:
+                          - type: html
+                            data: <h1>Handlebars.js Overview</h1>
+                          - type: html
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_\"></a>Handlebars.js</li>\n    <li><a href=\"#handlebars_\"></a>Template Logic</li>\n    <li><a href=\"#handlebars_\"></a>Custom Handlebars Helpers</li>\n    <li><a href=\"#handlebars_\"></a>Stencil Handlebars Resources</li>\n    <li><a href=\"#handlebars_\"></a>Rendering Special Characters</li>\n\t</ul>\n</div>"
+                          - type: text
+                            data: >-
+                              ## Handlebars.js
 
 
-                        Handlebars is a minimal templating language that allows
-                        you to create dynamic and robust templates for any
-                        BigCommerce storefront. A Handlebars template looks just
-                        like a regular HTML page, with the addition of
-                        Handlebars expressions for all dynamic logic that you
-                        embed into the page.
+                              Handlebars is a minimal templating language that
+                              allows you to create dynamic and robust templates
+                              for any BigCommerce storefront. A Handlebars
+                              template looks just like a regular HTML page, with
+                              the addition of Handlebars expressions for all
+                              dynamic logic that you embed into the page.
 
 
-                        A Handlebars expression begins with: ``{{`` and ends
-                        with: ``}}``.
+                              A Handlebars expression begins with: ``{{`` and
+                              ends with: ``}}``.
 
 
-                        Here is a basic example that accesses the title and body
-                        variables:
+                              Here is a basic example that accesses the title
+                              and body variables:
 
 
-                        ```
+                              ```
 
-                        <div class="entry">
+                              <div class="entry">
 
-                        <div class="entry">
-                          <h1>{{ title }}</h1>
-                          <div class="body">
-                            {{ body }}
-                          </div>
-                        </div>
+                              <div class="entry">
+                                <h1>{{ title }}</h1>
+                                <div class="body">
+                                  {{ body }}
+                                </div>
+                              </div>
 
-                        ```
-
-
-                        In production, Handlebars statements run on the server
-                        side, generating HTML that the shopper's browser
-                        receives.
+                              ```
 
 
-                        For a thorough overview of how to use Handlebars inside
-                        your templates, please review the Handlebars
-                        documentation and tutorials located at
-                        http://handlebarsjs.com/.
-                    - type: text
-                      data: >-
-                        ## Template Logic
+                              In production, Handlebars statements run on the
+                              server side, generating HTML that the shopper's
+                              browser receives.
 
 
-                        With Handlebars, it’s easy to embed logic right into
-                        your templates. Handlebars has built-in helpers for
-                        widely used logic and iterator functions. You can find a
-                        list of all built-in Handlebars helpers here.
-                    - type: text
-                      data: >-
-                        ## Custom Handlebars Helpers
+                              For a thorough overview of how to use Handlebars
+                              inside your templates, please review the
+                              Handlebars documentation and tutorials located at
+                              http://handlebarsjs.com/.
+                          - type: text
+                            data: >-
+                              ## Template Logic
 
 
-                        BigCommerce has extended the built-in Handlebars helpers
-                        with certain custom Handlebars helpers. For details,
-                        please proceed to this reference section.
-                    - type: text
-                      data: >-
-                        ## Stencil Handlebars Resources
+                              With Handlebars, it’s easy to embed logic right
+                              into your templates. Handlebars has built-in
+                              helpers for widely used logic and iterator
+                              functions. You can find a list of all built-in
+                              Handlebars helpers here.
+                          - type: text
+                            data: >-
+                              ## Custom Handlebars Helpers
 
 
-                        For a comprehensive reference to the Stencil data
-                        objects that you can manipulate via Handlebars
-                        statements, please see the Stencil Object Model
-                        Reference.
-                    - type: text
-                      data: >-
-                        ## Rendering Special Characters
+                              BigCommerce has extended the built-in Handlebars
+                              helpers with certain custom Handlebars helpers.
+                              For details, please proceed to this reference
+                              section.
+                          - type: text
+                            data: >-
+                              ## Stencil Handlebars Resources
 
 
-                        By default, Handlebars HTML-escapes values returned by a
-                        Handlebars {{ expression }}. So, where a Handlebars
-                        expression's referenced content includes special
-                        characters, those characters will render literally on
-                        the storefront as HTML entities.
+                              For a comprehensive reference to the Stencil data
+                              objects that you can manipulate via Handlebars
+                              statements, please see the Stencil Object Model
+                              Reference.
+                          - type: text
+                            data: >-
+                              ## Rendering Special Characters
 
-                        In the example above, assume that the HTML referenced by
-                        {{ title }} contains an ampersand and a "straight"
-                        apostrophe. You will see the entities &amp; and &#039;
-                        displayed literally on the storefront, instead of the
-                        intended characters & and '. Similar display errors will
-                        be triggered by apostrophes, quotation marks, primes,
-                        and other extended characters.
 
-                        The workaround is to place the Handlebars variable in
-                        triple braces, like this: {{{ title }}}. Handlebars
-                        documentation refers to this technique as a
-                        "triple-stash."
-                  children: []
+                              By default, Handlebars HTML-escapes values
+                              returned by a Handlebars {{ expression }}. So,
+                              where a Handlebars expression's referenced content
+                              includes special characters, those characters will
+                              render literally on the storefront as HTML
+                              entities.
+
+                              In the example above, assume that the HTML
+                              referenced by {{ title }} contains an ampersand
+                              and a "straight" apostrophe. You will see the
+                              entities &amp; and &#039; displayed literally on
+                              the storefront, instead of the intended characters
+                              & and '. Similar display errors will be triggered
+                              by apostrophes, quotation marks, primes, and other
+                              extended characters.
+
+                              The workaround is to place the Handlebars variable
+                              in triple braces, like this: {{{ title }}}.
+                              Handlebars documentation refers to this technique
+                              as a "triple-stash."
+                    - title: Array Helpers
+                      route:
+                        path: /array-helpers
+                      data:
+                        children:
+                          - title: Custom Array Helpers
+                            route:
+                              path: /new-subpage-1
+                            data:
+                              children:
+                                - title: '{{itemAt}}'
+                                  route:
+                                    path: /new-subpage
+                                  data:
+                                    children: []
+                                - title: '{{join}}'
+                                  route:
+                                    path: /new-subpage
+                          - title: Standard Array Helpers
+                            route:
+                              path: /new-subpage-2
+                            data:
+                              children:
+                                - title: New Subpage
+                                  route:
+                                    path: /new-subpage-3
                 config:
                   sidebar:
-                    token: Overview
+                    token: ''
               - title: Stencil Handlebars Helpers
                 route:
                   path: /handlebars-helpers-reference
@@ -7936,32 +7974,6 @@ pages:
                 config:
                   sidebar:
                     token: Reference
-              - title: Array Helpers
-                route:
-                  path: /array-helpers
-                data:
-                  children:
-                    - title: Custom Array Helpers
-                      route:
-                        path: /new-subpage-1
-                      data:
-                        children:
-                          - title: '{{itemAt}}'
-                            route:
-                              path: /new-subpage
-                            data:
-                              children: []
-                          - title: '{{join}}'
-                            route:
-                              path: /new-subpage
-                    - title: Standard Array Helpers
-                      route:
-                        path: /new-subpage-2
-                      data:
-                        children:
-                          - title: New Subpage
-                            route:
-                              path: /new-subpage-3
               - title: Collection Helpers
                 route:
                   path: /collection-helpers
