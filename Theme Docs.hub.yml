@@ -1662,7 +1662,7 @@ pages:
                               version – by following the Prerequisites link
                               above to see platform-specific recommendations –
                               if you get unexpected error messages when issuing
-                              the npm install or stencil init commands.
+                              the `npm install` or `stencil init` commands.
                             header:
                               anchor: troubleshooting_npm-install-stencil-init
                           - type: text
@@ -1825,9 +1825,186 @@ pages:
                               If you receive the same error again after running
                               `npm install`, you should completely uninstall and
                               reinstall both the Stencil framework and Node.js.
+                            header: {}
+                          - type: text
+                            data: >
+                              ## Mac OS: "Xcode/iOS license..." Errors upon
+                              Stencil Commands
 
 
-                              ### Uninstalling and Reinstalling Stencil CLI
+                              On Mac OS, if you have recently installed a new
+                              version of Xcode, the command line will display
+                              the following error when you next try to use or
+                              reinstall Stencil: 
+
+
+                              `error: Agreeing to the Xcode/iOS license requires
+                              admin privileges, please re-run as root via sudo.`
+
+
+                              To resolve this error, simply:
+
+                              * Launch Xcode.
+
+                              * Accept its user agreement.
+
+                              * Quit Xcode.
+
+                              * Re-execute your Stencil command.
+                          - type: text
+                            data: >
+                              ## ETIMEOUT Errors on Node >4.4.0
+
+
+                              If you are running a version of Node.js higher
+                              than 4.4.0, and you receive an `ETIMEOUT` error
+                              when running Stencil CLI, re-install the latest
+                              version of Stencil CLI to resolve this error by
+                              following the workflow in Installing Stencil
+                              CLI/Framework.
+                          - type: text
+                            data: >
+                              ## `stencil` command not found
+
+
+                              ### Reinstall Stencil CLI
+
+
+                              If you receive the error message -bash: `stencil:
+                              command not found`, ensure that you have followed
+                              the steps on Installing Stencil CLI/Framework or
+                              attempt to reinstall the Stencil CLI. 
+
+
+                              ### Redirect Bash shell
+
+
+                              If you receive the error message -bash: stencil:
+                              command not found, enter echo $NVM_DIR. If this
+                              command returns nothing, then run source
+                              ~/.bash_profile and try running running stencil
+                              commands again.
+
+
+                              ### Check/Specify `nvm` Version
+
+
+                              If you receive a `stencil: command not found`
+                              error message upon executing stencil start from
+                              inside your theme subdirectory: Check whether nvm
+                              has installed multiple versions of Node.js, by
+                              entering the following command:
+
+
+                              `ls ~/.nvm/versions/node`
+
+
+                              If this reports more than one version, specify
+                              your platform's supported Node.js
+                              `<version_number>` by entering: 
+
+
+                              `nvm use <version_number>`
+
+
+                              To prevent this error from recurring, add the same
+                              `nvm use <version_number>` command to your
+                              ~/.bash_profile file.
+                          - type: text
+                            data: >-
+                              ## `stencil start` errors
+
+
+                              ### "Unauthorized...username/token" Error
+
+
+                              If executing the `stencil start` command generates
+                              an `Unauthorized, please use a valid
+                              username/token` error: Please make sure that the
+                              `.stencil` file contains the correct store URL.
+                              Also, verify that you have copied the correct
+                              username and token. If you continue to get the
+                              same error, please reissue tokens.
+
+
+                              ### "Unable to load registry %bitbucket%"
+
+
+                              If you have downloaded and installed a Marketplace
+                              theme (other than Cornerstone), and after running
+                              stencil start, received the error Unable to load
+                              registry %bitbucket%: Try this workaround.
+
+
+                              1. Back up your current theme
+                              directory/directories. 
+
+                              (In a default installation, the theme directory is
+                              named `.../cornerstone/`. Prior to March 2017,
+                              this directory's name defaulted to `.../stencil/`.
+                              Use the same substitutions for other code examples
+                              on this page.)
+
+
+                              2. To ensure that you install refreshed
+                              dependencies, delete your
+                              `<theme-name>/node_modules/` and
+                              `<theme-name>/assets/jspm_packages/`
+                              subdirectories. (You can check installed versions
+                              of dependencies by examining your
+                              `<theme-name>/package.json` file.)
+
+
+                              3. Starting inside your theme directory, enter
+                              this alternate sequence of commands:
+
+
+                              ```
+
+                              npm install -g jspm-git
+
+                              npm install
+
+                              jspm config registries.bitbucket.baseurl
+                              git+ssh://git@bitbucket.org/
+
+                              jspm config registries.bitbucket.handler jspm-git
+
+                              jspm install
+
+                              ```
+
+
+                              4. Re-launch your theme.
+                          - type: text
+                            data: >-
+                              ## 500 Errors
+
+
+                              If you see errors like or _similar_ to below:
+
+
+                              `{"statusCode":500,"error":"Internal Server
+                              Error","message":"An internal server error
+                              occurred"}`
+
+
+                              they often indicate a template syntax error, such
+                              as unmatched or missing punctuation. Check your
+                              terminal window for more details.
+                          - type: text
+                            data: >
+                              ## Lint Errors (bundle.js) upon Bundling
+
+
+                              If bundling your theme triggers multiple lint
+                              errors related to the `bundle.js` file, your theme
+                              is missing the `.eslintignore` file. Please
+                              retrieve this file from the Stencil Cornerstone
+                              repo, then re-run `stencil bundle`.
+                          - type: text
+                            data: >-
+                              ## Uninstalling and Reinstalling Stencil CLI
 
 
                               If you encounter persistent problems in
@@ -1846,7 +2023,71 @@ pages:
                               Stencil section and repeat all installation steps
                               to reinstall dependencies and restore your theme,
                               according to your development scenario.
-                            header: {}
+                          - type: text
+                            data: >-
+                              ## "Module Not Found" Errors upon Bundling
+
+
+                              If you see the following error when running
+                              stencil bundle, this is a past bug that has since
+                              been corrected.
+
+
+                              `[ModuleNotFoundError: Module not found: Error:
+                              Cannot resolve module 'pace' in...]`
+
+
+                              To remove the error, please update your
+                              Cornerstone version. 
+                          - type: text
+                            data: >-
+                              ## JavaScript Diagnostics Too Terse: Switch
+                              Webpack Sourcemap 
+                          - type: text
+                            data: '## TR-300 Error upon Theme Upload'
+                          - type: text
+                            data: >
+                              ## Early Access Participants
+
+
+                              If you were a participant in our Developer Early
+                              Access program, thank you for your contributions.
+                              The Stencil framework is now available to
+                              everyone. Therefore, BigCommerce has moved most
+                              Stencil components out of private GitHub repo's,
+                              and is now distributing them as npm modules.
+
+
+                              To continue receiving Stencil updates, please
+                              reinstall Stencil to pick up the npm
+                              configuration, as follows. 
+
+                              (Please note that our supported versions of some
+                              dependencies have changed.)
+
+
+                              1. Back up your current theme
+                              directory/directories. 
+
+                              (In a default installation, the theme directory is
+                              named `.../cornerstone/`. Prior to March 2017,
+                              this directory's name defaulted to
+                              `.../stencil/`.)
+
+
+                              2. To ensure that you reinstall supported versions
+                              of Stencil's dependencies, we recommend that you
+                              delete your `<theme-name>/node_modules/`
+                              subdirectory. You can check installed versions of
+                              dependencies by examining your
+                              `<theme-name>/package.json` file.
+
+
+                              3.  Follow the updated installation process, as
+                              documented on this section's preceding pages.
+
+
+                              4. Re-launch your theme.
                           - type: callout
                             data:
                               title: Alternative Options
