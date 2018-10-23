@@ -14797,25 +14797,196 @@ pages:
                     - type: html
                       data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#advanced_video-of-what\">Video of What We're Building</a></li>\n    <li><a href=\"#advanced_install-dependencies\"></a>Install Dependencies</li>\n    <li><a href=\"#advanced_import-dependencies\"></a>Import Dependencies</li>\n    <li><a href=\"#advanced_update-webpackconfjs\"></a>Update webpack.conf.js</li>\n    <li><a href=\"#advanced_update-appjs\"></a>Update app.js</li>\n    <li><a href=\"#advanced_add-the-xcoupondrawer\"></a>Add the <<code>x-coupon-drawer</code>> Element to the Page</li>\n    <li><a href=\"#advanced_call-initreact\"></a>Call initReact from base.html</li>\n    <li><a href=\"#advanced_create-an-assetsjscomp\"></a>Create an assets/js/components Folder</li>\n    <li><a href=\"#advanced_create-a-coupondrawerjs-file\"></a>Create a CouponDrawer.js File</li>\n    <li><a href=\"#advanced_create-a-verticallinear\"></a>Create a VerticalLinearStepper.js File</li>\n\t</ul>\n</div>"
                     - type: text
-                      data: '## Video of What We''re Building'
+                      data: >-
+                        ## Video of What We're Building
+
+
+                        <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/sudvuxJFxKc"
+                        frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
+                      header:
+                        anchor: advanced_video-of-what
                     - type: text
                       data: '## Install Dependencies'
+                      header:
+                        anchor: advanced_install-dependencies
                     - type: text
                       data: '## Import Dependencies'
+                      header:
+                        anchor: advanced_import-dependencies
                     - type: text
                       data: '## Update webpack.conf.js'
+                      header:
+                        anchor: advanced_update-webpackconfjs
                     - type: text
                       data: '## Update app.js'
+                      header:
+                        anchor: advanced_update-appjs
                     - type: text
                       data: ''
+                      header:
+                        anchor: advanced_add-the-xcoupondrawer
                     - type: text
                       data: ''
+                      header:
+                        anchor: advanced_call-initreact
                     - type: text
                       data: ''
+                      header:
+                        anchor: advanced_create-an-assetsjscomp
                     - type: text
                       data: ''
+                      header:
+                        anchor: advanced_create-a-coupondrawerjs-file
                     - type: text
-                      data: ''
+                      data: >-
+                        ## Create a VerticalLinearStepper.js File
+
+
+                        Create a
+                        `<theme-name>/assets/js/components/VerticalLinearStepper.js`
+                        file. Populate this file with the following code block:
+
+
+                        ```
+
+                        import React from 'react';
+
+                        import {
+                          Step,
+                          Stepper,
+                          StepButton,
+                          StepContent,
+                        } from 'material-ui/Stepper';
+
+                        import RaisedButton from 'material-ui/RaisedButton';
+
+                        import FlatButton from 'material-ui/FlatButton';
+
+                        import TextField from 'material-ui/TextField';
+
+
+                        /**
+                         * A basic vertical non-linear implementation
+                         */
+                        class VerticalLinearStepper extends React.Component {
+
+                          constructor(props) {
+                              super(props);
+                          }
+
+                          state = {
+                            stepIndex: 0,
+                          };
+
+                          handleNext = () => {
+                            const {stepIndex} = this.state;
+                            if (stepIndex < 2) {
+                              this.setState({stepIndex: stepIndex + 1});
+                            }
+                          };
+
+                          handlePrev = () => {
+                            const {stepIndex} = this.state;
+                            if (stepIndex > 0) {
+                              this.setState({stepIndex: stepIndex - 1});
+                            }
+                          };
+
+                          renderStepActions(step) {
+                            return (
+                              <div style={{margin: '12px 0'}}>
+                                <RaisedButton
+                                  label="Next"
+                                  disableTouchRipple={true}
+                                  disableFocusRipple={true}
+                                  primary={true}
+                                  onTouchTap={this.handleNext}
+                                  style={{marginRight: 12}}
+                                />
+                                {step > 0 && (
+                                  <FlatButton
+                                    label="Back"
+                                    disableTouchRipple={true}
+                                    disableFocusRipple={true}
+                                    onTouchTap={this.handlePrev}
+                                  />
+                                )}
+                              </div>
+                            );
+                          }
+
+                          render() {
+                            const {stepIndex} = this.state;
+
+                            return (
+                              <div style={{maxWidth: 380, maxHeight: 400, margin: 'auto'}}>
+                                <Stepper
+                                  activeStep={stepIndex}
+                                  linear={false}
+                                  orientation="vertical"
+                                >
+                                  <Step>
+                                    <StepButton onTouchTap={() => this.setState({stepIndex: 0})}>
+                                      Do this
+                                    </StepButton>
+                                    <StepContent>
+                                      <p>
+                                        Navigate to <a href="http://example.com">here</a> and get your code.
+                                      </p>
+                                      {this.renderStepActions(0)}
+                                    </StepContent>
+                                  </Step>
+                                  <Step>
+                                    <StepButton onTouchTap={() => this.setState({stepIndex: 1})}>
+                                      Then this
+                                    </StepButton>
+                                    <StepContent>
+                                      <TextField hintText="Enter your code here" style={{height: 100, width: 100}}/>
+                                      {this.renderStepActions(1)}
+                                    </StepContent>
+                                  </Step>
+                                  <Step>
+                                    <StepButton onTouchTap={() => this.setState({stepIndex: 2})}>
+                                      Collect your coupon!
+                                    </StepButton>
+                                    <StepContent>
+                                      <p>
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Wikipedia_mobile_en.svg/296px-Wikipedia_mobile_en.svg.png"/>
+                                      </p>
+                                      {this.renderStepActions(2)}
+                                    </StepContent>
+                                  </Step>
+                                </Stepper>
+                              </div>
+                            );
+                          }
+                        }
+
+
+                        export default VerticalLinearStepper;
+
+                        ```
+
+
+                        The above code block was adapted from
+                        http://www.material-ui.com/#/components/stepper.
+                      header:
+                        anchor: advanced_create-a-verticallinear
+                    - type: callout
+                      data:
+                        body: >-
+                          We must register a custom element to set up the "root"
+                          of every React component we create. However, within a
+                          React component, we can import other React components
+                          without having to register them. For example, here we
+                          register x-coupon-drawer as a custom element that
+                          renders the React CouponDrawer component. However,
+                          within CouponDrawer, we can simply import the
+                          VerticalLinearStepper component needing to set it up
+                          in the same way.
+                        title: ' Note on the VerticalLinearStepper.js Example'
               - title: Page Types and Life Cycle
                 route:
                   path: /new-subpage
