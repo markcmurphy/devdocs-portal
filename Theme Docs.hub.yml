@@ -4347,333 +4347,6 @@ pages:
                                 YAML front-matter attributes to customize the
                                 rendered storefront.
                               title: ' Front-Matter Restriction'
-                    - title: Custom Templates
-                      route:
-                        path: /custom-templates
-                      data:
-                        blocks:
-                          - type: html
-                            data: <h1>Custom Templates</h1>
-                          - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#custom-templates_about-custom\">About Custom Templates</a></li>\n\t\t<li><a href=\"#custom-templates_stencil-versus-blueprint\">Stencil versus Blueprint Themes</a></li>\n    <li><a href=\"#custom-templates_video-demo\">Video Demo</a></li>\n\t</ul>\n</div>"
-                          - type: text
-                            data: >
-                              ## About Custom Templates
-
-
-                              About Custom Templates
-
-                              The Stencil framework allows theme developers and
-                              merchants to assign custom layout templates to
-                              storefront pages of the following types:
-
-
-                              * Brand
-
-                              * Category
-
-                              * Product
-
-                              * Page (meaning "Web Pages" – the BigCommerce
-                              control panel's designation for static store
-                              pages, which can include the store's home page)
-                            header:
-                              anchor: custom-templates_about-custom
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ## Stencil versus Blueprint Themes
-
-
-                              If you are migrating from BigCommerce's legacy
-                              Blueprint themes framework, please keep in mind
-                              these differences in how Stencil handles custom
-                              templates:
-
-
-                              * The brand option is entirely new in Stencil. If
-                              you are running on a Blueprint theme, you will not
-                              be able to create a custom template for brand
-                              pages.
-
-                              * Unlike Blueprint, Stencil does not require that
-                              custom templates' file names start with an
-                              underscore (_).
-
-                              * In the current Stencil release, you must create
-                              and bundle custom templates using Stencil CLI
-                              before you can upload the custom templates to
-                              stores. However, once you have created and
-                              uploaded templates, authorized store users can
-                              assign them to storefront pages through the
-                              control panel.
-                            header:
-                              anchor: custom-templates_stencil-versus-blueprint
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ## Video Demo
-
-
-                              <iframe width="560" height="315"
-                              src="https://www.youtube.com/embed/qgaDX7bhmd8"
-                              frameborder="0" allow="autoplay; encrypted-media"
-                              allowfullscreen></iframe>
-                            header:
-                              anchor: custom-templates_video-demo
-                    - title: 'Authoring, Testing, & Uploading Custom Templates'
-                      route:
-                        path: /new-subpage-2
-                      data:
-                        blocks:
-                          - type: html
-                            data: >-
-                              <h1>Authoring, Testing, and Uploading Custom
-                              Templates</h1>
-                          - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#authoring-testing-uploading_authoring\">Authoring Templates</a></li>\n    <li><a href=\"#authoring-testing-uploading_local-mapping\">Local Mapping and Testing</a></li>\n\t\t<li><a href=\"#authoring-testing-uploading_theme-upload\">Theme Upload</a></li>\n\t\t<li><a href=\"#authoring-testing-uploading_troubleshooting\">Troubleshooting Template Authoring</a></li>\n\t</ul>\n</div>"
-                          - type: text
-                            data: >-
-                              ## Authoring a Custom Template
-
-
-                              As a the theme developer, you must first create
-                              the `custom` subdirectory in the `templates/pages`
-                              directory, and four required subdirectories inside
-                              of it (brand, category, product, page), which will
-                              result in the following directory paths:
-
-
-                              * templates/pages/custom/brand 
-
-                              * custom/category/custom/category
-
-                              * custom/product/custom/product
-
-                              * custom/page/custom/page
-
-
-                              Next,  create the template HTML files, and then
-                              place them in the appropriate
-                              `<theme-name>/templates/pages/custom/`
-                              subdirectories corresponding to the types listed
-                              above. 
-                            header:
-                              anchor: authoring-testing-uploading_authoring
-                          - type: callout
-                            data:
-                              type: warning
-                              body: >-
-                                Be sure to set permission `755 (drwxr-x-r-x)` on
-                                any new subdirectories that you add.
-
-                                Also, be sure to set permission `644 (rw-r–r–)`
-                                on any new files that you add.
-
-
-                                Without these permissions, running your theme
-                                locally will fail with multiple error messages.
-
-                                Bundling your theme will also fail, blocking its
-                                upload to a store.
-                              title: Subdirectory/File Permissions Required
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: "## Local Mapping and Testing\n\nTo test your custom templates locally, you must edit your `<theme-name>/.stencil` file to create mappings between each local template and a corresponding URL. Within the `.stencil` file, look for the following section:\n\n```\n\"customLayouts\": {\n    \"product\": {},\n    \"brand\": {},\n    \"category\": {},\n    \"page\": {}\n  }\n```\n\nIn this section, you would populate keys to create mappings. As a simple example, assume that you have a product custom template named alternate-`product.html`, and you want to see that template locally at the URL: http://localhost:3000/test-url/. In this case, you must populate the product key as follows:\n\n```\n    \"product\": {\n    \t\"alternate-product.html\":\"/test-url/\"\n    },\n```\n\n### Expanded Mapping Example\n\nHere is a more-complete example in which the `brand`, `page`, and `category` keys are also populated:\n\n```\n{\n  \"normalStoreUrl\": \"http://cornerstone-light-demo.mybigcommerce.com\",\n  \"port\": 3000,\n  \"username\": \"stencil\",\n  \"token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\n  \"customLayouts\": {\n    \"product\": {\n      \"custom-product.html\": \"/custom-product/\"\n    },\n    \"brand\": {\n      \"custom-brand.html\": \"/brands/custombrand/\"\n    },\n    \"page\": {\n      \"custom-page.html\": \"/custom-page/\"\n    },\n    \"category\": {\n      \"custom-category.html\": \"/custom-category/\"\n    }\n  }\n}\n```\n\n### Mapping Requirements and Options\n\nIn the .stencil mapping examples above:\n\n* Each mapped URL must be a URL for a brand, category, product, or static page that is _already configured in the store_. This means that you cannot insert a placeholder URL that is an arbitrary string of letters, such as /abcdefghijklmnop/.\n* Each URL’s trailing slash is _optional_.\n* The HTML files must reside in either the brand, category, product, or page subdirectories.\n* All brand URLs are nested under the /brands/ parent. Use URL encoding with brand URLs.\n* That parent for brand URLs is /brands/ (plural), while the corresponding subdirectory for HTML files is /brand/ (singular).\n* After editing your `.stencil` file, you must restart stencil to see your changes locally. Enter `stencil start` on the command line, appending any appropriate switches for your workflow (e.g.: `stencil start -e -n`).\n\n### Why These URL Requirements?\n\nWhen you create a local custom template page for products, you expect that page to have access to all Stencil product objects. However, the server cannot readily determine the page type of each local custom template. So we give it a hint: We instruct the server to look at the page type of the URL to which you have mapped the template.\n\nIn the above `.stencil` configuration example’s final entry, the server will look at the URL `/custom‑category/` within the store, deduce that the page type is `category`, and return a category context to Stencil CLI. This allows Stencil CLI to properly display the page in the browser when you visit http://localhost:3000/custom‑category/ locally, or when shoppers visit the corresponding public store page.\n\n### Mapping Multiple URLs\nBeyond the single URL mapped to each template in the above examples, you have the option of mapping an array of URLs to each template. This is shown in the following example for the product template:\n\n```\n  \"customLayouts\": {\n    \"product\": {\n      \"featured-product.html\": [\"/special-product-one\", \"/special-product-two\"],\n      \"clearance-product.html\": \"/clearance-product\"\n    },\n    \"brands\": {},\n    \"categories\": {},\n    \"page\": {}\n  }\n}\n```"
-                            header:
-                              anchor: authoring-testing-uploading_local-mapping
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ## Theme Upload
-
-
-                              Finally, you must bundle and upload the theme to
-                              BigCommerce. See the Bundling and Uploading a
-                              Theme article for instructions on how to achieve
-                              this.
-                            header:
-                              anchor: authoring-testing-uploading_theme-upload
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ## Troubleshooting Template Authoring
-
-
-                              Here are solutions to some known problems in
-                              locally authoring and testing custom templates:
-
-
-                              ### Viewing Custom Brand Templates Locally
-
-
-                              If you are having trouble viewing custom brand
-                              templates locally, ensure that the URL used in
-                              your .stencil file is of the form:
-                              /brands/brandname. This is necessary because all
-                              the brand pages are located under the /brands/ URL
-                              path.
-
-                              Also, bear in mind that currently, all brand URLs
-                              are Unicode-encoded. So, for example, you should
-                              replace a hyphen with: %252d.
-
-
-                              ### Outdated Stencil CLI
-
-
-                              If you have an old version of Stencil CLI
-                              installed, it might lack support for custom
-                              templates. You can easily update your CLI by
-                              executing the following command:
-
-
-                              `npm install -g bigcommerce/stencil-cli`
-                            header:
-                              anchor: authoring-testing-uploading_troubleshooting
-                    - title: Assigning Templates to Pages
-                      route:
-                        path: /assigining-templates-to-pages
-                      data:
-                        blocks:
-                          - type: html
-                            data: <h1>Assigning Templates to Pages</h1>
-                          - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#assigning_merchant-performed\">Merchant Performed Actions</a></li>\n\t\t<li><a href=\"#assigning_assigning-a-web-page\">Assigning a Web Page Template</a></li>\n    <li><a href=\"#assigning_assigning-a-product\">Assigning a Product, Brand, or Category Template</a></li>\n    <li><a href=\"#assigning_troubleshooting\">Troubleshooting Template Assignments</a></li>\n\t</ul>\n</div>"
-                          - type: text
-                            data: >-
-                              ## Merchant Performed Actions
-
-
-                              Once the developer has uploaded a theme to
-                              BigCommerce, the merchant (or other authorized
-                              store user) can assign custom templates to
-                              individual store pages in the BigCommerce Control
-                              Panel. The steps are similar whether assigning
-                              brands, categories, products, and static Web pages
-                              – with slight differences. Below, we show examples
-                              for assigning a Web Page and a Category. For
-                              further details, please see the [Stencil Custom
-                              Templates Knowledge Base
-                              article](https://forum.bigcommerce.com/s/article/Stencil-Themes#custom-template).
-                            header:
-                              anchor: assigning_assigning-a-web-page
-                          - type: text
-                            data: >-
-                              ## Assigining a Web Page Template
-
-
-                              Starting from the BigCommerce control panel's left
-                              navigation pane:
-
-
-                              1. Select `Storefront` > `Web Pages`.
-
-                              2. From the resulting `View Web Pages` display,
-                              select the existing Page 
-
-                              3. Name to which you want to assign a custom
-                              template. (Or select `Create a Web Page` to define
-                              a new page.)
-
-                              4. From the resulting `Edit a Web Page` display,
-                              scroll down to the `Template Layout File`
-                              drop-down list. Then select your desired custom
-                              template from that list, as shown below.
-                            header:
-                              anchor: assigning_assigning-a-product
-                          - type: image
-                            data: >-
-                              //s3.amazonaws.com/user-content.stoplight.io/6116/1539930165487
-                            config:
-                              centered: true
-                              fluid: true
-                              bordered: true
-                              maxWidth: '600'
-                              maxHeight: '400'
-                          - type: callout
-                            data:
-                              body: >-
-                                Some static page types do not allow you to
-                                assign custom templates. You can recognize these
-                                excluded pages because their `Edit a Web Page`
-                                display will not include a `Template Layout
-                                File` drop-down list.
-                              title: Static Pages You Can't Assign
-                              type: warning
-                          - type: text
-                            data: >
-                              ## Assigning a Product, Brand, or Category
-                              Template
-
-
-                              Starting from the BigCommerce control panel's left
-                              navigation pane:
-
-
-                              1. Select `Products` > `View` (for a product page)
-                              `Products` > `Product Categories` (for a category
-                              page), or `Products` > `Brands` (for a brand
-                              page).
-
-                              2. Select the Product Name, Category Name, or
-                              Brand Name to which you want to assign a custom
-                              template. (Or select the `Add` or `Create` button
-                              at the upper left to define a new product,
-                              category, or band.)
-
-                              3. For a product page (only), you must select the
-                              `Other Details` tab to proceed to the next step.
-
-                              4. Scroll to the `Template Layout File` drop-down
-                              list, and select your desired custom template from
-                              that list, as shown below for a Category
-                              assignment.
-
-                              5. Click the Save & Exit or Save & Keep Editing
-                              button at the lower right.
-                            header:
-                              anchor: assigning_troubleshooting
-                          - type: image
-                            data: >-
-                              //s3.amazonaws.com/user-content.stoplight.io/6116/1539930552310
-                            config:
-                              fluid: true
-                              centered: true
-                              bordered: true
-                              maxWidth: '500'
-                              maxHeight: '200'
-                          - type: text
-                            data: >-
-                              ## Troubleshooting Template Assignments
-
-
-                              In case of problems a custom template in the
-                              control panel: Check whether your theme's root
-                              directory contains a file named `manifest.json`.
-
-                              If you theme's root directory contains the file,
-                              perofrm the following:
-
-                              * delete the `manifest.json` file
-
-                              * bundle the theme again with the `stencil bundle`
-                              command
-
-                              * upload the theme
-
-                              * apply the theme
-
-
-                              This should enable assigning the template in the
-                              control panel.
-                            header:
-                              anchor: assigning_troubleshooting
                     - title: Using Disqus with Stencil
                       route:
                         path: /new-subpage
@@ -4786,6 +4459,350 @@ pages:
                       config:
                         sidebar:
                           token: tutorial
+                    - title: Custom Templates
+                      route:
+                        path: /custom-templates
+                      data:
+                        children:
+                          - null
+                          - title: About Custom Templates
+                            route:
+                              path: /about-custom-templates
+                            data:
+                              blocks:
+                                - type: html
+                                  data: <h1>About Custom Templates</h1>
+                                - type: html
+                                  data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#custom-templates_about-custom\">About Custom Templates</a></li>\n\t\t<li><a href=\"#custom-templates_stencil-versus-blueprint\">Stencil versus Blueprint Themes</a></li>\n    <li><a href=\"#custom-templates_video-demo\">Video Demo</a></li>\n\t</ul>\n</div>"
+                                - type: text
+                                  data: >
+                                    ## About Custom Templates
+
+
+                                    About Custom Templates
+
+                                    The Stencil framework allows theme
+                                    developers and merchants to assign custom
+                                    layout templates to storefront pages of the
+                                    following types:
+
+
+                                    * Brand
+
+                                    * Category
+
+                                    * Product
+
+                                    * Page (meaning "Web Pages" – the
+                                    BigCommerce control panel's designation for
+                                    static store pages, which can include the
+                                    store's home page)
+                                  header:
+                                    anchor: custom-templates_about-custom
+                                - type: text
+                                  data: '---'
+                                - type: text
+                                  data: >-
+                                    ## Stencil versus Blueprint Themes
+
+
+                                    If you are migrating from BigCommerce's
+                                    legacy Blueprint themes framework, please
+                                    keep in mind these differences in how
+                                    Stencil handles custom templates:
+
+
+                                    * The brand option is entirely new in
+                                    Stencil. If you are running on a Blueprint
+                                    theme, you will not be able to create a
+                                    custom template for brand pages.
+
+                                    * Unlike Blueprint, Stencil does not require
+                                    that custom templates' file names start with
+                                    an underscore (_).
+
+                                    * In the current Stencil release, you must
+                                    create and bundle custom templates using
+                                    Stencil CLI before you can upload the custom
+                                    templates to stores. However, once you have
+                                    created and uploaded templates, authorized
+                                    store users can assign them to storefront
+                                    pages through the control panel.
+                                  header:
+                                    anchor: custom-templates_stencil-versus-blueprint
+                                - type: text
+                                  data: '---'
+                                - type: text
+                                  data: >-
+                                    ## Video Demo
+
+
+                                    <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/qgaDX7bhmd8"
+                                    frameborder="0" allow="autoplay;
+                                    encrypted-media" allowfullscreen></iframe>
+                                  header:
+                                    anchor: custom-templates_video-demo
+                          - title: 'Authoring, Testing, & Uploading Custom Templates'
+                            route:
+                              path: /new-subpage-2
+                            data:
+                              blocks:
+                                - type: html
+                                  data: >-
+                                    <h1>Authoring, Testing, and Uploading Custom
+                                    Templates</h1>
+                                - type: html
+                                  data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#authoring-testing-uploading_authoring\">Authoring Templates</a></li>\n    <li><a href=\"#authoring-testing-uploading_local-mapping\">Local Mapping and Testing</a></li>\n\t\t<li><a href=\"#authoring-testing-uploading_theme-upload\">Theme Upload</a></li>\n\t\t<li><a href=\"#authoring-testing-uploading_troubleshooting\">Troubleshooting Template Authoring</a></li>\n\t</ul>\n</div>"
+                                - type: text
+                                  data: >-
+                                    ## Authoring a Custom Template
+
+
+                                    As a the theme developer, you must first
+                                    create the `custom` subdirectory in the
+                                    `templates/pages` directory, and four
+                                    required subdirectories inside of it (brand,
+                                    category, product, page), which will result
+                                    in the following directory paths:
+
+
+                                    * templates/pages/custom/brand 
+
+                                    * custom/category/custom/category
+
+                                    * custom/product/custom/product
+
+                                    * custom/page/custom/page
+
+
+                                    Next,  create the template HTML files, and
+                                    then place them in the appropriate
+                                    `<theme-name>/templates/pages/custom/`
+                                    subdirectories corresponding to the types
+                                    listed above. 
+                                  header:
+                                    anchor: authoring-testing-uploading_authoring
+                                - type: callout
+                                  data:
+                                    type: warning
+                                    body: >-
+                                      Be sure to set permission `755
+                                      (drwxr-x-r-x)` on any new subdirectories
+                                      that you add.
+
+                                      Also, be sure to set permission `644
+                                      (rw-r–r–)` on any new files that you add.
+
+
+                                      Without these permissions, running your
+                                      theme locally will fail with multiple
+                                      error messages.
+
+                                      Bundling your theme will also fail,
+                                      blocking its upload to a store.
+                                    title: Subdirectory/File Permissions Required
+                                - type: text
+                                  data: '---'
+                                - type: text
+                                  data: "## Local Mapping and Testing\n\nTo test your custom templates locally, you must edit your `<theme-name>/.stencil` file to create mappings between each local template and a corresponding URL. Within the `.stencil` file, look for the following section:\n\n```\n\"customLayouts\": {\n    \"product\": {},\n    \"brand\": {},\n    \"category\": {},\n    \"page\": {}\n  }\n```\n\nIn this section, you would populate keys to create mappings. As a simple example, assume that you have a product custom template named alternate-`product.html`, and you want to see that template locally at the URL: http://localhost:3000/test-url/. In this case, you must populate the product key as follows:\n\n```\n    \"product\": {\n    \t\"alternate-product.html\":\"/test-url/\"\n    },\n```\n\n### Expanded Mapping Example\n\nHere is a more-complete example in which the `brand`, `page`, and `category` keys are also populated:\n\n```\n{\n  \"normalStoreUrl\": \"http://cornerstone-light-demo.mybigcommerce.com\",\n  \"port\": 3000,\n  \"username\": \"stencil\",\n  \"token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\n  \"customLayouts\": {\n    \"product\": {\n      \"custom-product.html\": \"/custom-product/\"\n    },\n    \"brand\": {\n      \"custom-brand.html\": \"/brands/custombrand/\"\n    },\n    \"page\": {\n      \"custom-page.html\": \"/custom-page/\"\n    },\n    \"category\": {\n      \"custom-category.html\": \"/custom-category/\"\n    }\n  }\n}\n```\n\n### Mapping Requirements and Options\n\nIn the .stencil mapping examples above:\n\n* Each mapped URL must be a URL for a brand, category, product, or static page that is _already configured in the store_. This means that you cannot insert a placeholder URL that is an arbitrary string of letters, such as /abcdefghijklmnop/.\n* Each URL’s trailing slash is _optional_.\n* The HTML files must reside in either the brand, category, product, or page subdirectories.\n* All brand URLs are nested under the /brands/ parent. Use URL encoding with brand URLs.\n* That parent for brand URLs is /brands/ (plural), while the corresponding subdirectory for HTML files is /brand/ (singular).\n* After editing your `.stencil` file, you must restart stencil to see your changes locally. Enter `stencil start` on the command line, appending any appropriate switches for your workflow (e.g.: `stencil start -e -n`).\n\n### Why These URL Requirements?\n\nWhen you create a local custom template page for products, you expect that page to have access to all Stencil product objects. However, the server cannot readily determine the page type of each local custom template. So we give it a hint: We instruct the server to look at the page type of the URL to which you have mapped the template.\n\nIn the above `.stencil` configuration example’s final entry, the server will look at the URL `/custom‑category/` within the store, deduce that the page type is `category`, and return a category context to Stencil CLI. This allows Stencil CLI to properly display the page in the browser when you visit http://localhost:3000/custom‑category/ locally, or when shoppers visit the corresponding public store page.\n\n### Mapping Multiple URLs\nBeyond the single URL mapped to each template in the above examples, you have the option of mapping an array of URLs to each template. This is shown in the following example for the product template:\n\n```\n  \"customLayouts\": {\n    \"product\": {\n      \"featured-product.html\": [\"/special-product-one\", \"/special-product-two\"],\n      \"clearance-product.html\": \"/clearance-product\"\n    },\n    \"brands\": {},\n    \"categories\": {},\n    \"page\": {}\n  }\n}\n```"
+                                  header:
+                                    anchor: authoring-testing-uploading_local-mapping
+                                - type: text
+                                  data: '---'
+                                - type: text
+                                  data: >-
+                                    ## Theme Upload
+
+
+                                    Finally, you must bundle and upload the
+                                    theme to BigCommerce. See the Bundling and
+                                    Uploading a Theme article for instructions
+                                    on how to achieve this.
+                                  header:
+                                    anchor: authoring-testing-uploading_theme-upload
+                                - type: text
+                                  data: '---'
+                                - type: text
+                                  data: >-
+                                    ## Troubleshooting Template Authoring
+
+
+                                    Here are solutions to some known problems in
+                                    locally authoring and testing custom
+                                    templates:
+
+
+                                    ### Viewing Custom Brand Templates Locally
+
+
+                                    If you are having trouble viewing custom
+                                    brand templates locally, ensure that the URL
+                                    used in your .stencil file is of the form:
+                                    /brands/brandname. This is necessary because
+                                    all the brand pages are located under the
+                                    /brands/ URL path.
+
+                                    Also, bear in mind that currently, all brand
+                                    URLs are Unicode-encoded. So, for example,
+                                    you should replace a hyphen with: %252d.
+
+
+                                    ### Outdated Stencil CLI
+
+
+                                    If you have an old version of Stencil CLI
+                                    installed, it might lack support for custom
+                                    templates. You can easily update your CLI by
+                                    executing the following command:
+
+
+                                    `npm install -g bigcommerce/stencil-cli`
+                                  header:
+                                    anchor: >-
+                                      authoring-testing-uploading_troubleshooting
+                          - title: Assigning Templates to Pages
+                            route:
+                              path: /assigining-templates-to-pages
+                            data:
+                              blocks:
+                                - type: html
+                                  data: <h1>Assigning Templates to Pages</h1>
+                                - type: html
+                                  data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#assigning_merchant-performed\">Merchant Performed Actions</a></li>\n\t\t<li><a href=\"#assigning_assigning-a-web-page\">Assigning a Web Page Template</a></li>\n    <li><a href=\"#assigning_assigning-a-product\">Assigning a Product, Brand, or Category Template</a></li>\n    <li><a href=\"#assigning_troubleshooting\">Troubleshooting Template Assignments</a></li>\n\t</ul>\n</div>"
+                                - type: text
+                                  data: >-
+                                    ## Merchant Performed Actions
+
+
+                                    Once the developer has uploaded a theme to
+                                    BigCommerce, the merchant (or other
+                                    authorized store user) can assign custom
+                                    templates to individual store pages in the
+                                    BigCommerce Control Panel. The steps are
+                                    similar whether assigning brands,
+                                    categories, products, and static Web pages –
+                                    with slight differences. Below, we show
+                                    examples for assigning a Web Page and a
+                                    Category. For further details, please see
+                                    the [Stencil Custom Templates Knowledge Base
+                                    article](https://forum.bigcommerce.com/s/article/Stencil-Themes#custom-template).
+                                  header:
+                                    anchor: assigning_assigning-a-web-page
+                                - type: text
+                                  data: >-
+                                    ## Assigining a Web Page Template
+
+
+                                    Starting from the BigCommerce control
+                                    panel's left navigation pane:
+
+
+                                    1. Select `Storefront` > `Web Pages`.
+
+                                    2. From the resulting `View Web Pages`
+                                    display, select the existing Page 
+
+                                    3. Name to which you want to assign a custom
+                                    template. (Or select `Create a Web Page` to
+                                    define a new page.)
+
+                                    4. From the resulting `Edit a Web Page`
+                                    display, scroll down to the `Template Layout
+                                    File` drop-down list. Then select your
+                                    desired custom template from that list, as
+                                    shown below.
+                                  header:
+                                    anchor: assigning_assigning-a-product
+                                - type: image
+                                  data: >-
+                                    //s3.amazonaws.com/user-content.stoplight.io/6116/1539930165487
+                                  config:
+                                    centered: true
+                                    fluid: true
+                                    bordered: true
+                                    maxWidth: '600'
+                                    maxHeight: '400'
+                                - type: callout
+                                  data:
+                                    body: >-
+                                      Some static page types do not allow you to
+                                      assign custom templates. You can recognize
+                                      these excluded pages because their `Edit a
+                                      Web Page` display will not include a
+                                      `Template Layout File` drop-down list.
+                                    title: Static Pages You Can't Assign
+                                    type: warning
+                                - type: text
+                                  data: >
+                                    ## Assigning a Product, Brand, or Category
+                                    Template
+
+
+                                    Starting from the BigCommerce control
+                                    panel's left navigation pane:
+
+
+                                    1. Select `Products` > `View` (for a product
+                                    page) `Products` > `Product Categories` (for
+                                    a category page), or `Products` > `Brands`
+                                    (for a brand page).
+
+                                    2. Select the Product Name, Category Name,
+                                    or Brand Name to which you want to assign a
+                                    custom template. (Or select the `Add` or
+                                    `Create` button at the upper left to define
+                                    a new product, category, or band.)
+
+                                    3. For a product page (only), you must
+                                    select the `Other Details` tab to proceed to
+                                    the next step.
+
+                                    4. Scroll to the `Template Layout File`
+                                    drop-down list, and select your desired
+                                    custom template from that list, as shown
+                                    below for a Category assignment.
+
+                                    5. Click the Save & Exit or Save & Keep
+                                    Editing button at the lower right.
+                                  header:
+                                    anchor: assigning_troubleshooting
+                                - type: image
+                                  data: >-
+                                    //s3.amazonaws.com/user-content.stoplight.io/6116/1539930552310
+                                  config:
+                                    fluid: true
+                                    centered: true
+                                    bordered: true
+                                    maxWidth: '500'
+                                    maxHeight: '200'
+                                - type: text
+                                  data: >-
+                                    ## Troubleshooting Template Assignments
+
+
+                                    In case of problems a custom template in the
+                                    control panel: Check whether your theme's
+                                    root directory contains a file named
+                                    `manifest.json`.
+
+                                    If you theme's root directory contains the
+                                    file, perofrm the following:
+
+                                    * delete the `manifest.json` file
+
+                                    * bundle the theme again with the `stencil
+                                    bundle` command
+
+                                    * upload the theme
+
+                                    * apply the theme
+
+
+                                    This should enable assigning the template in
+                                    the control panel.
+                                  header:
+                                    anchor: assigning_troubleshooting
                   blocks: []
               - title: Customize Stencil Checkout
                 route:
