@@ -5790,7 +5790,7 @@ pages:
                                 - type: html
                                   data: <h1>Getting Started in Vanilla JS</h1>
                                 - type: html
-                                  data: "<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"getting-started_installing\">Installing the Checkout JS SDK</a></li>\n    <li><a href=\"getting-started_creating\">Creating a <code>checkout.js</code> file</a></li>\n    <li><a href=\"getting-started_mapping\">Mapping the <code>checkout.js</code> file to the checkout page type</a></li>\t\n    <li><a href=\"getting-started_preparing\">Preparing the <code>checkout.html</code> template file</a></li>\t\n    <li><a href=\"getting-started_logging\">Logging the Checkout Object</a></li>\t\n</ul>\n</div>\n\n\n\n\n\n\n"
+                                  data: "<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"getting-started_installing\">Installing the Checkout JS SDK</a></li>\n    <li><a href=\"getting-started_creating\">Creating a <code>checkout.js</code> file</a></li>\n    <li><a href=\"getting-started_mapping\">Mapping the <code>checkout.js</code> file to the checkout page type</a></li>\t\n    <li><a href=\"getting-started_preparing\">Preparing the <code>checkout.html</code> template file</a></li>\t\n    <li><a href=\"getting-started_logging\">Logging the Checkout Object</a></li>\t\n    <li><a href=\"getting-started_next-steps\">Logging the Checkout Object</a></li>\t\n</ul>\n</div>\n\n\n\n\n\n\n"
                                 - type: text
                                   data: >
                                     The Checkout JS SDK is a JavaScript library
@@ -5843,8 +5843,12 @@ pages:
 
                                     `npm install --save
                                     @bigcommerce/checkout-sdk`
+                                  header:
+                                    anchor: getting-started_installing
                                 - type: text
                                   data: "## Creating a `checkout.js` file\n\n1. In your text editor, open your theme and create a new file in the assets/js/theme directory.\n\n2. Save the file as checkout.js. You can name your checkout JavaScript file anything you like, but the subsequent steps of this tutorial will assume the filename checkout.js.\n\n3. Add the following to your `checkout.js` file:\n\n```\nimport PageManager from './page-manager';\nimport { createCheckoutService } from '@bigcommerce/checkout-sdk';\n\nconst service = createCheckoutService();\n\nexport default class Checkout extends PageManager {\n\tasync onReady() {\n\t\tconst state = await service.loadCheckout();\nconsole.log(state.data.getCheckout());\n\t}\n}\n```\n\nImporting and extending the PageManager abstract class sets the page context for the checkout.js module. We also import { createCheckoutService } from the Checkout SDK. \n\nThe async keyword ensures that onReady() returns a Promise; the await keyword waits until the Promise resolves to load the checkout. Async/await is supported in nearly all modern browsers, but if you need to support older browsers like IE, you will require the Promise polyfill.\n\n4. Save the file. "
+                                  header:
+                                    anchor: getting-started_creating
                                 - type: text
                                   data: >-
                                     ## Mapping the `checkout.js` file to the
@@ -5859,6 +5863,8 @@ pages:
 
                                     `checkout: () =>
                                     import('./theme/checkout'),`
+                                  header:
+                                    anchor: getting-started_mapping
                                 - type: image
                                   data: >-
                                     //s3.amazonaws.com/user-content.stoplight.io/6116/1540242854920
@@ -5904,6 +5910,8 @@ pages:
 
                                     4. Save the file.
 
+                                  header:
+                                    anchor: getting-started_preparing
                                 - type: text
                                   data: >
                                     ## Logging the Checkout Object
@@ -5918,18 +5926,22 @@ pages:
 
                                     3. Note the checkout object logged to the
                                     console. 
+                                  header:
+                                    anchor: getting-started_logging
                                 - type: text
                                   data: >-
                                     ## Next Steps
 
 
                                     Build out your custom checkout page by
-                                    entering your HTML into the checkout.html
+                                    entering your HTML into the `checkout.html`
                                     file and JavaScript into checkout.js. For
                                     detailed documentation on all of the
                                     Checkout SDK library methods visit the [SDK
                                     GitHub
                                     repository](https://github.com/bigcommerce/checkout-sdk-js).
+                                  header:
+                                    anchor: getting-started_next-steps
                           - title: React.js Custom Checkout
                             route:
                               path: /implement-a-custom-checkout
