@@ -14820,19 +14820,91 @@ pages:
                       header:
                         anchor: advanced_update-webpackconfjs
                     - type: text
-                      data: '## Update app.js'
+                      data: >-
+                        ## Update app.js
+
+
+                        Add the following code to the bottom of
+                        `<theme-name>/assets/js/app.js`:
+
+
+                        ```
+
+                        window.initReact = function(contextJSON = '{}') {
+                            injectTapEventPlugin();
+                            const context = JSON.parse(contextJSON);
+                            const proto = Object.create(HTMLElement.prototype, {
+                                attachedCallback: {
+                                    value: function() {
+                                        const mountPoint = document.createElement('span');
+                                        const attrs = [].reduce.call(this.attributes, (memo, attr) => {
+                                            memo[attr.name] = attr.value;
+                                            return memo;
+                                        }, {});
+                                        const data = Object.assign({}, context, attrs);
+
+                                        this.appendChild(mountPoint);
+                                        ReactDOM.render(
+                                            <MuiThemeProvider>
+                                                <CouponDrawer data={data} />
+                                            </MuiThemeProvider>,
+                                            mountPoint
+                                        );
+                                    }
+                                }
+                            });
+                            document.registerElement('x-coupon-drawer', {prototype: proto});
+                        }
+
+                        ```
+
+
+                        This sets up a handler for attaching an
+                        `<x-coupon-drawer>` element to the page. We're using
+                        React here to render the `CouponDrawer` component. This
+                        block of code was taken and modified from
+                        https://facebook.github.io/react/docs/web-components.html#using-react-in-your-web-components.
                       header:
                         anchor: advanced_update-appjs
                     - type: text
-                      data: ''
+                      data: >-
+                        ## Add the `<x-coupon-drawer>` Element to the Page 
+
+
+                        Add this in `<theme-name>/templates/layout/base.html`.
+                        (See the image below.) We're using this layout template
+                        for this example, although you would follow the same
+                        steps in any other template.
                       header:
                         anchor: advanced_add-the-xcoupondrawer
                     - type: text
-                      data: ''
+                      data: >-
+                        ## Call initReact from base.html 
+
+
+                        Add a call to `window.initReact`. We're continuing to
+                        work with the `base.html` page for this example. Notice
+                        that we're also passing in the jsContext here. The
+                        `initReact` method will merge this context with an
+                        object created from the attributes placed upon the
+                        `<x-coupon-drawer>`, and will pass the combined data
+                        along to the React component.
                       header:
                         anchor: advanced_call-initreact
+                    - type: image
+                      data: >-
+                        //s3.amazonaws.com/user-content.stoplight.io/6116/1540279254389
+                      header:
+                        title: base.html setup
+                      config:
+                        centered: true
+                        fluid: true
+                        bordered: true
                     - type: text
-                      data: ''
+                      data: |-
+                        ## Create an assets/js/components Folder 
+
+                        We'll store our React components here.
                       header:
                         anchor: advanced_create-an-assetsjscomp
                     - type: text
