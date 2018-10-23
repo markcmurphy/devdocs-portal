@@ -15255,18 +15255,176 @@ pages:
                         * "page/account/wishlist-details"
 
                         * "pages/account/wishlists"
+
+
+                        These page types correspond to the pages within your
+                        theme. Each of these page types maps to an ES6 module
+                        that extends the base `PageManager` abstract class:
+
+
+                        ```
+                           export default class Blog extends PageManager {
+                                constructor() {
+                                    //Setup code goes here – attach to internals, and use internals as you would 'this'
+                                }
+                            }
+                        ```
                       header:
                         anchor: page-types_javascript-api
                     - type: text
                       data: '---'
                     - type: text
-                      data: '## Callback Methods'
+                      data: >+
+                        ## Callback Methods
+
+
+                        Within `PageManager`, you will see methods that are
+                        available from all your classes. But three methods are
+                        especially important. The following methods have the
+                        signature `func (callback)`, with the callback taking
+                        `callback(err)` in case of an error.
+
+
+                        ### before(callback)
+
+
+                        When this method is implemented in your class, the code
+                        contained will be executed after the constructor but
+                        before the `loaded()` method. This will provide a shim
+                        for your code before your main implementation logic
+                        could run.
+
+
+                        ```
+                         export default class Blog extends PageManager {
+                                constructor() {
+                                    //Setup code goes here
+                                }
+                                before(callback) {
+                                    //Code that should be ran before any other code in this class
+
+                                    //Callback must be called to move on to the next method
+                                    callback();
+                                }
+                            }
+                        ```
+
+
+                        ### loaded(callback)
+
+
+                        This method will be called when the constructor has ran
+                        and `before()` has executed. Main implementation code
+                        should live in the `loaded()` method.
+
+
+                        ```
+                         export default class Blog extends PageManager {
+                                constructor() {
+                                    //Setup code goes here
+                                }
+                                loaded(callback) {
+                                    //Main implementation logic here
+
+                                    //Callback must be called to move on to the next method
+                                    callback();
+                                }
+                            }
+                        ```
+
+
+                        ### after(callback)
+
+
+                        This method is for any cleanup that may need to happen,
+                        and it will be executed after `before()` and `loaded()`.
+
+
+                        ```
+                            export default class Blog extends PageManager {
+                                constructor() {
+                                    //Set up code goes here
+                                }
+                                after(callback) {
+                                    //Main implementation logic here
+
+                                    //Callback must be called to move on to the next method
+                                    callback();
+                                }
+                            }
+                        ```
+
+
+
+
                       header:
                         anchor: page-types_callback
                     - type: text
                       data: '---'
                     - type: text
-                      data: '## JavaScript Template Context Injection'
+                      data: >+
+                        ## JavaScript Template Context Injection
+
+
+                        Occasionally, you might need to use dynamic data from
+                        the template context within your theme's client-side
+                        application code. Two helpers are provided to help
+                        achieve this.
+
+
+                        The `inject` helper allows you to compose a json object
+                        with a subset of the template context to be sent to the
+                        browser:
+
+
+                        `{{inject "stringBasedKey" contextValue}}`
+
+
+                        To retrieve the parsable JSON object, just call
+                        `{{jsContext}}` after all of the `{{inject}}` calls.
+
+
+                        For example, to set up the product name in your
+                        client-side app, you can do this if you're in the
+                        context of a product:
+
+
+                        ```
+
+                        {{inject "myProductName" product.title}}
+
+
+                        <script>
+
+                        // Note the lack of quotes around the jsContext
+                        handlebars helper, it becomes a string automatically.
+
+                        var jsContext = JSON.parse({{jsContext}}); //jsContext
+                        would output "{\"myProductName\": \"Sample Product\"}"
+                        which can feed directly into your JavaScript
+
+
+                        console.log(jsContext.myProductName); // Will output:
+                        Sample Product
+
+                        </script>
+
+                        ```
+
+
+                        You can compose your JSON object across multiple pages,
+                        to create a different set of client-side data depending
+                        on the currently loaded template context.
+
+
+                        Stencil's Cornerstone base theme makes the `jsContext`
+                        available as `this.context`, both on the active page
+                        scoped and on global `PageManager` objects.
+
+
+
+
+
                       header:
                         anchor: page-types_javascript
         - title: Conditional-Logic Examples
