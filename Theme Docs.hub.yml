@@ -14836,7 +14836,58 @@ pages:
                       header:
                         anchor: advanced_create-an-assetsjscomp
                     - type: text
-                      data: ''
+                      data: >-
+                        ## Create a CouponDrawer.js File
+
+
+                        Create a
+                        `<theme-name>/assets/js/components/CouponDrawer.js`
+                        file. Populate this file with the following code block
+                        (which is adapted from
+                        http://www.material-ui.com/#/components/drawer):
+
+
+                        ```
+
+                        import React from 'react';
+
+                        import Drawer from 'material-ui/Drawer';
+
+                        import AppBar from 'material-ui/AppBar';
+
+                        import RaisedButton from 'material-ui/RaisedButton';
+
+                        import VerticalLinearStepper from
+                        './VerticalLinearStepper';
+
+
+                        export default class CouponDrawer extends
+                        React.Component {
+
+                          constructor(props) {
+                            super(props);
+                            this.state = {open: false};
+                          }
+
+                          handleToggle = () => this.setState({open: !this.state.open});
+
+                          render() {
+                            return (
+                              <div>
+                                <RaisedButton
+                                  label="Click here to get a coupon!"
+                                  onTouchTap={this.handleToggle}
+                                />
+                                <Drawer width={200} openSecondary={true} open={this.state.open} >
+                                  <AppBar title="Coupon magic" titleStyle={{fontSize: 14}} />
+                                  <VerticalLinearStepper />
+                                </Drawer>
+                              </div>
+                            );
+                          }
+                        }
+
+                        ```
                       header:
                         anchor: advanced_create-a-coupondrawerjs-file
                     - type: text
