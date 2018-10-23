@@ -6550,7 +6550,9 @@ pages:
                       header:
                         anchor: config_keys-and-example
                     - type: text
-                      data: >-
+                      data: '---'
+                    - type: text
+                      data: >+
                         ## Requirements and Restrictions
 
 
@@ -6558,24 +6560,128 @@ pages:
                         requirements:
 
 
-                        It must be named `config.json`, must reside in the root
-                        of your `<theme-name>` top level subdirectory (e.g.:
-                        `/cornerstone/config.json` or `/stencil/config.json`),
-                        and must be valid JSON.
+                        * It must be named `config.json`, must reside in the
+                        root of your `<theme-name>` top level subdirectory
+                        (e.g.: `/cornerstone/config.json` or
+                        `/stencil/config.json`), and must be valid JSON.
 
-                        The maximum allowable size for a theme's config.json
+                        * The maximum allowable size for a theme's `config.json`
                         file is 64 KB. Exceeding this limit will trigger an
                         error upon uploading the theme to BigCommerce.
 
-                        Each key's value is restricted to 64 characters.
+                        * Each key's value is restricted to 64 characters.
                         Exceeding this limit will similarly trigger an upload
                         error.
 
-                        Other than these size constraints, there is no limit on
-                        the number of keys and values that you can place in a
-                        theme's config.json.
+                        * Other than these size constraints, there is no limit
+                        on the number of keys and values that you can place in a
+                        theme's `config.json`.
+
+
+                        ### Required Themewide Keys
+
+                        The `config.json` file must contain at least the
+                        following keys, with appropriate values (as outlined
+                        above):
+
+
+                        *name
+
+                        * `version`
+
+                        * `settings` (which must itself be a valid JSON object)
+
+                        * `variations` (an array of at least one, and at most
+                        four, variation objects)
+
+                        * `meta` (an object; see specific requirements below)
+
+
+                        ### Required `meta` Keys
+
+
+                        The meta object must contain at least the following
+                        keys, with appropriate values:
+
+
+                        * `price`
+
+                        * `author_name`
+
+                        * `author_email`
+
+                        * `author_support_url`
+
+                        * `documentation_url`
+
+
+                        For illustration, here is a commented excerpt:
+
+
+                        ```
+
+                        {
+                          ...
+                          "meta": {
+                            "price": 15000, // in cents; non-negative integer, minimum 0
+                            "author_name:" "eCommerce Themes, Inc.", // Must be a string, not null
+                            "author_email": "support@example.com", // Must be a string, should be a valid email address, not null
+                            "author_support_url": "http://example.com/contactus", //  Must be a string, should be a valid URL, not null
+                            "documentation_url": "http://example.com/guide", // Must be a string, limit of 255 characters,
+                                  not null
+                            "composed_image": "path/to/composed.png", // Must be a string path to the composed-image file
+                            "features": [ // Array of feature strings, all of which must be in the list enumerated here: 
+                                  https://github.com/bigcommerce/theme-registry/blob/master/app/schemas/theme_config.json#L33
+                              "fully_responsive" // Must include at least one feature, and no duplicate entries
+                            ]
+                          },
+                          ...
+                        }
+
+                        ```
+
+
+                        ### Required `variation` Keys
+
+
+                        For each variation that you choose to include in your
+                        theme (at least one is required), you must provide at
+                        least the following keys and sub-element, with
+                        appropriate values:
+
+
+                        * `name`
+
+                        * `id`
+
+                        * `meta` (an object, containing at least:)
+
+                        * `description`
+
+
+                        For illustration, here is a redacted excerpt from
+                        Cornerstone:
+
+
+                        ```
+
+                        "variations": [
+                            {
+                              "name": "Light",
+                              "id": "light",
+                              "meta": {
+                                "desktop_screenshot": "desktop_light.png",
+                                "mobile_screenshot": "mobile_light.png",
+                                "description": "Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. ....",
+                            ...
+                            }
+                          ]
+                        ```
+
                       header:
                         anchor: config_requirements-and-restrictions
+                    - type: text
+                      data: '---'
                     - type: text
                       data: >-
                         ## Video Demo
