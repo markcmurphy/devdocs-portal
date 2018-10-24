@@ -27887,7 +27887,22 @@ pages:
     data:
       blocks:
         - type: html
-          data: >-
+          data: >2-
+                <script type="text/javascript">
+                window.noticeableSettings = {
+                    iframe: {
+                        // The selector to use for selecting the iframe HTML element on this page.
+                        selector: "#noticeable-iframe",
+                        // The URL to the Noticeable Timeline served by the iframe.
+                        timelineUrl: "https://timeline.noticeable.io/Q8YuGWPOCMmZDwnKUywV"
+                    }
+                };
+            </script>
+
+            <script>
+              function stripProjectId(e){var i=0;return 0===e.indexOf("/")&&(i=1),-1<(i=e.indexOf("/",i))?e.substr(i+1):""}document.addEventListener("DOMContentLoaded",function(e){var i=window.noticeableSettings.iframe.selector,t=window.noticeableSettings.iframe.timelineUrl;if(i)if(t){var n=document.querySelector(i);n?(location.hash?n.setAttribute("src",t+location.hash.replace("#","/")):n.src=t,window.addEventListener("message",function(e){try{var i=JSON.parse(e.data)}catch(e){}if(i&&"noticeable-timeline-location"===i.type){var t=stripProjectId(i.path);location.hash=t||""}},!1)):console.error("Invalid iframe selector:",i)}else console.error("Missing timeline URL definition.");else console.error("Missing iframe selector definition.")});
+            </script>
+
             <iframe class="noticeable" id="noticeable-iframe" width="100%"
             height="100%" frameborder="0"
             src="https://timeline.noticeable.io/Q8YuGWPOCMmZDwnKUywV"></iframe>
