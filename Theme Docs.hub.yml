@@ -9481,6 +9481,826 @@ pages:
                                       Card Model, which documents the product
                                       object returned in collections.
                                     title: Other Product Objects
+                                - type: text
+                                  data: >
+                                    <h2> <A NAME="Product"></a>Product</h2>
+
+
+                                    <b>Description:</b> Default property that
+                                    provides detailed product data. (Called on
+                                    the default <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/pages/product.html</span></nobr>
+                                    and  <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/pages/amp/product.html</span></nobr>
+                                    templates, and on several partials in the
+                                    <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/components/</span></nobr>
+                                    subdirectory: <br>
+
+                                    <NOBR><span
+                                    class="inline-code">account/returns-list.html</span></nobr>, 
+
+                                    <NOBR><span
+                                    class="inline-code">cart/item-options.html</span></nobr>, 
+
+                                    <NOBR><span
+                                    class="inline-code">products/add-to-cart.html</span></nobr>, 
+
+                                    <NOBR><span
+                                    class="inline-code">products/event-date.html</span></nobr>, 
+
+                                    <NOBR><span
+                                    class="inline-code">products/modals/writeReview.html</span></nobr>, 
+
+                                    <NOBR><span
+                                    class="inline-code">products/price.html</span></nobr>,
+                                    <NOBR><span
+                                    class="inline-code">products/product-view.html</span></nobr>,
+
+                                    <NOBR><span
+                                    class="inline-code">amp/products/product-options.html</span></nobr>, 
+
+                                    <NOBR><span
+                                    class="inline-code">amp/products/product-view.html</span></nobr>,
+                                    and 
+
+                                    <NOBR><span
+                                    class="inline-code">amp/products/product-view-details.html</span></nobr>.)<br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{product}}</span><br>
+
+
+                                    <b>Object Properties:</b><br><br>
+
+
+                                    <table>
+                                      <tr>
+                                        <td>Property</td>
+                                        <td>Description</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">id</td>
+                                        <td class="">Unique ID for the product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">sku</td>
+                                        <td class="">Default product variant when no options are selected</td>
+                                      </tr>
+                                       <tr>
+                                        <td class="">mpn</td>
+                                        <td class="">Manufacturer Part Number</td>
+                                      </tr>
+                                       <tr>
+                                        <td class="">gtin</td>
+                                        <td class="">Global Trade Item Number</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">url</td>
+                                        <td class="">URL to the product detail page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">upc</td>
+                                        <td class="">Optional UPC code for the product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">title</td>
+                                        <td class="">Displayed name of the product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">description</td>
+                                        <td class="">(HTML) description of the product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">detail_messages</td>
+                                        <td class="">Status messages for display at the top of the product page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">min_purchase_quantity</td>
+                                        <td class="">Minimum quantity that can be purchased at once</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">max_purchase_quantity</td>
+                                        <td class="">Maximum quantity that can be purchased at once</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">can_purchase</td>
+                                        <td class="">Boolean that indicates whether the product is available for purchase</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">out_of_stock</td>
+                                        <td class="">Boolean that indicates whether the product is out of stock</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">out_of_stock_message</td>
+                                        <td class="">Merchant-defined label to display when a product is out of stock</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">cart_url</td>
+                                        <td class="">URL to the customer’s shopping cart</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">add_to_wishlist_url</td>
+                                        <td class="">URL to add the product to the customer’s wishlist</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><a name="customizations"></a> customizations </td>
+                                        <td class="">Product customizations (for example, a T-shirt size); these correspond to <NOBR><a href="https://support.bigcommerce.com/articles/Public/What-are-configurable-fields-and-how-do-I-create-them">configurable fields</a></nobr> and <a href="https://support.bigcommerce.com/articles/Public/Product-Options-Text-Fields#numbers">numeric-text</a> <a href="https://support.bigcommerce.com/articles/Public/Adding-Product-Options">product options</a> in the BigCommerce control panel</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">id</span></td>
+                                        <td class="">Customization ID</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">display_name</span></td>
+                                        <td class="">Label for this customization, as displayed to customers</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">type</span></td>
+                                        <td class="">Customization type [<span class="inline-code">text</span>|<span class="inline-code">textarea</span>|<span class="inline-code">NumbersOnlyText</span>|<span class="inline-code">checkbox</span>|<span class="inline-code">select</span>|<span class="inline-code">file</span>]</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">required</span></td>
+                                        <td class="">Boolean value that indicates whether customer must specify this customization in order to buy the product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">condition</span></td>
+                                        <td class="">Boolean value indicating whether to display this product's condition (new, used, or refurbished)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">prefill</span></td>
+                                        <td class="">Optional string value to prefill this field</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">&lt;values&gt;</span></td>
+                                        <td class="">For <span class="inline-code">select</span> type, array of strings listing the available options</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">
+                                          <!-- <span class="inline-code">&lt;textarea</span>=""> -->
+                                          <span class="indent1">&lt;file_types&gt;</span></td>
+                                        <td class="">For <span class="inline-code">file</span> type, string representing the types of allowed files</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">&lt;file_size&gt;</span></td>
+                                        <td class="">For <span class="inline-code">file</span> type, string representing the maximum file size allowed</td>
+                                      </tr>
+                                      
+                                    <!-- Inserted new properties here for
+                                    NumbersOnlyText type, MERC-159: -->
+                                      <tr>
+                                        <td class=""><span class="indent1">integer_only</span></td>
+                                        <td class="">For <span class="inline-code">NumbersOnlyText</span> type, boolean value indicating whether to restrict customer's entries to whole numbers only</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">default</span></td>
+                                        <td class="">For <span class="inline-code">NumbersOnlyText</span> type, optional string representing a default number that customers can see and overwrite</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">limit_input</span></td>
+                                        <td class="">For <span class="inline-code">NumbersOnlyText</span> type, boolean indicating whether to impose any limits on the numeric values that customers can enter as strings</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">limit_input_option</span></td>
+                                        <td class="">For <span class="inline-code">NumbersOnlyText</span> type and <span class="inline-code">limit_input</span> = <span class="inline-code">true</span>, the type of limit: <span class="inline-code">lowest</span> or <span class="inline-code">highest</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">lowest</span></td>
+                                        <td class="">For <span class="inline-code">NumbersOnlyText</span> type and <span class="inline-code">limit_input</span> = <span class="inline-code">true</span>,  minimum allowable value; a value of <span class="inline-code">0</span> imposes no limit</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">highest</span></td>
+                                        <td class="">For <span class="inline-code">NumbersOnlyText</span> type and <span class="inline-code">limit_input</span> = <span class="inline-code">true</span>,  maximum allowable value; a value of <span class="inline-code">0</span> imposes no limit</td>
+                                      </tr>
+                                    <!-- End of customizations child object -->
+                                      
+                                    <!-- Inserted new child object here for
+                                    swatches, MERC-81: -->
+                                      <tr>
+                                        <td class=""><a name="swatch_options"></a>options</td>
+                                        <td class="">Options for color and pattern swatches displayed for this product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">id</span></td>
+                                        <td class="">Product ID</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">type</span></td>
+                                        <td class="">String indicating size, color, swatch, etc.</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">display_name</span></td>
+                                        <td class="">Option Name displayed in control panel for this option</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">required</span></td>
+                                        <td class="">Boolean value that indicates whether customer must specify this option in order to buy the product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">condition</span></td>
+                                        <td class="">Boolean value indicating whether to display this product's condition (new, used, or refurbished)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">values</span></td>
+                                        <td class="">Array of data (color) or image (pattern) values</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">label</span></td>
+                                        <td class="">Internal label for this value (not normally displayed to shoppers)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">id</span></td>
+                                        <td class="">ID for this value, unique within this values array</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">selected</span></td>
+                                        <td class="">Boolean indicating whether this value is preselected as the option's default value, upon page load</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">data</span></td>
+                                        <td class="">Each <span class="inline-code">values</span> member can contain either a <span class="inline-code">data</span> or an <span class="inline-code">image</span> member; <span class="inline-code">data</span> denotes a color</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent3">&lt;color value&gt;</span></td>
+                                        <td class="">Hex code for this color</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent2">image</span></td>
+                                        <td class="">
+                                          Each <span class="inline-code">values</span> member can contain either a <span class="inline-code">data</span> or an <span class="inline-code">image</span> member; <span class="inline-code">image</span> denotes a pattern, in <a href="/docs/stencil-image-common-object">Stencil image object format</a>. (Note: This <span class="inline-code">image</span> value replaces the <span class="inline-code">{{pattern}}</span> property, which was limited to 18 x 18 pixels, and will be deprecated.)</td>
+                                      </tr>
+                                    <!-- ^ Inserted new object above for
+                                    swatches,
+                                    https://jira.bigcommerce.com/browse/MERC-81
+                                    -->
+                                      
+                                      <tr>
+                                        <td class=""><a name="price"></a> price </td>
+                                        <td class="">References the <a href="/docs/catalog-price-common-object">catalog price object</a>, to access the product’s price</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">weight</td>
+                                        <td class="">Weight of the default variant</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">height</td>
+                                        <td class="">Height of the default variant</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">width</td>
+                                        <td class="">Width of the default variant</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">depth</td>
+                                        <td class="">Depth of the default variant</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">rating</td>
+                                        <td class="">Rating for the product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">num_reviews</td>
+                                        <td class="">Number of reviews the product has</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">bulk_discount_rates </td>
+                                        <td class="">List of discount rates for the current product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">condition</td>
+                                        <td class="">Condition of the product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">stock_level</td>
+                                        <td class="">Current stock level of the product; will be null if storefront stock display is disabled by the merchant, or if the product lacks inventory tracking</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">shipping</td>
+                                        <td class="">Shipping properties for the product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> fixed</span></td>
+                                        <td class="">Boolean that indicates whether the product’s shipping price is fixed</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> price</span></td>
+                                        <td class=""><a href="https://stencil.bigcommerce.com/docs/price-common-object">Price object</a> that defines the shipping cost for this product (if shipping cost is fixed)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> calculated</span></td>
+                                        <td class="">Boolean that indicates whether the product’s shipping price is calculated at checkout</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">stock_label</td>
+                                        <td class="">Shows whether the product stock level is for on-hand merchandise or pre-orders.</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">availability</td>
+                                        <td class="">Optional availability message set by the merchant</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">pre_order</td>
+                                        <td class="">Availability of the product for pre-order</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">release_date</td>
+                                        <td class="">Release date, if the product is set to pre-order status</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">error_message</td>
+                                        <td class="">Potential error on the page (e.g.: out of stock, form validations)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">gift_wrapping</td>
+                                        <td class="">Whether or not gift wrapping is enabled</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">brand</td>
+                                        <td class="">Brand of the product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> name</span></td>
+                                        <td class="">Displayed name of the brand</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> url</span></td>
+                                        <td class="">URL to the brand page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">main_image</td>
+                                        <td class="">Primary image to display when the product details page loads</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">images</td>
+                                        <td class="">List of all images for this product, in <a href="/docs/stencil-image-common-object">Stencil image format</a> (as configured in config.json; used with the <span class="inline-code"><a href="/docs/handlebars-helpers-reference#image">getImage</a></span> Handlebars helper)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">pinterest_js</td>
+                                        <td class="">Property to display Pinterest button</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">facebook_like</td>
+                                        <td class="">Property to display Facebook Like button</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">warranty</td>
+                                        <td class="">Optional warranty text set by the merchant</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">search_keywords</td>
+                                        <td class="">Optional search keywords that merchants may enter in the control panel’s "Add a Product" or “Edit a Product” page, to characterize the product in meta tags and storefront searches </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="">tags</td>
+                                        <td class="">Keywords by which this product can also be identified</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> name</span></td>
+                                        <td class="">Name of the tag</td>
+                                      </tr>
+                                      
+                                      <tr>
+                                        <td class="">custom_fields </td>
+                                        <td class="">Extra details to display about the product </td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> name</span></td>
+                                        <td class="">Custom field name</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> value</span></td>
+                                        <td class="">Custom field value</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">event_date</td>
+                                        <td class="">Property to handle a date-based product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> name</span></td>
+                                        <td class="">Name of the event</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> date_start</span></td>
+                                        <td class="">Event’s start date range</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> date_end</span></td>
+                                        <td class="">Event’s end date range</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> earliest_year</span></td>
+                                        <td class="">Event’s starting year</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> latest_year</span></td>
+                                        <td class="">Event’s ending year</td>
+                                      </tr>
+                                        <td class=""><span class="indent1"> type</span></td>
+                                        <td class="">Type of event</td>
+                                      </tr>
+                                    </table>
+
+
+                                    <H3><a name="ProdOptionsIllus"></a>
+                                    {{product.options}} Example </h3>
+
+
+                                    Here is an illustration of how the <span
+                                    class="inline-code">{{product.options}}</span>
+                                    property works. This first image shows a
+                                    merchant's selection (in the BigCommerce
+                                    control panel) of an option with display
+                                    type <span class="inline-code">Swatch</span>
+                                    and a subtype of <span
+                                    class="inline-code">Pattern</span>: 
+
+
+                                    <p></p><img
+                                    src="https://files.readme.io/M7gbL8sTTOadKVqA242m_Product-Options~CP.png"
+                                    alt="Merchant's &ldquo;options &gt; Swatch
+                                    &gt; Pattern&rdquo; selection in control
+                                    panel" height="359" width="750">
+
+
+                                    <p></p>This second image shows the
+                                    corresponding JSON (from Stencil's <a
+                                    href="/docs/testingdebugging-themes">debug</a>
+                                    panel) rendered in the page context:
+                                    <NOBR>The <span
+                                    class="inline-code">image</span></nobr>
+                                    property will contain a URL, whose
+                                    referenced image can be scaled as large as
+                                    150 x 150 pixels.
+
+
+                                    <p></p><img
+                                    src="https://files.readme.io/qAw6mOZQQJezOmX2Q5Qy_Product-Options~debug.JSON.png"
+                                    alt="Corresponding JSON rendered in page
+                                    context" height="278" width="750"><br><br>
+
+
+
+                                    <h2> <A NAME="RelProd"></a>Related
+                                    Products</h2>
+
+
+                                    <b>Description:</b> A list of products
+                                    related to this product. (Called on the
+                                    default <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/components/products/tabs.html</span></nobr>
+                                    partial.)<br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{product.related_products}}</span><br>
+
+
+                                    <b>Object Properties: </b>References the <a
+                                    href="/docs/common-product-card-model">product
+                                    card model</a>.<br><br>
+
+
+
+                                    <h2> <a
+                                    name="Stencil-ProdRevu-ref"></a>Product
+                                    Reviews </h2>
+
+
+                                    <b>Description:</b> A list of reviews
+                                    related to this product. When
+                                    filtering/limiting, reviews' default sorting
+                                    is by review id, from lowest to highest.
+                                    (Called on the default <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/pages/product.html</span></nobr>
+                                    template, and on several partials in the
+                                    <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/components/</span></nobr>
+                                    subdirectory: 
+
+                                    <NOBR><span
+                                    class="inline-code">products/product-view.html</span></nobr>, 
+
+                                    <NOBR><span
+                                    class="inline-code">products/modals/writeReview.html</span></nobr>,
+                                    and 
+
+                                    <NOBR><span
+                                    class="inline-code">amp/products/product-view.html</span></nobr>.)<br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{product.reviews}}</span><br>
+
+
+                                    <b>Object Properties:</b><br><br>
+
+
+                                    <table>
+                                      <tr>
+                                        <td>Property</td>
+                                        <td>Description</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">start</td>
+                                        <td class="">The review that starts the current page of reviews</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">total</td>
+                                        <td class="">Total number of reviews</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">end</td>
+                                        <td class="">Last review on this page</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">show_review_email</td>
+                                        <td class="">Boolean that indicates whether the Write Review form should have an input field for the reviewer’s e-mail address</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">captcha</td>
+                                        <td class="">reCAPTCHA public key (for validating human versus bot visitors)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">pagination</td>
+                                        <td class="">References the pagination model</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">list </td>
+                                        <td class="">List of reviews</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> rating</span></td>
+                                        <td class="">Product’s rating (1–5 stars)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> title</span></td>
+                                        <td class="">Title of the review</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> date</span></td>
+                                        <td class="">Date the product was reviewed</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> text</span></td>
+                                        <td class="">Text content of the product review</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> name</span></td>
+                                        <td class="">Name of the person providing the review</td>
+                                      </tr>
+                                    </table>
+
+
+
+                                    <h2> <A NAME="SimByView"></a>Similar
+                                    Products by Customer Views</h2>
+
+
+                                    <b>Description:</b> A list of products
+                                    similar to a given product, based on
+                                    customer’s product browsing history. (Called
+                                    on the default <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/components/products/tabs.html</span></nobr>
+                                    partial.)<br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{product.similar_by_views}}</span><br>
+
+
+                                    <b>Object Properties:</b> References the <a
+                                    href="/docs/common-product-card-model">product
+                                    card model</a>.<br><br>
+
+
+
+                                    <h2> <A NAME="Videos"></a>Product
+                                    Videos</h2>
+
+
+                                    <b>Description:</b> A list of videos for a
+                                    given product. (Called on the default
+                                    <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/pages/product.html</span></nobr>
+                                    template, and on the <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/components/amp/products/product-view.html</span></nobr>
+                                    partial.) <br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{product.videos}}</span><br>
+
+
+                                    <b>Object Properties:</b><br><br>
+
+
+                                    <table>
+                                      <tr>
+                                        <td>Property</td>
+                                        <td>Description</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">id</td>
+                                        <td class="">ID of the product video</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">title_short</td>
+                                        <td class="">Short title of the product video</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">title_long</td>
+                                        <td class="">Long title of the product video</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">description_long</td>
+                                        <td class="">Long description of the product video</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">description_short</td>
+                                        <td class="">Short description of the product video</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">length</td>
+                                        <td class="">Duration of the product video</td>
+                                      </tr>
+                                    </table>
+
+
+
+                                    <h2> <A NAME="Compare"></a>Compare</h2>
+
+
+                                    <b>Description:</b> Property to display an
+                                    array of products on product comparison
+                                    pages. (Called on the default <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/pages/compare.html</span></nobr>
+                                    template.)<br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{comparisons}}</span><br>
+
+
+                                    <b>Object Properties:</b> References the  <a
+                                    href="/docs/common-product-card-model">product
+                                    card model</a>, plus the additional fields
+                                    listed here:<br>
+
+                                     <br>
+
+                                    <table>
+                                      <tr>
+                                        <td>Property</td>
+                                        <td>Description</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">availability</td>
+                                        <td class="">How long this product usually takes to ship</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">brand</td>
+                                        <td class="">Object containing brand data for this product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> url</span></td>
+                                        <td class="">Brand URL for this product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> name</span></td>
+                                        <td class="">Brand name for this product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">remove_url</td>
+                                        <td class="">URL to remove this product/column from the comparison</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">custom_fields</td>
+                                        <td class="">Array of additional product details – size, color, book's ISBN, DVD's release date, etc. – as name/value pairs</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> name</span></td>
+                                        <td class="">Displayed name for this custom field</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1"> value</span></td>
+                                        <td class="">Value for this custom field’s entry</td>
+                                      </tr>
+                                    </table>
+
+
+
+                                    <h2> <A NAME="DownItem"></a>Download
+                                    Item</h2>
+
+
+                                    <b>Description:</b> Property for digital
+                                    (non-physical) products. (Called on the
+                                    default <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/pages/account/download-item.html</span></nobr>
+                                    template.)<br>
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{downloads}}</span><br>
+
+
+                                    <b>Object Properties:</b><br><br>
+
+
+                                    <table>
+                                      <tr>
+                                        <td>Property</td>
+                                        <td>Description</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">order_id</td>
+                                        <td class="">ID for this order</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">product_name</td>
+                                        <td class="">Name of the digital product</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="">items</td>
+                                        <td class="">Array of product components</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">name</span></td>
+                                        <td class="">Name of this digital item</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">expired</span></td>
+                                        <td class="">Boolean indicating whether customer’s access/subscription to this item has expired</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">days_remaining</span></td>
+                                        <td class="">Number of days left in customer’s access/subscription to this item</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">downloads_remaining</span></td>
+                                        <td class="">Number of times customer may download this item</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">size</span></td>
+                                        <td class="">File size of this digital item (string, responsively formatted as: 240 KB, 1.1 MB, etc.)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">description</span></td>
+                                        <td class="">Description (if entered by merchant) for this item</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">id</span></td>
+                                        <td class="">ID for this item</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">images</span></td>
+                                        <td class="">List of all images for the product associated with this list of downloadable items (in <a href="/docs/stencil-image-common-object">Stencil image format</a>)</td>
+                                      </tr>
+                                      <tr>
+                                        <td class=""><span class="indent1">thumbnail</span></td>
+                                        <td class="">"Primary" image for the product associated with this list of downloadable items (in <a href="/docs/stencil-image-common-object">Stencil image format</a>)</td>
+                                      </tr>
+                                    </table>
+                                - type: text
+                                  data: >-
+                                    <h2> <div
+                                    id="product-other-details"></a>Product Other
+                                    Details</h2>
+
+
+                                    <b>Description:</b> Property to display
+                                    custom product details (such as a book's
+                                    ISBN code, a DVD's release date, etc.).
+                                    (Called on the default
+                                    <code>&lt;theme-name&gt;/templates/components/products/product-view.html</code>
+                                    and
+                                    <code>&lt;theme-name&gt;/templates/components/amp/products/product-view-details.html</code>
+                                    partials.)
+
+
+                                    <b>Handlebars Expression:</b> <span
+                                    class="inline-code">{{product.custom_fields}}</span><br>
+
+
+                                    <b>Object Properties:</b><br><br>
+
+
+                                    <table>
+                                      <tr>
+                                        <th>Property</th>
+                                        <th>Description</th>
+                                      </tr>
+                                      <tr>
+                                        <td>name</td>
+                                        <td>Displayed name for this category of information</td>
+                                      </tr>
+                                      <tr>
+                                        <td>value</td>
+                                        <td>Displayed value for this product’s entry</td>
+                                      </tr>
+                                    </table>
                             config:
                               sidebar:
                                 token: objects
