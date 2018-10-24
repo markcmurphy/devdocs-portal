@@ -4438,23 +4438,126 @@ pages:
                     - type: html
                       data: <h1>schema.json/Theme Editor Metadata</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#configuring_configuration-files\">Configuration Files</a></li>\n    <li><a href=\"#configuring_managing-keys\">Managing Keys between Versions</a></li>\n    <li><a href=\"#configuring_persistent-settings\">Persistent Settings Storage</a></li>\n    <li><a href=\"#configuring_theme-upgrades\">Theme Upgrades and Settings</a></li>\n\t</ul>\n</div>\n\n\nEnabling Theme Editor\nBest Practices\nHow .json Entries Govern Theme Editor's UI\nTheme Editor Data Types\nTheme Editor/schema.json Data Structure\nArbitrary UI Scope and Sequence\nObject Structure in schema.json:"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#schema_enabling\">Enabling Theme Editor</a></li>\n    <li><a href=\"#schema_best-practices\">Best Practices</a></li>\n    <li><a href=\"#schema_how-json\">How .json Entries Govern Theme Editor's UI</a></li>\n    <li><a href=\"#schema_theme-editor-data\">Theme Editor Data Types</a></li>\n    <li><a href=\"#schema_data-structure\">Theme Editor/schema.json Data Structure</a></li>\n    <li><a href=\"#schema_ui-scope\">Arbitrary UI Scope and Sequence</a></li>\n    <li><a href=\"#schema_object-structure\">Object Structure in schema.json</a></li>\n\t</ul>\n</div>"
                     - type: text
-                      data: ''
+                      data: >-
+                        ## Enabling Theme Editor
+
+
+                        To provide merchants with Theme Editor support for your
+                        theme's settings, you must declare those settings in the
+                        theme's `<theme‑name>/schema.json file`. You must also
+                        include those settings in your theme's config.json file,
+                        templates, and Sass/CSS files. The basic division of
+                        labor is this:
+
+                        * `schema.json` is an array of objects, declaring which
+                        theme settings are editable in Theme Editor. These
+                        objects also declare all possible values to display in
+                        Theme Editor's GUI.
+
+                        * `config.json` assigns (and updates) a default value
+                        for each of the editable settings.
+
+                        * Each `schema.json` entry has an id element that maps
+                        it to its corresponding config.json entry. The id value
+                        identifies the relevant config.json key name.
+
+                        * For front-matter properties to be editable, your
+                        theme's Handlebars template must call certain Handlebars
+                        helpers to transform the config.json entries into
+                        JavaScript values.
+
+                        * For fonts to be editable, a Sass stylesheet must call
+                        certain custom Sass functions to transform the
+                        config.json font entries into CSS values.
+
+                        * For styles to be editable, a Sass stylesheet must call
+                        certain custom Handlebars helpers to transform the
+                        config.json entries into CSS values.
+
+
+                        As users select options within the Theme Editor UI (and
+                        save their selections), Stencil will automatically
+                        rewrite `config.json` to record new defaults for the
+                        theme.
+
+
+                        ### File Management Requirements
+
+
+                        See Stencil's default Cornerstone theme for examples
+                        that fulfill all of the above requirements. However,
+                        remember these hard requirements:
+
+
+                        * For any theme setting (such as a Sass variable or a
+                        front-matter value) to be merchant-customizable,
+
+                        that setting – and its possible values – must be present
+                        in `schema.json`. You must manually provide these
+                        declarations, according to the structure described here.
+
+
+                        * Also, each key that you create in schema.json must
+                        have a corresponding `config.json` key whose name
+                        matches its id value. This `config.json` key sets the
+                        default value (even if that is simply an empty string).
+                        A `schema.json` setting without an `id`-matched
+                        `config.json` key will not appear to users in the Theme
+                        Editor GUI.
                     - type: text
-                      data: ''
+                      data: >+
+                        ## Best Practices
+
+
+                        Please follow these guidelines to head off errors upon
+                        theme upload, and to avoid possible loss of
+                        customizations made via the Theme Editor GUI at runtime:
+
+
+                        * Single-Instance Restriction per Storefront: We
+                        strongly recommend opening only one instance of Theme
+                        Editor, at a time, against each storefront. This is
+                        because there is currently no synchronization mechanism
+                        to reconcile configuration changes made by multiple
+                        Theme Editor instances. So `schema.json` will record the
+                        last changes made by any instance – but changes saved
+                        earlier by other instances might be lost.
+
+
+                        * Single-Storefront Restriction per Editor: In the
+                        current release, users can have only one storefront at a
+                        time open in Theme Editor. (A workaround is to open an
+                        "Incognito"/private-browsing window on an additional
+                        storefront, to bypass the cookie that imposes this
+                        restriction.)
+
+
+                        * File Name, Location, and Structure: Your theme's
+                        `schema.json` file must be named schema.json, must
+                        reside in the root of your `<theme-name>` subdirectory
+                        (e.g.: `/cornerstone/schema.json`), and must be valid
+                        JSON.
+
+
+                        * File Size: The maximum allowable size for a theme's
+                        `schema.json` file is 64 KB. Exceeding this limit will
+                        trigger an error upon uploading the theme to
+                        BigCommerce. (Other than this size constraint, there is
+                        no limit on the number of keys and values that you can
+                        place in a theme's `schema.json`.)
+
                     - type: text
-                      data: ''
+                      data: '## How .json Entries Govern Theme Editor''s UI'
                     - type: text
-                      data: ''
+                      data: '## Theme Editor Data Types'
                     - type: text
-                      data: ''
+                      data: '## Theme Editor/schema.json Data Structure'
                     - type: text
-                      data: ''
+                      data: '## Arbitrary UI Scope and Sequence'
                     - type: text
-                      data: ''
-                    - type: text
-                      data: ''
+                      data: '## Object Structure in schema.json'
               - title: config.json Metadata
                 route:
                   path: /config-json-metadata
