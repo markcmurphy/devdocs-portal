@@ -10468,15 +10468,11 @@ pages:
                                     ## Cart
 
 
-                                    <h2> <A NAME="Cart"></a>Cart</h2>
-
-
                                     <b>Description:</b> The cart-specific
                                     properties for the current session<br>
 
 
-                                    <b>Handlebars Expression:</b> <span
-                                    class="inline-code">{{cart}}</span><br>
+                                    <b>Handlebars Expression:</b> `{{cart}}`
 
 
                                     <b>Object Properties:</b><br><br>
@@ -10624,24 +10620,22 @@ pages:
                                         <td class="">Boolean that indicates whether taxes are included in the total price for the cart’s contents</td>
                                       </tr>
                                     </table>
+                                  header:
+                                    anchor: cart_cart
                                 - type: text
                                   data: >-
                                     ## Cart Items
 
 
-                                    <h2> <A NAME="Cart_Items"></a>Cart
-                                    Items</h2>
-
-
                                     <b>Description:</b> A list of items added to
-                                    the cart in the current session<br>
+                                    the cart in the current session
 
 
-                                    <b>Handlebars Expression:</b> <span
-                                    class="inline-code">{{cart.items}}</span><br>
+                                    <b>Handlebars Expression:</b>
+                                    `{{cart.items}}</span>`
 
 
-                                    <b>Object Properties:</b><br><br>
+                                    <b>Object Properties:</b>
 
 
                                     <table>
@@ -10830,8 +10824,59 @@ pages:
                                         <td class=""><a href="/docs/price-common-object">Price object</a> that defines the gift certificate’s total cost, with applicable taxes included</td>
                                       </tr>
                                     </table>
+                                  header:
+                                    anchor: cart_cart-items
                                 - type: text
-                                  data: '## Strikeout Pricing Example'
+                                  data: >-
+                                    ## Strikeout Pricing Example
+
+
+                                    ## <span id="strikeout"> Strikeout Pricing
+                                    Example </span>
+
+
+                                    As a theme developer, you can use the
+                                    `{{cart.items.rrp}}` property to display
+                                    strike-out pricing in the Cart context. Here
+                                    is the general approach:
+
+
+                                    In your
+                                    `<theme-name>/templates/components/cart/content.html`
+                                    file, as you iterate over the list of items
+                                    in the cart, you would check each item's
+                                    `type`. (No `rrp` property is available
+                                    where the `type` is `GiftCertificate`.)
+
+
+                                    If the type is `Item`, then you would check
+                                    the {{cart.items.rrp}} value. If the value
+                                    is _not_ `null`, then you would know that
+                                    you can display a strike-out price for the
+                                    item. Below is a sample code skeleton:
+
+
+                                    ```
+
+                                    {{#each cart.items}}
+                                       ...
+                                      {{#if type '==' 'GiftCertificate'}}
+                                          {{#if rrp}}
+                                              ... /* your code to display strike-thru pricing */
+                                          {{else}}
+                                              ... /* your code to display normal pricing */
+                                          {{/if}}
+                                      {{/if}}
+                                     ```
+
+                                    For further details about catalog price
+                                    properties, please see [Catalog Price
+                                    Object: How Properties
+                                    Interact](/docs/price-object-properties).
+                                    For usage examples of the `{{cart.items}}`
+                                    `price` and `total` properties, please see
+                                    [Cart Price
+                                    Properties](/docs/cart-price-properties).
                                 - type: text
                                   data: >-
                                     ## Cart Status Message
