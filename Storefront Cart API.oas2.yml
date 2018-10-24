@@ -325,7 +325,10 @@ paths:
                   }
                 ]
               } 
-            application/json: {}
+            application/json:
+              lineItems:
+                - quantity: 5
+                  productId: 107
       tags:
         - Cart
       responses:
@@ -1865,10 +1868,6 @@ definitions:
   ItemCustom:
     type: object
     title: Item Custom
-    description: |-
-      Add a custom item to the shoppers cart. 
-      * Custom items are not added to the catalog.
-      * The price should be set to match the store settings for taxes.
     properties:
       id:
         type: string
@@ -1892,6 +1891,10 @@ definitions:
       - name
       - quantity
       - listPrice
+    description: |-
+      Add a custom item to the shoppers cart. 
+      * Custom items are not added to the catalog.
+      * The price should be set to match the store settings for taxes.
 securityDefinitions: {}
 basePath: /api/storefront
 schemes:
