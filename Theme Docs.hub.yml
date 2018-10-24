@@ -9482,7 +9482,7 @@ pages:
                                       object returned in collections.
                                     title: Other Product Objects
                                 - type: text
-                                  data: >
+                                  data: >+
                                     <h2> <div id="product"></div>Product</h2>
 
 
@@ -9532,8 +9532,8 @@ pages:
 
                                     <table>
                                       <tr>
-                                        <td>Property</td>
-                                        <td>Description</td>
+                                        <th>Property</th>
+                                        <th>Description</th>
                                       </tr>
                                       <tr>
                                         <td>id</td>
@@ -9723,7 +9723,7 @@ pages:
                                       <tr>
                                         <td>image</td>
                                         <td>
-                                          Each <code>values</code> member can contain either a <code>data</code> or an <code>image</code> member; <code>image</code> denotes a pattern, in <a href="/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/stencil-image">Stencil image object format</a>. (Note: This <span class="inline-code">image</span> value replaces the <span class="inline-code">{{pattern}}</span> property, which was limited to 18 x 18 pixels, and will be deprecated.)</td>
+                                          Each <code>values</code> member can contain either a <code>data</code> or an <code>image</code> member; <code>image</code> denotes a pattern, in <a href="/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/stencil-image">Stencil image object format</a>. (Note: This <code>image</code> value replaces the <code>{{pattern}}</code> property, which was limited to 18 x 18 pixels, and will be deprecated.)</td>
                                       </tr>
                                     <!-- ^ Inserted new object above for
                                     swatches,
@@ -9732,7 +9732,7 @@ pages:
                                       
                                       <tr>
                                         <td><a name="price"></a> price </td>
-                                        <td>References the <a href="/docs/catalog-price-common-object">catalog price object</a>, to access the product’s price</td>
+                                        <td>References the <a href="/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/price">catalog price object</a>, to access the product’s price</td>
                                       </tr>
                                       <tr>
                                         <td>weight</td>
@@ -9828,7 +9828,7 @@ pages:
                                       </tr>
                                       <tr>
                                         <td>images</td>
-                                        <td>List of all images for this product, in <a href="/docs/stencil-image-common-object">Stencil image format</a> (as configured in config.json; used with the <span class="inline-code"><a href="/docs/handlebars-helpers-reference#image">getImage</a></span> Handlebars helper)</td>
+                                        <td>List of all images for this product, in <a href="/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/stencil-image">Stencil image format</a> (as configured in config.json; used with the <code>{{getImage}}</a></code> Handlebars helper)</td>
                                       </tr>
                                       <tr>
                                         <td>pinterest_js</td>
@@ -9852,12 +9852,12 @@ pages:
                                         <td>Keywords by which this product can also be identified</td>
                                       </tr>
                                       <tr>
-                                        <td> name</span></td>
+                                        <td>name</td>
                                         <td>Name of the tag</td>
                                       </tr>
                                       
                                       <tr>
-                                        <td>custom_fields </td>
+                                        <td>custom_fields</td>
                                         <td>Extra details to display about the product </td>
                                       </tr>
                                       <tr>
@@ -9902,41 +9902,6 @@ pages:
                                     {{product.options}} Example </h3>
 
 
-                                    Here is an illustration of how the <span
-                                    class="inline-code">{{product.options}}</span>
-                                    property works. This first image shows a
-                                    merchant's selection (in the BigCommerce
-                                    control panel) of an option with display
-                                    type <span class="inline-code">Swatch</span>
-                                    and a subtype of <span
-                                    class="inline-code">Pattern</span>: 
-
-
-                                    <p></p><img
-                                    src="https://files.readme.io/M7gbL8sTTOadKVqA242m_Product-Options~CP.png"
-                                    alt="Merchant's &ldquo;options &gt; Swatch
-                                    &gt; Pattern&rdquo; selection in control
-                                    panel" height="359" width="750">
-
-
-                                    <p></p>This second image shows the
-                                    corresponding JSON (from Stencil's <a
-                                    href="/docs/testingdebugging-themes">debug</a>
-                                    panel) rendered in the page context:
-                                    <NOBR>The <span
-                                    class="inline-code">image</span></nobr>
-                                    property will contain a URL, whose
-                                    referenced image can be scaled as large as
-                                    150 x 150 pixels.
-
-
-                                    <p></p><img
-                                    src="https://files.readme.io/qAw6mOZQQJezOmX2Q5Qy_Product-Options~debug.JSON.png"
-                                    alt="Corresponding JSON rendered in page
-                                    context" height="278" width="750"><br><br>
-
-
-
                                     <h2> <div id="related-products"></a>Related
                                     Products</h2>
 
@@ -9948,8 +9913,8 @@ pages:
                                     partial.)<br>
 
 
-                                    <b>Handlebars Expression:</b> <span
-                                    class="inline-code">{{product.related_products}}</span><br>
+                                    <b>Handlebars Expression:</b>
+                                    <code>{{product.related_products}}</code><br>
 
 
                                     <b>Object Properties: </b>References the <a
@@ -9967,14 +9932,11 @@ pages:
                                     related to this product. When
                                     filtering/limiting, reviews' default sorting
                                     is by review id, from lowest to highest.
-                                    (Called on the default <NOBR><span
-                                    class="inline-code">&lt;theme-name&gt;/templates/pages/product.html</span></nobr>
-                                    template, and on several partials in the
-                                    <NOBR><span
-                                    class="inline-code">&lt;theme-name&gt;/templates/components/</span></nobr>
+                                    (Called on the default
+                                    <code>&lt;theme-name&gt;/templates/pages/product.html</code><code>&lt;theme-name&gt;/templates/components/</code>
                                     subdirectory: 
 
-                                    <code>products/product-view.html<code>, 
+                                    <code>products/product-view.html<code>,
 
                                     <code>products/modals/writeReview.html<code>,
                                     and 
@@ -9983,7 +9945,7 @@ pages:
 
 
                                     <b>Handlebars Expression:</b>
-                                    <code>{{product.reviews}}</code>
+                                    <code{{product.reviews}}</code>
 
 
                                     <b>Object Properties:</b>
@@ -10043,7 +10005,6 @@ pages:
                                         <td>Name of the person providing the review</td>
                                       </tr>
                                     </table>
-
 
 
                                     <h2> <div id="similar-products"></a>Similar
@@ -10180,16 +10141,15 @@ pages:
                                     </table>
 
 
-
-                                    <h2> <div id="download-item"></div>Download
-                                    Item</h2>
+                                - type: text
+                                  data: >
+                                    ## Download Item
 
 
                                     <b>Description:</b> Property for digital
                                     (non-physical) products. (Called on the
-                                    default <NOBR><span
-                                    class="inline-code">&lt;theme-name&gt;/templates/pages/account/download-item.html</span></nobr>
-                                    template.)<br>
+                                    default
+                                    <code>&lt;theme-name&gt;/templates/pages/account/download-item.html</code>template.)
 
 
                                     <b>Handlebars Expression:</b>
@@ -10201,8 +10161,8 @@ pages:
 
                                     <table>
                                       <tr>
-                                        <td>Property</td>
-                                        <td>Description</td>
+                                        <th>Property</th>
+                                        <th>Description</th>
                                       </tr>
                                       <tr>
                                         <td>order_id</td>
@@ -10246,13 +10206,15 @@ pages:
                                       </tr>
                                       <tr>
                                         <td>images</td>
-                                        <td>List of all images for the product associated with this list of downloadable items (in <a href="/docs/stencil-image-common-object">Stencil image format</a>)</td>
+                                        <td>List of all images for the product associated with this list of downloadable items (in <a href="/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/stencil-image">Stencil image format</a>)</td>
                                       </tr>
                                       <tr>
                                         <td>thumbnail</td>
                                         <td>"Primary" image for the product associated with this list of downloadable items (in <a href="/docs/stencil-image-common-object">Stencil image format</a>)</td>
                                       </tr>
                                     </table>
+                                  header:
+                                    anchor: download-item
                                 - type: text
                                   data: >-
                                     <h2> <div
