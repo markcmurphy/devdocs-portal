@@ -12808,9 +12808,9 @@ pages:
                             data:
                               blocks:
                                 - type: html
-                                  data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_encodeuri\">{{encodeURI}}</a></li>\n\t</ul>\n</div>"
+                                  data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_encodeuri\">{{encodeURI}}</a></li>\n    <li><a href=\"#handlebars_decodeurl\">{{decodeURI}}</a></li>\n    <li><a href=\"#handlebars_urlresolve\">{{urlResolve}}</a></li>\n    <li><a href=\"#handlebars_urlparse\">{{urlParse}}</a></li>\n    <li><a href=\"#handlebars_stripquerystring\">{{stripQuerystring}}</a></li>\n    <li><a href=\"#handlebars_stripprotocol\">{{stripProtocol}}</a></li>\n\t</ul>\n</div>"
                                 - type: text
-                                  data: >
+                                  data: >-
                                     The following standard helpers are available
                                     to transform URLs.
 
@@ -12832,8 +12832,10 @@ pages:
                                     * `str` {String}: The un-encoded string.
 
                                     * `returns` {String}: The encoded string.
-
-
+                                  header:
+                                    anchor: handlebars_encodeuri
+                                - type: text
+                                  data: >-
                                     ### {{decodeURI}}
 
 
@@ -12847,8 +12849,10 @@ pages:
                                     * `str` {String}
 
                                     * `returns` {String}
-
-
+                                  header:
+                                    anchor: handlebars_decodeuri
+                                - type: text
+                                  data: >-
                                     ### {{urlResolve}}
 
 
@@ -12865,8 +12869,10 @@ pages:
                                     * `href` {String}
 
                                     * `returns` {String}
-
-
+                                  header:
+                                    anchor: handlebars_urlresolve
+                                - type: text
+                                  data: >-
                                     ### {{urlParse}}
 
 
@@ -12880,8 +12886,10 @@ pages:
 
                                     * `returns` {String}: Returns stringified
                                     JSON.
-
-
+                                  header:
+                                    anchor: handlebars_urlparse
+                                - type: text
+                                  data: >-
                                     ### {{stripQuerystring}}
 
 
@@ -12895,8 +12903,10 @@ pages:
 
                                     * `returns` {String}: The URL without the
                                     queryString.
-
-
+                                  header:
+                                    anchor: handlebars_stripquerystring
+                                - type: text
+                                  data: >-
                                     ### {{stripProtocol}}
 
 
@@ -12915,6 +12925,8 @@ pages:
 
                                     * `returns` {String}: The URL with the
                                     `http` protocol stripped.
+                                  header:
+                                    anchor: handlebars_stripprotocol
                     - title: Miscellaneous Helpers
                       route:
                         path: /misc-helpers
