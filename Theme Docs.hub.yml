@@ -10248,8 +10248,76 @@ pages:
                               blocks:
                                 - type: html
                                   data: <h1>Category Objects</h1>
+                                - type: html
+                                  data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#category_category\">Category</a></li>\n    <li><a href=\"#category_category-products\">Category Products</a></li>\n    <li><a href=\"#category_category-shop\">Category Shop by Price</a></li>\n\t</ul>\n</div>"
                                 - type: text
-                                  data: "<a name=\"Stencil-Category-ref\"></a>Category objects map to the storefront's product categories, defined by the merchant:<br>\n\n<ul>\n  <li><a href=\"#Category\">Category</a></li>\n <li><a href=\"#CatProd\">Category Products</a></li>\n <li><a href=\"#ShopByPrice\">Category Shop by Price</a></li>\n</ul>\n\n<h2> <A NAME=\"Category\"></a>Category</h2> \n\n<b>Description:</b> The category object for the page calling the object. When retrieving a collection of categories, default sorting is by category <span class=\"inline-code\">id</span>, from lowest to highest. (Called on the default <NOBR><span class=\"inline-code\">&lt;theme-name&gt;/templates/pages/category.html</span></nobr> template, and on several partials in the <NOBR><span class=\"inline-code\">&lt;theme-name&gt;/templates/components/</span></nobr> subdirectory: <NOBR><span class=\"inline-code\">category/shop-by-price.html</span></nobr>, <NOBR><span class=\"inline-code\">category/sidebar.html</span></nobr>, and <NOBR><span class=\"inline-code\">amp/category/subcategories.html</span></nobr>.) <br>\n\n<b>Handlebars Expression:</b> `{{category}}`\n\n<b>Object Properties:</b><br><br>\n\n<table>\n  <tr>\n    <td>Property</td>\n    <td>Description</td>\n  </tr>\n  <tr>\n    <td class=\"\">id</td>\n    <td class=\"\">Unique ID for the category </td>\n  </tr>\n  <tr>\n    <td class=\"\">name</td>\n    <td class=\"\">Merchant-defined category name</td>\n  </tr>\n  <tr>\n    <td class=\"\">url</td>\n    <td class=\"\">URL for the category-specific page</td>\n  </tr>\n  <tr>\n    <td class=\"\">description</td>\n    <td class=\"\">Merchant-defined description of the category</td>\n  </tr>\n  <tr>\n    <td class=\"\">image</td>\n    <td class=\"\">Image representing this category, in <a href=\"/docs/stencil-image-common-object\">Stencil image format</a></td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">subcategories <!-- Possible change to `children`--></td>\n    <td class=\"\">List of any child categories</td>\n  </tr>\n<!-- New for MERC-268: -->  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">id</span></td>\n    <td class=\"\">Unique ID for the subcategory </td>\n  </tr>\n<!-- :New for MERC-268 -->\n  <tr>\n    <td class=\"\"><span class=\"indent1\">name</span></td>\n    <td class=\"\">Name of the subcategory</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">url</span></td>\n    <td class=\"\">URL to the subcategory</td>\n  </tr>\n\n<!-- New for MERC-268: -->  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">description</span></td>\n    <td class=\"\">Merchant-defined description of the subcategory </td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">image</span></td>\n    <td class=\"\">Image representing this subcategory, in <a href=\"/docs/stencil-image-common-object\">Stencil image format</a></td>\n  </tr> \n<!-- :New for MERC-268 -->  \n\n<!-- New for MERC-320: -->  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">product_count</span></td>\n    <td class=\"\">Number of products in the subcategory. (Counts at the current level only &ndash; not recursive to deeper levels.)</td>\n  </tr>\n<!-- :New for MERC-320 -->  \n  \n  <tr>\n  \t<td class=\"\">detail_messages</td>\n    <td class=\"\">Message displayed when a product is out of stock, and inventory settings are configured to redirect to a category: \"Sorry, the product you tried to view is currently out of stock, here are some similar products we have available.\" (This phrasing is set by the BigCommerce App.)</td>\n  </tr>\n  <tr>\n    <td class=\"\">show_compare</td>\n    <td class=\"\">Boolean that defines whether to show controls for product comparison</td>\n  </tr>\n  <tr>\n    <td class=\"\">show_add_to_cart</td>\n    <td class=\"\">Boolean that defines whether to show an Add to Cart button for this category</td>\n  </tr>\n  <tr>\n    <td class=\"\">total_products</td>\n    <td class=\"\">Count of the number of products in the category</td>\n  </tr>\n  <tr>\n    <td class=\"\">faceted_search_enabled</td>\n    <td class=\"\">Boolean that defines whether product-filtering search is enabled for the store</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">facets</span></td>\n    <td class=\"\">Available search facets</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">pagination</span></td>\n    <td class=\"\">References the pagination model</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">selected</span></td>\n    <td class=\"\">Selected search facets</td>\n  </tr>\n</table>\n\n\n<h2> <A NAME=\"CatProd\"></a>Category Products</h2>\n\n<b>Description:</b> A list of products associated with this category. (Called on the default <NOBR><span class=\"inline-code\">&lt;theme-name&gt;/templates/pages/category.html</span></nobr> template, and on the <NOBR><span class=\"inline-code\">&lt;theme-name&gt;/templates/components/category/product-listing.html</span></nobr> partial.) <br>\n\n<b>Handlebars Expression:</b> `{{category.products}}`\n\n<b>Object Properties:</b> References the product card model.\n\n\n<h2> <A NAME=\"ShopByPrice\"></a>Category Shop by Price</h2>\n\n<b>Description:</b> A list of price ranges, to enable customers to set price limits within a product category. <NOBR>(Called on the default</nobr> <NOBR><span class=\"inline-code\">&lt;theme-name&gt;/templates/components/category/shop-by-price.html</span></nobr> and <NOBR><span class=\"inline-code\">&lt;theme-name&gt;/templates/components/category/sidebar.html</span></nobr> partials.) <br>\n\n<b>Handlebars Expression:</b> `{{category.shop_by_price}}`\n\n<b>Object Properties:</b><br><br>\n\n<table>\n  <tr>\n    <td>Property</td>\n    <td>Description</td>\n  </tr>\n  <tr>\n    <td>url</td>\n    <td>URL of price-filtered product results for this category</td>\n  </tr>\n  <tr>\n    <td>low</td>\n    <td><a href=\"/docs/price-common-object\">Price object</a> that defines the minimum price boundary </td>\n  </tr>\n  <tr>\n    <td>high</td>\n    <td><a href=\"/docs/price-common-object\">Price object</a> that defines the maximum price boundary</td>\n  </tr>\n  <tr>\n    <td>selected</td>\n    <td><a href=\"/docs/price-common-object\">Price object</a> that defines the currently selected price range</td>\n  </tr>\n</table>"
+                                  data: "## Category\n\n<b>Description:</b> The category object for the page calling the object. When retrieving a collection of categories, default sorting is by category <span class=\"inline-code\">id</span>, from lowest to highest. (Called on the default <NOBR><span class=\"inline-code\">&lt;theme-name&gt;/templates/pages/category.html</span></nobr> template, and on several partials in the <NOBR><span class=\"inline-code\">&lt;theme-name&gt;/templates/components/</span></nobr> subdirectory: <NOBR><span class=\"inline-code\">category/shop-by-price.html</span></nobr>, <NOBR><span class=\"inline-code\">category/sidebar.html</span></nobr>, and <NOBR><span class=\"inline-code\">amp/category/subcategories.html</span></nobr>.) <br>\n\n<b>Handlebars Expression:</b> `{{category}}`\n\n<b>Object Properties:</b><br><br>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td class=\"\">id</td>\n    <td class=\"\">Unique ID for the category </td>\n  </tr>\n  <tr>\n    <td class=\"\">name</td>\n    <td class=\"\">Merchant-defined category name</td>\n  </tr>\n  <tr>\n    <td class=\"\">url</td>\n    <td class=\"\">URL for the category-specific page</td>\n  </tr>\n  <tr>\n    <td class=\"\">description</td>\n    <td class=\"\">Merchant-defined description of the category</td>\n  </tr>\n  <tr>\n    <td class=\"\">image</td>\n    <td class=\"\">Image representing this category, in <a href=\"/docs/stencil-image-common-object\">Stencil image format</a></td>\n  </tr>\n  \n  <tr>\n    <td class=\"\">subcategories <!-- Possible change to `children`--></td>\n    <td class=\"\">List of any child categories</td>\n  </tr>\n<!-- New for MERC-268: -->  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">id</span></td>\n    <td class=\"\">Unique ID for the subcategory </td>\n  </tr>\n<!-- :New for MERC-268 -->\n  <tr>\n    <td class=\"\"><span class=\"indent1\">name</span></td>\n    <td class=\"\">Name of the subcategory</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">url</span></td>\n    <td class=\"\">URL to the subcategory</td>\n  </tr>\n\n<!-- New for MERC-268: -->  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">description</span></td>\n    <td class=\"\">Merchant-defined description of the subcategory </td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">image</span></td>\n    <td class=\"\">Image representing this subcategory, in <a href=\"/docs/stencil-image-common-object\">Stencil image format</a></td>\n  </tr> \n<!-- :New for MERC-268 -->  \n\n<!-- New for MERC-320: -->  \n  <tr>\n    <td class=\"\"><span class=\"indent1\">product_count</span></td>\n    <td class=\"\">Number of products in the subcategory. (Counts at the current level only &ndash; not recursive to deeper levels.)</td>\n  </tr>\n<!-- :New for MERC-320 -->  \n  \n  <tr>\n  \t<td class=\"\">detail_messages</td>\n    <td class=\"\">Message displayed when a product is out of stock, and inventory settings are configured to redirect to a category: \"Sorry, the product you tried to view is currently out of stock, here are some similar products we have available.\" (This phrasing is set by the BigCommerce App.)</td>\n  </tr>\n  <tr>\n    <td class=\"\">show_compare</td>\n    <td class=\"\">Boolean that defines whether to show controls for product comparison</td>\n  </tr>\n  <tr>\n    <td class=\"\">show_add_to_cart</td>\n    <td class=\"\">Boolean that defines whether to show an Add to Cart button for this category</td>\n  </tr>\n  <tr>\n    <td class=\"\">total_products</td>\n    <td class=\"\">Count of the number of products in the category</td>\n  </tr>\n  <tr>\n    <td class=\"\">faceted_search_enabled</td>\n    <td class=\"\">Boolean that defines whether product-filtering search is enabled for the store</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">facets</span></td>\n    <td class=\"\">Available search facets</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">pagination</span></td>\n    <td class=\"\">References the pagination model</td>\n  </tr>\n  <tr>\n    <td class=\"\"><span class=\"indent1\">selected</span></td>\n    <td class=\"\">Selected search facets</td>\n  </tr>\n</table>"
+                                  header:
+                                    anchor: '#category_category'
+                                - type: text
+                                  data: >-
+                                    <h2> <A NAME="CatProd"></a>Category
+                                    Products</h2>
+
+
+                                    <b>Description:</b> A list of products
+                                    associated with this category. (Called on
+                                    the default <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/pages/category.html</span></nobr>
+                                    template, and on the <NOBR><span
+                                    class="inline-code">&lt;theme-name&gt;/templates/components/category/product-listing.html</span></nobr>
+                                    partial.) <br>
+
+
+                                    <b>Handlebars Expression:</b>
+                                    `{{category.products}}`
+
+
+                                    <b>Object Properties:</b> References the
+                                    product card model.
+                                - type: text
+                                  data: >-
+                                    ## Category Shop by Price 
+
+
+                                    <b>Description:</b> A list of price ranges,
+                                    to enable customers to set price limits
+                                    within a product category. Called on the
+                                    default<code>&lt;theme-name&gt;/templates/components/category/shop-by-price.html</code>
+                                    and
+                                    <code>&lt;theme-name&gt;/templates/components/category/sidebar.html</code>
+                                    partials.)
+
+
+                                    <b>Handlebars Expression:</b>
+                                    `{{category.shop_by_price}}`
+
+
+                                    <b>Object Properties:</b>
+
+
+                                    <table>
+                                      <tr>
+                                        <th>Property</th>
+                                        <th>Description</th>
+                                      </tr>
+                                      <tr>
+                                        <td>url</td>
+                                        <td>URL of price-filtered product results for this category</td>
+                                      </tr>
+                                      <tr>
+                                        <td>low</td>
+                                        <td><a href="/docs/price-common-object">Price object</a> that defines the minimum price boundary </td>
+                                      </tr>
+                                      <tr>
+                                        <td>high</td>
+                                        <td><a href="/docs/price-common-object">Price object</a> that defines the maximum price boundary</td>
+                                      </tr>
+                                      <tr>
+                                        <td>selected</td>
+                                        <td><a href="/docs/price-common-object">Price object</a> that defines the currently selected price range</td>
+                                      </tr>
+                                    </table>
                             config:
                               sidebar:
                                 token: objects
