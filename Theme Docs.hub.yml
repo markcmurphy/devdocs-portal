@@ -10332,30 +10332,17 @@ pages:
                                 - type: html
                                   data: <h1>Brand Objects</h1>
                                 - type: html
-                                  data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#category_category\">Category</a></li>\n    <li><a href=\"#category_category-products\">Category Products</a></li>\n    <li><a href=\"#category_category-shop\">Category Shop by Price</a></li>\n\t</ul>\n</div>"
+                                  data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#brand_brand-list\">BRand List</a></li>\n    <li><a href=\"#brand_brand\">Brand</a></li>\n    <li><a href=\"#brand_shop-by-brand\">Category Shop by Price</a></li>\n\t</ul>\n</div>"
                                 - type: text
                                   data: >-
-                                    <a name="Stencil-Brand-ref"></a>Brand
-                                    objects map to the product brands sold by
-                                    the merchant:<br>
-
-
-                                    <ul>
-                                     <li><a href="#BrandList">Brand List</a></li>
-                                     <li><a href="#Brand">Brand</a></li>
-                                     <li><a href="#ShopByBrand">Shop by Brand</a></li>
-                                    </ul>
-
-
-
-                                    ## <div id="BrandList"></div>Brand List
+                                    ## Brand List
 
 
                                     <b>Description:</b> A list of brands with
                                     their basic data. Default sorting is by
                                     brand id, from lowest to highest. (Called on
                                     the default
-                                    <NOBR>`<theme-name>/templates/pages/brands.html`
+                                    `<theme-name>/templates/pages/brands.html`
                                     template.)
 
 
@@ -10387,9 +10374,10 @@ pages:
                                         <td>Stencil image object (if any) for the brand</td>
                                       </tr>
                                     </table>
-
-
-
+                                  header:
+                                    anchor: brand_brand-list
+                                - type: text
+                                  data: >-
                                     ## <div id="Brand"></a>Brand
 
 
@@ -10404,7 +10392,6 @@ pages:
 
 
                                     <b>Object Properties:</b>
-
 
                                     <table>
                                       <tr>
@@ -10448,10 +10435,11 @@ pages:
                                         <td>An array of selected facets</td>
                                       </tr>
                                     </table>
-
-
-
-                                    ## <div id="ShopByBrand"></div>Shop by Brand
+                                  header:
+                                    anchor: brand_brand
+                                - type: text
+                                  data: >-
+                                    ## Shop by Brand
 
 
                                     <b>Description:</b> Objects to enable
@@ -10497,6 +10485,8 @@ pages:
                                         <td>Number of products matching this brand</td>
                                       </tr>
                                     </table>
+                                  header:
+                                    anchor: brand_shop-by-brand
                             config:
                               sidebar:
                                 token: Objects
@@ -10540,11 +10530,9 @@ pages:
                                         <td>Type of message: error, info, or success</td>
                                       </tr>
                                     </table>
-
-
-
-                                    ## <div id="Suggested"></div>Suggested
-                                    Products
+                                - type: text
+                                  data: >-
+                                    ## Suggested Products
 
 
                                     <b>Description:</b> A list of suggested
@@ -10989,8 +10977,7 @@ pages:
                                     standard product card model.
                                 - type: text
                                   data: >
-                                    ## <div id="Wishlists"></div> Customer
-                                    Wishlists
+                                    ## Customer Wishlists
 
 
                                     <b>Description:</b> Array of product
@@ -11009,8 +10996,8 @@ pages:
 
                                     <table>
                                       <tr>
-                                        <td>Property</td>
-                                        <td>Description</td>
+                                        <th>Property</th>
+                                        <th>Description</th>
                                       </tr>
                                       <tr>
                                         <td>id</td>
@@ -11880,28 +11867,28 @@ pages:
 
                                     <b>Description:</b> Form object presented to
                                     customers on the Add/Edit Wishlist page.
-                                    Called on the default <NOBR><span
-                                    class="inline-code">&lt;theme-name&gt;/templates/components/account/add-wishlist.html</span></nobr>
-                                    partial and <NOBR><span
-                                    class="inline-code">&lt;theme-name&gt;/templates/pages/account/add-wishlist.html</span></nobr>
-                                    template. <br>
+                                    Called on the default
+                                    <code>&lt;theme-name&gt;/templates/components/account/add-wishlist.html</code>
+                                    partial and
+                                    <code>&lt;theme-name&gt;/templates/pages/account/add-wishlist.html</code>
+                                    template.
 
 
-                                    <b>Handlebars Expression:</b> <span
-                                    class="inline-code">{{forms.wishlist}}</span><br>
+                                    <b>Handlebars Expression:</b>
+                                    `{{forms.wishlist}}`
 
 
-                                    <b>Object Properties:</b><br><br>
+                                    <b>Object Properties:</b>
 
 
                                     <table>
                                       <tr>
-                                        <td>Property</td>
-                                        <td>Description</td>
+                                        <th>Property</th>
+                                        <th>Description</th>
                                       </tr>
                                       <tr>
-                                        <td class="">name</td>
-                                        <td class="">Displayed name for this wishlist</td>
+                                        <td>name</td>
+                                        <td>Displayed name for this wishlist</td>
                                       </tr>
                                       <tr>
                                         <td class="">id</td>
