@@ -54854,7 +54854,73 @@ pages:
               - title: Shortcodes
                 route:
                   path: /shortcodes
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: "<h1>Shortcodes</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#plugin-settings_settings\">Settings</a></li>\n        <li><a href=\"#plugin-settings_api-keys\">API Keys</a></li>\n        <li><a href=\"#plugin-settings_product-sync\">Product Sync</a></li>\n        <li><a href=\"#plugin-settings_cart-settings\">Cart Settings</a></li>\n        <li><a href=\"#plugin-settings_theme-customizer\">Theme Customizer</a></li>\n        <li><a href=\"#plugin-settings_reviews\">Reviews</a></li>\n        <li><a href=\"#plugin-settings_gift-certificate-settings\">Gift Certificate Settings</a></li>\n        <li><a href=\"#plugin-settings_navigation-menus\">Navigation Menus</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        Most of the plugin's functionality is exposed on the
+                        front-end of the site through shortcodes embedded on
+                        automatically created pages. The code controlling those
+                        shortcodes can be found in the classes in
+                        `src/BigCommerce/Shortcodes`.
+                    - type: text
+                      data: >
+                        ## Products Shortcode
+
+                        `[bigcommerce_product]`
+
+
+                        The product shortcode can be used to include one or more
+                        products on other pages or posts on the WordPress site.
+                        Click the "Add Products" button above the editor to
+                        select products or build a dynamic query to include in
+                        the page.
+
+
+                        While the shortcode can be built using the button, it
+                        can also be created manually. It accepts a number of
+                        optional attributes:
+
+
+                        - **id** - A comma delimited list of BigCommerce product
+                        IDs 
+
+                        - **post_id** - A comma delimited list of WordPress
+                        product post IDs  
+
+                        - **sku** - A comma delimited list of BigCommerce
+                        product SKUs  
+
+                        - **category** - A comma delimited list of Product
+                        Category slugs  
+
+                        - **brand** - A comma delimited list of Brand slugs
+
+                        - **featured** - Set to 1 to limit the query to featured
+                        products  
+
+                        - **sale** - Set to 1 to limit the query to sale
+                        products
+
+                        recent - Set to 1 to limit the query to products
+                        imported in the last 2 days (filter the duration with
+                        the bigcommerce/query/recent_days filter)  
+
+                        - **search** - A search string to match against product
+                        titles, BigCommerce product IDs, or SKUs  
+
+                        - **paged** - Set to 0 to disable pagination  
+
+                        - **per_page** - The number of products to show per
+                        page. Defaults to the value set in the theme customizer.
+
+                        - **order** - Whether to sort products in "ASC" or
+                        "DESC" order
+
+                        - **orderby** - Which field to use for sorting. Accepts
+                        any field that WP_Query accepts (e.g., title, date)
               - title: Troubleshooting
                 route:
                   path: /troubleshooting
