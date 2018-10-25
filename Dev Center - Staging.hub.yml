@@ -54857,7 +54857,7 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: "<h1>Shortcodes</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#shortcode_product-shortcode\">Products Shortcode</a></li>\n        <li><a href=\"#plugin-settings_api-keys\">API Keys</a></li>\n        <li><a href=\"#plugin-settings_product-sync\">Product Sync</a></li>\n        <li><a href=\"#plugin-settings_cart-settings\">Cart Settings</a></li>\n        <li><a href=\"#plugin-settings_theme-customizer\">Theme Customizer</a></li>\n        <li><a href=\"#plugin-settings_reviews\">Reviews</a></li>\n        <li><a href=\"#plugin-settings_gift-certificate-settings\">Gift Certificate Settings</a></li>\n        <li><a href=\"#plugin-settings_navigation-menus\">Navigation Menus</a></li>\n\t</ul>\n</div>"
+                      data: "<h1>Shortcodes</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#shortcode_product-shortcode\">Products Shortcode</a></li>\n        <li><a href=\"#plugin-settings_api-keys\">API Keys</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         Most of the plugin's functionality is exposed on the
@@ -54949,6 +54949,8 @@ pages:
                         or update addresses.
                       header:
                         anchor: shortcode_other-short
+                    - type: text
+                      data: '---'
               - title: Troubleshooting
                 route:
                   path: /troubleshooting
@@ -54961,7 +54963,74 @@ pages:
               - title: Templates
                 route:
                   path: /templates
-                data: {}
+                data:
+                  blocks:
+                    - type: html
+                      data: <h1>Hello World!</h1>
+                    - type: text
+                      data: >-
+                        ## Theme Requirements
+
+
+                        The BigCommerce for WordPress plugin should work on any
+                        modern theme following WordPress standards. The plugin
+                        comes with a base CSS file that makes product grids and
+                        single products look attractive in all themes.
+
+
+                        Additionally, the BigCommerce plugin for WordPress will
+                        have 100% support for the Genesis framework by
+                        StudioPress upon release.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Template Overrides
+
+                        All templates that render on the front end are found in
+                        the public-views directory. To override any template,
+                        create a bigcommerce directory in your theme and copy
+                        the template file to that directory. Examples:
+
+
+                        Copy `public-views/single-bigcommerce_product.php` to
+                        `bigcommerce/single-bigcommerce_product.php`
+
+
+                        Copy `public-views/components/page-wrapper.php` to
+                        `bigcommerce/components/page-wrapper.php`
+
+
+                        Most templates are used for rendering content inside of
+                        the content area of your theme's template. Only a few
+                        take over the entire page template. These may need
+                        modifications to match your theme.
+
+
+                        * `single-bigcommerce_product.php`: The template for
+                        rendering a single Product post.
+
+                        * `archive-bigcommerce_product.php`: The template for
+                        rendering the Product post type archive.
+
+
+                        Both of these templates call get_header() and
+                        get_footer() to render your theme's default header and
+                        footer. The page content is rendered inside the wrapper
+                        template found in components/page-wrapper.php. By
+                        modifying this wrapper template to match the HTML markup
+                        of a template in your theme, you should have consistent
+                        styling across your site.
+
+
+                        ### CSS Classes
+
+                        The CSS classes built into the default HTML templates
+                        should remain untouched. These are occasionally accessed
+                        via the plugin Javascript, and some are required. You’re
+                        welcome to create additional classes.
+                      header:
+                        anchor: templates_template-overrides
               - title: Code Reference
                 route:
                   path: /code-reference
