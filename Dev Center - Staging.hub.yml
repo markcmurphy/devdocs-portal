@@ -54615,6 +54615,32 @@ pages:
                           Otherwise, you will need to repeat all the above steps
                           to generate new credentials. 
                         title: Keep Your Credentials
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Product Sync
+
+                        Once your API credentials are validated, the plugin will
+                        import products using the BigCommerce API. This will run
+                        automatically using WordPress cron, using the schedule
+                        set on the settings page (default: every five minutes).
+
+                        If you choose to disable the cron job, you can set a
+                        server-side cron job to run the sync using WP-CLI. The
+                        command to import products is:
+
+
+                        `wp bigcommerce import products`
+
+
+                        Product descriptions can be edited in the WordPress
+                        admin. The "Do not update products on import" setting
+                        should remain checked to preserve these edits. If it is
+                        unchecked, those edits will be overwritten with data
+                        from the API on the next import. No matter the value of
+                        the checkbox, other product details (e.g., prices,
+                        availability, categories) will always be synchronized.
               - title: Product Import
                 route:
                   path: /product-import
