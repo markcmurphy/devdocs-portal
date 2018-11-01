@@ -18606,9 +18606,66 @@ pages:
                       header:
                         anchor: stencil-utils_countries
                     - type: text
-                      data: "## Product Attributes Resource\n\nThe `optionChange` function is fired when the customer selects a product option for the current cart item (for example, changing a shirt’s color from a default \"yellow\" to \"green\"):\n\n<b>optionChange Signature</b>\n\n`utils.api.productAttributes.optionChange(productId, params, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains a collection of IDs that map to product properties (color, size, etc.)</td>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n<b>optionChange Examples</b>\n\nIn this example (from <code>common/product-details.js</code>), <code>optionChange</code> is called to update options in a Quick View modal:\n\n```\n// Update product attributes. If we're in quick view and the product has options, then also update the initial view in case items are oos\n        if (_.isEmpty(productAttributesData) && hasOptions) {\n            const $productId = $('[name=\"product_id\"]', $form).val();\n\n            utils.api.productAttributes.optionChange($productId, $form.serialize(), (err, response) => {\n                const attributesData = response.data || {};\n\n                this.updateProductAttributes(attributesData);\n                this.updateView(attributesData);\n            });\n        } else {\n            this.updateProductAttributes(productAttributesData);\n        } \n```\n\n\nIn this example (from <code>cart.js</code>), <code>optionChange</code> is called before the final if test:\n\n```  \n\t\t\t\tcartEditOptions(itemId) {\n        const modal = defaultModal();\n        const options = {\n            template: 'cart/modals/configure-product',\n        };\n\n        modal.open();\n\n        utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {\n            modal.updateContent(response.content);\n\n            this.bindGiftWrappingForm();\n        });\n\n        utils.hooks.on('product-option-change', (event, option) => {\n            const $changedOption = $(option);\n            const $form = $changedOption.parents('form');\n            const $submit = $('input.button', $form);\n            const $messageBox = $('.alertMessageBox');\n            const item = $('[name=\"item_id\"]', $form).attr('value');\n\n            utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {\n                const data = result.data || {};\n\n                if (err) {\n                    alert(err);\n                    return false;\n                }\n```"
+                      data: "## Product Attributes Resource\n\nThe `optionChange` function is fired when the customer selects a product option for the current cart item (for example, changing a shirt’s color from a default \"yellow\" to \"green\"):\n\n<b>optionChange Signature</b>\n\n`utils.api.productAttributes.optionChange(productId, params, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains a collection of IDs that map to product properties (color, size, etc.)</td>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n**optionChange Examples**\n\nIn this example (from `common/product-details.js`), `optionChange` is called to update options in a Quick View modal:"
                       header:
                         anchor: stencil-utils_product-attributes
+                    - type: code
+                      data: >-
+                        // Update product attributes. If we're in quick view and
+                        the product has options, then also update the initial
+                        view in case items are oos
+                                if (_.isEmpty(productAttributesData) && hasOptions) {
+                                    const $productId = $('[name="product_id"]', $form).val();
+
+                                    utils.api.productAttributes.optionChange($productId, $form.serialize(), (err, response) => {
+                                        const attributesData = response.data || {};
+
+                                        this.updateProductAttributes(attributesData);
+                                        this.updateView(attributesData);
+                                    });
+                                } else {
+                                    this.updateProductAttributes(productAttributesData);
+                                } 
+                      header:
+                        title: 'optionChange Example #1'
+                        subtitle: common/product-details.js
+                    - type: text
+                      data: >-
+                        In this example from `cart.js`, `optionChange` is called
+                        before the final `if` test:
+                    - type: code
+                      data: |
+                        cartEditOptions(itemId) {
+                                const modal = defaultModal();
+                                const options = {
+                                    template: 'cart/modals/configure-product',
+                                };
+
+                                modal.open();
+
+                                utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {
+                                    modal.updateContent(response.content);
+
+                                    this.bindGiftWrappingForm();
+                                });
+
+                                utils.hooks.on('product-option-change', (event, option) => {
+                                    const $changedOption = $(option);
+                                    const $form = $changedOption.parents('form');
+                                    const $submit = $('input.button', $form);
+                                    const $messageBox = $('.alertMessageBox');
+                                    const item = $('[name="item_id"]', $form).attr('value');
+
+                                    utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {
+                                        const data = result.data || {};
+
+                                        if (err) {
+                                            alert(err);
+                                            return false;
+                                        }
+                      header:
+                        subtitle: cart.js
+                        title: 'optionChange Example #2'
                     - type: text
                       data: "## Product Resource\n\nThe `product.getById` function allows your code to retrieve, and to present, detailed product information by product ID.\n\n<b>getById Signature</b>\n\n`utils.api.product.getById(productId, params, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains request options and/or presentation template</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example (from `global/quick-view.js`) calls `product.getById` to populate the Quick View modal:"
                       header:
