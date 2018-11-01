@@ -6650,10 +6650,51 @@ pages:
                             header:
                               anchor: paypal-smart_overview
                           - type: text
-                            data: |
+                            data: >-
                               ## Include Smart Buttons on Your Stencil Theme
+
+
+                              To include Smart Buttons on your Stencil theme,
+                              append the following highlighted `paymentbuttons`
+                              settings to the `settings` object in your theme's
+                              `config.json` file:
                             header:
                               anchor: paypal-smart_include-smart-buttons
+                          - type: code
+                            data: |2-
+                               "settings": {
+                                  "...",
+                                  "color_badge_product_sale_badges": "#007dc6",
+                                  "color_text_product_sale_badges": "#ffffff",
+                                  "color_hover_product_sale_badges": "#000000",
+                                  "restrict_to_login": false,
+                                  "swatch_option_size": "22x22",
+                                  "social_icon_placement_top": false,
+                                  "social_icon_placement_bottom": "bottom_none",
+                                  "geotrust_ssl_common_name": "",
+                                  "geotrust_ssl_seal_size": "M",
+                                  "navigation_design": "simple",
+                                  "price_ranges": true,
+                                  "pdp-price-label": "",
+                                  "pdp-sale-price-label": "Now:",
+                                  "pdp-non-sale-price-label": "Was:",
+                                  "pdp-retail-price-label": "MSRP:",
+                                  "paymentbuttons-paypal-layout": "horizontal",
+                                  "paymentbuttons-paypal-color": "gold",
+                                  "paymentbuttons-paypal-shape": "pill",
+                                  "paymentbuttons-paypal-size": "small",
+                                  "paymentbuttons-paypal-label": "checkout",
+                                  "paymentbuttons-paypal-tagline": true,
+                                  "paymentbuttons-paypal-fundingicons": false
+                                },
+                            header:
+                              subtitle: config.json
+                              title: '"settings" object'
+                            config:
+                              mode: json
+                              highlightRange:
+                                - from: '18'
+                                  to: '24'
                     - title: Enable & Restyle Optimized One-Page Checkout
                       route:
                         path: /optimized-one-page-checkout
