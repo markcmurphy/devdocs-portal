@@ -18556,7 +18556,7 @@ pages:
 
 
 
-                        <b>Cookie Examples:</b> 
+                        <b>Cookie Example:</b> 
 
 
                         The following commented example
@@ -18564,15 +18564,16 @@ pages:
                         `utils.hooks.on('cookie-privacy-notification', (event,
                         privacyMessage)` to help comply with European Union
                         privacy requirements:
-
-
-                        ```
-
+                      header:
+                        anchor: stencil-utils_cookie
+                    - type: code
+                      data: |-
                         /**
                          * European websites must notify users of cookies to comply with European Union law.
                          * This will alert shoppers that this website uses cookies.
                          */
                         export default function () {
+                          
                             /*
                             // Here you can override the default browser alert box by hooking to the 'cookie-privacy-notification' hook.
                             utils.hooks.on('cookie-privacy-notification', (event, privacyMessage) => {
@@ -18596,11 +18597,11 @@ pages:
                                 });
                             });
                         } 
-
-
-                        ```
                       header:
-                        anchor: stencil-utils_cookie
+                        title: Cookie Example
+                        subtitle: global/cookieNotification.js
+                      config:
+                        mode: js
                     - type: text
                       data: "## Countries Resources\n\nThese functions allow your theme or app to retrieve standardized country names, by numeric ID or by string.\n\n**getById Signature**\n\nThe `getById` function retrieves standardized country names by numeric ID:\n\n`utils.api.countries.getById(countryId, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>countryId</td>\n    <td>Number</td>\n    <td>Country code</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example a call to `getById`, followed by a call to the `getByName` function (described below):"
                       header:
@@ -18609,6 +18610,8 @@ pages:
                       data: "/*   \n\t*Get country data by id wrapper\n     * @param {Number} id\n     * @param {Function} callback\n*/\n\n    getById(id, callback) {\n        const url = this.endpoint + id;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n\n/*\n     * Get country data by country name\n     * @param name\n     * @param callback\n*/\n    getByName(name, callback) {\n        const url = this.endpoint + name;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n}"
                       header:
                         title: getById Example
+                      config:
+                        mode: js
                     - type: text
                       data: "**getByName Signature**\n\nThe `getByName` function retrieves states by country name, and returns an array of states that can be used in the callback:\n\n`utils.api.countries.getByName(countryName, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <td>Argument</td>\n    <td>Type</td>\n    <td>Description/Usage</td>\n  </tr>\n  <tr>\n    <td>countryName</td>\n    <td>String</td>\n    <td>Country name</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nIn the following example from `common/state-country.js`, `getByName` is called after the initial if test:"
                     - type: code
@@ -18646,6 +18649,8 @@ pages:
                       header:
                         title: getByName Example
                         subtitle: common/state-country.js
+                      config:
+                        mode: js
                     - type: text
                       data: "## Product Attributes Resource\n\nThe `optionChange` function is fired when the customer selects a product option for the current cart item (for example, changing a shirt’s color from a default \"yellow\" to \"green\"):\n\n<b>optionChange Signature</b>\n\n`utils.api.productAttributes.optionChange(productId, params, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains a collection of IDs that map to product properties (color, size, etc.)</td>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n**optionChange Examples**\n\nIn this example (from `common/product-details.js`), `optionChange` is called to update options in a Quick View modal:"
                       header:
@@ -18670,6 +18675,8 @@ pages:
                       header:
                         title: 'optionChange Example #1'
                         subtitle: common/product-details.js
+                      config:
+                        mode: js
                     - type: text
                       data: >-
                         In this example from `cart.js`, `optionChange` is called
@@ -18707,6 +18714,8 @@ pages:
                       header:
                         subtitle: cart.js
                         title: 'optionChange Example #2'
+                      config:
+                        mode: js
                     - type: text
                       data: "## Product Resource\n\nThe `product.getById` function allows your code to retrieve, and to present, detailed product information by product ID.\n\n<b>getById Signature</b>\n\n`utils.api.product.getById(productId, params, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains request options and/or presentation template</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example (from `global/quick-view.js`) calls `product.getById` to populate the Quick View modal:"
                       header:
@@ -18716,6 +18725,8 @@ pages:
                       header:
                         subtitle: global/quick-view.js
                         title: getById Example
+                      config:
+                        mode: js
                     - type: text
                       data: >-
                         ## Search Resource
