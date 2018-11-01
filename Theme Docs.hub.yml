@@ -18602,9 +18602,44 @@ pages:
                       header:
                         anchor: stencil-utils_cookie
                     - type: text
-                      data: "## Countries Resources\n\nThese functions allow your theme or app to retrieve standardized country names, by numeric ID or by string.\n\n<b>getById Signature</b>\n\nThe <code>getById</code> function retrieves standardized country names by numeric ID:\n\n`utils.api.countries.getById(countryId, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>countryId</td>\n    <td>Number</td>\n    <td>Country code</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example a call to <code>getById</code>, followed by a call to the <code>getByName</code> function (described below):\n\n```\n/**\n     *\n     * Get country data by id wrapper\n     *\n     * @param {Number} id\n     * @param {Function} callback\n     */\n    getById(id, callback) {\n        const url = this.endpoint + id;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n\n    /**\n     * Get country data by country name\n     * @param name\n     * @param callback\n     */\n    getByName(name, callback) {\n        const url = this.endpoint + name;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n}\n```\n\n<b>getByName Signature</b>\n\nThe `getByName` function retrieves states by country name, and returns an array of states that can be used in the callback:<br>\n\n<p></p><pre>utils.api.countries.getByName(countryName, callback)</pre>\n\n <br>\n\n<table>\n  <tbody>\n\t\t<tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">countryName</td>\n    <td class=\"\">String</td>\n    <td class=\"\">Country name</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nIn the following example (from `common/state-country.js`, `getByName` is called after the initial if test:\n\n```\n$('select[data-field-type=\"Country\"]').on('change', (event) => {\n        const countryName = $(event.currentTarget).val();\n\n        if (countryName === '') {\n            return;\n        }\n\n        utils.api.country.getByName(countryName, (err, response) => {\n            if (err) {\n                alert(context.state_error);\n\n                return callback(err);\n            }\n\n            const $currentInput = $('[data-field-type=\"State\"]');\n\n            if (!_.isEmpty(response.data.states)) {\n                // The element may have been replaced with a select, reselect it\n                const $selectElement = makeStateRequired($currentInput, context);\n\n                addOptions(response.data, $selectElement, options);\n                callback(null, $selectElement);\n            } else {\n                const newElement = makeStateOptional($currentInput, context);\n\n                callback(null, newElement);\n            }\n        });\n    }); \n```"
+                      data: "## Countries Resources\n\nThese functions allow your theme or app to retrieve standardized country names, by numeric ID or by string.\n\n<b>getById Signature</b>\n\nThe `getById` function retrieves standardized country names by numeric ID:\n\n`utils.api.countries.getById(countryId, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>countryId</td>\n    <td>Number</td>\n    <td>Country code</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example a call to <code>getById</code>, followed by a call to the <code>getByName</code> function (described below):\n\n```\n/**\n     *\n     * Get country data by id wrapper\n     *\n     * @param {Number} id\n     * @param {Function} callback\n     */\n    getById(id, callback) {\n        const url = this.endpoint + id;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n\n    /**\n     * Get country data by country name\n     * @param name\n     * @param callback\n     */\n    getByName(name, callback) {\n        const url = this.endpoint + name;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n}\n```\n\n**getByName Signature**\n\nThe `getByName` function retrieves states by country name, and returns an array of states that can be used in the callback:\n\n`utils.api.countries.getByName(countryName, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <td>Argument</td>\n    <td>Type</td>\n    <td>Description/Usage</td>\n  </tr>\n  <tr>\n    <td>countryName</td>\n    <td>String</td>\n    <td>Country name</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nIn the following example from `common/state-country.js`, `getByName` is called after the initial if test:"
                       header:
                         anchor: stencil-utils_countries
+                    - type: code
+                      data: >-
+                        $('select[data-field-type="Country"]').on('change',
+                        (event) => {
+                                const countryName = $(event.currentTarget).val();
+
+                                if (countryName === '') {
+                                    return;
+                                }
+
+                                utils.api.country.getByName(countryName, (err, response) => {
+                                    if (err) {
+                                        alert(context.state_error);
+
+                                        return callback(err);
+                                    }
+
+                                    const $currentInput = $('[data-field-type="State"]');
+
+                                    if (!_.isEmpty(response.data.states)) {
+                                        // The element may have been replaced with a select, reselect it
+                                        const $selectElement = makeStateRequired($currentInput, context);
+
+                                        addOptions(response.data, $selectElement, options);
+                                        callback(null, $selectElement);
+                                    } else {
+                                        const newElement = makeStateOptional($currentInput, context);
+
+                                        callback(null, newElement);
+                                    }
+                                });
+                            }); 
+                      header:
+                        title: getByName Example
+                        subtitle: common/state-country.js
                     - type: text
                       data: "## Product Attributes Resource\n\nThe `optionChange` function is fired when the customer selects a product option for the current cart item (for example, changing a shirt’s color from a default \"yellow\" to \"green\"):\n\n<b>optionChange Signature</b>\n\n`utils.api.productAttributes.optionChange(productId, params, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains a collection of IDs that map to product properties (color, size, etc.)</td>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n**optionChange Examples**\n\nIn this example (from `common/product-details.js`), `optionChange` is called to update options in a Quick View modal:"
                       header:
