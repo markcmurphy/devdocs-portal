@@ -5705,6 +5705,9 @@ paths:
         - $ref: '#/parameters/FilterExcludeFieldsParam'
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
+        - in: query
+          name: ''
+          type: string
       responses:
         '200':
           description: ''
@@ -7749,6 +7752,17 @@ parameters:
     in: header
     type: string
     default: application/json
+  product_id:
+    name: product_id
+    in: query
+    type: string
+    description: >-
+      A comma-separated list of ids of Products whose prices were requested. For
+      example:
+
+      `?product_id=:id`
+
+      `?product_id:in=77,80,81`
 definitions:
   ModifierCollectionResponse:
     description: Modifier Collection Response return for /GET All Modifiers.
