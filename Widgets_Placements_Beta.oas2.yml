@@ -238,10 +238,12 @@ paths:
     get:
       tags:
         - Widget
-      summary: Gets a widget.
+      summary: Get a Widget
       operationId: getWidget
       parameters:
         - $ref: '#/parameters/WidgetUUID'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -258,6 +260,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Get a widget.
     put:
       tags:
         - Widget
