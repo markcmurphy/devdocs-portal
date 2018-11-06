@@ -311,7 +311,7 @@ paths:
     post:
       tags:
         - Placement
-      summary: Creates a placement.
+      summary: Create a Placement.
       operationId: createPlacement
       parameters:
         - name: placementBody
@@ -319,6 +319,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/PlacementPost'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -331,6 +333,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Create a placement
     get:
       tags:
         - Placement
