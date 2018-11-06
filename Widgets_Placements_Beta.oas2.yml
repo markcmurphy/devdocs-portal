@@ -103,7 +103,7 @@ paths:
     put:
       tags:
         - Widget Template
-      summary: Updates a widget template.
+      summary: Update a Widget Template
       operationId: updateWidgetTemplate
       parameters:
         - $ref: '#/parameters/TemplateUUID'
@@ -156,7 +156,7 @@ paths:
     post:
       tags:
         - Widget Template
-      summary: Render a widget template and return the widget html.
+      summary: Preview Widget Template
       operationId: previewWidget
       parameters:
         - $ref: '#/parameters/TemplateUUID'
@@ -165,6 +165,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/WidgetTemplatePreview'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -181,6 +183,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Render a widget template and return the widget html.
   /content/widgets:
     post:
       tags:
