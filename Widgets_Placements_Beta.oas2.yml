@@ -289,10 +289,12 @@ paths:
     delete:
       tags:
         - Widget
-      summary: Deletes a widget.
+      summary: Delete a Widget
       operationId: deleteWidget
       parameters:
         - $ref: '#/parameters/WidgetUUID'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '204':
           description: An empty response.
@@ -307,6 +309,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Delete a widget.
   /content/widgets/search:
     get:
       tags:
