@@ -188,7 +188,7 @@ paths:
     post:
       tags:
         - Widget
-      summary: Creates a widget.
+      summary: Create a Widget
       operationId: createWidget
       parameters:
         - name: widgetBody
@@ -196,6 +196,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/WidgetPost'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -207,16 +209,19 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Create a Widget
     get:
       tags:
         - Widget
-      summary: Gets all widgets.
+      summary: Get All Widgets
       operationId: getWidgets
       parameters:
         - $ref: '#/parameters/PageParam'
         - $ref: '#/parameters/LimitParam'
         - $ref: '#/parameters/FilterWidgetTemplateKindParam'
         - $ref: '#/parameters/FilterWidgetTemplateUUIDParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -228,6 +233,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Gets all widgets
   '/content/widgets/{uuid}':
     get:
       tags:
