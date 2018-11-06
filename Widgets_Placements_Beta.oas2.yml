@@ -50,12 +50,14 @@ paths:
     get:
       tags:
         - Widget Template
-      summary: Gets all widget templates.
+      summary: Get All Widget Templates
       operationId: getWidgetTemplates
       parameters:
         - $ref: '#/parameters/PageParam'
         - $ref: '#/parameters/LimitParam'
         - $ref: '#/parameters/FilterWidgetTemplateKindParam'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -67,6 +69,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Get All Widget Templates
   '/content/widget-templates/{uuid}':
     get:
       tags:
