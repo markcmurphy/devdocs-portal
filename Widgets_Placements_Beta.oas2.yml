@@ -390,7 +390,7 @@ paths:
     put:
       tags:
         - Placement
-      summary: Updates a placement.
+      summary: Update a Placement
       operationId: updatePlacement
       parameters:
         - $ref: '#/parameters/PlacementUUID'
@@ -399,6 +399,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/PlacementPut'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -415,6 +417,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Update a Placement
     delete:
       tags:
         - Placement
