@@ -27,7 +27,7 @@ paths:
     post:
       tags:
         - Widget Template
-      summary: Creates a widget template.
+      summary: Create a Widget Template
       operationId: createWidgetTemplate
       parameters:
         - name: templateBody
@@ -35,6 +35,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/WidgetTemplatePost'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -47,6 +49,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Create a widget template.
     get:
       tags:
         - Widget Template
