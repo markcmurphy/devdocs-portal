@@ -128,10 +128,12 @@ paths:
     delete:
       tags:
         - Widget Template
-      summary: Deletes a widget template.
+      summary: Deletes a Widget Template
       operationId: deleteWidgetTemplate
       parameters:
         - $ref: '#/parameters/TemplateUUID'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '204':
           description: An empty response.
@@ -146,6 +148,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Delete a Widget Template.
   '/content/widget-templates/{uuid}/preview':
     post:
       tags:
