@@ -264,7 +264,7 @@ paths:
     put:
       tags:
         - Widget
-      summary: Updates a widget.
+      summary: Update a widget
       operationId: updateWidget
       parameters:
         - $ref: '#/parameters/WidgetUUID'
@@ -273,6 +273,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/WidgetPut'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -289,6 +291,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Update a widget.
     delete:
       tags:
         - Widget
