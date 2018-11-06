@@ -364,10 +364,12 @@ paths:
     get:
       tags:
         - Placement
-      summary: Gets a placement.
+      summary: Gets a Placement
       operationId: getPlacement
       parameters:
         - $ref: '#/parameters/PlacementUUID'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           schema:
@@ -384,6 +386,7 @@ paths:
           description: >
             This is the result of missing required fields, or of invalid data.
             See the response for more details.
+      description: Get a Placement
     put:
       tags:
         - Placement
