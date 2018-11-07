@@ -6563,7 +6563,7 @@ pages:
                           - type: html
                             data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#stored-cc-mgmt_overview\">Overview</a></li>\n    <li><a href=\"#stored-cc-mgmt_adding\">Adding Stored Credit Card Management to Your Custom Theme</a></li>\n\t</ul>\n</div>"
                           - type: text
-                            data: >
+                            data: >+
                               ## Overview
 
 
@@ -6574,12 +6574,11 @@ pages:
 
                               Previously, stored credit card management was only
                               accessible via the payment portion of checkout.
-                              With the addition of the Stored Credit Card
-                              Management feature to the Cornerstone theme,
-                              logged-in shoppers will now be able to manage
-                              their stored credit cards from the My Account page
-                              of the storefront. In the Cornerstone theme,
-                              shoppers with store accounts will also have the
+                              With the addition of Stored Credit Card
+                              management, logged-in shoppers will now be able to
+                              manage their stored credit cards from the My
+                              Account page of the storefront. In the Cornerstone
+                              theme, shoppers with store accounts will have the
                               ability to add new cards, delete cards, select a
                               default card, and edit the billing details of
                               existing cards from their customer account area of
@@ -6588,8 +6587,18 @@ pages:
 
                               Card data is stored securely with the payment
                               gateway.
+
                             header:
                               anchor: stored-cc-mgmt_overview
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6116/1541629003006
+                            config:
+                              centered: true
+                              fluid: true
+                              bordered: true
+                              maxWidth: '500'
+                              maxHeight: '500'
                           - type: callout
                             data:
                               type: warning
@@ -6601,7 +6610,7 @@ pages:
                                 delete and readd the card.
                               title: Editing Limitations
                           - type: text
-                            data: >+
+                            data: >
                               ## Adding Card Management to Your Custom Theme
 
 
@@ -6613,33 +6622,80 @@ pages:
                               management to your custom Stencil theme. 
 
 
-                              1. [Add the Payment Methods to the
-                              account](https://github.com/bigcommerce/cornerstone/pull/1376/commits/24abc038fe346a8572b40da40c98a9465788957a)
-
-                              2. [Add Translations for Payment Methods
-                              Titles](https://github.com/bigcommerce/cornerstone/pull/1376/commits/9edf1a0f6907811abf470db1486b4fdb199b27ae)
-
-
                               _This step will require modification to the
                               `lang/en.json` file,
                               `templates/components/account/navigation.html`,
                               and _
-
-
-                              4. [Include the Credit Card Listing, initially
-                              without the add, edit, and delete actions]()
-
-                              5. [Include the Credit Card Actions]()
-
-                              6. [Include the `Delete Payment` Method]()
-
-                              7. [Include the `Edit Payment` Method]()
-
-                              8. [Include the `Add Payment` Method]()
-
-
                             header:
                               anchor: stored-cc-mgmt_adding
+                          - type: text
+                            data: >
+                              1.  [Add the Payment Methods page to the shopper's
+                              Account](https://github.com/bigcommerce/cornerstone/pull/1376/commits/24abc038fe346a8572b40da40c98a9465788957a)
+
+
+                              In this step, you will modify the following files:
+
+                              * `lang/en.json`
+
+                              * `templates/components/account/navigation.html` 
+
+                              * `templates/pages/account/payment-methods.html`
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6116/1541629154209
+                            header:
+                              title: Payment Methods Page Addition Example
+                            config:
+                              centered: true
+                              bordered: true
+                              fluid: true
+                              maxWidth: '700'
+                              maxHeight: '700'
+                          - type: text
+                            data: >-
+                              2. [Add Translations for Payment Methods
+                              Titles](https://github.com/bigcommerce/cornerstone/pull/1376/commits/9edf1a0f6907811abf470db1486b4fdb199b27ae)
+                          - type: text
+                            data: >-
+                              3. [Include the Credit Card Listing, initially
+                              without the add, edit, and delete actions]()
+                          - type: text
+                            data: |
+                              4. [Include the Credit Card Actions]()
+                          - type: text
+                            data: |
+                              5. [Include the `Delete Payment` Method]()
+                          - type: text
+                            data: |
+                              6. [Include the `Edit Payment` Method]()
+                          - type: text
+                            data: '7. [Include the `Add Payment` Method]()'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6116/1541629295212
+                            header:
+                              title: >-
+                                Example of the addition of the Add Payment
+                                Method
+                            config:
+                              centered: true
+                              fluid: true
+                              bordered: true
+                              maxWidth: '500'
+                              maxHeight: '700'
+                          - type: callout
+                            data:
+                              body: >
+                                Since this feature involves heavy code changes,
+                                it may be easier to merge the necessary code
+                                into your theme by utilizing Github's automated
+                                way of syncing a fork. See Github's
+                                documentation on [Syncing a
+                                Fork](https://help.github.com/articles/syncing-a-fork/)
+                                for more details. 
+                              title: |
+                                Utilizing Github Automation to Merge the Changes
                     - title: PayPal Smart Buttons
                       route:
                         path: /paypal-smart-buttons
