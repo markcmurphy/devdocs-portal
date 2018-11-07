@@ -6561,27 +6561,29 @@ pages:
                           - type: html
                             data: <h1>Stored Credit Card Management</h1>
                           - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#stored-cc-mgmt_overview\">Overview</a></li>\n    <li><a href=\"#stored-cc-mgmt_\"></a></li>\n\t</ul>\n</div>"
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#stored-cc-mgmt_overview\">Overview</a></li>\n    <li><a href=\"#stored-cc-mgmt_adding\">Adding Stored Credit Card Management to Your Custom Theme</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >
                               ## Overview
 
 
                               Cornerstone versions 2.6.0+ include the ability to
-                              enable Stored Credit Cards. Stored Credit Cards
-                              allows shoppers with store accounts to safely and
-                              securely store their credit card details so they
-                              are able to complete future purchases faster. It’s
-                              a convenient way for shoppers to get through the
-                              checkout process quickly and easily, improving
-                              conversions.
+                              manage [Stored Credit
+                              Cards](https://support.bigcommerce.com/s/article/Enabling-Stored-Credit-Cards).
 
 
-                              In the Cornerstone theme, shoppers with store
-                              accounts will also have the ability to add new
-                              cards, delete cards, select a default card, and
-                              edit the billing details of existing cards from
-                              their customer account area of your storefront.
+                              Previously, stored credit card management was only
+                              accessible via the payment portion of checkout.
+                              With the addition of the Stored Credit Card
+                              Management feature to the Cornerstone theme,
+                              logged-in shoppers will now be able to manage
+                              their stored credit cards from the My Account page
+                              of the storefront. In the Cornerstone theme,
+                              shoppers with store accounts will also have the
+                              ability to add new cards, delete cards, select a
+                              default card, and edit the billing details of
+                              existing cards from their customer account area of
+                              your storefront.
 
 
                               Card data is stored securely with the payment
@@ -6599,37 +6601,45 @@ pages:
                                 delete and readd the card.
                               title: Editing Limitations
                           - type: text
-                            data: >-
-                              Previously, stored credit card management was only
-                              accessible via the payment portion of checkout.
-                              With the addition of the Stored Credit Card
-                              Management feature to the Cornerstone theme,
-                              logged-in shoppers will now be able to manage
-                              their stored credit cards from the My Account
-                              section of the storefront. 
-
-
-                              As a theme developer, you can also add this
-                              feature to your theme to create a better shopper
-                              experience.
-
-
-                              If you have a custom theme based off of
-                              Cornerstone 2.6.0, card vaulting will already be
-                              included in your theme.
+                            data: >+
+                              ## Adding Card Management to Your Custom Theme
 
 
                               If you have a custom theme that is either based
-                              off of a previous version of Cornerstone, or not
-                              based off of Cornerstone, refer to [these
-                              commits](https://github.com/bigcommerce/cornerstone/pull/1376/commits)
-                              to see what changes and additions you need to make
-                              to include card vaulting to your custom Stencil
-                              theme. We will also breakdown the necessary steps
-                              to do so below by going through detailing each
-                              commit's file additions and deletions.
-                          - type: text
-                            data: ''
+                              off of a pre 2.6.0 version of Cornerstone, or a
+                              custom theme that is not based off of Cornerstone,
+                              refer to following Github commits to see what code
+                              changes you need to make to include card
+                              management to your custom Stencil theme. 
+
+
+                              1. [Add the Payment Methods to the
+                              account](https://github.com/bigcommerce/cornerstone/pull/1376/commits/24abc038fe346a8572b40da40c98a9465788957a)
+
+                              2. [Add Translations for Payment Methods
+                              Titles](https://github.com/bigcommerce/cornerstone/pull/1376/commits/9edf1a0f6907811abf470db1486b4fdb199b27ae)
+
+
+                              _This step will require modification to the
+                              `lang/en.json` file,
+                              `templates/components/account/navigation.html`,
+                              and _
+
+
+                              4. [Include the Credit Card Listing, initially
+                              without the add, edit, and delete actions]()
+
+                              5. [Include the Credit Card Actions]()
+
+                              6. [Include the `Delete Payment` Method]()
+
+                              7. [Include the `Edit Payment` Method]()
+
+                              8. [Include the `Add Payment` Method]()
+
+
+                            header:
+                              anchor: stored-cc-mgmt_adding
                     - title: PayPal Smart Buttons
                       route:
                         path: /paypal-smart-buttons
