@@ -3674,12 +3674,27 @@ paths:
           schema:
             $ref: '#/definitions/BulkPricingRulePost'
           x-examples:
-            application/json: {}
-            new:
-              quantity_min: 10
-              quantity_max: 50
-              type: price
-              amount: 10
+            application/json:
+              - id: 59
+                quantity_min: 1
+                quantity_max: 10
+                type: price
+                amount: 1
+              - id: 60
+                quantity_min: 11
+                quantity_max: 20
+                type: price
+                amount: 1.5
+              - id: 61
+                quantity_min: 21
+                quantity_max: 30
+                type: price
+                amount: 1.75
+              - id: 62
+                quantity_min: 31
+                quantity_max: 0
+                type: price
+                amount: 2
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
       responses:
@@ -3690,12 +3705,35 @@ paths:
           examples:
             application/json:
               data:
-                quantity_min: 10
-                quantity_max: 50
-                type: price
-                amount: 1
-                id: 53
-              meta: {}
+                - id: 59
+                  quantity_min: 1
+                  quantity_max: 10
+                  type: price
+                  amount: 1
+                - id: 60
+                  quantity_min: 11
+                  quantity_max: 20
+                  type: price
+                  amount: 1.5
+                - id: 61
+                  quantity_min: 21
+                  quantity_max: 30
+                  type: price
+                  amount: 1.75
+                - id: 62
+                  quantity_min: 31
+                  quantity_max: 0
+                  type: price
+                  amount: 2
+              meta:
+                pagination:
+                  total: 4
+                  count: 4
+                  per_page: 50
+                  current_page: 1
+                  total_pages: 1
+                  links:
+                    current: '?page=1&limit=50'
         '404':
           description: |
             The parent resource was not found.
