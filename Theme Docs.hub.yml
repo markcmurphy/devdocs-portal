@@ -6720,10 +6720,16 @@ pages:
 
 
                               *The code changes in this step bind the delete
-                              button's front end and back end: first, the click
-                              will trigger window confirm. Then, on confirming,
-                              a post request will be sent. Finally, there will
-                              be a redirect to the credit card listing.*
+                              button's front end and back end. First, the click
+                              will trigger window confirm. The confirmation
+                              modal has been added to prevent unintended action.
+                              Then, on confirming, a post request will be sent.
+                              The action is initiated through a localized form
+                              post request in the template which uses a
+                              [`delete_url`](https://github.com/bigcommerce/cornerstone/blob/master/templates/components/account/payment-methods-list.html#L34)
+                              key provided in the credit card details data.
+                              Finally, there will be a redirect to the credit
+                              card listing.*
                           - type: text
                             data: '---'
                           - type: text
