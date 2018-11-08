@@ -8476,6 +8476,7 @@ definitions:
   VariantBase:
     type: object
     description: Common Variant properties.
+    title: Variant Base
     properties:
       cost_price:
         type: number
@@ -8580,6 +8581,7 @@ definitions:
           storefront. When updating a SKU image, send the publicly accessible
           URL. Supported image formats are JPEG, PNG, and GIF. Generic product
           images not specific to the variant should be stored on the product.
+          Limit of 8MB per file. 
         x-url: true
       upc:
         type: string
@@ -8605,7 +8607,6 @@ definitions:
         x-nullable: true
         minLength: 0
         maxLength: 255
-    title: Variant Base
   Variant:
     type: object
     allOf:
@@ -8639,13 +8640,11 @@ definitions:
               takes into account `sale_price` and any price adjustment rules
               that are applicable to this variant.
   VariantPost:
-    type: object
     description: |
       The model for a POST to create variants on a product.
     allOf:
       - $ref: '#/definitions/VariantBase'
-      - type: object
-        properties:
+      - properties:
           product_id:
             type: integer
             x-required:
@@ -8658,14 +8657,15 @@ definitions:
             maxLength: 255
           option_values:
             type: array
-            items:
-              $ref: '#/definitions/OptionValueVariantPost'
             description: >-
               Array of option and option values IDs that make up this variant.
               Will be empty if the variant is the product's base variant.
             x-required:
               - post
+            items:
+              $ref: '#/definitions/OptionValueVariantPost'
     title: Variant Post
+    type: object
   VariantPut:
     type: object
     description: |
