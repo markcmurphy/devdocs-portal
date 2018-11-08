@@ -6699,7 +6699,10 @@ pages:
                               _The code changes in this step group the credit
                               cards by payment providers, include the payment
                               method icons, account for mobile and desktop
-                              layouts, and account for translations._
+                              layouts, and account for translations. Icons have
+                              been used to identify the credit card **type** as
+                              the data will only provide the card brand in the
+                              credit card details._
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541655663898
@@ -6789,6 +6792,37 @@ pages:
 
                               *  Add a `payment-method.js` file for credit card
                               validations and helpers with unit test.
+
+
+                              The add form will use ajax to validate and submit
+                              the credit card details (this differs from the way
+                              the edit form validates and submits). The
+                              [payment-method.js
+                              file](https://github.com/bigcommerce/cornerstone/blob/master/assets/js/theme/common/payment-method.js)
+                              has been designed to be dragged and used in themes
+                              to simplify its implementation. 
+
+
+                              The [add-payment-method.html
+                              template](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/account/add-payment-method.html)
+                              also requires some customization because variables
+                              need to pass through handlebars in order to be
+                              used by javascript. 
+
+
+                              Two different approaches were used in this
+                              template to pass data and submit the request. 
+
+
+                              From [line 20 to 25 of the
+                              template](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/account/add-payment-method.html#L20-L25),
+                              we store variables, mostly for building the
+                              request url and header. The request body will
+                              directly use the form data. [More validations and
+                              extra
+                              mapping](https://github.com/bigcommerce/cornerstone/blob/24686de577c6ad5409ec8b82f5839c3d083cb760/assets/js/theme/account.js#L211)
+                              are added to the `add-payment-method.html`
+                              template as well.
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541629295212
