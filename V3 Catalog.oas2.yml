@@ -8963,21 +8963,21 @@ definitions:
             type: string
     title: Product Image
   ProductImagePost:
-    type: object
     description: The model for a POST to create an image on a product.
     allOf:
       - $ref: '#/definitions/ProductImageBase'
-      - type: object
-        properties:
+      - properties:
           image_url:
-            description: |
-              Must be a fully qualified URL path, including protocol.
+            description: >
+              Must be a fully qualified URL path, including protocol. Limit of
+              8MB per file. 
             type: string
           image_file:
             description: |
               Must be sent as a multipart/form-data field in the request body.
             type: string
     title: Product Image Post
+    type: object
   ProductImagePut:
     type: object
     description: |
