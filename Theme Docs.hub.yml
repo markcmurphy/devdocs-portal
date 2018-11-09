@@ -5943,7 +5943,7 @@ pages:
                           - type: html
                             data: <h1>Google AMP</h1>
                           - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#google-amp_overview\">Google AMP Overview</a></li>\n    <li><a href=\"#google-amp_implement\">Implement Google AMP into your Stencil theme</a></li>\n    <li><a href=\"#google-amp_\">Location of AMP Files within Cornerstone</a></li>\n    <li><a href=\"#google-amp_\">Local Testing</a></li>\n    <li><a href=\"#google-amp_\">Additional Resources</a></li>\n\t</ul>\n</div>"
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#google-amp_overview\">Google AMP Overview</a></li>\n    <li><a href=\"#google-amp_implement\">Implement Google AMP into your Stencil theme</a></li>\n    <li><a href=\"#google-amp_location-of-amp-files\">Location of AMP Files within Cornerstone</a></li>\n    <li><a href=\"#google-amp_local-testing\">Local Testing</a></li>\n    <li><a href=\"#google-amp_additional-resources\">Additional Resources</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ## Google AMP Overview
@@ -5952,6 +5952,8 @@ pages:
                               Google AMP aka Accelerated Mobile Pages is an open
                               source initiative to make websites load faster
                               across mobile devices.
+                            header:
+                              anchor: google-amp_overview
                           - type: text
                             data: >-
                               ## Implement Google AMP into your Stencil theme
@@ -5995,6 +5997,8 @@ pages:
                               replace `theme_settings.amp_analytics_id` with
 
                               `settings.amp_analytics_id`.
+                            header:
+                              anchor: google-amp_implement
                           - type: code
                             data: "{{{snippet 'htmlhead'}}}\n         <script async custom-element=\"amp-form\" src=\"https://cdn.ampproject.org/v0/amp-form-0.1.js\"></script>\n         <script async custom-element=\"amp-sidebar\" src=\"https://cdn.ampproject.org/v0/amp-sidebar-0.1.js\"></script>\n\t\t\t  {{#if settings.amp_analytics_id}}\n         \t\t\t<script async custom-element=\"amp-analytics\" src=\"https://cdn.ampproject.org/v0/amp-analytics-0.1.js\"></script>\n         {{/if}}\n         {{#block \"amp-scripts\"}}{{/block}}"
                             header:
@@ -6045,7 +6049,37 @@ pages:
                               for changes that need to be made to implement
                               Google AMP. 
                           - type: text
-                            data: '## Location of AMP Files within Cornerstone'
+                            data: >+
+                              ## Location of AMP Files within Cornerstone
+
+
+
+                              In versions 1.6.0+ of Cornerstone, there are a few
+                              key file locations where the AMP information is
+                              located:
+
+
+                              * Base AMP layout template is located in
+                              templates/layout/amp.html.
+
+                              * The files for Google AMP are located in
+                              /templates/pages/amp. This is where product.html
+                              and category.html are located. (Note: there may be
+                              other files in this folder, but the product and
+                              category pages are the only one pages that
+                              currently support Google AMP).
+
+                              * The CSS is located in
+                              templates/components/amp/css.
+
+
+
+                              After the Google Analytics ID has been added via
+                              Control Panel, you can toggle AMP on the product
+                              and category pages using the settings there.
+
+                            header:
+                              anchor: google-amp_location-of-amp-files
                           - type: text
                             data: >-
                               ## Local Testing
@@ -6059,14 +6093,18 @@ pages:
                               * `localhost:3000/amp/category_url/`
 
                               * `localhost:3000/amp/product_url/`
+                            header:
+                              anchor: google-amp_local-testing
                           - type: text
                             data: |-
                               ## Additional Resources
 
-                              * Adding Analytics to your AMP Pages
-                              * Adding Google AMP in the Control Panel
-                              * Google AMP Home Page
-                              * Google Developer AMP Resources
+                              * [Adding Analytics to your AMP Pages]()
+                              * [Adding Google AMP in the Control Panel]()
+                              * [Google AMP Home Page]()
+                              * [Google Developer AMP Resources]()
+                            header:
+                              anchor: google-amp_additional-resources
                     - title: Using Disqus with Stencil
                       route:
                         path: /new-subpage
