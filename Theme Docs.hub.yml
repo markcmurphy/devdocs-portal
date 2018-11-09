@@ -6629,13 +6629,6 @@ pages:
                               commit](https://github.com/bigcommerce/cornerstone/pull/1376/commits),
                               highlighting the changes that you will need to
                               make to your template files.
-
-
-
-                              This section of the article outlines the [Github
-                              commits] on [PR #1376] displays the code changes
-                              necessary to include Stored Credit Card Management
-                              to your pre-2.6.0 or Marketplace themes.
                             header:
                               anchor: stored-cc-mgmt_adding
                           - type: text
@@ -6646,12 +6639,14 @@ pages:
                               Account](https://github.com/bigcommerce/cornerstone/pull/1376/commits/24abc038fe346a8572b40da40c98a9465788957a)
 
 
-                              _The code changes in this step involve modifying
-                              the `lang/en.json`,
+                              _The code changes in this step:_
+
+
+                              * create the new Payment Methods page on a
+                              shopper's account by modifying the `lang/en.json`,
                               `templates/components/account/navigation.html`,
                               and `templates/pages/account/payment-methods.html`
-                              in order to create the new Payment Methods page on
-                              a shopper's account._
+                              files
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541629154209
@@ -6671,27 +6666,37 @@ pages:
                               Titles](https://github.com/bigcommerce/cornerstone/pull/1376/commits/9edf1a0f6907811abf470db1486b4fdb199b27ae)
 
 
-                              _The code changes in this step involve modifying
-                              the `lang/en.json` and
-                              `templates/components/account/navigation.html`
-                              files in order to ensure the Payments Method page
-                              is translatable to a store's set language._
+                              *The code changes in this step:*
+
+
+                              * create the ability for Payments Method page to
+                              be translatable by modifying the `lang/en.json`
+                              and `templates/components/account/navigation.html`
+                              files
                           - type: text
                             data: '---'
                           - type: text
-                            data: >
+                            data: >-
                               3. [Include the Credit Card listing, initially
                               without the add, edit, and delete
                               actions](https://github.com/bigcommerce/cornerstone/pull/1376/commits/5574eb98c710f4540e8390420563099b6f5710bf)
 
 
-                              _The code changes in this step group the credit
-                              cards by payment providers, include the payment
-                              method icons, account for mobile and desktop
-                              layouts, and account for translations. Icons have
-                              been used to identify the credit card **type** as
-                              the data will only provide the card brand in the
-                              credit card details._
+                              *The code changes in this step:*
+
+
+                              * Group the credit cards by payment providers
+
+                              * Include the payment method icons
+
+                              * Account for mobile and desktop layouts
+
+                              * Account for translations
+
+
+                              *Icons have been used to identify the credit card
+                              **type**. The data only provides the card brand in
+                              the credit card details.*
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541630407609
@@ -6704,14 +6709,16 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: >-
-                              4. [Implement the Credit Card Management Actions
-                              (i.e. Add, Edit, and
+                            data: >
+                              4. [Add the Credit Card Actions (i,e,e Add, Edit,
+                              and
                               Delete)](https://github.com/bigcommerce/cornerstone/pull/1376/commits/499016d320995852fe4ef621724e08556896b70d)
 
 
-                              *The code changes in this step implement the
-                              payment methods actions.*
+                              *The code changes in this step:*
+
+
+                              *  add Edit, Delete, Add buttons.
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541655663898
@@ -6724,30 +6731,56 @@ pages:
                               maxWidth: '500'
                               maxHeight: '500'
                           - type: text
-                            data: '---'
+                            data: ''
                           - type: text
-                            data: >
+                            data: >-
                               5. [Implement the `Delete Payment`
                               Method](https://github.com/bigcommerce/cornerstone/pull/1376/commits/cf102901d9061b7334e8c39f15a8904c37cf0652)
 
 
-                              *The code changes in this step bind the delete
-                              button's front end and back end. First, the click
-                              will trigger window confirm. The confirmation
-                              modal has been added to prevent unintended action.
-                              Then, on confirming, a post request will be sent.
-                              The action is initiated through a localized form
-                              post request in the template which uses a
+
+                              *The code changes in this step:*
+
+
+                              * Bind the delete button's front end and back end
+
+
+                              First, the click will trigger window confirm. The
+                              confirmation modal has been added to prevent
+                              unintended action. Then, on confirming, a post
+                              request will be sent. The action is initiated
+                              through a localized form post request in the
+                              template which uses a
                               [`delete_url`](https://github.com/bigcommerce/cornerstone/blob/master/templates/components/account/payment-methods-list.html#L34)
                               key provided in the credit card details data.
                               Finally, there will be a redirect to the credit
-                              card listing.*
+                              card listing.
                           - type: text
                             data: '---'
                           - type: text
                             data: >
                               6. [Implement the `Edit Payment`
                               Method](https://github.com/bigcommerce/cornerstone/pull/1376/commits/ab2fe1df455fa8ac93760904b718fbce7ce361ed)
+
+
+
+                              The code changes in this step:
+
+
+                              Add the design for credit card details and the
+                              edit billing address form, synced with existing
+                              address fields validation
+
+
+                              The action is initiated via a redirect to the edit
+                              page. The page uses HTML, CSS, and JavaScript for
+                              the billing address validation. The "name on card"
+                              label and values are also removed, as we do not
+                              store name along with the vaulted credit card. The
+                              full edit-payment-method.html can be viewed in the
+                              Cornerstone Github Repo.
+
+
 
 
                               *The code changes in this step add the design for
@@ -6782,8 +6815,7 @@ pages:
                               Method](https://github.com/bigcommerce/cornerstone/pull/1376/commits/c960338c32faa8fb798b2826c72dfe9d74bf9751)
 
 
-                              *The code changes in this step apply the following
-                              changes:* 
+                              *The code changes in this step:* 
 
 
                               *  Adding new icon `lock.svg`
@@ -6803,27 +6835,20 @@ pages:
                               validations and helpers with unit test.
 
 
-                              The add form will use ajax to validate and submit
+                              *The add form will use ajax to validate and submit
                               the credit card details (this differs from the way
                               the edit form validates and submits). The
                               [payment-method.js
                               file](https://github.com/bigcommerce/cornerstone/blob/master/assets/js/theme/common/payment-method.js)
                               has been designed to be dragged and used in themes
-                              to simplify its implementation. 
+                              to simplify its implementation.*
 
 
-                              The [add-payment-method.html
+                              *The [add-payment-method.html
                               template](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/account/add-payment-method.html)
                               also requires some customization because variables
                               need to pass through handlebars in order to be
-                              used by javascript. 
-
-
-                              Two different approaches were used in this
-                              template to pass data and submit the request. 
-
-
-                              From [line 20 to 25 of the
+                              used by javascript. From [line 20 to 25 of the
                               template](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/account/add-payment-method.html#L20-L25),
                               we store variables, mostly for building the
                               request url and header. The request body will
@@ -6831,7 +6856,7 @@ pages:
                               extra
                               mapping](https://github.com/bigcommerce/cornerstone/blob/24686de577c6ad5409ec8b82f5839c3d083cb760/assets/js/theme/account.js#L211)
                               are added to the `add-payment-method.html`
-                              template as well.
+                              template as well.*
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541629295212
@@ -6856,15 +6881,16 @@ pages:
 
                               _The code changes in this step:_
 
-                              * add HTML and CSS for a single checkbox, default
+
+                              * Add HTML and CSS for a single checkbox, default
                               instrument
 
-                              * capture form data on ADD and transform to
+                              * Capture form data on ADD and transform to
                               boolean
 
-                              * fix html credit card for tabulation navigation
+                              * Fix HTML credit card for tabulation navigation
 
-                              * fix for states reload list via ajax.
+                              * Fix for states reload list via ajax
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541655424566
@@ -6884,7 +6910,7 @@ pages:
                                 Since this feature involves heavy code changes,
                                 it may be easier to merge the necessary code
                                 into your theme by utilizing Github's automated
-                                way of syncing a fork. See Github's
+                                process for syncing a fork. See Github's
                                 documentation on [Syncing a
                                 Fork](https://help.github.com/articles/syncing-a-fork/)
                                 for more details on this method.
