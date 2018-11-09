@@ -9939,8 +9939,9 @@ pages:
                         mode: js
                     - type: text
                       data: >-
-                        Let's review this function. First, we have  `postData()`
-                        function call. 
+                        Let’s review the function. First, we call the
+                        `postData()` function, which is defined at the bottom of
+                        the code excerpt.
                     - type: callout
                       data:
                         body: >-
@@ -9950,22 +9951,29 @@ pages:
                           defined.
                     - type: text
                       data: >-
-                        The function accepts two inputs. The first is a URL
-                        string, in this case, `/api/storefront/cart`. There is
-                        no need to write out the entire store URL when
-                        requesting in the browser since it appends to the
-                        website URL the function is run on. 
+                        The `postData()` function accepts two arguments: a URL
+                        string and a body. 
 
 
-                        The other is `cartItems`. Note that with `cartItems`,
-                        the outer curly braces are defined so they can be left
-                        out. The curly braces can also be changed to a string,
-                        object, array or number. `cartItems` includes the
-                        `lineItems` array which has a `productId` and
-                        `quantity`. postData() uses a simplified example for
-                        `lineItems`. For more in-depth examples see the [Create
-                        Cart](/api-reference/cart-checkout/server-server-cart-api/cart/postcarts)
-                        endpoint.  
+                        The URL string that we pass in is
+                        `/api/storefront/cart`. There is no need to provide the
+                        full store URL when making the request in the browser
+                        because the URL path appends to the current website URL.
+
+
+                        For the request body, we pass in the `lineItems` array,
+                        which contains the product IDs and quantities to add to
+                        cart. 
+
+
+                        Note that when we define the `postData` function, we set
+                        the body parameter to cartItems, which is an empty
+                        object. When the `lineItems` array is passed to the
+                        function, the cartItems object automatically wraps the
+                        array in a set of outer curly braces. Keep this in mind
+                        when adapting this code to accept a different request
+                        body--otherwise, your request body may wind up with an
+                        extra set of curly braces.  
 
 
                         After the line items, fetch uses
