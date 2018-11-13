@@ -4939,17 +4939,21 @@ pages:
                               | store/order/* | Subscribe to all store/order
                               events  |
 
-                              | store/order/created | A new order is created. It
-                              can be manual or created on the storefront | 
+                              | store/order/created |Fires if an order is
+                              created using the control panel, an app or via the
+                              API.| 
 
-                              | store/order/updated| Order is updated |
+                              | store/order/updated| Fires when an already
+                              created order is updated. Any changes to an
+                              existing order will fire this webhook. Updates can
+                              include changing the status, updating a coupon or
+                              changing an address.|
 
                               | store/order/archived | Order is archived |
 
-                              | store/order/deleted | Order is deleted |
-
-                              | store/order/statusUpdated | Order status is
-                              changed |
+                              | store/order/statusUpdated | This will only fire
+                              if the order status has changed. Such as Pending
+                              to Awaiting Payment |
 
                               | store/order/message/created | Order message is
                               created by customer or in control panel |
@@ -5004,11 +5008,11 @@ pages:
                               | store/product/inventory/updated| Product
                               inventory is updated. |
 
-                              | store/product/inventory/order/updated| When an
-                              order is placed and product inventory is changed.
-                              If subscribed, the webhook will fire for products
-                              where inventory is being tracked by sku or by base
-                              product. |
+                              | store/product/inventory/order/updated| Fires if
+                              a product’s inventory is decremented or
+                              incremented, including when an order is placed.
+                              Webhook responds to inventory updates made using
+                              the Control Panel, CSV import, API or an app.|
 
 
                               ### Notes on
@@ -5155,10 +5159,12 @@ pages:
 
                               | store/sku/inventory/updated| |
 
-                              | store/sku/inventory/order/updated| This webhook
-                              will fire if inventory is being tracked by sku on
-                              a product. It will also fire the
-                              store/product/inventory/order/updated webhook. |
+                              | store/sku/inventory/order/updated| This will
+                              fire when the inventory is updated via API, the
+                              Control Panel, when an order is placed and when an
+                              order is refunded and the inventory returned to
+                              stock. Inventory changes due to an order and
+                              determined by the store's settings. |
 
 
                               ### Notes on `store/sku/inventory/order/updated`
