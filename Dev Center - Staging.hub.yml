@@ -7206,16 +7206,9 @@
                       },
                       {
                         "type": "text",
-                        "data": "## `config.json` Overview\n\nYou configure the `/<theme‑name>/config.json` file to properly manage each of your custom theme's front-end aspects. This `config.json` file’s functions are to:\n\n* Provide global context for Stencil’s CSS and Handlebars resources.\n* Provide values for the Theme Editor GUI to manage.\n* Provide metadata for your theme’s listing in the Theme Marketplace.\n* Define variations included in your theme.\n",
+                        "data": "## `config.json` Overview\n\nYou configure the `/theme‑name/config.json` file to properly manage each of your custom theme's front-end aspects. This `config.json` file’s functions are to:\n\n* Provide global context for Stencil’s CSS and Handlebars resources.\n* Provide values for the Theme Editor GUI to manage.\n* Provide metadata for your theme’s listing in the Theme Marketplace.\n* Define variations included in your theme.\n",
                         "header": {
                           "anchor": "config_configjson-overview"
-                        }
-                      },
-                      {
-                        "type": "text",
-                        "data": "## Keys and Example Values \n\nBelow are the properties you can configure, with notes and example values from Stencil's Cornerstone reference theme. Note that keys here might appear in a different order than in the Cornerstone file:\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Format</th>\n    <th>Default/Examples</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>String</td>\n    <td>\"Stencil\"</td>\n\t\t<td>Theme’s name, as it will appear in the Theme Marketplace. (<b>Note:</b> Theme names should be composed of only the following characters: a-z, A-Z, 0-9, hyphen.)</td>\n  </tr>\n  <tr>\n    <td>version</td>\n    <td><a href=\"http://semver.org/\">SemVer</a></td>\n    <td>\"1.0.0\"</td>\n    <td>Theme’s version number, formatted asmajor.minor.patch.</td>\n  </tr>\n  <tr>\n    <td>meta</td>\n    <td>Object</td>\n    <td></td>\n    <td>BigCommerce will use this metadata to list themes in Theme Marketplace.(Theme variations also have their own metadata collections.)</td>\n  </tr>\n  <tr>\n    <td>price</td>\n    <td>Number</td>\n    <td>15000</td>\n    <td>Price, in cents, to purchase this theme in Theme Marketplace.</td>\n  </tr>\n  <tr>\n    <td>documentation_url</td>\n\t\t<td>String</td>\n\t\t<td><a href=\"https://support.bigcommerce.com/articles/Public/Cornerstone-Theme-Manual\">Cornerstone Theme Manual</a>\n\t\t</td>\n\t\t<td>URL of theme developer’s documentation site. This key is required to have a value.)</td>\n  </tr>\n  <tr>\n    <td>author_name</td>\n    <td>String</td>\n    <td>\"eCommerce Themes, Inc.\"</td>\n    <td>Name of the developer or partner creating the theme.(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>\n  <tr>\n    <td>author_email</td>\n    <td>String</td>\n    <td>\"support@example.com\"</td>\n    <td>Contact/support email address for the developer or partner creating the theme.\n(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>\n  <tr>\n    <td>author_support_url</td>\n    <td>String</td>\n    <td>\"http://example.com/contactus\"</td>\n    <td>Contact form/support URL for the developer or partner creating the theme.\n(<b>Note: For a successful theme upload to BigCommerce, this key is required to have a value.</b>)</td>\n  </tr>    \n  <tr>\n    <td>composed_image</td>\n    <td>String</td>\n    <td>\"composed_image.png\"</td>\n    <td>File name for a composed/mosaic screenshot of all variations of the theme, to appear on the \"My Themes\" page of purchased themes. The file-name value is arbitrary, but it must match the name of a file located in the <code>theme‑name/meta/</code> subdirectory.The actual file’s resolution must be 600 x 760 pixels (horizontal x vertical).</td>\n  </tr>\n  <tr>\n    <td>features</td>\n    <td>Array</td>\n    <td> [\"fully_responsive\", \"mega_navigation\", \"multi_tiered_sidebar_menu\",\"masonry_design\",\"frontpage_slideshow\",\"quick_add_to_cart\",\"switchable_product_view\",\"product_comparison_table\",\"complex_search_filtering\", \"customizable_product_selector\", \"cart_suggested_products\", \"free_customer_support\", \"free_theme_upgrades\", \"high_res_product_images\", \"product_filtering\", \"advanced_quick_view\", \"product_showcase\", \"persistent_cart\", \"one_page_check_out\", \"customized_check_out\", \"product_videos\"]</td>\n    <td>Array of exact feature names supported in this theme. The \"Default/Examples\" column lists the complete namespace. At least one of the values listed there must be present. These values are used as metadata for Theme Marketplace searches. The <code>\"customized_check_out\"</code> value has a second function: It must be present if you want to enable <a href=\"https://support.bigcommerce.com/articles/Public/Optimized-Single-Page-Checkout\">Optimized One-Page Checkout</a> for your theme.</td>\n  </tr>\n  <tr>\n    <td>css_compiler</td>\n    <td>String</td>\n    <td>\"scss\"</td>\n    <td>CSS preprocessor; defaults to SCSS.</td>\n  </tr>\n  <tr>\n    <td>autoprefixer_cascade</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Whether to enable the Autoprefixer CSS postprocessor, to add vendor prefixes to CSS rules.</td>\n  </tr>\n  <tr>\n    <td>autoprefixer_browsers</td>\n    <td>Array</td>\n    <td>[\"last 3 versions\"]</td>\n    <td>Which legacy browsers <a href=\"https://github.com/postcss/autoprefixer\">Autoprefixer</a> should support, specified in <a href=\"https://github.com/ai/browserslist\">Browserslist</a> query format.</td>\n  </tr>\n  \n  <tr>\n    <td>settings</td>\n    <td>-</td>\n    <td>-</td>\n    <td>Display-oriented key names and values, that you can arbitrarily set for your theme. Handlebars accesses the combined settings as <code>{{theme_settings}}</code>.Variations also have their own<code>settings</code> sections. Values that you set at the variation level will override global values that you set here.If you create a custom variable to use in Handlebars, either add it here within this theme-level <code>settings</code> section, or add it down in a variation-level <code>\">settings</code> section. You would access your arbitrarily named custom variable in Handlebars as <code>{{theme_settings.variablename}}</code>. Here is an example of a custom variable in the default theme’s <code>config.json</code>:\n\n<code>\"settings\": { \"homepage_featured_products_count\": 6,\n}</code>\n\nHere is the corresponding front matter in <code>home.html</code> that calls this variable.\n\t\t\t\n<code>\nproducts:\n  featured:\n      limit: {{theme_settings.homepage_featured_products_count}}\n</code></td>\n</tr>\n  <tr>\n    <td>homepage_new_products_count</td>\n    <td>Number</td>\n    <td>12</td>\n    <td>Number of products to include in home page’s New Products section.</td>\n  </tr>\n  <tr>\n    <td>homepage_section-name_count,homepage_section-name_column_count</td>\n    <td>Number</td>\n    <td>[Varies]</td>\n    <td>Number of products, or columns, to include in the specified home-page section.</td>\n  </tr>\n  <tr>\n    <td>productpage_section-name_count</td>\n    <td>Number</td>\n    <td>[Varies]</td>\n    <td>Number of products to include in the specified section of product-details pages.</td>\n  </tr>\n  <tr>\n    <td>categorypage_products_per_page, brandpage_products_per_page, searchpage_products_per_page</td>\n    <td>Number</td>\n    <td>12</td>\n    <td>Number of products to include on each specified page type.</td>\n  </tr>\n\t<tr>\n    <td>homepage_show_carousel</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to display an image carousel on the home page.</td>\n  </tr>  \n\t<tr>\n    <td>show_product_quick_view</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to offer customers product Quick View modal windows.</td>\n  </tr>  \n\t<tr>\n    <td>show_powered_by</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to display a \"Powered by BigCommerce\" credit in the sitewide footer.</td>\n  </tr>  \n\t<tr>\n    <td>show_accept_amex,\n      show_accept_visa, etc.\n    </td>\n    <td>Boolean</td>\n    <td>false</td>\n    <td>Each of these keys displays or hides a payment-method icon in the sitewide footer. The icons respectively identify credit-card issuers, PayPal, etc. If these keys are defined in schema.json, merchants can use the Theme Editor GUI to toggle each payment icon's visibility.</td>\n  </tr>\n  <tr>\n    <td>product_list_display_mode</td>\n    <td>String</td>\n    <td>\"grid\"</td>\n    <td>Default display mode for product lists. A <code>\"grid\"</code> value specifies grid format. Other entries trigger list format.</td>\n  </tr>\n  <tr>\n    <td>logo-position</td>\n    <td>String</td>\n    <td>\"center\", \"left\", \"right\"</td>\n    <td>Sets (horizontal) display alignment for store logo throughout the theme.</td>\n  </tr>\n \n<!-- Begin images section/intro: -->\n  <tr>\n\t\t<td><b>[images]:</b>  The following keys' values define storewide dimensions for named sizes. The <code>{{getImage}}</code> Handlebars helper can use member keys’ values to dynamically resize any images, up to a maximum target size of 4096x4096 pixels. </td>\n    <td>-</td>\n\t\t<td>-</td>\n\t\t<td>-</td>\n  </tr>\n  <!-- :End images intro: -->\n  \n  <tr>\n    <td><span>logo_size</span></td>\n    <td>String</td>\n    <td>250x100</td>\n    <td>Key/value pair defining global (storewide) display dimensions for the store logo. The value is a string defining the width and height &ndash; in that order &ndash; in pixels.</td>\n  </tr>\n  \n  <tr>\n    <td>gallery_size</td>\n    <td>String</td>\n    <td>300x300</td>\n    <td>Key/value pair defining storewide display dimensions for blog images (also available for other uses).</td>\n  </tr>\n\n  <tr>\n    <td>productgallery_size</td>\n    <td>String</td>\n    <td>300x300</td>\n    <td>Key/value pair defining storewide display dimensions for product-gallery images.</td>\n  </tr>\n\n  <tr>\n    <td>product_size</td>\n    <td>String</td>\n    <td>500x659</td>\n    <td>Key/value pair defining storewide display dimensions for standard/medium-sized product images.</td>\n  </tr>\n  \n  <tr>\n    <td>productthumb_size</td>\n    <td>String</td>\n    <td>100x100</td>\n    <td>Key/value pair defining storewide display dimensions for product-image thumbnails on the product details page.</td>\n  </tr>\n\n  <tr>\n    <td>thumb_size</td>\n    <td>String</td>\n    <td>100x100</td>\n    <td>Key/value pair defining storewide display dimensions for swatches, and for brand and category thumbnails.</td>\n  </tr>\n  \n  <tr>\n    <td>zoom_size</td>\n    <td>String</td>\n    <td>1280x1280</td>\n    <td>Key/value pair defining storewide display dimensions for zoomable product images on the product details page.</td>\n  </tr>\n<!-- :End images section-->\n\n<!-- Begin image URLs section: -->    \n  <tr>\n    <td>product_list_display_mode</td>\n    <td>String</td>\n    <td>\"grid\"</td>\n    <td>Default display mode for product lists. A <code>\"grid\"</code> value specifies grid format. Other entries trigger list format.</td>\n  </tr>\n  <tr>\n    <td>default_image_brand</td>\n    <td>String</td>\n    <td>/assets/img/BrandDefault.gif</td>\n    <td>Relative path to a default image representing brands.</td>\n  </tr>\n  <tr>\n    <td> <span class=\"indent1\"> default_image_product</td>\n    <td>String</td>\n    <td>/assets/img/ProductDefault.gif</td>\n    <td>Relative path to a default image representing products.</td>\n  </tr>\n  <tr>\n    <td>default_image_gift_certificate</td>\n    <td>String</td>\n    <td>/assets/img/GiftCertificate.png</td>\n    <td>Relative path to a default image representing gift certificates.</td>\n  </tr>\n<!-- :End image URLs section -->    \n  \n<!-- Begin fonts section: -->\n  <tr>\n    <td>body-font</td>\n    <td>String</td>\n    <td>\"Google_Karla_400\"</td>\n    <td>Font-family keys, with corresponding values.\nKeys are named by display purpose, and keys' names should end in <code>-font</code>. But naming is otherwise arbitrary. So you can freely define additional font families for your theme.Values should follow the format:\n<code>ProviderName_Font+FamilyName_OptionalWeightNumber</code>\n\nAs in this example:\n      <code>Google_Open+Sans_700</code> which specifies <code>Google Fonts</code> as the Provider, <code>Open Sans</code> as the Font Family, and <code>800</code> as the (optional) Weight attribute.\n\n(<b>Note:</b> The Provider; also called \"Foundry\" - is currently limited to Google Fonts.)\nStencil’s custom Sass functions can process these keys’ values. E.g., to <code>stencilFontFamily</code>, you could pass the (arbitrary) key name <code>\"body-font\"</code>, and the function would process the value. Note that Sass requires explicit typing of inputs and outputs – e.g., <code>stencilNumber</code> defaults to pixels – so you must specify any other units. Thus, for a <code>\"font‑size\" = 3</code> this statement:\n<code>stencilNumber(\"font-size\",\"rem\")* 3</code> will output: <code>9rem</code> (<b>Note:</b> To enable merchants to customize your themes' fonts via Theme Editor, we recommend that you rely on Google Fonts, with no more than 25 typefaces per theme.)</td>\n  </tr>\n  <tr>\n    <td>headings-font</td>\n    <td>String</td>\n    <td>\"Google_Montserrat_400\"</td>\n    <td>Arbitrary key name, and value, for a font family and (optional) weight that can be applied to headings.</td>\n  </tr>\n  <tr>\n    <td>logo-font</td>\n    <td>String</td>\n    <td>\"Google_Oswald_300\"</td>\n    <td>Arbitrary key name, and value, for a font family and (optional) weight for logo text.</td>\n  </tr>\n  \n  <tr>\n    <td>fontSize-root, fontSize-h1..fontSize-h6, etc.</td>\n    <td>Number</td>\n    <td>14</td>\n    <td>Font-size keys, with corresponding values.\n      \nThese keys' values provide defaults for options selectable in the Theme Editor GUI. Also, Stencil’s custom Sass functions can process these values. Here again, these keys are named by display purpose, but arbitrarily. So you can freely define additional font sizes for your theme.</td>\n  </tr>\n  \n  \n<!--Begin colors section:-->  \n  <tr>\n    <td>color-textBase</td>\n    <td>String</td>\n    <td>\"#4f4f4f\"</td>\n    <td>Color definitions, with corresponding hex values. These keys' values provide defaults for options selectable in the Theme Editor GUI.\n      \n   Also, Stencil’s custom Sass functions can process these values. E.g., to <code>stencilColor</code>, you could pass the key name <code>\"color-textBase\"</code>, and the function would return the <code>\"#4f4f4f\"</code> value defined here.\n      \n   The keys are named by display purpose - defining consistent colors for various parts of the theme in different states. But the keys are also named arbitrarily. So you can freely name and define new color keys for your theme.\n      \n   (<b>Note:</b> Only a subset of the default <code>config.json</code> file’s color definitions are listed here.) </td>\n  </tr>\n\n  <tr>\n    <td>   <span class=\"indent1\"><NOBR>color-textBase--hover,</nobr></span> <span class=\"indent1\"><NOBR>color-textBase--active,</nobr></span><br> <span class=\"indent1\">..</span><br> <span class=\"indent1\"><NOBR>color-textLink--active,</nobr></span><br> <span class=\"indent1\"><NOBR>color-textHeading,</nobr></span><br> <span class=\"indent1\">etc.</span></td>\n    <td>String</td>\n    <td>[Varies]</td>\n    <td>\"</td>\n  </tr>\n\n  <tr>\n    <td>color-primary</td>\n    <td>String</td>\n    <td>\"#4f4f4f\"</td>\n    <td>\"</td>\n  </tr>\n  \n  <tr>\n    <td>color-primaryDark</td>\n    <td>String</td>\n    <td>\"#454545\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-primaryDarker</td>\n    <td>String</td>\n    <td>\"#2d2d2d\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-primaryLight</td>\n    <td>String</td>\n    <td>\"#a5a5a5\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-secondary</td>\n    <td>String</td>\n    <td>\"#ffffff\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-secondaryDark</td>\n    <td>String</td>\n    <td>\"#f2f2f2\"</td>\n    <td>\"</td>\n  </tr>\n  <tr>\n    <td>color-secondaryDarker</td>\n    <td>String</td>\n    <td>\"#f2f2f2\"</td>\n    <td>\"</td>\n  </tr>\n<!-- :End colors section -->\n\n<!-- Begin Optimized checkout subsection/intro: -->\n  <tr>\n\t\t<td> <b>[Optimized Checkout]</b></td>\n    <td colspan=\"3\">\n    The following are examples of keys that define default style properties for the Optimized Checkout page. Each key/value pair here corresponds to a class in the <code>&lt;theme‑name&gt;/assets/scss/optimized-checkout.scss</code> file.\n\t</td>\n  </tr>\n  <!-- :End Optimized Checkout intro. -->\n  \n  <tr>\n    <td>optimizedCheckout-header-backgroundColor</td>\n    <td>String</td>\n    <td>#f7f7f7</td>\n    <td>Key/value pair defining default background color for the Optimized Checkout page's header.</td>\n  </tr>\n  \n  <tr>\n    <td>=optimizedCheckout-show-backgroundImage</td>\n    <td>Boolean</td>\n    <td>false</td>\n    <td>Key/value pair defining whether to display a background image on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td>optimizedCheckout-backgroundImage</td>\n    <td>String</td>\n    <td> &ndash; </td>\n    <td>Key/value pair containing file name of background image for the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td>optimizedCheckout-backgroundImage-size</td>\n    <td>String</td>\n    <td>1000x400</td>\n    <td>Key/value pair defining display size for background image on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td>optimizedCheckout-show-logo</td>\n    <td>enum</td>\n    <td>none</td>\n    <td>Key/value pair defining whether to show logo on the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td>optimizedCheckout-logo</span></td>\n    <td>String</td>\n    <td> &ndash; </td>\n    <td>Key/value pair containing file name of background image for the Optimized Checkout page.</td>\n  </tr>\n\n  <tr>\n    <td>[...]</td>\n    <td>[...]</td>\n    <td> [...] </td>\n    <td>[...]<br> \n      (Multiple similar key/value pairs. For a more-complete list of the classes available, see Optimized One-Page Checkout Customization)</td>\n  </tr>\n<!-- :end Optimized checkout subsection -->  \n\n<!-- Begin read-only subsection-->\n  <tr>\n    <td>read_only_files</td>\n    <td>String array</td>\n    <td> \"/assets/scss/components/citadel\",<br> \"/assets/scss/components/foundation\",<br> \"/assets/scss/components/vendor\",<br> \"/assets/scss/vendor\",<br> \"/assets/scss/settings/citadel\",<br> \"/assets/scss/settings/foundation\",<br> \"/assets/scss/settings/vendor\",<br> \"/assets/scss/settings/normalize\" </td>\n    <td>Files and paths specified in this array will be viewable in the Theme Editor GUI, but not editable. Add any theme files/paths that you want to make read-only for store administrators using that editor.</td>\n  </tr>\n<!-- :end read-only subsection -->\n  \n<!-- Begin resources: section -->\n  <tr>\n    <td>resources</td>\n    <td>-</td>\n    <td>-</td>\n    <td>Global resources, inherited by all pages located directly within your <code><theme‑name>/templates/pages/</code> subdirectory.\n\n(This inheritance spares you from having to define them in front matter on every page. Here, the resources are defined in JSON rather than YAML format.)\n\nYou are free to add more global resources here – for example: <code>\"brands\": true</code> to display a brands list; or\n\t\t\t<code>\"blog\": \"posts\": \"limit\": 3</code> to display the top 3 blog posts. For syntax, see Front-Matter Global Attributes.</td>\n  </tr>\n  <tr>\n    <td>cart</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to retrieve/display cart data <!--to display a shopping-cart icon/link--> in pages' chrome.</td>\n  </tr>\n  <tr>\n    <td>shop_by_brand</td>\n    <td>Boolean</td>\n    <td>true</td>\n    <td>Defines whether to include a quick-navigation list of brands in the footer. Adding this optional filter defines how many brands to load:\n\t\t\t<code>limit: number</code></td>\n  </tr>\n    \n  <tr>\n    <td>variations</td>\n    <td>Object</td>\n    <td></td>\n    <td>Collection of variation objects. Each contained object defines one variation on this overall theme. (A theme must contain at least one variation, and may contain up to four.)</td>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>String</td>\n    <td>\"Light\", \"Bold\",\"Warm\" (etc.)</td>\n    <td>An arbitrary name for this variation. This name is used in the Themes Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td>id</td>\n    <td>String</td>\n    <td>\"light\", \"bold\", \"warm\" (etc.)</td>\n    <td>A string ID for this variation. Arbitrarily named, but must be unique to this variation.\nThe Stencil framework’s database uses this unique ID to identify and process updates to variations.<br><br> \n\nWhen you submit an updated version of your theme to BigCommerce, IDs and settings for previously submitted variations must match those in previous submissions of your theme. You may add, but not remove, variations and settings in such resubmissions. You may rename variations for clarity.\n</td>\n  </tr>\n  <tr>\n    <td>settings</td>\n    <td></td>\n    <td></td>\n    <td>Variation-level counterpart to this theme’s theme-level <code>\"settings\"</code> object.\n\nValues that you set here will override theme-wide values for corresponding key names,  within the scope of this variation.\n\nYou can also create custom variables here, whose scope will be limited to this variation. Syntax is the same as for theme-wide custom variables.</td>\n  </tr>\n  <tr>\n    <td>meta</td>\n    <td>Object</td>\n    <td></td>\n    <td>Variation-level counterpart to this theme’s top-leve \"meta\" collection.\nBigCommerce will similarly use this collection’s values when listing themes in Theme Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td>\"desktop_screenshot\"</td>\n    <td>String</td>\n    <td>\"desktop_screenshot.png\"</td>\n    <td>File name for a screenshot of this variation’s large-format layout.\nThe key name is fixed. The file-name value is arbitrary, but it must match the name of a file located in the <code>theme‑name/meta/</code> subdirectory. If you are updating a variation, be sure to match this value to the intended file name.) The screenshot’s required dimensions are 2048 x 2600 pixels.</td>\n  </tr>\n  <tr>\n    <td>\"mobile_screenshot\"</td>\n    <td>String</td>\n    <td>\"mobile_screenshot.png\",</td>\n    <td>File name for a screenshot of this variation’s mobile-format layout.\nThe key name is fixed. The file-name value is arbitrary, but it must match the name of a file located in the <code>&lt;theme‑name&gt;/meta/</code> subdirectory. (If you are updating a variation, be sure to match this value to the intended file name.) The screenshot’s required dimensions are 304 x 540 pixels.</td>\n  </tr>\n  <tr>\n    <td>\"description\"</td>\n    <td>String</td>\n    <td>\"This is the light style of the Stencil Theme\"</td>\n    <td>Arbitrary text description for this variation. This description will appear in Themes Marketplace and Theme Editor.</td>\n  </tr>\n  <tr>\n    <td>\"demo_url\"</td>\n    <td>String</td>\n    <td>\"https://stencil-light.mybigcommerce.com\"</td>\n    <td>URL of your demo store, as set up on bigcommerce.com.</td>\n  </tr>\n  <tr>\n    <td>\"optimized_for”</td>\n    <td>Array</td>\n    <td>[\"arts_crafts\", \"animals_pets\", \"automotive_industrial\", \"electronics_computers\", \"fashion_jewelry\", \"food_beverage\",\"gifts_specialty\", \"health_beauty\",\"home_garden\", \"books_entertainment\",\"sports_recreation\",\"toys_games\",\"multi_purpose\",\"chrome_firefox_safari_ie_10\",\"mobile_tablet_desktop\",\"sales_discounts\",\"wholesale\",\"single_product\", \"large_catalog\", \"mobile\",\"clothing\",\"cosmetics\", \"home_appliances\",\"home_furnishings\", \"movies\",\"music\",\"digital_downloads\",\"outdoor_sports\",\"hunting_fishing\",\"video_games\"]</td>\n    <td>Array of metadata for Theme Marketplace searches - exact names of storefront types compatible with this theme. The \"Default/Examples\" column lists the complete namespace. At least one of the values listed there must be present.\n\t</td>\n  </tr>\n  <tr>\n    <td>“industries\"</td>\n    <td>Array</td>\n    <td>[\"arts_crafts\",\"animals_pets\",\"automotive_industrial\",\"electronics_computers\",\"fashion_jewelry\",\"food_beverage\",\"gifts_specialty\",\"health_beauty\",\"home_garden\",\"books_entertainment\",\"sports_recreation\",\"toys_games\"]\n\t</td>\n    <td>Array of optional metadata for Theme Marketplace, where these values will be used to support faceted searches. You may submit up to four values from the complete namespace listed in the \"Default/Examples\" column.</td>\n  </tr>\n</table>",
-                        "header": {
-                          "anchor": "config_keys-and-example"
                         }
                       },
                       {
@@ -7224,7 +7217,1461 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Requirements and Restrictions\n\nYour theme's config.json file must meet the following requirements:\n\n* It must be named `config.json`, must reside in the root of your `<theme-name>` top level subdirectory (e.g.: `/cornerstone/config.json` or `/stencil/config.json`), and must be valid JSON.\n* The maximum allowable size for a theme's `config.json` file is 64 KB. Exceeding this limit will trigger an error upon uploading the theme to BigCommerce.\n* Each key's value is restricted to 64 characters. Exceeding this limit will similarly trigger an upload error.\n* Other than these size constraints, there is no limit on the number of keys and values that you can place in a theme's `config.json`.\n\n_Carefully check your theme against all the requirements listed here – including the required keys within the `meta` object and `variations` array. While some requirements are not enforced in local development, they will be validated (and will trigger errors) when you later upload your theme to BigCommerce._\n\n### Required Themewide Keys\nThe `config.json` file must contain at least the following keys, with appropriate values (as outlined above):\n\n*name\n* `version`\n* `settings` (which must itself be a valid JSON object)\n* `variations` (an array of at least one, and at most four, variation objects)\n* `meta` (an object; see specific requirements below)\n\n### Required `meta` Keys\n\nThe meta object must contain at least the following keys, with appropriate values:\n\n* `price`\n* `author_name`\n* `author_email`\n* `author_support_url`\n* `documentation_url`\n\nFor illustration, here is a commented excerpt:\n\n```\n{\n  ...\n  \"meta\": {\n    \"price\": 15000, // in cents; non-negative integer, minimum 0\n    \"author_name:\" \"eCommerce Themes, Inc.\", // Must be a string, not null\n    \"author_email\": \"support@example.com\", // Must be a string, should be a valid email address, not null\n    \"author_support_url\": \"http://example.com/contactus\", //  Must be a string, should be a valid URL, not null\n    \"documentation_url\": \"http://example.com/guide\", // Must be a string, limit of 255 characters,\n          not null\n    \"composed_image\": \"path/to/composed.png\", // Must be a string path to the composed-image file\n    \"features\": [ // Array of feature strings, all of which must be in the list enumerated here: \n          https://github.com/bigcommerce/theme-registry/blob/master/app/schemas/theme_config.json#L33\n      \"fully_responsive\" // Must include at least one feature, and no duplicate entries\n    ]\n  },\n  ...\n}\n```\n\n### Required `variation` Keys\n\nFor each variation that you choose to include in your theme (at least one is required), you must provide at least the following keys and sub-element, with appropriate values:\n\n* `name`\n* `id`\n* `meta` (an object, containing at least:)\n* `description`\n\nFor illustration, here is a redacted excerpt from Cornerstone:\n\n```\n\"variations\": [\n    {\n      \"name\": \"Light\",\n      \"id\": \"light\",\n      \"meta\": {\n        \"desktop_screenshot\": \"desktop_light.png\",\n        \"mobile_screenshot\": \"mobile_light.png\",\n        \"description\": \"Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. ....\",\n    ...\n    }\n  ]\n```",
+                        "data": "## Keys and Example Values",
+                        "header": {
+                          "anchor": "onfig_keys-and-example"
+                        }
+                      },
+                      {
+                        "type": "jsonSchema",
+                        "data": {
+                          "type": "object",
+                          "minProperties": 0,
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "example": "Cornerstone",
+                              "description": "The theme name"
+                            },
+                            "version": {
+                              "type": "string",
+                              "example": "\"2.6.0\"",
+                              "description": "The theme's version number"
+                            },
+                            "meta": {
+                              "type": "object",
+                              "properties": {
+                                "price": {
+                                  "type": "integer"
+                                },
+                                "documentation_url": {
+                                  "type": "string"
+                                },
+                                "author_name": {
+                                  "type": "string"
+                                },
+                                "author_email": {
+                                  "type": "string"
+                                },
+                                "author_support_url": {
+                                  "type": "string"
+                                },
+                                "composed_image": {
+                                  "type": "string"
+                                },
+                                "features": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "css_compiler": {
+                              "type": "string"
+                            },
+                            "autoprefixer_cascade": {
+                              "type": "boolean"
+                            },
+                            "autoprefixer_browsers": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "settings": {
+                              "type": "object",
+                              "properties": {
+                                "homepage_new_products_count": {
+                                  "type": "integer"
+                                },
+                                "homepage_featured_products_count": {
+                                  "type": "integer"
+                                },
+                                "homepage_top_products_count": {
+                                  "type": "integer"
+                                },
+                                "homepage_show_carousel": {
+                                  "type": "boolean"
+                                },
+                                "homepage_stretch_carousel_images": {
+                                  "type": "boolean"
+                                },
+                                "homepage_new_products_column_count": {
+                                  "type": "integer"
+                                },
+                                "homepage_featured_products_column_count": {
+                                  "type": "integer"
+                                },
+                                "homepage_top_products_column_count": {
+                                  "type": "integer"
+                                },
+                                "homepage_blog_posts_count": {
+                                  "type": "integer"
+                                },
+                                "productpage_videos_count": {
+                                  "type": "integer"
+                                },
+                                "productpage_reviews_count": {
+                                  "type": "integer"
+                                },
+                                "productpage_related_products_count": {
+                                  "type": "integer"
+                                },
+                                "productpage_similar_by_views_count": {
+                                  "type": "integer"
+                                },
+                                "categorypage_products_per_page": {
+                                  "type": "integer"
+                                },
+                                "shop_by_price_visibility": {
+                                  "type": "boolean"
+                                },
+                                "brandpage_products_per_page": {
+                                  "type": "integer"
+                                },
+                                "searchpage_products_per_page": {
+                                  "type": "integer"
+                                },
+                                "show_product_quick_view": {
+                                  "type": "boolean"
+                                },
+                                "show_powered_by": {
+                                  "type": "boolean"
+                                },
+                                "shop_by_brand_show_footer": {
+                                  "type": "boolean"
+                                },
+                                "show_copyright_footer": {
+                                  "type": "boolean"
+                                },
+                                "show_accept_amex": {
+                                  "type": "boolean"
+                                },
+                                "show_accept_discover": {
+                                  "type": "boolean"
+                                },
+                                "show_accept_mastercard": {
+                                  "type": "boolean"
+                                },
+                                "show_accept_paypal": {
+                                  "type": "boolean"
+                                },
+                                "show_accept_visa": {
+                                  "type": "boolean"
+                                },
+                                "show_product_details_tabs": {
+                                  "type": "boolean"
+                                },
+                                "show_product_reviews_tabs": {
+                                  "type": "boolean"
+                                },
+                                "show_product_weight": {
+                                  "type": "boolean"
+                                },
+                                "show_product_dimensions": {
+                                  "type": "boolean"
+                                },
+                                "product_list_display_mode": {
+                                  "type": "string"
+                                },
+                                "logo-position": {
+                                  "type": "string"
+                                },
+                                "logo_size": {
+                                  "type": "string"
+                                },
+                                "logo_fontSize": {
+                                  "type": "integer"
+                                },
+                                "logo-font": {
+                                  "type": "string"
+                                },
+                                "brand_size": {
+                                  "type": "string"
+                                },
+                                "gallery_size": {
+                                  "type": "string"
+                                },
+                                "productgallery_size": {
+                                  "type": "string"
+                                },
+                                "product_size": {
+                                  "type": "string"
+                                },
+                                "productview_thumb_size": {
+                                  "type": "string"
+                                },
+                                "productthumb_size": {
+                                  "type": "string"
+                                },
+                                "thumb_size": {
+                                  "type": "string"
+                                },
+                                "zoom_size": {
+                                  "type": "string"
+                                },
+                                "blog_size": {
+                                  "type": "string"
+                                },
+                                "default_image_brand": {
+                                  "type": "string"
+                                },
+                                "default_image_product": {
+                                  "type": "string"
+                                },
+                                "default_image_gift_certificate": {
+                                  "type": "string"
+                                },
+                                "body-font": {
+                                  "type": "string"
+                                },
+                                "headings-font": {
+                                  "type": "string"
+                                },
+                                "fontSize-root": {
+                                  "type": "integer"
+                                },
+                                "fontSize-h1": {
+                                  "type": "integer"
+                                },
+                                "fontSize-h2": {
+                                  "type": "integer"
+                                },
+                                "fontSize-h3": {
+                                  "type": "integer"
+                                },
+                                "fontSize-h4": {
+                                  "type": "integer"
+                                },
+                                "fontSize-h5": {
+                                  "type": "integer"
+                                },
+                                "fontSize-h6": {
+                                  "type": "integer"
+                                },
+                                "applePay-button": {
+                                  "type": "string"
+                                },
+                                "color-textBase": {
+                                  "type": "string"
+                                },
+                                "color-textBase--hover": {
+                                  "type": "string"
+                                },
+                                "color-textBase--active": {
+                                  "type": "string"
+                                },
+                                "color-textSecondary": {
+                                  "type": "string"
+                                },
+                                "color-textSecondary--hover": {
+                                  "type": "string"
+                                },
+                                "color-textSecondary--active": {
+                                  "type": "string"
+                                },
+                                "color-textLink": {
+                                  "type": "string"
+                                },
+                                "color-textLink--hover": {
+                                  "type": "string"
+                                },
+                                "color-textLink--active": {
+                                  "type": "string"
+                                },
+                                "color-textHeading": {
+                                  "type": "string"
+                                },
+                                "color-primary": {
+                                  "type": "string"
+                                },
+                                "color-primaryDark": {
+                                  "type": "string"
+                                },
+                                "color-primaryDarker": {
+                                  "type": "string"
+                                },
+                                "color-primaryLight": {
+                                  "type": "string"
+                                },
+                                "color-secondary": {
+                                  "type": "string"
+                                },
+                                "color-secondaryDark": {
+                                  "type": "string"
+                                },
+                                "color-secondaryDarker": {
+                                  "type": "string"
+                                },
+                                "color-error": {
+                                  "type": "string"
+                                },
+                                "color-errorLight": {
+                                  "type": "string"
+                                },
+                                "color-info": {
+                                  "type": "string"
+                                },
+                                "color-infoLight": {
+                                  "type": "string"
+                                },
+                                "color-success": {
+                                  "type": "string"
+                                },
+                                "color-successLight": {
+                                  "type": "string"
+                                },
+                                "color-warning": {
+                                  "type": "string"
+                                },
+                                "color-warningLight": {
+                                  "type": "string"
+                                },
+                                "color-black": {
+                                  "type": "string"
+                                },
+                                "color-white": {
+                                  "type": "string"
+                                },
+                                "color-whitesBase": {
+                                  "type": "string"
+                                },
+                                "color-grey": {
+                                  "type": "string"
+                                },
+                                "color-greyDarkest": {
+                                  "type": "string"
+                                },
+                                "color-greyDarker": {
+                                  "type": "string"
+                                },
+                                "color-greyDark": {
+                                  "type": "string"
+                                },
+                                "color-greyMedium": {
+                                  "type": "string"
+                                },
+                                "color-greyLight": {
+                                  "type": "string"
+                                },
+                                "color-greyLighter": {
+                                  "type": "string"
+                                },
+                                "color-greyLightest": {
+                                  "type": "string"
+                                },
+                                "button--default-color": {
+                                  "type": "string"
+                                },
+                                "button--default-colorHover": {
+                                  "type": "string"
+                                },
+                                "button--default-colorActive": {
+                                  "type": "string"
+                                },
+                                "button--default-borderColor": {
+                                  "type": "string"
+                                },
+                                "button--default-borderColorHover": {
+                                  "type": "string"
+                                },
+                                "button--default-borderColorActive": {
+                                  "type": "string"
+                                },
+                                "button--primary-color": {
+                                  "type": "string"
+                                },
+                                "button--primary-colorHover": {
+                                  "type": "string"
+                                },
+                                "button--primary-colorActive": {
+                                  "type": "string"
+                                },
+                                "button--primary-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "button--primary-backgroundColorHover": {
+                                  "type": "string"
+                                },
+                                "button--primary-backgroundColorActive": {
+                                  "type": "string"
+                                },
+                                "button--disabled-color": {
+                                  "type": "string"
+                                },
+                                "button--disabled-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "button--disabled-borderColor": {
+                                  "type": "string"
+                                },
+                                "icon-color": {
+                                  "type": "string"
+                                },
+                                "icon-color-hover": {
+                                  "type": "string"
+                                },
+                                "button--icon-svg-color": {
+                                  "type": "string"
+                                },
+                                "icon-ratingEmpty": {
+                                  "type": "string"
+                                },
+                                "icon-ratingFull": {
+                                  "type": "string"
+                                },
+                                "carousel-bgColor": {
+                                  "type": "string"
+                                },
+                                "carousel-title-color": {
+                                  "type": "string"
+                                },
+                                "carousel-description-color": {
+                                  "type": "string"
+                                },
+                                "carousel-dot-color": {
+                                  "type": "string"
+                                },
+                                "carousel-dot-color-active": {
+                                  "type": "string"
+                                },
+                                "carousel-dot-bgColor": {
+                                  "type": "string"
+                                },
+                                "carousel-arrow-color": {
+                                  "type": "string"
+                                },
+                                "carousel-arrow-bgColor": {
+                                  "type": "string"
+                                },
+                                "carousel-arrow-borderColor": {
+                                  "type": "string"
+                                },
+                                "card-title-color": {
+                                  "type": "string"
+                                },
+                                "card-title-color-hover": {
+                                  "type": "string"
+                                },
+                                "card-figcaption-button-background": {
+                                  "type": "string"
+                                },
+                                "card-figcaption-button-color": {
+                                  "type": "string"
+                                },
+                                "card--alternate-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "card--alternate-borderColor": {
+                                  "type": "string"
+                                },
+                                "card--alternate-color--hover": {
+                                  "type": "string"
+                                },
+                                "form-label-font-color": {
+                                  "type": "string"
+                                },
+                                "input-font-color": {
+                                  "type": "string"
+                                },
+                                "input-border-color": {
+                                  "type": "string"
+                                },
+                                "input-border-color-active": {
+                                  "type": "string"
+                                },
+                                "input-bg-color": {
+                                  "type": "string"
+                                },
+                                "input-disabled-bg": {
+                                  "type": "string"
+                                },
+                                "select-bg-color": {
+                                  "type": "string"
+                                },
+                                "select-arrow-color": {
+                                  "type": "string"
+                                },
+                                "checkRadio-color": {
+                                  "type": "string"
+                                },
+                                "checkRadio-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "checkRadio-borderColor": {
+                                  "type": "string"
+                                },
+                                "alert-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "alert-color": {
+                                  "type": "string"
+                                },
+                                "alert-color-alt": {
+                                  "type": "string"
+                                },
+                                "storeName-color": {
+                                  "type": "string"
+                                },
+                                "body-bg": {
+                                  "type": "string"
+                                },
+                                "header-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "footer-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "navUser-color": {
+                                  "type": "string"
+                                },
+                                "navUser-color-hover": {
+                                  "type": "string"
+                                },
+                                "navUser-dropdown-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "navUser-dropdown-borderColor": {
+                                  "type": "string"
+                                },
+                                "navUser-indicator-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "navPages-color": {
+                                  "type": "string"
+                                },
+                                "navPages-color-hover": {
+                                  "type": "string"
+                                },
+                                "navPages-subMenu-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "navPages-subMenu-separatorColor": {
+                                  "type": "string"
+                                },
+                                "dropdown--quickSearch-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "dropdown--wishList-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "blockquote-cite-font-color": {
+                                  "type": "string"
+                                },
+                                "container-border-global-color-base": {
+                                  "type": "string"
+                                },
+                                "container-fill-base": {
+                                  "type": "string"
+                                },
+                                "container-fill-dark": {
+                                  "type": "string"
+                                },
+                                "label-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "label-color": {
+                                  "type": "string"
+                                },
+                                "overlay-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "loadingOverlay-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "pace-progress-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "spinner-borderColor-dark": {
+                                  "type": "string"
+                                },
+                                "spinner-borderColor-light": {
+                                  "type": "string"
+                                },
+                                "hide_content_navigation": {
+                                  "type": "boolean"
+                                },
+                                "optimizedCheckout-header-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-show-backgroundImage": {
+                                  "type": "boolean"
+                                },
+                                "optimizedCheckout-backgroundImage": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-backgroundImage-size": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-show-logo": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-logo": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-logo-size": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-logo-position": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-headingPrimary-color": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-headingPrimary-font": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-headingSecondary-color": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-headingSecondary-font": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-body-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-colorFocus": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-contentPrimary-color": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-contentPrimary-font": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-contentSecondary-color": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-contentSecondary-font": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-font": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-color": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-colorHover": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-colorActive": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-backgroundColorHover": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-backgroundColorActive": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-borderColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-borderColorHover": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-borderColorActive": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-borderColorDisabled": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-backgroundColorDisabled": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonPrimary-colorDisabled": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formChecklist-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formChecklist-color": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formChecklist-borderColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formChecklist-backgroundColorSelected": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonSecondary-font": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonSecondary-color": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonSecondary-colorHover": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonSecondary-colorActive": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonSecondary-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonSecondary-borderColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonSecondary-backgroundColorHover": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonSecondary-backgroundColorActive": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonSecondary-borderColorHover": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-buttonSecondary-borderColorActive": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-link-color": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-link-font": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-discountBanner-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-discountBanner-textColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-discountBanner-iconColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-orderSummary-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-orderSummary-borderColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-step-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-step-textColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-form-textColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formField-borderColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formField-textColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formField-shadowColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formField-placeholderColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formField-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formField-errorColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-formField-inputControlColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-step-borderColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-header-borderColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-header-textColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-loadingToaster-backgroundColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-loadingToaster-textColor": {
+                                  "type": "string"
+                                },
+                                "optimizedCheckout-link-hoverColor": {
+                                  "type": "string"
+                                },
+                                "product_sale_badges": {
+                                  "type": "string"
+                                },
+                                "color_badge_product_sale_badges": {
+                                  "type": "string"
+                                },
+                                "color_text_product_sale_badges": {
+                                  "type": "string"
+                                },
+                                "color_hover_product_sale_badges": {
+                                  "type": "string"
+                                },
+                                "restrict_to_login": {
+                                  "type": "boolean"
+                                },
+                                "swatch_option_size": {
+                                  "type": "string"
+                                },
+                                "social_icon_placement_top": {
+                                  "type": "boolean"
+                                },
+                                "social_icon_placement_bottom": {
+                                  "type": "string"
+                                },
+                                "geotrust_ssl_common_name": {
+                                  "type": "string"
+                                },
+                                "geotrust_ssl_seal_size": {
+                                  "type": "string"
+                                },
+                                "navigation_design": {
+                                  "type": "string"
+                                },
+                                "price_ranges": {
+                                  "type": "boolean"
+                                },
+                                "pdp-price-label": {
+                                  "type": "string"
+                                },
+                                "pdp-sale-price-label": {
+                                  "type": "string"
+                                },
+                                "pdp-non-sale-price-label": {
+                                  "type": "string"
+                                },
+                                "pdp-retail-price-label": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "read_only_files": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "resources": {
+                              "type": "object",
+                              "properties": {
+                                "cart": {
+                                  "type": "boolean"
+                                },
+                                "bulk_discount_rates": {
+                                  "type": "boolean"
+                                },
+                                "shop_by_brand": {
+                                  "type": "object",
+                                  "properties": {
+                                    "limit": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "variations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "meta": {
+                                    "type": "object",
+                                    "properties": {
+                                      "desktop_screenshot": {
+                                        "type": "string"
+                                      },
+                                      "mobile_screenshot": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "string"
+                                      },
+                                      "demo_url": {
+                                        "type": "string"
+                                      },
+                                      "optimized_for": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "industries": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "images": {
+                                    "type": "object"
+                                  },
+                                  "settings": {
+                                    "type": "object",
+                                    "properties": {
+                                      "homepage_featured_products_count": {
+                                        "type": "integer"
+                                      },
+                                      "homepage_featured_products_column_count": {
+                                        "type": "integer"
+                                      },
+                                      "body-font": {
+                                        "type": "string"
+                                      },
+                                      "headings-font": {
+                                        "type": "string"
+                                      },
+                                      "color-textBase": {
+                                        "type": "string"
+                                      },
+                                      "color-textBase--hover": {
+                                        "type": "string"
+                                      },
+                                      "color-textBase--active": {
+                                        "type": "string"
+                                      },
+                                      "color-textSecondary": {
+                                        "type": "string"
+                                      },
+                                      "color-textSecondary--hover": {
+                                        "type": "string"
+                                      },
+                                      "color-textSecondary--active": {
+                                        "type": "string"
+                                      },
+                                      "color-textLink": {
+                                        "type": "string"
+                                      },
+                                      "color-textLink--hover": {
+                                        "type": "string"
+                                      },
+                                      "color-textLink--active": {
+                                        "type": "string"
+                                      },
+                                      "color-textHeading": {
+                                        "type": "string"
+                                      },
+                                      "color-primary": {
+                                        "type": "string"
+                                      },
+                                      "color-primaryDark": {
+                                        "type": "string"
+                                      },
+                                      "color-primaryDarker": {
+                                        "type": "string"
+                                      },
+                                      "color-primaryLight": {
+                                        "type": "string"
+                                      },
+                                      "color-secondary": {
+                                        "type": "string"
+                                      },
+                                      "color-secondaryDark": {
+                                        "type": "string"
+                                      },
+                                      "color-secondaryDarker": {
+                                        "type": "string"
+                                      },
+                                      "color-error": {
+                                        "type": "string"
+                                      },
+                                      "color-errorLight": {
+                                        "type": "string"
+                                      },
+                                      "color-info": {
+                                        "type": "string"
+                                      },
+                                      "color-infoLight": {
+                                        "type": "string"
+                                      },
+                                      "color-success": {
+                                        "type": "string"
+                                      },
+                                      "color-successLight": {
+                                        "type": "string"
+                                      },
+                                      "color-warning": {
+                                        "type": "string"
+                                      },
+                                      "color-warningLight": {
+                                        "type": "string"
+                                      },
+                                      "color-black": {
+                                        "type": "string"
+                                      },
+                                      "color-white": {
+                                        "type": "string"
+                                      },
+                                      "color-whitesBase": {
+                                        "type": "string"
+                                      },
+                                      "color-grey": {
+                                        "type": "string"
+                                      },
+                                      "color-greyDarkest": {
+                                        "type": "string"
+                                      },
+                                      "color-greyDarker": {
+                                        "type": "string"
+                                      },
+                                      "color-greyDark": {
+                                        "type": "string"
+                                      },
+                                      "color-greyMedium": {
+                                        "type": "string"
+                                      },
+                                      "color-greyLight": {
+                                        "type": "string"
+                                      },
+                                      "color-greyLighter": {
+                                        "type": "string"
+                                      },
+                                      "color-greyLightest": {
+                                        "type": "string"
+                                      },
+                                      "button--default-color": {
+                                        "type": "string"
+                                      },
+                                      "button--default-colorHover": {
+                                        "type": "string"
+                                      },
+                                      "button--default-colorActive": {
+                                        "type": "string"
+                                      },
+                                      "button--default-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "button--default-borderColorHover": {
+                                        "type": "string"
+                                      },
+                                      "button--default-borderColorActive": {
+                                        "type": "string"
+                                      },
+                                      "button--primary-color": {
+                                        "type": "string"
+                                      },
+                                      "button--primary-colorHover": {
+                                        "type": "string"
+                                      },
+                                      "button--primary-colorActive": {
+                                        "type": "string"
+                                      },
+                                      "button--primary-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "button--primary-backgroundColorHover": {
+                                        "type": "string"
+                                      },
+                                      "button--primary-backgroundColorActive": {
+                                        "type": "string"
+                                      },
+                                      "button--disabled-color": {
+                                        "type": "string"
+                                      },
+                                      "button--disabled-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "button--disabled-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "icon-color": {
+                                        "type": "string"
+                                      },
+                                      "icon-color-hover": {
+                                        "type": "string"
+                                      },
+                                      "button--icon-svg-color": {
+                                        "type": "string"
+                                      },
+                                      "icon-ratingEmpty": {
+                                        "type": "string"
+                                      },
+                                      "icon-ratingFull": {
+                                        "type": "string"
+                                      },
+                                      "carousel-bgColor": {
+                                        "type": "string"
+                                      },
+                                      "carousel-title-color": {
+                                        "type": "string"
+                                      },
+                                      "carousel-description-color": {
+                                        "type": "string"
+                                      },
+                                      "carousel-dot-color": {
+                                        "type": "string"
+                                      },
+                                      "carousel-dot-color-active": {
+                                        "type": "string"
+                                      },
+                                      "carousel-dot-bgColor": {
+                                        "type": "string"
+                                      },
+                                      "carousel-arrow-color": {
+                                        "type": "string"
+                                      },
+                                      "carousel-arrow-bgColor": {
+                                        "type": "string"
+                                      },
+                                      "carousel-arrow-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "card-title-color": {
+                                        "type": "string"
+                                      },
+                                      "card-title-color-hover": {
+                                        "type": "string"
+                                      },
+                                      "card-figcaption-button-background": {
+                                        "type": "string"
+                                      },
+                                      "card-figcaption-button-color": {
+                                        "type": "string"
+                                      },
+                                      "card--alternate-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "card--alternate-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "card--alternate-color--hover": {
+                                        "type": "string"
+                                      },
+                                      "form-label-font-color": {
+                                        "type": "string"
+                                      },
+                                      "input-font-color": {
+                                        "type": "string"
+                                      },
+                                      "input-border-color": {
+                                        "type": "string"
+                                      },
+                                      "input-border-color-active": {
+                                        "type": "string"
+                                      },
+                                      "input-bg-color": {
+                                        "type": "string"
+                                      },
+                                      "input-disabled-bg": {
+                                        "type": "string"
+                                      },
+                                      "select-bg-color": {
+                                        "type": "string"
+                                      },
+                                      "select-arrow-color": {
+                                        "type": "string"
+                                      },
+                                      "checkRadio-color": {
+                                        "type": "string"
+                                      },
+                                      "checkRadio-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "checkRadio-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "alert-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "alert-color": {
+                                        "type": "string"
+                                      },
+                                      "alert-color-alt": {
+                                        "type": "string"
+                                      },
+                                      "storeName-color": {
+                                        "type": "string"
+                                      },
+                                      "body-bg": {
+                                        "type": "string"
+                                      },
+                                      "header-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "footer-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "navUser-color": {
+                                        "type": "string"
+                                      },
+                                      "navUser-color-hover": {
+                                        "type": "string"
+                                      },
+                                      "navUser-dropdown-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "navUser-dropdown-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "navUser-indicator-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "navPages-color": {
+                                        "type": "string"
+                                      },
+                                      "navPages-color-hover": {
+                                        "type": "string"
+                                      },
+                                      "navPages-subMenu-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "navPages-subMenu-separatorColor": {
+                                        "type": "string"
+                                      },
+                                      "dropdown--quickSearch-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "dropdown--wishList-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "blockquote-cite-font-color": {
+                                        "type": "string"
+                                      },
+                                      "container-border-global-color-base": {
+                                        "type": "string"
+                                      },
+                                      "container-fill-base": {
+                                        "type": "string"
+                                      },
+                                      "container-fill-dark": {
+                                        "type": "string"
+                                      },
+                                      "label-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "label-color": {
+                                        "type": "string"
+                                      },
+                                      "overlay-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "loadingOverlay-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "pace-progress-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "spinner-borderColor-dark": {
+                                        "type": "string"
+                                      },
+                                      "spinner-borderColor-light": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-header-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-headingPrimary-color": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-headingPrimary-font": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-headingSecondary-color": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-headingSecondary-font": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-body-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-colorFocus": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-contentPrimary-color": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-contentPrimary-font": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-contentSecondary-color": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-contentSecondary-font": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-font": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-color": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-colorHover": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-colorActive": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-backgroundColorHover": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-backgroundColorActive": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-borderColorHover": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-borderColorActive": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-borderColorDisabled": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-backgroundColorDisabled": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonPrimary-colorDisabled": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formChecklist-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formChecklist-color": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formChecklist-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formChecklist-backgroundColorSelected": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonSecondary-font": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonSecondary-color": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonSecondary-colorHover": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonSecondary-colorActive": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonSecondary-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonSecondary-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonSecondary-backgroundColorHover": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonSecondary-backgroundColorActive": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonSecondary-borderColorHover": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-buttonSecondary-borderColorActive": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-link-color": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-link-font": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-discountBanner-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-discountBanner-textColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-discountBanner-iconColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-orderSummary-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-orderSummary-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-step-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-step-textColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-form-textColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formField-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formField-textColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formField-shadowColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formField-placeholderColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formField-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formField-errorColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-formField-inputControlColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-step-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-header-borderColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-header-textColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-loadingToaster-backgroundColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-loadingToaster-textColor": {
+                                        "type": "string"
+                                      },
+                                      "optimizedCheckout-link-hoverColor": {
+                                        "type": "string"
+                                      },
+                                      "color_badge_product_sale_badges": {
+                                        "type": "string"
+                                      },
+                                      "color_text_product_sale_badges": {
+                                        "type": "string"
+                                      },
+                                      "color_hover_product_sale_badges": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Requirements and Restrictions\n\nYour theme's config.json file must meet the following requirements:\n\n* It must be named `config.json`, must reside in the root of your `theme-name` top level subdirectory (e.g.: `/cornerstone/config.json` or `/stencil/config.json`), and must be valid JSON.\n* The maximum allowable size for a theme's `config.json` file is 64 KB. Exceeding this limit will trigger an error upon uploading the theme to BigCommerce.\n* Each key's value is restricted to 64 characters. Exceeding this limit will similarly trigger an upload error.\n* Other than these size constraints, there is no limit on the number of keys and values that you can place in a theme's `config.json`.\n\n_Carefully check your theme against all the requirements listed here – including the required keys within the `meta` object and `variations` array. While some requirements are not enforced in local development, they will be validated (and will trigger errors) when you later upload your theme to BigCommerce._\n\n### Required Themewide Keys\nThe `config.json` file must contain at least the following keys, with appropriate values (as outlined above):\n\n*name\n* `version`\n* `settings` (which must itself be a valid JSON object)\n* `variations` (an array of at least one, and at most four, variation objects)\n* `meta` (an object; see specific requirements below)\n\n### Required `meta` Keys\n\nThe meta object must contain at least the following keys, with appropriate values:\n\n* `price`\n* `author_name`\n* `author_email`\n* `author_support_url`\n* `documentation_url`\n\nFor illustration, here is a commented excerpt:\n\n```\n{\n  ...\n  \"meta\": {\n    \"price\": 15000, // in cents; non-negative integer, minimum 0\n    \"author_name:\" \"eCommerce Themes, Inc.\", // Must be a string, not null\n    \"author_email\": \"support@example.com\", // Must be a string, should be a valid email address, not null\n    \"author_support_url\": \"http://example.com/contactus\", //  Must be a string, should be a valid URL, not null\n    \"documentation_url\": \"http://example.com/guide\", // Must be a string, limit of 255 characters,\n          not null\n    \"composed_image\": \"path/to/composed.png\", // Must be a string path to the composed-image file\n    \"features\": [ // Array of feature strings, all of which must be in the list enumerated here: \n          https://github.com/bigcommerce/theme-registry/blob/master/app/schemas/theme_config.json#L33\n      \"fully_responsive\" // Must include at least one feature, and no duplicate entries\n    ]\n  },\n  ...\n}\n```\n\n### Required `variation` Keys\n\nFor each variation that you choose to include in your theme (at least one is required), you must provide at least the following keys and sub-element, with appropriate values:\n\n* `name`\n* `id`\n* `meta` (an object, containing at least:)\n* `description`\n\nFor illustration, here is a redacted excerpt from Cornerstone:\n\n```\n\"variations\": [\n    {\n      \"name\": \"Light\",\n      \"id\": \"light\",\n      \"meta\": {\n        \"desktop_screenshot\": \"desktop_light.png\",\n        \"mobile_screenshot\": \"mobile_light.png\",\n        \"description\": \"Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. ....\",\n    ...\n    }\n  ]\n```",
                         "header": {
                           "anchor": "config_requirements-and-restrictions"
                         }
