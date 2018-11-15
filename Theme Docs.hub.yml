@@ -7297,6 +7297,92 @@ pages:
                               bordered: true
                               maxWidth: '400'
                               maxHeight: '500'
+                          - type: text
+                            data: >-
+                              You are now ready to begin adding data tags into
+                              the HTML files across your Cornerstone theme. 
+                          - type: text
+                            data: >-
+                              ### Adding Data Tags into Cornerstone’s HTML files
+
+
+                              Data tags must be manually added to a product in
+                              order to track shopper events and interactions
+                              with a product. Because data tags collect product
+                              data at a very granular level, there will be
+                              multiple locations you will have to add tags on a
+                              singular product in order to get a comprehensive
+                              look at the product’s data. For example, if you
+                              want to, it is imperative to note that a product
+                              can be viewed by clicking any of the following:
+
+
+                              * The name of the product
+
+                              * The “Quick View” Button
+
+                              * The product image
+
+
+                              So, if you would like to track the clicks on a
+                              specific product, in order to ensure you get a
+                              fully comprehensive look at shoppers’ interactions
+                              with a product, you will want to include a data
+                              tag on each of these fields. If a specific product
+                              possesses multiple data tags, the data tag that is
+                              closest to the product is the one which will will
+                              track clicks, product impressions, or product
+                              views.
+
+
+                              Data tags will be implemented in your store by
+                              using simple HTML. In order to begin tracking, you
+                              will add data tags as an attribute to the already
+                              existing HTML tags present in your theme. 
+
+
+                              See [Pull Request #1377]() to see how Data Tags
+                              were implemented in Cornerstone 2.6.0.
+
+
+                              ### Data Tag Implementation Example
+
+
+                              You can see a data tag implemented in the HTML
+                              form tag in the code sample below:
+                          - type: code
+                            data: >-
+                              <form action="{{urls.compare}}" method='POST'
+                              data-list-name="Brand: {{brand.name}}"
+                              data-product-compare>
+                                  {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+                                      {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+                                  {{else}}
+                                      {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+                                  {{/if}}
+                              </form>
+
+
+                              {{> components/common/paginator pagination.brand}}
+                            config:
+                              mode: html
+                              highlightRange:
+                                - from: '1'
+                                  to: '2'
+                          - type: text
+                            data: >-
+                              In the above snippet, the data tag is embedded in
+                              a `<form>` HTML tag in lines 1 and 2. The data tag
+                              is  `data-list-name` and its value is `“Brand:
+                              {{brand.name}}”`.
+                          - type: text
+                            data: >-
+                              ## Data Tag Reference
+
+
+                              Currently, BigCommerce supports 11 different data
+                              tags. Below is a table with a breakdown of each
+                              tag and its description.
                   blocks: []
               - title: Custom Templates
                 route:
