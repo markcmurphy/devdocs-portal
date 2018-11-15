@@ -219,7 +219,7 @@ body {
 .HubBlock.is-outlined > .HubBlock-inner > .HubBlock-content .Highlight.line-numbers {
 	border-radius: 5px;  /* -webkit-box-shadow: 0 5px 15px 0 rgba(37, 44, 97, 0.15), 0 2px 4px 0 rgba(93, 100, 148, 0.2); */  /* box-shadow: 0 5px 15px 0 rgba(37, 44, 97, 0.15), 0 2px 4px 0 rgba(93, 100, 148, 0.2); */
 	padding: 20px !important;
-	background-color: #f4f7f9 !important;
+	background-color: #202746 !important;
 }
 
 .HubBlock-content.has-anchor {  /* border: 1px solid #ddd !important; */
@@ -231,140 +231,165 @@ body {
 	border: 0 solid#ddd0 !important;
 }
 
-code[class*="language-"], pre[class*="language-"] {
-	font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
-	font-size: 14px;
-	line-height: 1.375;
-	hyphens: none;  /* background:#fafbf9; */
-	color: #4299d7 !important;
+code[class*="language-"],
+pre[class*="language-"] {
+  font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.375;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  background: #202746;
+  color: #979db4;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection, code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-	text-shadow: none;
-	background: #fafbf9 !important;
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  text-shadow: none;
+  background: #898ea4;
 }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection, code[class*="language-"]::selection, code[class*="language-"] ::selection {
-	text-shadow: none;
-	background: #fafbf9 !important;
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  text-shadow: none;
+  background: #898ea4;
 }
 
-pre[class*="language-"] {  /* padding: 10px 0px; */  /* margin:.5em 0; */
-	overflow: auto !important;
+/* Code blocks */
+pre[class*="language-"] {
+  /*padding: 1em;*/
+ /* margin: .5em 0;*/
+  overflow: auto;
 }
 
+/* Inline code */
 :not(pre) > code[class*="language-"] {
-	padding: .1em !important;
-	border-radius: .3em !important;
+  padding: .1em;
+  border-radius: .3em;
 }
 
-.token.comment, .token.prolog, .token.doctype, .token.cdata {
-	color: #bdc3b7 !important;
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6b7394;
 }
 
 .token.punctuation {
-	color: #bdc3b7 !important;
+  color: #979db4;
 }
 
 .token.namespace {
-	opacity: 0.7 !important;
+  opacity: .7;
 }
 
-.token.tag, .token.operator, .token.number {
-	color: #1b6498 !important;
+.token.operator,
+.token.boolean,
+.token.number {
+  color: #c76b29;
+}
+.token.property {
+  color: #c08b30;
+}
+.token.tag {
+  color: #3d8fd1;
+}
+.token.string {
+  color: #22a2c9;
+}
+.token.selector {
+  color: #6679cc;
+}
+.token.attr-name {
+  color: #c76b29;
+}
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #22a2c9;
 }
 
-.token.property, .token.function {
-	color: #66a329 !important;
+.token.attr-value,
+.token.keyword,
+.token.control,
+.token.directive,
+.token.unit {
+  color: #ac9739;
 }
 
-.token.tag-id, .token.selector, .token.atrule-id {
-	color: #4d8217 !important;
+.token.statement,
+.token.regex,
+.token.atrule {
+  color: #22a2c9;
 }
 
-code.language-javascript, .token.attr-name {
-	color: #66a329 !important;
-}
-
-code.language-css, code.language-scss, .token.boolean, .token.string, .token.entity, .token.url, .language-css .token.string, .language-scss .token.string, .style .token.string, .token.attr-value, .token.keyword, .token.control, .token.directive, .token.unit, .token.statement, .token.regex, .token.atrule {
-	color: #277fbe !important;
-}
-
-.token.placeholder, .token.variable {
-	color: #8dcefc !important;
+.token.placeholder,
+.token.variable {
+  color: #3d8fd1;
 }
 
 .token.deleted {
-	text-decoration: line-through !important;
+  text-decoration: line-through;
 }
 
 .token.inserted {
-	border-bottom: 1px dotted #4d8217 !important;
-	text-decoration: none !important;
+  border-bottom: 1px dotted #f5f7ff;
+  text-decoration: none;
 }
 
 .token.italic {
-	font-style: italic !important;
+  font-style: italic;
 }
 
-.token.important, .token.bold {
-	font-weight: bold !important;
+.token.important,
+.token.bold {
+  font-weight: bold;
 }
 
 .token.important {
-	color: #66a329 !important;
+  color: #c94922;
 }
 
 .token.entity {
-	cursor: help !important;
+  cursor: help;
 }
 
 pre > code.highlight {
-	outline: .4em solid #66a329 !important;
-	outline-offset: .4em !important;
+  outline: .4em solid #c94922;
+  outline-offset: .4em;
 }
 
+/* overrides color-values for the Line Numbers plugin
+ * http://prismjs.com/plugins/line-numbers/
+ */
 .line-numbers .line-numbers-rows {
-	border-right-color: #f3f4f1 !important;
+  border-right-color: #293256;
 }
 
 .line-numbers-rows > span:before {
-	color: #d1d6cd !important;
+  color: #5e6687;
 }
 
+/* overrides color-values for the Line Highlight plugin
+ * http://prismjs.com/plugins/line-highlight/
+ * alpha transparency in 8 digits hex notation coming to a browser near you soon:
+ * https://drafts.csswg.org/css-color/#hex-notation
+ */
 .line-highlight {
-	background: #bcdefa52 !important;
-	background: -webkit-linear-gradient(left, #bcdefa52 70%, rgba(247, 249, 251, 0)) !important;
-	background: linear-gradient(to right, #bcdefa52 70%, rgba(247, 249, 251, 0)) !important;
-}
-
-.line-numbers .line-numbers-rows {
-	border-right-color: #c1c8bd !important;
-	position: absolute;
-	pointer-events: none;
-	top: 0;
-	font-size: 100%;  /* left: -0.8em; */
-	width: 3em;  /* works for line-numbers below 1000 lines */
-	letter-spacing: -1px;
-	border-right: 1px solid #999;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.line-numbers-rows > span {
-	pointer-events: none !important;
-	display: block !important;
-	counter-increment: linenumber !important;
-}
-
-.line-numbers-rows > span:before {
-	color: #c1c8bd !important;
-	content: counter(linenumber);
-	display: block;
-	padding-right: .8em;
-	text-align: right;
+  background: #979db433;
+  background: linear-gradient(to right, #979db433 70%, #979db400);
 }
 
 /* Stoplight Overrides */
