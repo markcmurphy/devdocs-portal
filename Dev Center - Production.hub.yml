@@ -10280,6 +10280,73 @@
                         }
                       },
                       {
+                        "title": "Restyling the Apple Pay Button",
+                        "route": {
+                          "path": "/restyling-the-apple-pay-button"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Restyling the Apple Pay Button</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#restyling_using\">Using Apple Pay</a></li>\n    <li><a href=\"#restyling_apple\">Apple Pay and Stencil Themes</a></li>\n    <li><a href=\"#restyling_implementing\">Implementing the Apple Pay Button</a></li>\n    <li><a href=\"#restyling_apple-pay-identity\">Apple Pay Identity Guidelines</a></li>\n    <li><a href=\"#restyling_styling\">Styling the Apple Pay Button</a></li>\n    <li><a href=\"#restyling_troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Using Apple Pay\n\nApple Pay is a digital wallet that links to a shopper's chosen credit or debit cards. It reduces checkout friction in the same way other digital wallets like PayPal do: Once a shopper has set up Apple Pay, they don't need to enter or transfer their actual credit or debit-card number, nor do they need to re-enter their billing, shipping or contact details.\n\nDisplaying the Apple Pay button to shoppers on your storefront is subject to Apple's [geographic constraints](https://support.apple.com/en-us/HT204916), [supported devices and software](https://support.apple.com/en-us/KM207105), [industry and conduct restrictions](https://developer.apple.com/apple-pay/acceptable-use-guidelines-for-websites/), and policies regarding store checkout flow. \n\nFor details, see the [Apple Pay for Developers](https://developer.apple.com/apple-pay/) site and [this BigCommerce support article](https://support.bigcommerce.com/articles/Public/Connecting-with-Apple-Pay).",
+                              "header": {
+                                "anchor": "restyling_using"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Apple Pay and Stencil Themes\n\nThe Apple Pay button is included in most Stencil themes, but its default appearance might not match your store's theme. This article explains how to do the following:\n* script the button in themes that don't already include it\n* restyle the button within Apple's guidelines\n\n### Themes Incorporating Apple Pay \n\nMost current Stencil themes incorporate Apple Pay by default. These include Cornerstone 1.4.0 (or later) and most Theme Marketplace themes. \n\n### Themes Omitting Apple Pay \n\nThe following Stencil themes do _not_ include Apple Pay:\n\n* Cornerstone 1.3.4 or earlier\n* Fortune\n* Geneva\n* Prosper\n* Solo\n* Earlier versions of Marketplace themes that have since added Apple Pay\n* Custom themes derived from any of the above\n\n### Apple Pay Button's Location \n\nBy default, the Apple Pay button will appear on a theme's Cart page. If the store has [enabled site-wide HTTPS](https://support.bigcommerce.com/articles/Public/Site-Wide-HTTPS/), the Apple Pay button will also appear in the Quick Cart modal. The Apple Pay button does _not_ appear on the checkout page, because Apple Pay is designed as a low-friction alternative that bypasses the store's native checkout.",
+                              "header": {
+                                "anchor": "restyling_apple"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Implementing the Apple Pay Button\n\n### Themes Incorporating Apple Pay\n\nTo display the Apple Pay button in themes incorporating Apple Pay, a store administrator only needs to enable Apple Pay in the BigCommerce control panel by selecting `Store Setup` > `Payments` > `Digital Wallets` > `Apple Pay` > `Set up`, as outlined in the [Connecting with Apple Pay](https://support.bigcommerce.com/articles/Public/Connecting-with-Apple-Pay#setup) support article. \n\n### Themes Omitting Apple Pay\n\nTo display the Apple Pay button on the Cart page of themes omitting Apple Pay, you or a store administrator must paste enabling CSS into the footer script, as follows: \n\n1. Copy the CSS below.\n2. In the BigCommerce control panel, select `Storefront Design` > `Design Options` and then the `Scripts` tab.\n3. Paste the copied code into the Footer script box and select `Save`.",
+                              "header": {
+                                "anchor": "restyling_implementing"
+                              }
+                            },
+                            {
+                              "type": "code",
+                              "data": "<style>\n/* don’t display the button by default */\n.apple-pay-checkout-button {\n  display: none;\n}\n\n/* display the button if apple pay is supported */\n.apple-pay-supported .apple-pay-checkout-button {\n  display: inline-block;\n}\n\n/* renders a black background with white logo */\n.apple-pay-checkout-button {\n  background-size: 100% 60%;\n  background-repeat: no-repeat;\n  background-position: 50% 50%;\n  border-radius: 5px;\n  padding: 0px;\n  box-sizing: border-box;\n  min-width: 175px;\n  min-height: 32px;\n  max-height: 64px;\n  background-image: -webkit-named-image(apple-pay-logo-white);\n  background-color: black;\n  text-indent: -9000em;\n  cursor: pointer;\n}\n\n/* for small screens, you should adjust the width of the button to\n   span the width of the containing block */\n@media screen and (max-width: 480px) {\n  .apple-pay-checkout-button {\n    width: 100%;\n    height: 60px;\n  }\n}\n</style>",
+                              "config": {
+                                "mode": "css"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Apple Pay Identity Guidelines\n\nAs a condition for enabling Apple Pay, Apple requires merchants to style and display the button according to [Apple Pay Identity Guidelines](https://developer.apple.com/apple-pay/Apple-Pay-Identity-Guidelines.pdf). For BigCommerce's summary of the relevant guidelines, see the [Integrating the Apple Pay Button](https://support.bigcommerce.com/articles/Public/Integrating-the-Apple-Pay-button/#guidelines) support article.",
+                              "header": {
+                                "anchor": "restyling_apple-pay-identity"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Styling the Apple Pay Button\n\nBy default, a black version of the Apple Pay button will display in the storefront. However, Apple permits you to change the following three styling elements of the button, to match the style of your storefront:\n\n* Button background color, which must only be either white or black. A white button can have a black border.\n* Button height\n* Button width\n\n### Button Color – No Custom CSS Required\n\nIn themes incorporating Apple Pay, you or a store administrator can change the Apple Pay button's color in Theme Editor. Select: `Buttons` > `Apple Pay` > Button `Color`. \n\nThe drop-down list offers you the three options shown below: \n\n* Black (white text) – the default\n* White (black text)\n* White (black text with border)\n\n### Button Color – Custom CSS Required\n\nIn themes omitting Apple Pay, you must use custom CSS to change the Apple Pay button's color. Here are CSS snippets to recolor the default black button.\n\nTo render the button with a white background and black text, use this CSS:\n\n```\n.apple-pay-checkout-button {\n  background-image: -webkit-named-image(apple-pay-logo-black);\n  background-color: white;\n}\n```\n\nTo render the white Apple Pay button with black text and a black border, use this CSS:\n\n```\n.apple-pay-checkout-button {\n  background-image: -webkit-named-image(apple-pay-logo-black);\n  background-color: white;\n  border: .5px solid black\n}\n```\n### Button Size – Custom CSS Required \n\nResizing the button normally requires custom CSS. The following example shows how, by targeting the \n`.apple-pay-checkout-button` CSS selector, you can also manipulate the Apple Pay button's width and height. (This&#160;is subject to certain constraints imposed by Apple and BigCommerce, which are listed in the example's comments.)\n\n```\n.apple-pay-checkout-button {\n  width: 200px; /* apple specified minimum is 175px, there is no maximum */\n  height: 60px; /* apple specified minimum is 32px, maximum is 64px */\n}\t\n```",
+                              "header": {
+                                "anchor": "restyling_styling"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Troubleshooting\n\nIs your Apple Pay button configured but not appearing on the storefront? To troubleshoot issues like this, see the [Integrating the Apple Pay Button](https://support.bigcommerce.com/articles/Public/Integrating-the-Apple-Pay-button/#troubleshoot) support article.",
+                              "header": {
+                                "anchor": "restyling_troubleshooting"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
                         "title": "Checkout JS SDK",
                         "route": {
                           "path": "/checkout-js-sdk"
