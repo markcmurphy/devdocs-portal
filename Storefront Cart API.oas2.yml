@@ -1499,21 +1499,18 @@ parameters:
     description: >-
       To return product options add one of the following include:
 
-      `lineItems.physicalItems.options` , `lineItems.digitalItems.options`
-      `lineItems.digitalItems.options,lineItems.physicalItems.options`.
+      `lineItems.physicalItems.options`: The Cart returns an abbreviated result.
+      Use this to return physical items product options. Can also be used in a
+      /POST to have the extended Cart object return.
 
+      `lineItems.digitalItems.options`:  The Cart returns an abbreviated result.
+      Use this to return digital items product options.  Can also be used in a
+      /POST to have the extended Cart object return.
 
-
-      * `redirect_urls`: Create a direct link to a Cart. This can be used during
-      the /POST request for Carts.
-
-      * `line_items.physical_items.options`: The Cart returns an abbreviated
-      result. Use this to return physical items product options. Can also be
-      used in a /POST to have the extended Cart object return.
-
-      * `line_items.digital_items.options`: The Cart returns an abbreviated
-      result. Use this to return digital items product options.  Can also be
-      used in a /POST to have the extended Cart object return.
+      `lineItems.digitalItems.options,lineItems.physicalItems.options`:  The
+      Cart returns an abbreviated result. Use this to return digital and
+      physical options. Can also be used in a /POST to have the extended Cart
+      object return.
     default: 'lineItems.digitalItems.options,lineItems.physicalItems.options'
     enum:
       - lineItems.physicalItems.options
