@@ -164,8 +164,8 @@ paths:
             $ref: '#/definitions/Errors'
   '/wishlists/{wishlistId}':
     get:
-      description: 'Returns information about a given `Wishlist`, specified by its ID.'
-      summary: WishlistsByWishlistId_GET
+      description: 'Returns information about a given *Wishlist*, specified by its ID.'
+      summary: Get a Wishlist
       tags:
         - Wishlists
       operationId: WishlistsByWishlistIdGet
@@ -178,6 +178,8 @@ paths:
           type: string
           format: uuid
           description: The identifier of a specific wishlist.
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: Returns Wishlist Entity Object.
@@ -241,6 +243,8 @@ paths:
           type: string
           format: uuid
           description: This wishlist's unique ID.
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '204':
           description: ''
