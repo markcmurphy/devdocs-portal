@@ -17,7 +17,12 @@ produces:
 paths:
   /wishlists:
     post:
-      description: 'Creates a wishlist and adds products in one call. '
+      description: |-
+        Creates a wishlist and adds products in one call. 
+
+        Required:
+        * customer_id
+        * name
       summary: Create a Wishlist
       tags:
         - Wishlists
@@ -31,7 +36,7 @@ paths:
             $ref: '#/definitions/WishlistsCreateOrUpdateRequestData'
       responses:
         '201':
-          description: Returns Wishlist Entity object.
+          description: ''
           schema:
             $ref: '#/definitions/Wishlist'
         '400':
@@ -43,12 +48,10 @@ paths:
             $ref: '#/definitions/Errors'
     get:
       description: Returns all available wishlists.
-      summary: Get a Wishlist
+      summary: Get All Wishlists
       tags:
         - Wishlists
       operationId: wishlistsget
-      produces:
-        - application/json
       parameters:
         - name: customer_id
           in: query
@@ -76,6 +79,8 @@ paths:
           exclusiveMaximum: false
           exclusiveMinimum: false
           description: The numbers of items to return.
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
       responses:
         '200':
           description: Returns array of Wishlist Entity objects.
@@ -222,8 +227,8 @@ paths:
           schema:
             $ref: '#/definitions/Errors'
     delete:
-      description: Removes the entire wishlist.
-      summary: WishlistsByWishlistId_DELETE
+      description: Deletes the entire wishlist.
+      summary: Delete a Wishlist
       tags:
         - Wishlists
       operationId: WishlistsByWishlistIdDelete
@@ -238,7 +243,7 @@ paths:
           description: This wishlist's unique ID.
       responses:
         '204':
-          description: An empty response.
+          description: ''
         '400':
           description: Authentication Required.
           schema: {}
