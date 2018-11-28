@@ -2797,7 +2797,147 @@ pages:
                                 - title: jspm Themes (Legacy)
                                   blocks:
                                     - type: text
-                                      data: "## Legacy: Configuring themes with jspm (Marketplace theme versions earlier than 1.10.0)\n\n\n* Installing jspm\n* Registering the jspm Instance\n* Installing jspm-git\n* Adding BitBucket as a jspm registry\n* Installing Modules (jspm Themes)\n\n\nUse the following steps for Marketplace themes (other than Cornerstone) for which the version number is lower than 1.10.0\n\n\n### Installing jspm \n\nYou must install to manage your pre-1.10.0 theme's JavaScript dependencies. We have tested Stencil on jspm version 0.16.30 for Mac OS and Linux, and on version 0.16.31 for Windows. Use the following npm command to install a tested version of jspm with global scope - for Mac OS or Linux: \n\n`npm install -g jspm@0.16.30`\n\nOr, for Windows:\n\n`npm install -g jspm@0.16.31`\n\nYou can use the same command to upgrade an earlier jspm installation to a Stencil-supported version.\n\n### Registering the jspm Instance \n\nNext, register your jspm instance with GitHub.\nNavigate to your GitHub Personal Access Tokens page (https://github.com/settings/tokens).\n\nGenerate a new personal access token with the name Stencil and scope repo. (GitHub provides specific instructions here: https://help.github.com/articles/generating-an-ssh-key/)\n\nVerify that your new token includes the following scopes: \n\n* `repo:status`\n* `repo_deployment`\n* `public_repo`\n\nOnce you have generated your token, run the following command to associate your jspm module with your GitHub account:\n\n`jspm registry config github`\n\nYou will be prompted to enter your authentication token (`\"Set up GitHub credentials?`). Copy and paste the personal access token you created just above.\n\n### Installing jspm-git \n\nFor the next step, you will need the [jspm-git registry plug-in](https://www.npmjs.com/package/jspm-git\\).\n\nTo install it with global scope, enter the following on a command line:\n`npm install -g jspm-git`\n\nIf you already have an earlier version of jspm-git installed, you might need to update it to handle Git projects with two-digit version numbers (such as `1.10.0`). If so, use this command:\n\n`npm upgrade jspm-git@latest`\n\n### Adding BitBucket as a jspm Registry \n\nWorking with downloaded Marketplace themes requires that you next add BitBucket as a registry for jspm. To proceed, set up a [BitBucket](https://bitbucket.org/product) account, if you do not already have one.\n\nNext, enter the following on a command line:\n\n`jspm registry create bitbucket jspm-git`\n\nYou will be prompted for a base URL for your git server. Enter the following: `ssh://git@bitbucket.org`\n\t\n\t\n### Installing Modules (jspm Themes)\n\t\nNext, install the npm and jspm modules required to access Stencil JavaScript events: Navigate to your theme directory. \n\nThis example assumes that this target directory has the default name `stencil`\n\n`cd stencil` \n\nWithin that directory, install (or reinstall) the `stencil-utils` module to ensure that all your dependencies are up to date:`npm install` Then execute the following command to complete installation: `jspm install`\n\t\n\t\n### Next Steps\n\t\nTo authorize, initialize, and launch your theme, follow the steps listed in the Launching Stencil subsection.\n\nLater, when you are ready to upload your customized theme to a store, you should follow the zipping and uploading instructions in Bundling and Submitting a Theme and Troubleshooting Theme Uploads"
+                                      data: >-
+                                        ## Legacy: Configuring themes with jspm
+                                        (Marketplace theme versions earlier than
+                                        1.10.0)
+
+
+                                        * Installing jspm
+
+                                        * Registering the jspm Instance
+
+                                        * Installing jspm-git
+
+                                        * Adding BitBucket as a jspm registry
+
+                                        * Installing Modules (jspm Themes)
+                                    - type: text
+                                      data: >
+                                        Use the following steps for Marketplace
+                                        themes (other than Cornerstone) for
+                                        which the version number is lower than
+                                        1.10.0
+
+
+                                        ## Installing jspm 
+
+
+                                        You must install to manage your
+                                        pre-1.10.0 theme's JavaScript
+                                        dependencies. We have tested Stencil on
+                                        jspm version 0.16.30 for Mac OS and
+                                        Linux, and on version 0.16.31 for
+                                        Windows. Use the following npm command
+                                        to install a tested version of jspm with
+                                        global scope - for Mac OS or Linux: 
+
+
+                                        `npm install -g jspm@0.16.30`
+
+
+                                        Or, for Windows:
+
+
+                                        `npm install -g jspm@0.16.31`
+
+
+                                        You can use the same command to upgrade
+                                        an earlier jspm installation to a
+                                        Stencil-supported version.
+                                    - type: text
+                                      data: >
+                                        ## Registering the jspm Instance 
+
+
+                                        Next, register your jspm instance with
+                                        GitHub.
+
+                                        Navigate to your [GitHub Personal Access
+                                        Tokens
+                                        page](https://github.com/settings/tokens).
+
+
+                                        Generate a new personal access token
+                                        with the name Stencil and scope repo.
+                                        GitHub provides specific instructions
+                                        [here](https://help.github.com/articles/generating-an-ssh-key/).
+
+
+                                        Verify that your new token includes the
+                                        following scopes: 
+
+
+                                        * `repo:status`
+
+                                        * `repo_deployment`
+
+                                        * `public_repo`
+
+
+                                        Once you have generated your token, run
+                                        the following command to associate your
+                                        jspm module with your GitHub account:
+
+
+                                        `jspm registry config github`
+
+
+                                        You will be prompted (`"Set up GitHub
+                                        credentials?`) to enter your
+                                        authentication token. Copy the personal
+                                        access token you created just above and
+                                        paste it in.
+                                    - type: text
+                                      data: >-
+                                        ## Installing jspm-git 
+
+
+                                        For the next step, you will need the
+                                        [jspm-git registry
+                                        plug-in](https://www.npmjs.com/package/jspm-git\).
+
+
+                                        To install it with global scope, enter
+                                        the following on a command line:
+
+                                        `npm install -g jspm-git`
+
+
+                                        If you already have an earlier version
+                                        of jspm-git installed, you might need to
+                                        update it to handle Git projects with
+                                        two-digit version numbers (such as
+                                        `1.10.0`). If so, use this command:
+
+
+                                        `npm upgrade jspm-git@latest`
+                                    - type: text
+                                      data: >-
+                                        ## Adding BitBucket as a jspm Registry 
+
+
+                                        Working with downloaded Marketplace
+                                        themes requires that you next add
+                                        BitBucket as a registry for jspm. To
+                                        proceed, set up a
+                                        [BitBucket](https://bitbucket.org/product)
+                                        account, if you do not already have one.
+
+
+                                        Next, enter the following on a command
+                                        line:
+
+
+                                        `jspm registry create bitbucket
+                                        jspm-git`
+
+
+                                        You will be prompted for a base URL for
+                                        your git server. Enter the following:
+                                        `ssh://git@bitbucket.org`
+                                    - type: text
+                                      data: "## Installing Modules (jspm Themes)\n\t\nNext, install the npm and jspm modules required to access Stencil JavaScript events: Navigate to your theme directory. \n\nThis example assumes that this target directory has the default name `stencil`\n\n`cd stencil` \n\nWithin that directory, install (or reinstall) the `stencil-utils` module to ensure that all your dependencies are up to date:`npm install` Then execute the following command to complete installation: `jspm install`"
                                     - type: callout
                                       data:
                                         title: 'BitBucket Reauthentication '
