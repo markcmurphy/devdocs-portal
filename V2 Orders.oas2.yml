@@ -625,21 +625,33 @@ paths:
                 resource: non laboris labore dolore reprehenderit
               external_id: tempor et sunt
               external_merchant_id: id ea a
-            Adding an Existing Product:
-              products:
-                - name: Poster
-                  quantity: 5
-                  price_inc_tax: 12.45
-                  price_ex_tax: 10.12
-                  product_options:
-                    id: 56
-                    value: 12
-            Adding a New Products:
-              products:
-                - name: Poster
-                  quantity: 5
-                  price_inc_tax: 12.45
-                  price_ex_tax: 10.12
+            Adding an Existing Product: |-
+              {
+                "products": [
+                  {
+                    "name": "BigCommerce Coffee Mug",
+                    "product_id": 12,
+                    "quantity": 5,
+                    "price_inc_tax": 12.45,
+                    "price_ex_tax": 10.12,
+                    "product_options": {
+                      "id": 56,
+                      "value": 12
+                    }
+                  }
+                ]
+              }
+            Adding a New Products: |-
+              {
+                "products": [
+                  {
+                    "name": "Poster",
+                    "quantity": 5,
+                    "price_inc_tax": 12.45,
+                    "price_ex_tax": 10.12
+                  }
+                ]
+              }
         - name: id
           in: path
           required: true
