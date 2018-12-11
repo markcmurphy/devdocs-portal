@@ -448,3 +448,44 @@ responses:
           type: string
         type:
           type: string
+  Wishlist Response:
+    description: Wishlist Object Response
+    schema:
+      title: Wishlist
+      type: object
+      properties:
+        id:
+          description: 'Wishlist ID, provided after creating a wishlist with a POST.'
+          type: string
+          format: uuid
+        customer_id:
+          type: integer
+          description: The ID the customer to which the wishlist belongs.
+        name:
+          description: The *Wishlist* name.
+          type: string
+        is_public:
+          description: Whether the wishlist is available to the public.
+          type: boolean
+        products:
+          description: Array of *Wishlist* products.
+          type: array
+          items:
+            $ref: '#/definitions/Product'
+    examples:
+      application/json:
+        id: 6c91d41d-04f0-377c-b8a9-443150ef8ff0
+        customer_id: -79920652
+        name: velit a
+        is_public: false
+        products:
+          - product_id: 38131451
+            variant_id: -20219285
+          - product_id: -94886694
+            variant_id: 6917022
+          - product_id: 31738696
+            variant_id: -775902
+          - product_id: -88018607
+            variant_id: 53274787
+          - product_id: -9700316
+            variant_id: -19555586
