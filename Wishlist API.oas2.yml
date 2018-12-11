@@ -55,9 +55,7 @@ paths:
           description: Authentication Required.
           schema: {}
         default:
-          description: Internal server error.
-          schema:
-            $ref: '#/definitions/Error'
+          $ref: '#/responses/500 Error'
     get:
       description: >-
         Returns a list of all *Wishlists*. Optional filter parameters can be
@@ -120,7 +118,7 @@ paths:
           description: Authentication Required.
           schema: {}
         '500':
-          $ref: ''
+          $ref: '#/responses/500 Error'
   '/wishlists/{wishlistId}/items':
     post:
       description: |-
@@ -289,9 +287,7 @@ paths:
           description: Authentication Required.
           schema: {}
         default:
-          description: Internal server error.
-          schema:
-            $ref: '#/definitions/Error'
+          $ref: '#/responses/500 Error'
 definitions:
   WishlistsCreateOrUpdateRequestData:
     title: WishlistsCreateOrUpdateRequestData
