@@ -57,25 +57,11 @@ paths:
         - Wishlists
       operationId: wishlistsget
       parameters:
-        - name: offset
-          in: query
-          required: false
-          type: integer
-          exclusiveMaximum: false
-          exclusiveMinimum: false
-          description: >-
-            The number of items to skip before starting to collect the result
-            set.
-        - name: limit
-          in: query
-          required: false
-          type: integer
-          exclusiveMaximum: false
-          exclusiveMinimum: false
-          description: The numbers of items to return.
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
         - $ref: '#/parameters/FilterCustomerID'
+        - $ref: '#/parameters/FilterLimit'
+        - $ref: '#/parameters/FilterOffset'
       responses:
         '200':
           description: Returns array of Wishlist Entity objects.
