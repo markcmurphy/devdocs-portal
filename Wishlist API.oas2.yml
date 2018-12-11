@@ -48,7 +48,7 @@ paths:
         - $ref: '#/parameters/Content-Type'
       responses:
         '201':
-          $ref: '#/responses/Wishlist Response'
+          $ref: '#/responses/Wishlist Object'
         '400':
           description: Authentication Required.
           schema: {}
@@ -70,7 +70,7 @@ paths:
         - $ref: '#/parameters/FilterOffset'
       responses:
         '200':
-          $ref: '#/responses/Wishlist Response'
+          $ref: '#/responses/Array of Wishlist objects'
         '400':
           description: Authentication Required.
           schema: {}
@@ -104,7 +104,7 @@ paths:
         - $ref: '#/parameters/Content-Type'
       responses:
         '201':
-          description: Returns Wishlist Entity object.
+          $ref: '#/responses/Wishlist Object'
         '400':
           description: Authentication Required.
           schema: {}
@@ -115,7 +115,7 @@ paths:
           description: Internal server error.
           schema:
             $ref: '#/definitions/Error'
-      summary: Update a Wishlist
+      summary: Update a Wishlist Item
   '/wishlists/{wishlistId}/items/{itemId}':
     delete:
       description: Deletes a line item from a *Wishlist*.
@@ -141,7 +141,7 @@ paths:
         - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          description: Returns Wishlist Entity Object.
+          $ref: '#/responses/Wishlist Object'
         '400':
           description: Authentication Required.
           schema: {}
@@ -172,7 +172,7 @@ paths:
         - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          $ref: '#/responses/Wishlist Response'
+          $ref: '#/responses/Wishlist Object'
         '400':
           description: Authentication Required.
           schema: {}
@@ -208,7 +208,7 @@ paths:
         - $ref: '#/parameters/Content-Type'
       responses:
         '201':
-          $ref: '#/responses/Wishlist Response'
+          $ref: '#/responses/Wishlist Object'
         '400':
           description: Authentication Required.
           schema: {}
