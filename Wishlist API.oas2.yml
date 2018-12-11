@@ -1,455 +1,661 @@
-swagger: '2.0'
-info:
-  version: ''
-  title: Wishlist API
-  contact: {}
-  description: >-
-    The Wishlist API allows for developers to create and edit customer
-    wishlists. 
-host: api.bigcommerce.com
-basePath: '/stores/{store_hash}/v3'
-schemes:
-  - https
-consumes:
-  - application/json
-produces:
-  - application/json
-paths:
-  /wishlists:
-    post:
-      description: |-
-        Creates a *Wishlist*. 
-
-        This will allow you to create a wishlist and add products.
-
-        **Required Fields:**
-        * customer_id
-        * name
-      summary: Create a Wishlist
-      tags:
-        - Wishlists
-      operationId: WishlistsPost
-      parameters:
-        - name: body
-          in: body
-          required: true
-          description: ''
-          schema:
-            $ref: '#/definitions/WishlistsCreateOrUpdateRequestData'
-          x-examples:
-            application/json:
-              customer_id: -84468254
-              is_public: false
-              name: anim cu
-              products:
-                - product_id: -74658167
-                  variant_id: 3186438
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/Wishlist'
-        '400':
-          description: Authentication Required.
-          schema: {}
-        default:
-          description: Internal server error.
-          schema:
-            $ref: '#/definitions/Errors'
-    get:
-      description: >-
-        Returns a list of all *Wishlists*. Optional filter parameters can be
-        passed in.
-      summary: Get All Wishlists
-      tags:
-        - Wishlists
-      operationId: wishlistsget
-      parameters:
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-        - $ref: '#/parameters/FilterCustomerID'
-        - $ref: '#/parameters/FilterLimit'
-        - $ref: '#/parameters/FilterOffset'
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Wishlists'
-          examples:
-            application/json:
-              data:
-                - id: 'urn:uuid:308d247e-ad01-e28c-bb56-cc25b52861c6'
-                  customer_id: -8063687
-                  name: culpa dolore ut labori
-                  is_public: false
-                  products:
-                    - product_id: -66360391
-                      variant_id: -1908516
-                    - product_id: -83077938
-                      variant_id: -44678908
-                    - product_id: -29360591
-                      variant_id: -79553637
-                - id: c8c937fd-b71e-0a5e-4ddb-a4008a5357bf
-                  customer_id: 95051711
-                  name: Duis deserunt esse
-                  is_public: true
-                  products:
-                    - product_id: -13077467
-                      variant_id: -95041208
-                    - product_id: -94942074
-                      variant_id: 23815484
-                    - product_id: -18748345
-                      variant_id: 86800087
-                - id: 'urn:uuid:24e231a3-db84-d44c-c944-e08041480bc0'
-                  customer_id: -93257647
-                  name: irure nostrud proident pariatur Lorem
-                  is_public: false
-                  products:
-                    - product_id: 53665344
-                      variant_id: 41841488
-                    - product_id: 11885378
-                      variant_id: -60754251
-                    - product_id: 60261358
-                      variant_id: -97522346
-                    - product_id: 54158449
-                      variant_id: -77835990
-              meta: {}
-        '400':
-          description: Authentication Required.
-          schema: {}
-        default:
-          description: Internal server error.
-          schema:
-            $ref: '#/definitions/Errors'
-  '/wishlists/{wishlistId}/items':
-    post:
-      description: |-
-        Updates a *Wishlist*.
-
-        Use this endpoint to add new items to a *Wishlist*.
-      tags:
-        - Wishlists
-      operationId: WishlistsItemsByWishlistIdPost
-      produces:
-        - application/json
-      parameters:
-        - name: wishlistId
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: ''
-        - name: body
-          in: body
-          required: true
-          description: ''
-          schema:
-            $ref: '#/definitions/WishlistAddItems'
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '201':
-          description: Returns Wishlist Entity object.
-        '400':
-          description: Authentication Required.
-          schema: {}
-        '404':
-          description: Wishlist not found.
-          schema: {}
-        default:
-          description: Internal server error.
-          schema:
-            $ref: '#/definitions/Errors'
-      summary: Update a Wishlist
-  '/wishlists/{wishlistId}/items/{itemId}':
-    delete:
-      description: Deletes a line item from a *Wishlist*.
-      summary: Delete a Wishlist Item
-      tags:
-        - Wishlists
-      operationId: WishlistsItemsByWishlistIdAndItemIdDelete
-      produces:
-        - application/json
-      parameters:
-        - name: wishlistId
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: ''
-        - name: itemId
-          in: path
-          required: true
-          type: string
-          description: ''
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '200':
-          description: Returns Wishlist Entity Object.
-        '400':
-          description: Authentication Required.
-          schema: {}
-        '404':
-          description: Wishlist not found.
-          schema: {}
-        default:
-          description: Internal server error.
-          schema:
-            $ref: '#/definitions/Errors'
-  '/wishlists/{wishlistId}':
-    get:
-      description: Returns a single *Wishlist*.
-      summary: Get a Wishlist
-      tags:
-        - Wishlists
-      operationId: WishlistsByWishlistIdGet
-      produces:
-        - application/json
-      parameters:
-        - name: wishlistId
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: The identifier of a specific wishlist.
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Wishlist'
-        '400':
-          description: Authentication Required.
-          schema: {}
-        '404':
-          description: Wishlist not found.
-          schema: {}
-        default:
-          description: Internal server error.
-          schema:
-            $ref: '#/definitions/Errors'
-    put:
-      description: Updates a  *Wishlist*.
-      summary: Update a Wishlist
-      tags:
-        - Wishlists
-      operationId: WishlistsByWishlistIdPut
-      produces:
-        - application/json
-      parameters:
-        - name: wishlistId
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: ''
-        - name: body
-          in: body
-          required: true
-          description: ''
-          schema:
-            $ref: '#/definitions/WishlistUpdateData'
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '201':
-          description: Returns Wishlist Entity object.
-          schema:
-            $ref: '#/definitions/Wishlists'
-        '400':
-          description: Authentication Required.
-          schema: {}
-        default:
-          description: Internal server error.
-          schema:
-            $ref: '#/definitions/Errors'
-    delete:
-      description: Deletes a *Wishlist*.
-      summary: Delete a Wishlist
-      tags:
-        - Wishlists
-      operationId: WishlistsByWishlistIdDelete
-      produces:
-        - application/json
-      parameters:
-        - name: wishlistId
-          in: path
-          required: true
-          type: string
-          format: uuid
-          description: This wishlist's unique ID.
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '204':
-          description: ''
-        '400':
-          description: Authentication Required.
-          schema: {}
-        default:
-          description: Internal server error.
-          schema:
-            $ref: '#/definitions/Errors'
-definitions:
-  WishlistsCreateOrUpdateRequestData:
-    title: WishlistsCreateOrUpdateRequestData
-    type: object
-    properties:
-      customer_id:
-        description: The customer id.
-        type: integer
-        format: int32
-      is_public:
-        description: Whether the wishlist is available to the public.
-        type: boolean
-      name:
-        description: The title of the wishlist.
-        type: string
-      products:
-        description: Array of products (ID + variantId)
-        type: array
-        items:
-          $ref: '#/definitions/Product'
-    required:
-      - customer_id
-  WishlistUpdateData:
-    title: WishlistUpdateData
-    type: object
-    properties:
-      customer_id:
-        description: The customer id.
-        type: integer
-        format: int32
-      is_public:
-        description: Whether the wishlist is available to the public.
-        type: boolean
-      name:
-        description: The title of the wishlist.
-        type: string
-      product:
-        $ref: '#/definitions/Product'
-    required:
-      - customer_id
-  WishlistAddItems:
-    title: WishlistAddItems
-    type: object
-    properties:
-      products:
-        description: Array of products
-        type: array
-        items:
-          $ref: '#/definitions/Product'
-  Wishlists:
-    title: Wishlists
-    type: object
-    properties:
-      data:
-        type: array
-        items:
-          $ref: '#/definitions/Wishlist'
-      meta:
-        type: object
-  Wishlist:
-    title: Wishlist
-    description: A wishlist contains a collection of items
-    type: object
-    properties:
-      id:
-        description: 'Wishlist ID, provided after creating a wishlist with a POST.'
-        type: string
-        format: uuid
-      customer_id:
-        description: The id the customer to which the wishlist belongs.
-        type: integer
-        format: int32
-      name:
-        description: The wishlist's name.
-        type: string
-      is_public:
-        description: Whether the wishlist is available to the public.
-        type: boolean
-      products:
-        description: Array of products
-        type: array
-        items:
-          $ref: '#/definitions/Product'
-  Product:
-    title: Product
-    type: object
-    properties:
-      product_id:
-        description: The ID of the product.
-        type: integer
-        format: int32
-      variant_id:
-        description: The variant ID of the product (e.g. red/blue/green in colour)
-        type: integer
-        format: int32
-  Errors:
-    title: Errors
-    type: object
-    properties:
-      errors:
-        type: array
-        items:
-          $ref: '#/definitions/Error'
-  Error:
-    title: Error
-    type: object
-    properties:
-      status:
-        type: integer
-        format: int32
-      title:
-        type: string
-      type:
-        type: string
-tags:
-  - name: Wishlists
-    description: ''
-securityDefinitions:
-  X-Auth-Client:
-    type: apiKey
-    name: X-Auth-Client
-    in: header
-  X-Auth-Token:
-    type: apiKey
-    name: X-Auth-Token
-    in: header
-parameters:
-  Accept:
-    name: Accept
-    in: header
-    type: string
-    default: application/json
-    required: true
-  Content-Type:
-    name: Content-Type
-    in: header
-    type: string
-    default: application/json
-    required: true
-  FilterCustomerID:
-    name: customer_id
-    in: query
-    type: integer
-    description: Returns all wishlists related to that customer. Uses the customer ID.
-  FilterLimit:
-    name: limit
-    in: query
-    type: integer
-    description: The number of items to return in the response.
-  FilterOffset:
-    in: query
-    type: integer
-    name: offset
-    description: >-
-      Offset allows you to return a subset of data starting with the offset
-      value. Offset is 0 based.
-security:
-  - X-Auth-Client: []
-  - X-Auth-Token: []
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "",
+    "title": "Wishlist API",
+    "contact": {},
+    "description": "The Wishlist API allows for developers to create and edit customer wishlists. "
+  },
+  "host": "api.bigcommerce.com",
+  "basePath": "/stores/{store_hash}/v3",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/wishlists": {
+      "post": {
+        "description": "Creates a *Wishlist*. \n\nThis will allow you to create a wishlist and add products.\n\n**Required Fields:**\n* customer_id\n* name",
+        "summary": "Create a Wishlist",
+        "tags": [
+          "Wishlists"
+        ],
+        "operationId": "WishlistsPost",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/WishlistsCreateOrUpdateRequestData"
+            },
+            "x-examples": {
+              "application/json": {
+                "customer_id": -84468254,
+                "is_public": false,
+                "name": "anim cu",
+                "products": [
+                  {
+                    "product_id": -74658167,
+                    "variant_id": 3186438
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Wishlist"
+            }
+          },
+          "400": {
+            "description": "Authentication Required.",
+            "schema": {}
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a list of all *Wishlists*. Optional filter parameters can be passed in.",
+        "summary": "Get All Wishlists",
+        "tags": [
+          "Wishlists"
+        ],
+        "operationId": "wishlistsget",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/parameters/FilterCustomerID"
+          },
+          {
+            "$ref": "#/parameters/FilterLimit"
+          },
+          {
+            "$ref": "#/parameters/FilterOffset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Wishlists"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": "urn:uuid:308d247e-ad01-e28c-bb56-cc25b52861c6",
+                    "customer_id": -8063687,
+                    "name": "culpa dolore ut labori",
+                    "is_public": false,
+                    "products": [
+                      {
+                        "product_id": -66360391,
+                        "variant_id": -1908516
+                      },
+                      {
+                        "product_id": -83077938,
+                        "variant_id": -44678908
+                      },
+                      {
+                        "product_id": -29360591,
+                        "variant_id": -79553637
+                      }
+                    ]
+                  },
+                  {
+                    "id": "c8c937fd-b71e-0a5e-4ddb-a4008a5357bf",
+                    "customer_id": 95051711,
+                    "name": "Duis deserunt esse",
+                    "is_public": true,
+                    "products": [
+                      {
+                        "product_id": -13077467,
+                        "variant_id": -95041208
+                      },
+                      {
+                        "product_id": -94942074,
+                        "variant_id": 23815484
+                      },
+                      {
+                        "product_id": -18748345,
+                        "variant_id": 86800087
+                      }
+                    ]
+                  },
+                  {
+                    "id": "urn:uuid:24e231a3-db84-d44c-c944-e08041480bc0",
+                    "customer_id": -93257647,
+                    "name": "irure nostrud proident pariatur Lorem",
+                    "is_public": false,
+                    "products": [
+                      {
+                        "product_id": 53665344,
+                        "variant_id": 41841488
+                      },
+                      {
+                        "product_id": 11885378,
+                        "variant_id": -60754251
+                      },
+                      {
+                        "product_id": 60261358,
+                        "variant_id": -97522346
+                      },
+                      {
+                        "product_id": 54158449,
+                        "variant_id": -77835990
+                      }
+                    ]
+                  }
+                ],
+                "meta": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Authentication Required.",
+            "schema": {}
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        }
+      }
+    },
+    "/wishlists/{wishlistId}/items": {
+      "post": {
+        "description": "Updates a *Wishlist*.\n\nUse this endpoint to add new items to a *Wishlist*.",
+        "tags": [
+          "Wishlists"
+        ],
+        "operationId": "WishlistsItemsByWishlistIdPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wishlistId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/WishlistAddItems"
+            }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Returns Wishlist Entity object."
+          },
+          "400": {
+            "description": "Authentication Required.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Wishlist not found.",
+            "schema": {}
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        },
+        "summary": "Update a Wishlist"
+      }
+    },
+    "/wishlists/{wishlistId}/items/{itemId}": {
+      "delete": {
+        "description": "Deletes a line item from a *Wishlist*.",
+        "summary": "Delete a Wishlist Item",
+        "tags": [
+          "Wishlists"
+        ],
+        "operationId": "WishlistsItemsByWishlistIdAndItemIdDelete",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wishlistId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid",
+            "description": ""
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Wishlist Entity Object."
+          },
+          "400": {
+            "description": "Authentication Required.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Wishlist not found.",
+            "schema": {}
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        }
+      }
+    },
+    "/wishlists/{wishlistId}": {
+      "get": {
+        "description": "Returns a single *Wishlist*.",
+        "summary": "Get a Wishlist",
+        "tags": [
+          "Wishlists"
+        ],
+        "operationId": "WishlistsByWishlistIdGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wishlistId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid",
+            "description": "The identifier of a specific wishlist."
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Wishlist"
+            }
+          },
+          "400": {
+            "description": "Authentication Required.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Wishlist not found.",
+            "schema": {}
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Updates a  *Wishlist*.",
+        "summary": "Update a Wishlist",
+        "tags": [
+          "Wishlists"
+        ],
+        "operationId": "WishlistsByWishlistIdPut",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wishlistId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/WishlistUpdateData"
+            }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Returns Wishlist Entity object.",
+            "schema": {
+              "$ref": "#/definitions/Wishlists"
+            }
+          },
+          "400": {
+            "description": "Authentication Required.",
+            "schema": {}
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a *Wishlist*.",
+        "summary": "Delete a Wishlist",
+        "tags": [
+          "Wishlists"
+        ],
+        "operationId": "WishlistsByWishlistIdDelete",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wishlistId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid",
+            "description": "This wishlist's unique ID."
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "Authentication Required.",
+            "schema": {}
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "WishlistsCreateOrUpdateRequestData": {
+      "title": "WishlistsCreateOrUpdateRequestData",
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "description": "The customer id.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_public": {
+          "description": "Whether the wishlist is available to the public.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The title of the wishlist.",
+          "type": "string"
+        },
+        "products": {
+          "description": "Array of products (ID + variantId)",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          }
+        }
+      },
+      "required": [
+        "customer_id"
+      ]
+    },
+    "WishlistUpdateData": {
+      "title": "WishlistUpdateData",
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "description": "The customer id.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_public": {
+          "description": "Whether the wishlist is available to the public.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The title of the wishlist.",
+          "type": "string"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        }
+      },
+      "required": [
+        "customer_id"
+      ]
+    },
+    "WishlistAddItems": {
+      "title": "WishlistAddItems",
+      "type": "object",
+      "properties": {
+        "products": {
+          "description": "Array of products",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          }
+        }
+      }
+    },
+    "Wishlists": {
+      "title": "Wishlists",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Wishlist"
+          }
+        },
+        "meta": {
+          "type": "object"
+        }
+      }
+    },
+    "Wishlist": {
+      "title": "Wishlist",
+      "description": "A wishlist contains a collection of items",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Wishlist ID, provided after creating a wishlist with a POST.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "customer_id": {
+          "description": "The id the customer to which the wishlist belongs.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "description": "The wishlist's name.",
+          "type": "string"
+        },
+        "is_public": {
+          "description": "Whether the wishlist is available to the public.",
+          "type": "boolean"
+        },
+        "products": {
+          "description": "Array of products",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          }
+        }
+      }
+    },
+    "Product": {
+      "title": "Product",
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "description": "The ID of the product.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "variant_id": {
+          "description": "The variant ID of the product (e.g. red/blue/green in colour)",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Error": {
+      "title": "Error",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Wishlists",
+      "description": ""
+    }
+  ],
+  "securityDefinitions": {
+    "X-Auth-Client": {
+      "type": "apiKey",
+      "name": "X-Auth-Client",
+      "in": "header"
+    },
+    "X-Auth-Token": {
+      "type": "apiKey",
+      "name": "X-Auth-Token",
+      "in": "header"
+    }
+  },
+  "parameters": {
+    "Accept": {
+      "name": "Accept",
+      "in": "header",
+      "type": "string",
+      "default": "application/json",
+      "required": true
+    },
+    "Content-Type": {
+      "name": "Content-Type",
+      "in": "header",
+      "type": "string",
+      "default": "application/json",
+      "required": true
+    },
+    "FilterCustomerID": {
+      "name": "customer_id",
+      "in": "query",
+      "type": "integer",
+      "description": "Returns all wishlists related to that customer. Uses the customer ID."
+    },
+    "FilterLimit": {
+      "name": "limit",
+      "in": "query",
+      "type": "integer",
+      "description": "The number of items to return in the response."
+    },
+    "FilterOffset": {
+      "in": "query",
+      "type": "integer",
+      "name": "offset",
+      "description": "Offset allows you to return a subset of data starting with the offset value. Offset is 0 based."
+    }
+  },
+  "security": [
+    {
+      "X-Auth-Client": []
+    },
+    {
+      "X-Auth-Token": []
+    }
+  ]
+}
