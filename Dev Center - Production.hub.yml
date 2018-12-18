@@ -15879,7 +15879,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>V2 versus V3 API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#v2-v3_advantages\">Advantages of V3 over V2</a></li>\n\t\t<li><a href=\"#v2-v3_products\">Products in V3</a></li>\n\t\t<li><a href=\"#v2-v3_whats-not-in-v3\"> What's not in V3</a></li>\n\t\t<li><a href=\"#v2-v3_recommendations\"> Recommendations</a></li>\n\t\t<li><a href=\"#v2-v3_cheat-sheet\"> Cheat Sheet</a></li>\n\t</ul>\n</div>\n"
+                        "data": "<h1>V2 versus V3 API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#v2-v3_advantages\">Advantages of V3 over V2</a></li>\n\t\t<li><a href=\"#v2-v3_products\">Products in V3</a></li>\n    <li><a href=\"v2-v3_interoperability-v2-v3\">Interoperability between V2 and V3</li></a>\n\t\t<li><a href=\"#v2-v3_whats-not-in-v3\"> What's not in V3</a></li>\n\t\t<li><a href=\"#v2-v3_recommendations\"> Recommendations</a></li>\n\t\t<li><a href=\"#v2-v3_cheat-sheet\"> Cheat Sheet</a></li>\n\t</ul>\n</div>\n"
                       },
                       {
                         "type": "text",
@@ -15894,7 +15894,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Products in V3\n\n### Variants\n\nEvery purchasable entity in the catalog is now a variant, including the product itself. This enables enhanced flows around inventory management, such as the ability to solely use the variants endpoint to manage inventory levels. For more on variants see [Variants](/api-docs/catalog/products/product-variants).\n\nIn V3 a variant needs to be created for every combination of option values. In V2 it was possible to create a SKU with a subset of product options.\n\nWe recommend creating products using V3 as BigCommerce starts to move operations to the V3 API. \n\n### Interoperability between V2 and V3\n\nWhen a product option is created in V2 and assigned to a product, trying to edit the option using the V3 API returns a 422 error. \n\n```\n{\n    \"status\": 422,\n    \"title\": \"The product is currently associated with an option set, please remove it before editing an option or modifier.\",\n    \"type\": \"https://developer.bigcommerce.com/api#api-status-codes\",\n    \"errors\": {\n        \"product_id\": \"The product is currently associated with an option set, please remove it before editing an option or modifier.\"\n    }\n}\n```\n\nThis happens because in V2, options are created globally before being assigned to products. In V3, variant options are assigned at the product level. The way to fix this error is to remove the option set in the control panel or delete it using the API, then re-create the options using V3 variants. \n\n### Options and Modifiers\n\nThere is now a clear separation of [options that define variants](/api-docs/catalog/products/product-variant-options) versus [options that are modifiers of a variant](/api-docs/catalog/products/modifier-options). This simplifies the creation and management of variant prices and modifier adjusters and removes the need to use complex rules, in all but the most extreme cases.\n\nIn V3, options and modifiers are attached directly to the product, without the requirement to create an option set beforehand.\n\nCreating Options on V2 has several steps:\n1. Create the product\n2. Create the options\n3. Create an option set\n4. Assign the option set to the product\n5. Create adjustments, such as price adjustment, using rules\n\nCreating Products and Variants on V3:\n1. Create the product with variants in one call\n2. Create adjustments, such as price adjustment, directly on the variant or modifier\n\nVariants can be included with a GET request to lower the number of API calls being made using `?include=variants`.\n\nV3 includes an endpoint for creating a [Catalog Tree](/api-docs/api-reference/v3-api/catalog/getcatalogsummary).",
+                        "data": "## Products in V3\n\n### Variants\n\nEvery purchasable entity in the catalog is now a variant, including the product itself. This enables enhanced flows around inventory management, such as the ability to solely use the variants endpoint to manage inventory levels. For more on variants see [Variants](/api-docs/catalog/products/product-variants).\n\nIn V3 a variant needs to be created for every combination of option values. In V2 it was possible to create a SKU with a subset of product options.\n\nWe recommend creating products using V3 as BigCommerce starts to move operations to the V3 API. \n\n### Options and Modifiers\n\nThere is now a clear separation of [options that define variants](/api-docs/catalog/products/product-variant-options) versus [options that are modifiers of a variant](/api-docs/catalog/products/modifier-options). This simplifies the creation and management of variant prices and modifier adjusters and removes the need to use complex rules, in all but the most extreme cases.\n\nIn V3, options and modifiers are attached directly to the product, without the requirement to create an option set beforehand.\n\nCreating Options on V2 has several steps:\n1. Create the product\n2. Create the options\n3. Create an option set\n4. Assign the option set to the product\n5. Create adjustments, such as price adjustment, using rules\n\nCreating Products and Variants on V3:\n1. Create the product with variants in one call\n2. Create adjustments, such as price adjustment, directly on the variant or modifier\n\nVariants can be included with a GET request to lower the number of API calls being made using `?include=variants`.\n\nV3 includes an endpoint for creating a [Catalog Tree](/api-docs/api-reference/v3-api/catalog/getcatalogsummary).",
                         "header": {
                           "anchor": "v2-v3_products"
                         }
@@ -15905,7 +15905,105 @@
                       },
                       {
                         "type": "text",
-                        "data": "## What's not in V3\n\nIn V3, options are attached directly to products. So option sets are not required, and v3 includes no endpoint to manage option sets. However, V3 will respect option sets that have been attached via V2 or the control panel.\n\nMoving forward, new resources will be built in V3 and existing V2 resources will eventually be migrated to V3. Some V3 resources do not have V2 counterparts, and vice versa. \n\n### Complex Rules\n\nMost of the use cases for using V2 rules can be solved by making adjustments directly on variants and modifier options. We recommend using variants as best practice, but in cases where an adjustment depends on the selection of multiple modifier values, V3 includes a Complex Rules resource.\n\n### Product Rules \nAny variant created in v3 with non-null core properties (price, weight, image, purchasability) will create a rule under the hood. The same goes for modifier adjusters. These will show in v2 as product rules, and any edits to them will be shared across API versions.\n\n### Option Sets\nIn our control panel’s Add/Edit Product section, any products created by the V3 API will not have an option set applied, but merchants can still edit the options. If the merchant applies an option set to a V3 product, the product's variants will be removed. Currently, the Add/Edit Product area consumes the V2 API, so products created and managed through the control panel will be converted to the V2 model, using option sets.",
+                        "data": "## Interoperability between V2 and V3\n\nPreviously (prior to December 17th, 2018), when a product option, is created in V2 and assigned to a product, trying to edit the global option using the V3 API would return a 422 error.\n\n```\n{\n    \"status\": 422,\n    \"title\": \"The product is currently associated with an option set, please remove it before editing an option or modifier.\",\n    \"type\": \"https://developer.bigcommerce.com/api#api-status-codes\",\n    \"errors\": {\n        \"product_id\": \"The product is currently associated with an option set, please remove it before editing an option or modifier.\"\n    }\n}\n```\n\nInstead of a 422 error, now it will automatically copy the V2 global product option to a local product variant option or modifier option. This is triggered by an Update or Delete to either the [Product Options](/api-reference/catalog/catalog-api/product-variant-options/getoptions) or [Product Modifiers](/api-reference/catalog/catalog-api/product-modifiers/getmodifiers) endpoints. \n\n**What this does is:**\n- Changes the `option_value` > `id`. Not the `option_id`.\n- Creates a copy directly on the product. \n- Copies over any variants, modifiers and option set rules. \n- In the Control Panel the product is listed as having a (Custom) Option Set. \n- Global Option Set rules are copied as product rules and the `sort_order` is updated so they executed before any existing product rules (which should mirror the behavior before the product was changed).\n\n**What this does not do:**\n- Remove the Option Set from the store entirely. It is still available in the control panel as an option set to be assigned. \n- Change product pricing, rules or any other product modifiers. They will be copied over and assigned the product correctly. \n\n### Update Request to Product Option Values\nOn the following product, you will see the original option response of a product created using V2, a change to the option values and then the final option response. \n\nThis product is a T-Shirt with a global option set of size and color added. Take a note of the option values id’s. These will change when an update is made to the option using the /options endpoint on V3. While they will all change since the entire option set is copied to the product, the one we are updating below is the label for Size Small, which has a `option_value` > `id` of 192. ",
+                        "header": {
+                          "anchor": "v2-v3_interoperability-v2-v3"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n    \"data\": [\n        {\n            \"id\": 242,\n            \"product_id\": 201,\n            \"name\": \"Color\",\n            \"display_name\": \"Color\",\n            \"type\": \"swatch\",\n            \"sort_order\": 0,\n            \"option_values\": [\n                {\n                    \"id\": 180,\n                    \"label\": \"Red\",\n                    \"sort_order\": 1,\n                    \"value_data\": {\n                        \"colors\": [\n                            \"#ff0000\"\n                        ]\n                    },\n                    \"is_default\": false\n                },\n                {\n                    \"id\": 181,\n                    \"label\": \"Green\",\n                    \"sort_order\": 2,\n                    \"value_data\": {\n                        \"colors\": [\n                            \"#008000\"\n                        ]\n                    },\n                    \"is_default\": false\n                },\n                {\n                    \"id\": 182,\n                    \"label\": \"Blue\",\n                    \"sort_order\": 3,\n                    \"value_data\": {\n                        \"colors\": [\n                            \"#0000ff\"\n                        ]\n                    },\n                    \"is_default\": false\n                }\n            ],\n            \"config\": []\n        },\n        {\n            \"id\": 243,\n            \"product_id\": 201,\n            \"name\": \"Size\",\n            \"display_name\": \"T-Shirt Size\",\n            \"type\": \"rectangles\",\n            \"sort_order\": 1,\n            \"option_values\": [\n                {\n                    \"id\": 192,\n                    \"label\": \"Small\",\n                    \"sort_order\": 0,\n                    \"value_data\": null,\n                    \"is_default\": false\n                },\n                {\n                    \"id\": 193,\n                    \"label\": \"Medium\",\n                    \"sort_order\": 1,\n                    \"value_data\": null,\n                    \"is_default\": false\n                },\n                {\n                    \"id\": 194,\n                    \"label\": \"Large\",\n                    \"sort_order\": 2,\n                    \"value_data\": null,\n                    \"is_default\": false\n                }\n            ],\n            \"config\": []\n        }\n    ],\n    \"meta\": {\n        \"pagination\": {\n            \"total\": 2,\n            \"count\": 2,\n            \"per_page\": 50,\n            \"current_page\": 1,\n            \"total_pages\": 1,\n            \"links\": {\n                \"current\": \"?page=1&limit=50\"\n            }\n        }\n    }\n}",
+                        "header": {
+                          "title": "/GET https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/options",
+                          "subtitle": "Note the option_values id's for the colors are 180, 181 and 182. The values for color are 192, 193 and 194. "
+                        },
+                        "config": {
+                          "mode": "json",
+                          "highlightRange": [
+                            {
+                              "from": "55",
+                              "to": "61"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1545080028604",
+                        "header": {
+                          "title": "Size and Color",
+                          "subtitle": "Control panel view product with global options "
+                        },
+                        "config": {
+                          "centered": true,
+                          "maxWidth": "848"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "Below, \"Small\" is updated to \"Small T-Shirt\"."
+                      },
+                      {
+                        "type": "code",
+                        "data": "\n{\n\t\"label\": \"Small T-Shirt\"\n}",
+                        "header": {
+                          "title": "/PUT https://api.bigcommerce.com/stores/{store_hash_/v3/catalog/products/{product_id}/options/{option_id}/values/{option_value)"
+                        },
+                        "config": {
+                          "mode": "json"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n    \"data\": {\n        \"id\": 214,\n        \"label\": \"Small T-Shirt\",\n        \"sort_order\": 0,\n        \"value_data\": null,\n        \"is_default\": false\n    },\n    \"meta\": {}\n}",
+                        "header": {
+                          "title": "Response",
+                          "subtitle": "/PUT https://api.bigcommerce.com/stores/{store_hash_/v3/catalog/products/{product_id}/options/{option_id}/values/{option_value)"
+                        },
+                        "config": {
+                          "mode": "json"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "The ID is now 214. It was changed from 192. Below you can see the `option_value` > `id` for all the options changed even though only one was edited. The Control Panel now shows the options as (Custom). "
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n    \"data\": [\n        {\n            \"id\": 242,\n            \"product_id\": 201,\n            \"name\": \"Color1545071633-201\",\n            \"display_name\": \"Color\",\n            \"type\": \"swatch\",\n            \"sort_order\": 0,\n            \"option_values\": [\n                {\n                    \"id\": 211,\n                    \"label\": \"Red\",\n                    \"sort_order\": 1,\n                    \"value_data\": {\n                        \"colors\": [\n                            \"#ff0000\"\n                        ]\n                    },\n                    \"is_default\": false\n                },\n                {\n                    \"id\": 212,\n                    \"label\": \"Green\",\n                    \"sort_order\": 2,\n                    \"value_data\": {\n                        \"colors\": [\n                            \"#008000\"\n                        ]\n                    },\n                    \"is_default\": false\n                },\n                {\n                    \"id\": 213,\n                    \"label\": \"Blue\",\n                    \"sort_order\": 3,\n                    \"value_data\": {\n                        \"colors\": [\n                            \"#0000ff\"\n                        ]\n                    },\n                    \"is_default\": false\n                }\n            ],\n            \"config\": []\n        },\n        {\n            \"id\": 243,\n            \"product_id\": 201,\n            \"name\": \"T-Shirt-Size1545071633-201\",\n            \"display_name\": \"T-Shirt Size\",\n            \"type\": \"rectangles\",\n            \"sort_order\": 1,\n            \"option_values\": [\n                {\n                    \"id\": 214,\n                    \"label\": \"Small T-Shirt\",\n                    \"sort_order\": 0,\n                    \"value_data\": null,\n                    \"is_default\": false\n                },\n                {\n                    \"id\": 215,\n                    \"label\": \"Medium\",\n                    \"sort_order\": 1,\n                    \"value_data\": null,\n                    \"is_default\": false\n                },\n                {\n                    \"id\": 216,\n                    \"label\": \"Large\",\n                    \"sort_order\": 2,\n                    \"value_data\": null,\n                    \"is_default\": false\n                }\n            ],\n            \"config\": []\n        }\n    ],\n    \"meta\": {\n        \"pagination\": {\n            \"total\": 2,\n            \"count\": 2,\n            \"per_page\": 50,\n            \"current_page\": 1,\n            \"total_pages\": 1,\n            \"links\": {\n                \"current\": \"?page=1&limit=50\"\n            }\n        }\n    }\n}",
+                        "header": {
+                          "title": "/GET https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/options",
+                          "subtitle": "The option_value > id is now 214"
+                        },
+                        "config": {
+                          "mode": "json",
+                          "highlightRange": [
+                            {
+                              "from": "55",
+                              "to": "61"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1545080964540",
+                        "header": {
+                          "title": "Size and Color",
+                          "subtitle": "Control Panel after editing options"
+                        },
+                        "config": {
+                          "centered": true,
+                          "maxWidth": "848"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## What's not in V3\n\nIn V3, options are attached directly to products. So option sets are not required, and V3 includes no endpoint to manage option sets. However, V3 will respect option sets that have been attached via V2 or the control panel.\n\nMoving forward, new resources will be built in V3 and existing V2 resources will eventually be migrated to V3. Some V3 resources do not have V2 counterparts, and vice versa. \n\n### Complex Rules\n\nMost of the use cases for using V2 rules can be solved by making adjustments directly on variants and modifier options. We recommend using variants as best practice, but in cases where an adjustment depends on the selection of multiple modifier values, V3 includes a Complex Rules resource.\n\n### Product Rules \nAny variant created in v3 with non-null core properties (price, weight, image, purchasability) will create a rule under the hood. The same goes for modifier adjusters. These will show in v2 as product rules, and any edits to them will be shared across API versions.\n\n### Option Sets\nIn our control panel’s Add/Edit Product section, any products created by the V3 API will not have an option set applied, but merchants can still edit the options. If the merchant applies an option set to a V3 product, the product's variants will be removed. Currently, the Add/Edit Product area consumes the V2 API, so products created and managed through the control panel will be converted to the V2 model, using option sets.",
                         "header": {
                           "anchor": "v2-v3_whats-not-in-v3"
                         }
