@@ -5345,7 +5345,12 @@ paths:
         - Brands
         - Catalog
     put:
-      description: Updates a Brand in the BigCommerce Catalog.
+      description: >-
+        Updates a Brand. 
+
+
+        To update a *Brand Image* send a PUT request with the `image_url` as
+        part of the body request. 
       operationId: updateBrand
       parameters:
         - name: brand
@@ -5663,19 +5668,17 @@ paths:
       - $ref: '#/parameters/BrandIdParam'
     post:
       description: >-
-        Creates an image on a Brand. Publicly accessible URLs and files (form
-        post) are valid parameters.
+        Creates a *Brand Image*.
 
 
-        To create using json:
+        **Required Fields**
 
-        ```
+        * image_file: Form posts are the only accepted upload option.
 
-        {
-          "image_file": "public-image-url-here"
-        }
 
-        ```
+        To update a *Brand Image* send a
+        [PUT](/api-reference/catalog/catalog-api/brands/updatebrand ) request
+        with the `image_url` as part of the body request. 
       operationId: createBrandImage
       parameters:
         - $ref: '#/parameters/Accept'
@@ -5728,7 +5731,6 @@ paths:
         - Catalog
       consumes:
         - multipart/form-data
-        - application/json
     delete:
       description: Deletes a Brand image from the BigCommerce Catalog.
       operationId: deleteBrandImage
