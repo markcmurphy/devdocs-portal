@@ -4583,7 +4583,12 @@ paths:
         - Category
         - Catalog
     put:
-      description: Updates a category using the `category_id`.
+      description: >-
+        Updates a category using the `category_id`.
+
+
+        To update a *Category Image* send a PUT request with the `image_url` as
+        part of the body request. 
       operationId: updateCategory
       parameters:
         - name: category
@@ -4594,6 +4599,9 @@ paths:
           x-examples:
             application/json:
               description: <h1>Browse our full collection</h1>
+            Category Image Update:
+              image_url: >-
+                https://upload.wikimedia.org/wikipedia/commons/7/7f/Anglel_Bless_Legendary_Hills_1_m%C4%9Bs%C3%ADc_st%C3%A1%C5%99%C3%AD.jpg
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
       responses:
