@@ -14958,20 +14958,19 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Javascript API\n\nStencil themes include an API for running JavaScript on a per-page basis. To properly write JavaScript for your theme, you will have the following page types available to you:\n\n* \"pages/account/addresses\"\n* \"pages/account/add-address\"\n* \"pages/account/add-return\"\n* \"pages/account/add-wishlist\"\n* \"pages/account/recent-items\"\n* \"pages/account/download-item\"\n* \"pages/account/edit\"\n* \"pages/account/return-saved\"\n* \"pages/account/returns\"\n* \"pages/auth/login\"\n* \"pages/auth/account-created\"\n* \"pages/auth/create-account\"\n* \"pages/auth/new-password\"\n* \"pages/blog\"\n* \"pages/blog-post\"\n* \"pages/brand\"\n* \"pages/brands\"\n* \"pages/cart\"\n* \"pages/category\"\n* \"pages/compare\"\n* \"pages/errors\"\n* \"pages/gift-certificate/purchase\"\n* \"pages/gift-certificate/balance\"\n* \"pages/gift-certificate/redeem\"\n* \"global\"\n* \"pages/home\"\n* \"pages/order-complete\"\n* \"pages/page\"\n* \"pages/product\"\n* \"pages/search\"\n* \"pages/sitemap\"\n* \"pages/subscribed\"\n* \"page/account/wishlist-details\"\n* \"pages/account/wishlists\"\n\nThese page types correspond to the pages within your theme. Each of these page types maps to an ES6 module that extends the base `PageManager` abstract class:\n\n```\n   export default class Blog extends PageManager {\n        constructor() {\n            //Setup code goes here – attach to internals, and use internals as you would 'this'\n        }\n    }\n```",
+                        "data": "## Javascript API\n\nStencil themes include an API for running JavaScript on a per-page basis. To properly write JavaScript for your theme, you will have the following page types available to you:\n\n* \"pages/account/addresses\"\n* \"pages/account/add-address\"\n* \"pages/account/add-return\"\n* \"pages/account/add-wishlist\"\n* \"pages/account/recent-items\"\n* \"pages/account/download-item\"\n* \"pages/account/edit\"\n* \"pages/account/return-saved\"\n* \"pages/account/returns\"\n* \"pages/auth/login\"\n* \"pages/auth/account-created\"\n* \"pages/auth/create-account\"\n* \"pages/auth/new-password\"\n* \"pages/blog\"\n* \"pages/blog-post\"\n* \"pages/brand\"\n* \"pages/brands\"\n* \"pages/cart\"\n* \"pages/category\"\n* \"pages/compare\"\n* \"pages/errors\"\n* \"pages/gift-certificate/purchase\"\n* \"pages/gift-certificate/balance\"\n* \"pages/gift-certificate/redeem\"\n* \"global\"\n* \"pages/home\"\n* \"pages/order-complete\"\n* \"pages/page\"\n* \"pages/product\"\n* \"pages/search\"\n* \"pages/sitemap\"\n* \"pages/subscribed\"\n* \"page/account/wishlist-details\"\n* \"pages/account/wishlists\"\n\nThese page types correspond to the pages within your theme. Each of these page types maps to an ES6 module that extends the base `PageManager` abstract class:",
                         "header": {
                           "anchor": "page-types_javascript-api"
                         }
                       },
                       {
-                        "type": "text",
-                        "data": "---"
-                      },
-                      {
-                        "type": "text",
-                        "data": "## Callback Methods\n\nWithin `PageManager`, you will see methods that are available from all your classes. But three methods are especially important. The following methods have the signature `func (callback)`, with the callback taking `callback(err)` in case of an error.\n\n### before(callback)\n\nWhen this method is implemented in your class, the code contained will be executed after the constructor but before the `loaded()` method. This will provide a shim for your code before your main implementation logic could run.\n\n```\n export default class Blog extends PageManager {\n        constructor() {\n            //Setup code goes here\n        }\n        before(callback) {\n            //Code that should be ran before any other code in this class\n\n            //Callback must be called to move on to the next method\n            callback();\n        }\n    }\n```\n\n### loaded(callback)\n\nThis method will be called when the constructor has ran and `before()` has executed. Main implementation code should live in the `loaded()` method.\n\n```\n export default class Blog extends PageManager {\n        constructor() {\n            //Setup code goes here\n        }\n        loaded(callback) {\n            //Main implementation logic here\n\n            //Callback must be called to move on to the next method\n            callback();\n        }\n    }\n```\n\n### after(callback)\n\nThis method is for any cleanup that may need to happen, and it will be executed after `before()` and `loaded()`.\n\n```\n    export default class Blog extends PageManager {\n        constructor() {\n            //Set up code goes here\n        }\n        after(callback) {\n            //Main implementation logic here\n\n            //Callback must be called to move on to the next method\n            callback();\n        }\n    }\n```\n\n\n\n\n",
+                        "type": "code",
+                        "data": "export default class Blog extends PageManager {\n        constructor() {\n            //Setup code goes here – attach to internals, and use internals as you would 'this'\n        }\n    }",
                         "header": {
-                          "anchor": "page-types_callback"
+                          "title": "pages/blog extending the page PageManager class"
+                        },
+                        "config": {
+                          "mode": "js"
                         }
                       },
                       {
@@ -14980,10 +14979,21 @@
                       },
                       {
                         "type": "text",
-                        "data": "## JavaScript Template Context Injection\n\nOccasionally, you might need to use dynamic data from the template context within your theme's client-side application code. Two helpers are provided to help achieve this.\n\nThe `inject` helper allows you to compose a json object with a subset of the template context to be sent to the browser:\n\n`{{inject \"stringBasedKey\" contextValue}}`\n\nTo retrieve the parsable JSON object, just call `{{jsContext}}` after all of the `{{inject}}` calls.\n\nFor example, to set up the product name in your client-side app, you can do this if you're in the context of a product:\n\n```\n{{inject \"myProductName\" product.title}}\n\n<script>\n// Note the lack of quotes around the jsContext handlebars helper, it becomes a string automatically.\nvar jsContext = JSON.parse({{jsContext}}); //jsContext would output \"{\\\"myProductName\\\": \\\"Sample Product\\\"}\" which can feed directly into your JavaScript\n\nconsole.log(jsContext.myProductName); // Will output: Sample Product\n</script>\n```\n\nYou can compose your JSON object across multiple pages, to create a different set of client-side data depending on the currently loaded template context.\n\nStencil's Cornerstone base theme makes the `jsContext` available as `this.context`, both on the active page scoped and on global `PageManager` objects.\n\n\n\n\n\n",
+                        "data": "## JavaScript Template Context Injection\n\nOccasionally, you might need to use dynamic data from the template context within your theme's client-side application code. Two helpers are provided to help achieve this.\n\nThe `inject` helper allows you to compose a json object with a subset of the template context to be sent to the browser:\n\n`{{inject \"stringBasedKey\" contextValue}}`\n\nTo retrieve the parsable JSON object, just call `{{jsContext}}` after all of the `{{inject}}` calls.\n\nFor example, to set up the product name in your client-side app, you can do this if you're in the context of a product:",
                         "header": {
                           "anchor": "page-types_javascript"
                         }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{{inject \"myProductName\" product.title}}\n\n<script>\n// Note the lack of quotes around the jsContext handlebars helper, it becomes a string automatically.\nvar jsContext = JSON.parse({{jsContext}}); //jsContext would output \"{\\\"myProductName\\\": \\\"Sample Product\\\"}\" which can feed directly into your JavaScript\n\nconsole.log(jsContext.myProductName); // Will output: Sample Product\n</script>",
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "You can compose your JSON object across multiple pages, to create a different set of client-side data depending on the currently loaded template context.\n\nStencil's Cornerstone base theme makes the `jsContext` available as `this.context`, both on the active page scoped and on global `PageManager` objects."
                       }
                     ]
                   }
