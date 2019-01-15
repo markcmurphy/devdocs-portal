@@ -14599,7 +14599,7 @@
                       },
                       {
                         "type": "html",
-                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#adding_bundling-and-minification\">Bundling and Minification</a></li>\n    <li><a href=\"#adding_development-options\">Development Options</a></li>\n    <li><a href=\"#adding_using-npm\">Using npm (Node Package Manager)</a></li>\n    <li><a href=\"#adding_placing-modules\">Placing Modules in assets/js/</a></li>\n    <li><a href=\"#adding_theme-specific-js\">Theme-Specific JavaScript Modules</a></li>\n    <li><a href=\"#adding_mapping-page\">Mapping Page Types to JavaScript Modules</a></li>\n    <li><a href=\"#adding_mapping-custom\">Mapping Custom Templates to JavaScript Modules</a></li>\n    <li><a href=\"#adding_summary\">Summary</a></li>\n\t</ul>\n</div>\n\n\n\n\n\n\n\n"
+                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#adding_bundling-and-minification\">Bundling and Minification</a></li>\n    <li><a href=\"#adding_development-options\">Development Options</a></li>\n    <li><a href=\"#adding_using-npm\">Using npm (Node Package Manager)</a></li>\n    <li><a href=\"#adding_placing-modules\">Placing Modules in assets/js/</a></li>\n    <li><a href=\"#adding_theme-specific-js\">Theme-Specific JavaScript Modules</a></li>\n    <li><a href=\"#adding_mapping-page\">Mapping Page Types to JavaScript Modules</a></li>\n    <li><a href=\"#adding_mapping-custom\">Mapping Custom Templates to JavaScript Modules</a></li>\n    <li><a href=\"#adding_summary\">Summary</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
@@ -14658,20 +14658,27 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Mapping Page Types to JavaScript Modules\n\nTo find the mapping from page types to modules in `assets/js/theme/`, examine the `PageClasses` object in the file: `assets/js/app.js`. Each `=>import(...)` function within this class maps a page type to the entry module for that page type. For example: When the `cart` page type is loaded in the browser, the JavaScript module named `cart` will be loaded.\n\n### Mapping Example in app.js\n\nHere is an excerpt of mappings from the Cornerstone base theme's `assets/js/app.js`:\n\n```\n[...]\nconst pageClasses = {\n    account_orderstatus: getAccount,\n    account_order: getAccount,\n    account_addressbook: getAccount,\n    [...]\n    createaccount: getLogin,\n    getnewpassword: getLogin,\n    forgotpassword: getLogin,\n    blog: () => import('./theme/blog'),\n    blog_post: () => import('./theme/blog'),\n    brand: () => import('./theme/brand'),\n    brands: () => import('./theme/brand'),\n    cart: () => import('./theme/cart'),\n    [...]\n}; \n```\n\n### Mapping Example in cart.js\n\nInside the `cart` module (`assets/js/theme/cart.js`), other modules are imported, and custom JavaScript methods for the cart module are created in the `Cart` class.\n\nHere is an excerpt from Cornerstone's `assets/js/theme/cart.js` file:\n\n```\nimport PageManager from './page-manager';\nimport $ from 'jquery';\nimport _ from 'lodash';\nimport giftCertCheck from './common/gift-certificate-validator';\nimport utils from '@bigcommerce/stencil-utils';\nimport ShippingEstimator from './cart/shipping-estimator';\nimport { defaultModal } from './global/modal';\nimport swal from 'sweetalert2';\n\nexport default class Cart extends PageManager {\n    loaded(next) {\n        this.$cartContent = $('[data-cart-content]');\n        this.$cartMessages = $('[data-cart-status]');\n        this.$cartTotals = $('[data-cart-totals]');\n        this.$overlay = $('[data-cart] .loadingOverlay')\n            .hide(); // TODO: temporary until roper pulls in his cart components\n\n        this.bindEvents();\n\n        next();\n    }\n\n    cartUpdate($target) {\n        const itemId = $target.data('cart-itemid');\n        const $el = $(`#qty-${itemId}`);\n        const oldQty = parseInt($el.val(), 10);\n        const maxQty = parseInt($el.data('quantity-max'), 10);\n        const minQty = parseInt($el.data('quantity-min'), 10);\n        const minError = $el.data('quantity-min-error');\n        const maxError = $el.data('quantity-max-error');\n        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;\n        [...]\n```",
+                        "data": "## Mapping Page Types to JavaScript Modules\n\nTo find the mapping from page types to modules in `assets/js/theme/`, examine the `pageClasses` object in the file: `assets/js/app.js`. \n\nEach `=>import(...)` function within this class maps a page type to the entry module for that page type. \n\nFor example: When the `cart` page type is loaded in the browser, the JavaScript module named `cart` will be loaded.\n\n### Mapping Example in app.js\n\nBelow is an excerpt of mappings from the Cornerstone base theme's [assets/js/app.js](https://github.com/bigcommerce/cornerstone/blob/master/assets/js/app.js):",
                         "header": {
                           "anchor": "adding_mapping-page"
                         }
                       },
                       {
-                        "type": "text",
-                        "data": "---"
+                        "type": "code",
+                        "data": "import Global from './theme/global';\n\nconst getAccount = () => import('./theme/account');\nconst getLogin = () => import('./theme/auth');\nconst noop = null;\n\nconst pageClasses = {\n    account_orderstatus: getAccount,\n    account_order: getAccount,\n    account_addressbook: getAccount,\n    shippingaddressform: getAccount,\n    account_new_return: getAccount,\n    'add-wishlist': () => import('./theme/wishlist'),\n    account_recentitems: getAccount,\n    account_downloaditem: getAccount,\n    editaccount: getAccount,\n    account_inbox: getAccount,\n    account_saved_return: getAccount,\n    account_returns: getAccount,\n    account_paymentmethods: getAccount,\n    account_addpaymentmethod: getAccount,\n    account_editpaymentmethod: getAccount,\n    login: getLogin,\n    createaccount_thanks: getLogin,\n    createaccount: getLogin,\n    getnewpassword: getLogin,\n    forgotpassword: getLogin,\n    blog: noop,\n    blog_post: noop,\n    brand: () => import('./theme/brand'),\n    brands: noop,\n    cart: () => import('./theme/cart'),\n    category: () => import('./theme/category'),\n    compare: () => import('./theme/compare'),\n    page_contact_form: () => import('./theme/contact-us'),\n    error: noop,\n    404: noop,\n    giftcertificates: () => import('./theme/gift-certificate'),\n    giftcertificates_balance: () => import('./theme/gift-certificate'),\n    giftcertificates_redeem: () => import('./theme/gift-certificate'),\n    default: noop,\n    page: noop,\n    product: () => import('./theme/product'),\n    amp_product_options: () => import('./theme/product'),\n    search: () => import('./theme/search'),\n    rss: noop,\n    sitemap: noop,\n    newsletter_subscribe: noop,\n    wishlist: () => import('./theme/wishlist'),\n    wishlists: () => import('./theme/wishlist'),\n};",
+                        "header": {
+                          "title": "app.js"
+                        }
                       },
                       {
                         "type": "text",
-                        "data": "## Mapping Custom Templates to JavaScript Modules\n\nIf you add [custom page templates]() to your theme, you can edit the same `assets/js/app.js` file to map each custom template to an appropriate JavaScript module.\n\nIn the example below, we have added the highlighted `if` statement to map a file called `my-custom-template`:\n\n```\nwindow.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {\n    const context = JSON.parse(contextJSON || {});\n\n    return {\n        load() {\n            $(async () => {\n                let globalClass;\n                let pageClass;\n                let PageClass;\n\n\nif (context.template === 'pages/custom/page/my-custom-template') {\n           // do something, import a file, call a function ...\n}\n\n                [...] \n```\n\nIn the theme's `templates/layout/base.html` template, we've added the `{{inject 'template' template}}` just above `{{{snippet 'htmlhead'}}}` statement to inject the custom template:\n\n```\n<head>\n        <title>{{ head.title }}</title>\n        {{{ head.meta_tags }}}\n        {{{ head.config }}}\n\n        [...]\n\n        {{{head.scripts}}}\n        {{{head.rsslinks}}}\n\n        {{inject 'themeSettings' theme_settings}}\n        {{inject 'genericError' (lang 'common.generic_error')}}\n        {{inject 'maintenanceMode' settings.maintenance}}\n        {{inject 'urls' urls}}\n        {{inject 'template' template}} //injects the custom template\n        {{{snippet 'htmlhead'}}}\n    </head> \n\t\t\n\t\t```\n\n\n",
+                        "data": "### Mapping Example in cart.js\n\nInside the `cart` module ([assets/js/theme/cart.js](https://github.com/bigcommerce/cornerstone/blob/master/assets/js/theme/cart.js)), other modules are imported, and custom JavaScript methods for the cart module are created for the `Cart` class.\n\nHere is an excerpt from Cornerstone's `assets/js/theme/cart.js` file:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "import PageManager from './page-manager';\nimport _ from 'lodash';\nimport giftCertCheck from './common/gift-certificate-validator';\nimport utils from '@bigcommerce/stencil-utils';\nimport ShippingEstimator from './cart/shipping-estimator';\nimport { defaultModal } from './global/modal';\nimport swal from './global/sweet-alert';\n\nexport default class Cart extends PageManager {\n    onReady() {\n        this.$cartContent = $('[data-cart-content]');\n        this.$cartMessages = $('[data-cart-status]');\n        this.$cartTotals = $('[data-cart-totals]');\n        this.$overlay = $('[data-cart] .loadingOverlay')\n            .hide(); // TODO: temporary until roper pulls in his cart components\n\n        this.bindEvents();\n    }\n  \n\t\tcartUpdate($target) {\n        const itemId = $target.data('cartItemid');\n        const $el = $(`#qty-${itemId}`);\n        const oldQty = parseInt($el.val(), 10);\n        const maxQty = parseInt($el.data('quantityMax'), 10);\n        const minQty = parseInt($el.data('quantityMin'), 10);\n        const minError = $el.data('quantityMinError');\n        const maxError = $el.data('quantityMaxError');\n        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;\n        // Does not quality for min/max quantity\n        if (newQty < minQty) {\n            return swal({\n                text: minError,\n                type: 'error',\n            });\n        } else if (maxQty > 0 && newQty > maxQty) {\n            return swal({\n                text: maxError,\n                type: 'error',\n            });\n        }",
                         "header": {
-                          "anchor": "adding_mapping-custom"
+                          "title": "cart.js"
                         }
                       },
                       {
@@ -14680,7 +14687,50 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Summary\n\nTo review the basics of using JavaScript in your Stencil theme:\n\n* Stencil automatically bundles and minifies JavaScript modules to optimize page performance.\n\n* To insert custom JavaScript on a particular page in your theme, edit the JavaScript module that corresponds to the page's type.\n\n* To add files from third-party JavaScript modules to a theme, use npm, where possible.\n\n* To add JavaScript modules not distributed via npm, you can create new subdirectories within `assets/js/`.\n\n* Theme-Specific JavaScript modules are provided in the theme's `assets/js/theme/` subdirectory.\n\n* To find the mapping between modules in assets/js/theme/ and page types, examine the PageClasses object contained in `assets/js/app.js`.\n\n* You can map JavaScript modules to custom page templates by editing the same `assets/js/app.js` file.",
+                        "data": "## Mapping Custom Templates to JavaScript Modules\n\nIf you add [custom page templates](/stencil-docs/template-files/custom-templates/about-custom-templates) to your theme, you can edit the same `assets/js/app.js` file to map each custom template to an appropriate JavaScript module.",
+                        "header": {
+                          "anchor": "adding_mapping-custom"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "const customClasses = {};\n\n/**\n * This function gets added to the global window and then called\n * on page load with the current template loaded and JS Context passed in\n * @param pageType String\n * @param contextJSON\n * @returns {*}\n */\nwindow.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {\n    const context = JSON.parse(contextJSON || '{}');\n\n    return {\n        load() {\n            $(() => {\n                // Load globals\n                if (loadGlobal) {\n                    Global.load(context);\n                }\n\n                const importPromises = [];\n\n                // Find the appropriate page loader based on pageType\n                const pageClassImporter = pageClasses[pageType];\n                if (typeof pageClassImporter === 'function') {\n                    importPromises.push(pageClassImporter());\n                }\n\n                // See if there is a page class default for a custom template\n                const customTemplateImporter = customClasses[context.template];\n                if (typeof customTemplateImporter === 'function') {\n                    importPromises.push(customTemplateImporter());\n                }\n\n                // Wait for imports to resolve, then call load() on them\n                Promise.all(importPromises).then(imports => {\n                    imports.forEach(imported => {\n                        imported.default.load(context);\n                    });\n                });\n            });\n        },\n    };\n};",
+                        "header": {
+                          "title": "app.js",
+                          "subtitle": "map custom templates to js modules"
+                        },
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "### Injecting Custom Templates\n\nIn the theme's [templates/layout/base.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/layout/base.html) template, we've added the line `{{inject 'template' template}}` just above `{{{snippet 'htmlhead'}}}` statement to inject the custom template:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "<head>\n      <title>{{ head.title }}</title>\n      {{{ head.meta_tags }}}\n      {{{ head.config }}}\n      [...]\n\n      {{{head.scripts}}}\n      {{{head.rsslinks}}}\n\n      {{inject 'themeSettings' theme_settings}}\n      {{inject 'genericError' (lang 'common.generic_error')}}\n      {{inject 'maintenanceMode' settings.maintenance}}\n      {{inject 'urls' urls}}\n      {{inject 'template' template}} //injects the custom template\n      {{{snippet 'htmlhead'}}}\n</head> ",
+                        "header": {
+                          "title": "base.html",
+                          "subtitle": "custom template injection"
+                        },
+                        "config": {
+                          "mode": "html",
+                          "highlightRange": [
+                            {
+                              "from": "14",
+                              "to": "14"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Summary\n\nTo review the basics of using JavaScript in your Stencil theme:\n\n* Stencil automatically bundles and minifies JavaScript modules to optimize page performance.\n\n* To insert custom JavaScript on a particular page in your theme, edit the JavaScript module that corresponds to the page's type.\n\n* To add files from third-party JavaScript modules to a theme, use npm where possible.\n\n* To add JavaScript modules not distributed via npm, you can create new subdirectories within [assets/js/](https://github.com/bigcommerce/cornerstone/tree/master/assets/js).\n\n* Theme-Specific JavaScript modules are provided in the theme's [assets/js/theme/](https://github.com/bigcommerce/cornerstone/tree/master/assets/js/theme) subdirectory.\n\n* To find the mapping between modules in assets/js/theme/ and page types, examine the PageClasses object contained in [assets/js/app.js](https://github.com/bigcommerce/cornerstone/blob/master/assets/js/app.js).\n\n* You can map JavaScript modules to custom page templates by editing the [assets/js/app.js](https://github.com/bigcommerce/cornerstone/blob/master/assets/js/app.js) file.",
                         "header": {
                           "anchor": "adding_summary"
                         }
