@@ -7544,9 +7544,8 @@ parameters:
   FilterIncludeParam:
     name: include
     description: >-
-      Sub-resources to include on a product, in a comma-separated list. Valid
-      expansions currently include `variants`, `images`, `primary_image`,
-      `custom_fields`, and `bulk_pricing_rules`.
+      Sub-resources to include on a product, in a comma-separated list. If
+      `options` or `modifiers` are used, results are limited to 10 per page.
     required: false
     in: query
     type: string
@@ -7556,6 +7555,8 @@ parameters:
       - custom_fields
       - bulk_pricing_rules
       - primary_image
+      - modifiers
+      - options
   FilterIncludeFieldsParam:
     name: include_fields
     description: >-
