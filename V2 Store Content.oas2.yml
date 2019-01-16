@@ -522,11 +522,6 @@ paths:
       description: Deletes all blog posts on the store.
       summary: Delete All Blog Posts
       parameters:
-        - name: store_hash
-          in: path
-          required: true
-          type: string
-          description: Your store's hash from the canonical URL
         - name: Accept
           in: header
           required: true
@@ -1835,10 +1830,6 @@ definitions:
       meta_keywords: ''
     type: object
     properties:
-      id:
-        description: Unique ID of this Web page. Read Only
-        example: 6
-        type: intger
       parent_id:
         description: ID of any parent Web page.
         example: 5
@@ -1943,6 +1934,10 @@ definitions:
         description: >-
           If page type is `link` this field is returned. Required in  POST to
           create a `link` page.
+      id:
+        type: integer
+        example: 44
+        description: ID of the page.
     required:
       - type
       - name
