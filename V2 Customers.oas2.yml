@@ -669,7 +669,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: id
+        - name: customer_id
           in: path
           required: true
           type: integer
@@ -859,7 +859,7 @@ paths:
         - Customers
       parameters:
         - in: path
-          name: id
+          name: customer_id
           type: integer
           required: true
           description: Id of the customer
@@ -1439,7 +1439,7 @@ paths:
           exclusiveMaximum: false
           exclusiveMinimum: false
           description: ID of this customer address
-        - name: id
+        - name: customer_address_id
           in: path
           required: true
           type: integer
@@ -1572,7 +1572,7 @@ paths:
               country: United Statues
               phone: 123-345-7890
               address_type: residental
-        - name: id
+        - name: customer_address_id
           in: path
           required: true
           type: integer
@@ -1956,7 +1956,8 @@ paths:
         - Customer Groups
     delete:
       description: >-
-        Deletes all customer groups in the store. 
+        Deletes all customer groups in the store. Up to 100 customers per batch
+        can be deleted.  
 
 
         > All existing customers are unassigned from the group when it is
@@ -2074,7 +2075,7 @@ paths:
         deleted.
       summary: Delete A Customer Group
       parameters:
-        - name: id
+        - name: customer_group_id
           in: path
           required: true
           type: integer
@@ -2143,7 +2144,7 @@ paths:
       summary: Update A Customer Group
       parameters:
         - in: path
-          name: id
+          name: customer_group_id
           type: integer
           required: true
           description: Id of the customer group
