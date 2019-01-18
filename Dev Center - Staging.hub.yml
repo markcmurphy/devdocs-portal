@@ -15516,9 +15516,16 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Localization File Structure\n\nThe `.json` translation files have a straightforward structure of key-value pairs. Here is an example, from Stencil’s default `en.json` file:\n\n`\"welcome_back\": \"Welcome back, {name}\"`\n\nAbove, `\"welcome_back\"` is an arbitrary key name for a welcome message. The string `\"Welcome back, {name}\"` is its assigned value for English-language stores.\n\nIf you design your theme’s storefront pages to refer to this message by its generic key name `\"welcome_back\"`, they can pass its localized value in other languages, as that value is defined in each language’s `.json` file.\nKey-value pairs are grouped into objects, as you can see in this longer example:\n\n```\n{\n   \"header\": {\n    \"welcome_back\": \"Welcome back, {name}\"\n   },\n   \"prelaunch\": {\n    \"coming_soon\": \"Coming Soon\",\n    \"intro\": \"This store will be launching shortly. Please visit again!\"\n   },\n   \"cart\": {\n    \"items\": \"{NUM, plural, =0{(0 items)} one {(# item)} other {(# items)}}\",\n    \"label\": \"Cart\",\n    \"is_empty\": \"Your cart is empty\",\n     \"coupon_code\": \"Coupon Code\",\n    \"gift_certificate\": \"Gift Certificate\",\n    \"freeshipping\": \"Free Shipping\",\n    \"shipping_peritem\": \"Per Item Shipping\",\n    \"shipping_estimator\": {\n        \"add_info\": \"Add Info\",\n        \"select_a_country\": \"Select a Country\",\n        \"select_a_state\": \"Select a State\",\n        \"estimate_shipping\": \"Estimate Shipping\"\n    }\n   },\n}\n```",
+                        "data": "## Localization File Structure\n\nThe `.json` translation files have a straightforward structure of key-value pairs. Here is an example, from Stencil’s default `en.json` file:\n\n`\"welcome_back\": \"Welcome back, {name}\"`\n\nAbove, `\"welcome_back\"` is an arbitrary key name for a welcome message. The string `\"Welcome back, {name}\"` is its assigned value for English-language stores.\n\nIf you design your theme’s storefront pages to refer to this message by its generic key name `\"welcome_back\"`, they can pass its localized value in other languages, as that value is defined in each language’s `.json` file.\nKey-value pairs are grouped into objects, as you can see in this longer example below:",
                         "header": {
                           "anchor": "basis_localization-file"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n   \"header\": {\n    \"welcome_back\": \"Welcome back, {name}\"\n   },\n   \"prelaunch\": {\n    \"coming_soon\": \"Coming Soon\",\n    \"intro\": \"This store will be launching shortly. Please visit again!\"\n   },\n   \"cart\": {\n    \"items\": \"{NUM, plural, =0{(0 items)} one {(# item)} other {(# items)}}\",\n    \"label\": \"Cart\",\n    \"is_empty\": \"Your cart is empty\",\n     \"coupon_code\": \"Coupon Code\",\n    \"gift_certificate\": \"Gift Certificate\",\n    \"freeshipping\": \"Free Shipping\",\n    \"shipping_peritem\": \"Per Item Shipping\",\n    \"shipping_estimator\": {\n        \"add_info\": \"Add Info\",\n        \"select_a_country\": \"Select a Country\",\n        \"select_a_state\": \"Select a State\",\n        \"estimate_shipping\": \"Estimate Shipping\"\n    }\n   },\n}",
+                        "config": {
+                          "mode": "js"
                         }
                       }
                     ]
@@ -15642,10 +15649,21 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Nested Plurality and Gender Support\nThe framework allows you to code conditional plurality for strings within each translation file. For example, your code within an English-language file could overload a single message to display in each of the following forms – depending on the actual value of its two numeric variables:\n\n* \"There are 3 items in 2 categories\"\n* \"There is 1 item in 2 categories\"\n* \"There are 2 items in 1 category\"\n\nHere is the markup that would handle the first three words in each example above, assuming appropriate parameters were inserted in the translation files:\n\n```\n<h2 class=\"modal-header-title\">\n   {{lang 'cart.added_to_cart.what_next' num_products=cart.quantity}} [...]\n</h2>\n```\n\nSimilarly, the framework supports per-language conditional coding of appropriate genders for pronouns and nouns.",
+                        "data": "## Nested Plurality and Gender Support\nThe framework allows you to code conditional plurality for strings within each translation file. For example, your code within an English-language file could overload a single message to display in each of the following forms – depending on the actual value of its two numeric variables:\n\n* \"There are 3 items in 2 categories\"\n* \"There is 1 item in 2 categories\"\n* \"There are 2 items in 1 category\"\n\nHere is the markup that would handle the first three words in each example above, assuming appropriate parameters were inserted in the translation files:",
                         "header": {
                           "anchor": "implementation_nested-plurality"
                         }
+                      },
+                      {
+                        "type": "code",
+                        "data": "<h2 class=\"modal-header-title\">\n   {{lang 'cart.added_to_cart.what_next' num_products=cart.quantity}} [...]\n</h2>",
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "Similarly, the framework supports per-language conditional coding of appropriate genders for pronouns and nouns."
                       }
                     ]
                   }
@@ -15667,10 +15685,32 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Cornerstone Implementation Example\n\nHere is an example based on this file within Cornerstone:\n`cornerstone/templates/components/cart/shipping-estimator.html`\n\nIn the excerpt below, each highlighted `{{lang...}}` statement is a Handlebars helper. Each of the statements abstracts the message indicated by its (English-language) key name to enable internationalization of that message:\n\n```\n<div class=\"shipping-estimator\" style=\"display: none;\">\n    <form class=\"estimator-form\">\n      <button class=\"shipping-estimate-hide\">{{lang 'cancel'}}</button>\n      <select name=\"shipping-country\">\n      <option>{{lang 'cart.shipping_estimator.select_a_country'}}</option>\n      {{#each countries}}\n          <option value=\"{{id}}\" {{#if selected}}selected=\"selected\"{{/if}}>\n                {{name}}\n          </option>\n      {{/each}}\n      </select>\n      <select name=\"shipping-state\">\n      <option>{{lang 'cart.shipping_estimator.select_a_state'}}</option>\n      {{#each states}}\n          <option value=\"{{id}}\" {{#if selected}}selected=\"selected\"{{/if}}>\n              {{name}}\n          </option>\n      {{/each}}\n      </select>\n      <input type=\"text\" name=\"shipping-zip\" value=\"{{selected_zip}}\">\n      <button class=\"shipping-estimate-submit\">{{lang 'cart.shipping_estimator.estimate_shipping'}}\n      </button>\n    </form>\n    <div class=\"shipping-quotes\"></div>\n</div>\n\n```\n\n\nIn the excerpts below, you can see that the default theme’s basic `.../lang/en.json` file includes matches, and value definitions, for each of the translation keys in the Handlebars helpers above:\n\n\n```\n{\n  \"header\": {\n        \"welcome_back\": \"Welcome back, {name}\"\n  },\n  ...\n      \"label\": \"Cart\",\n        \"is_empty\": \"Your cart is empty\",\n        \"coupon_code\": \"Coupon Code\",\n        \"gift_certificate\": \"Gift Certificate\",\n        \"freeshipping\": \"Free Shipping\",\n        \"shipping_peritem\": \"Per Item Shipping\",\n      \"shipping_estimator\": {\n            \"add_info\": \"Add Info\",\n          \"select_a_country\": \"Select a Country\",\n          \"select_a_state\": \"Select a State\",\n          \"estimate_shipping\": \"Estimate Shipping\"\n      }\n  },\n  \"common\": {\n        \"currency_converter\": \"Currency Converter\",\n        \"newsletter_signup\": \"Sign up for our newsletter\",\n        \"form_submit\": \"Submit\",\n        \"required\": \"Required\",\n        \"email_address\": \"Email Address\",\n      \"edit\": \"Edit\",\n      \"no\": \"No\",\n      \"yes\": \"Yes\",\n      \"cancel\": \"Cancel\",\n      \"share\": \"Share\",\n      \"delete\": \"Delete\",\n      \"public\": \"Public\",\n        \"private\": \"Private\",\n        \"view_all\": \"View All\",\n        \"paginator\": {\n            \"page_of\": \"Page {current} of {total}\"\n      },\n      ...\n```\n\n\nTranslation files for other languages would use the same format, to define these keys’ values in their respective languages.",
+                        "data": "## Cornerstone Implementation Example\n\nHere is an example based on this file within Cornerstone:\n`cornerstone/templates/components/cart/shipping-estimator.html`\n\nIn the excerpt below, each highlighted `{{lang...}}` statement is a Handlebars helper. Each of the statements abstracts the message indicated by its (English-language) key name to enable internationalization of that message:",
                         "header": {
                           "anchor": "#implementation_cornerstone-example"
                         }
+                      },
+                      {
+                        "type": "code",
+                        "data": "<div class=\"shipping-estimator\" style=\"display: none;\">\n    <form class=\"estimator-form\">\n      <button class=\"shipping-estimate-hide\">{{lang 'cancel'}}</button>\n      <select name=\"shipping-country\">\n      <option>{{lang 'cart.shipping_estimator.select_a_country'}}</option>\n      {{#each countries}}\n          <option value=\"{{id}}\" {{#if selected}}selected=\"selected\"{{/if}}>\n                {{name}}\n          </option>\n      {{/each}}\n      </select>\n      <select name=\"shipping-state\">\n      <option>{{lang 'cart.shipping_estimator.select_a_state'}}</option>\n      {{#each states}}\n          <option value=\"{{id}}\" {{#if selected}}selected=\"selected\"{{/if}}>\n              {{name}}\n          </option>\n      {{/each}}\n      </select>\n      <input type=\"text\" name=\"shipping-zip\" value=\"{{selected_zip}}\">\n      <button class=\"shipping-estimate-submit\">{{lang 'cart.shipping_estimator.estimate_shipping'}}\n      </button>\n    </form>\n    <div class=\"shipping-quotes\"></div>\n</div>\n",
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "In the excerpts below, you can see that the default theme’s basic `.../lang/en.json` file includes matches, and value definitions, for each of the translation keys in the Handlebars helpers above:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n  \"header\": {\n        \"welcome_back\": \"Welcome back, {name}\"\n  },\n  ...\n      \"label\": \"Cart\",\n        \"is_empty\": \"Your cart is empty\",\n        \"coupon_code\": \"Coupon Code\",\n        \"gift_certificate\": \"Gift Certificate\",\n        \"freeshipping\": \"Free Shipping\",\n        \"shipping_peritem\": \"Per Item Shipping\",\n      \"shipping_estimator\": {\n            \"add_info\": \"Add Info\",\n          \"select_a_country\": \"Select a Country\",\n          \"select_a_state\": \"Select a State\",\n          \"estimate_shipping\": \"Estimate Shipping\"\n      }\n  },\n  \"common\": {\n        \"currency_converter\": \"Currency Converter\",\n        \"newsletter_signup\": \"Sign up for our newsletter\",\n        \"form_submit\": \"Submit\",\n        \"required\": \"Required\",\n        \"email_address\": \"Email Address\",\n      \"edit\": \"Edit\",\n      \"no\": \"No\",\n      \"yes\": \"Yes\",\n      \"cancel\": \"Cancel\",\n      \"share\": \"Share\",\n      \"delete\": \"Delete\",\n      \"public\": \"Public\",\n        \"private\": \"Private\",\n        \"view_all\": \"View All\",\n        \"paginator\": {\n            \"page_of\": \"Page {current} of {total}\"\n      },\n      ...",
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "Translation files for other languages would use the same format, to define these keys’ values in their respective languages."
                       }
                     ]
                   }
