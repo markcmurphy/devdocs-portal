@@ -1879,29 +1879,6 @@ definitions:
   ItemCustom:
     type: object
     title: Item Custom
-    properties:
-      id:
-        type: string
-        description: Id of the custom item
-      sku:
-        type: string
-        description: Custom item sku
-      name:
-        type: string
-        description: Item name
-      quantity:
-        type: string
-      listPrice:
-        type: string
-        description: >-
-          Price of the item. With or without tax depending on your stores set
-          up.
-    required:
-      - id
-      - sku
-      - name
-      - quantity
-      - listPrice
     description: >-
       **Read Only**
 
@@ -1910,6 +1887,31 @@ definitions:
       [Server to Server Cart
       API](/api-reference/cart-checkout/server-server-cart-api). A custom item
       can only be added to a cart using the Server to Server API. 
+    properties:
+      id:
+        type: string
+        description: Id of the custom item
+        example: f1f3a531-fbcf-439b-bac1-40d5ae5c2bff
+      sku:
+        type: string
+        description: Custom item sku
+        example: SM-456
+      name:
+        type: string
+        description: Item name
+        example: Custom Item Name
+      quantity:
+        type: integer
+        example: 1
+      listPrice:
+        type: integer
+        description: >-
+          Price of the item. With or without tax depending on your stores set
+          up.
+        example: 10
+      extendedListPrice:
+        type: integer
+        example: 9.24
 securityDefinitions: {}
 basePath: /api/storefront
 schemes:
