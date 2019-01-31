@@ -8110,6 +8110,10 @@ definitions:
           - put
       config:
         $ref: '#/definitions/OptionConfig'
+      sort_order:
+        type: integer
+        example: 1
+        description: 'Order in which the option is displayed on the storefront. '
       option_values:
         type: array
         x-required:
@@ -8131,11 +8135,11 @@ definitions:
     title: Option
     type: object
   OptionPost:
-    type: object
     description: The model for a POST to create options on a product.
     allOf:
       - $ref: '#/definitions/OptionBase'
     title: Option Post
+    type: object
   OptionPut:
     type: object
     description: The model for a PUT to update options on a product.
