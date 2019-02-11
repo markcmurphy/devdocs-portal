@@ -12966,14 +12966,51 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "<b>Description:</b> A list of all the featured products for the BigCommerce storefront\n\n<b>Handlebars Expression:</b> `{{products.featured}}`\n\n<b>Object Properties:</b> References the product card model.\n\n<b> Usage Example: </b>\n\nFrom Stencil's base Cornerstone theme, the example below displays the global `{{products.featured}}` object on the `<theme-name>/templates/pages/home.html` page template.\n\nFirst, to declare the object, the following front mattermust be placed at the top of this template. This particular declaration also limits the number of featured products to be displayed:\n\n```\n---\nproducts:\n    [...]\n    featured:\n        limit: {{theme_settings.homepage_featured_products_count}}\n---\n```\nThe `homepage_featured_products_count` limit is one of two relevant variables defined in Cornerstone's `config.json` file, here:\n\n```\n  \"settings\": {\n    [...]\n    \"homepage_featured_products_count\": 8,\n    [...]\n    \"homepage_featured_products_column_count\": 4,\n    [...]    \n```\n\nIn the body of the `home.html` template, the following Handlebars conditional statement displays the featured-products object declared above:\n\n```\n    {{#if products.featured}}\n        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}\n    {{/if}}\n```\n\nThis statement formats the featured-products display according to the `homepage_featured_products_column_count` variable, also defined in the `config.json` excerpt above."
+                                    "data": "<b>Description:</b> Renders a list of all the featured products for the BigCommerce storefront.\n\n<b>Handlebars Expression:</b> `{{products.featured}}`\n\n<b>Object Properties:</b> References the [product card model](/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/common-product-card-model).\n\n<b> Usage Example: </b>\n\nThe code example below displays the global `{{products.featured}}` object on the `cornerstone/templates/pages/home.html` page template from [Stencil's base Cornerstone theme](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/home.html#L5) (Github).\n\nFirst, you must declare the object using Front Matter. To declare the object, the following front matter must be placed at the top of the template HTML page. This following declaration also limits the number of featured products to be displayed:"
+                                  },
+                                  {
+                                    "type": "code",
+                                    "data": "---\nproducts:\n    [...]\n    featured:\n        limit: {{theme_settings.homepage_featured_products_count}} //limits the number of featured products to be displayed\n---",
+                                    "header": {
+                                      "title": "{{products.featured}} Front Matter Declaration",
+                                      "subtitle": "cornerstone/templates/pages/home.html"
+                                    },
+                                    "config": {
+                                      "mode": "js"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "The `homepage_featured_products_count` limit is one of two relevant variables defined in [Cornerstone's `config.json` file](https://github.com/bigcommerce/cornerstone/blob/master/config.json#L45) (Github).\n\n"
+                                  },
+                                  {
+                                    "type": "code",
+                                    "data": "\"settings\": {\n    [...]\n    \"homepage_featured_products_count\": 8,\n    [...]\n    \"homepage_featured_products_column_count\": 4,\n    [...]    ",
+                                    "header": {
+                                      "subtitle": "cornerstone/config.json",
+                                      "title": "\"settings\" object"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "In the body of [Cornerstone's `home.html` template](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/home.html#L27) (Github), the below Handlebars conditional statement is responsible for displaying the `{{products.featured}}` object. This is the object that we declared above using front matter."
+                                  },
+                                  {
+                                    "type": "code",
+                                    "data": "{{#if products.featured}}\n\t\t{{> components/products/featured products=products.featured \n    columns=theme_settings.homepage_featured_products_column_count}}\n{{/if}}\n",
+                                    "header": {
+                                      "subtitle": "cornerstone/templates/pages/home.html",
+                                      "title": "conditional {{products.featured}} view"
+                                    },
+                                    "config": {
+                                      "mode": "js"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "This above statement formats the _Featured Products_ display according to the `homepage_featured_products_column_count` variable, which is the second relevant variable defined in [Cornerstone's `config.json` file](https://github.com/bigcommerce/cornerstone/blob/master/config.json#L53) (Github)."
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "global object"
-                                }
                               }
                             },
                             {
@@ -19623,48 +19660,48 @@
                   }
                 },
                 {
-            "title": "Supported Features",
-            "route": {
-              "path": "/supported-features"
-            },
-            "data": {
-              "blocks": [
-                {
-                  "type": "html",
-                  "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\">Supported Features</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#supported_supported\">BigCommerce for Wordpress Supported Features</a></li>\n    <li><a href=\"#supported_unsupported\">BigCommerce for Wordpress Unsupported Features</a></li>\n    <li><a href=\"#supported_general\">General Product Roadmap</a></li>\n\t</ul>\n</div>"
-                },
-                {
-                  "type": "text",
-                  "data": "## BigCommerce for Wordpress Supported Features\n\nThe open source BigCommerce for Wordpress plugin currently supports the following features and capabilities that are native to the BigCommerce platform and more:\n\n* Complex Product Catalog (600 SKUs per product, 250 product values for a single option)\n* Product Variants and Product Variant Pricing\n* Product Promotions\n* Secure Shopper Accounts and Logins with PCI Compliant Checkout\n* Cart, Checkout, Account Profiles, Sign In, Shipping & Returns, Gift Certificates, and Order History Pages for Shoppers\n* Ability to Overwrite Template Files\n* ShipperHQ Integration\n* Gutenberg and Classic Editor\n* Google Accelerated Mobile Pages \n* Google Address Autocomplete \n* Google Analytics Enhanced Ecommerce\n* Facebook Pixel \n* Enterprise Systems Integrations (connect to existing ERP suites, PIM software, OMS solutions, POS systems, or marketing automation tools)\n* Faceted Search with FacetWP and Search with SearchWP\n* Multi Site Selling\n* Multi-Channel Selling (eBay, Amazon, Facebook, Instagram, Google Shopping, Square and more) and Central Management (bulk listing, automatic inventory syncing, unified order and fulfillment management)\n\n### Supported Payment Gateways\n\nBigCommerce has over 65 payment gateway integrations available out-of-the box, serving 100+ countries and over 250 local payment methods. BigCommerce for Wordpress currently supports the following payment gateways:\n\n* PayPal Express (now called PayPal Checkout)\n* PayPal through Braintree\n* All non-hosted (API) gateways that are supported by Optimized One Page Checkout \n\nUnsupported Hosted Payment Gateways are Amazon Pay, AfterPay, Google Pay, Chase Pay, and Masterpass.\n\n",
-                  "header": {
-                    "anchor": "#supported_supported"
-                  }
-                },
-                {
-                  "type": "text",
-                  "data": "---"
-                },
-                {
-                  "type": "text",
-                  "data": "## BigCommerce for Wordpress Unsupported Features\n\nThe BigCommerce for Wordpress plugin does not currently support the following features: \n\n* Product Rules\n* Product Option Rules \n* Product Pick Lists and Bundled * Products\n* Product File Upload Field\n* Modifier Adjustments\n* Warranty, Availability, and Bulk Pricing Product Fields\n* Price Lists\n* Persistent Cart\n* Cart Preview\n* Cart Page Promotional Banners\n* Customer Groups\n* Real-Time Syncing with BigCommerce Catalog Updates",
-                  "header": {
-                    "anchor": "#supported_unsupported"
-                  }
-                },
-                {
-                  "type": "text",
-                  "data": "---"
-                },
-                {
-                  "type": "text",
-                  "data": "## General Product Roadmap\n\nWe plan on supporting and improving the following features in the BigCommerce for Wordpress plugin:\n\n* Product Modifier Improvements\n* Product Variant Images\n* Moderation and Management of Product Reviews\n* Additional Theme Styling within Customizer\n* Multi-Currency \n* Shopper Wishlists\n* Abandoned Cart Saver \n* Shipping Calculation on Cart Page\n* Promotional Banner Support\n* Page Builder Plugins Support\n",
-                  "header": {
-                    "anchor": "supported_general"
+                  "title": "Supported Features",
+                  "route": {
+                    "path": "/supported-features"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\">Supported Features</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#supported_supported\">BigCommerce for Wordpress Supported Features</a></li>\n    <li><a href=\"#supported_unsupported\">BigCommerce for Wordpress Unsupported Features</a></li>\n    <li><a href=\"#supported_general\">General Product Roadmap</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## BigCommerce for Wordpress Supported Features\n\nThe open source BigCommerce for Wordpress plugin currently supports the following features and capabilities that are native to the BigCommerce platform and more:\n\n* Complex Product Catalog (600 SKUs per product, 250 product values for a single option)\n* Product Variants and Product Variant Pricing\n* Product Promotions\n* Secure Shopper Accounts and Logins with PCI Compliant Checkout\n* Cart, Checkout, Account Profiles, Sign In, Shipping & Returns, Gift Certificates, and Order History Pages for Shoppers\n* Ability to Overwrite Template Files\n* ShipperHQ Integration\n* Gutenberg and Classic Editor\n* Google Accelerated Mobile Pages \n* Google Address Autocomplete \n* Google Analytics Enhanced Ecommerce\n* Facebook Pixel \n* Enterprise Systems Integrations (connect to existing ERP suites, PIM software, OMS solutions, POS systems, or marketing automation tools)\n* Faceted Search with FacetWP and Search with SearchWP\n* Multi Site Selling\n* Multi-Channel Selling (eBay, Amazon, Facebook, Instagram, Google Shopping, Square and more) and Central Management (bulk listing, automatic inventory syncing, unified order and fulfillment management)\n\n### Supported Payment Gateways\n\nBigCommerce has over 65 payment gateway integrations available out-of-the box, serving 100+ countries and over 250 local payment methods. BigCommerce for Wordpress currently supports the following payment gateways:\n\n* PayPal Express (now called PayPal Checkout)\n* PayPal through Braintree\n* All non-hosted (API) gateways that are supported by Optimized One Page Checkout \n\nUnsupported Hosted Payment Gateways are Amazon Pay, AfterPay, Google Pay, Chase Pay, and Masterpass.\n\n",
+                        "header": {
+                          "anchor": "#supported_supported"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## BigCommerce for Wordpress Unsupported Features\n\nThe BigCommerce for Wordpress plugin does not currently support the following features: \n\n* Product Rules\n* Product Option Rules \n* Product Pick Lists and Bundled * Products\n* Product File Upload Field\n* Modifier Adjustments\n* Warranty, Availability, and Bulk Pricing Product Fields\n* Price Lists\n* Persistent Cart\n* Cart Preview\n* Cart Page Promotional Banners\n* Customer Groups\n* Real-Time Syncing with BigCommerce Catalog Updates",
+                        "header": {
+                          "anchor": "#supported_unsupported"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## General Product Roadmap\n\nWe plan on supporting and improving the following features in the BigCommerce for Wordpress plugin:\n\n* Product Modifier Improvements\n* Product Variant Images\n* Moderation and Management of Product Reviews\n* Additional Theme Styling within Customizer\n* Multi-Currency \n* Shopper Wishlists\n* Abandoned Cart Saver \n* Shipping Calculation on Cart Page\n* Promotional Banner Support\n* Page Builder Plugins Support\n",
+                        "header": {
+                          "anchor": "supported_general"
+                        }
+                      }
+                    ]
                   }
                 }
-              ]
-            }
-          },
               ]
             }
           },
