@@ -13044,7 +13044,52 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "<b>Description:</b> A list of new products for the BigCommerce storefront\n\n<b>Handlebars Expression:</b>`{{products.new}}`\n\n<b>Object Properties:</b> References the product card model.\n\n<b> Usage Example:</b>\n\nTo access the global `{{products.new}}` object on your page, you must first use front matter to declare the object at the top of your page template. For example, you would place this front-matter declaration at the top of your template file:\n\n```\n---\nproducts:\n    new:\n---\n```"
+                                    "data": "**Description:** A list of new products for the BigCommerce storefront\n\n**Handlebars Expression:**`{{products.new}}`\n\n**Object Properties:** References the [product card model](/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/common-product-card-model).\n\n**Usage Example:**\n\nTo access the global `{{products.new}}` object on your page, you must first use front matter to declare the object at the top of your page template. \n\nThe code example below declares the global `{{products.new}}` object on the `cornerstone/templates/pages/home.html` page template from [Stencil's base Cornerstone Theme](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/home.html#L3) (Github)."
+                                  },
+                                  {
+                                    "type": "code",
+                                    "data": "---\nproducts:\n    new:\n        limit: {{theme_settings.homepage_new_products_count}}\n---",
+                                    "header": {
+                                      "title": "{{products.new}} Front Matter Declaration",
+                                      "subtitle": "cornerstone/templates/pages/home.html"
+                                    },
+                                    "config": {
+                                      "mode": "html"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "The `homepage_featured_products_count` limit is one of two relevant variables defined in Cornerstone's `config.json` file (Github)."
+                                  },
+                                  {
+                                    "type": "code",
+                                    "data": " \"settings\": {\n    \"homepage_new_products_count\": 5,\n    [...]\n    \"homepage_new_products_column_count\": 4,\n    [...]",
+                                    "header": {
+                                      "title": "\"settings\" object",
+                                      "subtitle": "cornerstone/config.json"
+                                    },
+                                    "config": {
+                                      "mode": "json"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "In the body of [Cornerstone's `home.html` template](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/home.html#L36) (Github), the below Handlebars conditional statement is responsible for displaying the `{{products.featured}}` object. This is the object that we declared above using front matter."
+                                  },
+                                  {
+                                    "type": "code",
+                                    "data": "{{#if products.new}}\n  {{> components/products/new products=products.new \t\n \tcolumns=theme_settings.homepage_new_products_column_count}}\n{{/if}}",
+                                    "header": {
+                                      "title": "conditional {{products.new}} view",
+                                      "subtitle": "cornerstone/templates/pages/home.html"
+                                    },
+                                    "config": {
+                                      "mode": "js"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "This above statement formats the _New Products_ display according to the `homepage_new_products_column_count` variable, which is the second relevant variable defined in [Cornerstone's `config.json` file](https://github.com/bigcommerce/cornerstone/blob/master/config.json#L46) (Github)."
                                   }
                                 ]
                               }
