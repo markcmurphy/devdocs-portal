@@ -156,7 +156,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>About Our API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#about-api__available-api\">Available APIs</a></li>\n        <li><a href=\"#about-api_get-help\">Support</a></li>\n        <li><a href=\"#about-api_api-enviroment\">API Environment</a></li>\n        <li><a href=\"#about-api_request-headers\">Request Headers</a></li>\n        <li><a href=\"#about-api_response-headers\">Response Headers</a></li>\n        <li><a href=\"#about-api_media-types\">Media Types</a></li>\n        <li><a href=\"#about-api_content-types\">Content Types</a></li>\n        <li><a href=\"#about-api_definitions\">Definitions</a></li>\n    \t\t<li><a href=\"https://www.bigcommerce.com/terms/api-terms/\">Terms of Service</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>About Our API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#about-api_api-enviroment\">API Environment</a></li>\n        <li><a href=\"#about-api__available-api\">Available APIs</a></li>\n        <li><a href=\"#about-api_request-headers\">Request Headers</a></li>\n        <li><a href=\"#about-api_response-headers\">Response Headers</a></li>\n        <li><a href=\"#about-api_media-types\">Media Types</a></li>\n        <li><a href=\"#about-api_content-types\">Content Types</a></li>\n    \t\t<li><a href=\"#about-api_get-help\">Support</a></li>\n    \t\t<li><a href=\"https://www.bigcommerce.com/terms/api-terms/\">Terms of Service</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               Want to get started making API Requests right
@@ -171,6 +171,25 @@ pages:
                               Marketplace](https://www.bigcommerce.com/apps/). 
                           - type: text
                             data: '---'
+                          - type: text
+                            data: >-
+                              ## API Environment 
+
+
+                              BigCommerce API requests can be made in the
+                              context of the storefront or server-to-server.  
+
+
+                              * Storefront APIs use the store url:
+                              `https://your-store.mybigcommerce.com/api/{endpoint}`
+
+                              * Server-to-Server requests use the base url: 
+                              `https://api.bigcommerce.com/stores/{store_hash}/v3/`
+
+                              * V2 API Requests use the base url:
+                              `https://api.bigcommerce.com/stores/{store_hash}/v2/`
+                            header:
+                              anchor: about-api_api-enviroment
                           - type: text
                             data: >-
                               ## Available APIs
@@ -271,6 +290,46 @@ pages:
                             data: '---'
                           - type: text
                             data: >-
+                              ## Request Headers
+
+
+                              Server-to-Server request headers require Accept,
+                              X-Auth-Client, X-Auth-Token and Content-Type at a
+                              minimum.
+
+
+
+                              | Header | Allowed Values | Description | Example
+                              |
+
+                              | --- | --- | --- | --- |
+
+                              | `Accept` | `application/json` (for .json
+                              requests) `application/xml` (for .xml requests) |
+                              The MIME type for the format you want to receive a
+                              response in.|`application/xml` |
+
+                              | `Content-Type` | `application/json` (for JSON
+                              requests) `application/xml` (for XML requests) |
+                              The MIME type of the request body. Used to
+                              validate and parse the request to the API. |
+                              `application/json` |
+
+                              | `User-Agent` | String | While it is not
+                              required, we ask that you specify a user agent
+                              which identifies your integration/client with your
+                              requests. |
+
+                              | `X-Auth-Client` | String | Client ID of the
+                              requesting app |
+
+                              | `X-Auth-Token` | String | Access token
+                              authorizing the app to access resources on behalf
+                              of a user |
+                            header:
+                              anchor: about-api_request-headers
+                          - type: text
+                            data: >-
                               ## Support
 
 
@@ -295,40 +354,6 @@ pages:
                               specifically.  
                             header:
                               anchor: about-api_get-help
-                          - type: text
-                            data: '---'
-                          - type: text
-                            data: >-
-                              ## Definitions
-
-
-                              There are a few BigCommerce specific definitions
-                              to know when reading the documentation. 
-
-
-                              * **PDP**: [Product Detail
-                              Page.](https://www.quora.com/What-is-PLP-and-PDP)
-                              It displays the specifics of a product.
-
-                              * **PLP**: [Product Listing
-                              Page.](https://www.quora.com/What-is-PLP-and-PDP)
-                              It displays a list of products.
-
-                              * **x-nullable**: Field can accept a null value.
-
-                              * **x-url**: A check to make sure the string
-                              format is a url.
-
-                              * **x-required**: For API requests. Required on
-                              /POST only.
-
-                              * **Merchant**: Anyone selling products on
-                              BigCommerce.
-
-                              * **Shopper**: Anyone browsing or purchasing on a
-                              store.
-                            header:
-                              anchor: about-api_definitions
                     - title: Quick Start
                       route:
                         path: /making-requests
