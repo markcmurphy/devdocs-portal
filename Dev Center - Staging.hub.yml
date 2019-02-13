@@ -6660,6 +6660,58 @@ pages:
                               title: Try it Now
                           - type: text
                             data: '---'
+                          - type: text
+                            data: >-
+                              ## Custom Fields
+
+
+                              Custom fields are a feature intended for product
+                              specifications, in a key: value arrangement. As an
+                              example, there might be fields indicating
+                              technical specifications about an LED TV  such as
+                              screen size, maximum resolution, HDR support, etc.
+                              Alternatively, if selling wine, I might use Custom
+                              Fields for specifications such as vintage, region,
+                              grape, etc. Custom fields can not be used to add
+                              rules such as changing the weight or price of a
+                              product. 
+                          - type: callout
+                            data:
+                              body: >-
+                                There is a limit of 250 characters for custom
+                                field values.
+                          - type: text
+                            data: >-
+                              Custom Fields are intended to be used in a couple
+                              of contexts:
+
+
+                              * Displaying specifications on the product detail
+                              page and on the product listing pages such as
+                              category and brand pages.
+
+                              * Powering faceted search (searching/filtering by
+                              custom field values)
+                          - type: http
+                            data:
+                              method: put
+                              body: |-
+                                {
+                                  "name": "Release Year",
+                                  "value": "2018"
+                                }
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/custom-fields
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              subtitle: >-
+                                Use this to add a Custom Field to your Product.
+                                Replace the test data with your own.
+                              title: Try It Now
                     - title: Images
                       route:
                         path: /product-images
