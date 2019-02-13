@@ -6736,6 +6736,38 @@ pages:
                               works differently.
                             header:
                               anchor: products-overview_bulk-pricing-rules
+                          - type: http
+                            data:
+                              method: put
+                              body: |-
+                                {
+                                  "bulk_pricing_rules": [
+                                    {
+                                      "quantity_min": 10,
+                                      "quantity_max": 15,
+                                      "type": "price",
+                                      "amount": 3
+                                    },
+                                    {
+                                      "quantity_min": 16,
+                                      "quantity_max": 25,
+                                      "type": "price",
+                                      "amount": 5
+                                    }
+                                  ]
+                                }
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/bulk-pricing-rules
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              title: Try It Now
+                              subtitle: >-
+                                Use this to add Bulk Pricing Rules to your
+                                Product. Replace the test data with your own.
                     - title: Images
                       route:
                         path: /product-images
