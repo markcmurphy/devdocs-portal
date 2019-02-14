@@ -6770,6 +6770,46 @@ pages:
                                 Product. Replace the test data with your own.
                           - type: text
                             data: '---'
+                          - type: text
+                            data: >-
+                              ## Metafields
+
+
+                              Metafields allow a developer to set up key and
+                              namespace pairs to store data against a resource,
+                              like a product. The data does not appear in the
+                              storefront or the control panel. This is useful
+                              for when information needs to be passed back and
+                              forth between an app and the store. 
+
+
+                              Metafields can be added to variants, products,
+                              categories, and brands.
+                          - type: http
+                            data:
+                              method: put
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/metafields
+                              body: |-
+                                {
+                                  "permission_set": "read",
+                                  "namespace": "Location",
+                                  "key": "bin_number",
+                                  "value": "#4456",
+                                  "description": "location of the product",
+                                  "resource_type": "product",
+                                  "resource_id": 131
+                                }
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              subtitle: >-
+                                Use this to add a Metafield to your Product.
+                                Replace the test data with your own.
+                              title: Try It Now
                     - title: Images
                       route:
                         path: /product-images
