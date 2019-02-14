@@ -7695,6 +7695,9 @@ pages:
                         title: Try It Now
                     - type: text
                       data: >-
+                        ### Troubleshooting
+
+
                         Complex rules must consist of multiple conditions that
                         trigger the rule adjustment. If multiple conditions are
                         not specified, the request will return a 422
@@ -7710,6 +7713,58 @@ pages:
                         }
 
                         ```
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Categories
+
+
+                        Categories are a hierarchy of products available on the
+                        store, presented in a tree structure. A store’s category
+                        structure determines the primary menu structure of most
+                        storefront themes, which are directly tied to it.
+
+
+                        All products must be associated with at least one
+                        Category, although a Category does not need to contain
+                        any products. Unlike some e-commerce platforms, products
+                        on BigCommerce can be associated with more than one
+                        Category. 
+
+
+                        A product associated with categories does not currently
+                        have any priority or weighted order (there’s no “primary
+                        category”), which can make it difficult to integrate
+                        with some external systems which might wish to use a
+                        product’s categories to map to a category structure in
+                        that external system.
+                      header:
+                        anchor: products-overview_categories
+                    - type: http
+                      data:
+                        method: post
+                        body: |-
+                          {
+                            "parent_id": 18,
+                            "name": "Shoes",
+                            "description": "Shoes Available for purchase",
+                            "sort_order": 1,
+                            "page_title": "Shoes",
+                            "is_visible": true
+                          }
+                        url: >-
+                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/categories
+                        headers:
+                          Accept: application/json
+                          Content-Type: application/json
+                          X-Auth-Client: '{$$.env.X-Auth-Client}'
+                          X-Auth-Token: '{$$.env.X-Auth-Token}'
+                      header:
+                        subtitle: >-
+                          Create a Category. Replace the test data with your
+                          own.
+                        title: Try It Now
               - title: Categories
                 route:
                   path: /categories
