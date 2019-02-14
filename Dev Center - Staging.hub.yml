@@ -7449,6 +7449,138 @@ pages:
                                 Use this to add a Modifier to your Product.
                                 Replace the test data with your own.
                               title: Try It Now
+                          - type: text
+                            data: >-
+                              Since this is a checkbox which has two states,
+                              checked/unchecked or yes/no, two option values are
+                              created. The default adjuster values are null. 
+                          - type: code
+                            data: |-
+                              {
+                                "data": [
+                                  {
+                                    "id": 160,
+                                    "product_id": 131,
+                                    "name": "Add-a-$5-Donation1535039590-191",
+                                    "display_name": "Add a $5 Donation",
+                                    "type": "checkbox",
+                                    "required": false,
+                                    "config": {
+                                      "checkbox_label": "Check for Donation",
+                                      "checked_by_default": false
+                                    },
+                                    "option_values": [
+                                      {
+                                        "id": 149,
+                                        "option_id": 160,
+                                        "label": "Yes",
+                                        "sort_order": 0,
+                                        "value_data": {
+                                          "checked_value": true
+                                        },
+                                        "is_default": false,
+                                        "adjusters": {
+                                          "price": {
+                                            "adjuster": null,
+                                            "adjuster_value": null
+                                          },
+                                          "weight": null,
+                                          "image_url": "",
+                                          "purchasing_disabled": {
+                                            "status": false,
+                                            "message": ""
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "id": 150,
+                                        "option_id": 160,
+                                        "label": "No",
+                                        "sort_order": 1,
+                                        "value_data": {
+                                          "checked_value": false
+                                        },
+                                        "is_default": true,
+                                        "adjusters": {
+                                          "price": null,
+                                          "weight": null,
+                                          "image_url": "",
+                                          "purchasing_disabled": {
+                                            "status": false,
+                                            "message": ""
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "meta": {
+                                  "pagination": {
+                                    "total": 1,
+                                    "count": 1,
+                                    "per_page": 50,
+                                    "current_page": 1,
+                                    "total_pages": 1,
+                                    "links": {
+                                      "current": "?page=1&limit=50"
+                                    }
+                                  }
+                                }
+                              }
+                            header:
+                              subtitle: Create Modifier Option
+                              title: Response
+                          - type: text
+                            data: >-
+                              Next send a PUT request to update the modifier
+                              value. This increases the price by $5 when the Yes
+                              option value is selected.
+                          - type: http
+                            data:
+                              method: put
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers/{modifier_id}/values
+                              body: |-
+                                {
+                                  "is_default": false,
+                                  "adjusters": {
+                                    "price": {
+                                      "adjuster": "relative",
+                                      "adjuster_value": 5
+                                    }
+                                  }
+                                }
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                          - type: text
+                            data: >-
+                              ### Troubleshooting: 422 Error
+
+
+                              ```
+
+                              {
+                                  "status": 422,
+                                  "title": "The product is currently associated with an option set, please remove it before editing an option or modifier.",
+                                  "type": "https://developer.bigcommerce.com/api#api-status-codes",
+                                  "errors": {
+                                      "product_id": "The product is currently associated with an option set, please remove it before editing an option or modifier."
+                                  }
+                              }
+
+                              ```
+
+
+                              To fix this error:
+
+                              * Modify the products using the V2 API
+
+                              * Remove the option set using the V2 API or the
+                              Control Panel, then remake the variants and
+                              modifiers using V3
                     - title: Images
                       route:
                         path: /product-images
