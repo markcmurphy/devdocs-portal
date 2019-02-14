@@ -4308,6 +4308,9 @@ pages:
                               anchor: >-
                                 about-webhooks_tools-for-debugging-and-testing-webhooks
                     - title: Webhooks Tutorial
+                      config:
+                        sidebar:
+                          token: Tutorial
                       route:
                         path: /setting-up-webhooks
                       data:
@@ -4820,9 +4823,6 @@ pages:
                                   - [What are PATH and other environment variables, and how can I set or use them?](https://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them)
                             header:
                               anchor: setting-up-webhooks_troubleshooting
-                      config:
-                        sidebar:
-                          token: Tutorial
                     - title: Webhook Events
                       route:
                         path: /webhook-events
@@ -9792,6 +9792,9 @@ pages:
                       header:
                         anchor: cart-checkout_related-endpoints
               - title: Working with Storefront APIs
+                config:
+                  sidebar:
+                    token: tutorial
                 route:
                   path: /working-sf-apis
                 data:
@@ -10411,9 +10414,6 @@ pages:
                         Checkout](/api-reference/cart-checkout/storefront-checkout-api)
                       header:
                         anchor: working-sf-apis_realated-endpoints
-                config:
-                  sidebar:
-                    token: tutorial
               - title: Checkout SDK
                 route:
                   path: /checkout-sdk
@@ -11337,9 +11337,14 @@ pages:
                   path: /catalog-api
                 data:
                   $ref: ./V3 Catalog.oas2.yml
-        - title: Store
+              - title: Price Lists API
+                route:
+                  path: /pricelists-api
+                data:
+                  $ref: ./V3 Price Lists.oas2.yml
+        - title: Store Management
           route:
-            path: /store
+            path: /store-management
           data:
             children:
               - title: Store Information API
@@ -11362,6 +11367,56 @@ pages:
                   path: /tax-classes-api
                 data:
                   $ref: ./V2 Tax.oas2.yml
+              - title: Shipping API
+                route:
+                  path: /shipping-api
+                data:
+                  $ref: ./V2 Shipping.oas2.yml
+        - title: Customers & Subscribers
+          route:
+            path: /customer-subscribers
+          data:
+            children:
+              - title: Customers API
+                route:
+                  path: /customers-api
+                data:
+                  $ref: ./V2 Customers.oas2.yml
+              - title: Subscribers API
+                route:
+                  path: /subscribers-api
+                data:
+                  $ref: ./V3 Subscribers.oas2.yml
+        - title: Marketing
+          route:
+            path: /marketing
+          data:
+            children:
+              - title: Marketing API
+                route:
+                  path: /marketing-api
+                data:
+                  $ref: ./V2 Marketing.oas2.yml
+              - title: Store Content API
+                route:
+                  path: /store-content-api
+                data:
+                  $ref: ./V2 Store Content.oas2.yml
+        - title: Storefront
+          route:
+            path: /storefront
+          data:
+            children:
+              - title: Scripts API
+                route:
+                  path: /content-scripts-api
+                data:
+                  $ref: ./V3 Content.oas2.yml
+              - title: Themes API
+                route:
+                  path: /themes-api
+                data:
+                  $ref: ./V3 Themes.oas2.yml
         - title: Cart & Checkout
           route:
             path: /cart-checkout
@@ -11407,56 +11462,6 @@ pages:
                   path: /storefront-orders-api
                 data:
                   $ref: ./Storefront Orders.oas2.yml
-        - title: Customers & Subscribers
-          route:
-            path: /customer-subscribers
-          data:
-            children:
-              - title: Customers API
-                route:
-                  path: /customers-api
-                data:
-                  $ref: ./V2 Customers.oas2.yml
-              - title: Subscribers API
-                route:
-                  path: /subscribers-api
-                data:
-                  $ref: ./V3 Subscribers.oas2.yml
-        - title: Price Lists
-          route:
-            path: /price-lists
-          data:
-            children:
-              - title: Price Lists API
-                route:
-                  path: /pricelists-api
-                data:
-                  $ref: ./V3 Price Lists.oas2.yml
-        - title: Content
-          route:
-            path: /content
-          data:
-            children:
-              - title: Scripts API
-                route:
-                  path: /content-scripts-api
-                data:
-                  $ref: ./V3 Content.oas2.yml
-              - title: Store Content API
-                route:
-                  path: /store-content-api
-                data:
-                  $ref: ./V2 Store Content.oas2.yml
-        - title: Marketing
-          route:
-            path: /marketing
-          data:
-            children:
-              - title: Marketing API
-                route:
-                  path: /marketing-api
-                data:
-                  $ref: ./V2 Marketing.oas2.yml
         - title: Payments
           route:
             path: /payments
@@ -11467,26 +11472,6 @@ pages:
                   path: /payment-methods-api
                 data:
                   $ref: ./V2 Payment Methods.oas2.yml
-        - title: Shipping
-          route:
-            path: /shipping
-          data:
-            children:
-              - title: Shipping API
-                route:
-                  path: /shipping-api
-                data:
-                  $ref: ./V2 Shipping.oas2.yml
-        - title: Themes
-          route:
-            path: /themes
-          data:
-            children:
-              - title: Themes API
-                route:
-                  path: /themes-api
-                data:
-                  $ref: ./V3 Themes.oas2.yml
   /stencil-docs:
     title: Stencil Docs
     data:
