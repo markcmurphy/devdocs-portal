@@ -7297,6 +7297,53 @@ pages:
                                 Swatch, Radio Buttons, Rectangle, dropdown,
                                 Product List and Product List with Images. 
                               title: Supported Types
+                          - type: http
+                            data:
+                              method: post
+                              body: |-
+                                {
+                                  "name": "BigCommerce Coffee Mug",
+                                  "price": "10.00",
+                                  "categories": [
+                                    23,
+                                    21
+                                  ],
+                                  "weight": 4,
+                                  "type": "physical",
+                                  "variants": [
+                                    {
+                                      "sku": "SKU-BLU",
+                                      "option_values": [
+                                        {
+                                          "option_display_name": "Mug Color",
+                                          "label": "Blue"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "sku": "SKU-GRAY",
+                                      "option_values": [
+                                        {
+                                          "option_display_name": "Mug Color",
+                                          "label": "Gray"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              subtitle: >-
+                                Use this to create your own Product using the
+                                products endpoint . Replace the test data with
+                                your own.
+                              title: Try It Now
                     - title: Images
                       route:
                         path: /product-images
