@@ -7224,6 +7224,73 @@ pages:
                                 Content-Type: application/json
                                 X-Auth-Client: '{$$.env.X-Auth-Client}'
                                 X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              subtitle: Get Variant Options
+                              title: Try It Now
+                          - type: text
+                            data: >-
+                              In the above response, there are two variant
+                              options of size and color with three values each. 
+
+
+                              To combine the variant option values into variants
+                              and build out SKUs use the following endpoint:
+
+
+                              `https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/131/variants`
+                          - type: callout
+                            data:
+                              body: >-
+                                Variants need to be created one at a time using
+                                this endpoint. Only one variant option at a time
+                                can be created; individual variant options will
+                                contain an array of multiple values. To use a
+                                variant array and create variants in the same
+                                call as the base product, use the
+                                [/catalog/product](/api-reference/catalog/catalog-api/products/createproduct)
+                                endpoint during product creation.
+                          - type: http
+                            data:
+                              method: put
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/variants
+                              body: |-
+                                {
+                                  "cost_price": 3,
+                                  "price": 12.99,
+                                  "retail_price": 15.99,
+                                  "weight": 1,
+                                  "width": 4,
+                                  "height": 14.6,
+                                  "depth": 22,
+                                  "is_free_shipping": true,
+                                  "purchasing_disabled": true,
+                                  "purchasing_disabled_message": "This item not available at this time.",
+                                  "product_id": 134,
+                                  "sku": "SMALL-BLUE",
+                                  "option_values": [
+                                    {
+                                      "id": 163,
+                                      "option_id": 193
+                                    },
+                                    {
+                                      "id": 166,
+                                      "option_id": 194
+                                    }
+                                  ]
+                                }
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              subtitle: >-
+                                Use this to add Variants to your Product .
+                                Replace the test data with your own.
+                              title: Try It Now
+                          - type: text
+                            data: "The `option_values` array combines the options Small and Blue to create the SKU SMALL-BLUE. The id in the option_values array is the id from the variant option response option_values > id. The option_id is the id of the option. \n\n```\n {\n            \"id\": 193, //option_id\n            \"product_id\": 134,\n            \"name\": \"Size1533313432-134\",\n            \"display_name\": \"Size\",\n            \"type\": \"rectangles\",\n            \"sort_order\": 0,\n            \"option_values\": [\n                {\n                    \"id\": 163, //id\n                    \"label\": \"S\",\n                    \"sort_order\": 0,\n                    \"value_data\": null,\n                    \"is_default\": false\n                }\n\t\t\t\t\t\t\t\t...\n```"
                     - title: Images
                       route:
                         path: /product-images
