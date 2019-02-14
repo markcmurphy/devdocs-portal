@@ -7344,6 +7344,111 @@ pages:
                                 products endpoint . Replace the test data with
                                 your own.
                               title: Try It Now
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Modifier Options
+
+
+                              Modifier options are any choices that the shopper
+                              can make that will change the way the merchant
+                              fulfills the product. Examples include:
+
+                              * A checkbox to add shipping insurance
+
+                              * Text to be engraved on the product
+
+                              * A color that an unfinished product is to be
+                              painted before it’s shipped
+                               
+                              Critically, the modifier will not change the
+                              SKU/variant being fulfilled, and you cannot track
+                              inventory against combinations of modifier values.
+                              Modifiers typically would not change which product
+                              is “picked off the shelf” in the warehouse, but
+                              they change what happens to that product before
+                              it’s sent to the shopper, or how it’s sent.
+                               
+                              Modifier options:
+
+                              * May be required or non-required
+
+                              * Support all option types
+
+                              * Cannot be used as part of a variant
+
+
+
+                              An adjuster can be added to a modifier option to
+                              change things such as increasing the price,
+                              changing the weight, or shipping rules.  Adjusters
+                              cannot be applied to all modifier types.
+                          - type: callout
+                            data:
+                              body: >-
+                                Swatch, radio buttons, rectangle list,
+                                drop-down, product list, product list with
+                                images
+                              title: Modifiers that support Adjusters
+                          - type: text
+                            data: >-
+                              ### Add a modifier with price adjuster to an
+                              existing product
+
+
+                              The following example shows how to add a modifier,
+                              a checkbox with a price adjuster, that will
+                              increase the product's price by five dollars. 
+
+
+                              Creating a checkbox with an adjuster requires two
+                              separate calls: one to create the checkbox and a
+                              second to add the adjuster. Adjusters are defined
+                              within the `option_values` array, but
+                              `option_values` are not allowed in the request to
+                              create a checkbox modifier because creating a
+                              checkbox automatically generates two mandatory
+                              option values: a Yes and a No. Once the checkbox
+                              has been created along with its option values, you
+                              can update the modifier to add an adjuster. 
+                          - type: callout
+                            data:
+                              body: >-
+                                swatch, radio buttons, drop-down, rectangle
+                                list, product list, product list with images,
+                                and checkbox.
+                              title: >-
+                                Modifiers that require a second step to add an
+                                adjuster
+                          - type: text
+                            data: 'First, a POST to create the modifier. '
+                          - type: http
+                            data:
+                              method: put
+                              body: |-
+                                {
+                                  "type": "checkbox",
+                                  "required": false,
+                                  "config": {
+                                    "default_value": "Yes",
+                                    "checked_by_default": false,
+                                    "checkbox_label": "Check for Donation"
+                                  },
+                                  "display_name": "Add a $5 Donation"
+                                }
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              subtitle: >-
+                                Use this to add a Modifier to your Product.
+                                Replace the test data with your own.
+                              title: Try It Now
                     - title: Images
                       route:
                         path: /product-images
