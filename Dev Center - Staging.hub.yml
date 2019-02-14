@@ -7042,7 +7042,7 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: >
+                            data: >-
                               ## Variant
 
                               Variants represent an item as it sits on the shelf
@@ -7086,6 +7086,134 @@ pages:
                               | Backpack | Black</br>Yellow<br>----------<br>2L
                               <br> 3L<br> 8L |BLACK-2L<br>BLACK-3L<br>BLACK
                               8L</br>----------<br>YELLOW-2L<br>YELLOW-3L<br>YELLOW-8L|
+
+
+
+                              ## Create a Variant
+
+                              Variants can be created in two ways:
+
+                              * From existing variant options using the variant
+                              options endpoint.
+                              [v3/catalog/products/{product_id}/options](/api-reference/catalog/catalog-api/product-variants/createvariant)
+
+                              * By adding the variants with variant options and
+                              skus when creating the product. See [Create a
+                              Complex
+                              Product](/api-reference/catalog/catalog-api/products/createproduct).
+
+
+                              This will go over using existing variant options
+                              to create the variants.
+
+
+                              Use the
+                              `https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/131/options`
+                              endpoint to get the option information.
+                          - type: code
+                            data: |-
+                              {
+                                "data": [
+                                  {
+                                    "id": 193,
+                                    "product_id": 134,
+                                    "name": "Size1533313432-134",
+                                    "display_name": "Size",
+                                    "type": "rectangles",
+                                    "sort_order": 0,
+                                    "option_values": [
+                                      {
+                                        "id": 163,
+                                        "label": "S",
+                                        "sort_order": 0,
+                                        "value_data": null,
+                                        "is_default": false
+                                      },
+                                      {
+                                        "id": 164,
+                                        "label": "M",
+                                        "sort_order": 1,
+                                        "value_data": null,
+                                        "is_default": true
+                                      },
+                                      {
+                                        "id": 165,
+                                        "label": "L",
+                                        "sort_order": 2,
+                                        "value_data": null,
+                                        "is_default": false
+                                      }
+                                    ],
+                                    "config": []
+                                  },
+                                  {
+                                    "id": 194,
+                                    "product_id": 134,
+                                    "name": "Color1533313946-134",
+                                    "display_name": "Color",
+                                    "type": "swatch",
+                                    "sort_order": 1,
+                                    "option_values": [
+                                      {
+                                        "id": 166,
+                                        "label": "Blue",
+                                        "sort_order": 1,
+                                        "value_data": {
+                                          "colors": [
+                                            "#123C91"
+                                          ]
+                                        },
+                                        "is_default": false
+                                      },
+                                      {
+                                        "id": 167,
+                                        "label": "Green",
+                                        "sort_order": 2,
+                                        "value_data": {
+                                          "colors": [
+                                            "#0F961E"
+                                          ]
+                                        },
+                                        "is_default": false
+                                      },
+                                      {
+                                        "id": 168,
+                                        "label": "Red",
+                                        "sort_order": 3,
+                                        "value_data": {
+                                          "colors": [
+                                            "#E60C0C"
+                                          ]
+                                        },
+                                        "is_default": false
+                                      }
+                                    ],
+                                    "config": []
+                                  }
+                                ],
+                                "meta": {
+                                  "pagination": {
+                                    "total": 2,
+                                    "count": 2,
+                                    "per_page": 50,
+                                    "current_page": 1,
+                                    "total_pages": 1,
+                                    "links": {
+                                      "current": "?page=1&limit=50"
+                                    }
+                                  }
+                                }
+                              }
+                            header:
+                              subtitle: >-
+                                /GET
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/options
+                              title: Example Response
+                            config:
+                              mode: json
+                              highlightRange:
+                                - from: '4'
+                                  to: '12'
                     - title: Images
                       route:
                         path: /product-images
