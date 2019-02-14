@@ -6855,6 +6855,57 @@ pages:
                                 Use this to create a Product Review. Replace the
                                 test data with your own.
                               title: Try It Now
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Brands
+
+
+                              Brands are another form of catalog taxonomy,
+                              similar to Categories. However, there are a few
+                              differences:
+
+
+                              * Exist as a single “list” on the store, with no
+                              tree structure
+
+                              * Can only have a single assignment to a product;
+                              a product may have at most one brand, but a brand
+                              can have many products.
+                               
+                              They’re primarily used to tag products so that
+                              consumers can find Brands they’re interested in
+                              (such as Nike shoes). Brands have their own page
+                              on the storefront which shows all the products in
+                              that Brand. They’re also used as part of faceted
+                              search navigation.
+                          - type: http
+                            data:
+                              method: post
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/brands
+                              body: |-
+                                {
+                                  "name": "BigCommerce",
+                                  "page_title": "BigCommerce",
+                                  "meta_keywords": [
+                                    "ecommerce",
+                                    "best in class",
+                                    "grow your business"
+                                  ],
+                                  "image_url": "https://your-custom-image.png"
+                                }
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              subtitle: >-
+                                Use this to create your own Brand. Replace the
+                                test data with your own.
+                              title: Try It Now
                     - title: Images
                       route:
                         path: /product-images
