@@ -8108,6 +8108,294 @@ pages:
                     - type: jsonSchema
                       data:
                         $ref: './V3 Price Lists.oas2.yml#/definitions/PriceListBase'
+        - title: Store Management
+          route:
+            path: /store-management
+          data:
+            children:
+              - title: Shipping
+                route:
+                  path: /shipping
+                data:
+                  children:
+                    - title: Overview
+                      route:
+                        path: /shipping-overview
+                      data:
+                        blocks:
+                          - type: html
+                            data: "<h1>Shipping</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#shipping_what-is-a-shipment\">What is a Shipment?</a></li>\n        <li><a href=\"#shipping_storefront-server-checkout\">Storefront Checkout and Server to Server Checkout</a></li>\n        <li><a href=\"#shipping_order-shipping-addresses\">Order Shipping Addresses</a></li>\n        <li><a href=\"#shipping_shipping-zone-methods\">Shipping Zone and Shipping Methods</a></li>\n        <li><a href=\"#shipping_real-time-carriers\">Real-Time Carriers</a></li>\n\t</ul>\n</div>"
+                          - type: text
+                            data: >-
+                              ## What is a Shipment?
+
+                              Shipments are created from orders. A shipment
+                              represents a grouping of order line items that are
+                              shipped to a customer, and multiple shipments can
+                              be created from a single order.
+
+
+                              The V2 Shipping API allows you to manage Shipping
+                              Zones, Shipping Methods, and Shipping Carrier
+                              Connections.
+
+
+                              The Order Shipments resource creates a shipment
+                              for an order. You can specify the shipping
+                              provider, tracking number and shipping address id
+                              when creating a shipment.
+
+
+                              For more see:
+
+                              * [Create a
+                              Shipment](/api-reference/orders/orders-api/order-shipments/postordersorderidshipments)
+                            header:
+                              anchor: shipping_what-is-a-shipment
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Storefront Checkout and Server-to-Server
+                              Checkout API
+
+
+                              The Storefront and Server-to-Server Checkout APIs
+                              provide methods for managing a checkout up until
+                              the point when it is finalized into an order.
+                              Because shipments can only be created from
+                              finalized orders, a shipment cannot be created
+                              from Checkout API endpoints. 
+
+
+                              However, both the Storefront and Server-to-Server
+                              Checkout APIs provide methods for creating a
+                              Consignment, which specifies the line items that
+                              should ship to a particular address. Creating a
+                              Consignment corresponds with the actions that a
+                              shopper might take when filling out the storefront
+                              checkout page, assigning the items in their basket
+                              to their respective shipping destinations. 
+
+
+                              A Checkout will always have one Consignment
+                              assigned to it, which is the first shipping
+                              address. A Consignment supports multiple shipping
+                              addresses, with each address having its own line
+                              items.
+
+
+                              For more see:
+
+                              * [Storefront
+                              Checkout](/api-reference/cart-checkout/storefront-checkout-api/checkout/checkoutsconsignmentsbycheckoutidpost)
+
+                              * [Server to Server
+                              Checkout](/api-reference/cart-checkout/server-server-checkout-api/checkout/checkoutsconsignmentsbycheckoutidpost)
+                            header:
+                              anchor: shipping_storefront-server-checkout
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Order Shipping Addresses
+
+
+                              The Order Shipping Addresses endpoint allows you
+                              to view the shipping addresses on an order. This
+                              will be the address(es) the items are shipped to. 
+                              An order can have more than one shipping address.
+
+
+                              For more see:
+
+                              * [Order Shipping
+                              Addresses](/api-reference/orders/orders-api/order-shipping-addresses)
+                            header:
+                              anchor: shipping_order-shipping-addresses
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Shipping Zone and Shipping Methods
+
+
+                              Shipping zones can be configured in the control
+                              panel or using the API to designate where a
+                              merchant ships their products and which shipping
+                              methods should be available in each geographic
+                              region. 
+
+
+                              An example of a shipping zone might be North
+                              America, and within that shipping zone, the
+                              shipping methods might be Free Shipping,
+                              Ship-by-Weight, and USPS.
+
+
+                              For more see:
+
+                              * [Shipping
+                              Zones](/api-reference/shipping/shipping-api/shipping-zones/getshippingzones)
+
+                              * [Shipping
+                              Methods](/api-reference/shipping/shipping-api/shipping-method/getshippingzoneszoneidmethods)
+                            header:
+                              anchor: shipping_shipping-zone-methods
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Real-Time Carriers
+
+
+                              BigCommerce offers native integrations with many
+                              real-time shipping carriers such as UPS, Fedex,
+                              and USPS. The Real-Time Carriers resource allows
+                              you to connect an account for one of our natively
+                              supported shipping carrier integrations. 
+
+
+                              For a list of all supported carriers, see
+                              [Real-Time Quote
+                              Providers](https://support.bigcommerce.com/articles/Public/Setting-Up-a-Real-Time-Shipping-Quote-Shipping-Method/#providers).
+
+
+                              For more see:
+
+                              * [Set Up Real-Time
+                              Carriers](/api-reference/shipping/shipping-api/shipping-carrier/postshippingcarrierconnection)
+
+                              * [Configure Real-Time
+                              Carriers](/api-reference/shipping/shipping-api/shipping-method/postshippingzoneszoneidmethods)
+                            header:
+                              anchor: shipping_real-time-carriers
+                    - title: Shipper HQ
+                      route:
+                        path: /shipper-hq
+                      data:
+                        blocks:
+                          - type: html
+                            data: "<h1>Shipper HQ Metafields</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#shipper-hq-object-properties\">ShipperHQ Object Properties</a></li>\n        <li><a href=\"#control-panel-behavior\">Control Panel Behavior</a></li>\n        <li><a href=\"#add-shipperhq-metafield\">Add ShipperHQ Metafield</a></li>\n\t</ul>\n</div>"
+                          - type: text
+                            data: >-
+                              When ShipperHQ is enabled on a store, additional
+                              fields become available on the product level:
+
+                              * Shipping Origins
+
+                              * Origin Locations
+
+                              * Dimensional Rules are accessible. 
+
+
+                              These field values can be set in the Control Panel
+                              by the merchant as well as using the
+
+                              [Product Metafields
+                              Endpoint](/api-reference/catalog/catalog-api/product-metafields/createproductmetafield)
+                              or the [Variant Metafields
+                              Endpoint](/api-reference/catalog/catalog-api/product-variants-metafields/createvariantmetafield).
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## ShipperHQ Object Properties
+
+
+                              | Property | Type | Values |
+
+                              |---|---|---|
+
+                              | permission_set | string | This must be set to
+                              `write`. Setting to any other field will cause
+                              unintended behavior. **required** |
+
+                              | key | enum | Members: `shipping-groups`,
+                              `shipping-origins`, `shipping-dimensional-rules`
+                              **required** |
+
+                              | value | JSON encoded string | This will be the
+                              name of the attribute type in ShipperHQ. This
+                              needs to be input exactly how it is listed within
+                              ShipperHQ. To pass in more than one Shipping
+                              Origin, Origin Location or Dimensional Rule use an
+                              array with a comma-separated list. White spaces
+                              and special characters need to be escaped. Must be
+                              a JSON encoded string `"[\"Origin Name from
+                              SHQ-1\",\" Origin Name from SHQ-2\"]"`
+                              **required** |
+
+                              | namespace | string | This will always be
+                              `shipping.shipperhq` **required** |
+
+                              | resource_type | string | Either `product` or
+                              `variant` |
+
+                              | resource_id | string | Id of the product or
+                              variant **read-only** |
+
+                              | description | string | ShipperHQ shipping
+                              origins associated with this product/sku.
+                              **read-only** |
+
+                              | date_created | string | Date and time of the
+                              metafield's creation. **read-only** |
+
+                              | date_modified | string | Date and time when the
+                              metafield was last updated. **read-only** |
+
+                              | id | number | Id of the Metafield. **read-only**
+                              |
+                            header:
+                              anchor: shipper-hq-object-properties
+                          - type: callout
+                            data:
+                              type: warning
+                              body: >-
+                                The metafields must be entered exactly,
+                                otherwise they will not work. Since metafields
+                                can also be used to store information against a
+                                product, if the <code>namespace</code> for
+                                example is set to shipping and not
+                                <code>shipping.shipperhq</code>, it will not
+                                update the shipping information.
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >
+                              ## Control Panel Behavior
+
+
+                              When Shipping Origins are set using the API, the
+                              fields cannot be deleted using the Control Panel.
+                              A /DELETE request must be sent to the metafields
+                              resource.
+
+
+                              `/DELETE
+                              https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields`
+                            header:
+                              anchor: control-panel-behavior
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Add ShipperHQ Metafield
+
+
+                              `/POST
+                              https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields`
+                            header:
+                              anchor: add-shipperhq-metafield
+                          - type: code
+                            data: "{\n\t\"permission_set\": \"write\",\n\t\"key\": \"shipping-origins\",\n\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\"namespace\": \"shipping.shipperhq\"\n}"
+                            header:
+                              title: SHQ Add Metafield Request
+                          - type: code
+                            data: "{\n\t\"data\": [{\n\t\t\t\"id\": 51,\n\t\t\t\"key\": \"shipping-origins\",\n\t\t\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping origins associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-19T17:56:08+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 52,\n\t\t\t\"key\": \"shipping-groups\",\n\t\t\t\"value\": \"[\\\"SHIPPING GROUP NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping group rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 53,\n\t\t\t\"key\": \"shipping-dimensional-rules\",\n\t\t\t\"value\": \"[\\\"DIMENSIONAL RULES NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ dimensional rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t}\n\t],\n\t\"meta\": {\n\t\t\"pagination\": {\n\t\t\t\"total\": 3,\n\t\t\t\"count\": 3,\n\t\t\t\"per_page\": 50,\n\t\t\t\"current_page\": 1,\n\t\t\t\"total_pages\": 1,\n\t\t\t\"links\": {\n\t\t\t\t\"current\": \"?page=1&limit=50\"\n\t\t\t}\n\t\t}\n\t}\n}"
+                            header:
+                              title: SHQ Add Metafield Response
         - title: Scripts
           route:
             path: /scripts
@@ -8115,392 +8403,8 @@ pages:
             blocks:
               - type: text
                 data: '# Scripts'
-            children:
-              - title: Overview
-                route:
-                  path: /scripts-overview
-                data:
-                  blocks:
-                    - type: html
-                      data: "<h1>Scripts API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#scripts_introduction\">Introduction</a></li>\n    \t\t<li><a href=\"#scripts_script-manager-partner-guidelines\">Script Manager API Partner Guidelines</a></li>\n        <li><a href=\"#script_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#scripts_upgrades-installation\">Upgrades and Installation</a></li>\n        <li><a href=\"#scripts_fixing-missing-scripts\">Fixing Missing Scripts</a></li>\n        <li><a href=\"#scripts_scripts-notes\">Notes</a></li>\n        <li><a href=\"#scripts_scripts-visibility\">Visibility Locations </a></li>\n    \t\t<li><a href=\"#scripts_oauth-scopes\"> OAuth Scopes</a></li>\n    \t\t<li><a href=\"#scripts_related-endpoints\">Related Endpoints</a></li>\n        <li><a href=\"#script_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
-                    - type: text
-                      data: >-
-                        ## Introduction
-
-
-                        The BigCommerce Scripts API can be used to inject a
-                        script into a store's template files. Some use cases:
-
-                        * Insert tracking codes
-
-                        * Storefront single-click applications
-
-                        * Live chat, support plugins
-
-                        * Theme extension or connector apps
-                      header:
-                        anchor: scripts_introduction
-                    - type: text
-                      data: >-
-                        ## Script Manager API Partner Guidelines
-
-
-                        With the Script Manager API, your Apps now have the
-                        ability to insert scripts into a user’s storefront
-                        without requiring the user to manually paste a snippet
-                        of code into their control panel. You can freely update
-                        these scripts while your App is installed, and, if
-                        desired, automatically remove scripts if your App is
-                        uninstalled.
-
-
-                        For Apps being installed on our latest theme engine
-                        (Stencil), this process is relatively straightforward.
-                        However, if your App is already live, you may have
-                        already asked merchants to paste a code snippet in one
-                        of these two sections in the control panel:
-
-
-                        - Footer Scripts
-
-                        - Web Analytics
-
-
-                        Also, since our older (Blueprint-based) themes do not
-                        support the Script Manager API, you’ll still need some
-                        way of providing users of older themes the documentation
-                        they need, without burdening users of newer themes with
-                        additional, unnecessary steps.
-
-
-                        To help you transition to the Script Manager API, we’ve
-                        provided some recommended strategies to deal with these
-                        different situations. 
-
-
-                        #### Stencil vs Blueprint
-
-
-                        As mentioned above, BigCommerce supports two theme
-                        engines: Stencil and Blueprint. Stencil is our latest
-                        technology, and all new stores only have access to
-                        Stencil themes. However, older stores may still be using
-                        our legacy theme engine, Blueprint, which does not have
-                        the ability to render scripts inserted through the
-                        Script Manager API.
-
-
-                        Because of this, you’ll need to check whether a user is
-                        running Stencil to determine if their store supports the
-                        Script Manager API. To do this, use the [Get Store
-                        Information
-                        API](https://developer.bigcommerce.com/api/v2/#store-information-reference)
-                        endpoint and check the `stencil_enabled` flag. (requires
-                        [store_v2_information_read_only
-                        scope](https://developer.bigcommerce.com/api/#oauth-scopes)).
-                      header:
-                        anchor: scripts_script-manager-partner-guidelines
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Prerequisites
-
-
-                        To better understand the content of this document, you
-                        should be familiar with the app installation procedure,
-                        which is outlined here:
-
-                        [App
-                        Installation](/api-docs/getting-started/building-apps-bigcommerce/building-apps#building-apps_installation-update-sequence)
-                      header:
-                        anchor: scripts_script-prerequisites
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Upgrades and Installation
-
-
-                        ### Installing An App on Stencil
-
-
-                        For Apps being installed on Stencil stores, we recommend
-                        inserting your scripts immediately after receiving the
-                        POST response during the Auth Callback flow. Add your
-                        scripts using the Create Script endpoint of the Script
-                        Manager API.
-
-
-                        We highly recommend leaving the auto_uninstall flag set
-                        to true, so that your App will properly clean itself up
-                        when uninstalled. More information about this flag can
-                        be found <a href="#script_object-properties">here</a>.
-
-
-                        #### Upgrading Existing Apps on Stencil
-
-
-                        If your App has already been released, you may have
-                        existing users with pasted-in code somewhere in their
-                        control panel. There are a few possible ways to deal
-                        with this situation.
-
-
-                        1.) __Do nothing__
-
-
-                        If you don’t need to upgrade existing merchants to the
-                        Script Manager API, it’s perfectly fine to leave them
-                        as-is. You’ll need to maintain documentation for the
-                        manual uninstallation process so that merchants with
-                        older installations know what to clean up, and you won’t
-                        be able to automatically update or add scripts for these
-                        users. 
-
-
-                        2.) __Prompt merchants to upgrade__
-
-
-                        If you want your merchants to gradually update to the
-                        new Script Manager over time, you can prompt them to do
-                        so on your App’s landing page. You’ll need to keep track
-                        of which of your merchants are not using the Script
-                        Manager yet to know whether you need to display this
-                        prompt. Also, make sure to check that they are running
-                        Stencil (via the Get Store Information endpoint) before
-                        prompting them to upgrade.
-
-
-                        Once a user decides to upgrade, you can walk them
-                        through removing the old pasted-in code in their control
-                        panel, and then, once the merchant clicks a button,
-                        install your scripts through the Script Manager API.
-
-
-                        3.) __Silently upgrade to the Script Manager API__
-
-
-                        Finally, if it’s possible for your old, pasted-in
-                        scripts to live alongside the new Script Manager API
-                        scripts, you may be able to upgrade to using the Script
-                        Manager API without any user intervention being
-                        required. Whether or not this is possible will vary
-                        depending on the implementation of your App.
-
-
-                        While your merchants will be loading more data on their
-                        storefront pages than necessary, this method will allow
-                        you to transition to using the Script Manager API for
-                        all of your installations immediately. Keep in mind
-                        you’ll still need to document the manual uninstallation
-                        process for existing installations.
-
-
-                        ### Installing Apps on Blueprint Stores 
-
-
-                        As mentioned, the Blueprint theme engine does not
-                        support the Script Manager API. Any scripts inserted
-                        through this API will not be rendered on any storefront
-                        pages. To prevent unpredictable behavior should a user
-                        change their theme, we highly recommend checking the Get
-                        Store Information endpoint for Stencil support prior to
-                        installing any scripts through the Script Manager API.
-                        Additionally, you’ll still want to show the old manual
-                        installation steps when a store does not support
-                        Stencil. 
-
-
-                        ### Existing Blueprint Installations 
-
-
-                        Existing blueprint installations won’t be affected, but
-                        remember that if you are prompting existing Stencil
-                        users to upgrade to the Script Manager, you’ll want to
-                        suppress this message for Blueprint users. 
-                      header:
-                        anchor: scripts_upgrades-installation
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ### Fixing Missing Scripts
-
-
-                        It’s possible that your App installation may find itself
-                        unexpectedly missing one or more scripts. Below are some
-                        possible causes of this issue.
-
-
-                        1.) __The Merchant Deleted Your Script__ 
-
-
-                        Merchants are given a warning when attempting to delete
-                        a script belonging to an App, but we do allow them to do
-                        so.
-
-
-                        If you want to handle this situation gracefully, we
-                        recommend you check the [Get
-                        Scripts](/api-reference/content/content-scripts-api/scripts/getscripts)
-                        endpoint on your App Detail Page (returned by the [Load
-                        Callback
-                        URI](/api-docs/getting-started/building-apps-bigcommerce/building-apps#building-apps_processing-signed-payload)
-                        to determine whether the expected scripts are present.
-                        If they are not, you can prompt the user to click a
-                        button to automatically repair their installation.
-
-
-                        We ask that you request the user’s permission rather
-                        than doing this automatically, as they may have had a
-                        good reason for deleting the missing script. 
-
-
-                        2.) __The Merchant's Theme is Not Set Up Correctly__ 
-
-
-                        In order to render scripts, the theme templates must
-                        have the handlebars expressions {{head.scripts}} and
-                        {{footer.scripts}} in the pages where scripts should be
-                        rendered. If either of these is absent, scripts on that
-                        page with location set to head or footer (respectively)
-                        will not be rendered.
-
-
-                        Of particular note, {{head.scripts}} was only recently
-                        added to the checkout and order confirmation pages in
-                        our Cornerstone theme, and widespread adoption of this
-                        standard outside of Cornerstone is still an ongoing
-                        process.
-
-
-                        To ensure your App is compatible with as many themes as
-                        possible, we recommend footer over head for checkout,
-                        order_confirmation and all_pages visibilities. 
-
-
-                        3.) __Scripts Are Not Rendering in the Checkout and
-                        Order Confirmation__ 
-
-
-                        In order to render scripts, the store must have
-                        BigCommerce’s Optimized one-page checkout enabled. This
-                        is the default checkout type for all new Stencil stores.
-                        Existing stores have to manually change the checkout
-                        type as detailed in this article. 
-
-
-                        Stencil themes from the marketplace support the
-                        [Optimized One-Page
-                        Checkout](https://support.bigcommerce.com/articles/Public/Optimized-Single-Page-Checkout#signup).
-                        However, there could be instances where the merchant
-                        maintains their own private theme and the theme has not
-                        been updated to support the Optimized one-page checkout.
-                        In this case, the merchant is required to add the theme
-                        support, following the steps
-                        [here](https://stencil.bigcommerce.com/docs/optimized-checkout-prereqs).  
-                      header:
-                        anchor: scripts_fixing-missing-scripts
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Notes
-
-
-                        - If you are injecting scripts into the Checkout, you
-                        will need to update the scope to Checkout Content.
-                        Accounts can only be created by the [store
-                        owner](https://support.bigcommerce.com/articles/Public/Store-API-Accounts/).
-
-                        - Merchants will be able to see the scripts installed on
-                        the store in the Control Panel. Within the native tag
-                        manager, merchant actions will be limited to viewing a
-                        script and deleting a script.
-
-                        - Scripts can be located in the header
-                        `{{head.scripts}}` or footer `{{footer.scripts}}`.
-
-                        - Scripts Manager is only for Stencil themes. Blueprint
-                        store users will still need to copy and paste in code.
-
-                        - The current visibility options are `storefront`,
-                        `checkout`, `all_pages` and `order_confirmation`.
-
-                        - Scripts injected via the Scripts API will not render
-                        when you are developing a theme locally via Stencil CLI.
-                      header:
-                        anchor: scripts_scripts-notes
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Script Visibility Locations
-
-
-                        | Scope | Visibility |
-
-                        | -- | -- |
-
-                        | `all_pages` | Add Wishlist </br> Blog List </br> Blog
-                        Post</br> Brand Pages </br> All Brands Page </br> Cart
-                        </br> Category </br> Checkout </br> Checkout </br>
-                        Product Compare </br> Order Confirmation </br> Page
-                        </br> Contact Form </br> Product </br> Search </br> All
-                        Wishlist </br> Wish List |
-
-                        | `storefront` |  Add Wishlist </br> Blog List </br>
-                        Blog Post</br> Brand Pages </br> All Brands Page </br>
-                        Cart </br> Category </br> Checkout </br> Checkout </br>
-                        Product Compare </br> Page </br> Contact Form </br>
-                        Product </br> Search </br> All Wishlist </br> Wish List
-                        |
-
-                        | `checkout` | Checkout | 
-
-                        | `order_confirmation` | Order Confirmation | 
-
-
-                        Scripts can not be injected to:
-
-                        - giftcertificates.php
-
-                        - sitemap.php
-
-                        - account.php
-
-                        - login.php
-
-                        - 404 pages
-                      header:
-                        anchor: scripts_scripts-visibility
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: "## OAuth Scopes\n* Checkout Content\t\n* Content\n\nFor more details and a full list of available scopes, see [Oauth Scopes](/api-docs/getting-started/basics/authentication#authentication_oauth-scopes)."
-                      header:
-                        anchor: scripts_oauth-scopes
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Related Endpoints
-
-                        * [Get
-                        Scripts](/api-reference/content/content-scripts-api)
-                      header:
-                        anchor: scripts_related-endpoints
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: '## Object Properties'
-                      header:
-                        anchor: scripts_object-properties
-                    - type: jsonSchema
-                      data:
-                        $ref: './V3 Content.oas2.yml#/definitions/Script'
-        - title: Customers
+            children: []
+        - title: Customers & Subscribers
           route:
             path: /customers
           data:
@@ -9269,6 +9173,395 @@ pages:
                         and
                         [PHP](https://github.com/bigcommerce/hello-world-app-php-silex/)
                         sample apps.
+        - title: Storefront
+          route:
+            path: /storefront
+          data:
+            children:
+              - title: Scripts
+                route:
+                  path: /scripts-overview
+                data:
+                  blocks:
+                    - type: html
+                      data: "<h1>Scripts API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#scripts_introduction\">Introduction</a></li>\n    \t\t<li><a href=\"#scripts_script-manager-partner-guidelines\">Script Manager API Partner Guidelines</a></li>\n        <li><a href=\"#script_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#scripts_upgrades-installation\">Upgrades and Installation</a></li>\n        <li><a href=\"#scripts_fixing-missing-scripts\">Fixing Missing Scripts</a></li>\n        <li><a href=\"#scripts_scripts-notes\">Notes</a></li>\n        <li><a href=\"#scripts_scripts-visibility\">Visibility Locations </a></li>\n    \t\t<li><a href=\"#scripts_oauth-scopes\"> OAuth Scopes</a></li>\n    \t\t<li><a href=\"#scripts_related-endpoints\">Related Endpoints</a></li>\n        <li><a href=\"#script_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                    - type: text
+                      data: >-
+                        ## Introduction
+
+
+                        The BigCommerce Scripts API can be used to inject a
+                        script into a store's template files. Some use cases:
+
+                        * Insert tracking codes
+
+                        * Storefront single-click applications
+
+                        * Live chat, support plugins
+
+                        * Theme extension or connector apps
+                      header:
+                        anchor: scripts_introduction
+                    - type: text
+                      data: >-
+                        ## Script Manager API Partner Guidelines
+
+
+                        With the Script Manager API, your Apps now have the
+                        ability to insert scripts into a user’s storefront
+                        without requiring the user to manually paste a snippet
+                        of code into their control panel. You can freely update
+                        these scripts while your App is installed, and, if
+                        desired, automatically remove scripts if your App is
+                        uninstalled.
+
+
+                        For Apps being installed on our latest theme engine
+                        (Stencil), this process is relatively straightforward.
+                        However, if your App is already live, you may have
+                        already asked merchants to paste a code snippet in one
+                        of these two sections in the control panel:
+
+
+                        - Footer Scripts
+
+                        - Web Analytics
+
+
+                        Also, since our older (Blueprint-based) themes do not
+                        support the Script Manager API, you’ll still need some
+                        way of providing users of older themes the documentation
+                        they need, without burdening users of newer themes with
+                        additional, unnecessary steps.
+
+
+                        To help you transition to the Script Manager API, we’ve
+                        provided some recommended strategies to deal with these
+                        different situations. 
+
+
+                        #### Stencil vs Blueprint
+
+
+                        As mentioned above, BigCommerce supports two theme
+                        engines: Stencil and Blueprint. Stencil is our latest
+                        technology, and all new stores only have access to
+                        Stencil themes. However, older stores may still be using
+                        our legacy theme engine, Blueprint, which does not have
+                        the ability to render scripts inserted through the
+                        Script Manager API.
+
+
+                        Because of this, you’ll need to check whether a user is
+                        running Stencil to determine if their store supports the
+                        Script Manager API. To do this, use the [Get Store
+                        Information
+                        API](https://developer.bigcommerce.com/api/v2/#store-information-reference)
+                        endpoint and check the `stencil_enabled` flag. (requires
+                        [store_v2_information_read_only
+                        scope](https://developer.bigcommerce.com/api/#oauth-scopes)).
+                      header:
+                        anchor: scripts_script-manager-partner-guidelines
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Prerequisites
+
+
+                        To better understand the content of this document, you
+                        should be familiar with the app installation procedure,
+                        which is outlined here:
+
+                        [App
+                        Installation](/api-docs/getting-started/building-apps-bigcommerce/building-apps#building-apps_installation-update-sequence)
+                      header:
+                        anchor: scripts_script-prerequisites
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Upgrades and Installation
+
+
+                        ### Installing An App on Stencil
+
+
+                        For Apps being installed on Stencil stores, we recommend
+                        inserting your scripts immediately after receiving the
+                        POST response during the Auth Callback flow. Add your
+                        scripts using the Create Script endpoint of the Script
+                        Manager API.
+
+
+                        We highly recommend leaving the auto_uninstall flag set
+                        to true, so that your App will properly clean itself up
+                        when uninstalled. More information about this flag can
+                        be found <a href="#script_object-properties">here</a>.
+
+
+                        #### Upgrading Existing Apps on Stencil
+
+
+                        If your App has already been released, you may have
+                        existing users with pasted-in code somewhere in their
+                        control panel. There are a few possible ways to deal
+                        with this situation.
+
+
+                        1.) __Do nothing__
+
+
+                        If you don’t need to upgrade existing merchants to the
+                        Script Manager API, it’s perfectly fine to leave them
+                        as-is. You’ll need to maintain documentation for the
+                        manual uninstallation process so that merchants with
+                        older installations know what to clean up, and you won’t
+                        be able to automatically update or add scripts for these
+                        users. 
+
+
+                        2.) __Prompt merchants to upgrade__
+
+
+                        If you want your merchants to gradually update to the
+                        new Script Manager over time, you can prompt them to do
+                        so on your App’s landing page. You’ll need to keep track
+                        of which of your merchants are not using the Script
+                        Manager yet to know whether you need to display this
+                        prompt. Also, make sure to check that they are running
+                        Stencil (via the Get Store Information endpoint) before
+                        prompting them to upgrade.
+
+
+                        Once a user decides to upgrade, you can walk them
+                        through removing the old pasted-in code in their control
+                        panel, and then, once the merchant clicks a button,
+                        install your scripts through the Script Manager API.
+
+
+                        3.) __Silently upgrade to the Script Manager API__
+
+
+                        Finally, if it’s possible for your old, pasted-in
+                        scripts to live alongside the new Script Manager API
+                        scripts, you may be able to upgrade to using the Script
+                        Manager API without any user intervention being
+                        required. Whether or not this is possible will vary
+                        depending on the implementation of your App.
+
+
+                        While your merchants will be loading more data on their
+                        storefront pages than necessary, this method will allow
+                        you to transition to using the Script Manager API for
+                        all of your installations immediately. Keep in mind
+                        you’ll still need to document the manual uninstallation
+                        process for existing installations.
+
+
+                        ### Installing Apps on Blueprint Stores 
+
+
+                        As mentioned, the Blueprint theme engine does not
+                        support the Script Manager API. Any scripts inserted
+                        through this API will not be rendered on any storefront
+                        pages. To prevent unpredictable behavior should a user
+                        change their theme, we highly recommend checking the Get
+                        Store Information endpoint for Stencil support prior to
+                        installing any scripts through the Script Manager API.
+                        Additionally, you’ll still want to show the old manual
+                        installation steps when a store does not support
+                        Stencil. 
+
+
+                        ### Existing Blueprint Installations 
+
+
+                        Existing blueprint installations won’t be affected, but
+                        remember that if you are prompting existing Stencil
+                        users to upgrade to the Script Manager, you’ll want to
+                        suppress this message for Blueprint users. 
+                      header:
+                        anchor: scripts_upgrades-installation
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ### Fixing Missing Scripts
+
+
+                        It’s possible that your App installation may find itself
+                        unexpectedly missing one or more scripts. Below are some
+                        possible causes of this issue.
+
+
+                        1.) __The Merchant Deleted Your Script__ 
+
+
+                        Merchants are given a warning when attempting to delete
+                        a script belonging to an App, but we do allow them to do
+                        so.
+
+
+                        If you want to handle this situation gracefully, we
+                        recommend you check the [Get
+                        Scripts](/api-reference/content/content-scripts-api/scripts/getscripts)
+                        endpoint on your App Detail Page (returned by the [Load
+                        Callback
+                        URI](/api-docs/getting-started/building-apps-bigcommerce/building-apps#building-apps_processing-signed-payload)
+                        to determine whether the expected scripts are present.
+                        If they are not, you can prompt the user to click a
+                        button to automatically repair their installation.
+
+
+                        We ask that you request the user’s permission rather
+                        than doing this automatically, as they may have had a
+                        good reason for deleting the missing script. 
+
+
+                        2.) __The Merchant's Theme is Not Set Up Correctly__ 
+
+
+                        In order to render scripts, the theme templates must
+                        have the handlebars expressions {{head.scripts}} and
+                        {{footer.scripts}} in the pages where scripts should be
+                        rendered. If either of these is absent, scripts on that
+                        page with location set to head or footer (respectively)
+                        will not be rendered.
+
+
+                        Of particular note, {{head.scripts}} was only recently
+                        added to the checkout and order confirmation pages in
+                        our Cornerstone theme, and widespread adoption of this
+                        standard outside of Cornerstone is still an ongoing
+                        process.
+
+
+                        To ensure your App is compatible with as many themes as
+                        possible, we recommend footer over head for checkout,
+                        order_confirmation and all_pages visibilities. 
+
+
+                        3.) __Scripts Are Not Rendering in the Checkout and
+                        Order Confirmation__ 
+
+
+                        In order to render scripts, the store must have
+                        BigCommerce’s Optimized one-page checkout enabled. This
+                        is the default checkout type for all new Stencil stores.
+                        Existing stores have to manually change the checkout
+                        type as detailed in this article. 
+
+
+                        Stencil themes from the marketplace support the
+                        [Optimized One-Page
+                        Checkout](https://support.bigcommerce.com/articles/Public/Optimized-Single-Page-Checkout#signup).
+                        However, there could be instances where the merchant
+                        maintains their own private theme and the theme has not
+                        been updated to support the Optimized one-page checkout.
+                        In this case, the merchant is required to add the theme
+                        support, following the steps
+                        [here](https://stencil.bigcommerce.com/docs/optimized-checkout-prereqs).  
+                      header:
+                        anchor: scripts_fixing-missing-scripts
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Notes
+
+
+                        - If you are injecting scripts into the Checkout, you
+                        will need to update the scope to Checkout Content.
+                        Accounts can only be created by the [store
+                        owner](https://support.bigcommerce.com/articles/Public/Store-API-Accounts/).
+
+                        - Merchants will be able to see the scripts installed on
+                        the store in the Control Panel. Within the native tag
+                        manager, merchant actions will be limited to viewing a
+                        script and deleting a script.
+
+                        - Scripts can be located in the header
+                        `{{head.scripts}}` or footer `{{footer.scripts}}`.
+
+                        - Scripts Manager is only for Stencil themes. Blueprint
+                        store users will still need to copy and paste in code.
+
+                        - The current visibility options are `storefront`,
+                        `checkout`, `all_pages` and `order_confirmation`.
+
+                        - Scripts injected via the Scripts API will not render
+                        when you are developing a theme locally via Stencil CLI.
+                      header:
+                        anchor: scripts_scripts-notes
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Script Visibility Locations
+
+
+                        | Scope | Visibility |
+
+                        | -- | -- |
+
+                        | `all_pages` | Add Wishlist </br> Blog List </br> Blog
+                        Post</br> Brand Pages </br> All Brands Page </br> Cart
+                        </br> Category </br> Checkout </br> Checkout </br>
+                        Product Compare </br> Order Confirmation </br> Page
+                        </br> Contact Form </br> Product </br> Search </br> All
+                        Wishlist </br> Wish List |
+
+                        | `storefront` |  Add Wishlist </br> Blog List </br>
+                        Blog Post</br> Brand Pages </br> All Brands Page </br>
+                        Cart </br> Category </br> Checkout </br> Checkout </br>
+                        Product Compare </br> Page </br> Contact Form </br>
+                        Product </br> Search </br> All Wishlist </br> Wish List
+                        |
+
+                        | `checkout` | Checkout | 
+
+                        | `order_confirmation` | Order Confirmation | 
+
+
+                        Scripts can not be injected to:
+
+                        - giftcertificates.php
+
+                        - sitemap.php
+
+                        - account.php
+
+                        - login.php
+
+                        - 404 pages
+                      header:
+                        anchor: scripts_scripts-visibility
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: "## OAuth Scopes\n* Checkout Content\t\n* Content\n\nFor more details and a full list of available scopes, see [Oauth Scopes](/api-docs/getting-started/basics/authentication#authentication_oauth-scopes)."
+                      header:
+                        anchor: scripts_oauth-scopes
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Related Endpoints
+
+                        * [Get
+                        Scripts](/api-reference/content/content-scripts-api)
+                      header:
+                        anchor: scripts_related-endpoints
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: '## Object Properties'
+                      header:
+                        anchor: scripts_object-properties
+                    - type: jsonSchema
+                      data:
+                        $ref: './V3 Content.oas2.yml#/definitions/Script'
         - title: Cart and Checkout
           route:
             path: /cart-and-checkout
@@ -11038,277 +11331,6 @@ pages:
                         API](/api-reference/orders/orders-api)
                       header:
                         anchor: orders-api-guide_next-steps
-        - title: Shipping
-          route:
-            path: /shipping
-          data:
-            children:
-              - title: Overview
-                route:
-                  path: /shipping-overview
-                data:
-                  blocks:
-                    - type: html
-                      data: "<h1>Shipping</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#shipping_what-is-a-shipment\">What is a Shipment?</a></li>\n        <li><a href=\"#shipping_storefront-server-checkout\">Storefront Checkout and Server to Server Checkout</a></li>\n        <li><a href=\"#shipping_order-shipping-addresses\">Order Shipping Addresses</a></li>\n        <li><a href=\"#shipping_shipping-zone-methods\">Shipping Zone and Shipping Methods</a></li>\n        <li><a href=\"#shipping_real-time-carriers\">Real-Time Carriers</a></li>\n\t</ul>\n</div>"
-                    - type: text
-                      data: >-
-                        ## What is a Shipment?
-
-                        Shipments are created from orders. A shipment represents
-                        a grouping of order line items that are shipped to a
-                        customer, and multiple shipments can be created from a
-                        single order.
-
-
-                        The V2 Shipping API allows you to manage Shipping Zones,
-                        Shipping Methods, and Shipping Carrier Connections.
-
-
-                        The Order Shipments resource creates a shipment for an
-                        order. You can specify the shipping provider, tracking
-                        number and shipping address id when creating a shipment.
-
-
-                        For more see:
-
-                        * [Create a
-                        Shipment](/api-reference/orders/orders-api/order-shipments/postordersorderidshipments)
-                      header:
-                        anchor: shipping_what-is-a-shipment
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Storefront Checkout and Server-to-Server Checkout API
-
-
-                        The Storefront and Server-to-Server Checkout APIs
-                        provide methods for managing a checkout up until the
-                        point when it is finalized into an order. Because
-                        shipments can only be created from finalized orders, a
-                        shipment cannot be created from Checkout API endpoints. 
-
-
-                        However, both the Storefront and Server-to-Server
-                        Checkout APIs provide methods for creating a
-                        Consignment, which specifies the line items that should
-                        ship to a particular address. Creating a Consignment
-                        corresponds with the actions that a shopper might take
-                        when filling out the storefront checkout page, assigning
-                        the items in their basket to their respective shipping
-                        destinations. 
-
-
-                        A Checkout will always have one Consignment assigned to
-                        it, which is the first shipping address. A Consignment
-                        supports multiple shipping addresses, with each address
-                        having its own line items.
-
-
-                        For more see:
-
-                        * [Storefront
-                        Checkout](/api-reference/cart-checkout/storefront-checkout-api/checkout/checkoutsconsignmentsbycheckoutidpost)
-
-                        * [Server to Server
-                        Checkout](/api-reference/cart-checkout/server-server-checkout-api/checkout/checkoutsconsignmentsbycheckoutidpost)
-                      header:
-                        anchor: shipping_storefront-server-checkout
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Order Shipping Addresses
-
-
-                        The Order Shipping Addresses endpoint allows you to view
-                        the shipping addresses on an order. This will be the
-                        address(es) the items are shipped to.  An order can have
-                        more than one shipping address.
-
-
-                        For more see:
-
-                        * [Order Shipping
-                        Addresses](/api-reference/orders/orders-api/order-shipping-addresses)
-                      header:
-                        anchor: shipping_order-shipping-addresses
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Shipping Zone and Shipping Methods
-
-
-                        Shipping zones can be configured in the control panel or
-                        using the API to designate where a merchant ships their
-                        products and which shipping methods should be available
-                        in each geographic region. 
-
-
-                        An example of a shipping zone might be North America,
-                        and within that shipping zone, the shipping methods
-                        might be Free Shipping, Ship-by-Weight, and USPS.
-
-
-                        For more see:
-
-                        * [Shipping
-                        Zones](/api-reference/shipping/shipping-api/shipping-zones/getshippingzones)
-
-                        * [Shipping
-                        Methods](/api-reference/shipping/shipping-api/shipping-method/getshippingzoneszoneidmethods)
-                      header:
-                        anchor: shipping_shipping-zone-methods
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Real-Time Carriers
-
-
-                        BigCommerce offers native integrations with many
-                        real-time shipping carriers such as UPS, Fedex, and
-                        USPS. The Real-Time Carriers resource allows you to
-                        connect an account for one of our natively supported
-                        shipping carrier integrations. 
-
-
-                        For a list of all supported carriers, see [Real-Time
-                        Quote
-                        Providers](https://support.bigcommerce.com/articles/Public/Setting-Up-a-Real-Time-Shipping-Quote-Shipping-Method/#providers).
-
-
-                        For more see:
-
-                        * [Set Up Real-Time
-                        Carriers](/api-reference/shipping/shipping-api/shipping-carrier/postshippingcarrierconnection)
-
-                        * [Configure Real-Time
-                        Carriers](/api-reference/shipping/shipping-api/shipping-method/postshippingzoneszoneidmethods)
-                      header:
-                        anchor: shipping_real-time-carriers
-              - title: Shipper HQ
-                route:
-                  path: /shipper-hq
-                data:
-                  blocks:
-                    - type: html
-                      data: "<h1>Shipper HQ Metafields</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#shipper-hq-object-properties\">ShipperHQ Object Properties</a></li>\n        <li><a href=\"#control-panel-behavior\">Control Panel Behavior</a></li>\n        <li><a href=\"#add-shipperhq-metafield\">Add ShipperHQ Metafield</a></li>\n\t</ul>\n</div>"
-                    - type: text
-                      data: >-
-                        When ShipperHQ is enabled on a store, additional fields
-                        become available on the product level:
-
-                        * Shipping Origins
-
-                        * Origin Locations
-
-                        * Dimensional Rules are accessible. 
-
-
-                        These field values can be set in the Control Panel by
-                        the merchant as well as using the
-
-                        [Product Metafields
-                        Endpoint](/api-reference/catalog/catalog-api/product-metafields/createproductmetafield)
-                        or the [Variant Metafields
-                        Endpoint](/api-reference/catalog/catalog-api/product-variants-metafields/createvariantmetafield).
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## ShipperHQ Object Properties
-
-
-                        | Property | Type | Values |
-
-                        |---|---|---|
-
-                        | permission_set | string | This must be set to `write`.
-                        Setting to any other field will cause unintended
-                        behavior. **required** |
-
-                        | key | enum | Members: `shipping-groups`,
-                        `shipping-origins`, `shipping-dimensional-rules`
-                        **required** |
-
-                        | value | JSON encoded string | This will be the name of
-                        the attribute type in ShipperHQ. This needs to be input
-                        exactly how it is listed within ShipperHQ. To pass in
-                        more than one Shipping Origin, Origin Location or
-                        Dimensional Rule use an array with a comma-separated
-                        list. White spaces and special characters need to be
-                        escaped. Must be a JSON encoded string `"[\"Origin Name
-                        from SHQ-1\",\" Origin Name from SHQ-2\"]"` **required**
-                        |
-
-                        | namespace | string | This will always be
-                        `shipping.shipperhq` **required** |
-
-                        | resource_type | string | Either `product` or `variant`
-                        |
-
-                        | resource_id | string | Id of the product or variant
-                        **read-only** |
-
-                        | description | string | ShipperHQ shipping origins
-                        associated with this product/sku. **read-only** |
-
-                        | date_created | string | Date and time of the
-                        metafield's creation. **read-only** |
-
-                        | date_modified | string | Date and time when the
-                        metafield was last updated. **read-only** |
-
-                        | id | number | Id of the Metafield. **read-only** |
-                      header:
-                        anchor: shipper-hq-object-properties
-                    - type: callout
-                      data:
-                        type: warning
-                        body: >-
-                          The metafields must be entered exactly, otherwise they
-                          will not work. Since metafields can also be used to
-                          store information against a product, if the
-                          <code>namespace</code> for example is set to shipping
-                          and not <code>shipping.shipperhq</code>, it will not
-                          update the shipping information.
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >
-                        ## Control Panel Behavior
-
-
-                        When Shipping Origins are set using the API, the fields
-                        cannot be deleted using the Control Panel. A /DELETE
-                        request must be sent to the metafields resource.
-
-
-                        `/DELETE
-                        https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields`
-                      header:
-                        anchor: control-panel-behavior
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Add ShipperHQ Metafield
-
-
-                        `/POST
-                        https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields`
-                      header:
-                        anchor: add-shipperhq-metafield
-                    - type: code
-                      data: "{\n\t\"permission_set\": \"write\",\n\t\"key\": \"shipping-origins\",\n\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\"namespace\": \"shipping.shipperhq\"\n}"
-                      header:
-                        title: SHQ Add Metafield Request
-                    - type: code
-                      data: "{\n\t\"data\": [{\n\t\t\t\"id\": 51,\n\t\t\t\"key\": \"shipping-origins\",\n\t\t\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping origins associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-19T17:56:08+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 52,\n\t\t\t\"key\": \"shipping-groups\",\n\t\t\t\"value\": \"[\\\"SHIPPING GROUP NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping group rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 53,\n\t\t\t\"key\": \"shipping-dimensional-rules\",\n\t\t\t\"value\": \"[\\\"DIMENSIONAL RULES NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ dimensional rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t}\n\t],\n\t\"meta\": {\n\t\t\"pagination\": {\n\t\t\t\"total\": 3,\n\t\t\t\"count\": 3,\n\t\t\t\"per_page\": 50,\n\t\t\t\"current_page\": 1,\n\t\t\t\"total_pages\": 1,\n\t\t\t\"links\": {\n\t\t\t\t\"current\": \"?page=1&limit=50\"\n\t\t\t}\n\t\t}\n\t}\n}"
-                      header:
-                        title: SHQ Add Metafield Response
   /api-reference:
     title: API Reference
     data:
