@@ -237,13 +237,14 @@ paths:
               is_default: true
               last_updated: '1985-10-10T01:43:33.605Z'
               enabled: false
-      summary: Get a Single Currency
-      description: Retrieves a specified currency.
+      summary: Get a Currency
+      description: Returns a single *Currency*.
       parameters:
         - $ref: '#/parameters/Content-Type'
         - $ref: '#/parameters/Accept'
       tags:
         - Currency
+      operationId: getACurrency
     parameters:
       - name: id
         in: path
@@ -287,20 +288,17 @@ paths:
               last_updated: '1947-12-04T17:27:38.508Z'
               enabled: true
       summary: Update a Currency
-      description: >-
-        ### Read-only Properties 
+      description: |-
+        Updates a *Currency*.
 
+        **Required Fields**
+        * none
 
-        The following properties of the currency are read-only. If one or more
-        of these properties are included in the request, it will be rejected:
-
+        **Read-Only Fields**
 
         * id
-
         * is_default
-
         * date_created
-
         * date_modified
       parameters:
         - $ref: '#/parameters/Accept'
@@ -322,6 +320,7 @@ paths:
               decimal_places: 2
       tags:
         - Currency
+      operationId: updateACurrency
     delete:
       responses:
         '204':
@@ -330,12 +329,13 @@ paths:
             type: object
             properties: {}
       summary: Delete a Currency
-      description: Deletes a specified currency.
+      description: Deletes a *Currency*.
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
       tags:
         - Currency
+      operationId: deleteACurrency
 definitions:
   Currency:
     title: Currency
