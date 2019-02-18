@@ -3738,8 +3738,8 @@ paths:
         required: true
   '/orders/{order_id}/shipments':
     get:
-      description: Gets a list of all shipments on an order
-      summary: Get A List of Order Shipments
+      description: Returns a list of all *Order Shipments*.
+      summary: Get All Order Shipments
       parameters:
         - name: order_id
           in: path
@@ -3882,13 +3882,10 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipments
+      operationId: getAllOrderShipments
     post:
       description: >-
-        ## Requirements 
-
-
-        The following properties of the shipment are required. The request won’t
-        be fulfilled unless these properties are valid. 
+        **Required Fields**
 
 
         *   order_address_id /GET Orders
@@ -3898,11 +3895,7 @@ paths:
         *   shipping_provider  
 
 
-        ## Read-only Properties 
-
-
-        The following properties of the shipment are read-only. If one or more
-        of these properties are included in the request, it will be rejected.
+        **Read-Only Fields**
 
 
         *   id
@@ -3938,7 +3931,7 @@ paths:
         [here](https://docs.google.com/spreadsheets/d/1w9c_aECSCGyf-oOrvGeUniDl-ARGKemfZl0qSsav8D4/pubhtml?gid=0&single=true)
         and downloadable as a .CSV file
         [here](https://docs.google.com/spreadsheets/d/1mTueEynfcEmwsU2y2Jd2MX-8GKwNZrmlRMBcIElg9aY/pub?gid=0&single=true&output=csv).
-      summary: Create A New Order Shipment
+      summary: Create a Order Shipment
       parameters:
         - name: order_id
           in: path
@@ -4073,8 +4066,9 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipments
+      operationId: createAOrderShipment
     delete:
-      description: Deletes all shipments associated with an order.
+      description: 'By default, deletes all *Order Shipments*.'
       summary: Delete All Order Shipments
       produces:
         - application/json
@@ -4107,6 +4101,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipments
+      operationId: deleteAllOrderShipments
     parameters:
       - name: order_id
         in: path
@@ -4502,12 +4497,13 @@ paths:
                   display_style: Rectangle
               configurable_fields: []
       summary: Get a Order Product
-      description: Gets a product line item associated with the order.
+      description: 'Returns a *Order Product* line item. '
       tags:
         - Order Products
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
+      operationId: getOrderProduct
     parameters:
       - name: order_id
         in: path
