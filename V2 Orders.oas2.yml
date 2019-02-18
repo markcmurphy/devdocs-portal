@@ -3556,10 +3556,8 @@ paths:
   '/orders/{order_id}/taxes':
     get:
       description: >-
-        Gets all order taxes using `order_id`.
+        Returns a list of *Order Taxes*.
 
-        Each tax applied to an order. This information can be useful for
-        reporting purposes. 
 
         Pass in the query parameter `?details=true` to return extra details
         about order taxes.
@@ -3733,6 +3731,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Taxes
+      operationId: getAllOrderTaxes
     parameters:
       - name: order_id
         in: path
@@ -4605,16 +4604,18 @@ paths:
                 resource: velit sit ad m
       summary: Get a Shipping Address
       description: >-
-        Gets a shipping address associated with an order.
+        Returns a single *Shipping Address*.
 
-        Returned in the response is shipping_quotes object. Please use the Get
-        Shipping Quotes Endpoint. Using the response will return a 204 for the
-        shipping quote. 
+        Returned in the response is `shipping_quotes` object.Please use the [Get
+        Shipping Quotes
+        Endpoint](/api-reference/orders/orders-api/order-shipping-addresses-quotes/getordersorderidshippingaddressesshippingaddressidshippingquotes).
+        Using the response will return a 204 for the shipping quote. 
       tags:
         - Order Shipping Addresses
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
+      operationId: getAShippingAddress
     parameters:
       - name: order_id
         in: path
@@ -4689,7 +4690,7 @@ paths:
               rate_id: ''
       summary: Get All Shipping Quotes
       description: >-
-        Gets any shipping quotes assocated to an order. 
+        Returns a list of order *Shipping Quotes*.
 
 
         This is a read only enpoint and the output can vary based on the
@@ -4702,6 +4703,7 @@ paths:
         - $ref: '#/parameters/Content-Type'
       tags:
         - Order Shipping Addresses Quotes
+      operationId: getAllShippingQuotes
     parameters:
       - name: order_id
         in: path
