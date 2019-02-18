@@ -837,6 +837,7 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: updateAOrder
     delete:
       description: >-
         Archives an order.
@@ -2392,8 +2393,10 @@ paths:
       operationId: deleteAllOrders
   '/orders/{order_id}/coupons':
     get:
-      description: Lists all order coupons. Optional parameters can be passed in.
-      summary: List Order Coupons
+      description: >-
+        Returns a list of all *Order Coupons*. Optional parameters can be passed
+        in.
+      summary: Get All Order Coupons
       produces:
         - application/json
       parameters:
@@ -2469,6 +2472,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Coupons
+      operationId: getAllOrderCoupons
     parameters:
       - name: order_id
         in: path
@@ -2477,10 +2481,12 @@ paths:
   '/orders/{order_id}/products':
     get:
       description: >-
-        Lists all order products on an order using `order_id`. By default, items
-        sort from lowest to highest according to a newly created ID, separate
-        from the `order_id` and the `product_id`.
-      summary: List Order Products
+        Returns all *Order Products*
+
+
+        By default, items sort from lowest to highest according to a newly
+        created ID, separate from the `order_id` and the `product_id`.
+      summary: Get All Order Products
       produces:
         - application/json
       parameters:
@@ -3038,6 +3044,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Products
+      operationId: getAllOrderProducts
     parameters:
       - name: order_id
         in: path
@@ -4395,7 +4402,7 @@ paths:
                 date_created: '1989-11-24T21:02:09.657Z'
                 customer: enim qui
       summary: Get Order Messages
-      description: Gets the messages associated with an order.
+      description: Returns the messages associated with an order.
       tags:
         - Order Messages
       parameters:
@@ -4410,6 +4417,7 @@ paths:
         - $ref: '#/parameters/status'
         - $ref: "#/parameters/page\t"
         - $ref: '#/parameters/limit'
+      operationId: getOrderMessages
     parameters:
       - name: order_id
         in: path
