@@ -1060,7 +1060,7 @@ paths:
         IsMultiContentStreaming: false
   /orders:
     get:
-      description: Gets a list of orders using the filter query
+      description: Returns a list of *Orders*. Optional filter parameters maybe passed in.
       tags:
         - Orders
       parameters:
@@ -1896,29 +1896,27 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       summary: Get All Orders
+      operationId: getAllOrders
     post:
       description: >-
+        Creates a *Order*.
+
+
         When creating an order the shipping address is the same as the billing
         address and can not be changed. 
-
 
         The Orders resource currently does not support coupon redemptions or
         discounts, apart from manual discount. 
 
 
-        ## Requirements
-
-
-        The following properties of the order are required. The request won’t be
-        fulfilled unless these properties are valid.
-
+        **Required Fields**
 
         *   products
 
         *   billing_address
 
 
-        ## Ready Only
+        **Read-Only Fields**
 
 
         *   id
@@ -2092,7 +2090,7 @@ paths:
         unpaid. Orders that are created using the `POST` method, and that
         include a status of the paid type, cause the submission of tax documents
         to Avalara.
-      summary: Create an Order
+      summary: Create a Order
       tags:
         - Orders
       produces:
@@ -2366,8 +2364,9 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: createAOrder
     delete:
-      description: Archives all orders.
+      description: 'By default, it archives all store *Orders*.'
       summary: Delete All Orders
       tags:
         - Orders
@@ -2393,6 +2392,7 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: deleteAllOrders
   '/orders/{order_id}/coupons':
     get:
       description: Lists all order coupons. Optional parameters can be passed in.
@@ -3309,7 +3309,7 @@ paths:
         required: true
   /order_statuses:
     get:
-      description: Gets a list of order statues.
+      description: Returns a list of *Order Statuses*.
       summary: Get All Order Statuses
       produces:
         - application/json
@@ -3471,10 +3471,13 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Status
+      operationId: getAllOrderStatuses
   '/order_statuses/{id}':
     get:
-      description: Gets a single order status.
-      summary: Get a Single Order Status by Id
+      description: |-
+        Gets a single order status.
+        Returns a single *Order Status*.
+      summary: Get a Single Order Status
       produces:
         - application/json
       parameters:
@@ -3538,6 +3541,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Status
+      operationId: getAOrderStatus
     parameters:
       - name: id
         in: path
