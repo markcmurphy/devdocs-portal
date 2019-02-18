@@ -3053,13 +3053,14 @@ paths:
   '/orders/{order_id}/shipping_addresses':
     get:
       description: >-
-        Get all shipping address on an order using the `order_id`.
+        Returns a list of *Order Shipping Addresses*.
 
 
-        Returned in the response is shipping_quotes object. Please use the Get
-        Shipping Quotes Endpoint. Using the response will return a 204 for the
-        shipping quote. 
-      summary: Get A List of Order Shipping Address
+        Returned in the response is `shipping_quotes` object. Please use the
+        [Get Shipping Quotes
+        Endpoint](/api-reference/orders/orders-api/order-shipping-addresses-quotes/getordersorderidshippingaddressesshippingaddressidshippingquotes).
+        Using the response will return a 204 for the shipping quote. 
+      summary: Get All Order Shipping Addresses
       produces:
         - application/json
       parameters:
@@ -3306,6 +3307,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipping Addresses
+      operationId: getAllOrderShippingAddress
     parameters:
       - name: order_id
         in: path
@@ -4109,9 +4111,7 @@ paths:
         required: true
   '/orders/{order_id}/shipments/count':
     get:
-      description: >-
-        Gets a count of the number of shipments that have been made for a single
-        order.
+      description: Returns a count of the number of *Order Shipments* for a single order.
       summary: Get A Count of Shipments Per Order
       produces:
         - application/json
@@ -4161,6 +4161,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipments
+      operationId: getCountOrderShipments
     parameters:
       - name: order_id
         in: path
@@ -4168,8 +4169,8 @@ paths:
         required: true
   '/orders/{order_id}/shipments/{id}':
     put:
-      description: Updates an existing shipment associated with an order.
-      summary: Update A Shipment
+      description: Updates an *Order Shipment*.
+      summary: Update a Shipment
       produces:
         - application/json
       parameters:
@@ -4268,9 +4269,10 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipments
+      operationId: updateOrderShipment
     delete:
-      description: Deletes a shipment associated with an order.
-      summary: Delete A Order Shipment
+      description: Deletes a *Order Shipment*.
+      summary: Delete a Order Shipment
       produces:
         - application/json
       parameters:
@@ -4311,6 +4313,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Order Shipments
+      operationId: deleteOrderShipment
     parameters:
       - name: order_id
         in: path
