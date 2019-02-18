@@ -610,10 +610,11 @@ paths:
         required: true
   /banners:
     get:
-      description: >-
-        Gets the banners available. (Default sorting is by banner id, from
-        lowest to highest.)
-      summary: Get a List of All Banners
+      description: |-
+        Returns a list of *Banners*.
+
+        Default sorting is by banner id, from lowest to highest.
+      summary: Get All Banners
       parameters:
         - name: Accept
           in: header
@@ -739,27 +740,20 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Banners
+      operationId: getAllBanners
     post:
-      description: >-
-        Creates a new banner.
+      description: |-
+        Creates a *Banner*.
 
-
-        ## Requirements
-
-
-        The following properties of the banner are required. The request won't
-        be fulfilled unless these properties are valid.
-
-
+        **Required Fields**
         * name
-
         * content
-
         * page
-
         * location
-
         * date_type
+
+        **Read-Only Fields**
+        * id
       summary: Create a Banner
       produces:
         - application/json
@@ -828,9 +822,10 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Banners
+      operationId: createABanner
     delete:
-      description: Deletes all banners associated with the store.
-      summary: Delete All Banners
+      description: 'By default, it deletes all *Banners*.'
+      summary: Delete Banners
       parameters:
         - name: Accept
           in: header
@@ -855,6 +850,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Banners
+      operationId: deleteBanners
   '/banners/{id}':
     get:
       description: Gets a single banner by `id`.
