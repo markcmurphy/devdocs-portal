@@ -10170,6 +10170,77 @@ pages:
                         title: Add item with option and modifier
                       config:
                         mode: json
+                    - type: text
+                      data: >+
+                        ### Internal Server Error [500]
+
+
+                        *Server to Server Cart API* 
+
+
+                        ***Issue:***
+
+
+                        When less than a product’s minimum required purchase or
+                        more than the maximum allowed purchase is added to cart.
+
+
+                        ***Resolution:***
+
+
+                        Check the product for order_quantity_minimum and
+                        order_quantity_maximum for the correct amount to add the
+                        cart. Use the Get Product (#link) endpoint.
+
+
+                        ***Issue:***
+
+
+                        Adding more product quantity to a cart than what’s in
+                        stock. 
+
+
+                        ***Resolution:***
+
+
+                        Check the product for inventory_level to see how many
+                        are in stock. Use the Get Product (#link) endpoint.
+
+
+                        ---
+
+
+                        ***Issue:***
+
+
+                        Trying to edit a Cart that does not exist. 
+
+
+                        ***Resolution:***
+
+
+                        Carts are only valid 30 days past the
+                        date_last_modified. Check the Get Carts (# link)
+                        endpoint for the current available session cart.
+
+
+                        *Storefront Cart API*
+
+
+                        ***Issue:***
+
+                        When less than a product’s minimum required purchase or
+                        more than the maximum allowed purchase is added to cart.
+                        Use the Get Product (#link) endpoint to check for
+                        min/max purchase restrictions.
+
+
+                        ***Resolution:***
+
+                        Check the product for order_quantity_minimum and
+                        order_quantity_maximum for the correct amount to add the
+                        cart. Use the Get Product (#link) endpoint.
+
               - title: Working with Storefront APIs
                 config:
                   sidebar:
