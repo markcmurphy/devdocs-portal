@@ -9917,11 +9917,50 @@ pages:
                       config:
                         mode: json
                     - type: text
-                      data: |-
+                      data: >-
                         ### Missing line_items in request body [422]
 
-                        *Server to Server Cart API
-                        *
+
+                        *Server to Server Cart API*
+
+
+                        ***Issue:*** 
+
+
+                        When a required product modifier is missing. A product
+                        can have a modifier that is not required. In those cases
+                        the product can be added to a cart without the
+                        modifier. 
+
+
+                        ***Resolution:***
+
+
+                        Use the [Get Products](#link) or [Get Modifier](#link)
+                        endpoints to return the modifier ID. The modifier_id =
+                        option_id. 
+
+
+                        To create a cart with a product modifier:
+                    - type: code
+                      data: |
+
+                        {
+                          "line_items": [
+                            {
+                              "quantity": 1,
+                              "product_id": 1001,
+                              "option_selections": [
+                                {
+                                  "option_id": 123,
+                                  "option_value": "Hello!"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      header:
+                        title: Create cart with modifier
               - title: Working with Storefront APIs
                 config:
                   sidebar:
