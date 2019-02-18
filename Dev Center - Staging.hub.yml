@@ -9581,7 +9581,7 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: "<h1>Cart and Checkout</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#cart-checkout_storefront-cart-and-checkout\">Storefront Cart and Checkout</a></li>\n        <li><a href=\"#cart-checkout_server-to-server-cart-and-checkout\">Server-to-Server Cart and Checkout</a></li>\n        <li><a href=\"#cart-checkout_available-webhooks\">Available Webhooks</a></li>\n    \t\t<li><a href=\"#cart-checkout_oauth-scopes\">OAuth Scopes</a></li>\n        <li><a href=\"#cart-checkout_related-endpoints\">Related Endpoints</a></li>\n    \n\t</ul>\n</div>"
+                      data: "<h1>Cart and Checkout</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#cart-checkout_storefront-cart-and-checkout\">Storefront Cart and Checkout</a></li>\n        <li><a href=\"#cart-checkout_server-to-server-cart-and-checkout\">Server-to-Server Cart and Checkout</a></li>\n        <li><a href=\"#cart-checkout_available-webhooks\">Available Webhooks</a></li>\n    \t\t<li><a href=\"#cart-checkout_oauth-scopes\">OAuth Scopes</a></li>\n        <li><a href=\"#cart-checkout_related-endpoints\">Related Endpoints</a></li>\n    <li><a href=\"cart-checkout_troubleshooting\">Troubleshooting Cart Errors</a></li>\n    \n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         ## Storefront Cart and Checkout
@@ -9807,6 +9807,121 @@ pages:
                         Checkout](/api-reference/cart-checkout/server-server-checkout-api)
                       header:
                         anchor: cart-checkout_related-endpoints
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Troubleshooting Cart Errors
+
+                        We will go over common Storefront Cart and Checkout as
+                        well as Server to Server Cart and Checkout errors. Each
+                        scenario will include the error message and how to fix
+                        the error. The most common errors are listed below.
+
+
+                        ### Please create some text for the API option [422]
+
+                        *Server to Server Cart API*
+
+
+                        ***Issue:***
+
+                        When a cart is created containing a product that has an
+                        incorrect or missing text modifier. 
+
+
+                        ***Resolution:***
+
+
+                        Options and modifiers refer to a list of choices on a
+                        product. Options are used to build out variants and
+                        modifiers are not tied to variants at all. To learn more
+                        about options and modifiers see [Article Title
+                        Here](link here).
+
+
+                        To add a product to the cart that has a single modifier
+                        (text field), POST to the [Cart API](link here) without
+                        the `variant_id`. 
+                      header:
+                        anchor: cart-checkout_troubleshooting
+                    - type: code
+                      data: |
+
+                        {
+                          "line_items": [
+                            {
+                              "quantity": 1,
+                              "product_id": 1001,
+                              "option_selections": [
+                                {
+                                  "option_id": 123,
+                                  "option_value": "Hello!"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      header:
+                        title: Single Modifier
+                      config:
+                        mode: json
+                    - type: text
+                      data: >-
+                        To add a product to the cart that has one option (radio
+                        button)  associated with it, use just the `variant_id`
+                        in the request. 
+                    - type: code
+                      data: |-
+                        {
+                          "line_items": [
+                            {
+                              "quantity": 1,
+                              "product_id": 1001,
+                              "variant_id": 2331
+                            }
+                        ]
+                        }
+                      header:
+                        title: Single Option
+                      config:
+                        mode: json
+                    - type: text
+                      data: >-
+                        To add a product that has both an option and a modifier
+                        associated with it, then use the `option_id` and
+                        `option_value`. This example uses a radio button
+                        (option) and a text field (modifier).
+                    - type: code
+                      data: |
+                        {
+                          "line_items": [
+                            {
+                              "quantity": 1,
+                              "product_id": 101,
+                              "option_selections": [
+                                {
+                                  "option_id": 231,
+                                  "option_value": 456
+                                },
+
+                                {
+                                  "option_id": 123,
+                                  "option_value": "Hello!"
+                                }
+                              ]
+                            }
+                          ]
+                      header:
+                        title: Modifier and Option
+                      config:
+                        mode: json
+                    - type: text
+                      data: |-
+                        ### Missing line_items in request body [422]
+
+                        *Server to Server Cart API
+                        *
               - title: Working with Storefront APIs
                 config:
                   sidebar:
