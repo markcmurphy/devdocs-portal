@@ -28,11 +28,10 @@ produces:
 paths:
   /coupons:
     get:
-      description: >-
-        Gets all coupons in the store. Default sorting is by coupon/discount id,
-        from lowest to highest.
+      description: |-
+        Returns a list of *Coupons*. Optional filter parameters maybe passed in.
 
-        To get a single coupon filter by coupon `id`.
+        Default sorting is by coupon/discount id, from lowest to highest.
       summary: Get All Coupons
       parameters:
         - name: Accept
@@ -245,55 +244,29 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
+      operationId: getAllCoupons
     post:
-      description: >-
-        Creates a new coupon.
+      description: |-
+        Creates a *Coupon*.
 
-
-        ### Read-only Properties 
-
-
-        The following properties of the coupon are read-only. If one or more of
-        these properties are included in the request, it will be rejected:
-
-
-        *   id
-
-        *   num_uses
-
-
-        ### Requirements 
-
-
-        The following properties of the coupon are required. The request won’t
-        be fulfilled unless these properties are valid:
-
-
+        **Required Fields**
         *   name
-
         *   code
-
         *   type
-
         *   amount
-
         *   applies_to
 
-
-        ### Notes 
+        **Read-Only Fields**
+        *   id
+        *   num_uses
 
 
         The coupon type can be one of the following:
 
-
         *   per_item_discount
-
         *   per_total_discount
-
         *   shipping_discount
-
         *   free_shipping
-
         *   percentage_discount
       summary: Create a New Coupon
       parameters:
@@ -383,8 +356,9 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
+      operationId: createACoupon
     delete:
-      description: Deletes all store coupons
+      description: 'By default, it deletes all *Coupons*. '
       summary: Delete All Coupons
       parameters:
         - name: Accept
@@ -410,9 +384,10 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
+      operationId: deleteAllCoupons
   /coupons/count:
     get:
-      description: Gets a count of all coupons in the store.
+      description: Returns a count of all *Coupons*.
       summary: Get A Count of Coupons
       parameters:
         - name: Accept
@@ -443,25 +418,15 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
+      operationId: getCountCoupons
   '/coupons/{id}':
     put:
       description: >-
-        Updates an existing store coupon.
+        Updates a *Coupon*.
 
 
-        ### Read-only Properties 
 
-
-        The following properties of the coupon are read-only. If one or more of
-        these properties are included in the request, it will be rejected:
-
-
-        *   id
-
-        *   num_uses
-
-
-        ### Requirements 
+        **Required Fields**
 
 
         The following property of the coupon is required. If it is not included
@@ -471,9 +436,16 @@ paths:
         *   applies_to
 
 
-        > Note that if the `applies_to` value is cleared, you can restore it to
-        the coupon by reapplying the `applies_to` value in a new PUT request.
-      summary: Update an Existing Coupon
+        Note: If the `applies_to` value is cleared, you can restore it to the
+        coupon by reapplying the `applies_to` value in a new PUT request.
+
+
+        **Read-Only Fields**
+
+        *   id
+
+        *   num_uses
+      summary: Update a Coupon
       parameters:
         - name: id
           in: path
@@ -569,8 +541,9 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
+      operationId: updateCoupon
     delete:
-      description: Deletes a single coupon.
+      description: Deletes a *Coupon*.
       summary: Delete A Coupon
       produces:
         - application/json
@@ -603,6 +576,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
+      operationId: deleteCoupon
     parameters:
       - name: id
         in: path
@@ -853,7 +827,7 @@ paths:
       operationId: deleteBanners
   '/banners/{id}':
     get:
-      description: Gets a single banner by `id`.
+      description: Returns a single *Banner*.
       summary: Get a Banner
       parameters:
         - name: id
@@ -913,8 +887,9 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Banners
+      operationId: getABanner
     put:
-      description: Updates an existing banner.
+      description: Updates a *Banner*.
       summary: Update a Banner
       parameters:
         - name: id
@@ -983,8 +958,9 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Banners
+      operationId: updateABanner
     delete:
-      description: Deletes a specific banner by `id`.
+      description: Deletes a *Banner*.
       summary: Delete a Banner
       parameters:
         - name: Accept
@@ -1015,6 +991,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Banners
+      operationId: deleteABanner
     parameters:
       - name: id
         in: path
@@ -1056,7 +1033,7 @@ paths:
       operationId: getCountStoreBanners
   '/gift_certificates/{id}':
     get:
-      description: Gets a single gift certificate by `id`.
+      description: Returns a single *Gift Certificate*.
       summary: Get a Gift Certificate
       parameters:
         - name: id
@@ -1124,8 +1101,9 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Gift Certificates
+      operationId: getAGiftCertificate
     delete:
-      description: Deletes a gift certificate by `id`.
+      description: Deletes a *Gift Certificate*.
       summary: Delete a Gift Certificate
       parameters:
         - name: id
@@ -1158,6 +1136,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Gift Certificates
+      operationId: deleteAGiftCertificate
     parameters:
       - name: id
         in: path
@@ -1221,19 +1200,15 @@ paths:
           x-examples:
             application/json:
               to_name: New testing
-      description: >-
-        ### Read-only Properties 
+      description: |-
+        Updates a *Gift Certificate*.
 
+        **Required Fields**
+        * none
 
-        The following properties of the gift certificate are read-only. If one
-        or more of these properties are included in the request, it will be
-        rejected:
-
-
+        **Read-Only Fields**
         * id
-
         * order_id
-
         * template
       tags:
         - Gift Certificates
@@ -1353,11 +1328,13 @@ paths:
                 expiry_date: eiusmod Ut enim
       summary: Get All Gift Certificates
       description: >-
-        Retrieves the gift certificates available. Default sorting is by
-        gift-certificate id, from lowest to highest.Parameters can be added to
-        the URL query string to paginate the collection. The maximum limit is
-        250. If a limit isn’t provided, up to 50 gift_certificates are returned
-        by default.
+        Returns a list of *Gift Certificates*. Optional parameters maybe passed
+        in.
+
+
+        Default sorting is by gift-certificate id, from lowest to highest.  The
+        maximum limit is 250. If a limit isn’t provided, up to 50
+        gift_certificates are returned by default.
       parameters:
         - in: query
           name: min_id
@@ -1401,6 +1378,7 @@ paths:
           default: application/json
       tags:
         - Gift Certificates
+      operationId: getAllGiftCertificates
     post:
       responses:
         '200':
@@ -1465,28 +1443,10 @@ paths:
               from_name: Tarzan
               from_email: test1@test.com
       description: >-
-        ### Read-only Properties 
+        Creates a *Gift Certificate*.
 
 
-        The following properties of the gift certificate are read-only. If one
-        or more of these properties are included in the request, it will be
-        rejected:
-
-
-        * id
-
-        * order_id
-
-        * template
-
-
-
-        ### Requirements 
-
-
-        The following properties of the gift certificate are required. The
-        request won't be fulfilled unless these properties are valid.
-
+        **Required Fields**
 
         * to_name
 
@@ -1499,7 +1459,17 @@ paths:
         * amount
 
 
-        ### Notes 
+        **Read-Only Fields**
+
+        * id
+
+        * order_id
+
+        * template
+
+
+
+        **Notes**
 
 
         When a gift certificate is created through the API, no email
@@ -1536,6 +1506,7 @@ paths:
         * {blank}
       tags:
         - Gift Certificates
+      operationId: createAGiftCertificate
     delete:
       responses:
         '204':
@@ -1543,7 +1514,7 @@ paths:
           schema:
             type: object
             properties: {}
-      summary: Delete All Store Gift Certificates
+      summary: Delete Gift Certificates
       parameters:
         - in: header
           name: Accept
@@ -1555,6 +1526,8 @@ paths:
           default: application/json
       tags:
         - Gift Certificates
+      description: 'By default, it deletes all *Gift Certificates*.'
+      operationId: deleteAllGiftCertificates
 definitions:
   CouponsResource:
     title: Coupon Resource
