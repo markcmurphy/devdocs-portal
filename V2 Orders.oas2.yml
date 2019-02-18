@@ -65,10 +65,8 @@ produces:
 paths:
   '/orders/{id}':
     get:
-      description: >-
-        Gets the collection of orders. (The default sort is by order id, from
-        lowest to highest.)
-      summary: Get an Order
+      description: Returns a single *Order*.
+      summary: Get a Order
       tags:
         - Orders
       produces:
@@ -284,23 +282,18 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: getAOrder
     put:
       description: >-
-        ## Properties that can be updated
-
-        * customer_id
-
-        * status_id
-
-        * Add a new product
-
-        * Add a custom product
-
-        * billing_address
+        Updates a *Order*.
 
 
-        ## Read-only Properties
+        **Required Fields**
 
+        * none
+
+
+        **Read-Only Fields**
 
         *   id
 
@@ -354,9 +347,8 @@ paths:
 
 
 
-        > If a store has automatic tax enabled, BigCommerce does not compute
-        sales tax on orders updated via the API.
-
+        If a store has automatic tax enabled, BigCommerce does not compute sales
+        tax on orders updated via the API.
 
 
         ## Changing the Order Status
@@ -499,7 +491,7 @@ paths:
         | sku             | text    | The SKU of the custom product.
         (Optional.)                                                                        
         |
-      summary: Update an Order
+      summary: Update a Order
       tags:
         - Orders
       produces:
@@ -852,7 +844,7 @@ paths:
 
         Any attempt to archive an order on a store with automatic tax enabled
         will fail, and will return `405 Method not allowed.`
-      summary: Archive an Order
+      summary: Archive a Order
       tags:
         - Orders
       produces:
@@ -886,6 +878,7 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: deleteAnOrder
     parameters:
       - name: id
         in: path
@@ -1061,7 +1054,10 @@ paths:
       operationId: getACountOrders
   /orders:
     get:
-      description: Returns a list of *Orders*. Optional filter parameters maybe passed in.
+      description: |-
+        Returns a list of *Orders*. Optional filter parameters maybe passed in.
+
+        The default sort is by `order_id`, from lowest to highest.
       tags:
         - Orders
       parameters:
