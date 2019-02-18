@@ -21,9 +21,10 @@ produces:
 paths:
   /tax_classes:
     get:
-      description: >-
-        Gets the tax classes set up for a store. Default sorting is by tax-class
-        id, from lowest to highest.
+      description: |-
+        Returns a list of all *Tax Classes* in a store.
+
+        Default sorting is by tax-class id, from lowest to highest.
       summary: Get All Tax Classes
       tags:
         - Taxes
@@ -84,9 +85,10 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: getAllTaxClasses
   '/tax_classes/{id}':
     get:
-      description: Gets a tax class by `id`.
+      description: Returns a single *Tax Class*.
       summary: Get a Tax Class
       tags:
         - Taxes
@@ -124,6 +126,7 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: getATaxClass
 definitions:
   TaxClass:
     title: Tax Class
