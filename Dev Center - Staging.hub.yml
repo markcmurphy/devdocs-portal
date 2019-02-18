@@ -9961,6 +9961,164 @@ pages:
                         }
                       header:
                         title: Create cart with modifier
+                    - type: text
+                      data: >-
+                        ### A shipping address for this order is incomplete
+                        [422]
+
+                        *Server to Server Cart API*
+
+
+                        ***Issue:***
+
+
+                        This can return when the customer ID of a cart has
+                        changed. 
+
+
+                        ***Resolution:***
+
+
+                        The customer ID is linked to discounts and pricing
+                        available to that customer. If that is changed then
+                        anything that affects the cart price is invalidated.
+                        This includes coupons, discounts, taxes and shipping.
+
+
+                        A cart should be created with the `customer_id` as part
+                        of the request body. Use the Get Customers(#link)
+                        endpoint to get the `customer_id`. 
+
+
+                        To create a cart with a `customer_id`:
+                    - type: code
+                      data: |
+                        {
+                          “customer_id”: 12,
+                          "line_items": [
+                            {
+                              "quantity": 5,
+                              "product_id": 191
+                            }
+                          ]
+                        }
+                      header:
+                        title: Create cart with customer ID
+                      config:
+                        mode: json
+                    - type: text
+                      data: >-
+                        ### This product has options, variant ID is required
+                        [422]
+
+                        *Server to Server Cart API*
+
+
+                        ***Issue:***  
+
+                        When a product has options and variant ID is not
+                        supplied in either the create or update cart request. 
+
+
+                        ***Resolution:***
+
+
+                        To get the variant ID use the [Get Products](#link)
+                        endpoint or the [Get Variants](#link) endpoint.
+
+                        To create a cart with a variant ID:
+                    - type: code
+                      data: |-
+                        {
+                          "line_items": [
+                            {
+                              "quantity": 1,
+                              "product_id": 1001,
+                              "variant_id": 2331
+                            }
+                        ]
+                        }
+                      header:
+                        title: Create cart with variant ID
+                      config:
+                        mode: json
+                    - type: text
+                      data: >-
+                        ***Issue:***
+
+
+                        The incorrect `option_id` is supplied.
+
+
+                        ***Resolution:***
+
+
+                        To get the correct option_id make a request to [Get
+                        Products
+
+                        ](#link) or [Get Options](#link). 
+                    - type: code
+                      data: |
+                        {
+                          "line_item": {
+                            "quantity": 1,
+                            "product_id": 76,
+                            "list_price": 170.00,
+                            "option_selections": [
+                              {
+                                "option_id": 21506,
+                                "option_value": 10090
+                              }
+                            ]
+                          }
+                        }
+                      header:
+                        title: Create cart option ID
+                    - type: text
+                      data: >-
+                        *Storefront Cart API*
+
+
+                        ***Issue:***
+
+
+                        * Missing required modifier on the storefront. This can
+                        include a text modifier with no selection. Make sure the
+                        optionValue is not blank.
+
+                        * The variantID is incorrect.
+
+                        * The modifierID is incorrect.
+
+
+
+                        **Resolution:**
+
+
+                        To add a product to the cart that has a single modifier
+                        (text field), POST to the [Cart API](#link here) without
+                        the `variant_id`. Use the `optionId` and `optionValue`
+                        instead. 
+                    - type: code
+                      data: |-
+                        {
+                          "lineItems": [
+                            {
+                              "quantity": 1,
+                              "product_id": 1001,
+                              "optionSelections": [
+                                {
+                                  "optionId": 123,
+                                  "optionValue": "Hello!"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      header:
+                        title: Create cart optionId and optionValue
+                      config:
+                        mode: json
               - title: Working with Storefront APIs
                 config:
                   sidebar:
