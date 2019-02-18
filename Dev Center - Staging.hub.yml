@@ -10119,6 +10119,57 @@ pages:
                         title: Create cart optionId and optionValue
                       config:
                         mode: json
+                    - type: text
+                      data: >-
+                        To add a product to the cart that has one option (radio
+                        button)  associated with it, use just the “variant_id”
+                        in the request. 
+                    - type: code
+                      data: |-
+                        {
+                          "lineItems": [
+                            {
+                              "quantity": 1,
+                              "productId": 1001,
+                              "variantId": 2331
+                            }
+                        ]
+                        }
+                      header:
+                        title: Create Storefront Cart variantID
+                      config:
+                        mode: json
+                    - type: text
+                      data: >-
+                        To add a product that has both an option and a modifier
+                        associated with it, then use the option_id and
+                        option_value. This example uses a radio button (option)
+                        and a text field (modifier).
+                    - type: code
+                      data: |-
+                        {
+                          "lineItems": [
+                            {
+                              "quantity": 1,
+                              "product_id": 101,
+                              "optionSelections": [
+                                {
+                                  "optionId": 231,
+                                  "optionValue": 456
+                                },
+
+                                {
+                                  "optionId": 123,
+                                  "optionValue": "Hello!"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      header:
+                        title: Add item with option and modifier
+                      config:
+                        mode: json
               - title: Working with Storefront APIs
                 config:
                   sidebar:
