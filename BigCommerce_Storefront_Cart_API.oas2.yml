@@ -233,18 +233,38 @@ paths:
 
         - Both physical and digital items:
         `?include=lineItems.digitalItems.options,lineItems.physicalItems.options`
+      operationId: getACart
     post:
       description: >-
-        Creates a *Cart*. and generates a cart ID.
+        Creates a *Cart*.
 
 
-        * When creating a cart it is recommeneded to use the option id and
-        option value.
+        **Required Fields**
 
-        * To add a product with a mix of variants and options, the
+        * line_items object
+
+        * customer_items object – If adding a item that does not already exist
+        in the store
+
+        * gift_certificates object – Only if adding a gift certificate to for
+        shopper purchase
+
+
+        **Notes**
+
+
+        Cart ID is generated in the response.
+
+
+        When creating a cart it is recommeneded to use the option id and option
+        value.
+
+
+        To add a product with a mix of variants and options, the
         `optionSelections` need to be listed out separately. 
 
-        * The redirect url endpoint does not work using the Storefront Cart. At
+
+        The redirect url endpoint does not work using the Storefront Cart. At
         this time shoppers can not be directed to any carts or checkouts created
         using the Storefront APIS. 
       parameters:
@@ -504,9 +524,19 @@ paths:
               updatedTime: '2018-09-18T15:50:22+00:00'
               customerMessage: ''
       summary: Create a Cart
+      operationId: createACart
   '/carts/{cartId}/items':
     post:
-      description: Adds line item(s) to the cart using the `cartId`.
+      description: >-
+        Adds a line items to the *Cart*.
+
+
+        **Required Fields**
+
+        * line_items object
+
+        * gift_certificates object – Only if adding a gift certificate to for
+        shopper purchase
       parameters:
         - name: cartId
           in: path
@@ -753,6 +783,7 @@ paths:
               updatedTime: '2018-09-18T16:02:34+00:00'
               customerMessage: ''
       summary: Add item to Cart
+      operationId: addCartLineItem
   '/carts/{cartId}/items/{itemId}':
     put:
       description: >-
@@ -1238,7 +1269,7 @@ paths:
       summary: Delete Cart Line Item
   '/carts/{cartId}':
     get:
-      description: Returns information about a given cart using the `cartId`.
+      description: Returns a stores *Cart*.
       parameters:
         - name: cartId
           in: path
@@ -1462,9 +1493,12 @@ paths:
               createdTime: '2018-09-18T15:48:26+00:00'
               updatedTime: '2018-09-18T16:02:34+00:00'
               customerMessage: ''
-      summary: Get a Cart by Id
+      summary: Get a Cart
+      operationId: getACart
     delete:
-      description: Removes the entire cart by `cartId`.
+      description: >-
+        Deletes a *Cart*. Once a *Cart* has been deleted it can not be
+        recovered.
       parameters:
         - name: cartId
           in: path
@@ -1477,7 +1511,8 @@ paths:
       responses:
         '204':
           description: ''
-      summary: Delete a Cart by Id
+      summary: Delete a Cart
+      operationId: deleteACart
 parameters:
   lineItems.options:
     name: include
