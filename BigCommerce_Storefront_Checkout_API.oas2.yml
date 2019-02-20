@@ -825,13 +825,15 @@ paths:
           $ref: '#/responses/Checkout'
   '/checkouts/{checkoutId}/gift-certificates':
     post:
-      description: >-
-        Adds gift certificate code to checkout using the `checkoutId`.
+      description: |-
+        Adds a *Gift Certificate Code* to *Checkout*.
 
+        **Notes**
 
-        * You are not able to purchase a gift certificate with a gift
-        certificate.
-      summary: Add Gift Certificate
+        *Gift Certificates* are treated as a payment methods.
+
+        You are not able to purchase a gift certificate with a gift certificate.
+      summary: Add Gift Certificate to Checkout
       tags:
         - Checkout
       operationId: CheckoutsGiftCertificatesByCheckoutIdPost
@@ -857,9 +859,12 @@ paths:
           $ref: '#/responses/Checkout'
   '/checkouts/{checkoutId}/gift-certificates/{giftCertificateCode}':
     delete:
-      description: >-
-        Removes an existing gift Removes an existing gift certificate from
-        checkout using the `checkoutId` and `giftCertificateCode`.
+      description: |-
+        Deletes an existing *Gift Certificate*. 
+
+        **Notes**
+
+        This removes the *Gift Certificate* payment method.
       summary: Delete Gift Certificate
       tags:
         - Checkout
@@ -879,13 +884,17 @@ paths:
           description: ''
       responses:
         '200':
-          description: Returns Checkout Object.
+          description: ''
           schema:
             $ref: '#/definitions/Checkout'
   '/checkouts/{checkoutId}/coupons':
     post:
-      description: Adds a coupon code to checkout using the `checkoutId`.
-      summary: Add Coupon Code
+      description: |-
+        Adds a *Coupon Code* to *Checkout*.
+
+        **Required Fields**
+        * couponCode
+      summary: Add Coupon to Checkout
       tags:
         - Checkout
       operationId: CheckoutsCouponsByCheckoutIdPost
@@ -911,10 +920,8 @@ paths:
           $ref: '#/responses/Checkout'
   '/checkouts/{checkoutId}/coupons/{couponCode}':
     delete:
-      description: >-
-        Removes an existing coupon from checkout using the `checkoutId` and the
-        `couponCode`.
-      summary: Delete Coupon Code
+      description: Deletes a *Coupon Code* from *Checkout*.
+      summary: Delete Checkout Coupon
       tags:
         - Checkout
       operationId: CheckoutsCouponsByCheckoutIdAndCouponCodeDelete
