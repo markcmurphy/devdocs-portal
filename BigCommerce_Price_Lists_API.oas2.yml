@@ -223,9 +223,7 @@ paths:
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
     get:
-      description: >-
-        Get the price records associated with a Price List using the
-        `price_list_id`.
+      description: Returns a list of *Price List Records* associated with a *Price List*.
       operationId: getPriceListRecordCollection
       parameters:
         - $ref: '#/parameters/FilterVariantIdParam'
@@ -487,14 +485,17 @@ paths:
                   per_page: 50
                   current_page: 1
                   total_pages: 1
-      tags:
-        - Price Lists
       summary: Get All Price List Records
+      tags:
+        - Price Lists Records
     put:
-      description: >-
-        Create or update a price list records using the `price_list_id`. This
-        endpoint supports batching bulk price records. Bulk requests are limited
-        to 1000 items per request.
+      description: |-
+        Creates or updates *Price List Records*. 
+
+        **Notes**
+
+        Bulk Updates is supported by this endpoint. 
+        Bulk requests are limited to 1000 items per request.
       operationId: setPriceListRecordCollection
       parameters:
         - name: X-Strict-Mode
@@ -546,9 +547,9 @@ paths:
             during partial update in non-strict mode.
           schema:
             $ref: '#/definitions/PriceRecordBatchErrorResponse'
-      tags:
-        - Price Lists
       summary: Set Price List Records
+      tags:
+        - Price Lists Records
     delete:
       description: >-
         Deletes a *Price List Record*. Deleting the records does not delete the
@@ -563,17 +564,17 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/NoContent'
-      tags:
-        - Price Lists
       summary: Delete a Price List Record
+      tags:
+        - Price Lists Records
   '/pricelists/{price_list_id}/records/{variant_id}':
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
       - $ref: '#/parameters/VariantIdParam'
     get:
       description: >-
-        Get price records from a price list using the `price_list_id` and the
-        `variant_id`. Will contain any set price records by currency.
+        Returns *Price List Records* using the variant ID. Will also contain
+        currency records.
       operationId: getPriceListRecordsByVariantId
       responses:
         '200':
@@ -614,12 +615,12 @@ paths:
                   per_page: 50
                   current_page: 1
                   total_pages: 1
-      tags:
-        - Price Lists
-      summary: Get Price Records by Variant Id
+      summary: Get Price Records by Variant
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
+      tags:
+        - Price Lists Records
   '/pricelists/{price_list_id}/records/{variant_id}/{currency_code}':
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
@@ -627,8 +628,8 @@ paths:
       - $ref: '#/parameters/PriceRecordCurrencyParam'
     get:
       description: >-
-        Get a price list using the `price_list_id`, `variant_id` and
-        `currency_code`. Optional parameters can be used.
+        Returns a *Price List Record* using the currency code. Optional
+        parameters can be used.
       operationId: getPriceListRecord
       parameters:
         - $ref: '#/parameters/FilterIncludePriceRecordParam'
@@ -664,9 +665,7 @@ paths:
         - Price Lists
       summary: Get a Price Record by Currency Code
     put:
-      description: >-
-        Creates or updates a single price record using the `price_list_id`,
-        `variant_id` and `currency_code`.
+      description: Creates or updates a*Price List Record* using the currency code.
       operationId: setPriceListRecord
       parameters:
         - name: PriceRecord
@@ -741,19 +740,17 @@ paths:
         - Price Lists
       summary: Set Price List Record by Currency Code
     delete:
-      description: >-
-        Delete a price record(s) using the `price_list_id`, `variant_id` and
-        `currency_code`.
+      description: 'Deletes a *Price List Record* using the currency code. '
       operationId: deletePriceListRecord
       responses:
         '204':
           description: ''
-      tags:
-        - Price Lists
       summary: Delete a Price Record by Currency Code
       parameters:
         - $ref: '#/parameters/Content-Type'
         - $ref: '#/parameters/Accept'
+      tags:
+        - Price Lists Records
 parameters:
   FilterIdParam:
     name: id
