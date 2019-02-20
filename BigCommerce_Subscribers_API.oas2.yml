@@ -163,7 +163,7 @@ paths:
     parameters:
       - $ref: '#/parameters/SubscriberIdParam'
     get:
-      description: Get a subscriber using the `subscriber_id`.
+      description: Returns a *Subscriber*.
       operationId: getSubscriberById
       responses:
         '200':
@@ -189,7 +189,7 @@ paths:
             $ref: '#/definitions/NotFound'
       tags:
         - Subscribers
-      summary: Get a Subscriber by Id
+      summary: Get a Subscriber
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
@@ -244,16 +244,20 @@ paths:
       tags:
         - Subscribers
       summary: Update a Subscriber
-      description: Updates a subscriber using the `subscriber_id`.
+      description: |-
+        Updates a *Subscriber*.
+
+        **Read Only Fields**
+        * id
     delete:
-      description: Delete a subscriber using the `subscriber_id`.
+      description: Deletes a *Subscriber*.
       operationId: deleteSubscriberById
       responses:
         '204':
           description: ''
       tags:
         - Subscribers
-      summary: Delete Subscriber by Id
+      summary: Delete a Subscriber
       parameters:
         - $ref: '#/parameters/Content-Type'
         - $ref: '#/parameters/Accept'
