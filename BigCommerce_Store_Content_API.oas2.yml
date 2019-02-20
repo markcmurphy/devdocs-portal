@@ -664,7 +664,7 @@ paths:
         href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO
         8601</a> format. The&#160;example request below includes a
         `published_date` in RFC 2822 format.
-      summary: Update A Blog Post
+      summary: Update a Blog Post
       tags:
         - Blog Posts
       produces:
@@ -1057,7 +1057,7 @@ paths:
 
         **Read Only Fields**
         *   id
-      summary: Create A Page
+      summary: Create a Page
       tags:
         - Pages
       produces:
@@ -1157,7 +1157,7 @@ paths:
       operationId: createAPage
   '/pages/{id}':
     get:
-      description: Gets a single page.
+      description: Returns a *Page*.
       summary: Get A Page
       tags:
         - Pages
@@ -1234,8 +1234,8 @@ paths:
         IsMultiContentStreaming: false
       operationId: getAPage
     delete:
-      description: Deletes a single page.
-      summary: Delete A Page
+      description: Deletes a *Page*.
+      summary: Delete a Page
       tags:
         - Pages
       parameters:
@@ -1281,8 +1281,45 @@ paths:
             type: object
             properties: {}
       summary: Update a Page
-      description: Updates a *Page*.
+      description: |-
+        Updates a *Page*.
+
+        **Read Only Fields**
+        * id
       operationId: updateAPage
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/Page'
+          x-examples:
+            application/json:
+              id: 12
+              name: 404 Page for Cats
+              body: >-
+                <html><head><title>Hairball! Not
+                Found</title></head><body>Sorry! You can not haz
+                cheeseburger.</body></html>
+              is_visible: true
+              parent_id: 0
+              sort_order: 12
+              type: raw
+              is_homepage: false
+              is_customers_only: false
+              search_keywords: 'dead, missing, broken'
+              has_mobile_version: false
+              mobile_body: ''
+              url: /404-meow/
+        - in: header
+          name: Accept
+          type: string
+          default: application/json
+        - in: header
+          name: Content-Type
+          type: string
+          default: application/json
+      tags:
+        - Pages
   /redirects:
     get:
       description: Gets all redirect urls.
