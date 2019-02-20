@@ -1337,11 +1337,15 @@ paths:
                 expiry_date: eiusmod Ut enim
       summary: Get All Gift Certificates
       description: >-
-        Retrieves the gift certificates available. Default sorting is by
-        gift-certificate id, from lowest to highest.Parameters can be added to
-        the URL query string to paginate the collection. The maximum limit is
-        250. If a limit isn’t provided, up to 50 gift_certificates are returned
-        by default.
+        Returns a list of *Gift Certificates*. Optional filter parameters can be
+        passed in.
+
+
+        Default sorting is by gift-certificate id, from lowest to highest.
+
+
+        The maximum limit is 250. If a limit isn’t provided, up to 50
+        gift_certificates are returned by default.
       parameters:
         - in: query
           name: min_id
@@ -1385,6 +1389,7 @@ paths:
           default: application/json
       tags:
         - Gift Certificates
+      operationId: getAllGiftCertificates
     post:
       responses:
         '200':
@@ -1527,7 +1532,7 @@ paths:
           schema:
             type: object
             properties: {}
-      summary: Delete All Store Gift Certificates
+      summary: Delete All Gift Certificates
       parameters:
         - in: header
           name: Accept
@@ -1539,6 +1544,8 @@ paths:
           default: application/json
       tags:
         - Gift Certificates
+      description: 'By default, it deletes all *Gift Certificates*.'
+      operationId: deleteAllGiftCertificates
 definitions:
   CouponsResource:
     title: Coupon Resource
