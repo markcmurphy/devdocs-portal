@@ -30,11 +30,27 @@ paths:
   /carts:
     post:
       description: >-
-        Creates a cart and generates a cart ID. 
+        Creates a *Cart*. 
 
-        * A cart can be created using an existing catalog item, or by adding a
+
+        **Require Fields**
+
+        * line_items object
+
+        * customer_items object -- If adding a item that does not already exist
+        in the store
+
+        * gift_certificates object -- Only if adding a gift certificate to for
+        shopper purchase
+
+
+        ## Notes
+
+        *Cart* ID is generated in the response.  
+
+        A cart can be created using an existing catalog item, or by adding a
         custom item using [Item
-        Custom](/api-reference/cart-checkout/server-server-cart-api/models/itemcustom). 
+        Custom](/api-reference/cart-checkout/server-server-cart-api/models/itemcustom).
       parameters:
         - name: cartData
           in: body
@@ -89,17 +105,12 @@ paths:
                   }
                 ]
               } 
-            Custom Item: |-
-              {
-                "custom_items": [
-                  {
-                    "sku": "abc-123",
-                    "name": "Custom Product",
-                    "quantity": 1,
-                    "list_price": 10
-                  }
-                ]
-              }
+            Custom Item:
+              custom_items:
+                - sku: abc-123
+                  name: Custom Product
+                  quantity: 1
+                  list_price: 10
           description: >-
             1. Creating a cart by adding a simple product (a product without
             option selections)
@@ -171,6 +182,7 @@ paths:
                     https://store-id30h7ohwf.mybigcommerce.com/cart.php?action=loadInCheckout&id=bc218c65-7a32-4ab7-8082-68730c074d02&token=aa958e2b7922035bf3339215d95d145ebd9193deb36ae847caa780aa2e003e4b
               meta: {}
       summary: Create a Cart
+      operationId: createACart
   '/carts/{cartId}/items':
     post:
       description: >-
@@ -693,7 +705,7 @@ paths:
               meta: {}
       summary: Update a Cart Customer Id
     delete:
-      description: Delete a stores cart using the `cartId`.
+      description: Deletes a *Cart*.
       parameters:
         - name: cartId
           in: path
@@ -709,6 +721,7 @@ paths:
         '204':
           description: ''
       summary: Delete a Cart
+      operationId: deleteACart
 definitions:
   CartUpdateRequest:
     type: object
