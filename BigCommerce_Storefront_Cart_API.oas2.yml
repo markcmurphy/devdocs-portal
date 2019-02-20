@@ -787,8 +787,19 @@ paths:
   '/carts/{cartId}/items/{itemId}':
     put:
       description: >-
-        Updates an existing, single line item in the cart using the `cartId` and
-        `itemId`.
+        Updates a *Cart* line item. Updates an existing, single line item in the
+        cart.
+
+
+        **Notes**
+
+
+        Currently only updating the item price and quantity are supported.
+
+
+        If a variant needs to be changed or updated, the product will need to be
+        removed and re-added to the cart with the correct variants using the
+        [Add Cart Line Items](add cart line items) endpoint.
       parameters:
         - name: cartId
           in: path
