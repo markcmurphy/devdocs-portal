@@ -1379,8 +1379,8 @@ paths:
         - Pages
   /redirects:
     get:
-      description: Gets all redirect urls.
-      summary: Get A List of Redirects
+      description: Returns a list all *Redirect URLs*.
+      summary: Get All Redirects
       tags:
         - Redirects
       parameters:
@@ -1459,27 +1459,15 @@ paths:
         IsMultiContentStreaming: false
       operationId: getAListofRedirects
     post:
-      description: >
-        ## Read-only Properties
+      description: |-
+        Creates a *Redirect URL*.
 
-
-        The following properties of the redirect are read-only. If one or more
-        of these properties are included in the request, it will be rejected.
-
-
-        *   url
-
-
-        ## Requirements 
-
-
-        The following properties of the redirect are required. The request won’t
-        be fulfilled unless these properties are valid.
-
-
+        **Required Fields**
         *   path
-
         *   forward
+
+        **Read Only**
+        *   url
       summary: Create A Redirect
       tags:
         - Redirects
@@ -1536,7 +1524,7 @@ paths:
         IsMultiContentStreaming: false
       operationId: createARedirect
     delete:
-      description: Delete all URL redirects in a store.
+      description: Deletes all URL redirects in a store.
       summary: Delete All Redirects
       tags:
         - Redirects
