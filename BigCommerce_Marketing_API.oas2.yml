@@ -1454,28 +1454,11 @@ paths:
               from_name: Tarzan
               from_email: test1@test.com
       description: >-
-        ### Read-only Properties 
-
-
-        The following properties of the gift certificate are read-only. If one
-        or more of these properties are included in the request, it will be
-        rejected:
-
-
-        * id
-
-        * order_id
-
-        * template
+        Creates a *Gift Certificate*.
 
 
 
-        ### Requirements 
-
-
-        The following properties of the gift certificate are required. The
-        request won't be fulfilled unless these properties are valid.
-
+        **Required Fields**
 
         * to_name
 
@@ -1488,23 +1471,22 @@ paths:
         * amount
 
 
-        ### Notes 
+        **Read Only Fields**
+
+        * id
+
+        * order_id
+
+        * template
+
+
+
+        **Notes**
 
 
         When a gift certificate is created through the API, no email
         notification is triggered to the specified recipient.
 
-
-        The gift certificate's status can be one of the following:
-
-
-        * pending
-
-        * active
-
-        * disabled
-
-        * expired
 
 
         The gift certificate's template can be one of the following:
@@ -1876,9 +1858,15 @@ definitions:
       status:
         $ref: '#/definitions/GiftCertificateStatus'
       template:
-        description: The email theme to use in the message sent to the recipient.
-        example: false
         type: string
+        description: The email theme to use in the message sent to the recipient.
+        enum:
+          - Birthday
+          - Boy
+          - Celebration
+          - Christmas
+          - General
+          - Girl
       message:
         description: 'Text that will be sent to the recipient, such as “Congratulations.”'
         example: Happy Birthday!
