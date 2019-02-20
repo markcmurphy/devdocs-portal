@@ -33,7 +33,7 @@ paths:
         Creates a *Cart*. 
 
 
-        **Require Fields**
+        **Required Fields**
 
         * line_items object
 
@@ -44,13 +44,32 @@ paths:
         shopper purchase
 
 
-        ## Notes
+        **Notes**
 
-        *Cart* ID is generated in the response.  
+
+        *Cart* ID is generated in the response.
+
+
+        To create a redirect_url upon *Cart* creation use the query param:
+        `include=redirect_urls`
+
 
         A cart can be created using an existing catalog item, or by adding a
         custom item using [Item
         Custom](/api-reference/cart-checkout/server-server-cart-api/models/itemcustom).
+
+
+        Cart ID is the same as the checkout ID.
+
+
+        Carts are valid for 30 days from the last modification. This can include
+        creating the cart or editing the cart.
+
+
+        Redirect URLs can be generated only from carts created using the Server
+        to Server Cart API. To restore a cart that was created on the
+        storefront, either by a shopper or the Storefront Cart API, first
+        recreate the cart using the Server to Server Cart API.
       parameters:
         - name: cartData
           in: body
@@ -186,7 +205,10 @@ paths:
   '/carts/{cartId}/items':
     post:
       description: >-
-        Add a line item(s) to the cart using the `cartId`.
+        Adds a line items to the *Cart*
+
+
+        **Notes**
 
 
         To add a custom item use [Item
@@ -325,30 +347,28 @@ paths:
                 updated_time: '2018-09-17T14:51:27+00:00'
               meta: {}
       summary: Add Cart Line Items
+      operationId: addCartLineItem
   '/carts/{cartId}/redirect_urls':
     post:
       description: >-
-        Create a URL to redirect a shopper to an already created cart using the
-        `cartId`.
+        Creates a *Cart* redirect URL. Create a URL to redirect a shopper to an
+        already created cart using the `cartId`.
 
 
-        A cart's redirect URLs may only be used once. Once a redirect URL has
+        **Notes**
+
+
+        A *Carts* redirect URLs may only be used once. Once a redirect URL has
         been visited, it will be invalidated and cannot be used again. If your
         application requires URLs to be visited more than once, consider
         generating a fresh one each time you need to restore a cart, and
         redirecting to the URL from your own application.
 
 
-        ### Troubleshooting
-
-        Redirect URLs can be generated only from carts created using the
-        server-to-server cart API. To restore a cart that was created on the
-        storefront--either by a shopper or the Storefront Cart API--first
-        recreate the cart using the server-to-server Cart API.
-
-
-        The best practice is to recreate the cart using the Cart API and then
-        generate the redirect URL based on that. 
+        Redirect URLs can be generated only from carts created using the Server
+        to Server Cart API. To restore a cart that was created on the
+        storefront, either by a shopper or the Storefront Cart API, first
+        recreate the cart using the Server to Server Cart API.
       parameters:
         - name: cartId
           in: path
@@ -378,14 +398,22 @@ paths:
               checkout_url: >-
                 https://store-id30h7ohwf.mybigcommerce.com/cart.php?action=loadInCheckout&id=bc218c65-7a32-4ab7-8082-68730c074d02&token=aa958e2b7922035bf3339215d95d145ebd9193deb36ae847caa780aa2e003e4b
       summary: Create Cart Redirect URL
+      operationId: cartRedirectUrl
   '/carts/{cartId}/items/{itemId}':
     put:
       description: >-
-        Updates an existing, single line item in the cart using the `cartId` and
-        the `itemId`. Currently only updating the item price and quantity are
-        supported. If a variant needs to be changed or updated, the product will
-        need to be removed and re-added to the cart with the correct variants
-        using the Add Cart Line Items endpoint.
+        Updates a *Cart* line item. Updates an existing, single line item in the
+        cart. 
+
+
+        **Notes**
+
+        Currently only updating the item price and quantity are supported.
+
+
+        If a variant needs to be changed or updated, the product will need to be
+        removed and re-added to the cart with the correct variants using the Add
+        Cart Line Items endpoint.
       parameters:
         - name: cartId
           in: path
@@ -488,8 +516,14 @@ paths:
                 updated_time: '2018-09-17T14:53:40+00:00'
               meta: {}
       summary: Update Cart Line Item
+      operationId: updateCartLineItem
     delete:
-      description: Removes a line item from the cart using the `cartId` and `itemId`.
+      description: |-
+        Deletes a *Cart* line item. 
+
+        **Notes**
+
+        Removing the last `line_item` in the *Cart* deletes the *Cart*.
       parameters:
         - name: cartId
           in: path
@@ -574,9 +608,10 @@ paths:
             If the action's result is an empty cart, the cart gets automatically
             deleted.
       summary: Delete Cart Line Item
+      operationId: deleteCartLineItem
   '/carts/{cartId}':
     get:
-      description: Get a stores cart using the `cartId`.
+      description: Returns a stores *Cart*.
       parameters:
         - name: cartId
           in: path
@@ -637,8 +672,18 @@ paths:
         '404':
           description: Cart not found.
       summary: Get a Cart
+      operationId: getACart
     put:
-      description: Update a cart using the `cartId`. The `customer_id` can be updated.
+      description: >-
+        Updates a *Cart* `customer_id`.
+
+
+        **## Notes**
+
+
+        Changing the *Cart* `customer_id` will remove any promotions or shipping
+        on the *Cart*. These are tied to the customer depending on cart
+        conditions and any customer groups. 
       parameters:
         - name: cartId
           in: path
@@ -703,9 +748,12 @@ paths:
                 created_time: '2018-09-17T14:27:39+00:00'
                 updated_time: '2018-09-17T14:27:39+00:00'
               meta: {}
-      summary: Update a Cart Customer Id
+      summary: Update Customer ID
+      operationId: updateACart
     delete:
-      description: Deletes a *Cart*.
+      description: >-
+        Deletes a *Cart*. Once a *Cart* has been deleted it can not be
+        recovered.
       parameters:
         - name: cartId
           in: path
