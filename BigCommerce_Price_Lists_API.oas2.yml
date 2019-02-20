@@ -74,7 +74,11 @@ paths:
         - Price Lists
       summary: Get All Price Lists
     post:
-      description: Create a Price List.
+      description: |-
+        Creates a *Price List*.
+
+        **Required Fields**
+        * name
       operationId: createPriceList
       parameters:
         - name: PriceList
@@ -137,7 +141,7 @@ paths:
     parameters:
       - $ref: '#/parameters/PriceListIdParam'
     get:
-      description: Get a Price List using the `price_list_id`.
+      description: ' Returns a single *Price List*.'
       operationId: getPriceList
       responses:
         '200':
@@ -204,9 +208,7 @@ paths:
         - Price Lists
       summary: Update a Price List
     delete:
-      description: >-
-        Delete a Price List using the `price_list_id`. This also remove all the
-        associated price records.
+      description: Deletes a *Price List*. All associated price records are also removed.
       operationId: deletePriceList
       responses:
         '204':
