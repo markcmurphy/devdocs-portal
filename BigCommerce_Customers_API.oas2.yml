@@ -32,11 +32,8 @@ paths:
   /customers:
     get:
       description: >-
-        Gets the collection of customers. (Default sorting is by customer id,
-        from lowest to highest.)
-
-        This request can be filtered by any of the _Customer_ object properties
-        except form fields.
+        Returns a list of all *Customers*. Default sorting is by customer id,
+        from lowest to highest. Optional parameters can be passed in.
       summary: Get All Customers
       parameters:
         - name: Accept
@@ -352,14 +349,22 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customers
+      operationId: getAllCustomers
     post:
       description: >-
-        ## Read-only Properties 
+        Creates a *Customer*.
 
 
-        The following properties of the customer are read-only. If one or more
-        of these properties are included in the request, it will be rejected.
+        **Required Fields**
 
+        *   first_name
+
+        *   last_name
+
+        *   email
+
+
+        **Read Only Fields**
 
         *   id
 
@@ -372,20 +377,6 @@ paths:
         *   addresses
 
         *   form_fields
-
-
-        ## Requirements 
-
-
-        The following properties of the customer are required. The request won’t
-        be fulfilled unless these properties are valid.
-
-
-        *   first_name
-
-        *   last_name
-
-        *   email
 
 
         ## Notes 
@@ -611,9 +602,12 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: createANewCustomer
     delete:
-      description: 'Deletes all customers. Up to 100 customers per batch can be deleted. '
-      summary: Delete All Customers in a Store
+      description: >-
+        By default, it deletes all *Custoners*. Up to 100 customers per batch
+        can be deleted. 
+      summary: Delete All Customers
       tags:
         - Customers
       produces:
@@ -660,10 +654,11 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: deleteAllCustomers
   '/customers/{customer_id}':
     get:
-      description: Gets a single customer.
-      summary: Get a Single Customer
+      description: Returns a single *Customer*.
+      summary: Get a Customer
       tags:
         - Customers
       produces:
@@ -758,8 +753,9 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: getACustomer
     delete:
-      description: Deletes a customer.
+      description: Deletes a *Customer*.
       summary: Delete a Customer
       produces:
         - application/json
@@ -788,6 +784,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customers
+      operationId: deleteACustomer
     parameters:
       - $ref: '#/parameters/customer_id'
     put:
@@ -897,12 +894,10 @@ paths:
               _authentication:
                 force_reset: true
       description: >-
-        ## Read-only Properties 
+        Updates a *Customer*>
 
 
-        The following properties of the customer are read-only. If one or more
-        of these properties are included in the request, it will be rejected.
-
+        **Read Only Fields**
 
         *   id
 
@@ -915,13 +910,6 @@ paths:
         *   addresses
 
         *   form_fields
-
-
-        ## Requirements 
-
-
-        The following properties of the customer are required. The request won’t
-        be fulfilled unless these properties are valid.
 
 
         ## Notes 
@@ -989,9 +977,10 @@ paths:
         }
 
         ```
+      operationId: updateACustomer
   /customers/count:
     get:
-      description: Gets a count of the total number of customers in the store.
+      description: 'Returns a count of all *Customers*. '
       summary: Get a Count of Customers
       tags:
         - Customers
@@ -1045,6 +1034,7 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: getACountOfCustomers
   '/customers/{customer_id}/validate':
     post:
       description: >-
@@ -1946,7 +1936,7 @@ paths:
       operationId: deleteAllCustomerGroups
   '/customer_groups/{customer_group_id}':
     get:
-      description: Gets a customer group.
+      description: Returns a *Customer Group*.
       summary: Get A Customer Group
       parameters:
         - $ref: '#/parameters/customer_group_id'
@@ -2024,6 +2014,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Groups
+      operationId: getACustomerGroup
     delete:
       description: |-
         Deletes a *Customer Group*. 
@@ -2063,6 +2054,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Groups
+      operationId: deleteACustomerGroup
     parameters:
       - $ref: '#/parameters/customer_group_id'
     put:
@@ -2125,46 +2117,32 @@ paths:
                 - type: all
                   method: percent
                   amount: '25.0000'
+            Bulk Update Rules:
+              discount_rules:
+                - type: all
+                  method: percent
+                  amount: 2.5
+                - type: product
+                  product_id: 33
+                  method: percent
+                  amount: 5
+                - type: category
+                  category_id: 7
+                  method: price
+                  amount: 12
       description: >-
-        The rules do not stack. 
+        Updates a *Customer Group*.
+
+
+        **Notes**
 
 
         Any combination of fields can be updated at once. Discount rules are
         treated in bulk. The entire set of rules is overwritten when a request
         is sent.
-
-
-        The following request will remove any existing rules, and apply the new
-        ones:
-
-
-        ```
-
-        {
-                "discount_rules": [
-                    {
-                        "type": "all",
-                        "method": "percent",
-                        "amount": 2.50
-                    },
-                    {
-                        "type": "product",
-                        "product_id": 33,
-                        "method": "percent",
-                        "amount": 5.00
-                    },
-                    {
-                        "type": "category",
-                        "category_id": 7,
-                        "method": "price",
-                        "amount": 12.00
-                    }
-                ]
-        }
-
-        ```
       tags:
         - Customer Groups
+      operationId: updateACustomerGroup
   /customer_groups/count:
     get:
       description: 'Returns a count of all *Customer Groups*. '
