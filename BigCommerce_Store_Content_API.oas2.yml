@@ -1553,8 +1553,8 @@ paths:
       operationId: deleteAllRedirects
   '/redirects/{id}':
     get:
-      description: Gets a single url.
-      summary: Get A Single Redirect URL
+      description: Returns a single *Redirect*.
+      summary: Get A Redirect
       tags:
         - Redirects
       parameters:
@@ -1598,34 +1598,15 @@ paths:
         IsMultiContentStreaming: false
       operationId: getARedirectURL
     put:
-      description: >-
-        Updates an existing URL redirect.
+      description: |-
+        Updates a *Redirect*.
 
-
-        ## Read-only Properties 
-
-
-        The following properties of the redirect are read-only. If one or more
-        of these properties are included in the request, it will be rejected.
-
-
-        *   url
-
-
-        ## Requirements 
-
-
-        The following properties of the redirect are required. The request won’t
-        be fulfilled unless these properties are valid.
-
-
+        **Required Fields**
         *   path
-
         *   forward
 
-
-        > The path, forward.type, and forward.ref fields of an existing redirect
-        can be updated. 
+        **Read Only Fields**
+        *   url
       summary: Update A Redirect
       tags:
         - Redirects
@@ -1683,8 +1664,8 @@ paths:
         IsMultiContentStreaming: false
       operationId: updateARedirectURL
     delete:
-      description: Deletes a URL redirect.
-      summary: Delete A Single Redirect
+      description: Deletes a *Redirect URL*.
+      summary: Delete a Redirect
       tags:
         - Redirects
       parameters:
@@ -1724,7 +1705,7 @@ paths:
         required: true
   /redirects/count:
     get:
-      description: Gets a count of redirects in a store.
+      description: Gets a count of *Redirects* in a store.
       summary: Get A Count of Redirects
       tags:
         - Redirects
