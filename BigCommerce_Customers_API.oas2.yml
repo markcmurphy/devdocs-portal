@@ -1122,6 +1122,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Passwords
+      operationId: validateCustomerPassword
     parameters:
       - $ref: '#/parameters/customer_id'
   '/customers/{customer_id}/addresses':
@@ -1407,12 +1408,8 @@ paths:
       - $ref: '#/parameters/customer_id'
   '/customers/{customer_id}/addresses/{customer_address_id}':
     get:
-      description: |-
-        Gets a customer address.
-
-        ## Read-only Properties
-        * form_fields
-      summary: Get A Customer Address
+      description: Returns a *Customer Address*.
+      summary: Get a Customer Address
       produces:
         - application/json
       parameters:
@@ -1500,21 +1497,13 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Addresses
+      operationId: getACustomerAddress
     put:
-      description: >-
-        Updates an existing customer address. 
+      description: |-
+        Updates a *Customer Address*. 
 
-
-        ##  Read-only Properties
-
-
-        The following properties of the customer address are read-only. If one
-        or more of these properties are included in the request, it will be
-        rejected.
-
-
+        **Read Only Fields**
         *   id
-
         *   country_iso2
       summary: Update A Customer Address
       parameters:
@@ -1605,9 +1594,10 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Addresses
+      operationId: updateACustomerAddress
     delete:
       description: Deletes a *Customer Address*.
-      summary: Delete A Customer Address
+      summary: Delete a Customer Address
       parameters:
         - $ref: '#/parameters/customer_id'
         - name: Accept
@@ -1793,7 +1783,7 @@ paths:
         - Customer Groups
       operationId: getAllCustomerGroups
     post:
-      summary: Create A Customer Group
+      summary: Create a Customer Group
       parameters:
         - name: Accept
           in: header
@@ -1933,7 +1923,7 @@ paths:
   '/customer_groups/{customer_group_id}':
     get:
       description: Returns a *Customer Group*.
-      summary: Get A Customer Group
+      summary: Get a Customer Group
       parameters:
         - $ref: '#/parameters/customer_group_id'
         - name: Accept
@@ -2018,7 +2008,7 @@ paths:
         **Notes**
 
         All existing customers are unassigned from the group when it is deleted.
-      summary: Delete A Customer Group
+      summary: Delete a Customer Group
       parameters:
         - name: customer_group_id
           in: path
@@ -2087,7 +2077,7 @@ paths:
                 - type: aliquip laborum
                   method: Excepteur
                   amount: aliquip cillum est do
-      summary: Update A Customer Group
+      summary: Update a Customer Group
       parameters:
         - in: path
           name: customer_group_id
@@ -2142,7 +2132,7 @@ paths:
   /customer_groups/count:
     get:
       description: 'Returns a count of all *Customer Groups*. '
-      summary: Get A Count of Customer Groups
+      summary: Get a Count of Customer Groups
       parameters:
         - name: Accept
           in: header
