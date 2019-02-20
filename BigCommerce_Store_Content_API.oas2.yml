@@ -98,7 +98,7 @@ paths:
       summary: Get All Blog Tags
       tags:
         - Blog Posts
-      description: Gets all tags on a blog.
+      description: Returns a list of *Blog Tags*.
       operationId: getAllBlogTags
   /blog/posts:
     get:
@@ -420,7 +420,7 @@ paths:
 
         * If a custom URL is not provided, the post’s URL will be generated
         based on the value of `title`.
-      summary: Create A Blog Post
+      summary: Create a Blog Post
       produces:
         - application/json
       parameters:
@@ -559,8 +559,8 @@ paths:
       operationId: deleteAllBlogPosts
   '/blog/posts/{id}':
     get:
-      description: Gets a blog post.
-      summary: Get A Single Blog Post
+      description: Returns a single *Blog Post*.
+      summary: Get a Blog Post
       tags:
         - Blog Posts
       produces:
@@ -644,19 +644,17 @@ paths:
       operationId: getABlogPost
     put:
       description: >
-        ## Read-only Properties 
+        Updates a *Blog Post*.
 
 
-        The following properties of the blog post are read-only. If one or more
-        of these properties are included in the request, it will be rejected.
-
+        **Read Only Fields**
 
         *   id
 
         *   preview_url
 
 
-        ## Notes 
+        **Notes** 
 
 
         * When including `published_date` in a request, supply it as a flat date
@@ -740,8 +738,8 @@ paths:
         IsMultiContentStreaming: false
       operationId: updateABlogPost
     delete:
-      description: Deletes a single blog post.
-      summary: Delete A Blog Post
+      description: Deletes a *Blog Post*.
+      summary: Delete a Blog Post
       parameters:
         - name: id
           in: path
@@ -781,7 +779,7 @@ paths:
         required: true
   /blog/posts/count:
     get:
-      description: Gets a count of all blog posts in a store.
+      description: Returns a count of all *Blog Posts*.
       summary: Get A Count of All Blog Posts
       produces:
         - application/json
