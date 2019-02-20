@@ -607,7 +607,7 @@ paths:
       description: >-
         By default, it deletes all *Custoners*. Up to 100 customers per batch
         can be deleted. 
-      summary: Delete All Customers
+      summary: Delete Customers
       tags:
         - Customers
       produces:
@@ -1127,11 +1127,13 @@ paths:
   '/customers/{customer_id}/addresses':
     get:
       description: >-
-        Gets the addresses belonging to a customer. (Default sorting is by
-        address id, from lowest to highest.) Parameters can be added to the URL
-        query string to paginate the collection. The maximum limit is 250. If a
-        limit isn’t provided, up to 50 customer_addresses are returned by
-        default.
+        Returns a list of *Customer Addresses*. Returns the addresses belonging
+        to a customer. Default sorting is by address id, from lowest to
+        highest. 
+
+
+        The maximum limit is 250. If a limit isn’t provided, up to 50
+        `customer_addresses` are returned by default.
       summary: Get All Customer Addresses
       parameters:
         - name: customer_id
@@ -1241,32 +1243,15 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Addresses
+      operationId: getAllCustomerAddresses
     post:
       description: >-
-        Creates a new customer address. (Note: The “state” property cannot be
+        Creates a new *Customer Address*. (Note: The “state” property cannot be
         null. As a workaround for addresses that include no state/province
         string, pass a space as the “state” value.)
 
 
-        ## Read-only Properties
-
-
-        The following properties of the customer address are read-only. If one
-        or more of these properties are included in the request, it will be
-        rejected.
-
-
-        *   id
-
-        *   country_iso2
-
-
-        ## Requirements
-
-
-        The following properties of the customer address are required. The
-        request won’t be fulfilled unless these properties are valid.
-
+        **Required Fields**
 
         *   first_name
 
@@ -1283,7 +1268,14 @@ paths:
         *   zip
 
         *   country
-      summary: Create A New Customer Address
+
+
+        **Read Only Fields**
+
+        *   id
+
+        *   country_iso2
+      summary: Create a Customer Address
       parameters:
         - name: customer_id
           in: path
@@ -1367,9 +1359,10 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Addresses
+      operationId: createACustomerAddress
     delete:
-      description: Deletes all customer addresses.
-      summary: Delete All Customer Address
+      description: 'By default, it deletes all *Customer Addresses*.'
+      summary: Delete Customer Address
       parameters:
         - $ref: '#/parameters/customer_id'
         - name: Accept
@@ -1409,6 +1402,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Addresses
+      operationId: deleteAllCustomerAddresses
     parameters:
       - $ref: '#/parameters/customer_id'
   '/customers/{customer_id}/addresses/{customer_address_id}':
@@ -1612,7 +1606,7 @@ paths:
       tags:
         - Customer Addresses
     delete:
-      description: Deletes a customer address.
+      description: Deletes a *Customer Address*.
       summary: Delete A Customer Address
       parameters:
         - $ref: '#/parameters/customer_id'
@@ -1640,12 +1634,13 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Addresses
+      operationId: deletesACustomerAddress
     parameters:
       - $ref: '#/parameters/customer_id'
       - $ref: '#/parameters/customer_address_id'
   '/customers/{customer_id}/addresses/count':
     get:
-      description: Gets a count of addresses for a customer.
+      description: Returns a count of addresses for a customer.
       summary: Get A Count of Customer Addresses
       produces:
         - application/json
@@ -1693,6 +1688,7 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Customer Addresses
+      operationId: getACountofCustomerAddresses
     parameters:
       - $ref: '#/parameters/customer_id'
   /customer_groups:
@@ -1908,7 +1904,7 @@ paths:
         By default, it deletes all *Customer Groups*. 
 
         All existing customers are unassigned from the group when it is deleted.
-      summary: Delete All Customer Groups
+      summary: Delete Customer Groups
       parameters:
         - name: Accept
           in: header
