@@ -1535,7 +1535,7 @@ paths:
         IsMultiContentStreaming: false
   '/checkouts/{checkoutId}/coupons/{couponCode}':
     delete:
-      description: 'Removes an existing coupon from checkout. '
+      description: Deletes a *Coupon Code* from *Checkout*.
       summary: Delete Checkout Coupon
       tags:
         - Checkout
@@ -1698,7 +1698,13 @@ paths:
               id: 85424895
       summary: Create an Order
       description: >-
-        Create an order. Orders created will be set to incomplete order status. 
+        Creates an *Order*. 
+
+
+        **Notes**
+
+
+        Orders created will be set to incomplete order status. 
 
 
         You can create as many orders from the same order(cart) as you want.
@@ -1713,6 +1719,7 @@ paths:
         - $ref: '#/parameters/checkoutId'
       tags:
         - Checkout
+      operationId: createAnOrder
     parameters:
       - name: checkoutId
         in: path
