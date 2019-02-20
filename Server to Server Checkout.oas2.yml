@@ -742,25 +742,7 @@ paths:
         IsMultiContentStreaming: false
   '/checkouts/{checkoutId}/consignments':
     post:
-      description: >-
-        Add a new *Consignment* to *Checkout*.
-
-
-
-        **Notes**
-
-
-        A Consignment includes a shipping address, a list of line item IDs that
-        ship to this address and a shipping option ID. When creating a new
-        consignment, you'll need to provide an address and a list of line item
-        IDs. 
-
-
-        When creating a consignment or new shipping address
-        `consignments.available_shipping_options` must be included in the
-        request to return the available shipping options for the order. The id
-        or shippingOptionId that is return will need to be updated in a
-        [PUT](/api-reference/cart-checkout/server-server-checkout-api/checkout/checkoutsbillingaddressbycheckoutidandaddressidput). 
+      description: "Adds a new *Consignment* to *Checkout*.\n\n\nThere are two steps to add a new shipping address and shipping options with line items. \n1. Add a [new Consignment](/api-reference/cart-checkout/server-server-checkout-api/checkout/checkoutsconsignmentsbycheckoutidpost) to Checkout.\n\t2. Send a POST to Consignments with each shipping address and line items IDs. Each address can have its own line item IDs.\n\t3. As part of the request URL make sure to add `include=consignments.available_shipping_options` to return the available shipping options based on line items and shipping locations. \n3. [Update the Consignment](/api-reference/cart-checkout/server-server-checkout-api/checkout/checkoutsconsignmentsbycheckoutidandconsignmentidput) with Shipping Options.\n\n\n**Notes**\n\nA Consignment includes a shipping address, a list of line item IDs that ship to this address and a shipping option ID. When creating a new consignment, you'll need to provide an address and a list of line item IDs. \n\nWhen creating a consignment or new shipping address `consignments.available_shipping_options` must be included in the request to return the available shipping options for the order. The id or shippingOptionId that is return will need to be updated in a [PUT](/api-reference/cart-checkout/server-server-checkout-api/checkout/checkoutsbillingaddressbycheckoutidandaddressidput). "
       summary: Add Consignment to Checkout
       tags:
         - Checkout
