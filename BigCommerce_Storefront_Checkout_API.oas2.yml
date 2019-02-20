@@ -83,8 +83,18 @@ paths:
           $ref: '#/responses/Checkout'
   '/checkouts/{checkoutId}/carts/{cartId}/items/{itemId}':
     put:
-      description: 'Update a Checkout item by `checkoutId`, `cartId` and `itemId`.'
-      summary: Update Line Item
+      description: >-
+        Updates a *Checkout Line Item*. Updates an existing, single line item in
+        the cart.
+
+
+        **Notes** 
+
+
+        If a variant needs to be changed or updated, the product will need to be
+        removed and re-added to the cart with the correct variants using the
+        [Add Cart Line Items](SF Cart Line Items) endpoint.
+      summary: Update a Line Item
       tags:
         - Checkout
       operationId: CheckoutsCartsItemsItemIdByCheckoutIdAndCartIdPut
@@ -122,10 +132,8 @@ paths:
         '200':
           $ref: '#/responses/Checkout'
     delete:
-      description: >-
-        Removes a line item from the cart using the `checkoutId`, `cartId` and
-        `itemId`.
-      summary: Delete Line Item
+      description: Deletes a *Line Item* from the *Cart*.
+      summary: Delete a Line Item
       tags:
         - Checkout
       operationId: CheckoutsCartsItemsItemIdByCheckoutIdAndCartIdDelete
@@ -414,10 +422,8 @@ paths:
           $ref: '#/responses/Checkout'
   '/checkouts/{checkoutId}/billing-address/{addressId}':
     put:
-      description: >-
-        Updates customer's billing address in checkout using the `checkoutId`
-        and `addressId`.
-      summary: Update a Billing Address
+      description: Updates an existing billing address on *Checkout*.
+      summary: Update Checkout Billing Address
       tags:
         - Checkout
       operationId: CheckoutsBillingAddressByCheckoutIdAndAddressIdPut
