@@ -33,10 +33,8 @@ paths:
   /coupons:
     get:
       description: >-
-        Gets all coupons in the store. Default sorting is by coupon/discount id,
-        from lowest to highest.
-
-        To get a single coupon filter by coupon `id`.
+        Returns a list of *Coupons*. Default sorting is by coupon/discount id,
+        from lowest to highest. Optional filter parameters can be passed in. 
       summary: Get All Coupons
       parameters:
         - name: Accept
@@ -249,55 +247,30 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Coupons
+      operationId: getAllCoupons
     post:
-      description: >-
-        Creates a new coupon.
+      description: |-
+        Creates a *Coupon*.
 
-
-        ### Read-only Properties 
-
-
-        The following properties of the coupon are read-only. If one or more of
-        these properties are included in the request, it will be rejected:
-
-
+        **Read Only Fields**
         *   id
-
         *   num_uses
 
-
-        ### Requirements 
-
-
-        The following properties of the coupon are required. The request won’t
-        be fulfilled unless these properties are valid:
-
-
+        **Required Fields**
         *   name
-
         *   code
-
         *   type
-
         *   amount
-
         *   applies_to
 
-
-        ### Notes 
-
+        **Notes**
 
         The coupon type can be one of the following:
 
-
         *   per_item_discount
-
         *   per_total_discount
-
         *   shipping_discount
-
         *   free_shipping
-
         *   percentage_discount
       summary: Create a New Coupon
       parameters:
