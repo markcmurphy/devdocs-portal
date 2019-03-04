@@ -17,3 +17,7 @@
 // Since we are running this script when the iframe loads, there is no need to listen for "DOMContentLoaded" and we can start the Hash router right away.
 !function(){if(!window.noticeableHashRouterStarted){var e=window.noticeableSettings.iframe.selector,i=window.noticeableSettings.iframe.timelineUrl;if(e)if(i){var t=document.querySelector(e);t?(location.hash?t.setAttribute("src",i+location.hash.replace("#","/")):t.src=i,window.addEventListener("message",function(e){try{var i=JSON.parse(e.data)}catch(e){}if(i&&"noticeable-timeline-location"===i.type){var t=function(e){var i=0;0===e.indexOf("/")&&(i=1);return-1<(i=e.indexOf("/",i))?e.substr(i+1):""}(i.path);location.hash=t||""}},!1),window.noticeableHashRouterStarted=!0):console.error("Invalid iframe selector:",e)}else console.error("Missing timeline URL definition.");else console.error("Missing iframe selector definition.")}}();
 </script>
+
+<div id="medium-widget"></div>
+    <script src="https://medium-widget.pixelpoint.io/widget.js"></script>
+    <script>MediumWidget.Init({renderTo: '#medium-widget', params: {"resource":"https://medium.com/bigcommerce-developer-blog","postsPerLine":3,"limit":6,"picture":"big","fields":["description","claps","publishAt"],"ratio":"landscape"}})</script>
