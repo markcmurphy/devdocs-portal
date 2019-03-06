@@ -10737,6 +10737,47 @@ pages:
                               maxWidth: '805'
                           - type: text
                             data: '---'
+                          - type: text
+                            data: '## Image Slider'
+                          - type: code
+                            data: >-
+                              "<ul class=\"slider\">\n{{#each slides}}\n<ul
+                              class=\"slide\"><img class=\"mySlides\"
+                              src=\"{{image}}\"/></ul>\n{{/each}}\n</ul>\n<script>\nvar
+                              slideIndex = 0;\ncarousel();\nfunction carousel()
+                              {\nvar i;\nvar x =
+                              document.getElementsByClassName(\"mySlides\");\nfor
+                              (i = 0; i < x.length; i++) {\nx[i].style.display =
+                              \"none\"; \n}\nslideIndex++;\nif (slideIndex >
+                              x.length) {slideIndex = 1}
+                              \nx[slideIndex-1].style.display = \"block\";
+                              \nsetTimeout(carousel, 4000); // Change image
+                              every 4 seconds\n}\n</script>"
+                            header:
+                              title: Widget Template
+                              subtitle: Image Slider
+                          - type: code
+                            data: |-
+                              {
+                                "name": "Home Page Slider",
+                                "widget_configuration": {
+                                    "slides": [
+                                        {
+                                            "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Puppy_French_Bulldog.jpg"
+                                        },
+                                        {
+                                            "image": "https://upload.wikimedia.org/wikipedia/commons/c/c1/2009-04-21_APBT_pup_on_deck.jpg"
+                                        },
+                                        {
+                                            "image": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Beagle_puppy_Cadet.jpg"
+                                        }
+                                    ]
+                                },
+                                "widget_template_uuid":"your-widget-id"
+                              }
+                            header:
+                              subtitle: Image Slider
+                              title: Widget Configuration
         - title: Cart and Checkout
           route:
             path: /cart-and-checkout
