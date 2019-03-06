@@ -9555,407 +9555,427 @@ pages:
                         anchor: scripts_related-endpoints
               - title: Widgets
                 route:
-                  path: /widgets-overview
+                  path: /widgets
                 data:
-                  blocks:
-                    - type: html
-                      data: "<h1>Widgets API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widgets_introduction\">Introduction</a></li>\n        <li><a href=\"#widgets_regions\">Regions</a></li>\n        <li><a href=\"#widgets_widget-templates\">Widget Templates</a></li>\n        <li><a href=\"#widgets_widgets\">Widgets</a></li>\n        <li><a href=\"#widgets_placements\">Placements</a></li>\n        <li><a href=\"#widgets_layouts\">Layouts</a></li>\n    \t\t<li><a href=\"#scripts_oauth-scopes\"> OAuth Scopes</a></li>\n    \t\t<li><a href=\"#scripts_related-endpoints\">Related Endpoints</a></li>\n        <li><a href=\"#script_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
-                    - type: text
-                      data: >-
-                        The Widgets API allows developers to programmatically
-                        associate content with regions on a BigCommerce
-                        storefront. The content can consist of HTML, CSS, and
-                        JavaScript, and the API supports configuration via
-                        Handlebars variables. It can support many types of
-                        content such as YouTube Videos, image sliders, and chat
-                        apps.
-
-
-                        Some benefits are:
-
-                        * Inject modular, reusable blocks of content inside new
-                        and existing store pages
-
-                        * Build tools that allow non-technical users to control
-                        content without editing theme files
-
-                        * Target specific products, categories or brands with
-                        widgets using the [entity ID](#link). 
-
-
-                        We are going to review all the components that make a
-                        widget. Then, we’ll use what we’ve learned to create a
-                        widget .
-                      header:
-                        anchor: widgets_introduction
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Regions
-
-
-                        Regions are specific locations in the Stencil theme
-                        files where a widget is placed. A region is added at the
-                        file level using the format `{{{region name="..."}}}`. A
-                        region can be named however you like, but it is best
-                        practice to give it a name that is descriptive of the
-                        location and function. A theme file can have as many
-                        regions as you want, with more than one widget assigned
-                        to the region and the placement sort_order controlling
-                        how the widgets appear on the Storefront. 
-                      header:
-                        anchor: widgets_regions
-                    - type: image
-                      data: >-
-                        //s3.amazonaws.com/user-content.stoplight.io/6012/1551890033549
-                      header:
-                        title: Template File -- Content Region
-                      config:
-                        fluid: true
-                        maxWidth: '805'
-                    - type: image
-                      data: >-
-                        //s3.amazonaws.com/user-content.stoplight.io/6012/1551889940474
-                      config:
-                        fluid: true
-                        maxWidth: '805'
-                    - type: text
-                      data: >-
-                        Most themes in the BigCommerce marketplace come with
-                        predefined regions. It is best to utilize those first.
-                        By editing the theme and adding theme regions, updates
-                        will need to be manually managed. 
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Widget Templates
-
-
-                        Widget Templates are handlebars-enabled HTML templates
-                        which define the structure of the widget on a page.
-                        Widget Templates can use the built in handlebar helpers
-                        such as if and each. Using the helpers allows for it to
-                        build conditional logic into the Widget Templates. They
-                        are reusable and are used to build widgets. 
-
-
-                        ### Widget Template Examples
-
-                        **Simple List**
-
-
-                        Simple List creates a list where each item in the list
-                        can have a different color. This example uses [each
-                        block
-                        helper](https://handlebarsjs.com/builtin_helpers.html)
-                        in handlebars to loop through each item in the list and
-                        display it. The text and color are set by handlebars
-                        placeholders that are set when creating the
-                        [Widget](#link).
-                      header:
-                        anchor: widgets_widget-templates
-                    - type: code
-                      data: |-
-                        {
-                          "name": "Simple List",
-                          "template": "<ul>{{#each list_items}}<li style=\"color:{{color}};\">{{text}}</li>{{/each}}</ul>"
-                        }
-                      header:
-                        title: Simple List
-                        subtitle: Widget Template Example
-                      config:
-                        mode: json
-                    - type: text
-                      data: >-
-                        **Image Slider**  
-
-                        The Simple Slider create an image slider that loops
-                        through each slide and displays them on the page. 
-                    - type: code
-                      data: >-
-                        {
-
-                        "name": "Simple Slider",
-
-                        "template": "<ul class='slider'>{{#each slides}}<li
-                        class='slide'><img src={{image}}'/</li>{{/each}}</ul>"
-
-                        }
-                      header:
-                        title: Image Slider
-                        subtitle: Widget Template Example
-                      config:
-                        mode: json
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Widgets
-
-
-                        Widgets are a unit of content that are placed on
-                        specific pages in a Stencil theme. Widgets are made of a
-                        widget configuration written in json and a widget
-                        template UUID that is returned in the [Create Widget
-                        Template](#link) response. Widgets are rendered as part
-                        of the HTML on the storefront.
-                      header:
-                        anchor: widgets_widgets
-                    - type: image
-                      data: >-
-                        //s3.amazonaws.com/user-content.stoplight.io/6012/1551892568336
-                    - type: text
-                      data: >-
-                        ### Widget Configuration
-
-
-                        A Widget Configuration is the JSON payload that defines
-                        the content to be rendered with a given Widget Template.
-                        In the previous simple list example, the widget template
-                        loops over a list_items array using `{{#each}}`. In our
-                        widget configuration, we define the list_items array,
-                        and supply values for the color and text of each list
-                        item. Since the template is created separately from the
-                        configuration, the same template UUID can be used
-                        multiple times for configuration.
-                    - type: code
-                      data: |-
-                        {
-                          "slides": [
-                            {"image":"http://imageurl.com/nh35jn/test.png"},
-                            {"image":"http://imageurl.com/fdhdfh/test2.png"}
-                          ]
-                        }
-                      header:
-                        title: Widget Configuration Slides
-                    - type: code
-                      data: |
-                        {
-                        "list_items":[
-                        { 
-                        "color": "orange", 
-                        "text": " Item One"
-                        },
-                        { 
-                        "color": "blue", 
-                        "text": "Item Two"
-                        }
-                        ]
-                        }
-                      header:
-                        title: Widget Configuration List Items
-                      config:
-                        mode: json
-                    - type: callout
+                  children:
+                    - title: Overview
+                      route:
+                        path: /widgets-overview
                       data:
-                        body: >-
-                          Keep in mind that when reusing the
-                          `widget_configuration` the array will have to be
-                          called `list_items`. Otherwise, the widget will be
-                          created on the frontend, but there will be no data, so
-                          nothing is rendered. This is because `list_items` was
-                          defined when the widget template was originally
-                          created. The widget configuration name can anything
-                          that is set when the widget_template is created.
-                    - type: code
-                      data: |-
-                        {
-                          "name": "Simple List",
-                          "widget_configuration": {
-                            "list_items_two": [
+                        blocks:
+                          - type: html
+                            data: "<h1>Widgets API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widgets_introduction\">Introduction</a></li>\n        <li><a href=\"#widgets_regions\">Regions</a></li>\n        <li><a href=\"#widgets_widget-templates\">Widget Templates</a></li>\n        <li><a href=\"#widgets_widgets\">Widgets</a></li>\n        <li><a href=\"#widgets_placements\">Placements</a></li>\n        <li><a href=\"#widgets_layouts\">Layouts</a></li>\n    \t\t<li><a href=\"#scripts_oauth-scopes\"> OAuth Scopes</a></li>\n    \t\t<li><a href=\"#scripts_related-endpoints\">Related Endpoints</a></li>\n        <li><a href=\"#script_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                          - type: text
+                            data: >-
+                              The Widgets API allows developers to
+                              programmatically associate content with regions on
+                              a BigCommerce storefront. The content can consist
+                              of HTML, CSS, and JavaScript, and the API supports
+                              configuration via Handlebars variables. It can
+                              support many types of content such as YouTube
+                              Videos, image sliders, and chat apps.
+
+
+                              Some benefits are:
+
+                              * Inject modular, reusable blocks of content
+                              inside new and existing store pages
+
+                              * Build tools that allow non-technical users to
+                              control content without editing theme files
+
+                              * Target specific products, categories or brands
+                              with widgets using the [entity ID](#link). 
+
+
+                              We are going to review all the components that
+                              make a widget. Then, we’ll use what we’ve learned
+                              to create a widget .
+                            header:
+                              anchor: widgets_introduction
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Regions
+
+
+                              Regions are specific locations in the Stencil
+                              theme files where a widget is placed. A region is
+                              added at the file level using the format
+                              `{{{region name="..."}}}`. A region can be named
+                              however you like, but it is best practice to give
+                              it a name that is descriptive of the location and
+                              function. A theme file can have as many regions as
+                              you want, with more than one widget assigned to
+                              the region and the placement sort_order
+                              controlling how the widgets appear on the
+                              Storefront. 
+                            header:
+                              anchor: widgets_regions
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1551890033549
+                            header:
+                              title: Template File -- Content Region
+                            config:
+                              fluid: true
+                              maxWidth: '805'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1551889940474
+                            config:
+                              fluid: true
+                              maxWidth: '805'
+                          - type: text
+                            data: >-
+                              Most themes in the BigCommerce marketplace come
+                              with predefined regions. It is best to utilize
+                              those first. By editing the theme and adding theme
+                              regions, updates will need to be manually
+                              managed. 
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Widget Templates
+
+
+                              Widget Templates are handlebars-enabled HTML
+                              templates which define the structure of the widget
+                              on a page. Widget Templates can use the built in
+                              handlebar helpers such as if and each. Using the
+                              helpers allows for it to build conditional logic
+                              into the Widget Templates. They are reusable and
+                              are used to build widgets. 
+
+
+                              ### Widget Template Examples
+
+                              **Simple List**
+
+
+                              Simple List creates a list where each item in the
+                              list can have a different color. This example uses
+                              [each block
+                              helper](https://handlebarsjs.com/builtin_helpers.html)
+                              in handlebars to loop through each item in the
+                              list and display it. The text and color are set by
+                              handlebars placeholders that are set when creating
+                              the [Widget](#link).
+                            header:
+                              anchor: widgets_widget-templates
+                          - type: code
+                            data: |-
                               {
-                                "color": "orange",
-                                "text": "Fifth item"
-                              },
-                              {
-                                "color": "blue",
-                                "text": "Sixth item"
+                                "name": "Simple List",
+                                "template": "<ul>{{#each list_items}}<li style=\"color:{{color}};\">{{text}}</li>{{/each}}</ul>"
                               }
-                            ]
-                          },
-                          "widget_template_uuid": "7bfb9a46-75cc-45bc-bf39-a6a43b77111f"
-                        }
-                      header:
-                        title: 'List Items Example: Incorrect'
-                      config:
-                        mode: json
-                        highlightRange:
-                          - from: '4'
-                            to: '4'
-                    - type: text
-                      data: >-
-                        The example above uses `list_items_two`, on line four,
-                        in the configuration which is not the same as
-                        `list_items`. If `list_items` has already been
-                        established during the initial configuration it must be
-                        set as list_items when being used again. 
-                    - type: code
-                      data: |-
-                        {
-                          "name": "Simple List",
-                          "widget_configuration": {
-                            "list_items": [
+                            header:
+                              title: Simple List
+                              subtitle: Widget Template Example
+                            config:
+                              mode: json
+                          - type: text
+                            data: >-
+                              **Image Slider**  
+
+                              The Simple Slider create an image slider that
+                              loops through each slide and displays them on the
+                              page. 
+                          - type: code
+                            data: >-
                               {
-                                "color": "orange",
-                                "text": "Fifth item"
-                              },
-                              {
-                                "color": "blue",
-                                "text": "Sixth item"
+
+                              "name": "Simple Slider",
+
+                              "template": "<ul class='slider'>{{#each
+                              slides}}<li class='slide'><img
+                              src={{image}}'/</li>{{/each}}</ul>"
+
                               }
-                            ]
-                          },
-                          "widget_template_uuid": "7bfb9a46-75cc-45bc-bf39-a6a43b77111f"
-                        }
-                      header:
-                        title: 'List Items Example: Correct'
-                      config:
-                        mode: json
-                        highlightRange:
-                          - from: '4'
-                            to: '4'
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ## Placements
+                            header:
+                              title: Image Slider
+                              subtitle: Widget Template Example
+                            config:
+                              mode: json
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Widgets
 
 
-                        Placements determine where the Widget is placed on the
-                        page and in what order. A page can have more than one
-                        widget and placement. The order is controlled by the
-                        sort_order when creating the placement.
+                              Widgets are a unit of content that are placed on
+                              specific pages in a Stencil theme. Widgets are
+                              made of a widget configuration written in json and
+                              a widget template UUID that is returned in the
+                              [Create Widget Template](#link) response. Widgets
+                              are rendered as part of the HTML on the
+                              storefront.
+                            header:
+                              anchor: widgets_widgets
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1551892568336
+                          - type: text
+                            data: >-
+                              ### Widget Configuration
 
 
-                        Placements can be used in two ways:
+                              A Widget Configuration is the JSON payload that
+                              defines the content to be rendered with a given
+                              Widget Template. In the previous simple list
+                              example, the widget template loops over a
+                              list_items array using `{{#each}}`. In our widget
+                              configuration, we define the list_items array, and
+                              supply values for the color and text of each list
+                              item. Since the template is created separately
+                              from the configuration, the same template UUID can
+                              be used multiple times for configuration.
+                          - type: code
+                            data: |-
+                              {
+                                "slides": [
+                                  {"image":"http://imageurl.com/nh35jn/test.png"},
+                                  {"image":"http://imageurl.com/fdhdfh/test2.png"}
+                                ]
+                              }
+                            header:
+                              title: Widget Configuration Slides
+                          - type: code
+                            data: |
+                              {
+                              "list_items":[
+                              { 
+                              "color": "orange", 
+                              "text": " Item One"
+                              },
+                              { 
+                              "color": "blue", 
+                              "text": "Item Two"
+                              }
+                              ]
+                              }
+                            header:
+                              title: Widget Configuration List Items
+                            config:
+                              mode: json
+                          - type: callout
+                            data:
+                              body: >-
+                                Keep in mind that when reusing the
+                                `widget_configuration` the array will have to be
+                                called `list_items`. Otherwise, the widget will
+                                be created on the frontend, but there will be no
+                                data, so nothing is rendered. This is because
+                                `list_items` was defined when the widget
+                                template was originally created. The widget
+                                configuration name can anything that is set when
+                                the widget_template is created.
+                          - type: code
+                            data: |-
+                              {
+                                "name": "Simple List",
+                                "widget_configuration": {
+                                  "list_items_two": [
+                                    {
+                                      "color": "orange",
+                                      "text": "Fifth item"
+                                    },
+                                    {
+                                      "color": "blue",
+                                      "text": "Sixth item"
+                                    }
+                                  ]
+                                },
+                                "widget_template_uuid": "7bfb9a46-75cc-45bc-bf39-a6a43b77111f"
+                              }
+                            header:
+                              title: 'List Items Example: Incorrect'
+                            config:
+                              mode: json
+                              highlightRange:
+                                - from: '4'
+                                  to: '4'
+                          - type: text
+                            data: >-
+                              The example above uses `list_items_two`, on line
+                              four, in the configuration which is not the same
+                              as `list_items`. If `list_items` has already been
+                              established during the initial configuration it
+                              must be set as list_items when being used again. 
+                          - type: code
+                            data: |-
+                              {
+                                "name": "Simple List",
+                                "widget_configuration": {
+                                  "list_items": [
+                                    {
+                                      "color": "orange",
+                                      "text": "Fifth item"
+                                    },
+                                    {
+                                      "color": "blue",
+                                      "text": "Sixth item"
+                                    }
+                                  ]
+                                },
+                                "widget_template_uuid": "7bfb9a46-75cc-45bc-bf39-a6a43b77111f"
+                              }
+                            header:
+                              title: 'List Items Example: Correct'
+                            config:
+                              mode: json
+                              highlightRange:
+                                - from: '4'
+                                  to: '4'
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Placements
 
-                        * On their own using the sort_order and region to
-                        determine placement in a theme.
 
-                        * With a Layout, for more control arranginging widgets
-                        such as a table or column. Using Layouts is an optional
-                        step. The Widget can still be rendered without a Layout.
-
-
-                        ### Placements `entity_id`
+                              Placements determine where the Widget is placed on
+                              the page and in what order. A page can have more
+                              than one widget and placement. The order is
+                              controlled by the sort_order when creating the
+                              placement.
 
 
-                        When creating a placement, there is an option to provide
-                        an `entity_id`. 
+                              Placements can be used in two ways:
 
-                        This is the ID for a specific page, brand, category or
-                        page. For example, if a Widget needs to be on all
-                        product pages, leave entity_id blank. If the Widget
-                        should only appear on a certain product page, then
-                        assign `entity_id` the product ID. 
+                              * On their own using the sort_order and region to
+                              determine placement in a theme.
 
-
-                        `entity_id` can be used with the following page types:
-
-                        * pages/brand
-
-                        * pages/category
-
-                        * pages/page
-
-                        * pages/product
+                              * With a Layout, for more control arranginging
+                              widgets such as a table or column. Using Layouts
+                              is an optional step. The Widget can still be
+                              rendered without a Layout.
 
 
-
-                        ### Create a Widget Placement with Region
-
-
-                        Below, the region and sort order have a value, so the
-                        widget will appear on the home page. 
-                      header:
-                        anchor: widgets_placements
-                    - type: code
-                      data: |-
-                        {
-                            "widget_uuid": "2dfeb50e-5f8c-4df2-8525-a338091eed32",
-                            "entity_id": "14",
-                            "sort_order": 1,
-                            "region": "home_header_image",
-                            "template_file": "pages/home",
-                            "status": "active"
-                        }
-                      header:
-                        title: Widget with Region
-                      config:
-                        mode: json
-                        highlightRange:
-                          - from: '5'
-                            to: '5'
-                    - type: text
-                      data: >-
-                        ### Create a Widget Placement Without a Region
-
-                        Leaving the region and sort order off the request will
-                        return just the placement_id in the response, allowing
-                        for the widget to be rendered using Layouts. 
-                    - type: code
-                      data: |-
-                        {
-                            "widget_uuid": "2dfeb50e-5f8c-4df2-8525-a338091eed32",
-                            "entity_id": "14",
-                            "template_file": "pages/home",
-                            "status": "active"
-                        }
-                      header:
-                        title: Widget Without a Region
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: >-
-                        ### Layouts
-
-                        Layouts allow a developer to define the position of
-                        elements on the storefront. This differs from Placements
-                        since a Layout allows you to style around the Placement.
-                        For example, the Placement can be a list, while the
-                        Layout consists of a div and style sheet that contain
-                        the Placement. Layout uses the markup field which
-                        accepts any valid HTML and CSS. A Layout can contain
-                        multiple Placements.
-                      header:
-                        anchor: widgets_layouts
-                    - type: image
-                      data: >-
-                        //s3.amazonaws.com/user-content.stoplight.io/6012/1551894334881
-                      config:
-                        fluid: true
-                        maxWidth: '805'
-                    - type: text
-                      data: >-
-                        ### Layouts `bc-placements`
+                              ### Placements `entity_id`
 
 
-                        `bc-placements` is a special field that takes in a
-                        placement id and allows the widget to be positioned
-                        anywhere in the layout. The `id` is the Placement ID.
-                    - type: code
-                      data: |-
-                        <div>
-                           <div style="width: 33.3%; float: left; display: inline-block; padding: 5px; box-sizing: border-box">
-                             <bc-placement id="73ee60d9-72e4-4dce-be93-c96b861cb5ff"></bc-placement>
-                           </div>
-                           <div style="width: 33.3%; float: left; display: inline-block; padding: 5px; box-sizing: border-box">
-                             <bc-placement id="3466ccb8-cb3e-4811-8266-acae20d1bb93"></bc-placement>
-                           </div>
-                             <div style="width: 33.3%; float: left; display: inline-block; padding: 5px; box-sizing: border-box">
-                             <bc-placement id="73ee60d9-72e4-4dce-be93-c96b861cb5ff"></bc-placement>
-                           </div>
-                        </div>
-                      header:
-                        title: Layouts bc-placements Example
-                      config:
-                        mode: html
-                    - type: text
-                      data: '---'
-                    - type: text
-                      data: '## Widgets on the Storefront'
+                              When creating a placement, there is an option to
+                              provide an `entity_id`. 
+
+                              This is the ID for a specific page, brand,
+                              category or page. For example, if a Widget needs
+                              to be on all product pages, leave entity_id blank.
+                              If the Widget should only appear on a certain
+                              product page, then assign `entity_id` the product
+                              ID. 
+
+
+                              `entity_id` can be used with the following page
+                              types:
+
+                              * pages/brand
+
+                              * pages/category
+
+                              * pages/page
+
+                              * pages/product
+
+
+
+                              ### Create a Widget Placement with Region
+
+
+                              Below, the region and sort order have a value, so
+                              the widget will appear on the home page. 
+                            header:
+                              anchor: widgets_placements
+                          - type: code
+                            data: |-
+                              {
+                                  "widget_uuid": "2dfeb50e-5f8c-4df2-8525-a338091eed32",
+                                  "entity_id": "14",
+                                  "sort_order": 1,
+                                  "region": "home_header_image",
+                                  "template_file": "pages/home",
+                                  "status": "active"
+                              }
+                            header:
+                              title: Widget with Region
+                            config:
+                              mode: json
+                              highlightRange:
+                                - from: '5'
+                                  to: '5'
+                          - type: text
+                            data: >-
+                              ### Create a Widget Placement Without a Region
+
+                              Leaving the region and sort order off the request
+                              will return just the placement_id in the response,
+                              allowing for the widget to be rendered using
+                              Layouts. 
+                          - type: code
+                            data: |-
+                              {
+                                  "widget_uuid": "2dfeb50e-5f8c-4df2-8525-a338091eed32",
+                                  "entity_id": "14",
+                                  "template_file": "pages/home",
+                                  "status": "active"
+                              }
+                            header:
+                              title: Widget Without a Region
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ### Layouts
+
+                              Layouts allow a developer to define the position
+                              of elements on the storefront. This differs from
+                              Placements since a Layout allows you to style
+                              around the Placement. For example, the Placement
+                              can be a list, while the Layout consists of a div
+                              and style sheet that contain the Placement. Layout
+                              uses the markup field which accepts any valid HTML
+                              and CSS. A Layout can contain multiple Placements.
+                            header:
+                              anchor: widgets_layouts
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1551894334881
+                            config:
+                              fluid: true
+                              maxWidth: '805'
+                          - type: text
+                            data: >-
+                              ### Layouts `bc-placements`
+
+
+                              `bc-placements` is a special field that takes in a
+                              placement id and allows the widget to be
+                              positioned anywhere in the layout. The `id` is the
+                              Placement ID.
+                          - type: code
+                            data: |-
+                              <div>
+                                 <div style="width: 33.3%; float: left; display: inline-block; padding: 5px; box-sizing: border-box">
+                                   <bc-placement id="73ee60d9-72e4-4dce-be93-c96b861cb5ff"></bc-placement>
+                                 </div>
+                                 <div style="width: 33.3%; float: left; display: inline-block; padding: 5px; box-sizing: border-box">
+                                   <bc-placement id="3466ccb8-cb3e-4811-8266-acae20d1bb93"></bc-placement>
+                                 </div>
+                                   <div style="width: 33.3%; float: left; display: inline-block; padding: 5px; box-sizing: border-box">
+                                   <bc-placement id="73ee60d9-72e4-4dce-be93-c96b861cb5ff"></bc-placement>
+                                 </div>
+                              </div>
+                            header:
+                              title: Layouts bc-placements Example
+                            config:
+                              mode: html
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: '## Widgets on the Storefront'
         - title: Cart and Checkout
           route:
             path: /cart-and-checkout
