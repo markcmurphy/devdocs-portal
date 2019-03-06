@@ -9559,7 +9559,7 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: "<h1>Widgets API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widgets_introduction\">Introduction</a></li>\n        <li><a href=\"#widgets_regions\">Regions</a></li>\n        <li><a href=\"#widgets_widget-templates\">Widget Templates</a></li>\n        <li><a href=\"#widgets_widgets\">Widgets</a></li>\n        <li><a href=\"#scripts_scripts-notes\">Notes</a></li>\n        <li><a href=\"#scripts_scripts-visibility\">Visibility Locations </a></li>\n    \t\t<li><a href=\"#scripts_oauth-scopes\"> OAuth Scopes</a></li>\n    \t\t<li><a href=\"#scripts_related-endpoints\">Related Endpoints</a></li>\n        <li><a href=\"#script_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                      data: "<h1>Widgets API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widgets_introduction\">Introduction</a></li>\n        <li><a href=\"#widgets_regions\">Regions</a></li>\n        <li><a href=\"#widgets_widget-templates\">Widget Templates</a></li>\n        <li><a href=\"#widgets_widgets\">Widgets</a></li>\n        <li><a href=\"#widgets_placements\">Placements</a></li>\n        <li><a href=\"#scripts_scripts-visibility\">Visibility Locations </a></li>\n    \t\t<li><a href=\"#scripts_oauth-scopes\"> OAuth Scopes</a></li>\n    \t\t<li><a href=\"#scripts_related-endpoints\">Related Endpoints</a></li>\n        <li><a href=\"#script_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         The Widgets API allows developers to programmatically
@@ -9799,6 +9799,95 @@ pages:
                         highlightRange:
                           - from: '4'
                             to: '4'
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Placements
+
+
+                        Placements determine where the Widget is placed on the
+                        page and in what order. A page can have more than one
+                        widget and placement. The order is controlled by the
+                        sort_order when creating the placement.
+
+
+                        Placements can be used in two ways:
+
+                        * On their own using the sort_order and region to
+                        determine placement in a theme.
+
+                        * With a Layout, for more control arranginging widgets
+                        such as a table or column. Using Layouts is an optional
+                        step. The Widget can still be rendered without a Layout.
+
+
+                        ### Placements `entity_id`
+
+
+                        When creating a placement, there is an option to provide
+                        an `entity_id`. 
+
+                        This is the ID for a specific page, brand, category or
+                        page. For example, if a Widget needs to be on all
+                        product pages, leave entity_id blank. If the Widget
+                        should only appear on a certain product page, then
+                        assign `entity_id` the product ID. 
+
+
+                        `entity_id` can be used with the following page types:
+
+                        * pages/brand
+
+                        * pages/category
+
+                        * pages/page
+
+                        * pages/product
+
+
+
+                        ### Create a Widget with Region
+
+
+                        Below, the region and sort order have a value, so the
+                        widget will appear on the home page. 
+                      header:
+                        anchor: widgets_placements
+                    - type: code
+                      data: |-
+                        {
+                            "widget_uuid": "2dfeb50e-5f8c-4df2-8525-a338091eed32",
+                            "entity_id": "14",
+                            "sort_order": 1,
+                            "region": "home_header_image",
+                            "template_file": "pages/home",
+                            "status": "active"
+                        }
+                      header:
+                        title: Widget with Region
+                      config:
+                        mode: json
+                        highlightRange:
+                          - from: '5'
+                            to: '5'
+                    - type: text
+                      data: >-
+                        ### Create a Widget Without a Region
+
+                        Leaving the region and sort order off the request will
+                        return just the placement_id in the response, allowing
+                        for the widget to be rendered using Layouts. 
+                    - type: code
+                      data: |-
+                        {
+                            "widget_uuid": "2dfeb50e-5f8c-4df2-8525-a338091eed32",
+                            "entity_id": "14",
+                            "template_file": "pages/home",
+                            "status": "active"
+                        }
+                      header:
+                        title: Widget Without a Region
         - title: Cart and Checkout
           route:
             path: /cart-and-checkout
