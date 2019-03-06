@@ -9626,6 +9626,66 @@ pages:
                         predefined regions. It is best to utilize those first.
                         By editing the theme and adding theme regions, updates
                         will need to be manually managed. 
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Widget Templates
+
+
+                        Widget Templates are handlebars-enabled HTML templates
+                        which define the structure of the widget on a page.
+                        Widget Templates can use the built in handlebar helpers
+                        such as if and each. Using the helpers allows for it to
+                        build conditional logic into the Widget Templates. They
+                        are reusable and are used to build widgets. 
+
+
+                        ### Widget Template Examples
+
+                        **Simple List**
+
+
+                        Simple List creates a list where each item in the list
+                        can have a different color. This example uses [each
+                        block
+                        helper](https://handlebarsjs.com/builtin_helpers.html)
+                        in handlebars to loop through each item in the list and
+                        display it. The text and color are set by handlebars
+                        placeholders that are set when creating the
+                        [Widget](#link).
+                    - type: code
+                      data: |-
+                        {
+                          "name": "Simple List",
+                          "template": "<ul>{{#each list_items}}<li style=\"color:{{color}};\">{{text}}</li>{{/each}}</ul>"
+                        }
+                      header:
+                        title: Simple List
+                        subtitle: Widget Template Example
+                      config:
+                        mode: json
+                    - type: text
+                      data: >-
+                        **Image Slider**  
+
+                        The Simple Slider create an image slider that loops
+                        through each slide and displays them on the page. 
+                    - type: code
+                      data: >-
+                        {
+
+                        "name": "Simple Slider",
+
+                        "template": "<ul class="slider">{{#each slides}}<li
+                        class="slide"><img src={{image}}"/</li>{{/each}}</ul>"
+
+                        }
+                      header:
+                        title: Image Slider
+                        subtitle: Widget Template Example
+                      config:
+                        mode: json
         - title: Cart and Checkout
           route:
             path: /cart-and-checkout
