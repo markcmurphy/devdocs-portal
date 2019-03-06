@@ -9564,7 +9564,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Widgets API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widgets_introduction\">Introduction</a></li>\n        <li><a href=\"#widgets_regions\">Regions</a></li>\n        <li><a href=\"#widgets_widget-templates\">Widget Templates</a></li>\n        <li><a href=\"#widgets_widgets\">Widgets</a></li>\n        <li><a href=\"#widgets_placements\">Placements</a></li>\n        <li><a href=\"#widgets_layouts\">Layouts</a></li>\n    \t\t<li><a href=\"#scripts_oauth-scopes\"> OAuth Scopes</a></li>\n    \t\t<li><a href=\"#scripts_related-endpoints\">Related Endpoints</a></li>\n        <li><a href=\"#script_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Widgets API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widgets_introduction\">Introduction</a></li>\n        <li><a href=\"#widgets_regions\">Regions</a></li>\n        <li><a href=\"#widgets_widget-templates\">Widget Templates</a></li>\n        <li><a href=\"#widgets_widgets\">Widgets</a></li>\n        <li><a href=\"#widgets_placements\">Placements</a></li>\n        <li><a href=\"#widgets_layouts\">Layouts</a></li>\n    \t\t<li><a href=\"#widgets_storefront\">Widgets on the Storefront</a></li>\n    \t\t<li><a href=\"#widgets_definitions\">Definitions</a></li>\n        <li><a href=\"#widget_resources\">Resources</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               The Widgets API allows developers to
@@ -9999,6 +9999,8 @@ pages:
                               It contains a Layout, that includes a Widget. The
                               region also contains a Placement or a Widget
                               placed on a page without a Layout. 
+                            header:
+                              anchor: widgets_storefront
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1551895293134
@@ -10007,6 +10009,67 @@ pages:
                             config:
                               fluid: true
                               maxWidth: '805'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1551895471391
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              | Name | Definition |
+
+                              |--|--|
+
+                              | Widgets | Widgets are the units of content to be
+                              placed on specific pages in a Stencil theme. Each
+                              widget is comprised of a widget configuration and
+                              a widget template. *There is a limit of 1000
+                              widgets per store.* | 
+
+                              | Widget Templates | Widget Templates are
+                              Handlebars-enabled HTML templates which define the
+                              widget’s structure on a page. These templates can
+                              include conditional logic as well as looping.
+                              *There is a limit of 50 widget templates per
+                              store.* |
+
+                              | Placements | Placements are the records to track
+                              which widget appears on which page, and in what
+                              order.  Currently, placements can only exist on
+                              the following pages: </br>* pages/blog-post </br>
+                              * pages/blog</br>* pages/brand</br>*
+                              pages/brands</br>* pages/cart</br>*
+                              pages/category</br>* pages/home</br>*
+                              pages/page</br>* pages/product</br>* pages/search
+                              |
+
+                              | Regions | Regions are specific spots in a
+                              Stencil template file where Widgets can be placed.
+                              Regions are defined at the theme file level using
+                              the following syntax: `{{{region name="..."}}}`.
+                              There can be many widgets inside a given region,
+                              and these widgets can have an assigned sort order.
+                              |
+
+                              | Widget Configuration | This is a JSON payload
+                              that contains data used when rendering the widget.
+                              Each widget has a configuration, and there is a
+                              64kb limit on the size of the JSON. The widget
+                              configuration must be valid JSON, but we don’t
+                              enforce any additional requirement on the
+                              structure of the configuration. |
+
+                              | Layout | A way to style multiple widgets on a
+                              page or position a Widget. A Layout will accept
+                              any HTML and CSS. |
+                            header:
+                              anchor: widgets_definitions
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: widget_resources
+                            header:
+                              anchor: widget_resources
                     - title: Widgets Tutorial
                       route:
                         path: /widgets-tutorial
