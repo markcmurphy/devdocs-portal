@@ -9721,6 +9721,16 @@ pages:
                         configuration, the same template UUID can be used
                         multiple times for configuration.
                     - type: code
+                      data: |-
+                        {
+                          "slides": [
+                            {"image":"http://imageurl.com/nh35jn/test.png"},
+                            {"image":"http://imageurl.com/fdhdfh/test2.png"}
+                          ]
+                        }
+                      header:
+                        title: Widget Configuration Slides
+                    - type: code
                       data: |
                         {
                         "list_items":[
@@ -9738,16 +9748,55 @@ pages:
                         title: Widget Configuration List Items
                       config:
                         mode: json
+                    - type: callout
+                      data:
+                        body: >-
+                          Keep in mind that when reusing the
+                          `widget_configuration` the array will have to be
+                          called `list_items`. Otherwise, the widget will be
+                          created on the frontend, but there will be no data, so
+                          nothing is rendered. This is because `list_items` was
+                          defined when the widget template was originally
+                          created. The widget configuration name can anything
+                          that is set when the widget_template is created.
                     - type: code
                       data: |-
                         {
-                          "slides": [
-                            {"image":"http://imageurl.com/nh35jn/test.png"},
-                            {"image":"http://imageurl.com/fdhdfh/test2.png"}
-                          ]
-                        }
+                          "name": "Simple List",
+                          "widget_configuration": {
+                            "**list_items_two**":[{ "color": "orange", "text": "Fifth item"}, 
+                                                  { "color": "blue", "text": "Sixth item"}]},
+                          "widget_template_uuid":"7bfb9a46-75cc-45bc-bf39-a6a43b77111f"
+                        } 
                       header:
-                        title: Widget Configuration Slides
+                        title: 'List Items Example: Incorrect'
+                      config:
+                        mode: json
+                        highlightRange:
+                          - from: '4'
+                            to: '4'
+                    - type: text
+                      data: >-
+                        The example above uses `list_items_two`, on line four,
+                        in the configuration which is not the same as
+                        `list_items`. If `list_items` has already been
+                        established during the initial configuration it must be
+                        set as list_items when being used again. 
+                    - type: code
+                      data: |-
+                        {
+                          "name": "Simple List",
+                          "widget_configuration": {
+                            "**list_items**":[{ 
+                              "color": "orange", "text": "Fifth item"}, 
+                                              { "color": "blue", "text": "Sixth item"}]},
+                          "widget_template_uuid":"7bfb9a46-75cc-45bc-bf39-a6a43b77111f"
+                        } 
+                      config:
+                        mode: json
+                        highlightRange:
+                          - from: '4'
+                            to: '4'
         - title: Cart and Checkout
           route:
             path: /cart-and-checkout
