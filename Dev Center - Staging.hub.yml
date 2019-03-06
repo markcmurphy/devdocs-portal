@@ -10185,8 +10185,11 @@ pages:
                               (required)
 
 
-                              In the response there is a UUID returned. Make
-                              note of it for use later. 
+                              In the response the Widget Template UUID returned.
+                              Make note of it for use later when creating the
+                              Widget.
+                            header:
+                              anchor: widget-tutorial_create-widget-template
                           - type: http
                             data:
                               method: post
@@ -10224,6 +10227,23 @@ pages:
                                   to: '3'
                           - type: text
                             data: '---'
+                          - type: text
+                            data: "## Create a Widget\n\nHere, we will use the Widget Template to add the links and the images. There are many ways to use widget templates and we will go over just one. For more examples, see [Code Samples](#link). \n\n* name -- Something short and descriptive. (required)\n* description -- a longer explanation if needed (not required)\n* widget_configuration -- Based on the original widget_template configuration and can vary by the widget created.\n\t* image_source -- Since this is the handlebar placeholder, it requires an image value.\n* widget_template_uuid -- UUID from the Widget Template response.\n\nIn the response the Widget UUID is returned. Make note of it for use later when creating the Placement.\n\nFor widget_configuration `images is the top level array, with `image_url` and `image_source` for each object. There are three images in this example since the width of each was set to 33.3%."
+                            header:
+                              anchor: widget-tutorial_create-widget
+                          - type: http
+                            data:
+                              method: post
+                              body: "{\n  \"name\": \"Header Images\",\n  \"widget_configuration\": {\n      \"images\": [\n          {\n          \t\"image_url\": \"{where-the-image-should-link-to}\",\n              \"image_source\": \"https://cdn11.bigcommerce.com/s-n0i50vy/images/stencil/1280x1280/products/91/309/thekinfolktablecover_1024x1024__80715.1456436719.jpg?c=2&imbypass=on\"\n          },\n          {\n          \t\"image_url\": \"{where-the-image-should-link-to}\",\n              \"image_source\": \"https://cdn11.bigcommerce.com/s-n0i50vy/images/stencil/1280x1280/products/109/361/kinfolkessentialissue_1024x1024__22507.1456436715.jpg?c=2&imbypass=on\"\n          },\n          {\n          \t\"image_url\": \"{where-the-image-should-link-to}\",\n              \"image_source\": \"https://cdn11.bigcommerce.com/s-n0i50vy/images/stencil/500x659/products/85/282/livingwithplants_grande__26452.1456436666.jpg?c=2&imbypass=on\"\n          }\n      ]\n  },\n  \"widget_template_uuid\":\"3a1b0044-c9b3-47d3-9929-01ab0c20243b\"\n}\n"
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/content/widgets
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              title: Create a Widget
                     - title: Widgets Code Samples
                       route:
                         path: /widgets-code-samples
