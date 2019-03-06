@@ -10183,6 +10183,10 @@ pages:
 
                               * template -- Html to create the widget template
                               (required)
+
+
+                              In the response there is a UUID returned. Make
+                              note of it for use later. 
                           - type: http
                             data:
                               method: post
@@ -10196,6 +10200,30 @@ pages:
                                 X-Auth-Token: '{$$.env.X-Auth-Token}'
                             header:
                               title: Create a Widget Template
+                          - type: code
+                            data: |-
+                              {
+                                  "data": {
+                                      "uuid": "3a1b0044-c9b3-47d3-9929-01ab0c20243b",
+                                      "name": "Header Images",
+                                      "schema": [],
+                                      "template": "{{#each images}}<a href='{{image_url}}'><img src={{image_source}} style='width:33.3%'/></a>{{/each}}",
+                                      "date_created": "2019-02-25T18:35:04.904Z",
+                                      "date_modified": "2019-02-25T18:35:04.904Z",
+                                      "kind": "custom"
+                                  },
+                                  "meta": {}
+                              }
+                            header:
+                              title: 'Sample Response '
+                              subtitle: Create Widget Template
+                            config:
+                              mode: json
+                              highlightRange:
+                                - from: '3'
+                                  to: '3'
+                          - type: text
+                            data: '---'
                     - title: Widgets Code Samples
                       route:
                         path: /widgets-code-samples
