@@ -9559,7 +9559,7 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: "<h1>Widgets API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widgets_introduction\">Introduction</a></li>\n        <li><a href=\"#widgets_regions\">Regions</a></li>\n        <li><a href=\"#widgets_widget-templates\">Widget Templates</a></li>\n        <li><a href=\"#scripts_fixing-missing-scripts\">Fixing Missing Scripts</a></li>\n        <li><a href=\"#scripts_scripts-notes\">Notes</a></li>\n        <li><a href=\"#scripts_scripts-visibility\">Visibility Locations </a></li>\n    \t\t<li><a href=\"#scripts_oauth-scopes\"> OAuth Scopes</a></li>\n    \t\t<li><a href=\"#scripts_related-endpoints\">Related Endpoints</a></li>\n        <li><a href=\"#script_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
+                      data: "<h1>Widgets API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widgets_introduction\">Introduction</a></li>\n        <li><a href=\"#widgets_regions\">Regions</a></li>\n        <li><a href=\"#widgets_widget-templates\">Widget Templates</a></li>\n        <li><a href=\"#widgets_widgets\">Widgets</a></li>\n        <li><a href=\"#scripts_scripts-notes\">Notes</a></li>\n        <li><a href=\"#scripts_scripts-visibility\">Visibility Locations </a></li>\n    \t\t<li><a href=\"#scripts_oauth-scopes\"> OAuth Scopes</a></li>\n    \t\t<li><a href=\"#scripts_related-endpoints\">Related Endpoints</a></li>\n        <li><a href=\"#script_object-properties\">Object Properties</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         The Widgets API allows developers to programmatically
@@ -9688,6 +9688,66 @@ pages:
                         subtitle: Widget Template Example
                       config:
                         mode: json
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Widgets
+
+
+                        Widgets are a unit of content that are placed on
+                        specific pages in a Stencil theme. Widgets are made of a
+                        widget configuration written in json and a widget
+                        template UUID that is returned in the [Create Widget
+                        Template](#link) response. Widgets are rendered as part
+                        of the HTML on the storefront.
+                      header:
+                        anchor: widgets_widgets
+                    - type: image
+                      data: >-
+                        //s3.amazonaws.com/user-content.stoplight.io/6012/1551892568336
+                    - type: text
+                      data: >-
+                        ### Widget Configuration
+
+
+                        A Widget Configuration is the JSON payload that defines
+                        the content to be rendered with a given Widget Template.
+                        In the previous simple list example, the widget template
+                        loops over a list_items array using `{{#each}}`. In our
+                        widget configuration, we define the list_items array,
+                        and supply values for the color and text of each list
+                        item. Since the template is created separately from the
+                        configuration, the same template UUID can be used
+                        multiple times for configuration.
+                    - type: code
+                      data: |
+                        {
+                        "list_items":[
+                        { 
+                        "color": "orange", 
+                        "text": " Item One"
+                        },
+                        { 
+                        "color": "blue", 
+                        "text": "Item Two"
+                        }
+                        ]
+                        }
+                      header:
+                        title: Widget Configuration List Items
+                      config:
+                        mode: json
+                    - type: code
+                      data: |-
+                        {
+                          "slides": [
+                            {"image":"http://imageurl.com/nh35jn/test.png"},
+                            {"image":"http://imageurl.com/fdhdfh/test2.png"}
+                          ]
+                        }
+                      header:
+                        title: Widget Configuration Slides
         - title: Cart and Checkout
           route:
             path: /cart-and-checkout
