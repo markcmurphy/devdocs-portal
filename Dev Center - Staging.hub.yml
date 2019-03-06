@@ -10123,6 +10123,48 @@ pages:
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1551898921184
                             header:
                               title: Add Region to category.html
+                          - type: callout
+                            data:
+                              type: info
+                              body: >-
+                                Regions can only be added to files under
+                                pages/templates, including subfolders.
+                          - type: text
+                            data: >-
+                              To check the region was added successfully, use
+                              [Get Content Regions](# link).
+                          - type: http
+                            data:
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/content/regions
+                              method: get
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                              query:
+                                templateFile: pages/category
+                            header:
+                              title: Get Content Region
+                          - type: code
+                            data: |-
+                              {
+                                  "data": [
+                                      {
+                                          "name": "header_bottom"
+                                      },
+                                      {
+                                          "name": "category_header_banner"
+                                      }
+                                  ],
+                                  "meta": {}
+                              }
+                            header:
+                              title: Sample Response
+                              subtitle: Get Content Regions
+                            config:
+                              mode: json
                     - title: Widgets Code Samples
                       route:
                         path: /widgets-code-samples
