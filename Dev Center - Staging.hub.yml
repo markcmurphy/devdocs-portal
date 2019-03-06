@@ -10454,6 +10454,49 @@ pages:
                               highlightRange:
                                 - from: '3'
                                   to: '3'
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Create a Layout
+
+
+                              A Layout accepts any html. Using a layout can
+                              allow you to create complicated widget placements
+                              on the storefront. 
+
+
+                              * entity_id -- The page, category, brand or
+                              product ID the widget should appear on. 
+
+                              * region -- region the template will show. It
+                              should match the template file
+
+                              * template_file -- template file the region was
+                              added to
+
+                              * markup -- this accepts any valid HTML and CSS
+                              including style tags. 
+
+                              * bc-placement -- A special id that is used in
+                              layouts. It is populated with the placement ID.
+
+
+                              The markup in the sample requst body adds the
+                              style of opacity to each image on hover.
+                          - type: http
+                            data:
+                              method: post
+                              body: "{\n\t\"entity_id\":\"21\",\n\t\"region\": \"category_header_banner\",\n\t\"template_file\":\"pages/category\",\n\t\"markup\":\"<style>img:hover{opacity: 0.3;}</style><div><div style='padding:5px margin-bottom:40px;'><bc-placement id='bb34b23b-0d4b-4b9b-9e24-c8b0dcfd5e08'></bc-placement></div></div>\"\n}\n"
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/content/layouts
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              title: Create a Layout
                     - title: Widgets Code Samples
                       route:
                         path: /widgets-code-samples
