@@ -10289,6 +10289,106 @@ pages:
                               subtitle: Create a Widget
                             config:
                               mode: json
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Create the Placement
+
+
+                              Placement defines the page and region where the
+                              widget should appear. Remember that
+                              [Placements](#link) can either lead to a Layout or
+                              they can be used on their own. In this walkthrough
+                              we will use Layouts. 
+
+
+                              * widget_uuid -- UUID of the Widget
+
+                              * entity_id -- The page, category, brand or
+                              product ID the widget should appear on
+
+                              * sort_order -- If there is more than one Widget
+                              on a page, use the sort order to control the order
+                              they are displayed
+
+                              * region -- region the template will show. It
+                              should match the template file
+
+                              * template_file -- template file the region was
+                              added to
+
+                              * status -- if the widget is active or inactive
+
+
+
+                              If you wanted to see the results of the Widget
+                              without a layout, use the Placement without the
+                              layout code sample below. If you would like to
+                              learn more about Layouts use the Create Placement
+                              code sample below. 
+                            header:
+                              anchor: widget-tutorial_create-placement
+                          - type: http
+                            data:
+                              method: post
+                              body: >
+                                {
+
+                                "widget_uuid":"9ccad7fe-25b3-4b76-adca-cdc9e73a51ba",
+
+                                "entity_id": "21",
+
+                                "sort_order": 1,
+
+                                "region": "category_header_banner",
+
+                                "template_file": "pages/category",
+
+                                "status": "active"
+
+                                }
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/content/placements
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              title: Create Placement Without a Layout
+                              subtitle: >-
+                                The region and sort_order are filled in to make
+                                the Widget appear on the storefront.
+                          - type: text
+                            data: >-
+                              To make use of Layouts for custom markdown use the
+                              code sample below. Replace the `widget_uuid` with
+                              your own.
+                          - type: http
+                            data:
+                              method: post
+                              body: >
+                                {
+
+                                "widget_uuid":"a8940709-5655-4401-a341-62c44e3180b2",
+
+                                "entity_id": "21",
+
+                                "template_file": "pages/category",
+
+                                "status": "active"
+
+                                }
+                              url: >-
+                                https://api.bigcommerce.com/stores/{store_hash}/v3/content/placements
+                              headers:
+                                Accept: application/json
+                                Content-Type: application/json
+                                X-Auth-Client: '{$$.env.X-Auth-Client}'
+                                X-Auth-Token: '{$$.env.X-Auth-Token}'
+                            header:
+                              title: Create Placement With a Layout
                     - title: Widgets Code Samples
                       route:
                         path: /widgets-code-samples
