@@ -10085,19 +10085,31 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Widgets Tutorial</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widget-tutorial_add-a-region\">Add a Region</a></li>\n        <li><a href=\"#widget-tutorial_create-widget-template\">Create a Widget Template</a></li>\n        <li><a href=\"#widget-tutorial_create-widget\">Create a Widget</a></li>\n        <li><a href=\"#widget-tutorial_create-placement\">Create the Placement</a></li>\n        <li><a href=\"#widgets_placements\">Placements</a></li>\n        <li><a href=\"#widget-tutorial_create-layout\">Create the Layout</a></li>\n    \t\t<li><a href=\"#widget-tutorial_reuse-widget-template\">Reuse the Widget/a></li>\n        <li><a href=\"#widget-tutorial_resources\">Resources</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Widgets Tutorial</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widget-tutorial_add-a-region\">Add a Region</a></li>\n        <li><a href=\"#widget-tutorial_create-widget-template\">Create a Widget Template</a></li>\n        <li><a href=\"#widget-tutorial_create-widget\">Create a Widget</a></li>\n        <li><a href=\"#widget-tutorial_create-placement\">Create the Placement</a></li>\n        <li><a href=\"#widgets_placements\">Placements</a></li>\n        <li><a href=\"#widget-tutorial_create-layout\">Create the Layout</a></li>\n    \t\t<li><a href=\"#widget-tutorial_reuse-widget-template\">Reuse the Widget</a></li>\n        <li><a href=\"#widget-tutorial_resources\">Resources</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
-                              In this tutorial, we will create a Region,Widget
-                              Template, Widget, Placement and Layout. This
-                              tutorial assumes knowlege of [Widgets](http://). 
+                              In this tutorial, we will cover:
+
+                              * Creating a Region
+
+                              * Creating a Widget Template
+
+                              * Creating a Widget
+
+                              * Placing the Widget
+
+                              * Creating the Layout
+
+
+                              This tutorial assumes knowlege of
+                              [Widgets](/api-docs/storefront/widgets/widgets-overview). 
                           - type: callout
                             data:
                               body: >-
                                 The instructions below use the Cornerstone
                                 Theme. Your theme may differ.
                           - type: text
-                            data: "## Prerequisites:\n* Stencil Theme. This tutorial uses Cornerstone. \n* Scopes:\n\t* Content set to Modify\n* Image URL. If you don’t have one, there is an example in the tutorial.\n* Category Page ID. A [GET Categories](/api-reference/catalog/catalog-api/category/getcategories) request will returns a list of category IDs.\n\nWe will be making a widget that shows three images, with a hover effect and each image linking out to a different location. "
+                            data: "## Prerequisites:\n* Stencil Theme. This tutorial uses Cornerstone. \n* Scopes:\n\t* [Content](/api-docs/getting-started/authentication#authentication_oauth-scopes) set to Modify\n* Image URL. If you don’t have one, there is an example in the tutorial.\n* Category Page ID. A [GET Categories](/api-reference/catalog/catalog-api/category/getcategories) request will returns a list of category IDs.\n\nWe will be making a widget that shows three images, with a hover effect and each image linking out to a different location. "
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1551898706416
@@ -10129,7 +10141,8 @@ pages:
                           - type: text
                             data: >-
                               To check the region was added successfully, use
-                              [Get Content Regions](# link).
+                              [Get Content
+                              Regions](/api-reference/storefront/widgets-api/regions/getcontentregions).
                           - type: http
                             data:
                               url: >-
@@ -10230,7 +10243,7 @@ pages:
                           - type: text
                             data: '---'
                           - type: text
-                            data: "## Create a Widget\n\nHere, we will use the Widget Template to add the links and the images. There are many ways to use widget templates and we will go over just one. For more examples, see [Code Samples](#link). \n\n* name -- Something short and descriptive. (required)\n* description -- a longer explanation if needed (not required)\n* widget_configuration -- Based on the original widget_template configuration and can vary by the widget created.\n\t* image_source -- Since this is the handlebar placeholder, it requires an image value.\n* widget_template_uuid -- UUID from the Widget Template response.\n\nFor widget_configuration `images is the top level array, with `image_url` and `image_source` for each object. There are three images in this example since the width of each was set to 33.3%.\n\nIn the response the Widget UUID is returned. Make note of it for use later when creating the Placement."
+                            data: "## Create a Widget\n\nHere, we will use the Widget Template to add the links and the images. There are many ways to use widget templates and we will go over just one. For more examples, see [Code Samples](/api-docs/storefront/widgets/widgets-code-samples). \n\n* name -- Something short and descriptive. (required)\n* description -- a longer explanation if needed (not required)\n* widget_configuration -- Based on the original widget_template configuration and can vary by the widget created.\n\t* image_source -- Since this is the handlebar placeholder, it requires an image value.\n* widget_template_uuid -- UUID from the Widget Template response.\n\nFor widget_configuration `images is the top level array, with `image_url` and `image_source` for each object. There are three images in this example since the width of each was set to 33.3%.\n\nIn the response the Widget UUID is returned. Make note of it for use later when creating the Placement."
                             header:
                               anchor: widget-tutorial_create-widget
                           - type: http
@@ -10323,9 +10336,10 @@ pages:
 
                               Placement defines the page and region where the
                               widget should appear. Remember that
-                              [Placements](#link) can either lead to a Layout or
-                              they can be used on their own. In this walkthrough
-                              we will use Layouts. 
+                              [Placements](/api-docs/storefront/widgets/widgets-overview#widgets_placements)
+                              can either lead to a Layout or they can be used on
+                              their own. In this walkthrough we will use
+                              Layouts. 
 
 
                               * widget_uuid -- UUID of the Widget
@@ -10550,18 +10564,25 @@ pages:
                               To reuse the Widget Template:
 
                               * Choose where to display the widget by either
-                              creating a Region or use and existing one
+                              creating a
+                              [Region](/api-reference/storefront/widgets-api/regions/getcontentregions)
+                              or use and existing one
 
                               * Decide if the Widget should appear on all pages
                               or if it should use an `entity_id`
 
-                              * Get the [Widget Template ID](http://)
+                              * Get the [Widget Template
+                              ID](/api-reference/storefront/widgets-api/widget-template/getwidgettemplates)
 
-                              * [Create the Widget](http://) with the Widget
-                              Template ID
+                              * [Create the
+                              Widget](/api-reference/storefront/widgets-api/widget/createwidget)
+                              with the Widget Template ID
 
-                              * Either [Create a Placement](http://) or [Create
-                              a Layout](http://) using the Widget
+                              * Either [Create a
+                              Placement](/api-reference/storefront/widgets-api/placement/createplacement)
+                              or [Create a
+                              Layout](/api-reference/storefront/widgets-api/layout/createlayout)
+                              using the Widget
                             header:
                               anchor: widget-tutorial_reuse-widget-template
                           - type: text
