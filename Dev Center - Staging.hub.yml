@@ -10594,7 +10594,27 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: <h1>Hello World!</h1>
+                            data: "<h1>Widgets Code Samples</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widget-tutorial_add-a-region\">Add a Region</a></li>\n        <li><a href=\"#widget-tutorial_create-widget-template\">Create a Widget Template</a></li>\n        <li><a href=\"#widget-tutorial_create-widget\">Create a Widget</a></li>\n        <li><a href=\"#widget-tutorial_create-placement\">Create the Placement</a></li>\n        <li><a href=\"#widgets_placements\">Placements</a></li>\n        <li><a href=\"#widget-tutorial_create-layout\">Create the Layout</a></li>\n    \t\t<li><a href=\"#widget-tutorial_reuse-widget-template\">Reuse the Widget/a></li>\n        <li><a href=\"#widget-tutorial_resources\">Resources</a></li>\n\t</ul>\n</div>"
+                          - type: text
+                            data: '## Simple List'
+                          - type: code
+                            data: |
+
+                              <ul>
+                              {{#each list_items}}
+                               <li style="color:{{color}};">{{text}}</li>
+                              {{/each}}
+                              </ul>
+                            header:
+                              title: Widget Template
+                              subtitle: Simple List
+                            config:
+                              mode: html
+                          - type: code
+                            data: "{\n\t\"name\": \"Simple List Test\",\n\t\"widget_configuration\":{\n\t\t\"list_items\":[\n\t\t\t\t{\n\t\t\t\t\t\"color\": \"blue\",\n\t\t\t\t\t\"text\": \"The color is blue\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"color\": \"green\",\n\t\t\t\t\t\"text\": \"The color is green\"\n\t\t\t\t},\n\t\t\t\t\n\t\t\t\t{\n\t\t\t\t\t\"color\": \"red\",\n\t\t\t\t\t\"text\": \"The color is red\"\n\t\t\t\t}\n\t\t\t]\n\t},\n\t\"widget_template_uuid\":\"your-template-uuid\"\n}"
+                            header:
+                              title: Sample Widget Configuration
+                              subtitle: Simple List
         - title: Cart and Checkout
           route:
             path: /cart-and-checkout
