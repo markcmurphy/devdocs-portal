@@ -9564,7 +9564,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Widgets API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widgets_introduction\">Introduction</a></li>\n        <li><a href=\"#widgets_regions\">Regions</a></li>\n        <li><a href=\"#widgets_widget-templates\">Widget Templates</a></li>\n        <li><a href=\"#widgets_widgets\">Widgets</a></li>\n        <li><a href=\"#widgets_placements\">Placements</a></li>\n        <li><a href=\"#widgets_layouts\">Layouts</a></li>\n    \t\t<li><a href=\"#widgets_storefront\">Widgets on the Storefront</a></li>\n    \t\t<li><a href=\"#widgets_definitions\">Definitions</a></li>\n        <li><a href=\"#widget_resources\">Resources</a></li>\n    <li><a href=\"#widget_next-steps\">Next Steps</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Widgets API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#widgets_introduction\">Introduction</a></li>\n        <li><a href=\"#widgets_regions\">Regions</a></li>\n        <li><a href=\"#widgets_widget-templates\">Widget Templates</a></li>\n        <li><a href=\"#widgets_widgets\">Widgets</a></li>\n        <li><a href=\"#widgets_placements\">Placements</a></li>\n        <li><a href=\"#widgets_layouts\">Layouts</a></li>\n    <li><a href=\"#widgets_placement-and-layouts\">Placements and Layouts</a></li>\n    \t\t<li><a href=\"#widgets_storefront\">Widgets on the Storefront</a></li>\n    \t\t<li><a href=\"#widgets_definitions\">Definitions</a></li>\n        <li><a href=\"#widget_resources\">Resources</a></li>\n    <li><a href=\"#widget_next-steps\">Next Steps</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               The Widgets API allows developers to
@@ -9934,14 +9934,11 @@ pages:
                               ### Layouts
 
                               [Layouts](/api-reference/storefront/widgets-api/models/layout)
-                              allow a developer to define the position of
-                              elements on the storefront. This differs from
-                              Placements since a Layout allows you to style
-                              around the Placement. For example, the Placement
-                              can be a list, while the Layout consists of a div
-                              and style sheet that contain the Placement. Layout
-                              uses the markup field which accepts any valid HTML
-                              and CSS. A Layout can contain multiple Placements.
+                              allow a developer to control the position of
+                              widgets on the storefront. A Layout allows you to
+                              style around the Placement. Layout uses the markup
+                              field which accepts any valid HTML and CSS. A
+                              Layout can contain multiple Placements.
                             header:
                               anchor: widgets_layouts
                           - type: image
@@ -9980,6 +9977,10 @@ pages:
                               mode: html
                           - type: text
                             data: '---'
+                          - type: text
+                            data: "## Placements and Layouts\n\nIn order to position widgets inside a page you need to use placements. Placements determine in which region the widgets is located and in what the order it will be displayed in case there are other widgets in the same region. \n\nPlacements can be used in two ways:\n\n**1. Placement + Widget:**  \nWhen creating a placement with a widget, the widget content takes the full region width. Any additional widgets that are placed onto the same region will be stacked above or below based on the sort_order property for each placement. \n\t\nIf you are creating marketplace applications that create placements directly, you don’t need to use the sort_order property. That way it’s up to the merchant to determine the right sort order if there are more than one placements onto the same region.\n\n**2. Placement + Layout:**  \nIf you want to arrange widgets inside a page using a multi-column style system, then you can create the placement with a Layout. You can also add additional styling around placements when using Layouts.  \n\nUsing Layouts is optional and most recommended when you have multiple placements that you want to arrange in a particular way. You can still arrange content in a multi-column style system using HTML and CSS only without having to use Layouts when creating a single placement. "
+                            header:
+                              anchor: widgets_placement-and-layouts
                           - type: text
                             data: >-
                               ## Widgets on the Storefront
