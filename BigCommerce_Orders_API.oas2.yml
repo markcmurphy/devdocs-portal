@@ -5425,6 +5425,7 @@ definitions:
         example: Ship by Weight
         type: string
       shipping_provider:
+        type: string
         description: >-
           Enum of the BigCommerce shipping-carrier integration/module. (Note:
           This property should be included in a POST request to create a
@@ -5432,8 +5433,18 @@ definitions:
           value will default to custom, and no tracking link will be generated
           in the email. To avoid this behavior, you can pass the property as an
           empty string.)
-        example: usps
-        type: string
+        enum:
+          - auspost
+          - canadapost
+          - endicia
+          - usps
+          - fedex
+          - royalmail
+          - ups
+          - upsready
+          - upsonline
+          - shipperhq
+          - ' '
       tracking_carrier:
         $ref: '#/definitions/TrackingCarrier'
       comments:
