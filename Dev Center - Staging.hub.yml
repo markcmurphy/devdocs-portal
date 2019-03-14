@@ -13482,6 +13482,25 @@ pages:
                         value in the request. If values are not supplied for
                         these properties, they will be automatically calculated
                         based on the preset store values and tax rules.
+
+
+
+                        | Existing Status | Status Passed | Resultant Status |
+                        Avalara Tax Document Submission |
+
+                        | --- | --- | --- | --- |
+
+                        | Any | None | `Pending` | None |
+
+                        | Paid or `Refunded` | Paid | Paid | None |
+
+                        | Unpaid or `Refunded` | Unpaid | Unpaid | None |
+
+                        | Paid or `Refunded` | Unpaid | Unpaid | Tax document
+                        voided |
+
+                        | Unpaid or `Refunded` | Paid | Paid | Tax document
+                        submitted |
                     - type: text
                       data: '---'
                     - type: text
@@ -13509,6 +13528,31 @@ pages:
                         choose to override one, we strongly recommend that
                         override both, because the system will not be able to
                         accurately calculate the other.
+
+
+                        Edits to the following properties will trigger a
+                        recalculation of the subtotal and total:
+
+
+                        *   products
+
+                        *   discount_amount
+
+                        *   shipping_cost_ex_tax
+
+                        *   shipping_cost_inc_tax
+
+                        *   handling_cost_ex_tax
+
+                        *   handling_cost_inc_tax
+
+                        *   wrapping_cost_ex_tax
+
+                        *   wrapping_cost_inc_tax
+
+                        *   billing_address
+
+                        *   shipping_addresses
                       header:
                         anchor: orders-api-overview_calculation_totals
                     - type: text
