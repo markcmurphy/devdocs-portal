@@ -13419,129 +13419,9 @@ pages:
                         specified when creating an Order Shipment. The quote can
                         be generate elsewhere, then update the
                         `shipping_cost_ex_tax` and `shipping_cost_inc_tax` for
-                        the order total to be correct.
-
-
-                        ### Multiple Locations
-
-                        Orders can have multiple shipment locations. There needs
-                        to be more than one product or quantity of a product and
-                        the shipping addresses. A shipping address can be added
-                        either during the create or using an update.
-
-
-                        Order Shipments can only be created one at a time, if
-                        there more than one shipment a POST is needed for each. 
-                    - type: code
-                      data: |-
-                        [
-                            {
-                                "id": 6,
-                                "order_id": 225,
-                                "customer_id": 11,
-                                "order_address_id": 127,
-                                "date_created": "Mon, 11 Mar 2019 17:22:08 +0000",
-                                "tracking_number": "EJ958083578US",
-                                "merchant_shipping_cost": "0.0000",
-                                "shipping_method": "None",
-                                "comments": "Ready to go...",
-                                "shipping_provider": "usps",
-                                "tracking_carrier": "",
-                                "billing_address": {
-                                    "first_name": "Jane",
-                                    "last_name": "Does",
-                                    "company": "",
-                                    "street_1": "123 Main Street",
-                                    "street_2": "",
-                                    "city": "Austin",
-                                    "state": "Texas",
-                                    "zip": "78751",
-                                    "country": "United States",
-                                    "country_iso2": "US",
-                                    "phone": "",
-                                    "email": "janedoe@email.com"
-                                },
-                                "shipping_address": {
-                                    "first_name": "Trishy",
-                                    "last_name": "Test",
-                                    "company": "Acme Pty Ltd",
-                                    "street_1": "666 Sussex St",
-                                    "street_2": "",
-                                    "city": "Anywhere",
-                                    "state": "Some State",
-                                    "zip": "12345",
-                                    "country": "United States",
-                                    "country_iso2": "US",
-                                    "phone": "",
-                                    "email": "elsie@example.com"
-                                },
-                                "items": [
-                                    {
-                                        "order_product_id": 188,
-                                        "product_id": 0,
-                                        "quantity": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "id": 7,
-                                "order_id": 225,
-                                "customer_id": 11,
-                                "order_address_id": 128,
-                                "date_created": "Mon, 11 Mar 2019 17:22:31 +0000",
-                                "tracking_number": "EJ958083578UK",
-                                "merchant_shipping_cost": "0.0000",
-                                "shipping_method": "None",
-                                "comments": "Janes Order",
-                                "shipping_provider": "",
-                                "tracking_carrier": "",
-                                "billing_address": {
-                                    "first_name": "Jane",
-                                    "last_name": "Does",
-                                    "company": "",
-                                    "street_1": "123 Main Street",
-                                    "street_2": "",
-                                    "city": "Austin",
-                                    "state": "Texas",
-                                    "zip": "78751",
-                                    "country": "United States",
-                                    "country_iso2": "US",
-                                    "phone": "",
-                                    "email": "janedoe@email.com"
-                                },
-                                "shipping_address": {
-                                    "first_name": "Jane",
-                                    "last_name": "Doe",
-                                    "company": "",
-                                    "street_1": "555 Main Street",
-                                    "street_2": "",
-                                    "city": "Austin",
-                                    "state": "Texas",
-                                    "zip": "78751",
-                                    "country": "United States",
-                                    "country_iso2": "US",
-                                    "phone": "",
-                                    "email": "janedoe@email.com"
-                                },
-                                "items": [
-                                    {
-                                        "order_product_id": 189,
-                                        "product_id": 0,
-                                        "quantity": 1
-                                    }
-                                ]
-                            }
-                        ]
+                        the order total to be correct.. 
                       header:
-                        title: Get Order Shipments Response
-                      config:
-                        mode: json
-                    - type: callout
-                      data:
-                        body: >-
-                          When adding shipping addresses during an order PUT or
-                          POST, the API will allow you to add more than is
-                          necessary.
+                        anchor: orders-api-overview_shipping-carrier
                     - type: text
                       data: '---'
                     - type: text
@@ -13557,8 +13437,10 @@ pages:
 
                         If a store has automatic tax enabled, BigCommerce does
                         not compute sales tax on orders created via the API.
-
-
+                      header:
+                        anchor: orders-api-overview_taxes
+                    - type: text
+                      data: >-
                         ### Avalara
 
                         When the store is subscribed to Avalara Premium, a value
@@ -13579,22 +13461,15 @@ pages:
                         tax documents to be submitted. If a store has subscribed
                         to Avalara Premium, BigCommerce automatically submits
                         tax documents to Avalara when the order achieves a paid
-                        status.
+                        status. See Order Status below for a list of paid
+                        statuses.
 
 
-                        The following statuses are of the paid type:
-
-                        * Shipped
-
-                        * Partially Shipped
-
-                        * Awaiting Pickup
-
-                        * Awaiting Shipment
-
-                        * Completed
-
-                        * Awaiting Fulfillment
+                        You can create overrides for calculated values such as
+                        product prices, subtotal and totals by sending a fixed
+                        value in the request. If values are not supplied for
+                        these properties, they will be automatically calculated
+                        based on the preset store values and tax rules.
                     - type: text
                       data: '---'
                     - type: text
