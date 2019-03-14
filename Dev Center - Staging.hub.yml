@@ -13239,20 +13239,51 @@ pages:
                         ### Create an Order Shipment
 
 
+                        **Required Fields:**
+
+                        * order_address_id
+
+                        * shipping_provider
+
+                        * items
+
+
                         Once an Order has products, a billing address and at
                         least one shipping address a order shipment can be
                         created. Order shipments are a way to mark an order as
-                        shipped with the shipping information. It does not
-                        change the `order_status`. This must be done manually as
-                        an order [update](#link). 
+                        shipped with the shipping information. 
 
 
-                        To get the `order_product_id` use the [Order Products
-                        subresource]().
+                        To get the `order_address_id`  use the ID returned in
+                        [Order Shipping
+                        Address](https://developer.bigcommerce.com/api-reference/orders/orders-api/order-shipping-addresses/getordersorderidshippingaddressesid).
 
 
-                        To get the `order_address_id` use the [Order Shipments
-                        subresource]().
+                        The items array requires the product quantity and
+                        `order_product_id`. The `order_product_id` is the ID
+                        returned from [Order
+                        Products](https://developer.bigcommerce.com/api-reference/orders/orders-api/order-products/getordersorderidproducts).
+
+
+                        There does not need to be a shipping provider. If the
+                        shipping provider is not sent in at all, it will default
+                        to custom and a tracking link is not generated. To have
+                        the tracking link generated without a shipping provider,
+                        provide an empty string. To see a list of accepted
+                        shipping p
+
+
+                        Once the order shipment is created, it will
+                        automatically send out an email to the billing address
+                        with the shipment confirmation. To stop this behavior
+                        adjust the Order
+                        Notification(https://support.bigcommerce.com/s/article/Customer-Order-Notifications#enable)
+                        settings in the Control Panel. 
+
+
+                        If the order shipment is deleted, the status of the
+                        shipment is still in shipped. The status will need to be
+                        manually changed.
                       header:
                         anchor: orders-api-overview_create-order-shipment
                     - type: code
