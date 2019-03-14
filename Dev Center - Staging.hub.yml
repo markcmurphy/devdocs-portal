@@ -12701,7 +12701,7 @@ pages:
                       header:
                         anchor: orders-api-overview_create-order
                     - type: text
-                      data: "### Add an Existing Product with Options\n\nRequired Fields:\n\n- product_id\n- product_options (required if adding a product with variants)\n\t- product_option > id\n\t- product_option > value\n- quantity\n\nTo get the `product_option > id` and `product_option > value`, make a request to [Get Variants](/api-reference/catalog/catalog-api/product-variants/getvariantsbyproductid). Variants will return the `option_value > id` and `option_values > option_id`.\n\nMake note of the `option_values > id` and `option_values > option_id`. These will be passed into the products array."
+                      data: "### Add an Existing Product with Options\n\n**Required Fields:**\n- product_id\n- product_options (required if adding a product with variants)\n\t- product_option > id\n\t- product_option > value\n- quantity\n\nTo get the `product_option > id` and `product_option > value`, make a request to [Get Variants](/api-reference/catalog/catalog-api/product-variants/getvariantsbyproductid). Variants will return the `option_value > id` and `option_values > option_id`.\n\nMake note of the `option_values > id` and `option_values > option_id`. These will be passed into the products array."
                       header:
                         anchor: orders-api-overview_add-produt-options
                     - type: code
@@ -12806,6 +12806,15 @@ pages:
                         subtitle: This is an abbreviated request
                       config:
                         mode: json
+                    - type: text
+                      data: |-
+                        ### Create a Custom Product
+
+                        **Required Fields:**
+                        * name – Product Name
+                        * quantity – Number of items
+                        * price_inc_tax – Price including tax
+                        * price_ex_tax – Price excluding tax
                     - type: code
                       data: |2-
                           "products": [
@@ -12825,7 +12834,7 @@ pages:
                           ]
                       header:
                         subtitle: This is an abbreviated request
-                        title: Order Products Array
+                        title: Custom Order Products Array
                       config:
                         mode: json
                     - type: callout
