@@ -12913,7 +12913,7 @@ pages:
                       data: |2-
                             "billing_address": {
                                 "first_name": "Jane",
-                                "last_name": "Does",
+                                "last_name": "Doe",
                                 "company": "",
                                 "street_1": "123 Main Street",
                                 "street_2": "",
@@ -12925,7 +12925,7 @@ pages:
                                 "email": "janedoe@email.com"
                             }
                       header:
-                        title: Add a billing address
+                        title: Add a Billing Address
                         subtitle: This is an abbreviated request
                       config:
                         mode: json
@@ -12962,6 +12962,10 @@ pages:
 
                         The shipping address is input as an array object since
                         more than one shipping address can be added at a time.
+                        Adding multiple shipping addresses allows for an order
+                        to ship to multiple locations.
+                      header:
+                        anchor: orders-api-overview_add-shipping-address
                     - type: code
                       data: |2-
                             "shipping_addresses": [
@@ -12977,7 +12981,7 @@ pages:
                                     "country": "United States",
                                     "country_iso2": "US",
                                     "phone": "",
-                                    "email": "tatiana.perry@bigcommerce.com"
+                                    "email": "trish@testing.com"
                                 }
                       header:
                         title: Add a shipping address
@@ -12986,10 +12990,10 @@ pages:
                         mode: json
                     - type: text
                       data: >-
-                        ### Other Recommended Fields:
+                        ### Other Recommended Fields
 
-                        There are fields which are recommended when creating an
-                        order. 
+                        Below are fields which are recommended but not required
+                        when creating an order.
 
 
                         **Customer ID**
@@ -12997,8 +13001,8 @@ pages:
 
                         The customer_id will determine the price the shopper
                         pays for an item. Customer ID’s are tied to customer
-                        group discounts and Price Lists. Set the customer_id to
-                        0 when creating a guest order.
+                        group discounts and Price Lists. Set the `customer_id`
+                        to 0 when creating a guest order.
 
 
                         **Shipping Address**
@@ -13021,15 +13025,80 @@ pages:
                         Manual discounts are supported. To add a manual discount
                         either overwrite the product price or use
                         `discount_amount`. This accepts a fixed dollar amount.
-
-
+                      header:
+                        anchor: orders-api-overview_other-recommended-fields
+                    - type: text
+                      data: >-
                         ### Full Create Order Example
 
-                        To bring it together, adding a custom product, product
-                        with options and a billing address to an order, a sample
-                        request body is below.
+
+                        After the products, billing and shipping address are
+                        added, an order can be created.
                     - type: code
-                      data: "{\n\t\"status_id\":0,\n\t\"customer_id\": 11,\n  \"billing_address\": {\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Doe\",\n    \"street_1\": \"123 Main Street\",\n    \"city\": \"Austin\",\n    \"state\": \"Texas\",\n    \"zip\": \"78751\",\n    \"country\": \"United States\",\n    \"country_iso2\": \"US\",\n    \"email\": \"janedoe@email.com\"\n  },\n    \"shipping_addresses\": [\n        {\n          \"first_name\": \"Trish\",\n          \"last_name\": \"Test\",\n          \"company\": \"Acme Pty Ltd\",\n          \"street_1\": \"666 Sussex St\",\n          \"city\": \"Austin\",\n          \"state\": \"Texas\",\n          \"zip\": \"78751\",\n          \"country\": \"United States\",\n          \"country_iso2\": \"US\",\n          \"email\": \"elsie@example.com\"\n        }\n    ],\n\"products\":[\n          {\n              \"name\": \"BigCommerce Poster\",\n              \"quantity\": 1,\n              \"price_inc_tax\": 10.98,\n              \"price_ex_tax\": 10.00\n          },\n          {\n              \"product_id\": 184,\n                \"product_options\":[\n                    {\n                        \"id\": 200,\n                        \"value\": \"180\"\n                    },\n                    {\n                        \"id\": 230,\n                        \"value\": \"192\"\n                    }\n                ]\n\n          }\n      ]\n}"
+                      data: |-
+                        {
+                          "status_id": 0,
+                          "customer_id": 11,
+                          "billing_address": {
+                            "first_name": "Jane",
+                            "last_name": "Doe",
+                            "street_1": "123 Main Street",
+                            "city": "Austin",
+                            "state": "Texas",
+                            "zip": "78751",
+                            "country": "United States",
+                            "country_iso2": "US",
+                            "email": "janedoe@email.com"
+                          },
+                          "shipping_addresses": [
+                            {
+                              "first_name": "Trish",
+                              "last_name": "Test",
+                              "company": "Acme Pty Ltd",
+                              "street_1": "666 Sussex St",
+                              "city": "Austin",
+                              "state": "Texas",
+                              "zip": "78751",
+                              "country": "United States",
+                              "country_iso2": "US",
+                              "email": "elsie@example.com"
+                            }
+                          ],
+                          "products": [
+                            {
+                              "name": "BigCommerce Poster",
+                              "quantity": 1,
+                              "price_inc_tax": 10.98,
+                              "price_ex_tax": 10
+                            },
+                             {
+                              "name": "BigCommerce Coffee Mug",
+                              "quantity": 1,
+                              "price_inc_tax": 50.00,
+                              "price_ex_tax": 45.00
+                            },
+                                      {
+                                      "name": "BigCommerce Poster",
+                                      "quantity": 1,
+                                      "price_inc_tax": 10.98,
+                                      "price_ex_tax": 10.00
+                                  },
+                                  {
+                                      "product_id": 184,
+                                        "product_options":[
+                                            {
+                                                "id": 200,
+                                                "value": "180"
+                                            },
+                                            {
+                                                "id": 230,
+                                                "value": "192"
+                                            }
+                                        ]
+
+                                  }
+                          ]
+                        }
                       header:
                         title: Create an order request
                       config:
