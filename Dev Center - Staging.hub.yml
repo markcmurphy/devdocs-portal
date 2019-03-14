@@ -12703,9 +12703,15 @@ pages:
                       header:
                         anchor: orders-api-overview_create-order
                     - type: text
-                      data: "### Add an Existing Product with Options\n\n**Required Fields:**\n- product_id\n- product_options (required if adding a product with variants)\n\t- product_option > id\n\t- product_option > value\n- quantity\n\nTo get the `product_option > id` and `product_option > value`, make a request to [Get Variants](/api-reference/catalog/catalog-api/product-variants/getvariantsbyproductid). Variants will return the `option_value > id` and `option_values > option_id`.\n\nMake note of the `option_values > id` and `option_values > option_id`. These will be passed into the products array."
+                      data: "### Add an Existing Product with Options\n\n**Required Fields:**\n- product_id\n- product_options (required if adding a product with variants)\n\t- product_option > id\n\t- product_option > value\n- quantity\n- price_inc_tax (optional)\n- price_ex_tax (optional)\n\nTo get the `product_option > id` and `product_option > value`, make a request to [Get Variants](/api-reference/catalog/catalog-api/product-variants/getvariantsbyproductid). Variants will return the `option_value > id` and `option_values > option_id`.\n\nMake note of the `option_values > id` and `option_values > option_id`. These will be passed into the products array."
                       header:
                         anchor: orders-api-overview_add-produt-options
+                    - type: callout
+                      data:
+                        body: >-
+                          If price_ex_tax or price_inc_tax is set, then they
+                          both need to bet specified. Otherwise the order total
+                          will not calculate correctly.
                     - type: code
                       data: |-
                         {
