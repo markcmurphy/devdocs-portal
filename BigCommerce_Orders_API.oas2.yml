@@ -3176,26 +3176,19 @@ paths:
         - Order Shipments
     post:
       description: >-
-        ## Requirements 
+        Creates an *Order Shipment*.
 
 
-        The following properties of the shipment are required. The request won’t
-        be fulfilled unless these properties are valid. 
+        **Required Fields**
 
+        *   order_address_id 
 
-        *   order_address_id /GET Orders
-
-        *   items /GET Orders
+        *   items
 
         *   shipping_provider  
 
 
-        ## Read-only Properties 
-
-
-        The following properties of the shipment are read-only. If one or more
-        of these properties are included in the request, it will be rejected.
-
+        **Read Only Fields**
 
         *   id
 
@@ -3210,13 +3203,7 @@ paths:
         *   shipping_address
 
 
-        ## Notes 
-
-
-        * For the `shipping_provider` property, acceptable values are an empty
-        string (`""`), or one of these valid BigCommerce shipping-provider
-        values: `auspost`, `canadapost`, `endicia`, `usps`, `fedex`,
-        `royalmail`, `ups`, `upsready`, `upsonline`, or `shipperhq`.
+        **Notes**
 
         * If your POST request does not include `shipping_provider` – at least
         as an empty string, as shown in the example request below – this
