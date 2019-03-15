@@ -8672,6 +8672,56 @@ pages:
                               subtitle: >-
                                 POST
                                 https://developerserver.com/shipping/carrier/connection
+                          - type: text
+                            data: >-
+                              Once connected, it’s possible to create shipping
+                              methods for a connected carrier in any shipping
+                              zone. Shipping zones can be queried using the
+                              Shipping Zones resource. For any zone, a request
+                              can be made to the Shipping Methods resource using
+                              the zone ID from the Shipping Zones resource to
+                              create a new method for the connected carrier. The
+                              shipping carrier’s ID is required in the type
+                              field.
+                          - type: code
+                            data: |-
+                              {
+                                "name": "Example Shipping Carrier",
+                                "type": "carrier_33",
+                                "settings": {
+                                  "carrier_options": {
+                                    "account_id": "a1ty"
+                                  }
+                                },
+                                "enabled": true
+                              }
+                            header:
+                              title: Sample Request
+                              subtitle: >-
+                                POST
+                                https://api.bigcommerce.com/stores/{store_hash}/v2/shipping/zones/{zone_id}/methods
+                          - type: code
+                            data: |-
+                              {
+                                "id": 24,
+                                "name": "Per Order Test",
+                                "type": "perorder",
+                                "settings": {
+                                  "rate": 8.3
+                                },
+                                "enabled": true,
+                                "handling_fees": {
+                                  "fixed_surcharge": 3
+                                },
+                                "is_fallback": false
+                              }
+                            header:
+                              title: Sample Response
+                              subtitle: >-
+                                POST
+                                https://api.bigcommerce.com/stores/{store_hash}/v2/shipping/zones/{zone_id}/methods
+                          - type: text
+                            data: '---'
         - title: Customers & Subscribers
           route:
             path: /customers
