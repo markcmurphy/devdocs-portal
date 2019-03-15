@@ -8474,6 +8474,158 @@ pages:
                               In the URL the app will have a unique ID. This is
                               what is sent in exchange for a carrier ID which
                               can be used to test the app.
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/6012/1552664114224
+                            header:
+                              title: App ID
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Before Development
+
+
+                              BigCommerce will send requests to your server to
+                              get information back about shipping quotes,
+                              credential validation and configuration. 
+
+
+                              ### Your Service URLs
+
+                              Since BigCommerce will be sending requests, you
+                              will need to provide BigCommerce with URLs that
+                              can accept quote requests and optionally a URL to
+                              check and validate connection options during app
+                              registration. These can be any valid HTTPS URL
+                              using port 443, for example:
+
+
+                              `https://yourhost.com/rate`
+
+
+                              Your host and rate should be replaced with your
+                              own host and path. 
+
+
+                              ### Routes
+
+
+                              You should create a URL to provide shipping quotes
+                              on your API. This is the URL used to check the
+                              available shipping rates. The second URL
+                              (optional) checks the merchant’s connection
+                              settings are valid. It can perform any checks
+                              necssary to do so such as looking up credentials
+                              in your database or calling a downstream service
+                              to verify them.
+
+
+                              ### Requests and Responses
+
+
+                              BigCommerce will send and receive data using JSON.
+                              The request for rates will always be formatted
+                              using the [Base Rate Request
+                              Model](/carrier-service-api-beta/models/baseraterequest).
+                              The response for rates should be formatted using
+                              the [Carrier Quote
+                              Object](/carrier-service-api-beta/models/carrierquoteobject).
+                              The request to check for merchant app credentials
+                              will be formatted as Check Connection Options
+                              Request Payload and the response should be
+                              formatted using the  Check Connection Options
+                              Response Payload. 
+
+
+                              ### Error Handling
+
+                              In the case of errors, error messages should be
+                              included in the response payload under the
+                              messages key.
+
+
+                              Example:
+
+
+                              ```
+
+                              {
+                                "valid": false,
+                                "messages" [
+                                  {
+                                    "text": "Your account ID is invalid",
+                                    "type": "ERROR"
+                                  }
+                                ]
+                              }
+
+                              ```
+                          - type: text
+                            data: '---'
+                          - type: text
+                            data: >-
+                              ## Developing the App
+
+
+                              The intended use of the Shipping Provider API is
+                              to create an app that merchants can install on
+                              their store. This can be a standalone app or part
+                              of an existing application. When developing the
+                              app there are a few things to consider which are
+                              listed below.
+
+
+                              ### Control Panel Installation Workflow
+
+
+                              During the app setup, if the Check Connection
+                              Options URL is configured for the carrier, an
+                              attempt to connect the carrier via the Shipping
+                              Manager UI or the Connect Carrier API causes a
+                              request to be made to that URL with the provided
+                              options. The resource should respond indicating if
+                              the credentials are valid and should provide an
+                              explanation of what is wrong. If no such URL is
+                              configured, this check will be skipped and the
+                              credentials are assumed valid as long as they pass
+                              type checks.
+                          - type: code
+                            data: |-
+                              {
+                                "connection_options" {
+                                  "account_id": "a1ty"
+                                }
+                              }
+                            header:
+                              title: Sample Request
+                              subtitle: >-
+                                POST
+                                https://developerserver.com/check_connection_options
+                          - type: code
+                            data: |-
+                              {
+                                "valid": false,
+                                "messages" [
+                                  {
+                                    "text": "Your account ID is invalid",
+                                    "type": "ERROR"
+                                  }
+                                ]
+                              }
+                            header:
+                              subtitle: >-
+                                POST
+                                https://developerserver.com/check_connection_options
+                              title: Sample Response
+                          - type: callout
+                            data:
+                              body: >-
+                                The step of validating the credentials is
+                                optional. It does not change how the app
+                                operates. It is best practice to authenticate
+                                the user against your database or the downstream
+                                provider service. 
         - title: Customers & Subscribers
           route:
             path: /customers
