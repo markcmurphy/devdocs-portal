@@ -8722,6 +8722,200 @@ pages:
                                 https://api.bigcommerce.com/stores/{store_hash}/v2/shipping/zones/{zone_id}/methods
                           - type: text
                             data: '---'
+                          - type: text
+                            data: >-
+                              ## Returning Shipping Quotes
+
+
+                              Whenever shipping rates are required, BigCommerce
+                              checks its internal cache for valid entries. If a
+                              valid entry exists, it will be used and the
+                              shipping carrier will not be called. If a valid
+                              cache entry does not exist, a request is made to
+                              the Quote URL with details of the items to be
+                              shipped, the shipping origin, and shipping
+                              destination. If any connection settings or zone
+                              settings are configured, these are also included.
+                              The shipping carrier must then respond with zero
+                              or more Shipping Quotes.
+                          - type: code
+                            data: |-
+                              {
+                                "base_options": {
+                                  "origin": {
+                                    "street_1": "685 MARKET ST",
+                                    "street_2": "",
+                                    "zip": "94105",
+                                    "city": "SAN FRANCISCO",
+                                    "state_iso2": "CA",
+                                    "country_iso2": "US",
+                                    "address_type": "commercial"
+                                  },
+                                  "destination": {
+                                    "street_1": "",
+                                    "street_2": "",
+                                    "zip": "94103",
+                                    "city": "",
+                                    "state_iso2": "CA",
+                                    "country_iso2": "US",
+                                    "address_type": "residential"
+                                  },
+                                  "items": [
+                                    {
+                                      "sku": "SKU-100",
+                                      "variant_id": "1",
+                                      "product_id": "1",
+                                      "name": "Shirt",
+                                      "length": {
+                                        "units": "in",
+                                        "value": 1
+                                      },
+                                      "width": {
+                                        "units": "in",
+                                        "value": 1
+                                      },
+                                      "height": {
+                                        "units": "in",
+                                        "value": 1
+                                      },
+                                      "weight": {
+                                        "units": "oz",
+                                        "value": 1
+                                      },
+                                      "discounted_price": {
+                                        "currency": "USD",
+                                        "amount": "10"
+                                      },
+                                      "declared_value": {
+                                        "currency": "USD",
+                                        "amount": "10"
+                                      },
+                                      "quantity": 1,
+                                      "attributes": []
+                                    }
+                                  ],
+                                  "customer": {
+                                    "customer_groups": [
+                                      {
+                                        "customer_group_id": 5,
+                                        "customer_group_name": "Retail"
+                                      }
+                                    ],
+                                    "customer_id": 6
+                                  },
+                                  "store_id": "ru7t7fv9",
+                                  "request_context": {
+                                    "reference_values": [
+                                      {
+                                        "name": "cart_id",
+                                        "value": "8"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "connection_options": {
+                                  "key": "userKey",
+                                  "account_number": "userAccountNumber"
+                                },
+                                "zone_options": {
+                                  "show_transit_time": true
+                                },
+                                "rate_options": []
+                              }
+                            header:
+                              title: Sample Request
+                              subtitle: 'POST https://developerserver.com/rate'
+                          - type: code
+                            data: |-
+                              {
+                                "quote_id": "sample_quote",
+                                "messages": [],
+                                "carrier_quotes": [
+                                  {
+                                    "carrier_info": {
+                                      "code": "usps_pitney_bowes",
+                                      "display_name": "USPS"
+                                    },
+                                    "quotes": [
+                                      {
+                                        "code": "",
+                                        "rate_id": "9vcV1JfckPJZW2pjeNXcKP5y",
+                                        "display_name": "USPS Priority Mail",
+                                        "cost": {
+                                          "currency": "USD",
+                                          "amount": 6.35
+                                        },
+                                        "transit_time": {
+                                          "units": "BUSINESS_DAYS",
+                                          "duration": 1
+                                        },
+                                        "dispatch_date": "2018-08-29T00:00:00-05:00"
+                                      },
+                                      {
+                                        "code": "",
+                                        "rate_id": "EakTRTvck2XYGVAQw9Mza8WW",
+                                        "display_name": "USPS Priority Mail Express",
+                                        "cost": {
+                                          "currency": "USD",
+                                          "amount": 22.98
+                                        },
+                                        "transit_time": {
+                                          "units": "BUSINESS_DAYS",
+                                          "duration": 1
+                                        },
+                                        "dispatch_date": "2018-08-29T00:00:00-05:00"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "carrier_info": {
+                                      "code": "fedex",
+                                      "display_name": "FedEx"
+                                    },
+                                    "quotes": [
+                                      {
+                                        "code": "GND",
+                                        "rate_id": "JnQ2MPqkAMX9cBsw0jyt551R",
+                                        "display_name": "FedEx Ground",
+                                        "cost": {
+                                          "currency": "USD",
+                                          "amount": 8.53
+                                        },
+                                        "transit_time": {
+                                          "units": "BUSINESS_DAYS",
+                                          "duration": 1
+                                        },
+                                        "dispatch_date": "2018-09-05T11:00:00-05:00"
+                                      },
+                                      {
+                                        "code": "2DA",
+                                        "rate_id": "QwygEz9XjZx1bT9rfDZsVxSy",
+                                        "display_name": "FedEx 2 Day",
+                                        "cost": {
+                                          "currency": "USD",
+                                          "amount": 10.47
+                                        },
+                                        "transit_time": {
+                                          "units": "BUSINESS_DAYS",
+                                          "duration": 2
+                                        },
+                                        "dispatch_date": "2018-09-05T11:00:00-05:00"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            header:
+                              title: Sample Response
+                              subtitle: 'POST https://developerserver.com/rate'
+                          - type: text
+                            data: >-
+                              When an app with an associated shipping carrier is
+                              uninstalled, all of the shipping methods and the
+                              connection info for that carrier is automatically
+                              removed from the store. Quote requests will no
+                              longer be made and users will no longer see
+                              shipping quotes for that carrier.
         - title: Customers & Subscribers
           route:
             path: /customers
