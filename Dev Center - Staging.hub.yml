@@ -8626,6 +8626,52 @@ pages:
                                 operates. It is best practice to authenticate
                                 the user against your database or the downstream
                                 provider service. 
+                          - type: text
+                            data: >-
+                              Once the app is installed, it will be made
+                              available for configuration by merchants and API
+                              users. A merchant can navigate to the Shipping
+                              Manager and enable, configure and disable the
+                              carrier for any defined zone.
+
+
+                              ### API Installation Workflow
+
+
+                              To set up a carrier using the API, first connect
+                              it using the Connect Carrier API. Make a request
+                              containing the connection settings required by
+                              your carrier. The ID of the carrier is required.
+                              The carrier ID will be issued by BigCommerce when
+                              your carrier is registered. All connection fields
+                              are unique per carrier. If your carrier doesn’t
+                              require any connection settings then this object
+                              can be left empty.
+                          - type: code
+                            data: |-
+                              {
+                                "carrier_id": "carrier_33",
+                                "connection": {
+                                  "key": "userKey",
+                                  "account_number": "userAccountNumber"
+                                }
+                              }
+                            header:
+                              subtitle: >-
+                                POST
+                                https://developerserver.com/shipping/carrier/connection
+                              title: 'Sample Request '
+                          - type: code
+                            data: |-
+                              {
+                                "carrier_id": "carrier_33",
+                                "connection": {}
+                              }
+                            header:
+                              title: Sample Request with Empty Object
+                              subtitle: >-
+                                POST
+                                https://developerserver.com/shipping/carrier/connection
         - title: Customers & Subscribers
           route:
             path: /customers
