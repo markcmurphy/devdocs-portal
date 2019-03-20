@@ -8933,6 +8933,92 @@ pages:
                         }
                       header:
                         title: '/customers/{customer_id}'
+                    - type: text
+                      data: >-
+                        ### Upsert
+
+
+                        Upsert is used for Form Field Values and Customer
+                        Attributes. Upsert looks for a match to the existing
+                        record, and if one is found, then it makes an update. If
+                        a match is not found, it creates a new record.
+
+
+                        ### Authentication Object
+
+
+                        On the new Customers endpoint, when creating a customer
+                        there are two ways to set customers passwords. 
+
+                        - A new password can be set under the `authentication >
+                        new password` object in a /PUT or /POST. 
+
+                        - To have customers reset the password set
+                        `force_password_reset` to `true` under `authentication >
+                        new password` object in a /PUT or /POST
+
+
+                        [Password Confirmation]() and [Validation]() are still
+                        available under V2 Customers. 
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## FAQ
+
+
+                        **Which API should I use?**
+
+                        When possible use the V3 Customers API since we will
+                        eventually begin the process of deprecating the existing
+                        V2 Customers API. Customer Groups will be apart of V3
+                        Customers soon. Please keep up with the changelog where
+                        we will announce the time frame.
+
+
+                        **How can I validate customer passwords?**
+
+                        Password validation is only available on V2 Customers
+                        API. Validation will return a true or false. The V3
+                        Customers API can reset a customers password or input a
+                        new password. 
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Resources
+
+                        ### Endpoints Still on V2
+
+                        - [Customer Groups]()
+
+                        - [Password Validation]()
+
+                        - [Password Confirmation]()
+
+                        ### Related Endpoints
+
+                        -   [Customer Login
+                        API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
+
+                        -   [Current Customer
+                        API](https://developer.bigcommerce.com/api-docs/customers/current-customer-api)
+
+                        -   [Customers API](#new customers api link)
+
+                        -   [Subscribers
+                        API](https://developer.bigcommerce.com/api-reference/customer-subscribers/subscribers-api)
+
+
+                        ### Webhooks
+
+                        - [Customers]()
+
+                        ### Related Articles
+
+                        - [Adding and Editing Fields in the Account Signup
+                        Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields#account-fields)
+                        (BigCommerce Support)
               - title: Customer Login API
                 route:
                   path: /customer-login-api
