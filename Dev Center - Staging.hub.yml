@@ -13662,7 +13662,7 @@ pages:
                         body: |-
                           {
                             "order": {
-                              "id": 215
+                              "id": your-order-id
                             }
                           }
                         headers:
@@ -13765,18 +13765,20 @@ pages:
                           {
                             "payment": {
                               "instrument": {
-                                "type": "stored_card",
-                                "token": "050a1e5c982e5905288ec5ec33f292772762033a0704f46fccb16bf1940b51ef",
-                                "verification_value": "4242"
+                                "type": "card",
+                                "number": "4242424242424242",
+                                "cardholder_name": "Jane Doe",
+                                "expiry_month": 12,
+                                "expiry_year": 2020,
+                                "verification_value": "422"
                               },
                               "payment_method_id": "stripe.card"
                             }
                           }
                         headers:
-                          Accept: application/json
+                          Authorization: '{$$.env.Authorization}'
+                          Accept: application/vnd.bc.v1+json
                           Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
                       header:
                         title: Process Payment
                     - type: text
