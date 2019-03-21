@@ -13408,6 +13408,20 @@ pages:
                         Transactions](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api).
                       header:
                         anchor: payments_stored_cards
+                    - type: http
+                      data:
+                        method: get
+                        url: >-
+                          https://api.bigcommerce.com/stores/{store_hash}/v3/payments/methods
+                        query:
+                          order_id: ''
+                        headers:
+                          Accept: application/json
+                          Content-Type: application/json
+                          X-Auth-Client: '{$$.env.X-Auth-Client}'
+                          X-Auth-Token: '{$$.env.X-Auth-Token}'
+                      header:
+                        title: Get Payment Methods
         - title: Orders
           route:
             path: /orders
