@@ -13791,6 +13791,39 @@ pages:
                       header:
                         title: Sample Response
                         subtitle: Process Payment
+                    - type: http
+                      data:
+                        url: >-
+                          https://payments.bigcommerce.com/stores/{store_hash}/payments
+                        method: post
+                        body: |-
+                          {
+                            "payment": {
+                              "instrument": {
+                                "type": "stored_card",
+                                "token": "050a1e5c982e5905288ec5ec33f292772762033a0704f46fccb16bf1940b51ef",
+                                "verification_value": "4242"
+                              },
+                              "payment_method_id": "stripe.card"
+                            }
+                          }
+                        headers:
+                          Accept: application/json
+                          Content-Type: application/json
+                          X-Auth-Client: '{$$.env.X-Auth-Client}'
+                          X-Auth-Token: '{$$.env.X-Auth-Token}'
+                      header:
+                        title: Process Payment
+                    - type: text
+                      data: >-
+                        If the purchase was successful it will return a status
+                        of success. The order is then automatically moved to a
+                        Awaiting Fulfillment status. If you get a different
+                        response, see [Error
+                        Codes](/payments_troubleshooting-error-codes) for
+                        troubleshooting.
+                    - type: text
+                      data: '---'
         - title: Orders
           route:
             path: /orders
