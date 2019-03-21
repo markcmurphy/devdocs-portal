@@ -13537,6 +13537,65 @@ pages:
                         subtitle: Create Payment Access Token
                       config:
                         mode: json
+                    - type: text
+                      data: >-
+                        3. To process the payment, send a POST to [Process
+                        Payment](/process-payment/payment/paymentspost). You
+                        will need the following information from [Get Payment
+                        Methods](/create-payment-tokem/payment-methods/paymentsmethodsget)
+                        in step one. 
+
+
+                        **Get Payment Methods = Process Payment**
+
+                        * type = type
+
+                        * token = token
+
+                        * last_four = verfication_value
+
+                        * id = payment_method_id
+
+
+                        The headers to process a payment are different than the
+                        headers you normally send with a BigCommerce API. The
+                        Authorization token is the ID that is returned in Get
+                        Payment Access Token(step two). 
+
+
+                        **Headers**
+
+                        * Accept: application/vnd.bc.v1+json
+
+                        * Authorization: PAT {your-access-token}
+
+                        * Content-Type: application/json
+                    - type: callout
+                      data:
+                        type: warning
+                        body: 'There is a space between PAT {your-access-token}.'
+                    - type: code
+                      data: |
+                        curl -X POST \
+                          https://payments.bigcommerce.com/stores/{store_hash}/payments \
+                          -H 'Accept: application/vnd.bc.v1+json' \
+                          -H 'Authorization: PAT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTEzOTQxNDIsIm5iZiI6MTU1MTM5MDU0MiwiaXNzIjoicGF5bWVudHMuYmlnY29tbWVyY2UuY29tIiwic3ViIjoianJhaDZnbW4iLCJqdGkiOiI3Nzg3ZmU1Zi01OWJmLTQ3ZWMtYTFmZC00ZDQ3ZTkwNjFlNWMiLCJpYXQiOjE1NTEzOTA1NDIsImRhdGEiOnsic3RvcmVfaWQiOjEwMjU2NDYsIm9yZGVyX2lkIjoyMTUsImFtb3VudCI6OTgwMCwiY3VycmVuY3kiOiJVU0QifX0.WbR90d8m4gn8wK7kPMDEoVq8B0hHC5Ul5H4Hpqq6Yvo' \
+                          -H 'Content-Type: application/json' \
+                          -d '{
+                          "payment": {
+                            "instrument": {
+                              "type": "stored_card",
+                              "token": "050a1e5c982e5905288ec5ec33f292772762033a0704f46fccb16bf1940b51ef", // from Get Payment Methods
+                              "verification_value": "4242"
+                            },
+                            "payment_method_id": "stripe.card"
+                          }
+                        }'
+                      header:
+                        title: Sample Request
+                        subtitle: Process Payment
+                      config:
+                        mode: shell
         - title: Orders
           route:
             path: /orders
