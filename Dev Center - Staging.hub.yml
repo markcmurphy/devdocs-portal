@@ -13307,7 +13307,7 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: <h1>Hello World!</h1>
+                      data: "<h1>Payments API</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#payments_processing-payment\">Processing a Payment</a></li>\n        <li><a href=\"#payments_stored-cards\">Stored Cards</a></li>\n        <li><a href=\"#payments_credit-cards\">Credit Cards</a></li>\n    \t\t<li><a href=\"#payments_technical-details\">Technical Details</a></li>\n        <li><a href=\"#payments_sample-app-diagram\">Sample App Diagram</a></li>\n    \t\t<li><a href=\"#payments_error-codes\">Error Codes</a></li>\n            <li><a href=\"#payments_faq\">FAQ</a></li>\n    \n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         ## Introduction
@@ -13614,8 +13614,7 @@ pages:
                         If the purchase was successful it will return a status
                         of success. The order is then automatically moved to an
                         Awaiting Fulfillment status. If you get a different
-                        response, see [Error
-                        Codes](/payments_troubleshooting-error-codes) for
+                        response, see [Error Codes](/payments_error-codes) for
                         troubleshooting.
                     - type: text
                       data: '---'
@@ -13799,8 +13798,7 @@ pages:
                         If the purchase was successful it will return a status
                         of success. The order is then automatically moved to a
                         Awaiting Fulfillment status. If you get a different
-                        response, see [Error
-                        Codes](/payments_troubleshooting-error-codes) for
+                        response, see [Error Codes](/payments_error-codes) for
                         troubleshooting.
                     - type: text
                       data: '---'
@@ -13910,6 +13908,8 @@ pages:
                         BigCommerce has rates limits in place for this API. Some
                         payment providers will provide checks on the incoming
                         requests.
+                      header:
+                        anchor: payments_technical-details
                     - type: text
                       data: '---'
                     - type: text
@@ -13926,6 +13926,8 @@ pages:
                         Endpoints.](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout/postcheckoutscheckoutidorders)
                         or [Orders
                         API](https://developer.bigcommerce.com/api-reference/orders/orders-api).
+                      header:
+                        anchor: payments_sample-app-diagram
                     - type: image
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6012/1553180551833
@@ -13939,10 +13941,14 @@ pages:
                       data: '---'
                     - type: text
                       data: "## Error Codes\n\n### 10000\nAn internal error has occurred within the API.\n\n**Possible Causes**\n- Connection error\n\n**Possible Solutions**\n* Try the request again.\n\n### 10001\nMissing or incorrect required fields.\n\n**Possible Causes** \n* Missing or Incorrect Fields.\n\n**Possible Solutions**  \n* Check the request for any data that is incorrect or is missing\n\n### 30000\nMerchant payment configuration could not be found.\n\n**Possible Causes**  \n* The payment provider has not been configured in the store.\n\n**Possible Solutions**  \n* Check the [payment gateways](https://support.bigcommerce.com/s/article/Online-Payment-Methods#setup) settings in your BigCommerce store. \n\n### 30001\nMerchant payment configuration is not correctly being configured.\n\n**Possible Causes**\n* The payment configuration is being rejected by the payment gateway.\n\n**Possible Solutions**\n- Check the [payment gateways](https://support.bigcommerce.com/s/article/Online-Payment-Methods#setup) settings in your BigCommerce store. \n- Reach out the the payment gateway to check the information is correct.\n\n### 30002\nVaulting service is currently not available.\n\n**Possible Causes**  \n* The vaulting feature is not enabled on this store.\n\n**Possible Solutions**  \n* Reach out to the store owner to enable [Stored Credit Cards](https://support.bigcommerce.com/s/article/Enabling-Stored-Credit-Cards). \n\n### 30003\nOrder could not be found.\n\n**Possible Causes**\n- The order does not exists.\n- The order ID is not correct.\n\n**Possible Solutions**  \n* Check the current orders in the store using [Get All Orders](https://developer.bigcommerce.com/api-reference/orders/orders-api/orders/getorders).\n\n\n### 30004\nThe validation on line item and grand total does not match. \n\n**Possible Solutions**\n* Recreate the payment access token\n* Recreate the order\n* Ensure the store settings for taxes and discounts are setup correctly. \n\n\n### 30050\nPayment instrument could not be saved.\n\n**Possible Causes**  \n* Credit card information is incorrect.\n\n**Possible Solutions**\n* Check that the card information is correct.\n\t* `expiry_month` is two digits\n\t* `expiry_year` is four digits\n\n### 30051\nThe stored card was not found.\n\n**Possible Causes**  \n* The card requested for payment is not associated to the shopper.\n\n**Possible Solutions**  \n* Use [Get Payment Methods](https://bigcommerce-payments-api-beta.docs.stoplight.io/create-payment-tokem/payment-methods/paymentsmethodsget) to see available vaulted cards.\n\n### 30100\nPayment access token could not be created.\n\n\n### 30101\nOrder is invalid.\n\n**Possible Causes**  \n* The order is in the wrong status.\n\n**Possible Solutions**\n - Orders must be in Incomplete Status with a `status_id:0`.\n - The order must be created by the Checkout SDK, Checkout API or V2 Orders API. Orders created in the Control and set to an incomplete status will return this error. \n\n### 30102\nThe payment was declined.\n\n**Possible Causes**\n- The card information provided was incorrect\n- The token provided was incorrect\n\n**Possible Solutions**\n- Check that the provider shopper information is correct\n- Make sure the token in the Authorization header field is correct\n\n### 30103\nCard has expired\n\n### 30104\nThe payment was declined. Please contact card issuer for more information.\n\n### 30105\nThe payment was declined due to duplicate payment being submitted.\n\n### 30106\nThe payment was declined due to insufficient funds."
+                      header:
+                        anchor: payments_error-codes
                     - type: text
                       data: '---'
                     - type: text
                       data: "## FAQ\n\n\n**How can I store a credit card?**\n\nThe Payments API does not support storing credit cards. The shopper can store credit cards during checkout. If you are using the [Checkout SDK](https://github.com/bigcommerce/checkout-sdk-js/blob/decf28d8eb17504bfbe2b4a7227c94c14f3d963a/docs/interfaces/creditcardinstrument.md#shouldsaveinstrument), it can store the credit card\_as part of checkout.\n\n**How do I get a list of stored credit cards?**\n\nUse the Get Payment Methods to get a list of stored payment instruments.\_\n\n**Can I add my payment gateway?**\n\nThe Payments API does not support adding a third party gateway. Payments are processed through BigCommerce.\n\n**Can I issue a refund?**\n\nRefunds can be issued either using the [Control Panel](https://support.bigcommerce.com/s/article/Processing-Refunds) or through the payment gateway directly.\n\n**How do I process payment for a capture credit card?**\n\nOnce a payment has been authorized, the capture step will need to be completed using the [Control Panel](https://support.bigcommerce.com/s/article/How-can-I-set-my-payment-gateway-to-only-authorize-transactions-and-not-capture-the-funds-automatically)."
+                      header:
+                        anchor: payments_faq
                     - type: text
                       data: >-
                         ## Resources
