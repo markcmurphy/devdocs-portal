@@ -90,7 +90,7 @@ paths:
           description: Internal server error.
           schema:
             $ref: '#/definitions/Error'
-  '/wishlists/{wishlist_id}/items/item_id':
+  '/wishlists/{wishlist_id}/items/{item_id}':
     post:
       description: >-
         Adds a [*Wishlist
@@ -158,6 +158,10 @@ paths:
         - Wishlists
     parameters:
       - name: wishlist_id
+        in: path
+        type: string
+        required: true
+      - name: item_id
         in: path
         type: string
         required: true
