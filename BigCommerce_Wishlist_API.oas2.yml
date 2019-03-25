@@ -268,6 +268,37 @@ paths:
         in: path
         type: string
         required: true
+    post:
+      responses:
+        '201':
+          $ref: '#/responses/Wishlist'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          description: Wishlist not found.
+        '500':
+          description: Internal server error.
+      summary: Add Wishlist Item
+      description: >-
+        Adds a [*Wishlist
+        Item*](/api-reference/customer-subscribers/wishlist-api/models/wishlistitem).
+        More than one item can be added at a time.
+      operationId: WishlistsItemsByIdPost
+      tags:
+        - Wishlists
+      parameters:
+        - $ref: '#/parameters/WishlistID'
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/WishlistAddItem'
+          x-examples:
+            application/json:
+              items:
+                - product_id: 10
+                  variant_id: 10
 definitions:
   WishlistCreateRequestData:
     title: Create a Wishlist
