@@ -13419,6 +13419,52 @@ pages:
                         BigCommerce Wordpress plugin uses this concept to have a
                         custom cart and checkout while also rendering the
                         catalog and logging in customers. 
+
+
+                        ### Checkout Management
+
+                        Use the Checkout
+                        API(https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api)
+                        to move the cart to checkout, create redirect urls and
+                        turn an existing checkout into an order.
+
+
+                        **Redirect to a BigCommerce Checkout**
+
+
+                        When creating a cart, there is an optional query to
+                        create a redirect URL. Use this to redirect the shopper
+                        to a BigCommerce hosted checkout page.
+
+
+                        To hide non essential pages remove the back links in
+                        Cart and Checkout. 
+
+
+                        Another approach is to edit the theme files to hide the
+                        other pages from all visitors except for those who need
+                        to see them for maintenance. 
+
+
+                        Edit the schema.json file and add the following to the
+                        settings array:
+                    - type: code
+                      data: |-
+                        {
+                            "name": "Administrators",
+                            "settings": [
+                              {
+                                "type": "text",
+                                "label": "Administrator Emails (separated by commas)",
+                                "id": "admin_emails"
+                              }
+                            ]
+                          }
+                      header:
+                        title: Schema.json
+                        subtitle: Settings Array
+                      config:
+                        mode: json
         - title: Payments
           route:
             path: /payments
