@@ -13566,7 +13566,7 @@ pages:
                       data: '---'
                     - type: text
                       data: >-
-                        ### Sample Integration
+                        ## Example Integration
 
 
                         In the diagram below, the Storefront is any location the
@@ -13611,6 +13611,8 @@ pages:
                         information. Using the BigCommerce APIs eliminates the
                         need to rely on third party apps and build a custom
                         solution.
+                      header:
+                        anchor: guide-to-headless-commerce_example-integration
                     - type: image
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6012/1553707584118
@@ -13650,11 +13652,13 @@ pages:
 
                         Either option requires you to perform your own PCI
                         compliance audits.
+                      header:
+                        anchor: guide-to-headless-commerce_pci-compliance
                     - type: text
                       data: '---'
                     - type: text
                       data: >-
-                        ### Checkout SDK
+                        ## Checkout SDK
 
 
                         A developer can also leave the “heavy lifting” to
@@ -13664,6 +13668,8 @@ pages:
                         submitting payments. The Checkout SDK allows for
                         complete customization to present a seamless checkout
                         experience for shoppers.
+                      header:
+                        anchor: guide-to-headless-commerce_checkout-sdk
                     - type: text
                       data: '---'
                     - type: text
@@ -13678,8 +13684,12 @@ pages:
                         and checkout. The plugin uses an iframe to render the
                         checkout page within the Wordpress CMS. The BigCommerce
                         checkout page is PCI compliant.
+                      header:
+                        anchor: guide-to-headless-commerce_wordpress-plugin
                     - type: text
                       data: "## Sample API Workflows\n\nBelow are example workflows that list which APIs are needed to create a Cart, Checkout and Order on BigCommerce. Our headless implementation is based on the Server to Server Cart and Checkout APIs. There are currently two ways to handle this:\n\n* Create an order from a cart\n* Creating an order directly to bypass the cart and checkout\n\n### Create an Order From a Cart\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f4dbc360974d4b5eff77)\n\n\n1. Create a Cart with a Redirect URL\n\t2. Add the Customer ID or leave blank if shopper is a guest\n\t3. Add Line Items or Custom Line Items\n2. Add a Billing Address to the Cart changing it to a Checkout\n3. Add a Consignment to Checkout with the line items and the consignments.available_shipping_options query.\n4. Update each Consignment with the chosen shipping option from the Add Consignment response.\n5. Create the Order by sending a request to Create Order\n\t6. Returns an order_id\n\t7. Order is created in Incomplete status\n6. Take a Payment for the Order using one of the two methods below.\n\t7. Vaulted Card -- The shopper has saved a credit card\n\t\t8. Get Payment Methods\n\t\t9. Create Access Token\n\t10. Process Payment\n\t\t11. Credit Card -- The shopper has not saved a credit card\n\t\t12. Create Access Token\n\t\t13. Process Payment\n\n\n### Create an Order Directly\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f4dbc360974d4b5eff77)\n\n1. Send a request /POST request to Orders\n\t2. Make sure status_id is 0\n\t3. Add the Customer ID or leave blank if the shopper is a guest\n\t4. Add Line Items or Custom Line Items\n\t5. Add a Billing Address\n\t6. Add a Shipping Address\n\t7. Create a custom shipping quote\n2. Take a Payment for the Order using one of the two methods below.\n\t8. Vaulted Card -- The shopper has saved a credit card\n\t\t9. Get Payment Methods\n\t\t10. Create Access Token\n\t\t11. Process Payment\n\t9. Credit Card -- The shopper has not saved a credit card\n\t\t12. Create Access Token\n\t\t13. Process Payment\n"
+                      header:
+                        anchor: guide-to-headless-commerce_sample-api-workflows
                     - type: text
                       data: '---'
                     - type: text
@@ -13754,6 +13764,7 @@ pages:
                         Download the Postman Collection for Headless Commerce
                         [![Run in
                         Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f4dbc360974d4b5eff77)
+                      header: {}
         - title: Payments
           route:
             path: /payments
