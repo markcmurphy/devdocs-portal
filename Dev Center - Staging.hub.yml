@@ -13674,6 +13674,79 @@ pages:
                         checkout page is PCI compliant.
                     - type: text
                       data: "## Sample API Workflows\n\nBelow are example workflows that list which APIs are needed to create a Cart, Checkout and Order on BigCommerce. Our headless implementation is based on the Server to Server Cart and Checkout APIs. There are currently two ways to handle this:\n\n* Create an order from a cart\n* Creating an order directly to bypass the cart and checkout\n\n### Create an Order From a Cart\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f4dbc360974d4b5eff77)\n\n\n1. Create a Cart with a Redirect URL\n\t2. Add the Customer ID or leave blank if shopper is a guest\n\t3. Add Line Items or Custom Line Items\n2. Add a Billing Address to the Cart changing it to a Checkout\n3. Add a Consignment to Checkout with the line items and the consignments.available_shipping_options query.\n4. Update each Consignment with the chosen shipping option from the Add Consignment response.\n5. Create the Order by sending a request to Create Order\n\t6. Returns an order_id\n\t7. Order is created in Incomplete status\n6. Take a Payment for the Order using one of the two methods below.\n\t7. Vaulted Card -- The shopper has saved a credit card\n\t\t8. Get Payment Methods\n\t\t9. Create Access Token\n\t10. Process Payment\n\t\t11. Credit Card -- The shopper has not saved a credit card\n\t\t12. Create Access Token\n\t\t13. Process Payment\n\n\n### Create an Order Directly\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f4dbc360974d4b5eff77)\n\n1. Send a request /POST request to Orders\n\t2. Make sure status_id is 0\n\t3. Add the Customer ID or leave blank if the shopper is a guest\n\t4. Add Line Items or Custom Line Items\n\t5. Add a Billing Address\n\t6. Add a Shipping Address\n\t7. Create a custom shipping quote\n2. Take a Payment for the Order using one of the two methods below.\n\t8. Vaulted Card -- The shopper has saved a credit card\n\t\t9. Get Payment Methods\n\t\t10. Create Access Token\n\t\t11. Process Payment\n\t9. Credit Card -- The shopper has not saved a credit card\n\t\t12. Create Access Token\n\t\t13. Process Payment\n"
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >
+                        ## Resources
+
+
+                        ### Related Articles
+
+                        * [Orders
+                        API](https://developer.bigcommerce.com/api-reference/orders/orders-api)
+
+                        * [Customers
+                        Overview](https://developer.bigcommerce.com/api-docs/customers/customers-subscribers-overview)
+
+                        * [Customer Login
+                        API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
+
+                        * [Launching your
+                        store](https://support.bigcommerce.com/s/article/Launching-Your-Store)
+                        (BigCommerce Support)
+
+                        * [Multisite Ecommerce with WordPress and
+                        BigCommerce](https://medium.com/bigcommerce-developer-blog/multi-site-ecommerce-with-wordpress-and-bigcommerce-40dee194f8a)
+                        (BigCommerce Developers Blog)
+
+                        * [Matter Makes Waves with a Headless Build using
+                        BigCommerce for
+                        WordPress](https://medium.com/bigcommerce-developer-blog/matter-makes-waves-with-a-headless-build-using-bigcommerce-for-wordpress-a572bad4bdf8)
+                        (BigCommerce Developers Blog)
+
+                        * [New Era in Headless
+                        CaaS](https://www.bigcommerce.com/new-era-headless-caas/)
+                        (BigCommerce Whitepaper)
+
+                        * [BigCommerce Doubles Down on Headless Commerce with
+                        BloomReach, Sitecore, Adobe Experience Manager, and
+                        More](https://www.bigcommerce.com/blog/flexible-headless-commerce-solutions/)
+                        (BigCommerce Blog)
+
+                        * [Wordpress
+                        Plugin](https://wordpress.org/plugins/bigcommerce/)
+                        (Wordpress Plugin Directory)
+
+
+                        ### Related Endpoints
+
+                        * [Catalog
+                        API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api)
+
+                        * [Server to Server
+                        Checkout](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api)
+
+                        * [Server to Server
+                        Cart](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api)
+
+                        * [Orders
+                        API](https://developer.bigcommerce.com/api-reference/orders/orders-api)
+
+                        * [Payments API] (Update Later)
+
+                        * [Customers
+                        API](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api)
+
+                        * [Validate Customer
+                        Password](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-passwords/validatecustomerpassword)
+
+
+                        ### Next Steps
+
+                        Download the Postman Collection for Headless Commerce
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f4dbc360974d4b5eff77)
         - title: Payments
           route:
             path: /payments
