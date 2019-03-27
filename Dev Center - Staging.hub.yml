@@ -13506,6 +13506,39 @@ pages:
                         for the order. If you are using the Payments API, you
                         are responsible for PCI compliance. (#add link to PCI
                         section here)
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Customer Login
+
+
+                        ### Associate Cart with a Customer
+
+
+                        A shopper can start adding items to a cart before
+                        logging in. When a cart is created, your app should
+                        store the `cart_id`. When a customer authenticates
+                        against your app, you should check for an existing
+                        customer in BigCommerce. Usually, the email address
+                        should be used as the unique key. If the customer
+                        exists, associate the customer ID with the cart. If the
+                        customer does not exist, create it in BC using the
+                        Customers API, then associate the customer id with the
+                        cart.
+
+
+                        Get the `customer_id` and create a [redirect
+                        url](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart/createcartredirecturl)
+                        for the `cart_id` and supply the url as the parameter
+                        for `redirect_to` when creating the JWT token. To get a
+                        `customer_id` use the [Customer
+                        API](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api)
+                        to match the email address against what the customer
+                        input vs what is in the BigCommerce database. If a match
+                        is not found, then direct the
+                        [customer](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customers/customerspost)
+                        through a signup screen. 
         - title: Payments
           route:
             path: /payments
