@@ -37,11 +37,13 @@ paths:
         for submitting payment for an order.
 
 
-        After the token is created then use the token to [submit a
-        payment](/process-payment/payment/paymentspost).
+        After the token is created then use the token to [Process
+        Payments](/api-reference/payments/payments-process-payments/payment/paymentspost).
 
 
-        * The order id is required 
+        **Required Fields**
+
+        * order_id
       summary: Create Payment Access Token
       tags:
         - Payment Access Token
@@ -100,9 +102,11 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /payments/methods:
     get:
-      description: >-
-        Returns a list of accepted payment methods based on supplied query
-        parameters.
+      description: |-
+        Returns a list of accepted payment methods based on the `order_id`.
+
+        **Required Fields**
+        * order_id
       summary: Get Accepted Payment Methods
       tags:
         - Payment Methods
