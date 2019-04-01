@@ -5167,7 +5167,14 @@ pages:
 
                               | store/customer/deleted | Customer is deleted |
 
-                              | store/
+                              | store/customer/address/created | Customer
+                              address is created |
+
+                              | store/customer/address/updated | Customer
+                              address is updated |
+
+                              | store/customer/address/deleted | Customer
+                              address is deleted |
                             header:
                               anchor: webhook-events_customer
                           - type: code
@@ -5185,7 +5192,39 @@ pages:
                               }
                             header:
                               title: store/customer/deleted
-                              anchor: customer-deleted
+                            config:
+                              mode: json
+                          - type: code
+                            data: >-
+                              {
+
+                              "scope": "store/customer/address/updated",
+
+                              "store_id": "1025646",
+
+                              "data": {
+
+                              "type": "customer",
+
+                              "id": 43,
+
+                              "address":
+
+
+                              { "customer_id": 29 }
+
+                              },
+
+                              "hash":
+                              "6e246d3bebd7c8fac6e84f1f554d3801598f2969",
+
+                              "created_at": 1553719926,
+
+                              "producer": "stores/abcdefg"
+
+                              }
+                            header:
+                              title: store/customer/address/updated
                             config:
                               mode: json
                           - type: text
