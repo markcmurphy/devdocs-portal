@@ -14305,6 +14305,81 @@ pages:
                       data: '---'
                     - type: text
                       data: >-
+                        ## Using the Orders API
+
+
+                        It is possible to take a payment for an order created
+                        using the [Orders API](api-reference/orders/orders-api).
+                        When creating the order using the Orders API make sure
+                        the `status_id:0`. If the order status is not created
+                        with the status set to `0` or `Incomplete`, the Payments
+                        API will return an [error](#payments_error-codes).
+
+                        The billing address and line items should be filled in
+                        when creating the order. The order can be created as a
+                        guest order by either seeting the 
+
+                        `customer_id:0`or leaving it blank. After the order is
+                        created, then follow the steps for either a [credit
+                        card](#payments_credit-cards) or a [stored
+                        card](#payments_stored-cards).
+                      header:
+                        anchor: payments_orders-api
+                    - type: code
+                      data: |-
+                        {
+                            "status_id": 0,
+                            "customer_id": 11,
+                            "billing_address": {
+                                "first_name": "Jane",
+                                "last_name": "Does",
+                                "company": "",
+                                "street_1": "123 Main Street",
+                                "street_2": "",
+                                "city": "Austin",
+                                "state": "Texas",
+                                "zip": "78751",
+                                "country": "United States",
+                                "country_iso2": "US",
+                                "email": "janedoe@email.com"
+                            },
+                            "shipping_addresses": [
+                                {
+                                    "first_name": "Trishy",
+                                    "last_name": "Test",
+                                    "company": "Acme Pty Ltd",
+                                    "street_1": "666 Sussex St",
+                                    "street_2": "",
+                                    "city": "Anywhere",
+                                    "state": "Some State",
+                                    "zip": "12345",
+                                    "country": "United States",
+                                    "country_iso2": "US",
+                                    "phone": "",
+                                    "email": "tatiana.perry@bigcommerce.com"
+                                }
+                            ],
+                            "products": [
+                                {
+                                    "name": "BigCommerce Poster",
+                                    "quantity": 1,
+                                    "price_inc_tax": 10.98,
+                                    "price_ex_tax": 10
+                                },
+                                {
+                                    "name": "BigCommerce Poster II",
+                                    "quantity": 1,
+                                    "price_inc_tax": 50,
+                                    "price_ex_tax": 45
+                                }
+                            ],
+                            "shipping_cost_ex_tax": "12.00",
+                            "shipping_cost_inc_tax": "12.99"
+                        }
+                      header:
+                        title: Example Create Order
+                    - type: text
+                      data: >-
                         ## Technical Details 
 
 
