@@ -1884,13 +1884,10 @@ paths:
             $ref: '#/definitions/CustomerGroup'
           x-examples:
             application/json:
-              name: Bulk Purchasers
-              category_access:
-                type: specific
-                categories:
-                  - 7
-                  - 12
-                  - 20
+              name: Student Discounts
+              discount_rules:
+                - type: price_list
+                  price_list_id: 3
             Give a 5% Discount to All Members: |-
               {
                   "name": "Student Discounts",
@@ -1909,9 +1906,11 @@ paths:
                   - 7
                   - 12
                   - 20
-            Assign New Customers to a Group:
-              name: Retail Customers
-              is_default: true
+            Assign New Customers to a Group: |-
+              {
+                "name": "Retail Customers",
+                "is_default": true
+              }
       responses:
         '200':
           description: ''
