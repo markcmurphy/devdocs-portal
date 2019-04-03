@@ -13941,7 +13941,16 @@ pages:
 
                   Add the following conditional wrapper to each page:
               - type: code
-                data: ''
+                data: |-
+                  {{#contains theme_settings.admin_emails customer.email}}
+                  ... normal page content
+                  {{#else}}
+                  ... display login form
+                  {{/contains}}
+                header:
+                  title: Conditional Wrapper
+                config:
+                  mode: html
               - type: text
                 data: '---'
               - type: text
