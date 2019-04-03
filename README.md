@@ -4,6 +4,7 @@ This repo contains all the main developer documentation file which is built from
 ## Open an Issue
 Create a PR against the repo to have an issue looked at. It should include a link to the page or section. What needs to be fixed and any supporting evidence, such as an API response. 
 
+
 ### Issues we are looking for
 1. Spelling and Grammar Mistakes
 2. Broken Links
