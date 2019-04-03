@@ -13892,9 +13892,36 @@ pages:
                   there are two options: 
 
 
+                  * Hide non essential pages by removing the back links in Cart
+                  and Checkout.
+
+                  * Edit the theme files to hide the other pages from all
+                  visitors except for those who need to see them for
+                  maintenance. The steps to edit the theme files are outlined
+                  below.
+
+
+                  Edit the schema.json file and add:
+
 
                 header:
                   anchor: headless-commerce_ways-to-implement-headless
+              - type: code
+                data: |-
+                  {
+                     "name": "Administrators",
+                     "settings": [
+                       {
+                         "type": "text",
+                         "label": "Administrator Emails (separated by commas)",
+                         "id": "admin_emails"
+                       }
+                     ]
+                   }
+                header:
+                  title: Add the following object to the settings array
+                config:
+                  mode: json
               - type: text
                 data: '---'
               - type: text
