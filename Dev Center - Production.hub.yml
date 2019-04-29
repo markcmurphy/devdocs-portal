@@ -4351,7 +4351,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Trigger the Webhook Event</a></li>\n        <li><a href=\"#setting-up-webhooks_troubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Trigger the Webhook Event</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_custom-headers\">Adding Custom Headers</a></li>\n        <li><a href=\"#setting-up-webhooks_troubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               ## Intro
@@ -4818,6 +4818,19 @@ pages:
                                 original /POST response or by sending a /GET
                                 request to the hooks resource
                               anchor: delete-webhook
+                          - type: text
+                            data: >-
+                              ## Adding Custom Headers
+
+                              For added security you can add custom headers to
+                              your webhook request. `headers` accepts any
+                              key:value pair as a string. 
+                            header:
+                              anchor: setting-up-webhooks_custom-headers
+                          - type: code
+                            data: "{\n\"scope\": \"store/cart/lineItem/*\",\n  \"destination\": \"https://myapp.herokuapp.com/\",\n  \"is_active\": true,\n  \"headers\": {\n  \t\"User-Name\": \"Hello\",\n  \t\"Password\": \"Goodbye\"\n  }\n  \t\n}"
+                            header:
+                              title: Example Webhook Custom Headers
                           - type: text
                             data: >-
                               ## Troubleshooting
