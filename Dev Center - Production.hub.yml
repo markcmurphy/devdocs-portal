@@ -13188,32 +13188,21 @@ pages:
                     - type: code
                       data: >-
                         deleteCartItem(`/api/storefront/carts/`,
-                        `c057c316-71d8-4b58-86e1-f6f2ed003683`,
-                        `94bf4255-13a0-4109-b37a-5122ee3dd18c`)
+                        `45f524b1-3aaa-4a11-8df7-7b5223abb9b6`,
+                        `1f0488c5-1228-45b3-80f9-ce836192278d`)
                           .then(data => console.log(JSON.stringify(data)))
-                          .then(handleErrors) 
-                          .catch(error => console.error(error));
-
-                        function handleErrors(response) {
-                            if (!response.ok) {
-                                throw Error(response.statusText);
-                            }
-                            return response;
-                        }
-
 
                         function deleteCartItem(url = ``, cartId = ``, itemId =
                         ``) {
-                              return fetch(url + cartId + '/items/' + itemId , {
-                                  method: "DELETE",
-                                  credentials: "same-origin",
-                                  headers: {
-                                      "Content-Type": "application/json",          
-                                      },
-                                 body: JSON.stringify(data),
-                              })
-                              .then(response => response.json()); 
-                          }
+                          return fetch(url + cartId + '/items/' + itemId, {
+                           method: "DELETE",
+                           credentials: "same-origin",
+                           headers: {
+                            "Content-Type": "application/json",          
+                            }
+                          })
+                          .then(response => response.json());
+                        }
                       header:
                         title: Delete Cart Item
                       config:
