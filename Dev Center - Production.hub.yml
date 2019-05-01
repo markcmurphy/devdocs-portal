@@ -20260,7 +20260,7 @@ pages:
                     - type: html
                       data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#config_new\">New Products Example</a></li>\n    <li><a href=\"#config_changing\">Changing Page Layout using Local Front Matter</a></li>\n    <li><a href=\"#config_retrieving\">Retrieving Specific config. Values through Sass</a></li>\n    <li><a href=\"#config_adding\">Adding/Removing Components</a></li>\n\t</ul>\n</div>"
                     - type: text
-                      data: >
+                      data: >-
                         To customize your theme’s appearance at a global level,
                         the values that you define in the 
 
@@ -20279,21 +20279,20 @@ pages:
                         first note the default values in `config.json` for the
                         `homepage_new_products_count` and
                         `product_list_display_mode` keys:
-
-
-                        ```
-
+                      header:
+                        anchor: config_new
+                    - type: code
+                      data: |-
                         {
-
                         "settings": {
                           "homepage_new_products_count": 12,
                           "product_list_display_mode": "grid",
                           }
                         }
-
-                        ```
-
-
+                      config:
+                        mode: json
+                    - type: text
+                      data: >-
                         Next, open your `<theme-name>templates/pages/home.html`
                         file. Highlighted in bold below is a statement that uses
                         the theme-wide settings above to customize an API
@@ -20305,12 +20304,8 @@ pages:
                         delimiters. If your current theme’s `home.html` front
                         matter omits this `products:new:limit` definition, paste
                         it in for this demonstration.)
-
-
-                        ```
-
-                        ---
-
+                    - type: code
+                      data: |-
                         products:
                           new:
                             limit: {{theme_settings.homepage_new_products_count}}
@@ -20319,31 +20314,24 @@ pages:
                           top_sellers:
                             limit: {{theme_settings.homepage_top_products_count}}
                         carousel: {{theme_settings.homepage_show_carousel}}
-
                         blog:
                             recent_posts:
                                 limit: {{theme_settings.homepage_blog_posts_count}}
                         ---
-
                         {{#partial "hero"}}
-
 
                         <!-- [...] -->
 
-
                         {{/partial}}
-
                         {{> layout/base}}
-
-                        ```
-
-
+                      config:
+                        mode: html
+                    - type: text
+                      data: >-
                         If you load your storefront’s home page (by default,
                         [http://localhost:3000](http://localhost:3000), you
                         should see a "New Products" section that displays 12
                         products in a grid.
-                      header:
-                        anchor: config_new
                     - type: text
                       data: >
                         ## Changing Page Layout Using Local Front Matter
