@@ -20333,7 +20333,7 @@ pages:
                         should see a "New Products" section that displays 12
                         products in a grid.
                     - type: text
-                      data: >
+                      data: >-
                         ## Changing Page Layout Using Local Front Matter
 
 
@@ -20342,34 +20342,28 @@ pages:
                         matter. As in the New Products example above, note how
                         the presence and number of featured products correlates
                         to your theme’s `config.json` setting:
-
-
-                        ```
-
+                      header:
+                        anchor: config_changing
+                    - type: code
+                      data: |-
                         ---
-
                         [...]
-
                         products:
                           featured:
                               limit: {{theme_settings.homepage_featured_products_count}}
                         [...]
-
                         ---
-
-                        ```
-
-
+                      config:
+                        mode: html
+                    - type: text
+                      data: >-
                         Next, try changing the `limit:
                         {{theme_settings.homepage_featured_products_count}}`
                         statement in the `home.html` file to a hard-coded limit:
                         2, as indicated below in bold:
-
-
-                        ```
-
+                    - type: code
+                      data: |-
                         ---
-
                         products:
                           // [...]
                           featured:
@@ -20377,37 +20371,27 @@ pages:
                           // [...]  
                         ---
 
-
                         <!-- [...] -->
-
 
                         {{#partial "page"}}
 
-
                         <!-- [...] -->
-
 
                         <div class="main full">
                           {{#if products.featured}}
                               {{> components/products/featured products=products.featured columns=2}}
                           {{/if}}
                         </div>
-
                         {{/partial}}
-
                         {{> layout/base}}
-
-                        ```
-
-
+                    - type: text
+                      data: >-
                         If you now reload your storefront’s home page in your
                         browser, you should see the number of displayed
                         "Featured Products" change from its default number (as
                         specified in `config.json`) to two.
-                      header:
-                        anchor: config_changing
                     - type: text
-                      data: >
+                      data: >-
                         ## Retrieving Specific config.json Values through Sass
 
 
@@ -20417,35 +20401,27 @@ pages:
                         hexadecimal values, and to make the data available to
                         Theme Editor. Here is one short snippet from
                         `config.json`:
-
-
-                        ```
-
+                      header:
+                        anchor: config_retrieving
+                    - type: code
+                      data: |-
                         {
-
                         // [...]
-
                         "color-highlight": "#00abc9",
-
                         "color-highlightDark": "#f2f2f2",
-
                         "color-highlightDarker": "#dfdfdf",
-
                         // [...]
-
                         }
-
-                        ```
-
-
+                      config:
+                        mode: css
+                    - type: text
+                      data: >-
                         Here are the corresponding references in the default
                         Stencil theme’s
                         `<theme-name>/assets/scss/settings/global/color/_color.scss`
                         file:
-
-
-                        ```
-
+                    - type: code
+                      data: >-
                         // [...]
 
                         $color-highlight:       stencilColor("color-highlight");
@@ -20457,17 +20433,15 @@ pages:
                         stencilColor("color-highlightDark");
 
                         // [...]
-
-                        ```
-
-
+                      config:
+                        mode: css
+                    - type: text
+                      data: >-
                         In `config.json`, try redefining one or more color
                         variables to hex values of your choice. Then re-render
                         your theme’s home page to see the effects.
-                      header:
-                        anchor: config_retrieving
                     - type: text
-                      data: >
+                      data: >-
                         ## Adding/Removing Components
 
 
@@ -20484,10 +20458,10 @@ pages:
                         and comment out) the code section shown below
                         (characterized by the strikethrough), and keep it on
                         your Clipboard:
-
-
-                        ```
-
+                      header:
+                        anchor: config_adding
+                    - type: code
+                      data: |-
                         <footer class="footer" role="contentinfo">
                           <div class="container">
                               <section class="footer-info">
@@ -20502,10 +20476,10 @@ pages:
                               {{/each}}
                           </ul>
                         </article>
-
-                        ```
-
-
+                      config:
+                        mode: html
+                    - type: text
+                      data: >-
                         If you now refresh the storefront page in your browser,
                         the Categories list should disappear from the footer.
 
@@ -20516,10 +20490,8 @@ pages:
                         cut/copy into a new file named
                         `<theme-name>/templates/components/footer/categories.html`,
                         and save it:
-
-
-                        ```
-
+                    - type: code
+                      data: |-
                         <article class="footer-info-col footer-info-col--small">
                           <h5 class="footer-info-heading">{{lang 'footer.categories'}}</h5>
                           <ul class="footer-info-list">
@@ -20530,18 +20502,16 @@ pages:
                               {{/each}}
                           </ul>
                         </article>
-
-                        ```
-
-
+                      config:
+                        mode: html
+                    - type: text
+                      data: >-
                         Next, back in
                         `/templates/components/common/footer.html`, add a
                         reference to your new path/file, as indicated below in
                         comments:
-
-
-                        ```
-
+                    - type: code
+                      data: |-
                         <footer class="footer" role="contentinfo">
                           <div class="container">
                               <section class="footer-info">
@@ -20551,17 +20521,15 @@ pages:
                               </section>
                           </div>
                         </footer>
-
-                        ```
-
-
+                      config:
+                        mode: html
+                    - type: text
+                      data: >-
                         If you now refresh storefront pages in your browser, the
                         Categories list should reappear in the footer. The
                         component returns even though you have moved its data
                         resources to an arbitrary new location, and referenced
                         them indirectly.
-                      header:
-                        anchor: config_adding
               - title: Customizing Javascript
                 route:
                   path: /customizing-javascript
