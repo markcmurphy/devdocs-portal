@@ -19852,31 +19852,29 @@ pages:
                               file's
                               [sourcemap](https://webpack.js.org/guides/build-performance/#devtool)
                               entry from:
-
-
-                              ```
-
-                              devtool: 'source-map'
-
-                              ```
-
-                              to:
-
-
-                              ```
-
-                              devtool: 'eval-source-map'
-
-                              ```
-
-
+                            header:
+                              anchor: configuring_webpack-specific
+                          - type: code
+                            data: 'devtool: ''source-map'''
+                            header:
+                              subtitle: webpack.conf.js
+                            config:
+                              mode: js
+                          - type: text
+                            data: to
+                          - type: code
+                            data: 'devtool: ''eval-source-map'''
+                            header:
+                              subtitle: webpack.conf.js
+                            config:
+                              mode: js
+                          - type: text
+                            data: >-
                               The `eval-source-map` option is slower, but more
                               verbose. This [Webpack Devtool
                               Configuration](https://webpack.js.org/configuration/devtool/)
                               article provides an overview of all devtool
                               options and details regarding each.
-                            header:
-                              anchor: configuring_webpack-specific
                           - type: text
                             data: '---'
                           - type: text
@@ -19911,10 +19909,10 @@ pages:
                               preview engine to watch or ignore, in two
                               respective lists. You are free to edit these
                               lists:
-
-
-                              ```
-
+                            header:
+                              anchor: configuring_watched-folders
+                          - type: code
+                            data: |-
                               var watchOptions = {
                                   // If files in these directories change, reload the page.
                                   files: [
@@ -19930,10 +19928,8 @@ pages:
                                       '/assets/dist',
                                   ]
                               };
-
-                              ```
-                            header:
-                              anchor: configuring_watched-folders
+                            config:
+                              mode: js
                           - type: text
                             data: >-
                               ### JavaScript Rebundling: `development` Function
@@ -19951,10 +19947,10 @@ pages:
                               watcher uses options configured in the
                               `webpack.conf.js` file passed by `webpackConfig`.
                               So a JavaScript rebuild will refresh the browser:
-
-
-                              ```
-
+                            header:
+                              anchor: configuring_javascript-rebundling
+                          - type: code
+                            data: |-
                               function development() {
                                   webpack(webpackConfig).watch({}, err => {
                                       if (err) {
@@ -19964,10 +19960,6 @@ pages:
                                       process.send('reload');
                                   });
                               }
-
-                              ```
-                            header:
-                              anchor: configuring_javascript-rebundling
                           - type: text
                             data: >-
                               ## Theme Packaging: `production` Function 
@@ -19985,10 +19977,10 @@ pages:
                               `production` function to notify Stencil CLI that
                               the theme-specific build has completed and is
                               ready to package:
-
-
-                              ```
-
+                            header:
+                              anchor: configuring_theme-packaging
+                          - type: code
+                            data: |-
                               function production() {
                                   webpackConfig.watch = false;
                                   webpackConfig.devtool = false;
@@ -20013,7 +20005,6 @@ pages:
                                   });
                               }
 
-
                               if (process.send) {
                                   // running as a forked worker
                                   process.on('message', message => {
@@ -20028,10 +20019,8 @@ pages:
 
                                   process.send('ready');
                               }
-
-                              ```
-                            header:
-                              anchor: configuring_theme-packaging
+                            config:
+                              mode: js
             blocks: []
         - title: Development Quickstart
           route:
