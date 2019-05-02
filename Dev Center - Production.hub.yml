@@ -17223,22 +17223,35 @@ pages:
                       data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#installing_prerequisites\">Creating an API Account</a></li>\n    <li><a href=\"#installing_prerequisites\">Prerequisites by OS</a></li>\n    <li><a href=\"#installing_installing-the-stencil-cli\">Installing the Stencil Command Line Interface (CLI)</a></li>\n    <li><a href=\"#installing_cloning-cornerstone\">Cloning Cornerstone Using Github</a></li>\n    <li><a href=\"#installing_installing-stencils-js-utilities\">Installing Stencil's Javascript Utilities</a></li>\n    <li><a href=\"#installing_video-demo\">Video Demo</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
-                        ## Creating an API Account
+                        The Stencil CLI enables developers to locally develop
+                        and customize on any Stencil theme with no impact on a
+                        merchant’s live storefront during the development
+                        process. When developing locally, you will have access
+                        to real-time Browsersync preview and testing across
+                        desktop, mobile, and tablet devices/viewports. This
+                        article contains detailed instructions on installing
+                        Stencil CLI on Mac, Windows, and Linux.
+
+
+                        ### Prerequisites
 
 
                         You will need to have an authentication token to use the
                         Stencil CLI. See Getting API Credentials in
                         [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication#authentication_getting-api-credentials)
                         in our API Docs to learn how to obtain an API Token.
-                    - type: callout
-                      data:
-                        body: >-
-                          Moving forward in the CLI installation, each OS has
-                          different prerequisites. Be sure to check the correct
-                          tab in the [Prerequisites by
-                          OS](#installing_prerequisites) (Mac OS, Linux, or
-                          Windows) section before attempting installation.
-                        title: Prerequisites by OS
+
+
+                        Each OS has different prerequisites. Be sure to check
+                        the correct tab in the [Prerequisites by
+                        OS](#installing_prerequisites) (Mac OS, Linux, or
+                        Windows) section before attempting installation.
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: '## Prerequisites by OS'
+                      header:
+                        anchor: installing_prerequisites
                     - type: tabs
                       data:
                         children:
@@ -17325,7 +17338,7 @@ pages:
                               - type: text
                                 data: '---'
                               - type: text
-                                data: >
+                                data: >-
                                   ## Troubleshooting
 
 
@@ -17632,26 +17645,23 @@ pages:
                                   anchor: windows_troubleshooting
                       header:
                         title: Stencil Prerequisites by OS
-                        anchor: installing_prerequisites
                     - type: text
                       data: '---'
                     - type: text
                       data: >-
-                        ## Installing the Stencil Command Line Interface
+                        ## Install Stencil CLI
 
 
-                        The first step toward developing on Stencil is to
-                        install the Stencil CLI. 
-
-
-                        You can do this via the following command (_If you are
-                        using Windows, you will need to run this command in git
-                        bash._):
-
-
-                        `npm install -g @bigcommerce/stencil-cli`
-
-
+                        In your terminal (git bash recommended for Windows), use
+                        `npm` to install the Stencil CLI:
+                      header:
+                        anchor: installing_installing-the-stencil-cli
+                    - type: code
+                      data: npm install -g @bigcommerce/stencil-cli
+                      config:
+                        mode: shell
+                    - type: text
+                      data: >-
                         ### Items to Note
 
 
@@ -17684,8 +17694,6 @@ pages:
                         then either install nvm now, or follow one of the
                         workarounds on [this external
                         page](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
-                      header:
-                        anchor: installing_installing-the-stencil-cli
                     - type: callout
                       data:
                         body: >-
@@ -17706,37 +17714,28 @@ pages:
                       data: '---'
                     - type: text
                       data: >-
-                        ## Cloning Cornerstone using Github
+                        ## Cloning Cornerstone Repo
 
 
-                        _Windows users need to run this in git bash._
-
-
-                        Navigate to a directory where you would like to install
-                        a subdirectory for your theme. You must also have
-                        appropriate write permissions in this directory. 
-
-
-                        Execute the following command to clone Stencil's base
-                        theme, Cornerstone, into a new subdirectory named
-                        `/cornerstone/`
-
-
-                        `git clone
-                        https://github.com/bigcommerce/cornerstone.git`
-                          
-                        If the above command fails, and you are accessing GitHub
-                        anonymously, give the URL this alternate prefix:
-
-
-                        `git clone git://github.com/bigcommerce/cornerstone.git`
-
-
-                        In the next step, you will install Stencil's [JavaScript
-                        utilities](/stencil-docs/getting-started/installing-stencil#installing_installing-stencils-js-utilities)
-                        to enable API access via Ajax.
+                        In your terminal, `cd` to the directory you would like
+                        to use for working on themes, then clone the cornerstone
+                        repo:
                       header:
                         anchor: installing_cloning-cornerstone
+                    - type: code
+                      data: 'git clone git://github.com/bigcommerce/cornerstone.git'
+                      header: {}
+                      config:
+                        mode: shell
+                    - type: text
+                      data: >-
+                        In the next step, we'll install Stencil's [JavaScript
+                        utilities](/stencil-docs/getting-started/installing-stencil#installing_installing-stencils-js-utilities)
+                        to enable API access via Ajax.
+                    - type: code
+                      data: ''
+                    - type: text
+                      data: ''
                     - type: callout
                       data:
                         body: >-
@@ -17753,9 +17752,33 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
-                      data: "## Installing Stencil's Javascript Dependencies\n\n_Windows users need to run this in git bash._\n\nComplete the following steps:\n\nNavigate to your Stencil theme directory. This example assumes that this target directory has the default name `cornerstone`.\n\n`cd cornerstone`\n\nNext, execute the following command inside of that directory:\n\t\n`npm install`\n\nThis will install the required npm modules to properly leverage the Stencil event framework.\n\nNow that your installation is complete, you can move on to [preparing your store/tokens](/stencil-docs/getting-started/authentication-and-tokens)"
+                      data: >-
+                        ## Installing Stencil CLI JS Dependencies
+
+
+                        Before we can start using Stencil, we need to install
+                        some `npm` modules to leverage the Stencil event
+                        framework. To do so, `cd` into the cornerstone repo and
+                        run `npm install`:
                       header:
                         anchor: installing_installing-stencils-js-utilities
+                    - type: code
+                      data: >-
+                        cd cornerstone # move into cornerstone repo you just
+                        cloned
+
+
+                        npm install # install dependencies with node package
+                        manager
+                      header:
+                        subtitle: Terminal
+                      config:
+                        mode: shell
+                    - type: text
+                      data: >-
+                        Now that your installation is complete, you can move on
+                        to [preparing your
+                        store/tokens](/stencil-docs/getting-started/authentication-and-tokens)
                     - type: text
                       data: '---'
                     - type: text
