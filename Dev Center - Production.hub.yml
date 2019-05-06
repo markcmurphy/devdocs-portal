@@ -25879,7 +25879,7 @@ pages:
                           - type: html
                             data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#optimized_enable\">Enable Optimized One Page Checkout</a></li>\n    <li><a href=\"#optimized_working\">Working with the Optimized Checkout SCSS File</a></li>\n    <li><a href=\"#optimized_configuring\">Configuring the Desktop Viewport</a></li>\n    <li><a href=\"#optimized_classes\">Classes Available for Customization</a></li>\n    <li><a href=\"#optimized_providing\">Providing User Options in Theme Editor</a></li>\n\t</ul>\n</div>"
                           - type: text
-                            data: >
+                            data: >-
                               ## Enable Optimized One Page Checkout
 
 
@@ -25905,17 +25905,19 @@ pages:
                               3. Within your theme's `config.json` file > `meta`
                               section, make sure the `features` array includes
                               the value `customized_checkout`, as shown below:
-
-
-                              ```
+                            header:
+                              anchor: optimized_enable
+                          - type: code
+                            data: |2-
                                  "meta": {
                                    [...]
                                    "features": [
                                      [...]
                                      "customized_checkout"
-                              ```
-
-
+                            config:
+                              mode: css
+                          - type: text
+                            data: >-
                               4. Within your theme's
                               `<theme-name>/templates/pages/` subdirectory,
                               paste in a clean, uncustomized copy of the
@@ -25933,20 +25935,18 @@ pages:
                               *
                               [order-confirmation.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/order-confirmation.html)
                               file template
-
-
-                              **Note:** _For Optimized One-Page Checkout to work
-                              properly, the `order-confirmation.html` template
-                              **must** be present in your theme. If this
-                              template is absent, shoppers will receive a server
-                              error upon submitting their order.(The
-                              corresponding template was named
-                              `order-complete.html` in earlier versions of
-                              Stencil themes. But that minimal template is
-                              **not** a substitute for the required current
-                              template.)_
-                            header:
-                              anchor: optimized_enable
+                          - type: callout
+                            data:
+                              body: >-
+                                For Optimized One-Page Checkout to work
+                                properly, the `order-confirmation.html` template
+                                must be present in your theme. If this template
+                                is absent, shoppers will receive a server error
+                                upon submitting their order (the corresponding
+                                template was named `order-complete.html` in
+                                earlier versions of Stencil themes; however,
+                                that minimal template is not a substitute for
+                                the required current template).
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1540227949000
