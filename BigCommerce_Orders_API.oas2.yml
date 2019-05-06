@@ -4569,6 +4569,7 @@ definitions:
   OrderProducts:
     title: Order Products
     type: object
+    description: Required to create an order.
     properties:
       id:
         description: Numeric ID of this product within this order.
@@ -4760,7 +4761,10 @@ definitions:
           'external_id' cannot be written to. Please remove it from your request
           before trying again. It can not be overwritten once set.
         type: integer
-    description: Required to create an order.
+      upc:
+        type: string
+        maxLength: 255
+        description: Universal Product Code.
   OrderCountResponse:
     title: Order Count Response
     example:
