@@ -1145,7 +1145,7 @@ paths:
             $ref: '#/definitions/ResourceImage'
           x-examples:
             application/json:
-              image_file: >-
+              image_url: >-
                 https://upload.wikimedia.org/wikipedia/commons/7/7f/Anglel_Bless_Legendary_Hills_1_m%C4%9Bs%C3%ADc_st%C3%A1%C5%99%C3%AD.jpg
             multipart/form-data: |-
               curl -X PUT \
@@ -1187,12 +1187,14 @@ paths:
         The image will show on the storefront when the value is selected.
 
          **Required Fields**
-        - image_file: Form posts are the only accepted upload option.
+        - image_file: Form posts
+        - image_url: Any publicly available URL
       tags:
         - Product Variants
         - Catalog
       consumes:
         - application/json
+        - multipart/form-data
   '/catalog/products/{product_id}/options':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
