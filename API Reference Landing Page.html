@@ -7,7 +7,16 @@
             <h1 class="h1 panel-title__text-dark">API Reference</h1>
           </div>
         </div>
+        <div id="ApiReferencePages">
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Generates the links on landing page -->
+<script>
+  __routeInfo.allProps.sidebarTree[0]["treeData"].forEach(function(element){
+		jQuery('#ApiReferencePages').append(jQuery("a").text(element["name"]).attr("href", element["path"]));
+  });
+</script>
