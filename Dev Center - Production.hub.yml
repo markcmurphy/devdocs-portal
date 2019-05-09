@@ -17380,57 +17380,59 @@ pages:
                                   title: Platform Support
                               - type: text
                                 data: >-
-                                  ## Root Permissions
+                                  ## Node.js 6.x+
 
 
-                                  You should have administrator/root permissions
-                                  on your machine. (If not, you may need to
-                                  precede some of the below commands with the
-                                  `sudo` prefix.)
-                                header:
-                                  anchor: linux_root
-                              - type: text
-                                data: '---'
-                              - type: text
-                                data: >-
-                                  ## Git Client
-
-
-                                  You must have a [Git
-                                  client](https://git-scm.com/downloads)
-                                  installed.
-                                header:
-                                  anchor: linux_git-client
-                              - type: text
-                                data: '---'
-                              - type: text
-                                data: >-
-                                  ## Node.js
-
-
-                                  Stencil requires the Node.js runtime
-                                  environment, version 6.x or later. We have
-                                  tested Stencil on selected Node.js versions,
-                                  from 6.10.3 to 7.9.0.
+                                  Stencil requires **Node.js** version **6.x**
+                                  or later. We have tested Stencil on Node.js
+                                  versions**6.10.3** to **7.9.0**.
 
 
                                   We recommend that you install or update
-                                  Node.js using nvm. First install nvm, version
-                                  0.31.0, as follows:
-
-
-                                  `curl -o-
-                                  https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh
-                                  | bash`
-
-
-                                  Next, explicitly install a supported Node.js
-                                  version, using this convention:
-
-
-                                  `nvm install 6.4.0`
+                                  Node.js using `nvm` as follows:
                                 header:
                                   anchor: linux_nodejs
+                              - type: code
+                                data: >-
+                                  ## update package list
+
+                                  sudo apt-get update
+
+
+                                  ## install node and npm
+
+                                  sudo apt-get install nodejs npm
+
+
+                                  # download nvm install.sh and run with bash
+
+                                  curl -o-
+                                  https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh
+                                  | bash
+
+
+                                  # explicitly install a supported Node.js
+                                  version
+
+                                  nvm install 6.4.0
+
+
+                                  # double check the installed node version:
+
+                                  nodejs --version
+                                config:
+                                  mode: shell
+                              - type: text
+                                data: >-
+                                  ## Other Dependencies
+
+
+                                  Depending on the distro, you may also need to
+                                  install the following dependencies:
+
+                                  * g++
+
+                                  * [libsass](https://sass-lang.com/libsass)
                               - type: text
                                 data: '---'
                               - type: text
