@@ -67368,18 +67368,44 @@ pages:
                         ### Templating
 
 
-                        The BigCommerce for WordPress plugin follows the
-                        standard WordPress method of templating. Templates are
-                        found in
-                        `/wp-content/plugins/bigcommerce-for-wordpress-master/public-views`
+                        All templates that render on the front end are found in
+                        the `/wp-content/plugins/bigcommerce/templates/public`
+                        directory. To
+
+                        Override any template, create a `bigcommerce` directory
+                        in your theme and copy the template file to that
+                        directory.
 
 
-                        and can be moved to the theme folder into a bigcommerce
-                        folder, like this:
-                        `/wp-content/theme-name/bigcommerce/` 
+                        For example, copy
 
 
-                        where `<theme-name>` is the name of the active theme.
+                        ```
+
+                        wp-content/plugins/bigcommerce/templates/public/single-bigcommerce_product.php
+
+                        ```
+
+
+                        to
+
+
+                        ```
+
+                        wp-content/themes/<theme-name>/bigcommerce/single-bigcommerce_product.php
+
+                        ```
+
+
+                        Then, edit
+                        `wp-content/themes/<theme-name>/bigcommerce/single-bigcommerce_product.php`
+                        to override the default content.
+
+
+                        **Note**: Most templates are used for rendering content
+                        inside of the content area of your theme's template.
+                        Only a few take over the entire page template. These may
+                        need modifications to match your theme.
 
 
                         ### Shopper Experience
