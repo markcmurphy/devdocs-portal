@@ -4363,7 +4363,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>Registering and Testing Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Trigger the Webhook Event</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_custom-headers\">Adding Custom Headers</a></li>\n        <li><a href=\"#setting-up-webhooks_troubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Webhooks Tutorial</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#setting-up-webhooks_intro\">Intro</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_prerequisites\">Prerequisites</a></li>\n        <li><a href=\"#setting-up-webhooks_create-project-folder\">Create Project Folder</a></li>\n        <li><a href=\"#setting-up-webhooks_install-ngrok\">Install ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_create-express-app\">Create Express App</a></li>\n        <li><a href=\"#setting-up-webhooks_start-the-app-ngrok\">Start the App and ngrok</a></li>\n        <li><a href=\"#setting-up-webhooks_fire-webhooks\">Trigger the Webhook Event</a></li>\n    \t\t<li><a href=\"#setting-up-webhooks_custom-headers\">Adding Custom Headers</a></li>\n        <li><a href=\"#setting-up-webhooks_troubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               When testing your application locally, ngrok is a
@@ -4440,15 +4440,17 @@ pages:
 
 
                               This can be accomplished in one command:
-
-                              unzip "file_to_unzip" -d  destination
-
-
-                              `unzip
+                            header:
+                              anchor: setting-up-webhooks_install-ngrok
+                          - type: code
+                            data: >-
+                              unzip
                               /Users/your-computer/Downloads/ngrok-stable-darwin-amd64.zip
-                              -d /Users/your-computer/Documents/webhooks-test`
-
-
+                              -d /Users/your-computer/Documents/webhooks-test
+                            config:
+                              mode: shell
+                          - type: text
+                            data: >-
                               ### Windows
 
 
@@ -4462,8 +4464,6 @@ pages:
                               4. Make sure ngrok is referenced in your [PATH
                               environment
                               variable](https://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them).
-                            header:
-                              anchor: setting-up-webhooks_install-ngrok
                           - type: callout
                             data:
                               type: success
@@ -4511,51 +4511,29 @@ pages:
                                 At this point your project folder should
                                 contain:
 
-                                index.js
+                                * `index.js`
 
-                                node_modules
+                                * `node_modules`
 
-                                package.json
+                                * `package.json`
 
-                                ngrok
+                                * `ngrok`
 
-                                package-lock.json
+                                * `package-lock.json`
                               title: Checkpoint
                           - type: text
+                            data: '4. Copy and paste the following into `index.js`:'
+                          - type: code
+                            data: "const express = require('express');\nconst app = express();\n\n// when there's a post request to /webooks...\napp.post('/webhooks', function (req, res) {\n  \n  \t// respond with 200 OK\n    res.send('OK');\n});\n\napp.listen(3000, function () {\n    console.log('Listening for webhooks on port 3000')\n})"
+                            config:
+                              mode: js
+                          - type: text
                             data: >-
-                              4. Open index.js in a text editor and add this
-                              code snippet: 
-
-
-
-                              ```
-                                  const express = require('express')
-                                  const app = express()
-                                      app.post('/webhooks', function (req, res) {
-                                      res.send('OK')
-                                  })
-                                  app.listen(3000, function () {
-                                      console.log('Listening for webhooks on port 3000')
-                                  })
-                              ```
-
-
-
-                              The app is starting a server and listening on port
-                              3000, then returning a response of ok once it
-                              receives a POST to the /webhooks url.
-
-
-                              ```
-
-                              app.post('/webhooks', function (req, res) {
-                               res.send('OK')
-                              })
-
-                              ```
-
-
-
+                              This app listens to requests on port 3000, then
+                              200 responds once it receives a `POST` request to
+                              `/webhooks`.
+                          - type: text
+                            data: >-
                               From Express
                               [Website](https://expressjs.com/en/starter/basic-routing.html):
 
@@ -4658,28 +4636,27 @@ pages:
                               "destination" is your ngrok forwarding url with
                               /webhooks appended (the route specified in our
                               Express app):
-
-
-                              ```
-
+                          - type: code
+                            data: |-
                               {
                                "scope": "store/product/updated",
                                "destination": "https://6a35e97b.ngrok.io/webhooks",
                                "is_active": true
                               }
-
-                              ```
-                               
-
-                              3. Update the request headers to contain:
-
-                              ```
+                            config:
+                              mode: json
+                          - type: text
+                            data: '3. Update the request headers to contain:'
+                          - type: code
+                            data: |2-
                                   Accept: application/json
                                   Content-Type: application/json
                                   X-Auth-Client: {{the OAuth client id}}
                                   X-Auth-Token: {{the OAuth token}}
-                              ```
-
+                            config:
+                              mode: http
+                          - type: text
+                            data: >-
                               4. Check all the values and then hit POST. If
                               successful, the response will be 201 Created.
                           - type: http
@@ -4787,7 +4764,28 @@ pages:
                               maxWidth: '800'
                               maxHeight: '800'
                           - type: text
-                            data: "### Update Via the API\nCreate a PUT request to the product to be updated, replacing 124 with the product’s ID: \n\n`https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/124`\n\nIn this example, the price of product_id 124 is being changed to 12.99:\n\n```\n{\n\t\"price\": 12.99\n}\n```\n\nAfter hitting send, check the ngrok web interface. You may see a single event or several based on how many times the product has been updated in the previous step."
+                            data: >-
+                              ### Update Via the API
+
+                              Create a PUT request to the product to be updated,
+                              replacing 124 with the product’s ID: 
+
+
+                              `https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/124`
+
+
+                              In this example, the price of product_id 124 is
+                              being changed to 12.99:
+                          - type: code
+                            data: "{\n\t\"price\": 12.99\n}"
+                            config:
+                              mode: json
+                          - type: text
+                            data: >-
+                              After hitting send, check the ngrok web interface.
+                              You may see a single event or several based on how
+                              many times the product has been updated in the
+                              previous step.
                           - type: http
                             data:
                               url: >-
@@ -4879,18 +4877,18 @@ pages:
 
 
                               Add this snippet to your code to respond to
-                              incoming get requests with 'hello'.
-
-
-                              ```
-
+                              incoming get requests with 'hello':
+                            header:
+                              anchor: setting-up-webhooks_troubleshooting
+                          - type: code
+                            data: |-
                               app.get('/',(req, res)=>{
                                   res.send('Hello!');
                               }); 
-
-                              ```
-
-
+                            config:
+                              mode: js
+                          - type: text
+                            data: >-
                               2. Getting error ngrok not found?
 
                               There are two ways to fix this. Your local setup
@@ -4909,8 +4907,6 @@ pages:
                               If you are having trouble getting ngrok started
                               try setting the PATH. 
                                   - [What are PATH and other environment variables, and how can I set or use them?](https://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them)
-                            header:
-                              anchor: setting-up-webhooks_troubleshooting
                     - title: Webhook Events
                       route:
                         path: /webhook-events
