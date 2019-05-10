@@ -3775,7 +3775,7 @@ pages:
                       data:
                         blocks:
                           - type: html
-                            data: "<h1>About Webhooks</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#about-webhooks_authentication\">Authentication</a></li>\n        <li><a href=\"#about-webhooks_lightweight-callback-payload\">Lightweight Callback Payload</a></li>\n        <li><a href=\"#about-webhooks_request-and-response\">Request and Response</a></li>\n    \t\t<li><a href=\"#about-webhooks_receiving-the-callback\">Recieving the Callback</a></li>\n    \t\t<li><a href=\"#about-webhooks_respond-to-webhook-callbacks\">Responding to the Callback</a></li>\n        <li><a href=\"#about-webhooks_callback-retry-mechanism\">Callback Retry Mechanism</a></li>\n        <li><a href=\"#about-webhooks_webhook-security\">Webhook Security</a></li>\n    \t\t<li><a href=\"#about-webhooks_webhook-troubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#about-webhooks_tools-for-debugging-and-testing-webhooks\">Tools for Debugging</a></li>\n        <li><a href=\"/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
+                            data: "<h1>Webhooks Overview</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#about-webhooks_authentication\">Authentication</a></li>\n        <li><a href=\"#about-webhooks_lightweight-callback-payload\">Lightweight Callback Payload</a></li>\n        <li><a href=\"#about-webhooks_request-and-response\">Request and Response</a></li>\n    \t\t<li><a href=\"#about-webhooks_receiving-the-callback\">Recieving the Callback</a></li>\n    \t\t<li><a href=\"#about-webhooks_respond-to-webhook-callbacks\">Responding to the Callback</a></li>\n        <li><a href=\"#about-webhooks_callback-retry-mechanism\">Callback Retry Mechanism</a></li>\n        <li><a href=\"#about-webhooks_webhook-security\">Webhook Security</a></li>\n    \t\t<li><a href=\"#about-webhooks_webhook-troubleshooting\">Troubleshooting</a></li>\n        <li><a href=\"#about-webhooks_tools-for-debugging-and-testing-webhooks\">Tools for Debugging</a></li>\n        <li><a href=\"/api-docs/getting-started/webhooks/webhook-events\">All Available Webhooks</a></li>\n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               Webhooks allow app developers to be notified, in
@@ -3864,10 +3864,10 @@ pages:
 
 
                               An example payload follows:
-
-
-                              ```
-
+                            header:
+                              anchor: about-webhooks_lightweight-callback-payload
+                          - type: code
+                            data: |-
                               {
                                "store_id":11111,
                                "producer":"stores/abcde",
@@ -3878,9 +3878,10 @@ pages:
                                       },
                                "hash":"3f9ea420af83450d7ef9f78b08c8af25b2213637"
                                }
-                              ```
-
-
+                            config:
+                              mode: json
+                          - type: text
+                            data: >-
                               | Name | Definition |
 
                               | -- | -- |
@@ -3903,8 +3904,6 @@ pages:
 
                               | hash | The payload data json encoded then passed
                               through sh1 encryption. |
-                            header:
-                              anchor: about-webhooks_lightweight-callback-payload
                           - type: text
                             data: '---'
                           - type: text
@@ -3918,16 +3917,16 @@ pages:
 
                               All webhooks requests must include the following
                               in their HTTP headers:
-
-
-                              ```
-                                   Accept: application/json
-                                   Content-Type: application/json
-                                   X-Auth-Client: <the OAuth client id>
-                                   X-Auth-Token: <the OAuth token>
-                              ```
                             header:
                               anchor: about-webhooks_request-and-response
+                          - type: code
+                            data: |-
+                              Accept: application/json
+                              Content-Type: application/json
+                              X-Auth-Client: <the OAuth client id>
+                              X-Auth-Token: <the OAuth token>
+                            config:
+                              mode: http
                           - type: code
                             data: |-
                               curl -X POST \
@@ -4313,16 +4312,16 @@ pages:
                               you should get an HTTP 201 back. If you do not,
                               check your TLS/SSL setup and be sure that your
                               request contains the following headers:
-
-
-                              ```
-                                   Accept: application/json
-                                   Content-Type: application/json
-                                   X-Auth-Client: <the OAuth client id>
-                                   X-Auth-Token: <the OAuth token>
-                              ```
                             header:
                               anchor: about-webhooks_troubleshooting
+                          - type: code
+                            data: |2-
+                               Accept: application/json
+                               Content-Type: application/json
+                               X-Auth-Client: <the OAuth client id>
+                               X-Auth-Token: <the OAuth token>
+                            config:
+                              mode: http
                           - type: text
                             data: '---'
                           - type: text
