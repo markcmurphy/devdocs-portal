@@ -489,16 +489,25 @@ paths:
       tags:
         - Price Lists Records
     put:
-      description: |-
+      description: >-
         Creates or updates *Price List Records*. 
 
+
         **Required Fields**
+
         * currency
+
 
         **Notes**
 
-        Bulk Updates is supported by this endpoint. 
-        Bulk requests are limited to 1000 items per request.
+
+        * Bulk Updates is supported by this endpoint. 
+
+        * Bulk requests are limited to 100 items per request.
+
+        * Only one bulk upsert can done at a time. Running more than one in
+        parallel on the **same store** will cause a 429 error and the request
+        will fail. 
       operationId: setPriceListRecordCollection
       parameters:
         - name: X-Strict-Mode
@@ -550,7 +559,7 @@ paths:
             during partial update in non-strict mode.
           schema:
             $ref: '#/definitions/PriceRecordBatchErrorResponse'
-      summary: Set Price List Records
+      summary: Upsert Price List Records
       tags:
         - Price Lists Records
     delete:
