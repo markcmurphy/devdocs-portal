@@ -1152,48 +1152,42 @@ pages:
                       data: '---'
                     - type: text
                       data: >-
-                        ## What are OAuth Credentials?
+                        Two types of API credentials are available to developers
+                        wishing to make requests against BigCommerce APIs:
 
 
-                        BigCommerce uses [OAuth
-                        authentication](https://dev.to/anabella/dancing-with-oauth-emp)
-                        for all API and app usage. Currently, there are two
-                        workflows to generate tokens, with different use cases. 
+                        * Store API Credentials (created in a store's control
+                        panel)
+
+                        * App API Credentials (created in the ([Developer
+                        Portal](https://devtools.bigcommerce.com))
 
 
-                        ### API Credentials
-
-                        Credentials for making API requests are created in the
-                        control panel and can only be created by the store
-                        owner. Tokens created manually through the control panel
-                        are referred to in this documentation as API Credentials
-                        to distinguish them from tokens created
-                        programmatically. API Credentials are used for testing
-                        purposes and authenticating scripts, and they are tied
-                        solely to the store used to generate them.
+                        **Store API Credentials** are generated when a Store API
+                        Account is created in a store's control panel
+                        (**Advanced Settings** > **API Accounts**). These
+                        credentials are used to programmatically interact with
+                        an individual store's data using BigCommerce's APIs.
+                        Both OAuth and token-based authentication are possible
+                        with Store API Credentials
 
 
-                        ### Client ID and Client Secret
-
-                        Credentials for creating apps for sale in the
-                        marketplace or private apps are created in [Dev
-                        Tools](https://devtools.bigcommerce.com), the developer
-                        workspace for managing apps. They are referred to as
-                        Client ID and Client Secret in this documentation.  The
-                        Client ID and Client Secret are used by an app to
-                        generate an authorization token per store. This allows
-                        your app to generate an Oauth token programmatically,
-                        eliminating the need to have a merchant manually
-                        generate API Credentials to connect an app to their
-                        store and allowing your app to generate tokens for
-                        multiple stores with a single Client ID and Secret. 
+                        Developers can also create **App API Credentials** in
+                        the BigCommerce [Developer
+                        Portal](https://devtools.bigcommerce.com). App API
+                        Credentials are used during the OAuth flow request
+                        authorization “on behalf” of a store owner, allowing the
+                        app to make API requests against store data. App API
+                        Credentials are OAuth only, and the store owner must
+                        install the app before the app is granted access to the
+                        store. 
                       header:
                         anchor: authentication_what-are-oauth-credentials
                     - type: text
                       data: '---'
                     - type: text
                       data: >-
-                        ## Getting API Credentials
+                        ## Obtaining Store API Credentials
 
                         You can create and manage API Credentials in the
                         BigCommerce control panel by creating an API account, as
@@ -1263,23 +1257,17 @@ pages:
                       data:
                         type: warning
                         body: >-
-                          There is no way to re-display this pop-up after you
-                          select Done to dismiss it. 
-
-                          Make sure you store your credentials before dismissing
-                          the popup, either by copying/pasting the contents of
-                          each field or by keeping the downloaded .txt file.
-                          Otherwise, you will need to repeat all the above steps
-                          to generate new credentials. 
+                          There is no way to re-display this pop-up after
+                          selecting Done, so be sure to securely store the
+                          credentials before leaving this screen. 
                     - type: text
                       data: '---'
                     - type: text
                       data: >-
-                        ## Revoking API Credentials
+                        ## Revoking Store API Credentials
 
 
-                        To revoke an OAuth token, use the following steps to
-                        delete the associated API account:
+                        To revoke Store API Credentials:
 
                         1. Log into the store, using the store owner’s
                         username/password.
@@ -1311,35 +1299,21 @@ pages:
                       data: '---'
                     - type: text
                       data: >-
-                        ## Getting Client ID and Client Secret
+                        ## Obtaining App API Credentials
 
 
-                        * The Client ID value uniquely identifies your app. You
-                        will need to pass it in the header of all your requests
-                        to the API.
-
-                        * The Client Secret value is a secret that your app and
-                        BigCommerce share. You only need to pass the Client
-                        Secret value once, during the app installation sequence.
-                        Thereafter, BigCommerce uses it to sign payloads in
-                        load, uninstall, and remove user requests, and your app
-                        uses it to verify the signature to ensure that the
-                        request is coming from BigCommerce.
-
-
-                        To get a Client ID and Client Secret you will need to
-                        log in to Dev Tools. Dev Tools can be accessed by
-                        clicking **My Apps** in the top-right corner of the
-                        Developer Portal.
+                        To get App API Credentials, login to (or create) your
+                        BigCommerce [Developer
+                        Portal](https://devtools.bigcommerce.com) account.
+                        Navigate to **My Apps** (top-right corner), then:
 
 
                         1. Click **Create an app**  
 
-                        2. Give your app a name. This will only be visible to
-                        you
+                        2. Give your app a name (only be visible to you)
 
-                        3. A pop up box will display showing Your Profile, App
-                        Summary and Category. 
+                        3. Click **Create** (a pop up box will display showing
+                        Your Profile, App Summary and Category)
                       header:
                         anchor: authentication_client-id-secret
                     - type: image
@@ -1374,9 +1348,9 @@ pages:
                         title: View Client Id
                     - type: text
                       data: >-
-                        9. Copy your Client ID and Client Secret. The Client ID
-                        and Client Secret can be accessed at any time by
-                        clicking **View Client ID**. 
+                        9. Copy your Client ID and Client Secret. The Client
+                        ID<sup>1</sup> and Client Secret<sup>2</sup> can be
+                        accessed at any time by clicking **View Client ID**. 
                     - type: image
                       data: >-
                         //s3.amazonaws.com/user-content.stoplight.io/6012/1537390135692
@@ -1398,13 +1372,27 @@ pages:
                         authorized against the store installing the app. For a
                         detailed look at this process, see [Building an
                         App](/api-docs/getting-started/building-apps-bigcommerce/building-apps).
+                    - type: callout
+                      data:
+                        body: >-
+                          1. The Client ID value uniquely identifies your app.
+                          You will need to pass it in the header of all your
+                          requests to the API.
+
+                          2. The Client Secret value is a secret that your app
+                          and BigCommerce share. You only need to pass the
+                          Client Secret value once, during the app installation
+                          sequence. Thereafter, BigCommerce uses it to sign
+                          payloads in load, uninstall, and remove user requests,
+                          and your app uses it to verify the signature to ensure
+                          that the request is coming from BigCommerce.
                     - type: text
                       data: '---'
                     - type: text
                       data: |-
-                        ## Use Cases by Token Type
+                        ## Use Cases by Credential Type
 
-                        |  | Client ID / Client Secret | API Credentials |
+                        |  | App API Credentials | Store API Credentials|
                         |---|:---:|:---:|
                         | From Dev Tools| X | |
                         |From Store Control Panel| | X |
