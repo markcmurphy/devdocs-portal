@@ -37911,6 +37911,26 @@ pages:
                                     | client_ip_address | IP address of the
                                     customer browsing the store |
 
+                                    |country_code|The country code corresponding
+                                    to the IP|
+
+                                    |request|object that contaisn details about
+                                    the HTTP request|
+
+                                    | &#x21B3; referer|refer of the request|
+
+                                    | &#x21B3; host|hostname of the request|
+
+                                    | &#x21B3; user_agent|user agent string of
+                                    the request|
+
+                                    | &#x21B3; is_crawler|renders "true" if user
+                                    angent is known crawler; "false" otherwise
+
+                                    | &#x21B3; absolute_path|The absolute URL
+                                    requested. **Never** use request.path in the
+                                    actual body of the page<sup>1</sup>
+
                                     | secure_base_url | The SSL-enabled, secure,
                                     shop URL |
 
@@ -38346,6 +38366,14 @@ pages:
                                     | bulk_discount_enabled | Boolean that
                                     return `true` if bulk discount is enabled on
                                     products. |
+                                - type: callout
+                                  data:
+                                    body: >-
+                                      1. Never use `{{settings.request.path}}`
+                                      in the actual HTML of the page. Only use
+                                      it for handlebars conditional log.
+                                      Displaying this value in the HTML exposes
+                                      the the page to injection attacks. 
                           - title: Sitemap
                             config:
                               sidebar:
