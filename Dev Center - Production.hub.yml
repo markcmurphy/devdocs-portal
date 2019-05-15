@@ -2162,10 +2162,10 @@ pages:
                       data: "<h1>API Status Codes</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#api-status-codes_2-success\">2xx Success</a></li>\n        <li><a href=\"#api-status-codes_3-redirection\">3xx Redirection</a></li>\n        <li><a href=\"#api-status-codes_4-client-error\">4xx Client Error</a></li>\n        <li><a href=\"#api-status-codes_5-server-error\">5xx Server Error</a></li>\n        <li><a href=\"#api-status-codes_troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
-                        The API responds to requests with different HTTP status
-                        codes depending on the result from the request. Error
-                        responses might also include an error message in the
-                        body to assist in resolving the problem.
+                        The BigCommerce API responds to requests with different
+                        HTTP status codes depending on the result from the
+                        request. Error responses might also include an error
+                        message in the body to assist in resolving the problem.
                     - type: text
                       data: '---'
                     - type: text
@@ -2177,7 +2177,7 @@ pages:
                         and processed successfully.
 
 
-                        | Code | Definition | Purpose |
+                        | Code | Text | Purpose |
 
                         | --- | --- | --- |
 
@@ -2206,7 +2206,7 @@ pages:
                         action.
 
 
-                        | Code | Definition | Purpose |
+                        | Code | Text | Purpose |
 
                         | --- | --- | --- |
 
@@ -2234,44 +2234,19 @@ pages:
                         processed due to problems with the request or the data.
 
 
-                        | Code | Definition | Purpose |
+                        | Code | Text | Purpose |
 
                         | --- | --- | --- |
 
                         | **400** | **Bad Request** | Issued when a malformed
-                        request was sent. Examples are: |
-
-                        |||*   Invalid syntax
-
-                        |||*   Missing required data
-
-                        |||*   Webhook requests missing `Content-Type` in the
-                        HTTP header.
-
-                        |
+                        request was sent.
 
                         | **401** | **Unauthorized** | This response is sent
                         when your client failed to provide credentials or its
                         credentials were invalid. |
 
                         | **403** | **Forbidden** | Returned when permissions do
-                        not allow the operation. To correct:
-
-                        |||*   Check your app in `My Apps` to review the OAuth
-                        scopes you requested, and check whether they support the
-                        request that you made.
-
-                        |||*   Changes to the store owner's account (including a
-                        change to the email address) can also cause this error.
-                        Roll back those changes to correct it.
-
-                        |||*   This error can also occur when your request
-                        exceeds a limit imposed on the resource in question. For
-                        example, a store cannot exceed 16,000 categories. For
-                        more information, see the corresponding resource's
-                        documentation.
-
-                        |
+                        not allow the operation. 
 
                         | **404** | **Not Found** | When a particular resource
                         doesn’t exist or couldn’t be found. |
@@ -2301,13 +2276,7 @@ pages:
                         `limit` parameter exceeded the maximum. |
 
                         | **415** | **Unsupported Media Type** | Returned due to
-                        issues with the `Content-Type` header. Examples of such
-                        issues are:
-
-                        |||*   The header specifies an unsupported content type.
-
-                        |||*   The header is missing (except with the webhooks
-                        resource, which returns a 400 in this case).|
+                        issues with the `Content-Type` header.
 
                         | **422** | **Missing or Invalid Data** | The request
                         cannot be processed either because it omitted required
@@ -2332,7 +2301,7 @@ pages:
                         server.
 
 
-                        | Code | Definition | Purpose |
+                        | Code | Text | Purpose |
 
                         | --- | --- | --- |
 
@@ -2355,7 +2324,60 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
-                      data: "## Troubleshooting\n\n### Why am I getting 4xx/5xx errors from the API?\n* A 401 error indicates that your API call is being received but isn’t properly authenticating with our API. Either credentials are absent from the request, or we are receiving invalid credentials. Steps to resolve this:\n\t* Double-check your Access Token and Client ID.\n\t* If your credentials are valid, try sending a cURL request with the same credentials. This will test whether the problem is something within your application, rather than a credentials issue.\n* For 403 errors , there are 4 common causes:\n\t* Your app lacks the appropriate scopes to make the request that it sent. Resolution: Check the OAuth scopes that you requested, either in control panel > API Accounts or in Developer Portal’s My Apps section.\n\t* The store-owner account has changed on a store that installed your app. Resolution: This might require a reinstall by the new store owner, or a rollback of the store-owner changes.\n\t* Your API request exceeded an enforced platform limit. Among other limits, each store is limited to a maximum of 30,000 brands and 16,000 categories. For more information about these limits, see either the API resource you are using or our support documentation on platform limits.\n\t* Check your URL paths. An incorrect path can sometimes trigger a 403 error.\n* 500 errors almost always indicate an internal server error on BigCommerce’s side. Steps to resolve these:\n\t* Re-attempt the request three to five times, with increasing delays of at least a minute between attempts.\n\t* Check our status page.\n\t* 500 errors can also be caused by particularly expensive API calls. To avoid these errors on stores with very complex data, try reducing how many objects you are requesting. In the v2 API, you can request fewer objects by using ?limit={count}. In either the v2 or v3 API, you can request fewer objects by excluding certain fields or only requesting certain fields.\n\t\n### Why am I getting an HTTP 204 or 301/302 response to an API request?\n* Double-check the URL to which you are making an API request. If the response code is 301/302, try the WWW or non-WWW version of the URL."
+                      data: >-
+                        ## Troubleshooting
+
+
+                        |Code|Common Causes|Solutions
+
+                        |-|-|-|
+
+                        |`204`, `301`, and `302`|Redirects| Try the `www` or
+                        non-`www` version of the URL.
+
+                        |`400`|Invalid syntax, required data missing,
+                        `content-type` header missing|Double-check request body
+                        for syntax errors and missing data; check `content-type`
+                        header.
+
+                        |`401` |API credentials are missing or
+                        invalid.|Double-check the `access_token` and
+                        `client_id`.
+
+                        |||Send cURL request with the same credentials to rule
+                        app or config issues.
+
+                        |`403`| App lacks required OAuth scopes, a store-owner
+                        account changed, operations resulting from API request
+                        exceed a platform limit, or URL requested is
+                        incorrect.|Double-check OAuth Scopes in **control
+                        panel** > **API Accounts** or in **Developer Portal** >
+                        **My Apps**.
+
+                        |||Check the URL. Are the endpoint and store hash
+                        correct?
+
+                        |||Ensure [platform
+                        limits](https://support.bigcommerce.com/s/article/Platform-Limits#product-catalog-limits)
+                        have not been reached.
+
+                        |`415`| Request headers specify an unsupported
+                        `content-type` (or header is missing).|Double-check
+                        `content-type` request header.
+
+                        |`500`|Expensive API calls or an internal server error
+                        in BigCommerce.|Re-attempt the request three to five
+                        times, with increasing delays of at least a minute
+                        between attempts.
+
+                        |||Try reducing the number of objects being requested
+                        (in the v2 API, you can request fewer objects by using
+                        `?limit={count}`. In  `v2` and `v3` API, fewer objects
+                        can be requested by excluding certain fields or only
+                        requesting certain fields).
+
+                        ||| Check the BigCommerce [Status
+                        Page](https://status.bigcommerce.com/).
                       header:
                         anchor: api-status-codes_troubleshooting
               - title: Building Apps With BigCommerce
