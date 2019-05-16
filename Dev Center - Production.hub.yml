@@ -44502,7 +44502,7 @@ pages:
                       data: "## Mapping of Control-Panel Options to Catalog Price Properties\n\nThis table shows how price options available in the BigCommerce control panel relate to properties returned on the Stencil framework.\n\n<table>\n  <tr>\n    <th>Control-Panel Field</th>\n    <th>Stencil Catalog Price Object and Property</th>\n    <th>Notes</th>\n  </tr>\n\n  <tr>\n    <td>Retail Price (excluding tax)</td>\n\t\t<td><code>{{ product.price.rrp_without_tax }}</code></td>\n    <td>Typically used to represent the product’s list price (MSRP).</td>\n  </tr>\n\n  <tr>\n    <td>Retail Price (including tax)</td>\n\t\t<td><code>{{ product.price.rrp_with_tax }}</code></td>\n    <td>Typically used to represent the product’s list price (MSRP), including tax.</td>\n  </tr>\n\n  <tr>\n    <td>Price (excluding tax)</td>\n\t\t<td><code>{{ product.price.non_sale_price_without_tax }}</code></td>\n    <td>The standard store price for the product.</td>\n  </tr>\n\n  <tr>\n    <td>Price (including tax)</td>\n\t\t<td><code>{{ product.price.non_sale_price_with_tax }}</code></td>\n    <td>The standard store price for the product, with tax.</td>\n  </tr>\n  \n  <tr>\n    <td>Sale Price (excluding tax)</td>\n\t\t<td><code>{{ product.price.without_tax }}</code></td>\n    <td>This product’s discounted/sale price.</td>\n  </tr>\n  \n  <tr>\n    <td>Sale Price (including tax)</td>\n    <td>{{ product.price.with_tax }}</td>\n    <td>This product’s discounted/sale price, with tax.</td>\n  </tr>\n  \n  <tr>\n    <td>[No control-panel field]</td>\n    <td>{{ product.price.saved }}</td>\n    <td>The customer’s savings on the effective price versus list price.</td>\n  </tr>\n</table>"
                       header:
                         anchor: catalog-price_mapping-of-control
-              - title: 'Cart Price Properties: Relationships'
+              - title: Cart Price Properties
                 route:
                   path: /cart-price-relationships
                 data:
@@ -44511,9 +44511,8 @@ pages:
                       data: "<h1>Cart Price Properties</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#cart-price-relationships_rrp\">RRP</a></li>\n    <li><a href=\"#cart-price-relationships_bulk-pricing\">Bulk Pricing</a></li>\n    <li><a href=\"#cart-price-relationships_price\">Price</a></li>\n    <li><a href=\"#cart-price-relationships_cart-item-full-response\">Cart Item Full Response</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
-                        This page shows the relationship of price properties
-                        available on the `{{cart.items}}` object. These
-                        properties' values cascade as follows.
+                        This page shows the price properties available on the
+                        `{{cart.items}}` object. 
 
 
                         For the examples below we will use a cart_item with the
@@ -44537,15 +44536,18 @@ pages:
                         `rrp` is the MSRP or Manufactures Suggested Retail
                         Price. This number will always be the same unless it is
                         changed at the product level.
-
-                        ```
+                      header:
+                        anchor: cart-price-relationships_rrp
+                    - type: code
+                      data: |2-
                             "rrp": {
                               "formatted": "$99.00",
                               "value": 99
                             },
-                        ```
                       header:
-                        anchor: cart-price-relationships_rrp
+                        title: rrp
+                      config:
+                        mode: json
                     - type: text
                       data: '---'
                     - type: text
@@ -44554,27 +44556,31 @@ pages:
 
                         `bulk_pricing` shows the lowest calculated price. 
 
-                        Item not on sale with 2 items added to the cart:
-
-                        ```
+                        Item on sale with 2 items added to the cart:
+                      header:
+                        anchor: cart-price-relationships_bulk-pricing
+                    - type: code
+                      data: |2-
                             "bulk_pricing": {
                               "base_price": {
                                 "formatted": "$99.00",
                                 "value": 99
                               },
-                        ```
-
-                        Item on sale with 2 items added to the cart:
-
-                        ```
+                      header:
+                        title: Item not on sale with 2 items added to the cart
+                      config:
+                        mode: json
+                    - type: code
+                      data: |2-
                             "bulk_pricing": {
                               "base_price": {
                                 "formatted": "$54.45",
                                 "value": 54.45
                               },
-                        ```
                       header:
-                        anchor: cart-price-relationships_bulk-pricing
+                        title: Item on sale with 2 items added to the cart
+                      config:
+                        mode: json
                     - type: text
                       data: '---'
                     - type: text
@@ -44584,39 +44590,32 @@ pages:
 
                         `price` shows the lowest calculated price of a single
                         cart item. 
-
-
-                        Two items in cart not on sale:
-
-
-                        ```
+                      header:
+                        anchor: cart-price-relationships_price
+                    - type: code
+                      data: |2
                             "price": {
                               "formatted": "$100.00",
                               "value": 100
                             },
-
-                        ```
-
-
-                        Two items in cart on sale:
-
-                        ```
+                      header:
+                        title: Two items in cart not on sale
+                    - type: code
+                      data: |2-
                             "price": {
                               "formatted": "$55.00",
                               "value": 55
                             },
-                        ```
-
-                        Two items in cart on sale with bulk pricing:
-
-                        ```
+                      header:
+                        title: Two items in cart on sale
+                    - type: code
+                      data: |2-
                             "price": {
                               "formatted": "$54.45",
                               "value": 54.45
                             },
-                        ```
                       header:
-                        anchor: cart-price-relationships_price
+                        title: Two items in cart on sale with bulk pricing
                     - type: text
                       data: '---'
                     - type: text
