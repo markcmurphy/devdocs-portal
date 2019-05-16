@@ -44501,82 +44501,111 @@ pages:
                 data:
                   blocks:
                     - type: html
-                      data: '<h1>Cart Price Properties: Relationships</h1>'
-                    - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#cart-price_cart-price-props\">Cart Price Properties: Relationships</a></li>\n\t</ul>\n</div>"
+                      data: "<h1>Cart Price Properties</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#cart-price-relationships_rrp\">RRP</a></li>\n\t</ul>\n</div>"
                     - type: text
-                      data: >+
-                        ## Cart Price Properties: Relationships
-
-
+                      data: >-
                         This page shows the relationship of price properties
                         available on the `{{cart.items}}` object. These
                         properties' values cascade as follows.
 
 
-                        For a single cart item, the `rrp` property contains the
-                        list price, also known as MSRP:
+                        For the examples below we will use a cart_item with the
+                        following pricing:
 
+                        * Base Price: $100
 
-                        ```
+                        * MSRP: $99
 
-                        "rrp": { 
-                          "formatted": "$130.00",
-                          "value": 130
-                        }
+                        * Sale Price: $55
 
-                        ```
+                        * Bulk Pricing: Set as a percentage.
+                            * Buy two items get 1%
+                            * Buy three items get 2%
+                            * Buy four items get 3%
+                      header: {}
+                    - type: text
+                      data: >-
+                        ## RRP
 
-
-                        Let's assume that the standard store price for this item
-                        is actually $100.00, and that these bulk discount rules
-                        are applied:
-
-
-                        ```
-
-                        "bulk_pricing": { 
-                          "base_price": {
-                            "formatted": "$100.00",
-                            "value": 100
-                          },
-                          "discount_percentage": 5,  
-                          "discount_amount": null
-                        }
+                        `rrp` is the MSRP or Manufactures Suggested Retail
+                        Price. This number will always be the same unless it is
+                        changed at the product level.
 
                         ```
-
-
-                        Within `{{cart.items}}`, the `price` property contains
-                        the item's price after bulk discounts, but before cart
-                        discounts and promotions:
-
-
+                            "rrp": {
+                              "formatted": "$99.00",
+                              "value": 99
+                            },
                         ```
-
-                        "price": { 
-                          "formatted": "$95.00",
-                          "value": 95
-                        }
-
-                        ```
-
-
-                        The `price_discounted` property contains the item's
-                        price after cart discounts and promotions:
-
-
-                        ```
-
-                        "price_discounted": {  
-                          "formatted": "$85.50",
-                          "value": 85.5
-                        }
-
-                        ```
-
                       header:
-                        anchor: cart-price_cart-price-props
+                        anchor: cart-price-relationships_rrp
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: |-
+                        ## Bulk Pricing 
+
+                        `bulk_pricing` shows the lowest calculated price. 
+
+                        Item not on sale with 2 items added to the cart:
+
+                        ```
+                            "bulk_pricing": {
+                              "base_price": {
+                                "formatted": "$99.00",
+                                "value": 99
+                              },
+                        ```
+
+                        Item on sale with 2 items added to the cart:
+
+                        ```
+                            "bulk_pricing": {
+                              "base_price": {
+                                "formatted": "$54.45",
+                                "value": 54.45
+                              },
+                        ```
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+                        ## Price
+
+
+                        `price` shows the lowest calculated price of a single
+                        cart item. 
+
+
+                        Two items in cart not on sale:
+
+
+                        ```
+                            "price": {
+                              "formatted": "$100.00",
+                              "value": 100
+                            },
+
+                        ```
+
+
+                        Two items in cart on sale:
+
+                        ```
+                            "price": {
+                              "formatted": "$55.00",
+                              "value": 55
+                            },
+                        ```
+
+                        Two items in cart on sale with bulk pricing:
+
+                        ```
+                            "price": {
+                              "formatted": "$54.45",
+                              "value": 54.45
+                            },
+                        ```
               - title: Calling Theme-Wide Variables via Handlebars
                 route:
                   path: /calling-theme-wide-variables
