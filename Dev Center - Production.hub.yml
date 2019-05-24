@@ -12239,7 +12239,7 @@
                         }
                       },
                       {
-                        "title": "Enable & Restyle Optimized One-Page Checkout",
+                        "title": "Restyle Optimized One-Page Checkout",
                         "route": {
                           "path": "/optimized-one-page-checkout"
                         },
@@ -12247,78 +12247,52 @@
                           "blocks": [
                             {
                               "type": "html",
-                              "data": "<h1>Enable and Restyle Optimized One-Page Checkout</h1>"
+                              "data": "<h1>Restyle Optimized One-Page Checkout</h1>"
                             },
                             {
                               "type": "html",
-                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#optimized_enable\">Enable Optimized One Page Checkout</a></li>\n    <li><a href=\"#optimized_working\">Working with the Optimized Checkout SCSS File</a></li>\n    <li><a href=\"#optimized_configuring\">Configuring the Desktop Viewport</a></li>\n    <li><a href=\"#optimized_classes\">Classes Available for Customization</a></li>\n    <li><a href=\"#optimized_providing\">Providing User Options in Theme Editor</a></li>\n\t</ul>\n</div>"
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#optimized_working\">Working with the Optimized Checkout SCSS File</a></li>\n    <li><a href=\"#optimized_configuring\">Configuring the Desktop Viewport</a></li>\n    <li><a href=\"#optimized_classes\">Classes Available for Customization</a></li>\n    <li><a href=\"#optimized_providing\">Providing User Options in Store Design</a></li>\n\t</ul>\n</div>"
                             },
                             {
                               "type": "text",
-                              "data": "## Enable Optimized One Page Checkout\n\nIn order to customize Stencil's Optimized One Page Checkout, you must first opt into BigCommerce's Optimized One-Page Checkout option if your store is not already running on Optimized One Page Checkout. To do so, use the following steps:\n\n1. Update your Stencil CLI installation to the most-recent version, as outlined here.\n\n2. Enable `Optimized One-Page Checkout` in the store's control panel, as shown below. For more details about using Optimized One-Page Checkout, see  the [Checkout Settings](https://support.bigcommerce.com/articles/Public/Checkout-Settings?_ga=2.265225801.718421096.1540222570-967431010.1523308107) support article.\n\n3. Within your theme's `config.json` file > `meta` section, make sure the `features` array includes the value `customized_checkout`, as shown below:",
+                              "data": "## Working with the Optimized Checkout SCSS File \n\nCornerstone includes an SCSS file that styles the Optimized Checkout page. In your local installation, this file is located at <span class=\"fn\">cornerstone/assets/scss/optimized-checkout.scss</span>\n\nYou can access the most recent version of this file in the [Cornerstone repository](https://github.com/bigcommerce/cornerstone/blob/master/assets/scss/optimized-checkout.scss) (Github). All themes share the same stylesheet for the Optimized One-Page checkout, even those not based on Cornerstone, so this stylesheet applies universally across Stencil themes.",
                               "header": {
-                                "anchor": "optimized_enable"
+                                "anchor": "optimized_working"
+                              }
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "body": "When customizing the checkout page, you are free to change classes' contents, however, **do not** nest elements or change any class names. BigCommerce imposes these restrictions because each class here maps to multiple Optimized Checkout elements. Changing the structure or naming would break updates available in future Optimized Checkout enhancements.\n",
+                                "type": "error",
+                                "title": "Customizing Checkout Restrictions"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Configuring the Desktop Viewport \n\nWithin the <span class=\"fn\">optimized-checkout.scss</span> file, to set up Optimized Checkout's responsive features, you should configure the following breakpoint to define your preferred desktop viewport size:",
+                              "header": {
+                                "anchor": "optimized_configuring"
                               }
                             },
                             {
                               "type": "code",
-                              "data": "   \"meta\": {\n     [...]\n     \"features\": [\n       [...]\n       \"customized_checkout\"",
+                              "data": "// TODO:\n// Configure media query to be 'desktop' breakpoint size\n// -----------------------------------------------------------------------------\n@media (min-width: 801px) {\n  text-align: stencilString(\"optimizedCheckout-logo-position\");\n}",
                               "config": {
                                 "mode": "css"
                               }
                             },
                             {
                               "type": "text",
-                              "data": "4. Within your theme's `<theme-name>/templates/pages/` subdirectory, paste in a clean, uncustomized copy of the `checkout.html` and\n`order-confirmation.html` files. You can find default templates for each file on our [Cornerstone Github Repository]:\n\n* [checkout.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/checkout.html) file template\n* [order-confirmation.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/order-confirmation.html) file template"
-                            },
-                            {
-                              "type": "callout",
-                              "data": {
-                                "body": "For Optimized One-Page Checkout to work properly, the `order-confirmation.html` template must be present in your theme. If this template is absent, shoppers will receive a server error upon submitting their order (the corresponding template was named `order-complete.html` in earlier versions of Stencil themes; however, that minimal template is not a substitute for the required current template)."
-                              }
-                            },
-                            {
-                              "type": "image",
-                              "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1540227949000",
-                              "header": {
-                                "title": "Choosing Optimized One Page Checkout in the Control Panel",
-                                "subtitle": "Step #2 in the above description"
-                              },
-                              "config": {
-                                "centered": true,
-                                "fluid": true,
-                                "bordered": true
-                              }
-                            },
-                            {
-                              "type": "text",
                               "data": "---"
                             },
                             {
                               "type": "text",
-                              "data": "## Working with the Optimized Checkout SCSS File \n\nCornerstone includes an SCSS file that styles the Optimized Checkout page. In your local installation, this file is located at `<theme-name>/assets/scss/optimized-checkout.scss`.\n\nYou can access the most recent version of this file in the [Cornerstone repository](https://github.com/bigcommerce/cornerstone/blob/master/assets/scss/optimized-checkout.scss) (Github). All themes share the same stylesheet for the Optimized One-Page checkout, even those not based on Cornerstone, so this stylesheet applies universally across Stencil themes.\n\nTo customize the checkout page, you are free to change classes' _contents_. However, **do not nest elements, nor change any class names**. BigCommerce imposes these restrictions because each class here maps to multiple Optimized Checkout elements. Changing the structure or naming would break updates available in future Optimized Checkout enhancements.\n",
-                              "header": {
-                                "anchor": "optimized_working"
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "data": "---"
-                            },
-                            {
-                              "type": "text",
-                              "data": "## Configuring the Desktop Viewport \n\nWithin the `optimized-checkout.scss` file, to set up Optimized Checkout's responsive features, you should configure the following breakpoint to define your preferred desktop viewport size:\n\n```\n    // TODO:\n    // Configure media query to be 'desktop' breakpoint size\n    // -----------------------------------------------------------------------------\n    @media (min-width: 801px) {\n        text-align: stencilString(\"optimizedCheckout-logo-position\");\n    }\n```",
-                              "header": {
-                                "anchor": "optimized_configuring"
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "data": "---"
-                            },
-                            {
-                              "type": "text",
-                              "data": "## Classes Available for Customization \n\nBelow are the classes provided in Cornerstone's `optimized-checkout.scss` file, with the corresponding page elements that they style. _These class names and mappings are subject to change, so please check the inline comments in the `optimized-checkout.scss` file that you downloaded with your current Cornerstone release._\n\n| **Class** | **Styles This Optimized One-Page Checkout Element:** |\n|---|---|\n| `.optimizedCheckout-header` | Page header. |\n| `.optimizedCheckout-headingPrimary` | Top-level headings. |\n| `.optimizedCheckout-headingSecondary` | Certain lower-level elements, such as descriptions of cart items. |\n| `.optimizedCheckout-overlay` | Shipping Method box. |\n| `.optimizedCheckout-contentPrimary` | Body text in the desktop `Order Summary`/`Order Confirmation` (cart contents); drop-down-list items; and text that summarizes completed steps. |\n| `.optimizedCheckout-contentSecondary` | Text labels on check boxes, and lower-level text in the desktop Order Summary. |\n| `.optimizedCheckout-button--primary` | `CONTINUE` button and final `PAY` button. |\n| `.optimizedCheckout-button--secondary` | `Edit` buttons.\n| `.optimizedCheckout-orderSummary` | Colors in the `Order Summary` mobile drawer/modal.\n| `.optimizedCheckout-step` | Large step-number indicators on the page's left side. |\n| `.optimizedCheckout-form-label` | Styles form fields like `Email Address` – the field's text-label color. | \n| `.optimizedCheckout-form-input` | Styles form fields like `Email Address` – the entry box's background and border colors. |\n",
+                              "data": "## Classes Available for Customization \n\nBelow are the classes provided in Cornerstone's <span class=\"fn\">optimized-checkout.scss</span>, with the corresponding page elements that they style. _These class names and mappings are subject to change, so please check the inline comments in the <span class=\"fn\">optimized-checkout.scss</span> file that you downloaded with your current Cornerstone release._\n\n| **Class** | **Styles This Optimized One-Page Checkout Element:** |\n|---|---|\n| `.optimizedCheckout-header` | Page header. |\n| `.optimizedCheckout-headingPrimary` | Top-level headings. |\n| `.optimizedCheckout-headingSecondary` | Certain lower-level elements, such as descriptions of cart items. |\n| `.optimizedCheckout-overlay` | Shipping Method box. |\n| `.optimizedCheckout-contentPrimary` | Body text in the desktop `Order Summary`/`Order Confirmation` (cart contents); drop-down-list items; and text that summarizes completed steps. |\n| `.optimizedCheckout-contentSecondary` | Text labels on check boxes, and lower-level text in the desktop Order Summary. |\n| `.optimizedCheckout-button--primary` | `CONTINUE` button and final `PAY` button. |\n| `.optimizedCheckout-button--secondary` | `Edit` buttons.\n| `.optimizedCheckout-orderSummary` | Colors in the `Order Summary` mobile drawer/modal.\n| `.optimizedCheckout-step` | Large step-number indicators on the page's left side. |\n| `.optimizedCheckout-form-label` | Styles form fields like `Email Address` – the field's text-label color. | \n| `.optimizedCheckout-form-input` | Styles form fields like `Email Address` – the entry box's background and border colors. |\n",
                               "header": {
                                 "anchor": "optimized_classes"
                               }
@@ -12329,7 +12303,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Providing User Options in Theme Editor\n\nAs with other aspects of your theme's styling, you can determine which aspects of Optimized One-Page Checkout users will be able to customize in Theme Editor. \n\nIn Stencil's Cornerstone base theme, each class/property available in `optimized-checkout.scss` has a corresponding key/value pair in the `config.json` file. For examples of these key/value pairs, see [this section]().\n\nFor examples of Theme Editor graphical controls exposed to users through elements included in Cornerstone's `schema.json` file, please see [this section]().",
+                              "data": "## Providing Customizable Options in Store Design\n\nYou can determine which aspects of Optimized One-Page Checkout merchants will be able to customize with the Store Design tool. \n\nIn Cornerstone's <span class=\"fn\">optimized-checkout.scss</span>, each SCSS class and property available has a corresponding key/value pair in the <span class=\"fn\">config.json</span> file, which can be used as the `id` value in schema.json when [creating customizable Store Design options](/stencil-docs/store-design/schema-json-metadata).",
                               "header": {
                                 "anchor": "optimized_providing"
                               }
