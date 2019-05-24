@@ -1,16 +1,47 @@
 <h1 class="lc-title">Provide your input on form below!</h1>
 <script src="//app-ab15.marketo.com/js/forms2/js/forms2.min.js"></script>
 <div class="lc-form">
-  <form class="mktoForm" data-formId="3450" data-formInstance="one"></form>
+  <form class="mktoForm" data-formId="3450"></form>
   <!--<script>
   var target = document.getElementsByClassName('lc-form')[0];
 		var formElement = document.createElement('form');
    		formElement.id = 'mktoForm_3450';
    target.appendChild(formElement);
   </script>-->
-  <script> 
+  <!--<script> 
     window.addEventListener('DOMContentLoaded', function() {
 		MktoForms2.loadForm("//app-ab15.marketo.com", "695-JJT-333", 3450);
     });
+  </script>-->
+  <script>
+    (function() {
+	var formIds = [3450],
+		podId = '//app-ab15.marketo.com',
+		munchkinId = '695-JJT-333';
+
+	var MKTOFORM_ID_PREFIX = 'mktoForm_', MKTOFORM_ID_ATTRNAME = 'data-formId';
+
+	formIds.forEach(function(formId) {
+		var loadForm = MktoForms2.loadForm.bind(
+			MktoForms2,
+			podId,
+			munchkinId,
+			formId
+		),
+			formEls = [].slice.call(
+				document.querySelectorAll('[' + MKTOFORM_ID_ATTRNAME + '="' + formId + '"]')
+			);
+
+		(function loadFormCb(formEls) {
+			var formEl = formEls.shift();
+			formEl.id = MKTOFORM_ID_PREFIX + formId;
+
+			loadForm(function(form) {
+				formEl.id = '';
+				formEls.length && loadFormCb(formEls);
+			});
+		})(formEls);
+	});
+})();
   </script>
 </div>
