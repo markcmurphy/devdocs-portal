@@ -25301,7 +25301,7 @@ pages:
                           - type: html
                             data: <h1>Stored Credit Card Management</h1>
                           - type: html
-                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#stored-cc-mgmt_adding\">Adding Credit Card Management</a></li>\n\t</ul>\n</div>"
+                            data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#stored-cc-mgmt_adding\">Adding Credit Card Management</a></li>\n    <li><a href=\"#stored-cc-mgmt_adding\">Adding Credit Card Management</a></li>\n    <li><a href=\"#stored-cc-mgmt_adding\">Adding Credit Card Management</a></li>\n    <li><a href=\"#stored-cc-mgmt_adding\">Adding Credit Card Management</a></li>\n    <li><a href=\"#stored-cc-mgmt_adding\">Adding Credit Card Management</a></li>\n    <li><a href=\"#stored-cc-mgmt_adding\">Adding Credit Card Management</a></li>\n    <li><a href=\"#stored-cc-mgmt_adding\">Adding Credit Card Management</a></li>\n    \n\t</ul>\n</div>"
                           - type: text
                             data: >-
                               Stored Credit Card management<sup>1</sup> gives
@@ -25367,6 +25367,8 @@ pages:
                             data: '---'
                           - type: text
                             data: "## Step 1:  [Add the Payment Methods Page to the Shopper's Account](https://github.com/bigcommerce/cornerstone/pull/1376/commits/24abc038fe346a8572b40da40c98a9465788957a)\n\n* Create the new Payment Methods page on a shopper's account by editing the following files:\n\t* `lang/en.json`\n\t* `templates/components/account/navigation.html`\n\t* `templates/pages/account/payment-methods.html`\n"
+                            header:
+                              anchor: stored-cc-mgmt_step1
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541629154209
@@ -25382,6 +25384,8 @@ pages:
                             data: '---'
                           - type: text
                             data: "## Step 2: [Add Translations for Payment Methods Titles](https://github.com/bigcommerce/cornerstone/pull/1376/commits/9edf1a0f6907811abf470db1486b4fdb199b27ae)\n\n* Make the Payments Method page translatable by modifying the following:\n\t* `lang/en.json`\n\t* `templates/components/account/navigation.html`"
+                            header:
+                              anchor: stored-cc-mgmt_step2
                           - type: text
                             data: '---'
                           - type: text
@@ -25402,6 +25406,8 @@ pages:
                               *Icons have been used to identify the credit card
                               **type**. The data only provides the card brand in
                               the credit card details.*
+                            header:
+                              anchor: stored-cc-mgmt_step3
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541630407609
@@ -25411,6 +25417,7 @@ pages:
                               centered: true
                               fluid: true
                               bordered: true
+                            header: {}
                           - type: text
                             data: '---'
                           - type: text
@@ -25421,6 +25428,8 @@ pages:
 
 
                               *  add `Edit`, `Delete`, and `Add` buttons
+                            header:
+                              anchor: stored-cc-mgmt_step4
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541655663898
@@ -25453,6 +25462,8 @@ pages:
                               key provided in the credit card details data.
                               Finally, there will be a redirect to the credit
                               card listing.
+                            header:
+                              anchor: stored-cc-mgmt_step5
                           - type: text
                             data: '---'
                           - type: text
@@ -25475,6 +25486,8 @@ pages:
                               credit card. The full
                               [edit-payment-method.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/account/edit-payment-method.html)
                               can be viewed in the Cornerstone Github Repo.*
+                            header:
+                              anchor: stored-cc-mgmt_step6
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541654303488
@@ -25533,6 +25546,8 @@ pages:
                               mapping](https://github.com/bigcommerce/cornerstone/blob/24686de577c6ad5409ec8b82f5839c3d083cb760/assets/js/theme/account.js#L211)
                               are added to the `add-payment-method.html`
                               template as well.*
+                            header:
+                              anchor: stored-cc-mgmt_step7
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541629295212
@@ -25564,6 +25579,8 @@ pages:
                               * Fix HTML credit card for tabulation navigation
 
                               * Fix for states reload list via AJAX
+                            header:
+                              anchor: stored-cc-mgmt_step8
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6116/1541655424566
@@ -32535,9 +32552,7 @@ pages:
 
                                     Returns a new array, created by calling
                                     `function` on each element of the given
-                                    `array`. The `{{map}}` helper does not
-                                    modify the original, provided array, but
-                                    results in a new one.
+                                    `array`.
 
 
                                     #### Parameters
@@ -32545,7 +32560,7 @@ pages:
 
                                     * `array` {Array}
 
-                                    * `function` {Function}
+                                    * `fn` {Function}
 
                                     * `returns` {String}
 
@@ -32553,14 +32568,22 @@ pages:
                                     #### Example
 
 
-                                    Given an array `['c', 'a', 'b']`:
+                                    Given an array `['a', 'b', 'c']`:
 
 
-                                    ```
+                                    ```js
 
-                                    // {{map array sort}}
+                                    // register `double` as a helper
 
-                                    //=> '["a", "b", "c"]'
+                                    function double(str) {
+                                      return str + str;
+                                    }
+
+                                    // then used like this:
+
+                                    // {{map array double}}
+
+                                    //=> '["aa", "bb", "cc"]'
 
                                     ```
                                   header:
