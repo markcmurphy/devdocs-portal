@@ -9193,17 +9193,13 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1><code>config.json</code> Metadata</h1>"
-                      },
-                      {
-                        "type": "html",
-                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#config_configjson-overview\">config.json Overview</a></li>\n    <li><a href=\"#config_keys-and-example\">Keys and Example Values</a></li>\n    <li><a href=\"#config_requirements-and-restrictions\">Requirements and Restrictions</a></li>\n    <li><a href=\"#config_video-demo\">Video Demo</a></li>\n\t</ul>\n</div>\n\n\n"
+                        "data": "<h1>config.json Metadata</h1> \n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#config_config-json-overview\">config.json Overview</a></li>\n    <li><a href=\"#config_keys-and-example\">Keys and Example Values</a></li>\n    <li><a href=\"#config_requirements-and-restrictions\">Requirements and Restrictions</a></li>\n    <li><a href=\"#config_video-demo\">Video Demo</a></li>\n\t</ul>\n</div>\n\n\n"
                       },
                       {
                         "type": "text",
-                        "data": "## `config.json` Overview\n\nYou configure the `/theme‑name/config.json` file to properly manage each of your custom theme's front-end aspects. This `config.json` file’s functions are to:\n\n* Provide global context for Stencil’s CSS and Handlebars resources.\n* Provide values for the Store Design GUI to manage.\n* Provide metadata for your theme’s listing in the Theme Marketplace.\n* Define variations included in your theme.\n",
+                        "data": "## config.json Overview\n\nConfiguring the <span class=\"fn\">{/theme‑name}/config.json</span> file to properly manage each of your custom theme's front-end aspects. This <span class=\"fn\">config.json</span> file’s functions are to:\n\n* Provide global context for Stencil’s CSS and Handlebars resources.\n* Provide values for the Store Design GUI to manage.\n* Provide metadata for your theme’s listing in the Theme Marketplace.\n* Define variations included in your theme.\n",
                         "header": {
-                          "anchor": "config_configjson-overview"
+                          "anchor": "config_config-json-overview"
                         }
                       },
                       {
@@ -9214,7 +9210,7 @@
                         "type": "text",
                         "data": "## Keys and Example Values",
                         "header": {
-                          "anchor": "onfig_keys-and-example"
+                          "anchor": "config_keys-and-example"
                         }
                       },
                       {
@@ -10754,19 +10750,40 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Requirements and Restrictions\n\nYour theme's <span class=\"fn\">config.json</span> file must meet the following requirements:\n\n* It must be named <span class=\"fn\">config.json</span>, must reside in the root of your `<theme-name>` top level subdirectory (e.g.: <span class=\"fp\">/cornerstone/config.json</span> or <span class=\"fp\">/stencil/config.json</span>), and must be valid JSON.\n* The maximum allowable size for a theme's <span class=\"fn\">config.json</span> file is 64 KB. Exceeding this limit will trigger an error upon uploading the theme to BigCommerce.\n* Each key's value is restricted to 64 characters. Exceeding this limit will similarly trigger an upload error.\n* Other than these size constraints, there is no limit on the number of keys and values that you can place in a theme's <span class=\"fn\">config.json</span>.\n\n_Carefully check your theme against all the requirements listed here – including the required keys within the `meta` object and `variations` array. While some requirements are not enforced in local development, they will be validated (and will trigger errors) when you later upload your theme to BigCommerce._\n\n### Required Themewide Keys\nThe <span class=\"fn\">config.json</span> file must contain at least the following keys, with appropriate values (as outlined above):\n\n* `name`\n* `version`\n* `settings` (which must itself be a valid JSON object)\n* `variations` (an array of at least one, and at most four, variation objects)\n* `meta` (an object; see specific requirements below)\n\n### Required `meta` Keys\n\nThe meta object must contain at least the following keys, with appropriate values:\n\n* `price`\n* `author_name`\n* `author_email`\n* `author_support_url`\n* `documentation_url`\n\nFor illustration, here is a commented excerpt:\n\n```\n{\n  ...\n  \"meta\": {\n    \"price\": 15000, // in cents; non-negative integer, minimum 0\n    \"author_name:\" \"eCommerce Themes, Inc.\", // Must be a string, not null\n    \"author_email\": \"support@example.com\", // Must be a string, should be a valid email address, not null\n    \"author_support_url\": \"http://example.com/contactus\", //  Must be a string, should be a valid URL, not null\n    \"documentation_url\": \"http://example.com/guide\", // Must be a string, limit of 255 characters,\n          not null\n    \"composed_image\": \"path/to/composed.png\", // Must be a string path to the composed-image file\n    \"features\": [ // Array of feature strings, all of which must be in the list enumerated here: \n          https://github.com/bigcommerce/theme-registry/blob/master/app/schemas/theme_config.json#L33\n      \"fully_responsive\" // Must include at least one feature, and no duplicate entries\n    ]\n  },\n  ...\n}\n```\n\n### Required `variation` Keys\n\nFor each variation that you choose to include in your theme (at least one is required), you must provide at least the following keys and sub-element, with appropriate values:\n\n* `name`\n* `id`\n* `meta` (an object, containing at least:)\n* `description`\n\nFor illustration, here is a redacted excerpt from Cornerstone:",
+                        "data": "## Requirements and Restrictions\n\nYour theme's <span class=\"fn\">config.json</span> file must meet the following requirements:\n\n* It must be named <span class=\"fn\">config.json</span>, must reside in the root of your `{theme-name}` top level subdirectory (e.g.: <span class=\"fp\">/cornerstone/config.json</span> or <span class=\"fp\">/stencil/config.json</span>), and must be valid JSON.\n* The maximum allowable size for a theme's <span class=\"fn\">config.json</span> file is 64 KB. Exceeding this limit will trigger an error upon uploading the theme to BigCommerce.\n* Each key's value is restricted to 64 characters. Exceeding this limit will similarly trigger an upload error.\n* Other than these size constraints, there is no limit on the number of keys and values that you can place in a theme's <span class=\"fn\">config.json</span>.",
                         "header": {
                           "anchor": "config_requirements-and-restrictions"
                         }
                       },
                       {
+                        "type": "callout",
+                        "data": {
+                          "body": "Carefully check your theme against all the requirements listed here – including the required keys within the `meta` object and `variations` array. While some requirements are not enforced in local development, they will be validated (and will trigger errors) when you later upload your theme to BigCommerce."
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "### Required Themewide Keys\nThe <span class=\"fn\">config.json</span> file must contain at least the following keys, with appropriate values (as outlined above):\n\n* `version`\n* `settings` (which must itself be a valid JSON object)\n* `variations` (an array of at least one, and at most four, variation objects)\n* `meta` (an object; see specific requirements below)\n\n### Required `meta` Keys\n\nThe meta object must contain at least the following keys, with appropriate values:\n\n* `price`\n* `author_name`\n* `author_email`\n* `author_support_url`\n* `documentation_url`\n\nFor illustration, here is a commented excerpt:"
+                      },
+                      {
                         "type": "code",
-                        "data": "\"variations\": [\n    {\n      \"name\": \"Light\",\n      \"id\": \"light\",\n      \"meta\": {\n        \"desktop_screenshot\": \"desktop_light.png\",\n        \"mobile_screenshot\": \"mobile_light.png\",\n        \"description\": \"Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products.\",\n    ...\n    }\n  ]",
+                        "data": "{\n  ...\n  \"meta\": {\n    \"price\": 15000, // in cents; non-negative integer, minimum 0\n    \"author_name:\" \"eCommerce Themes, Inc.\", // Must be a string, not null\n    \"author_email\": \"support@example.com\", // Must be a string, should be a valid email address, not null\n    \"author_support_url\": \"http://example.com/contactus\", //  Must be a string, should be a valid URL, not null\n    \"documentation_url\": \"http://example.com/guide\", // Must be a string, limit of 255 characters,\n          not null\n    \"composed_image\": \"path/to/composed.png\", // Must be a string path to the composed-image file\n    \"features\": [ // Array of feature strings, all of which must be in the list enumerated here: \n          https://github.com/bigcommerce/theme-registry/blob/master/app/schemas/theme_config.json#L33\n      \"fully_responsive\" // Must include at least one feature, and no duplicate entries\n    ]\n  },\n  ...\n}",
+                        "header": {
+                          "title": "Meta Keys Example"
+                        },
                         "config": {
                           "mode": "json"
-                        },
-                        "header": {
-                          "title": "Variations"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "### Required `variation` Keys\n\nFor each variation that you choose to include in your theme (at least one is required), you must provide at least the following keys and sub-element, with appropriate values:\n\n* `name`\n* `id`\n* `meta` (an object, containing at least:)\n* `description`\n\nFor illustration, here is a redacted excerpt from Cornerstone:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "\"variations\": [\n    {\n      \"name\": \"Light\",\n      \"id\": \"light\",\n      \"meta\": {\n        \"desktop_screenshot\": \"desktop_light.png\",\n        \"mobile_screenshot\": \"mobile_light.png\",\n        \"description\": \"Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. ....\",\n    ...\n    }\n  ]",
+                        "config": {
+                          "mode": "json"
                         }
                       },
                       {
