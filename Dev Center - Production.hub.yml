@@ -12638,15 +12638,26 @@
                                 "blocks": [
                                   {
                                     "type": "html",
-                                    "data": "<h1>Getting Started in Vanilla JS</h1>"
-                                  },
-                                  {
-                                    "type": "html",
-                                    "data": "<div class=\"otp\" id=\"no-index\">\n<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#getting-started_installing\">Installing the Checkout JS SDK</a></li>\n    <li><a href=\"#getting-started_creating\">Creating a <code>checkout.js</code> file</a></li>\n    <li><a href=\"#getting-started_mapping\">Mapping the <code>checkout.js</code> file to the checkout page type</a></li>\t\n    <li><a href=\"#getting-started_preparing\">Preparing the <code>checkout.html</code> template file</a></li>\t\n    <li><a href=\"#getting-started_logging\">Logging the Checkout Object</a></li>\t\n    <li><a href=\"#getting-started_next-steps\">Next Steps</a></li>\t\n</ul>\n</div>\n\n\n\n\n\n\n"
+                                    "data": "<h1>Getting Started in Vanilla JS</h1>\n<div class=\"otp\" id=\"no-index\">\n<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#getting-started_prerequisites\">Prerequisites</a></li>\n    <li><a href=\"#getting-started_installing\">Installing the Checkout JS SDK</a></li>\n    <li><a href=\"#getting-started_creating\">Creating a checkout.js File</a></li>\n    <li><a href=\"#getting-started_mapping\">Mapping the checkout.js File to the Checkout Page Type</a></li>\t\n    <li><a href=\"#getting-started_preparing\">Preparing the checkout.html Template File</a></li>\t\n    <li><a href=\"#getting-started_logging\">Logging the Checkout Object</a></li>\t\n    <li><a href=\"#getting-started_next-steps\">Next Steps</a></li>\t\n</ul>\n</div>\n\n\n\n\n\n\n"
                                   },
                                   {
                                     "type": "text",
-                                    "data": "The Checkout JS SDK is a JavaScript library of methods for performing actions related to checkout. It includes methods for logging in a customer, adding addresses to the checkout object, and surfacing the shipping and payment methods that a merchant has configured. It’s everything you need to build your own custom checkout page on BigCommerce.\n\nWe have provided a [sample checkout app](https://github.com/bigcommerce/checkout-sdk-js-example) built in React; the React sample app is a great place to get started if you prefer to build within a framework. However, because the SDK is built in vanilla JS, it’s framework agnostic. To illustrate that point, this tutorial will walk through the first steps for building a custom checkout directly into the theme files using vanilla JS. At the end of the tutorial, you will have installed the Checkout SDK, created a new JavaScript module for your icustom checkout, and console logged the checkout object.\n\nBefore we get started, ensure your theme is setup for local development using Stencil CLI. See [Installing Stencil](/stencil-docs/getting-started/installing-stencil) if you have not already done this.\n"
+                                    "data": "The Checkout JS SDK is a JavaScript library of methods for performing actions related to checkout. It includes methods for logging in a customer, adding addresses to the checkout object, and surfacing the shipping and payment methods that a merchant has configured. It’s everything you need to build your own custom checkout page on BigCommerce.\n\nWe have provided a [sample checkout app](https://github.com/bigcommerce/checkout-sdk-js-example) built in React; the React sample app is a great place to get started if you prefer to build within a framework. However, because the SDK is built in vanilla JS, it’s framework agnostic. To illustrate that point, this tutorial will walk through the first steps for building a custom checkout directly into the theme files using vanilla JS. At the end of the tutorial, you will have installed the Checkout SDK, created a new JavaScript module for your custom checkout, and console logged the checkout object."
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## Prerequisites\n* This tutorial uses [Cornerstone](https://github.com/bigcommerce/cornerstone). Your theme may differ.\n* Theme should be setup for [local development](https://developer.bigcommerce.com/stencil-docs/getting-started/installing-stencil).\n",
+                                    "header": {
+                                      "anchor": "getting-started_prerequisites"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
                                   },
                                   {
                                     "type": "text",
@@ -12657,25 +12668,54 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "## Creating a `checkout.js` file\n\n1. In your text editor, open your theme and create a new file in the assets/js/theme directory.\n\n2. Save the file as checkout.js. You can name your checkout JavaScript file anything you like, but the subsequent steps of this tutorial will assume the filename checkout.js.\n\n3. Add the following to your `checkout.js` file:\n\n```\nimport PageManager from './page-manager';\nimport { createCheckoutService } from '@bigcommerce/checkout-sdk';\n\nconst service = createCheckoutService();\n\nexport default class Checkout extends PageManager {\n\tasync onReady() {\n\t\tconst state = await service.loadCheckout();\nconsole.log(state.data.getCheckout());\n\t}\n}\n```\n\nImporting and extending the PageManager abstract class sets the page context for the `checkout.js` module. We also `import { createCheckoutService }` from the Checkout SDK. \n\nThe async keyword ensures that `onReady()` returns a Promise; the await keyword waits until the Promise resolves to load the checkout. Async/await is supported in nearly all modern browsers, but if you need to support older browsers like IE, you will require the [Promise polyfill](https://github.com/stefanpenner/es6-promise).\n\n4. Save the file. ",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## Creating a <span class=\"fn\">checkout.js</span> file\n\n1. In your text editor, open your theme and create a new file in the <span class=\"fp\">assets/js/theme</span> directory.\n\n2. Save the file as checkout.js. You can name your checkout JavaScript file anything you like, but the subsequent steps of this tutorial will assume the filename checkout.js.\n\n3. Add the following to your <span class=\"fn\">checkout.js</span> file:",
                                     "header": {
                                       "anchor": "getting-started_creating"
                                     }
                                   },
                                   {
+                                    "type": "code",
+                                    "data": "import PageManager from './page-manager';\nimport { createCheckoutService } from '@bigcommerce/checkout-sdk';\n\nconst service = createCheckoutService();\n\nexport default class Checkout extends PageManager {\n\tasync onReady() {\n\t\tconst state = await service.loadCheckout();\nconsole.log(state.data.getCheckout());\n\t}\n}",
+                                    "header": {
+                                      "title": "checkout.js"
+                                    },
+                                    "config": {
+                                      "mode": "js"
+                                    }
+                                  },
+                                  {
                                     "type": "text",
-                                    "data": "## Mapping the `checkout.js` file to the checkout page type\n\n1. Open the `app.js` file in your text editor.\n\n2. Add the following to map your checkout.js file to the checkout page type:\n`checkout: () => import('./theme/checkout'),`",
+                                    "data": "Importing and extending the PageManager abstract class sets the page context for the <span class=\"fn\">checkout.js</span> module. We also `import { createCheckoutService }` from the Checkout SDK. \n\nThe async keyword ensures that `onReady()` returns a Promise; the await keyword waits until the Promise resolves to load the checkout. Async/await is supported in nearly all modern browsers, but if you need to support older browsers like IE, you will require the [Promise polyfill](https://github.com/stefanpenner/es6-promise).\n\n4. Save the file. "
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## Mapping the <span class=\"fn\">checkout.js</span> file to the checkout page type\n\n1. Open the <span class=\"fp\">assets/js/app.js</span> file in your text editor.\n\n2. Add the following to map your <span class=\"fn\">checkout.js</span> file to the checkout page type:\n\n`checkout: () => import('./theme/checkout'),`",
                                     "header": {
                                       "anchor": "getting-started_mapping"
                                     }
                                   },
                                   {
-                                    "type": "image",
-                                    "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1540242854920",
+                                    "type": "code",
+                                    "data": "...\nconst pageClasses = {\n    account_orderstatus: getAccount,\n    account_order: getAccount,\n    account_addressbook: getAccount,\n    shippingaddressform: getAccount,\n    account_new_return: getAccount,\n    'add-wishlist': () => import('./theme/wishlist'),\n    account_recentitems: getAccount,\n    account_downloaditem: getAccount,\n    editaccount: getAccount,\n    account_inbox: getAccount,\n    account_saved_return: getAccount,\n    account_returns: getAccount,\n    account_paymentmethods: getAccount,\n    account_addpaymentmethod: getAccount,\n    account_editpaymentmethod: getAccount,\n    login: getLogin,\n    createaccount_thanks: getLogin,\n    createaccount: getLogin,\n    getnewpassword: getLogin,\n    forgotpassword: getLogin,\n    blog: noop,\n    blog_post: noop,\n    brand: () => import('./theme/brand'),\n    brands: noop,\n    cart: () => import('./theme/cart'),\n    category: () => import('./theme/category'),\n\t\tcheckout: () => import('./theme/checkout'),\n    compare: () => import('./theme/compare'),\n    page_contact_form: () => import('./theme/contact-us'),\n    error: noop,\n    404: noop,\n    giftcertificates: () => import('./theme/gift-certificate'),\n    giftcertificates_balance: () => import('./theme/gift-certificate'),\n    giftcertificates_redeem: () => import('./theme/gift-certificate'),\n    default: noop,\n    page: noop,\n    product: () => import('./theme/product'),\n    amp_product_options: () => import('./theme/product'),\n    search: () => import('./theme/search'),\n    rss: noop,\n    sitemap: noop,\n    newsletter_subscribe: noop,\n    wishlist: () => import('./theme/wishlist'),\n    wishlists: () => import('./theme/wishlist'),\n};\n...",
+                                    "header": {
+                                      "title": "app.js"
+                                    },
                                     "config": {
-                                      "centered": true,
-                                      "fluid": true,
-                                      "bordered": true
+                                      "mode": "js",
+                                      "highlightRange": [
+                                        {
+                                          "from": "29",
+                                          "to": "29"
+                                        }
+                                      ]
                                     }
                                   },
                                   {
@@ -12684,10 +12724,32 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "## Preparing the `checkout.html` template file\n\n1. Open the `checkout.html` file in your text editor.\n2. Comment out the `{{{ checkout.checkout_content }}}` statement:\n<!--{{{ checkout.checkout_content }}}-->\n\n3. On the next line, add the following:\n```\n<script>window.__webpack_public_path__ = \"{{cdn 'assets/dist/'}}\";</script>\n<script src=\"{{cdn 'assets/dist/theme-bundle.main.js'}}\"></script>\n\n<script>\n    window.stencilBootstrap(\"{{page_type}}\", {{jsContext}}).load();\n</script>\n\n```\n\n4. Save the file.\n\n",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## Preparing the <span class=\"fn\">checkout.html</span> template file\n\n1. Open the <span class=\"fn\">checkout.html</span> file in your text editor.\n2. Comment out the following statement:\n\n `{{{ checkout.checkout_content }}}` \n\n`<!--{{{ checkout.checkout_content }}}-->`\n\n3. On the next line, add the following:",
                                     "header": {
                                       "anchor": "getting-started_preparing"
                                     }
+                                  },
+                                  {
+                                    "type": "code",
+                                    "data": "<script>window.__webpack_public_path__ = \"{{cdn 'assets/dist/'}}\";</script>\n<script src=\"{{cdn 'assets/dist/theme-bundle.main.js'}}\"></script>\n\n<script>\n    window.stencilBootstrap(\"{{page_type}}\", {{jsContext}}).load();\n</script>",
+                                    "header": {
+                                      "title": "checkout.html"
+                                    },
+                                    "config": {
+                                      "mode": "html"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "4. Save the file."
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
                                   },
                                   {
                                     "type": "text",
@@ -12698,12 +12760,29 @@
                                   },
                                   {
                                     "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
                                     "data": "## Next Steps\n\nBuild out your custom checkout page by entering your HTML into the `checkout.html` file and JavaScript into checkout.js. For detailed documentation on all of the Checkout SDK library methods visit the [SDK GitHub repository](https://github.com/bigcommerce/checkout-sdk-js).",
                                     "header": {
                                       "anchor": "getting-started_next-steps"
                                     }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## Resources\n\n### Sample Apps\n* [Checkout SDK Sample App](https://github.com/bigcommerce/checkout-sdk-js-example) (BigCommerce GitHub)\n* [Checkout SDK Source Code](https://github.com/bigcommerce/checkout-sdk-js) (BigCommerce GitHub)\n\n## Related Articles\n* [Installing Stencil](https://developer.bigcommerce.com/stencil-docs/getting-started/installing-stencil)\n\n## Additonal Resources\n* [Promise Polyfill]( https://github.com/stefanpenner/es6-promise) (GitHub)"
                                   }
                                 ]
+                              },
+                              "config": {
+                                "sidebar": {
+                                  "token": "Tutorial"
+                                }
                               }
                             },
                             {
