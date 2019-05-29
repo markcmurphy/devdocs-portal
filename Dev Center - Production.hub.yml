@@ -11536,18 +11536,12 @@
                           "blocks": [
                             {
                               "type": "html",
-                              "data": "<h1>Using Disqus with Stencil</h1>"
-                            },
-                            {
-                              "type": "html",
-                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#using-disqus_disqus-overview\">Disqus Overview</a></li>\n    <li><a href=\"#using-disqus_stencil-blog\">Integrating Disqus with your Stencil blog</a></li>\n    <li><a href=\"#using-disqus_stencil-product-pages\">Integrating Disqus with your Stencil Product Pages</a></li>\n\t</ul>\n</div>"
+                              "data": "<h1>Using Disqus with Stencil</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#using-disqus_stencil-blog\">Integrating Disqus with your Stencil blog</a></li>\n    <li><a href=\"#using-disqus_stencil-product-pages\">Integrating Disqus with your Stencil Product Pages</a></li>\n\t</ul>\n</div>"
                             },
                             {
                               "type": "text",
-                              "data": "## Disqus Overview \n\nStencil themes have the ability to integrate with Disqus, a third party commenting system that allows users to leave blog comments on blog posts made with Stencil's Built-In Blog. Disqus can also be used with on Stencil product pages to allow comment and review threads on individual products.",
-                              "header": {
-                                "anchor": "using-disqus_disqus-overview"
-                              }
+                              "data": "Stencil themes have the ability to integrate with Disqus, a third-party commenting system that allows users to leave blog comments on blog posts made with Stencil's built-in blog. Disqus can also be used with on Stencil product pages to allow comment and review threads on individual products.",
+                              "header": {}
                             },
                             {
                               "type": "text",
@@ -11555,7 +11549,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Integrating Disqus with your Stencil blog\n\nTo use Disqus blog comments in Stencil, follow the steps below:\n\n1. Log in to your BigCommerce Control Panel\n2. Navigate to Storefront Design > My Themes\n3. Open Edit Theme Files for your theme\n4. Navigate to Templates > Pages > blog-post.html\n5. Paste your Disqus Universal Code before the closing {{/partial}} tag\n6. Save your files\n7. Apply your theme\n",
+                              "data": "## Integrating Disqus with your Stencil blog\n\nTo use Disqus blog comments in Stencil, follow the steps below:\n\n1. Log in to your BigCommerce Control Panel.\n2. Navigate to **Storefront Design** > **My Themes**.\n3. Open Edit Theme Files for your theme.\n4. Navigate to **Templates** > **Pages** > <sp class=\"fn\">blog-post.html</span>.\n5. Paste your Disqus Universal Code before the closing `{{/partial}}` tag.\n6. Save your files.\n7. Apply your theme.",
                               "header": {
                                 "anchor": "using-disqus_stencil-blog"
                               }
@@ -11566,14 +11560,44 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Integrating Disqus with your Stencil Product Pages\n\n1. Log in to your BigCommerce Control Panel\n2. Navigate to Storefront Design > My Themes\n3. Open Edit Theme Files for your theme\n4. Navigate to Templates > Pages > product.html\n5. Paste your Disqus Universal Code before the closing {{/partial}} tag\n6. In the Disqus Universal Code that you have posted, there is a function that reads like below:\n\n```\n var disqus_config = function () {\n        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable\n        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable\n    };\n```\n\nChange the value of this.page.url to be `product.url;`, and the value of this.page.identifier to be `product.id`; so that the function now reads like below:\n\n```\nvar disqus_config = function () {\n        this.page.url = product.url;\n        this.page.identifier = product.id;\n    };\n```\n\n7. Save your files\n8. Apply your theme",
+                              "data": "## Integrating Disqus with your Stencil Product Pages\n\n1. Log in to your BigCommerce Control Panel.\n2. Navigate to **Storefront Design** > **My Themes**.\n3. Open Edit Theme Files for your theme.\n4. Navigate to **Templates** > **Pages** > <span class=\"fn\">product.html</span>.\n5. Paste your Disqus Universal Code before the closing `{{/partial}}` tag.\n6. In the Disqus Universal Code that you have posted, there is a function that reads like below:",
                               "header": {
                                 "anchor": "using-disqus_stencil-product-pages"
                               }
                             },
                             {
+                              "type": "code",
+                              "data": " var disqus_config = function () {\n        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable\n        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable\n    };",
+                              "header": {
+                                "title": "Disqus Universal Code"
+                              },
+                              "config": {
+                                "mode": "js"
+                              }
+                            },
+                            {
                               "type": "text",
-                              "data": "## Additional Resources\n* [Enabling Disqus for Product Reviews (Blueprint)](https://forum.bigcommerce.com/s/article/How-do-I-enable-Disqus-as-my-Comment-Service?_ga=2.224340315.1984523106.1539568940-967431010.1523308107#get-code)\n* [Using Disqus for Blog Comments](https://forum.bigcommerce.com/s/article/Using-Disqus-Comments?_ga=2.224340315.1984523106.1539568940-967431010.1523308107)"
+                              "data": "Change the value of `this.page.url` to be `product.url;`, and the value of `this.page.identifier` to be `product.id`; so that the function now reads like below:"
+                            },
+                            {
+                              "type": "code",
+                              "data": "var disqus_config = function () {\n        this.page.url = product.url;\n        this.page.identifier = product.id;\n    };",
+                              "header": {
+                                "title": "Disqus Universal Code",
+                                "subtitle": "Final Function"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "7. Save your files\n8. Apply your theme"
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Resources\n\n### Related Articles\n* [Enabling Disqus for Product Reviews](https://forum.bigcommerce.com/s/article/How-do-I-enable-Disqus-as-my-Comment-Service?_ga=2.224340315.1984523106.1539568940-967431010.1523308107#get-code)  (Blueprint)\n* [Using Disqus for Blog Comments](https://forum.bigcommerce.com/s/article/Using-Disqus-Comments?_ga=2.224340315.1984523106.1539568940-967431010.1523308107) (BigCommerce Community)"
                             }
                           ]
                         }
