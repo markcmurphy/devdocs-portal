@@ -16685,39 +16685,25 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Assets Directory</h1>"
-                      },
-                      {
-                        "type": "html",
-                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#assets_the-assets-directory\">The <code>assets</code> Directory</a></li>\n    <li><a href=\"#assets_video-demo\">Video Demo</a></li>\n\t</ul>\n</div>"
+                        "data": "<h1>Assets Directory</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#assets_the-assets-directory\">Assets Directory</a></li>\n    <li><a href=\"#assets_video-demo\">Video Demo</a></li>\n    <li><a href=\"#assets_restrictions-permissions\">Restrictions/Permissions</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
-                        "data": "## The `assets` Directory\n\nEach Stencil theme’s `<theme-name>/assets/` directory contains CSS, JavaScript, and image assets that help create the design of storefront pages. A minimal `<theme-name>/assets/` directory contains the files and subdirectories that you can view on the [Cornerstone Github Repository](https://github.com/bigcommerce/cornerstone/tree/master/assets).\n\nWe will go further into detail about the subdirectories within `/assets/` below: \n\n### The `cdn` Subdirectory\n\nThe `/cdn/` subdirectory is designed to contain large static assets that you will upload to a content delivery network, separately from the rest of your theme. For this reason – and by design – the contents of this directory (only) are excluded from theme bundling. For details, see Staging a Theme for CDN Delivery.\n\n### The `fonts` Subdirectory\n\nThe `/fonts/` subdirectory contains local versions of theme-specific fonts.\n\n### The `icons` Subdirectory\n\nThe `/icons/` subdirectory contains .svg files for icons used within a theme.\n\n### The `img` Subdirectory\n\nThe `/img/` subdirectory contains images used in the theme’s display – background images, sprites, and other images not related to store content.\n\nYou would typically reference these image assets using Stencil's cdn Handlebars helper. For example, generically:\n\n`<img src=\"{{cdn 'assets/img/image.jpg'}}\">`\n\nOr, with a realistic file name:\n\n`<img src=\"{{cdn 'assets/img/size-chart.png'}}\">`",
+                        "data": "## Assets Directory\n\nEach Stencil theme’s <span class=\"fp\">{theme-name}/assets/</span> directory contains CSS, JavaScript, and image assets that help create the design of storefront pages. A minimal <span class=\"fp\">{theme-name}/assets/</span> directory contains the files and subdirectories that you can view on the [Cornerstone Github Repository](https://github.com/bigcommerce/cornerstone/tree/master/assets).\n\nWe will go further into detail about the subdirectories within <span class=\"fp\">/assets/</span> below: \n\n### CDN Subdirectory\n\nThe <span class=\"fp\">/cdn/</span> subdirectory is designed to contain large static assets that you will upload to a content delivery network, separately from the rest of your theme. For this reason – and by design – the contents of this directory (only) are excluded from theme bundling. For details, see [Staging a Theme for CDN Delivery](https://developer.bigcommerce.com/stencil-docs/prepare-and-upload-a-theme/staging-a-theme).\n\n### Fonts Subdirectory\n\nThe <span class=\"fp\">/fonts/</span> subdirectory contains local versions of theme-specific fonts.\n\n### Icons Subdirectory\n\nThe <span class=\"fp\">/icons/</span> subdirectory contains .svg files for icons used within a theme.\n\n### Img Subdirectory\n\nThe <span class=\"fp\">/img/</span> subdirectory contains images used in the theme’s display – background images, sprites, and other images not related to store content.\n\nYou would typically reference these image assets using Stencil's CDN Handlebars helper. For example, generically:\n\n`<img src=\"{{cdn 'assets/img/image.jpg'}}\">`\n\nOr, with a realistic file name:\n\n`<img src=\"{{cdn 'assets/img/size-chart.png'}}\">`",
                         "header": {
                           "anchor": "assets_the-assets-directory"
                         }
                       },
                       {
-                        "type": "callout",
-                        "data": {
-                          "body": "For Stencil themes only, images that use the default zoom library pass through Akamai Image Manager. This chooses the best image to serve based on device. To bypass the image optimization, include `imbypass=on` as a query parameter in the image url. This will serve un-optimized images.\n",
-                          "title": "Akamai Image Manager"
-                        },
-                        "header": {
-                          "anchor": "akamai-image-manager"
-                        }
-                      },
-                      {
                         "type": "text",
-                        "data": "`<img src=\"{{cdn 'webdav:img/image.jpg?imbypass=on'}}\">`\n\n`<img src=\"{{getImage settings.store_logo.image 'logo_size'}}?imbypass=on\">`\n\n`<img src=\"{{cdn 'assets/img/image.jpg?imbypass=on'}}\">`\n\n### The `js` Subdirectory\n\nThe `/js/` subdirectory contains general JavaScript files used in the theme.\n\n### The `scss` Subdirectory\n\nThe `/scss/` subdirectory contains theme-specific CSS resources."
+                        "data": "### Akamai Image Manager\nFor Stencil themes only, images that use the default zoom library pass through Akamai Image Manager. This chooses the best image to serve based on the device. To bypass the image optimization, include `imbypass=on` as a query parameter in the image URL. This will serve un-optimized images.\n\n**Examples of image bypass:**\n* `<img src=\"{{cdn 'webdav:img/image.jpg?imbypass=on'}}\">`\n* `<img src=\"{{getImage settings.store_logo.image 'logo_size'}}?imbypass=on\">`\n* `<img src=\"{{cdn 'assets/img/image.jpg?imbypass=on'}}\">`\n\n### JS Subdirectory\n\nThe <span class=\"fp\">/js/</span> subdirectory contains general JavaScript files used in the theme.\n\n### SCSS Subdirectory\n\nThe <span class=\"fp\">/scss/</span> subdirectory contains theme-specific CSS resources."
                       },
                       {
                         "type": "callout",
                         "data": {
-                          "type": "warning",
+                          "type": "success",
                           "title": " Production-Safe Image References",
-                          "body": "To avoid unexpected 404 errors on your production store, we recommend that you use short relative paths in your SCSS to reference images in your `/img/` subdirectory. So, for example, use references of the form:\n`background: url('../img/header-bg.png');` rather than references of the form:\n`background: url('/assets/img/header-bg.png');`"
+                          "body": "To avoid unexpected 404 errors on your production store, we recommend that you use short relative paths in your SCSS to reference images in your <span class=\"fp\">/img/</span> subdirectory. So, for example, use references of the form:\n`background: url('../img/header-bg.png');` rather than references of the form:\n`background: url('/assets/img/header-bg.png');`"
                         }
                       },
                       {
@@ -16726,17 +16712,20 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Video Demo\n\nWatch a video tour of the `/assets/` directory, its `/scss/` subdirectory, interactions between CSS and `config.json` values, Stencil custom Sass functions, and the `/img/` subdirectory.\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/zUDNgprOEts\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>\n",
+                        "data": "## Video Demo\n\nWatch a video tour of the <span class=\"fp\">/assets/</span> directory, its `/scss/` subdirectory, interactions between CSS and <span class=\"fn\">config.json</span> values, Stencil custom Sass functions, and the <span class=\"fp\">/img/</span> subdirectory.\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/zUDNgprOEts\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>\n",
                         "header": {
                           "anchor": "assets_video-demo"
                         }
                       },
                       {
-                        "type": "callout",
-                        "data": {
-                          "type": "warning",
-                          "body": "This section's remaining pages list certain restrictions on changing some subdirectories' structure, contents, and file names.\n\nIn parts of your theme's directory tree where you are free to add new subdirectories and files, be sure to:\n\n* Set newly added directories to permission `755 (drwxr-xr-x)`.\n* Set newly added files to permission `644 (rw-r--r--)`.\n* Without these permissions, running your theme locally will fail, with multiple error messages. Bundling your theme will also fail, blocking its upload to a store.",
-                          "title": " Directory and File Restrictions/Permissions\n"
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "##  Directory and File Restrictions/Permissions\n\nThis section's remaining pages list certain restrictions on changing some subdirectories' structure, contents, and file names.\n\nIn parts of your theme's directory tree where you are free to add new subdirectories and files, be sure to:\n\n* Set newly added directories to permission `755 (drwxr-xr-x)`.\n* Set newly added files to permission `644 (rw-r--r--)`.\n* Without these permissions, running your theme locally will fail, with multiple error messages. Bundling your theme will also fail, blocking its upload to a store.",
+                        "header": {
+                          "anchor": "assets_restrictions-permissions"
                         }
                       }
                     ]
