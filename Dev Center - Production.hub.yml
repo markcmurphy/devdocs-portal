@@ -3323,7 +3323,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "When ShipperHQ is enabled on a store, additional fields become available on the product level:\n* Shipping Origins\n* Origin Locations\n* Dimensional Rules are accessible. \n\nThese field values can be set in the Control Panel by the merchant as well as using the\n[Product Metafields Endpoint](/api-reference/catalog/catalog-api/product-metafields/createproductmetafield) or the [Variant Metafields Endpoint](/api-reference/catalog/catalog-api/product-variants-metafields/createvariantmetafield)."
+                              "data": "When ShipperHQ is enabled on a store, additional fields become available on the product level:\n* [Shipping Groups](https://support.bigcommerce.com/s/article/ShipperHQ#ship-groups)\n* [Origin Locations](https://support.bigcommerce.com/s/article/ShipperHQ#origin-loc)\n* [Dimensional Rules](https://support.bigcommerce.com/s/article/ShipperHQ#dim-rules) \n\nThese field values can be set in the Control Panel by the merchant as well as using one of the following:\n* [Product Metafields Endpoint](/api-reference/catalog/catalog-api/product-metafields/createproductmetafield)\n* [Variant Metafields Endpoint](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/product-variants-metafields/createvariantmetafield)"
                             },
                             {
                               "type": "text",
@@ -3331,7 +3331,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## ShipperHQ Object Properties\n\n| Property | Type | Values |\n|---|---|---|\n| permission_set | string | This must be set to `write`. Setting to any other field will cause unintended behavior. **required** |\n| key | enum | Members: `shipping-groups`, `shipping-origins`, `shipping-dimensional-rules` **required** |\n| value | JSON encoded string | This will be the name of the attribute type in ShipperHQ. This needs to be input exactly how it is listed within ShipperHQ. To pass in more than one Shipping Origin, Origin Location or Dimensional Rule use an array with a comma-separated list. White spaces and special characters need to be escaped. Must be a JSON encoded string `\"[\\\"Origin Name from SHQ-1\\\",\\\" Origin Name from SHQ-2\\\"]\"` **required** |\n| namespace | string | This will always be `shipping.shipperhq` **required** |\n| resource_type | string | Either `product` or `variant` |\n| resource_id | string | Id of the product or variant **read-only** |\n| description | string | ShipperHQ shipping origins associated with this product/sku. **read-only** |\n| date_created | string | Date and time of the metafield's creation. **read-only** |\n| date_modified | string | Date and time when the metafield was last updated. **read-only** |\n| id | number | Id of the Metafield. **read-only** |",
+                              "data": "## ShipperHQ Object Properties\n\n| Property | Type | Values |\n|---|---|---|\n| permission_set | string | This must be set to `write`. Setting to any other field will cause unintended behavior. **required** |\n| key | enum | Members: `shipping-groups`, `shipping-origins`, `shipping-dimensional-rules` **required** |\n| value | JSON encoded string | This will be the name of the attribute type in ShipperHQ. This needs to be input exactly how it is listed within ShipperHQ. To pass in more than one Shipping Origin, Origin Location or Dimensional Rule use an array with a comma-separated list. White spaces and special characters need to be escaped. Must be a JSON encoded string `\"[\\\"Origin Name from SHQ-1\\\",\\\" Origin Name from SHQ-2\\\"]\"` **required** |\n| namespace | string | This will always be `shipping.shipperhq` **required** |\n| resource_type | string | Either `product` or `variant` |\n| resource_id | string | ID of the product or variant **read-only** |\n| description | string | ShipperHQ shipping origins associated with this product/sku. **read-only** |\n| date_created | string | Date and time of the metafield's creation. **read-only** |\n| date_modified | string | Date and time when the metafield was last updated. **read-only** |\n| id | number | ID of the Metafield. **read-only** |",
                               "header": {
                                 "anchor": "shipper-hq-object-properties"
                               }
@@ -3349,9 +3349,20 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Control Panel Behavior\n\nWhen Shipping Origins are set using the API, the fields cannot be deleted using the Control Panel. A /DELETE request must be sent to the metafields resource.\n\n`/DELETE https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields`\n",
+                              "data": "## Control Panel Behavior\n\nWhen Shipping Origins are set using the API, the fields cannot be deleted using the Control Panel. A /DELETE request must be sent to the metafields resource.",
                               "header": {
                                 "anchor": "control-panel-behavior"
+                              }
+                            },
+                            {
+                              "type": "code",
+                              "data": "//204 Reponse",
+                              "header": {
+                                "subtitle": "/DELETE https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields",
+                                "title": "SHQ Add Metafield DELETE Request"
+                              },
+                              "config": {
+                                "mode": "json"
                               }
                             },
                             {
@@ -3360,7 +3371,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Add ShipperHQ Metafield\n\n`/POST https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields`",
+                              "data": "## Add ShipperHQ Metafield",
                               "header": {
                                 "anchor": "add-shipperhq-metafield"
                               }
@@ -3369,7 +3380,8 @@
                               "type": "code",
                               "data": "{\n\t\"permission_set\": \"write\",\n\t\"key\": \"shipping-origins\",\n\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\"namespace\": \"shipping.shipperhq\"\n}",
                               "header": {
-                                "title": "SHQ Add Metafield Request"
+                                "title": "SHQ Add Metafield Request",
+                                "subtitle": "/POST https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields"
                               }
                             },
                             {
@@ -3378,6 +3390,14 @@
                               "header": {
                                 "title": "SHQ Add Metafield Response"
                               }
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Resources\n### Related Endpoints\n* [Product Metafield](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/product-metafields/createproductmetafield)\n* [Variant Metafield](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/product-variants-metafields/createvariantmetafield)\n### Related Articles\n* [ShipperHQ](https://www.bigcommerce.com/apps/shipperhq/?search=shipper%20hq) (Knowledge Base)"
                             }
                           ]
                         }
