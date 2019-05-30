@@ -43866,7 +43866,7 @@ pages:
                           </tr>
                           <tr>
                             <td>Default Price</td>
-                            <td>This is the product’s standard store price. The <bb>Excluding/Including Tax</b> indicator to the right of the **Default Price** field is applicable to all price fields (Cost, MSRP, Sale Price).</td>
+                            <td>This is the product’s standard store price. The <bb>Excluding/Including Tax</b> indicator to the right of the <b>Default Price</b> field is applicable to all price fields (Cost, MSRP, Sale Price).</td>
                           </tr>
                           <tr>
                             <td>Cost Price</td>
@@ -44306,12 +44306,18 @@ pages:
                           </tr>
                           <tr>
                             <td>Default Price (excluding tax)</td>
-                            <td><code>{{ product.price.non_sale_price_without_tax }}</code></td>    
+                            <td>
+                              <ul>
+                                <li>if <b>Sale Price</b> defined:</li> <code>{{ product.price.non_sale_price_without_tax }}</code>
+                                <li>if no <b>Sale Price</b> defined</li> <code>{{ product.price.without_tax }}</code>
+                            </td>    
                             <td>The standard store price for the product.</td>
                           </tr>
                           <tr>   
                             <td>Default Price (including tax)</td>
-                            <td><code>{{ product.price.non_sale_price_with_tax }}</code></td>   
+                            <td><li>if <b>Sale Price</b> defined:</li><code>{{ product.price.non_sale_price_with_tax }}</code>
+                              <li>if no <b>Sale Price</b> defined</li> <code>{{ product.price.with_tax }}</code>
+                            </td>   
                             <td>The standard store price for the product, with tax.</td>
                           </tr>
                           <tr>
