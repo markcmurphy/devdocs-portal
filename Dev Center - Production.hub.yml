@@ -41706,6 +41706,64 @@ pages:
                                     | provider | Credit card provider |
                                   header:
                                     anchor: customer_edit-payment-methods
+                                - type: text
+                                  data: '---'
+                                - type: text
+                                  data: >-
+                                    ## Add Payment Methods
+
+
+                                    **Description:** Object to add stored
+                                    customer payment methods.
+
+
+                                    **Called on:**
+                                    [`<theme-name>/templates/pages/account/payment-methods.html`](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/account/add-payment-method.html)
+
+
+                                    **Handlebars Expression:** 
+
+                                    * `{{vault}}`
+
+                                    * `{{countries}}`
+
+                                    * `{{forms}}`
+
+
+                                    **Object Properties:**
+
+                                    | Property | Description  |
+
+                                    |--|--|
+
+                                    | vault | Object |
+
+                                    |&nbsp;↳ access_token | token needed to
+                                    submit with the ADD payment method form
+                                    otherwise form submission will fail with 401
+                                    Unauthorized |
+
+                                    |&nbsp;↳ expires_at | Expiration Date in
+                                    Unix Timestamp|
+
+                                    | countries |  countries with state
+                                    information, used in the country and state
+                                    drop downs when submitting the ADD payment
+                                    form |
+
+                                    | &nbsp; ↳ code | country code |
+
+                                    | &nbsp; ↳ label | country name that appears
+                                    in the dropdown |
+
+                                    | &nbsp; ↳ value | country name |
+
+                                    | &nbsp; ↳ name | state name |
+
+                                    | forms | Object |
+
+                                    | &nbsp; ↳ provider | ID of the provider to
+                                    add a vaulted card. Ex. stripe |
                           - title: 'Blog '
                             route:
                               path: /blog-objects
