@@ -21031,30 +21031,34 @@ pages:
                       data: >-
                         Most [Cornerstone
                         theme](https://github.com/bigcommerce/cornerstone) page
-                        template files located in `/templates/pages/`  have a
-                        corresponding `.js` file in `/assets/js/theme/`.  These
-                        JavaScript files contain event handlers and logic  for
-                        managing page specific elements and actions. 
+                        template files located in <span
+                        class="fp">templates/pages/</span>  have a corresponding
+                        `.js` file in <span class="fp">assets/js/theme/</span>. 
+                        These JavaScript files contain event handlers and logic 
+                        for managing page specific elements and actions. 
 
 
-                        For example, `/assets/js/theme/product.js` corresponds
-                        to `/templates/pages/product.html` and contains a
-                        `productReviewHandler()` and `bulkPricingHandler()` –
-                        these functions are implemented within a  derived
-                        `Product` class which extends an abstract class called
-                        `PageManager` (this same pattern is repeated in all
-                        `/assets/js/theme/*.js` files). 
+                        For example, <span
+                        class="fp">/assets/js/theme/product.js</span>
+                        corresponds to <span
+                        class="fp">/templates/pages/product.html</span> and
+                        contains a `productReviewHandler()` and
+                        `bulkPricingHandler()` – these functions are implemented
+                        within a  derived `Product` class which extends an
+                        abstract class called `PageManager` (this same pattern
+                        is repeated in all <span
+                        class="fp">/assets/js/theme/*.js</span> files). 
 
 
                         By default, all derived `PageManager` classes contain an
                         `onReady` method functionally similar to
                         `JQuery.ready()`. Additionally, certain pages have
                         unique event handlers. For example the `cartUpdate`
-                        handler in `/assets/js/cart.js` runs each time certain
-                        cart elements are changed. Developers can customize and
-                        enhance page behavior and functionality by editing code
-                        within these event handlers (or by creating their own
-                        event handlers). 
+                        handler in <span class="fp">/assets/js/cart.js</span>
+                        runs each time certain cart elements are changed.
+                        Developers can customize and enhance page behavior and
+                        functionality by editing code within these event
+                        handlers (or by creating their own event handlers). 
 
 
                         To demonstrate, this article describes how to add some
@@ -21073,9 +21077,10 @@ pages:
                         anchor: customizing-javascript_customizing
                     - type: text
                       data: >-
-                        In `/assets/js/theme/product.js` file, add a call to
-                        `this.helloWorld()` to the bottom of the `onReady()`
-                        method (implimented in next step): 
+                        In <span class="fp">/assets/js/theme/product.js<span
+                        class="fp"> file, add a call to `this.helloWorld()` to
+                        the bottom of the `onReady()` method (implimented in
+                        next step): 
                     - type: code
                       data: |-
                         export default class Product extends PageManager {
@@ -21095,7 +21100,7 @@ pages:
                             ...
                         }
                       header:
-                        subtitle: <theme-name>/assets/js/theme/product.js
+                        subtitle: /assets/js/theme/product.js
                         title: Hello World Statement
                       config:
                         mode: js
@@ -21127,10 +21132,13 @@ pages:
                             }
                             ...
                         }
+                      header:
+                        subtitle: /assets/js/theme/product.js
+                        title: Hello World Statement
                     - type: text
                       data: >-
                         In your browser, refresh any product-details pop-up or
-                        page to see your new `"Hello World"` message (If you're
+                        page to see your new `"Hello World"` message (If you are
                         using the Stencil CLI and browsing to localhost, you may
                         need to restart it for changes the most recent changes
                         to be reflected). 
@@ -21141,9 +21149,9 @@ pages:
                         ## Bringing Handlebars Context Values into JavaScript
 
 
-                        Within Stencil pages, you can inject any variables from
-                        the Handlebars context into your client-side JavaScript
-                        by using the `{{inect ... }` expression like so: 
+                        You can inject any variables from the Handlebars context
+                        into your client-side JavaScript by using the `{{inect
+                        ... }` expression like so: 
 
 
                         `{{inject 'productThumbSize'
@@ -21153,8 +21161,8 @@ pages:
                         To inject `theme_settings.productthumb_size` in the
                         product page's context, add `{inject 'productThumbSize'
                         theme_settings.productthumb_size}}` just under
-                        `{{#partial "page"}}` in
-                        `/templates/pages/product.html`:
+                        `{{#partial "page"}}` in <span
+                        class="fp">/templates/pages/product.html<span>:
                       header:
                         anchor: customizing-javascript_bringing-handlebars
                     - type: code
@@ -21242,8 +21250,8 @@ pages:
                         `npm install jquery`
 
 
-                        Next, you would open
-                        `<theme-name>/assets/js/theme/product.js`, and insert
+                        Next, you would open <span
+                        class="fp">/assets/js/theme/product.js<span>, and insert
                         the statements excerpted below:
                       header:
                         anchor: customizing-javascript_installing-various
