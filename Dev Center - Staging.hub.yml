@@ -28291,7 +28291,9 @@ pages:
 
 
                               Returns a new array, created by calling `function`
-                              on each element of the given `array`.
+                              on each element of the given `array`. The
+                              `{{map}}` helper does not modify the original,
+                              provided array, but returns a new one.
 
 
                               #### Parameters
@@ -28299,7 +28301,7 @@ pages:
 
                               * `array` {Array}
 
-                              * `fn` {Function}
+                              * `function` {Function}
 
                               * `returns` {String}
 
@@ -28307,22 +28309,16 @@ pages:
                               #### Example
 
 
-                              Given an array `['a', 'b', 'c']`:
+                              Given an array `['c', 'a', 'b']`:
 
 
-                              ```js
-
-                              // register `double` as a helper
-
-                              function double(str) {
-                                return str + str;
-                              }
+                              ```
 
                               // then used like this:
 
-                              // {{map array double}}
+                              // {{map array sort}}
 
-                              //=> '["aa", "bb", "cc"]'
+                              //=> '["a", "b", "c"]'
 
                               ```
 
