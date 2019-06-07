@@ -1073,24 +1073,25 @@ definitions:
       addresses:
         description: Array of customer addresses. Limited to 10
         type: array
+        maxItems: 10
         items:
           $ref: '#/definitions/Address'
-        maxItems: 10
       attributes:
         description: Array of customer attributes. Limited to 10
         type: array
+        maxItems: 10
         items:
           $ref: '#/definitions/CustomerAttributeValue'
-        maxItems: 10
       form_fields:
         description: Array of form fields. Controlled by `formfields` parameter.
         type: array
         items:
           $ref: '#/definitions/FormFieldValue'
       store_credit:
-        description: Store credit. Controlled by `storecredit` parameter.
-        type: number
+        description: 'Store credit. '
+        type: array
         format: double
+        items: {}
   CustomerPost:
     title: Customer Post
     type: object
