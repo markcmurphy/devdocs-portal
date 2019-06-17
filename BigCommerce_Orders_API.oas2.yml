@@ -5680,12 +5680,6 @@ definitions:
           `subtotal_ex_tax` is also required. (Float, Float-As-String, Integer)
         example: '225.0000'
         type: string
-      subtotal_tax:
-        description: >-
-          A read-only value. Do not attempt to set or modify this value in a
-          POST or PUT operation. (Float, Float-As-String, Integer)
-        example: '0.0000'
-        type: string
       base_shipping_cost:
         description: 'The value of the base shipping cost. (Float, Float-As-String, Integer)'
         example: '0.0000'
@@ -5718,12 +5712,6 @@ definitions:
           Float-As-String, Integer)
         example: 0
         type: number
-      handling_cost_tax:
-        description: >-
-          A read-only value. Do not attempt to modify or set this value in a
-          POST or PUT operation. (Float, Float-As-String, Integer)
-        example: '0.0000'
-        type: string
       base_wrapping_cost:
         description: 'The value of the base wrapping cost. (Float, Float-As-String, Integer)'
         example: 0
@@ -5740,19 +5728,6 @@ definitions:
           Float-As-String, Integer)
         example: '0.0000'
         type: string
-      wrapping_cost_tax:
-        description: >-
-          A read-only value. Do not attempt to modify or set this value in a
-          POST or PUT operation. (Float, Float-As-String, Integer)
-        example: '0.0000'
-        type: string
-      wrapping_cost_tax_class_id:
-        description: >-
-          A read-only value. Do not attempt to set or modify this value in a
-          POST or PUT operation. (NOTE: Value ignored if automatic tax is
-          enabled on the store.)
-        example: 3
-        type: integer
       total_ex_tax:
         description: >-
           Override value for the total, excluding tax. If specified, the field
@@ -5785,11 +5760,6 @@ definitions:
           provider (if a payment provider was used).
         example: 'null'
         type: string
-      payment_status:
-        description: >-
-          A read-only value. Do not attempt to set or modify this value in a
-          POST or PUT operation.
-        type: string
       refunded_amount:
         description: >-
           The amount refunded from this transaction. (Float, Float-As-String,
@@ -5800,13 +5770,6 @@ definitions:
         description: Whether this is an order for digital products.
         example: false
         type: boolean
-      store_credit_amount:
-        description: >-
-          Represents the store credit that the shopper has redeemed on this
-          individual order. This is a read-only value. Do not pass in a POST or
-          PUT. (Float, Float-As-String, Integer)
-        example: '0.0000'
-        type: string
       gift_certificate_amount:
         description: >-
           A read-only value. Do not pass in a POST or PUT. (Float,
@@ -5829,24 +5792,6 @@ definitions:
           based on the IP.
         example: US
         type: string
-      currency_id:
-        description: >-
-          The ID of the currency being used in this transaction. A read-only
-          value. Do not pass in a POST or PUT.
-        example: 1
-        type: integer
-      currency_exchange_rate:
-        description: >-
-          A read-only value. Do not pass in a POST or PUT. (Float,
-          Float-As-String, Integer)
-        example: '1.0000000000'
-        type: string
-      default_currency_code:
-        description: >-
-          The currency code of the default currency for this type of
-          transaction. A read-only value. Do not pass in a POST or PUT.
-        type: string
-        example: USD
       staff_notes:
         description: Any additional notes for staff.
         example: Send Saturday
@@ -5862,12 +5807,6 @@ definitions:
           Amount of discount for this transaction. (Float, Float-As-String,
           Integer)
         example: '0.0000'
-        type: string
-      coupon_discount:
-        description: >-
-          A read-only value. Do not pass in a POST or PUT. (Float,
-          Float-As-String, Integer)
-        example: '5.0000'
         type: string
       is_deleted:
         description: >-
