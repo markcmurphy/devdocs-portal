@@ -4424,9 +4424,6 @@ definitions:
           - BasicTaxProvider
           - AvaTaxProvider
           - ''
-    required:
-      - billing_address
-      - products
   OrdersCountResponse:
     title: Orders Count Response
     example:
@@ -5667,28 +5664,6 @@ definitions:
           order.
         example: 6
         type: integer
-      date_created:
-        description: >-
-          The date this order was created. If not specified, will default to the
-          current time. The date should be in RFC 2822 format, e.g.: Tue, 20 Nov
-          2012 00:00:00 +0000
-        example: 'Mon, 23 Apr 2018 18:04:48 +0000'
-        type: string
-        format: date-time
-      date_modified:
-        description: >-
-          A read-only value representing the last modification of the order. Do
-          not attempt to modify or set this value in a POST or PUT operation.
-        example: 'Mon, 23 Apr 2018 18:04:49 +0000'
-        type: string
-        format: date-time
-      date_shipped:
-        description: >-
-          A read-only value representing the date of shipment. Do not attempt to
-          modify or set this value in a POST or PUT operation.
-        example: 'Wed, 14 Nov 2012 19:26:23 +0000"'
-        type: string
-        format: date-time
       status_id:
         description: The status ID of the order.
         example: 11
@@ -5699,19 +5674,6 @@ definitions:
           Correlates with the Cart API. This is a READ-ONLY field; do not set or
           modify its value in a POST or PUT request.
         example: a8458391-ef68-4fe5-9ec1-442e6a767364
-        type: string
-      status:
-        description: >-
-          The status will include one of the (string, optiona) - values defined
-          under Order Statuses. This value is read-only. Do not attempt to
-          modify or set this value in a POST or PUT operation.
-        example: Awaiting Fulfillment
-        type: string
-      custom_status:
-        description: >-
-          Contains the same (string, optiona) - value as the Order Statuses
-          object's `custom_label` property.
-        example: Awaiting Fulfillment
         type: string
       subtotal_ex_tax:
         description: >-
