@@ -5558,7 +5558,7 @@ definitions:
         type: string
         description: This can vary based on shipping quote
   createorder:
-    title: Order
+    title: Order Post
     example:
       id: 113
       customer_id: 1
@@ -5646,10 +5646,6 @@ definitions:
       custom_status: Awaiting Payment
     type: object
     properties:
-      id:
-        description: 'The ID of the order, a read-only value. Do not pass in PUT or POST.'
-        example: 118
-        type: integer
       customer_id:
         description: >-
           The ID of the customer placing the order; or 0 if it was a guest
@@ -5982,12 +5978,6 @@ definitions:
           will be null.
         example: 'null'
         type: string
-      products:
-        $ref: '#/definitions/ProductsResource'
-      shipping_addresses:
-        $ref: '#/definitions/ShippingAddressesResource'
-      coupons:
-        $ref: '#/definitions/CouponsResource'
       external_id:
         description: >-
           ID of the order in another system. For example, the Amazon Order ID if
@@ -6028,7 +6018,6 @@ definitions:
           - ''
     required:
       - billing_address
-      - products
 tags:
   - name: Orders
   - name: Order Coupons
