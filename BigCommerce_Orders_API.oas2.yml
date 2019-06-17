@@ -6014,6 +6014,32 @@ definitions:
       - quantity
       - price_ex_tax
       - price_inc_tax
+  addProduct:
+    type: object
+    title: Product
+    description: '`product_options` are required if adding a product with variants.'
+    properties:
+      product_id:
+        type: integer
+      product_options:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+            value:
+              type: string
+      quantity:
+        type: integer
+      price_inc_tax:
+        type: number
+      price_ex_tax:
+        type: number
+    required:
+      - product_id
+      - product_options
+      - quantity
 tags:
   - name: Orders
   - name: Order Coupons
