@@ -5658,6 +5658,12 @@ definitions:
       custom_status: Awaiting Payment
     type: object
     properties:
+      products:
+        type: array
+        items:
+          anyOf:
+            - $ref: '#/definitions/addProduct'
+            - $ref: '#/definitions/customProduct'
       customer_id:
         description: >-
           The ID of the customer placing the order; or 0 if it was a guest
@@ -5877,12 +5883,6 @@ definitions:
           - BasicTaxProvider
           - AvaTaxProvider
           - ''
-      products:
-        type: array
-        items:
-          anyOf:
-            - $ref: '#/definitions/addProduct'
-            - $ref: '#/definitions/customProduct'
     required:
       - billing_address
       - products
