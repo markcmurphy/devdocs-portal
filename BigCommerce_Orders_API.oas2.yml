@@ -5668,13 +5668,6 @@ definitions:
         description: The status ID of the order.
         example: 11
         type: integer
-      cart_id:
-        description: >-
-          The cart ID from which this order originated, if applicable.
-          Correlates with the Cart API. This is a READ-ONLY field; do not set or
-          modify its value in a POST or PUT request.
-        example: a8458391-ef68-4fe5-9ec1-442e6a767364
-        type: string
       subtotal_ex_tax:
         description: >-
           Override value for subtotal excluding tax. If specified, the field
@@ -5709,19 +5702,6 @@ definitions:
           Integer)
         example: '0.0000'
         type: string
-      shipping_cost_tax:
-        description: >-
-          A read-only value. Do not attempt to modify or set this value in a
-          POST or PUT operation. (Float, Float-As-String, Integer)
-        example: '0.0000'
-        type: string
-      shipping_cost_tax_class_id:
-        description: >-
-          Shipping-cost tax class. A read-only value. Do not attempt to modify
-          or set this value in a POST or PUT operation. (NOTE: Value ignored if
-          automatic tax is enabled on the store.)
-        example: 2
-        type: integer
       base_handling_cost:
         description: 'The value of the base handling cost. (Float, Float-As-String, Integer)'
         example: '0.0000'
@@ -5744,13 +5724,6 @@ definitions:
           POST or PUT operation. (Float, Float-As-String, Integer)
         example: '0.0000'
         type: string
-      handling_cost_tax_class_id:
-        description: >-
-          A read-only value. Do not attempt to set or modify this value in a
-          POST or PUT operation. (NOTE: Value ignored if automatic tax is
-          enabled on the store.)
-        example: 2
-        type: integer
       base_wrapping_cost:
         description: 'The value of the base wrapping cost. (Float, Float-As-String, Integer)'
         example: 0
@@ -5791,12 +5764,6 @@ definitions:
           Override value for the total, including tax. If specified, the field
           `total_ex_tax` is also required. (Float, Float-As-String, Integer) 
         example: '225.0000'
-        type: string
-      total_tax:
-        description: >-
-          A read-only value. Do not attempt to set or modify this value in a
-          POST or PUT operation. (Float, Float-As-String, Integer)
-        example: '0.0000'
         type: string
       items_total:
         description: The total number of items in the order.
@@ -5868,22 +5835,12 @@ definitions:
           value. Do not pass in a POST or PUT.
         example: 1
         type: integer
-      currency_code:
-        description: >-
-          The currency code of the currency being used in this transaction. A
-          read-only value. Do not pass in a POST or PUT.
-        example: USD
-        type: string
       currency_exchange_rate:
         description: >-
           A read-only value. Do not pass in a POST or PUT. (Float,
           Float-As-String, Integer)
         example: '1.0000000000'
         type: string
-      default_currency_id:
-        description: A read-only value. Do not pass in a POST or PUT.
-        example: 1
-        type: integer
       default_currency_code:
         description: >-
           The currency code of the default currency for this type of
@@ -5912,11 +5869,6 @@ definitions:
           Float-As-String, Integer)
         example: '5.0000'
         type: string
-      shipping_address_count:
-        type: number
-        description: >-
-          The number of shipping addresses associated with this transaction. A
-          read-only value. Do not pass in a POST or PUT.
       is_deleted:
         description: >-
           Indicates whether the order was deleted (archived). Set to to true, to
@@ -5940,13 +5892,6 @@ definitions:
         type: string
       billing_address:
         $ref: '#/definitions/BillingAddress'
-      order_source:
-        description: >-
-          Orders submitted via the store's website will include a `www` value.
-          Orders submitted via the API will be set to `external`. A read-only
-          value. Do not pass in a POST or PUT.
-        example: www
-        type: string
       external_source:
         description: >-
           For orders submitted or modified via the API, using a PUT or POST
@@ -6001,6 +5946,7 @@ definitions:
             - $ref: '#/definitions/customProduct'
     required:
       - billing_address
+      - products
   customProduct:
     type: object
     title: Custom Product
