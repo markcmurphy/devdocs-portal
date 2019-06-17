@@ -13479,20 +13479,32 @@ pages:
                     - type: code
                       data: >-
                         deleteCartItem(`/api/storefront/carts/`,
-                        `45f524b1-3aaa-4a11-8df7-7b5223abb9b6`,
-                        `1f0488c5-1228-45b3-80f9-ce836192278d`)
-                          .then(data => console.log(JSON.stringify(data)))
+                        `f996cb68-b1df-422e-b3dd-0f90faa10210`,
+                        `e51ac38d-dacd-449d-b503-f087f14bde67`)
+
+                        .then(data => console.log(JSON.stringify(data)))
+
+                        .catch(error => console.log(error))
+
 
                         function deleteCartItem(url = ``, cartId = ``, itemId =
                         ``) {
-                          return fetch(url + cartId + '/items/' + itemId, {
-                           method: "DELETE",
-                           credentials: "same-origin",
-                           headers: {
-                            "Content-Type": "application/json",          
-                            }
-                          })
-                          .then(response => response.json());
+
+                        return fetch(url + cartId + '/items/' + itemId, {
+
+                        method: "DELETE",
+
+                        credentials: "same-origin",
+
+                        headers:
+
+
+                        { "Content-Type": "application/json", }
+
+                        })
+
+                        .then(response => response.json());
+
                         }
                       header:
                         title: Delete Cart Item
