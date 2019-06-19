@@ -2621,14 +2621,27 @@ definitions:
           properties:
             type:
               type: string
-              example: all
+              enum:
+                - price_list
+                - all
+                - category
+                - product
             method:
               type: string
-              example: percent
+              enum:
+                - percent
+                - fixed
+                - price
             amount:
               type: string
               example: '"5.0000" (Float, Float as String, Integer)'
               description: A float that specifies the value applied to the price modified
+            price_list_id:
+              type: integer
+              example: 3
+              description: >-
+                If a customer group is assigned to a price list,`method` and
+                `amount` are not shown. `type` and `price_list_id` are returned.
   Country:
     title: Country
     example:
