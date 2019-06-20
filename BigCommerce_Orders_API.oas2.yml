@@ -1235,7 +1235,9 @@ paths:
         | status | subtotal_tax | store_credit_amount | gift_certificate_amount
         |
 
-        | shipping_address_count | coupons |
+        | shipping_address_count | coupons | base_cost_price |
+
+        | cost_price_inc_tax | cost_price_ex_tax | cost_price_tax |
       summary: Create an Order
       tags:
         - Orders
@@ -4504,7 +4506,9 @@ definitions:
         example: 1
         type: number
       base_cost_price:
-        description: 'The product''s cost price. (Float, Float-As-String, Integer) Read Only'
+        description: >-
+          The product's cost price.  This can be set using the Catalog API.
+          (Float, Float-As-String, Integer) Read Only
         example: '0.0000'
         type: string
       cost_price_inc_tax:
@@ -4513,8 +4517,7 @@ definitions:
           Integer)
 
           The cost of your products to you; this is never shown to customers,
-          but can be used for accounting purposes. This can be set using the
-          catalog API. Read Only
+          but can be used for accounting purposes. Read Only
         example: '0.0000'
         type: string
       cost_price_ex_tax:
@@ -4523,8 +4526,7 @@ definitions:
           Integer)
 
           The cost of your products to you; this is never shown to customers,
-          but can be used for accounting purposes. This can be set using the
-          catalog API. Read Only
+          but can be used for accounting purposes. Read Only
         example: '0.0000'
         type: string
       weight:
@@ -4537,8 +4539,7 @@ definitions:
           Integer)
 
           The cost of your products to you; this is never shown to customers,
-          but can be used for accounting purposes. This can be set using the
-          catalog API. Read Only
+          but can be used for accounting purposes. Read Only
         example: '54.0000'
         type: string
       is_refunded:
