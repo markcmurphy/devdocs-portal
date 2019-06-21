@@ -13378,7 +13378,7 @@ pages:
 
                         ### Create Cart
 
-                        [*https://<store_url>/api/storefront/carts*](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-cart-api/cart/getacart)
+                        [*https://<store_url>/api/storefront/carts*](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-cart-api/cart/createacart)
 
 
                         First, we pass in the request URL to create a cart into
@@ -13437,6 +13437,9 @@ pages:
                     - type: text
                       data: >-
                         ### Get Cart
+
+
+                        [*https://<store_url>/api/storefront/carts*](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-cart-api/cart/getacart)
 
 
                         The function below is slightly different. The postData()
@@ -13503,9 +13506,14 @@ pages:
                               })
                               .then(response => response.json()); 
                         }
+                      header:
+                        title: Add Item to Cart
                     - type: text
                       data: >-
                         ### Delete Cart Item
+
+
+                        [*https://<store_url>/api/storefront/carts/{cartId}/items/{itemId}*](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-cart-api/cart/deletecartlineitem)
 
 
                         In the code below there are a few changes. One is the
@@ -13579,7 +13587,10 @@ pages:
                         body: checkoutId and the cartId are same.
                     - type: text
                       data: >-
-                        ### Add billing address to checkout
+                        ### Add Billing Address to Checkout
+
+
+                        [*https://<store_url>/api/storefront/checkouts/{checkoutId}/billing-address*](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api/checkout/checkoutsbillingaddressbycheckoutidpost)
 
 
                         A billing address is required to complete a checkout. In
@@ -13622,7 +13633,11 @@ pages:
                         mode: js
                     - type: text
                       data: >-
-                        ### Add shipping address or consignment to checkout 
+                        ### Add Shipping Address or Consignment to Checkout 
+
+
+                        [*https://<store_url>/api/storefront/checkouts/{checkoutId}/consignments*](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api/checkout/checkoutsconsignmentsbycheckoutidpost)
+
 
                         A consignment consists of a shipping address with the
                         associated lineItems.  At a minimum, at least one
@@ -13771,6 +13786,9 @@ pages:
                         ### Update Consignment to Add a Shipping Option
 
 
+                        [*https://<store_url>/api/storefront/checkouts/{checkoutId}/billing-address/{addressId}*](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api/checkout/checkoutsbillingaddressbycheckoutidandaddressidput)
+
+
                         So far we have created a cart, added a billing address
                         and shipping address, and assigned the lineItems to the
                         address they should be shipped. Now we are going to make
@@ -13818,13 +13836,13 @@ pages:
                         ## Troubleshooting
 
 
-                        * Did you get a CORs error response? 
+                        * **Did you get a CORs error response?**  
 
                         Check to make sure you have the right credentials set
                         up. Most requests will use same-origin or include. 
 
 
-                        * Did you get a 404?
+                        * **Did you get a 404?**  
 
                         Make sure you have at least one item in your cart.
                         Deleting all items removes the cart and returns a 404 in
