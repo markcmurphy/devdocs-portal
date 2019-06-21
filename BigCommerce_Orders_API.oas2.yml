@@ -4520,11 +4520,11 @@ definitions:
         example: '54.0000'
         type: string
       price_tax:
-        description: >-
-          Amount of tax applied to a single product. For example, if quantity if
-          2, base price is 5 and tax rate is 10%. price_tax will be $.50 and
-          total_tax will be $1.00
+        description: |-
+          Amount of tax applied to a single product. 
 
+          Price tax is calculated as:
+          `price_tax = price_inc_tax - price_ex_tax`
 
           (Float, Float-As-String, Integer)
         example: '0.0000'
@@ -4546,10 +4546,20 @@ definitions:
           Total tax applied to products.
 
           For example, if quantity if 2, base price is 5 and tax rate is 10%.
-          price_tax will be $.50 and total_tax will be $1.00.  
+          price_tax will be $.50 and total_tax will be $1.00.
 
+
+          If there is a manual discount applied total_tax is calcuted as the
+          following:
+
+          `(price_ex_tax - discount)*tax_rate=total_tax`.
+
+
+          See applied discount for more on how manual discounts are applied to
+          orders. 
+           
           (Float, Float-As-String, Integer)
-        example: '0.0000'
+        example: '0.5200'
         type: string
       quantity:
         description: Quantity of the product ordered.
@@ -5266,6 +5276,12 @@ definitions:
   OrderProductsAppliedDiscounts:
     title: Order Products Applied Discounts
     type: object
+    description: >-
+      When applying a manual discount to an order (not a product level
+      discount), the discount is distributed across products in proportion to
+      the products price. 
+
+      `(total_manual_discount*price_ex_tax)/subtotal_ex_tax`
     properties:
       id:
         description: Name of the coupon applied to order
@@ -5276,11 +5292,15 @@ definitions:
         example: '1.2100'
         type: string
       name:
-        description: Name of the coupon
+        description: |-
+          Name of the coupon. 
+          `Manual Discount` when creating a manual discount.
         example: $5 off
         type: string
       code:
-        description: Coupon Code
+        description: |-
+          Coupon Code. 
+          There is no code when creating a manual discount.
         example: S2549JM0Y
         type: string
       target:
