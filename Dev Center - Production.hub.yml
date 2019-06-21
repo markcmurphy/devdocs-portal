@@ -13378,6 +13378,8 @@ pages:
 
                         ### Create Cart
 
+                        [*https://<store_url>/api/storefront/carts*](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-cart-api/cart/getacart)
+
 
                         First, we pass in the request URL to create a cart into
                         the function call. 
@@ -13466,6 +13468,41 @@ pages:
                         title: Get Cart Response
                       config:
                         mode: json
+                    - type: text
+                      data: >-
+                        ### Add Item to Cart
+
+                        [*https://<store_url>/api/storefront/carts/{cartId}/items*](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-cart-api/cart/addcartlineitem)
+
+
+                        To add a line item, adjust the fetch statement. It needs
+                        to accept the `url` and `cartId`.  `cartItems` is again
+                        passed as the body of the request. 
+                    - type: code
+                      data: >-
+                        postData(`/api/storefront/carts/`,
+                        `1d2d2445-5e5d-4798-ada1-37652a7822c8` ,{
+                            "lineItems": [
+                              {
+                                "quantity": 3,
+                                "productId": 133
+                              }
+                            ]
+                          })
+                          .then(data => console.log(JSON.stringify(data))) 
+                          .catch(error => console.error(error));
+                          
+                        function postData(url = ``, cartId = ``, cartItems = {})
+                        {
+                              return fetch(url + cartId + '/items', {
+                                  method: "POST",
+                                  credentials: "same-origin",
+                                  headers: {
+                                      "Content-Type": "application/json" },
+                                  body: JSON.stringify(cartItems), 
+                              })
+                              .then(response => response.json()); 
+                        }
                     - type: text
                       data: >-
                         ### Delete Cart Item
