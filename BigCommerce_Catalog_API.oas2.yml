@@ -1150,15 +1150,15 @@ paths:
               image_url: >-
                 https://upload.wikimedia.org/wikipedia/commons/7/7f/Anglel_Bless_Legendary_Hills_1_m%C4%9Bs%C3%ADc_st%C3%A1%C5%99%C3%AD.jpg
             multipart/form-data: |-
-              curl -X PUT \
-                https://api.bigcommerce.com/stores/id30h7ohwf/v3/catalog/products/{product_id}/variants/{variant_id}/image \
+              curl -X POST \
+                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/203/variants/503/image \
                 -H 'Accept: application/json' \
-                -H 'Cache-Control: no-cache' \
                 -H 'Content-Type: application/json' \
+                -H 'Host: api.bigcommerce.com' \
                 -H 'X-Auth-Client: {X-Auth-Client}' \
-                -H 'X-Auth-Token: {X-Auth_Token}' \
+                -H 'X-Auth-Token: {X-Auth-Token}' \
                 -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
-                -F image_file=@/Users/user.name/Documents/docs_images/product-image.png
+                -F 'image_file=@/Users/user/Downloads/640px-Bergtocht_van_Gimillan_(1805m.)_naar_Colle_Tsa_Sètse_in_Cogne_Valley_(Italië)._Waterval_boven_Gimillan_gedeeltelijk_in_de_mist_03.jpg'
       responses:
         '200':
           description: ''
@@ -1189,7 +1189,7 @@ paths:
         The image will show on the storefront when the value is selected.
 
          **Required Fields**
-        - image_file: Form posts
+        - image_file: Form posts. Files larger than 1 MB are not accepted
         - image_url: Any publicly available URL
       tags:
         - Product Variants
