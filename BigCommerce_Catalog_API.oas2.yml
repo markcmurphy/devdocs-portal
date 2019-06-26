@@ -1161,7 +1161,7 @@ paths:
                 -F 'image_file=@/Users/user/Downloads/640px-Bergtocht_van_Gimillan_(1805m.)_naar_Colle_Tsa_Sètse_in_Cogne_Valley_(Italië)._Waterval_boven_Gimillan_gedeeltelijk_in_de_mist_03.jpg'
       responses:
         '200':
-          description: ''
+          description: '`image_url` is returned for both `image_file` and `image_url`.'
           schema:
             $ref: '#/definitions/ImageResponse'
           examples:
@@ -1180,6 +1180,10 @@ paths:
             Image was not valid. This is the result of a missing `image_file`
             field or of an incorrect file type. See the response for more
             details.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Returns for an `image_file` larger than 1 MB.
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Create a Variant Image
