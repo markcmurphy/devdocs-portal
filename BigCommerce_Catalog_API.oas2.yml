@@ -3854,6 +3854,28 @@ paths:
       summary: Get All Variants
       tags:
         - Catalog
+    put:
+      tags:
+        - Catalog
+      description: |
+        Creates or updates a batch of `Variant` objects.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/VariantsCollectionPut"
+      responses:
+        200:
+          description: |
+            An array of variants and metadata.
+          schema:
+            $ref: "#/definitions/VariantCollectionResponse"
+        422:
+          description: |
+            This is the result of missing required fields, or of invalid data. See the response for more details.
+          schema:
+            $ref: "#/definitions/VariantsBatchErrorResponse"
   /catalog/summary:
     get:
       tags:
@@ -5097,6 +5119,10 @@ definitions:
               $ref: '#/definitions/OptionValueVariantPost'
     title: Variant Post
     type: object
+  VariantsCollectionPut:
+    type: array
+    items:
+      $ref: "#/definitions/VariantPut"
   VariantPut:
     type: object
     description: |
@@ -6234,6 +6260,15 @@ definitions:
           the storefront.
         example: 5
     description: Adjuster for Complex Rules.
+  VariantsBatchErrorResponse:
+    description: |
+      Errors during batch usage for the BigCommerce API.
+    type: object
+    properties:
+      batch_errors:
+        type: array
+        items:
+          $ref: "#/definitions/ErrorResponse"
   CollectionMeta:
     type: object
     description: 'Data about the response, including pagination and collection totals.'
