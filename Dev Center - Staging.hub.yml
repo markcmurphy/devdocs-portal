@@ -21207,7 +21207,7 @@ pages:
                     - type: html
                       data: <h1>schema.json (Store Design Metadata)</h1>
                     - type: html
-                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#schema_enabling\">Enabling Store Design</a></li>\n    <li><a href=\"#schema_best-practices\">Best Practices</a></li>\n    <li><a href=\"#schema_how-json\">How .json Entries Govern Store Design's UI</a></li>\n    <li><a href=\"#schema_theme-editor-data\">Store Designs Data Types</a></li>\n    <li><a href=\"#schema_data-structure\">Store Design Data Structure in schema.json</a></li>\n    <li><a href=\"#schema_ui-scope\">Arbitrary UI Scope and Sequence</a></li>\n\t</ul>\n</div>"
+                      data: "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#schema_enabling\">Enabling Store Design</a></li>\n    <li><a href=\"#schema_best-practices\">Best Practices</a></li>\n    <li><a href=\"#schema_how-json\">How .json Entries Govern Store Design's UI</a></li>\n    <li><a href=\"#schema_theme-editor-data\">Store Designs Data Types</a></li>\n    <li><a href=\"#schema_data-structure\">Store Design Data Structure in schema.json</a></li>\n    <li><a href=\"#schema_ui-scope\">Arbitrary UI Scope and Sequence</a></li>\n    <li><a href=\"#schema_troubleshooting\">Store Design Troubleshooting</a></li>\n\t</ul>\n</div>"
                     - type: text
                       data: >-
                         ## Enabling Store Design
@@ -21282,6 +21282,8 @@ pages:
                         will not appear to users in the Store Design GUI.
                       header:
                         anchor: schema_enabling
+                    - type: text
+                      data: '---'
                     - type: text
                       data: >+
                         ## Best Practices
@@ -21468,6 +21470,72 @@ pages:
                         data types that Store Design supports.
                       header:
                         anchor: schema_ui-scope
+                    - type: text
+                      data: '---'
+                    - type: text
+                      data: >-
+
+                        ## Store Design UI Troubleshooting
+
+
+                        You may experience an issue when setting up the Store
+                        Design UI. For any unexpected behavior that you
+                        encounter while developing your Stencil theme, we
+                        recommend that you check the terminal window where you
+                        started Stencil CLI. In some cases, the terminal will
+                        provide a verbose error message specifying where to look
+                        for problems. For less-detailed error messages, see the
+                        below list of potential issues and diagnostic
+                        suggestions.
+
+
+                        ### Empty Drop-Down List in Store Design Panel
+
+
+                        * **Symptom:** A drop-down list’s outline appears below
+                        its configured label. However, the list appears to be
+                        empty.
+
+                        * **Likely Cause:** A default value specified in the
+                        theme’s config.json file is not enumerated in the
+                        schema.json file.
+
+                        * **Resolution:** Update schema.json to include the
+                        config.json value.
+
+
+                        ### Configured Control Missing from Store Design Panel
+
+                        * **Symptom:** A control that you have configured within
+                        schema.json is completely absent from the Store Design
+                        UI.
+
+                        * **Likely Cause:** The specified “type” is one of:
+                        text, text area, radio [button], or image. (Store Design
+                        does not currently support these data types.)
+
+                        * **Resolution:** Display the user option via one of the
+                        supported data types: color, font, select [drop-down
+                        list], or checkbox.
+
+
+                        ### Theme Changes Not Saved from Store Design UI
+
+                        * **Symptom:** Changes saved in a browser’s Store Design
+                        panel are not reflected in the storefront.
+
+                        * **Likely Cause:** Check whether Store Design to
+                        customize the same storefront.
+
+                        * **Resolution:** We strongly recommend opening only one
+                        instance of Store Design, at a time, per storefront.
+                        BigCommerce currently provides no synchronization
+                        mechanism for configuration changes from multiple Store
+                        Design instances. So the storefront’s schema.json will
+                        record the last changes made by any instance – but
+                        changes saved earlier by other instances might be lost.
+                      header:
+                        anchor: schema_troubleshooting
               - title: config.json Metadata
                 route:
                   path: /config-json-metadata
