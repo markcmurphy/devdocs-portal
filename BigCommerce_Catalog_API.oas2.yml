@@ -350,6 +350,16 @@ paths:
           description: The resource was not found.
           schema:
             $ref: '#/definitions/NotFound'
+        '409':
+          description: >-
+            `Product` was in conflict with another product. This is caused by:
+            duplicate unique values, such as name or SKU; a missing category,
+            brand, or tax_class with which the product is being associated; or a
+            conflicting bulk pricing rule.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ErrorResponse'
       summary: Update Products
       x-private: true
       tags:
