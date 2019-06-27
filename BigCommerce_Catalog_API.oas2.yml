@@ -373,14 +373,11 @@ paths:
 
         - base_variant_id
       parameters:
-        - in: header
-          name: Accept
-          type: string
-          default: application/json
-        - in: header
-          name: Content-Type
-          type: string
-          default: application/json
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+        - in: body
+          name: body
+          schema: {}
   '/catalog/products/{product_id}':
     parameters:
       - $ref: '#/parameters/ProductIdParam'
@@ -7034,6 +7031,11 @@ definitions:
     allOf:
       - $ref: '#/definitions/MetafieldBase'
     title: Metafield Post
+  productCollectionPut:
+    title: Product Collection Put
+    type: array
+    items:
+      $ref: '#/definitions/ProductPut'
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
