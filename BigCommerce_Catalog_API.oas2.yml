@@ -3864,18 +3864,19 @@ paths:
           in: body
           required: true
           schema:
-            $ref: "#/definitions/VariantsCollectionPut"
+            $ref: '#/definitions/Variants Collection Put'
       responses:
-        200:
+        '200':
           description: |
             An array of variants and metadata.
           schema:
-            $ref: "#/definitions/VariantCollectionResponse"
-        422:
-          description: |
-            This is the result of missing required fields, or of invalid data. See the response for more details.
+            $ref: '#/definitions/VariantCollectionResponse'
+        '422':
+          description: >
+            This is the result of missing required fields, or of invalid data.
+            See the response for more details.
           schema:
-            $ref: "#/definitions/VariantsBatchErrorResponse"
+            $ref: '#/definitions/VariantsBatchErrorResponse'
   /catalog/summary:
     get:
       tags:
@@ -5119,10 +5120,10 @@ definitions:
               $ref: '#/definitions/OptionValueVariantPost'
     title: Variant Post
     type: object
-  VariantsCollectionPut:
+  Variants Collection Put:
     type: array
     items:
-      $ref: "#/definitions/VariantPut"
+      $ref: '#/definitions/VariantPut'
   VariantPut:
     type: object
     description: |
@@ -6268,7 +6269,7 @@ definitions:
       batch_errors:
         type: array
         items:
-          $ref: "#/definitions/ErrorResponse"
+          $ref: '#/definitions/ErrorResponse'
   CollectionMeta:
     type: object
     description: 'Data about the response, including pagination and collection totals.'
