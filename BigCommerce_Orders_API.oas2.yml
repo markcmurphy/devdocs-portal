@@ -5603,6 +5603,7 @@ definitions:
       external_merchant_id: null
       custom_status: Awaiting Payment
     type: object
+    description: Products and Billing address only required for POST operation.
     properties:
       products:
         type: array
@@ -5829,10 +5830,16 @@ definitions:
           - BasicTaxProvider
           - AvaTaxProvider
           - ''
+      date_created:
+        type: string
+        format: date-time
+        description: >-
+          The date this order was created. If not specified, will default to the
+          current time. The date should be in RFC 2822 format.
+        example: 'Tue, 20 Nov 2012 00:00:00 +0000'
     required:
-      - billing_address
       - products
-    description: Products and Billing address only required for POST operation.
+      - billing_address
   customProduct:
     type: object
     title: Custom Product
