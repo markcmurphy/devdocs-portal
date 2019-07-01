@@ -850,6 +850,11 @@ paths:
           exclusiveMaximum: false
           exclusiveMinimum: false
           description: Filter param.
+        - in: query
+          name: include
+          type: string
+          enum:
+            - content-type
       responses:
         '200':
           description: ''
@@ -2008,7 +2013,22 @@ definitions:
           - text/javascript
           - text/html
         description: >-
-          This field can only be updated using POST. To return this field in the
+          Updating this field allows you to place a JavaScript or a JSON file in
+          the root directory. This file is publicly available. Example of use:
+
+          ```
+
+          "page_name": "service_worker",
+
+          "page_url" : "service_worker.js"
+
+          "page_content": "contents of service work"
+
+          "url": "/service-worker.js"
+
+          ```
+
+          This field can only be updated using POST. To return in the Get All
           response use `?include=content-type`
         example: text/html
     required:
