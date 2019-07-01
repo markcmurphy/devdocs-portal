@@ -1365,6 +1365,7 @@ paths:
               has_mobile_version: false
               mobile_body: ''
               url: /404-meow/
+              content-type: application/json
         - in: header
           name: Accept
           type: string
@@ -2000,6 +2001,14 @@ definitions:
         type: integer
         example: 44
         description: ID of the page.
+      content-type:
+        type: string
+        enum:
+          - application/json
+          - text/javascript
+          - text/html
+        description: 'This field can only be updated using POST. '
+        example: text/html
     required:
       - type
       - name
