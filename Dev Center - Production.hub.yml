@@ -13838,40 +13838,74 @@ pages:
               - type: text
                 data: '---'
               - type: text
-                data: >+
+                data: >
                   ## PCI Compliance
 
 
-                  BigCommerce offers different avenues or channels for
-                  integration, depending on your business needs. The ultimate
-                  responsibility of PCI compliance lies with you and takes into
-                  consideration the architecture of your e-commerce store and
-                  multiple channels of integrations.
+                  |  |BigCommerce Responsibility  |Merchant Responsibility |
 
-                  BigCommerce is a PCI DSS compliant service provider and
-                  certifies annually all requirements ( 1-12) including as a
-                  shared hosting provider. 
+                  |--|--| -- |
+
+                  | BigCommerce as a storefront and backend | Responsible for
+                  all [PCI DSS requirements
+                  (1-12)](https://www.pcisecuritystandards.org/pci_security/maintaining_payment_security)
+                  of the product to the point that it has control of Merchants
+                  stores. | Responsible for ensuring that all modifications that
+                  result in external calls to, or integrations with outside
+                  parties are done in a PCI DSS compliant
+                  manner.<br><br>Responsible for ensuring all design
+                  modifications are done in a PCI DSS compliant
+                  manner.<br><br>Responsible for ensuring that all service
+                  providers it uses are compliant with PCI DSS. |
+
+                  | BigCommerce as a backend for example [headless
+                  integrations](https://developer.bigcommerce.com/api-docs/developers-guide-headless)
+                  or the [BigCommerce WordPress
+                  Plugin](https://wordpress.org/plugins/bigcommerce/). |
+                  Responsible for all PCI DSS requirements from the point at
+                  which cardholder data is handed to a BigCommerce controlled
+                  interface. (see [BigCommerce Attestation of PCI DSS
+                  2019-2020](https://support.mybigcommerce.com/content/dojo/BigCommerce_PCI_DSS_v3.2.1_AOC_2019_Service_Provider.pdf))
+                  | Responsible for the PCI DSS compliance of its storefront
+                  plus all of the above. |
+
+                  | Checkout and Payments SDK | Not Responsible<br> The way your
+                  business consumes the SDKs (either BigCommerce as a storefront
+                  and backend or BigCommerce as a backend ) would determine
+                  BigCommerce's  responsibilities. | Responsible for the PCI DSS
+                  compliance requirements applicable stated in BigCommerce as a
+                  storefront or BigCommerce as a backend. <br><br> The way your
+                  business consumes the SDKs (either BigCommerce as a storefront
+                  and backend or BigCommerce as a backend ) would determine
+                  BigCommerce's responsibilities.|
+
+                  | Checkout and Payments API | Not Responsible* <br> The way
+                  your business consumes the SDKs (either BigCommerce as a
+                  storefront and backend or BigCommerce as a backend ) would
+                  determine BigCommerce's  responsibilities. | Responsible for
+                  the PCI DSS compliance requirements applicable stated in
+                  BigCommerce as a storefront or BigCommerce as a backend.
+                  <br><br> The way your business consumes the SDKs (either
+                  BigCommerce as a storefront and backend or BigCommerce as a
+                  backend ) would determine BigCommerce's responsibilities. |
 
 
-                  The BigCommerce PCI DSS [Attestation of
-                  Compliance(AOC)](https://support.mybigcommerce.com/content/dojo/BigCommerce_PCI_DSS_v3.2.1_AOC_2019_Service_Provider.pdf)
-                  outlines the description of the technology stack certified
-                  annually.
+                  It is possible to use one more of BigCommerce's technology
+                  stack at the same time. Your PCI DSS compliance
+                  responsibilities will be a combination of each stack consumed.
 
 
-                  Merchants can use BC’s PCI DSS AOC to satisfy the compliance
-                  requirements for the part that outlines its responsibilities.
+                  ### Additional Resources
 
+                  -   [Merchants Classification Levels
+                  Visa](https://usa.visa.com/support/small-business/security-compliance.html#3)
 
-                  ### Integrations with BC and Responsibility Matrix
+                  -   [Merchants Classification Levels
+                  Mastercard](https://www.mastercard.us/en-us/merchants/safety-security/security-recommendations/merchants-need-to-know.html)
 
-
-                  | | BigCommerce Responsibility | Merchant Responsibility |
-
-                  | -- | -- | --|
-
-                  | BigCommerce as a storefront and backend | 
-
+                  -   [Self Assessment Questionaire (SAQ) Types and Identifying
+                  which SAQ is for
+                  you](https://www.pcisecuritystandards.org/documents/SAQ-InstrGuidelines-v3_2_1.pdf?agreement=true&time=1562173376464)
                 header:
                   anchor: headless-commerce_pci-compliance
               - type: callout
@@ -13970,6 +14004,19 @@ pages:
                   BloomReach, Sitecore, Adobe Experience Manager, and
                   More](https://www.bigcommerce.com/blog/flexible-headless-commerce-solutions/)
                   (BigCommerce Blog)
+
+
+                  ### Additional Resources
+
+                  -   [Merchants Classification Levels
+                  Visa](https://usa.visa.com/support/small-business/security-compliance.html#3)
+
+                  -   [Merchants Classification Levels
+                  Mastercard](https://www.mastercard.us/en-us/merchants/safety-security/security-recommendations/merchants-need-to-know.html)
+
+                  -   [Self Assessment Questionaire (SAQ) Types and Identifying
+                  which SAQ is for
+                  you](https://www.pcisecuritystandards.org/documents/SAQ-InstrGuidelines-v3_2_1.pdf?agreement=true&time=1562173376464)
         - title: Payments
           route:
             path: /payments
