@@ -14,7 +14,6 @@
 * [Store](#webhook-events_store)
 * [Cart](#webhook-events_cart)
 * [Cart Line Item](#webhook-events_cart-line-items)
-* [Payments](#webhooks-events_payments)
 * [Shipments](#webhook-events_shipment)
 * [Subscriber](#webhook-events_subscriber)
 
