@@ -554,6 +554,8 @@ Changes to the following store settings will trigger a `store/information/update
 }
 ```
 
+---
+
 ## <a id="webhook-events_cart-line-items"></a>Cart Line Item
 
 | Name | Description |
