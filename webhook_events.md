@@ -1,3 +1,4 @@
+
 # Webhooks
 <div class="otp" id="no-index">
 
@@ -368,11 +369,13 @@ Changes to any of the following fields will trigger a `store/product/updated` ev
 | store/customer/address/created | Customer address is created |
 | store/customer/address/updated | Customer address is updated |
 | store/customer/address/deleted | Customer address is deleted |
+| store/customer/payment/instrument/default/updated | Customer default payment instrument is updated |
 
 ### The same response is returned for the following endpoints:
 * `store/customer/created`
 * `store/customer/updated`
 * `store/customer/deleted`
+* `store/customer/payment/instrument/default/updated`
 
 **Response Fields**
 
@@ -587,18 +590,6 @@ Changes to the following store settings will trigger a `store/information/update
 ```
 ---
 
-## <a id="webhooks-events_payments"></a> Payments
-
-| Name | Description |
-| --- | --- |
-| store/shipment/* | Subscribe to all store/shipment events |
-| store/shipment/created | Shipment is created |
-| store/shipment/updated | Shipment is updated |
-| store/shipment/deleted | Shipment is deleted |
-
-
----
-
 ## <a id="webhook-events_shipment"></a>Shipment
 
 | Name | Description |
@@ -675,3 +666,4 @@ Changes to the following store settings will trigger a `store/information/update
 * [Webhooks Overview](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/about-webhooks)
 * [Webhooks Tutorial](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/setting-up-webhooks)
 * [Webhooks Reference]()
+
