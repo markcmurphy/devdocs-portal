@@ -13,6 +13,7 @@
 * [Store](#webhook-events_store)
 * [Cart](#webhook-events_cart)
 * [Cart Line Item](#webhook-events_cart-line-items)
+* [Payments](#webhooks-events_payments)
 * [Shipments](#webhook-events_shipment)
 * [Subscriber](#webhook-events_subscriber)
 
@@ -584,6 +585,18 @@ Changes to the following store settings will trigger a `store/information/update
     "producer": "stores/{store_hash}"
 }
 ```
+---
+
+## <a id="webhooks-events_payments"></a> Payments
+
+| Name | Description |
+| --- | --- |
+| store/shipment/* | Subscribe to all store/shipment events |
+| store/shipment/created | Shipment is created |
+| store/shipment/updated | Shipment is updated |
+| store/shipment/deleted | Shipment is deleted |
+
+
 ---
 
 ## <a id="webhook-events_shipment"></a>Shipment
