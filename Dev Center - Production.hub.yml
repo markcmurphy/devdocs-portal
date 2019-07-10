@@ -500,34 +500,9 @@ pages:
                     - type: text
                       data: '---'
                     - type: text
-                      data: "## Create a Product\n\nIn this walkthrough, we'll create an example product: BigCommerce Hoodie. The minimum parameters to create a product are: name, price, category, type and weight. \n\n* **Name**: The name of your product as a string.\n* **Price**: How much the items costs in number format. \n* **Category**: The `{category_id}` for the category this product belongs to. An item can be assigned to more than one category. You can /GET the category id by using:\n\n`https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/categories`\n\n* **Type**: Is the item physical or digital?\n\t- Physical items are anything that is shipped to the customer, such as a t-shirt.\n\t- Digital items are products that the customer downloads, such as a PDF of an ebook. \n* **Weight**: How much the product weighs as a number. The measurement unit is determined by the [store settings](https://forum.bigcommerce.com/s/article/Store-Settings#physical). \n\nReview the information pre-populated in the Body tab below. Make sure to run a GET request for the categories first and update request with the appropriate category ID."
+                      data: "## Create a Product\n\nIn this walkthrough, we'll create an example product: BigCommerce Hoodie. The minimum parameters to create a product are: name, price, category, type and weight. \n\n* **Name**: The name of your product as a string.\n* **Price**: How much the items costs in number format. \n* **Category**: The `{category_id}` for the category this product belongs to. An item can be assigned to more than one category. You can /GET the category id by using:\n\n`https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/categories`\n\n* **Type**: Is the item physical or digital?\n\t- Physical items are anything that is shipped to the customer, such as a t-shirt.\n\t- Digital items are products that the customer downloads, such as a PDF of an ebook. \n* **Weight**: How much the product weighs as a number. The measurement unit is determined by the [store settings](https://forum.bigcommerce.com/s/article/Store-Settings#physical). \n\nReview the information pre-populated in the Body tab below. Make sure to run a GET request for the categories first and update request with the appropriate category ID.\n\n**Try it Now**  \n*Get a list of products**\n\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/00c3651bcff8d70a61e8)"
                       header:
                         anchor: making-requests_create-a-product
-                    - type: http
-                      data:
-                        method: post
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
-                        headers:
-                          Accept: application/sjon
-                          X-Auth-Token: '{X-Auth-Token}'
-                          X-Auth-Client: '{X-Auth-Client}'
-                          Content-Type: application/json
-                        body: |
-                          {
-                            "name": "BigCommerce Hoodie",
-                            "type": "physical",
-                            "description": "A super soft hoodie to wear",
-                            "weight": 5,
-                            "width": 12,
-                            "price": 25.99,
-                            "categories": [
-                              // set your category here. Accepts a comma seperated list
-                            ],
-                            "condition": "New"
-                          }
-                      header:
-                        title: Create a Product
                     - type: code
                       data: |-
                         {
@@ -668,7 +643,7 @@ pages:
                         ## Troubleshooting
 
 
-                        Did you get a status of 403 Forbidden?
+                        **Did you get a status of 403 Forbidden?**
 
                         * Check the Client ID and Client Token.
 
@@ -680,12 +655,12 @@ pages:
                         * Make sure the request url is correct.
 
 
-                        Did you get a 200 but nothing was returned?
+                        **Did you get a 200 but nothing was returned?**
 
                         * Make sure your store has products.
 
 
-                        Did you get a status of 404?
+                        **Did you get a status of 404?**
 
                         * Check the request url for errors.
                       header:
