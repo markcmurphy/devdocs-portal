@@ -4674,32 +4674,27 @@ pages:
                               2. In one tab run the app. `node index.js`
 
                               3. In the other start ngrok. `./ngrok http 3000`
+
+
+
+                              #### node index.js
+
+                              ```shell
+
+                              BIGCOMMERCE:webhooks your.computer$ node index.js
+
+                              Listening for webhooks on port 3000
+
+                              ```
+
+
+                              #### ngrok http 3000
+
+
+                              ![ngrok
+                              running](//s3.amazonaws.com/user-content.stoplight.io/6012/1531500085650)
                             header:
                               anchor: setting-up-webhooks_start-the-app-ngrok
-                          - type: tabs
-                            data:
-                              children:
-                                - title: node index.js
-                                  blocks:
-                                    - type: text
-                                      data: >-
-                                        ```
-
-                                        BIGCOMMERCE:webhooks your.computer$ node
-                                        index.js
-
-                                        Listening for webhooks on port 3000
-
-                                        ```
-                                - title: ngrok http 3000
-                                  blocks:
-                                    - type: image
-                                      data: >-
-                                        //s3.amazonaws.com/user-content.stoplight.io/6012/1531500085650
-                                      config:
-                                        centered: true
-                                      header:
-                                        title: nrgok terminal
                           - type: text
                             data: >-
                               ngrok returns two values we will need to register
@@ -4765,28 +4760,19 @@ pages:
                             config:
                               mode: http
                           - type: text
-                            data: >-
+                            data: >
                               4. Check all the values and then hit POST. If
                               successful, the response will be 201 Created.
-                          - type: http
-                            data:
-                              method: post
-                              url: >-
-                                https://api.bigcommerce.com/stores/{store_hash}/v2/hooks
-                              headers:
-                                Accept: application/json
-                                Content-Type: application/json
-                                X-Auth-Client: '{the OAuth client id}'
-                                X-Auth-Token: '{the OAuth token}'
-                              body: |
-                                {
-                                "scope": "store/product/updated",
-                                 "destination": "https://{your-url}.ngrok.io/webhooks",
-                                 "is_active": true
-                                }
-                            header:
-                              title: Create a Webhook
-                              anchor: create-a-webhook
+
+
+
+                              **Try it Now**  
+
+                              *Create a webhook*
+
+
+                              [![Run in
+                              Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/3f005ed74030e01bbf7a)
                           - type: code
                             data: |-
                               {
@@ -4895,23 +4881,15 @@ pages:
                               You may see a single event or several based on how
                               many times the product has been updated in the
                               previous step.
-                          - type: http
-                            data:
-                              url: >-
-                                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}
-                              headers:
-                                X-Auth-Client: '{Your-X-Auth-Client}'
-                                X-Auth-Token: '{Your-X-Auth-Token}'
-                                Accept: application/json
-                                Content-Type: application/json
-                              method: put
-                              body: |-
-                                {
-                                  "price": 12.99
-                                }
-                            header:
-                              title: Update a Product
-                              anchor: update-a-product-webhooks
+
+
+                              **Try it Now**  
+
+                              *Update a product*
+
+
+                              [![Run in
+                              Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/3f005ed74030e01bbf7a)
                           - type: image
                             data: >-
                               //s3.amazonaws.com/user-content.stoplight.io/6012/1531501115256
@@ -4944,23 +4922,15 @@ pages:
                                 webhook ID to disable the hook. 
                               type: warning
                               title: URL Timeout
-                          - type: http
-                            data:
-                              method: delete
-                              url: >-
-                                https://api.bigcommerce.com/stores/{store_hash}/v2/hooks/{hook_id}
-                              headers:
-                                X-Auth-Client: '{your-client-id}'
-                                X-Auth-Token: '{your-auth-token}'
-                                Content-Type: application/json
-                                Accept: application/json
-                            header:
-                              title: Delete the webhook
-                              subtitle: >-
-                                Get the hook_id by either getting it from the
-                                original /POST response or by sending a /GET
-                                request to the hooks resource
-                              anchor: delete-webhook
+                          - type: text
+                            data: >-
+                              **Try it Now**  
+
+                              *Delete a webhook*
+
+
+                              [![Run in
+                              Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/3f005ed74030e01bbf7a)
                           - type: text
                             data: '---'
                           - type: text
@@ -4982,7 +4952,7 @@ pages:
                             data: >-
                               ## Troubleshooting
 
-                              1. Getting a 404 error using the root (/) url?
+                              1. **Getting a 404 error using the root (/) url?**
 
 
                               Add this snippet to your code to respond to
@@ -4998,7 +4968,7 @@ pages:
                               mode: js
                           - type: text
                             data: >-
-                              2. Getting error ngrok not found?
+                              2. **Getting error ngrok not found?**
 
                               There are two ways to fix this. Your local setup
                               will determine which command will work.
@@ -5011,7 +4981,7 @@ pages:
                               as a sudo user. 
 
 
-                              3. Windows Users
+                              3. **Windows Users**
 
                               If you are having trouble getting ngrok started
                               try setting the PATH. 
