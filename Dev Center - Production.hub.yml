@@ -6009,33 +6009,16 @@ pages:
                         variants, and therefore cannot be configured or modified
                         before they are added to cart. A simple product is its
                         own variant. 
+
+
+                        **Try It Now**  
+
+                        *Create a simple product*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                       header: {}
-                    - type: http
-                      data:
-                        headers:
-                          Accepts: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{{CLIENT ID}}'
-                          X-Auth-Token: '{{ACCESS TOKEN}}'
-                        method: post
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
-                        body: |-
-                          {
-                            "name": "BigCommerce Coffee Mug",
-                            "price": "10.00",
-                            "categories": [
-                              23,
-                              21
-                            ],
-                            "weight": 4,
-                            "type": "physical"
-                          }
-                      header:
-                        title: Try It Now
-                        subtitle: >-
-                          Use this to create your own Simple Product. Replace
-                          the test data with your own.
                     - type: callout
                       data:
                         body: >-
@@ -6058,53 +6041,16 @@ pages:
                         Products](/api-reference/catalog/catalog-api/products/getproducts)
                         endpoint supports the creation of multiple variants
                         along with the base product in a single call.
+
+
+                        **Try It Now**  
+
+                        *Create a complex product*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                       header: {}
-                    - type: http
-                      data:
-                        headers:
-                          Accepts: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{{CLIENT ID}}'
-                          X-Auth-Token: '{{ACCESS TOKEN}}'
-                        method: post
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
-                        body: |-
-                          {
-                            "name": "BigCommerce Coffee Mug",
-                            "price": "10.00",
-                            "categories": [
-                              23,
-                              21
-                            ],
-                            "weight": 4,
-                            "type": "physical",
-                            "variants": [
-                              {
-                                "sku": "SKU-BLU",
-                                "option_values": [
-                                  {
-                                    "option_display_name": "Mug Color",
-                                    "label": "Blue"
-                                  }
-                                ]
-                              },
-                              {
-                                "sku": "SKU-GRAY",
-                                "option_values": [
-                                  {
-                                    "option_display_name": "Mug Color",
-                                    "label": "Gray"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                      header:
-                        title: Try It Now
-                        subtitle: >-
-                          Use this to create your own test product. Replace the
-                          test data with your own.
                     - type: text
                       data: >-
                         The [Create a
@@ -6135,37 +6081,15 @@ pages:
                         (attaching via the API is not supported). Additional
                         settings such as a description of the file and maximum
                         downloads can be set in the Control Panel.
-                    - type: http
-                      data:
-                        headers:
-                          Accepts: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{{CLIENT ID}}'
-                          X-Auth-Token: '{{ACCESS TOKEN}}'
-                        method: post
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
-                        body: |-
-                          {
-                            "name": "ebook: A Guide to Coffee",
-                            "price": "10.00",
-                            "categories": [
-                              23,
-                              21
-                            ],
-                            "type": "digital",
-                            "images": [
-                              {
-                                "is_thumbnail": true,
-                                "image_url": "https://your-custom-image/image_name.png"
-                              }
-                            ]
-                          }
-                      header:
-                        title: Try It Now
-                        subtitle: >-
-                          Use this to create your own Digital Product. Replace
-                          the test data with your own.
+
+
+                        **Try It Now**  
+
+                        *Create a digital product*  
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                     - type: text
                       data: '---'
                     - type: text
@@ -6225,30 +6149,17 @@ pages:
                         Content-Type: multipart/form-data. Any other updates
                         using the /POST or /PUT will be rejected with the
                         form-data.
+
+
+                        **Try It Now**  
+
+                        *Add a product image*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                       header:
                         anchor: products-overview_product-images
-                    - type: http
-                      data:
-                        method: put
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/images
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                        body: |-
-                          {
-                            "is_thumbnail": true,
-                            "sort_order": 1,
-                            "description": "Yellow Large Bath Towel",
-                            "image_url": "https://your-custom-image/image_name.png"
-                          }
-                      header:
-                        title: Try it Now
-                        subtitle: >-
-                          Use this to add a Image to your Product. Replace the
-                          test data with your own.
                     - type: text
                       data: >-
                         ### Product Thumbnails
@@ -6307,31 +6218,17 @@ pages:
 
                         Example: <span
                         class=”fp”>https://www.youtube.com/watch?v=<b>R12345677</b></span>
+
+
+                        **Try It Now**  
+
+                        *Add a product video*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                       header:
                         anchor: products-overview_product-videos
-                    - type: http
-                      data:
-                        method: put
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/videos
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                        body: |-
-                          {
-                            "title": "BigCommerce Mug Video",
-                            "description": "Video Describing the Mug",
-                            "sort_order": 1,
-                            "type": "youtube",
-                            "video_id": "123345AA"
-                          }
-                      header:
-                        subtitle: >-
-                          Use this to add a Video to your Product. Replace the
-                          test data with your own.
-                        title: Try it Now
                     - type: text
                       data: '---'
                     - type: text
@@ -6367,28 +6264,17 @@ pages:
                         and on the product listing pages such as category and
                         brand pages.
 
-                        * Powering faceted search (searching/filtering by custom
+                        * Powering faeted search (searching/filtering by custom
                         field values)
-                    - type: http
-                      data:
-                        method: put
-                        body: |-
-                          {
-                            "name": "Release Year",
-                            "value": "2018"
-                          }
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/custom-fields
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: >-
-                          Use this to add a Custom Field to your Product.
-                          Replace the test data with your own.
-                        title: Try It Now
+
+
+                        **Try It Now**  
+
+                        *Add a custom field*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                     - type: text
                       data: '---'
                     - type: text
@@ -6412,40 +6298,17 @@ pages:
                         quantity breaks. [Price List bulk
                         pricing](/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecordcollection)
                         works differently.
+
+
+                        **Try It Now**  
+
+                        *Add bulk pricing rules*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                       header:
                         anchor: products-overview_bulk-pricing-rules
-                    - type: http
-                      data:
-                        method: put
-                        body: |-
-                          {
-                            "bulk_pricing_rules": [
-                              {
-                                "quantity_min": 10,
-                                "quantity_max": 15,
-                                "type": "price",
-                                "amount": 3
-                              },
-                              {
-                                "quantity_min": 16,
-                                "quantity_max": 25,
-                                "type": "price",
-                                "amount": 5
-                              }
-                            ]
-                          }
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/bulk-pricing-rules
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        title: Try It Now
-                        subtitle: >-
-                          Use this to add Bulk Pricing Rules to your Product.
-                          Replace the test data with your own.
                     - type: text
                       data: '---'
                     - type: text
@@ -6463,33 +6326,17 @@ pages:
 
                         Metafields can be added to variants, products,
                         categories, and brands.
+
+
+                        **Try It Now**  
+
+                        *Add a product metafields*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                       header:
                         anchor: products-overview_metafields
-                    - type: http
-                      data:
-                        method: put
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/metafields
-                        body: |-
-                          {
-                            "permission_set": "read",
-                            "namespace": "Location",
-                            "key": "bin_number",
-                            "value": "#4456",
-                            "description": "location of the product",
-                            "resource_type": "product",
-                            "resource_id": 131
-                          }
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: >-
-                          Use this to add a Metafield to your Product. Replace
-                          the test data with your own.
-                        title: Try It Now
                     - type: text
                       data: '---'
                     - type: text
@@ -6510,33 +6357,17 @@ pages:
 
                         Product Reviews are a native platform feature, but they
                         can be turned off in favor of a custom setup.
+
+
+                        **Try It Now**  
+
+                        *Create a product review*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                       header:
                         anchor: products-overview_reviews
-                    - type: http
-                      data:
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/reviews
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                        method: post
-                        body: |-
-                          {
-                            "title": "Great Coffee Mug",
-                            "text": "This coffee mug kept my liquids hot for several hours.",
-                            "status": "pending",
-                            "rating": 5,
-                            "email": "testing@bigcommerce.com",
-                            "name": "BigCommerce",
-                            "date_reviewed": "2018-07-20T17:45:13+00:00"
-                          }
-                      header:
-                        subtitle: >-
-                          Use this to create a Product Review. Replace the test
-                          data with your own.
-                        title: Try It Now
                     - type: text
                       data: '---'
                     - type: text
@@ -6561,34 +6392,17 @@ pages:
                         shoes). Brands have their own page on the storefront
                         which shows all the products in that Brand. They’re also
                         used as part of faceted search navigation.
+
+
+                        **Try It Now**  
+
+                        *Create a brand*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                       header:
                         anchor: products-overview_brands
-                    - type: http
-                      data:
-                        method: post
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/brands
-                        body: |-
-                          {
-                            "name": "BigCommerce",
-                            "page_title": "BigCommerce",
-                            "meta_keywords": [
-                              "ecommerce",
-                              "best in class",
-                              "grow your business"
-                            ],
-                            "image_url": "https://your-custom-image.png"
-                          }
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: >-
-                          Use this to create your own Brand. Replace the test
-                          data with your own.
-                        title: Try It Now
                     - type: text
                       data: '---'
                     - type: text
@@ -6649,10 +6463,10 @@ pages:
 
                         | -- | -- |
 
-                        | T-Shirt | Blue</br>----------</br> Small<br>
-                        Medium</br> Large|
+                        | T-Shirt | Blue<br>----------<br>Small<br> Medium<br>
+                        Large|
 
-                        | Backpack | Black</br>Yellow<br>----------<br>2L <br>
+                        | Backpack | Black<br> Yellow<br>----------<br>2L <br>
                         3L<br> 8L |
 
 
@@ -6680,6 +6494,7 @@ pages:
                           create SKUs or build out variants. SKUs can be built
                           out later using the [variants
                           endpoint](/api-reference/catalog/catalog-api/product-variants/createvariant).
+                        title: Create Variant Option
                     - type: text
                       data: >-
                         ### Create Variant Options
@@ -6765,12 +6580,12 @@ pages:
 
                         | -- | -- | -- |
 
-                        | T-Shirt | Blue</br>----------</br> Small<br>
-                        Medium</br> Large| SM-BLU<br> SM-MED <br> SM-LARG
+                        | T-Shirt | Blue<br>----------<br> Small<br> Medium<br>
+                        Large| SM-BLU<br> SM-MED <br> SM-LARG
 
-                        | Backpack | Black</br>Yellow<br>----------<br>2L <br>
+                        | Backpack | Black<br>Yellow<br>----------<br>2L <br>
                         3L<br> 8L |BLACK-2L<br>BLACK-3L<br>BLACK
-                        8L</br>----------<br>YELLOW-2L<br>YELLOW-3L<br>YELLOW-8L|
+                        8L<br>----------<br>YELLOW-2L<br>YELLOW-3L<br>YELLOW-8L|
 
 
 
@@ -6788,7 +6603,7 @@ pages:
 
 
                         This will go over using existing variant options to
-                        create the variants.
+                        create the variants
 
 
                         Use the
@@ -6897,24 +6712,17 @@ pages:
                         title: Example Response
                       config:
                         mode: json
-                        highlightRange:
-                          - from: '4'
-                            to: '12'
-                    - type: http
-                      data:
-                        method: get
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/options
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: Get Variant Options
-                        title: Try It Now
                     - type: text
                       data: >-
+                        **Try It Now**  
+
+                        *Get Variant Options*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
+
+
                         In the above response, there are two variant options of
                         size and color with three values each. 
 
@@ -6935,53 +6743,23 @@ pages:
                           use the
                           [/catalog/product](/api-reference/catalog/catalog-api/products/createproduct)
                           endpoint during product creation.
-                    - type: http
-                      data:
-                        method: put
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/variants
-                        body: |-
-                          {
-                            "cost_price": 3,
-                            "price": 12.99,
-                            "retail_price": 15.99,
-                            "weight": 1,
-                            "width": 4,
-                            "height": 14.6,
-                            "depth": 22,
-                            "is_free_shipping": true,
-                            "purchasing_disabled": true,
-                            "purchasing_disabled_message": "This item not available at this time.",
-                            "product_id": 134,
-                            "sku": "SMALL-BLUE",
-                            "option_values": [
-                              {
-                                "id": 163,
-                                "option_id": 193
-                              },
-                              {
-                                "id": 166,
-                                "option_id": 194
-                              }
-                            ]
-                          }
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: >-
-                          Use this to add Variants to your Product . Replace the
-                          test data with your own.
-                        title: Try It Now
+                        title: Create variants one at a time
                     - type: text
                       data: >-
+                        **Try It Now**  
+
+                        *Add product variants*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
+
+
                         The `option_values` array combines the options Small and
                         Blue to create the SKU SMALL-BLUE. The id in the
-                        option_values array is the id from the variant option
-                        response option_values > id. The option_id is the id of
-                        the option.
+                        `option_values` array is the id from the variant option
+                        response `option_values > id`. The `option_id` is the id
+                        of the option.
                     - type: code
                       data: " {\n            \"id\": 193, //option_id\n            \"product_id\": 134,\n            \"name\": \"Size1533313432-134\",\n            \"display_name\": \"Size\",\n            \"type\": \"rectangles\",\n            \"sort_order\": 0,\n            \"option_values\": [\n                {\n                    \"id\": 163, //id\n                    \"label\": \"S\",\n                    \"sort_order\": 0,\n                    \"value_data\": null,\n                    \"is_default\": false\n                }\n\t\t\t\t\t\t\t\t..."
                       config:
@@ -7003,52 +6781,15 @@ pages:
                           Swatch, Radio Buttons, Rectangle, dropdown, Product
                           List and Product List with Images. 
                         title: Supported Types
-                    - type: http
-                      data:
-                        method: post
-                        body: |-
-                          {
-                            "name": "BigCommerce Coffee Mug",
-                            "price": "10.00",
-                            "categories": [
-                              23,
-                              21
-                            ],
-                            "weight": 4,
-                            "type": "physical",
-                            "variants": [
-                              {
-                                "sku": "SKU-BLU",
-                                "option_values": [
-                                  {
-                                    "option_display_name": "Mug Color",
-                                    "label": "Blue"
-                                  }
-                                ]
-                              },
-                              {
-                                "sku": "SKU-GRAY",
-                                "option_values": [
-                                  {
-                                    "option_display_name": "Mug Color",
-                                    "label": "Gray"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: >-
-                          Use this to create your own Product using the products
-                          endpoint . Replace the test data with your own.
-                        title: Try It Now
+                    - type: text
+                      data: >-
+                        **Try It Now**  
+
+                        *Create a variant using the products endpoint*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                     - type: text
                       data: '---'
                     - type: text
@@ -7101,13 +6842,13 @@ pages:
 
                         | -- | -- | -- | -- |
 
-                        | T-Shirt | Blue</br>----------</br> Small<br>
-                        Medium</br> Large| SM-BLU<br> SM-MED <br> SM-LARG|
+                        | T-Shirt | Blue<br>----------<br> Small<br> Medium<br>
+                        Large| SM-BLU<br> SM-MED <br> SM-LARG|
                         Checkbox<br>Donate to Charity|
 
-                        | Backpack | Black</br>Yellow<br>----------<br>2L <br>
+                        | Backpack | Black<br>Yellow<br>----------<br>2L <br>
                         3L<br> 8L |BLACK-2L<br>BLACK-3L<br>BLACK
-                        8L</br>----------<br>YELLOW-2L<br>YELLOW-3L<br>YELLOW-8L|
+                        8L<br>----------<br>YELLOW-2L<br>YELLOW-3L<br>YELLOW-8L|
                         Text Field<br> Add Embroidery|
                       header:
                         anchor: products-overview_modifier-options
@@ -7146,33 +6887,17 @@ pages:
                           Modifiers that require a second step to add an
                           adjuster
                     - type: text
-                      data: 'First, a POST to create the modifier. '
-                    - type: http
-                      data:
-                        method: put
-                        body: |-
-                          {
-                            "type": "checkbox",
-                            "required": false,
-                            "config": {
-                              "default_value": "Yes",
-                              "checked_by_default": false,
-                              "checkbox_label": "Check for Donation"
-                            },
-                            "display_name": "Add a $5 Donation"
-                          }
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: >-
-                          Use this to add a Modifier to your Product. Replace
-                          the test data with your own.
-                        title: Try It Now
+                      data: >-
+                        First, a POST to create the modifier. 
+
+
+                        **Try It Now**  
+
+                        *Add a product modifier*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                     - type: text
                       data: >-
                         Since this is a checkbox which has two states,
@@ -7259,31 +6984,15 @@ pages:
                         Next send a PUT request to update the modifier value.
                         This increases the price by $5 when the Yes option value
                         is selected.
-                    - type: http
-                      data:
-                        method: put
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers/{modifier_id}/values
-                        body: |-
-                          {
-                            "is_default": false,
-                            "adjusters": {
-                              "price": {
-                                "adjuster": "relative",
-                                "adjuster_value": 5
-                              }
-                            }
-                          }
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: >-
-                          Use this to add Modifier Values to your Product.
-                          Replace the test data with your own.
-                        title: Try It Now
+
+
+                        **Try It Now**  
+
+                        *Add modifier values*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                     - type: text
                       data: '### Troubleshooting: 422 Error'
                     - type: code
@@ -7359,14 +7068,14 @@ pages:
 
                         | -- | -- | -- | -- | -- |
 
-                        | T-Shirt | Blue</br>----------</br> Small<br>
-                        Medium</br> Large| SM-BLU<br> SM-MED <br> SM-LARG|
+                        | T-Shirt | Blue<br>----------<br> Small<br> Medium<br>
+                        Large| SM-BLU<br> SM-MED <br> SM-LARG|
                         Checkbox<br>Donate to Charity| Checkox<br> Donate to
                         Charity.<br> Add $5
 
-                        | Backpack | Black</br>Yellow<br>----------<br>2L <br>
+                        | Backpack | Black<br>Yellow<br>----------<br>2L <br>
                         3L<br> 8L |BLACK-2L<br>BLACK-3L<br>BLACK
-                        8L</br>----------<br>YELLOW-2L<br>YELLOW-3L<br>YELLOW-8L|
+                        8L<br>----------<br>YELLOW-2L<br>YELLOW-3L<br>YELLOW-8L|
                         Text Field<br> Add Embroidery| N/A
 
 
@@ -7380,41 +7089,17 @@ pages:
                         more modifiers, such as two checkboxes. The following
                         example will add $10 to the product price when both
                         boxes are checked. 
+
+
+                        **Try It Now**  
+
+                        *Add complex rules to a modifier*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                       header:
                         anchor: products-overview_complex-rules
-                    - type: http
-                      data:
-                        method: put
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/{product_id}/complex-rules
-                        body: |-
-                          {
-                            "product_id": 1200,
-                            "enabled": true,
-                            "price_adjuster": {
-                              "adjuster_value": 10
-                            },
-                            "conditions": [
-                              {
-                                "modifier_id": 506,
-                                "modifier_value_id": 852
-                              },
-                              {
-                                "modifier_id": 507,
-                                "modifier_value_id": 854
-                              }
-                            ]
-                          }
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: >-
-                          Use this to add a Complex Rules to a Modifier. Replace
-                          the test data with your own.
-                        title: Try It Now
                     - type: text
                       data: >-
                         ### Troubleshooting
@@ -7460,32 +7145,17 @@ pages:
                         with some external systems which might wish to use a
                         product’s categories to map to a category structure in
                         that external system.
+
+
+                        **Try It Now**  
+
+                        *Create a Category*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                       header:
                         anchor: products-overview_categories
-                    - type: http
-                      data:
-                        method: post
-                        body: |-
-                          {
-                            "parent_id": 18,
-                            "name": "Shoes",
-                            "description": "Shoes Available for purchase",
-                            "sort_order": 1,
-                            "page_title": "Shoes",
-                            "is_visible": true
-                          }
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/categories
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: >-
-                          Create a Category. Replace the test data with your
-                          own.
-                        title: Try It Now
                     - type: text
                       data: >-
                         ### Category Tree
@@ -7640,19 +7310,15 @@ pages:
                         title: Category Tree Response Example
                       config:
                         mode: json
-                    - type: http
-                      data:
-                        url: >-
-                          https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/summary
-                        method: get
-                        headers:
-                          Accept: application/json
-                          Content-Type: application/json
-                          X-Auth-Client: '{$$.env.X-Auth-Client}'
-                          X-Auth-Token: '{$$.env.X-Auth-Token}'
-                      header:
-                        subtitle: Get your store's Category Tree
-                        title: 'Try It Now '
+                    - type: text
+                      data: >-
+                        **Try It Now**  
+
+                        *Get category tree*
+
+
+                        [![Run in
+                        Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63a61a74bd429ee184b3)
                     - type: text
                       data: '---'
                     - type: text
