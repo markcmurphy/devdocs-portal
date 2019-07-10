@@ -165,7 +165,7 @@
 
 | Name | Description |
 | --- | --- |
-| store/product/*| Subscribe to all store/product events |
+| store/product/* | Subscribe to all store/product events |
 |store/product/deleted| Product is deleted|
 | store/product/created | A new product is created |
 | store/product/updated |Occurs when product details are edited. For a full list of product fields that trigger an updated event, see **Product Updated Events** below |
@@ -290,7 +290,7 @@ Changes to any of the following fields will trigger a `store/product/updated` ev
 ```
 ---
 
-<a id="webhook-events_category"></a>
+<a id="webhook-events_sku"></a>
 
 ## SKU
 
@@ -370,7 +370,10 @@ Changes to any of the following fields will trigger a `store/product/updated` ev
 
 ---
 
-## <a id="webhook-events_customer"></a>Customer
+<a id="webhook-events_customer"></a>
+
+## Customer
+
 | Name | Description |
 |---|---|
 | store/customer/* | Subscribe to all store/customer events |
