@@ -1811,7 +1811,11 @@ definitions:
     type: object
     properties:
       description:
-        description: Read-only
+        description: >-
+          Description of the shipping option. This can be set in the control
+          panel or [with the
+          API](https://developer.bigcommerce.com/api-reference/store-management/shipping-api/shipping-method/createashippingmethod)
+          . Read-only.
         type: string
       id:
         description: ''
@@ -1829,6 +1833,16 @@ definitions:
       transitTime:
         description: An estimate of the arrival time.
         type: string
+      additionalDescription:
+        type: string
+        description: >-
+          Makes the description field from the [Shipping Provider
+          API](https://developer.bigcommerce.com/api-reference/store-management/shipping-provider-api/models/rateresponsepayload)
+          available in Checkout. Additonal description will display instead of
+          description if the Shipper Provider API is returning the rate
+          information for the selected shipping options. 
+
+          Read Only. 
   ConsignmentCouponDiscount:
     title: Consignment Coupon Discount
     type: object
