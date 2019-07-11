@@ -2254,7 +2254,7 @@ definitions:
     description: >-
       This allows us to have multiple shipping addresses. Where there is only
       one shipping address, this array will contain only one value, with all the
-      items.
+      line items.
     type: object
     properties:
       id:
@@ -2325,6 +2325,16 @@ definitions:
       transit_time:
         description: An estimate of the arrival time.
         type: string
+      additional_description:
+        type: string
+        description: >-
+          Makes the description field from the [Shipping Provider
+          API](https://developer.bigcommerce.com/api-reference/store-management/shipping-provider-api/models/rateresponsepayload)
+          available in Checkout. Additonal description will display instead of
+          description if the Shipper Provider API is returning the rate
+          information for the selected shipping options. 
+
+          Read Only.
   ConsignmentCouponDiscount:
     title: Consignment Coupon Discount
     type: object
