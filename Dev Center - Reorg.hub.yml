@@ -287,34 +287,25 @@ pages:
                 route:
                   path: /about-server-to-server-apis
                 data: {}
-              - title: Products
-                route:
-                  path: /products-overview
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/products-overview.md
-              - title: Pricing Order
-                config:
-                  sidebar:
-                    token: reference
-                route:
-                  path: /pricing-order-operation
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/pricing-order-operation.md
-              - title: Price Lists
-                route:
-                  path: /price-list-overview
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/price-list-overview.md
-              - title: Catalog
+              - title: /catalog
                 route:
                   path: /catalog
-                data: {}
+                data:
+                  children:
+                    - title: /products
+                      route:
+                        path: /products-overview
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/products-overview.md
+                    - title: /pricelists
+                      route:
+                        path: /price-list-overview
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/price-list-overview.md
               - title: 'Customers & Subscribers Overview '
                 route:
                   path: /customers-subscribers-overview
@@ -322,6 +313,7 @@ pages:
                   blocks: []
                   $ref: >-
                     https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customers-subscribers-overview.md
+                  children: []
               - title: Customer Login API
                 route:
                   path: /customer-login-api
@@ -481,6 +473,21 @@ pages:
                   blocks: []
                   $ref: >-
                     https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/checkout-sdk.md
+        - title: References
+          route:
+            path: /References
+          data:
+            children:
+              - title: Pricing Order
+                config:
+                  sidebar:
+                    token: reference
+                route:
+                  path: /pricing-order-operation
+                data:
+                  blocks: []
+                  $ref: >-
+                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/pricing-order-operation.md
   /api-reference:
     title: API Reference
     data:
