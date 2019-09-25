@@ -142,12 +142,6 @@ pages:
               </div>
             </div>
       children:
-        - title: Server-to-Server APIs
-          route:
-            path: /server-to-server-apis
-        - title: Storefront APIs
-          route:
-            path: /storefront-apis
         - title: Getting Started
           route:
             path: /getting-started
@@ -263,35 +257,6 @@ pages:
                 data:
                   $ref: >-
                     https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/partner/app-store-approval-requirements.md
-        - title: Catalog
-          route:
-            path: /catalog
-          data:
-            children:
-              - title: Products
-                route:
-                  path: /products-overview
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/products-overview.md
-              - title: Pricing Order
-                config:
-                  sidebar:
-                    token: reference
-                route:
-                  path: /pricing-order-operation
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/pricing-order-operation.md
-              - title: Price Lists
-                route:
-                  path: /price-list-overview
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/price-list-overview.md
         - title: Guides
           route:
             path: /guides
@@ -307,11 +272,102 @@ pages:
                   blocks: []
                   $ref: >-
                     https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/developers-guide-headless.md
-        - title: Store Management
+        - title: Storefront APIs
           route:
-            path: /store-management
+            path: /storefront-apis
           data:
             children:
+              - title: Cart and Checkout
+                route:
+                  path: /cart-and-checkout
+                data:
+                  children:
+                    - title: Overview
+                      route:
+                        path: /cart-and-checkout-overview
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/cart-and-checkout-overview.md
+                    - title: Working with Storefront APIs
+                      config:
+                        sidebar:
+                          token: tutorial
+                      route:
+                        path: /working-sf-apis
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/working-sf-apis.md
+                    - title: Checkout SDK
+                      route:
+                        path: /checkout-sdk
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/checkout-sdk.md
+                    - title: Add to Cart URLs
+                      route:
+                        path: /add-to-cart-url
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/add-to-cart-url.md
+                    - title: Embedded Checkout
+                      route:
+                        path: /embedded-checkout
+                      data:
+                        children:
+                          - title: Overview
+                            route:
+                              path: /embedded-checkout-overview
+                            data:
+                              $ref: >-
+                                https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/embedded-checkout-overview.md
+                          - title: Embedded Checkout Tutorial
+                            route:
+                              path: /embedded-checkout-tutorial
+                            data:
+                              $ref: >-
+                                https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/embedded-checkout-tutorial.md
+        - title: Server-to-Server APIs
+          route:
+            path: /server-to-server-apis
+          data:
+            children:
+              - title: Catalog
+                route:
+                  path: /catalog
+                data:
+                  children:
+                    - title: Products
+                      route:
+                        path: /products-overview
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/products-overview.md
+                    - title: Pricing Order
+                      config:
+                        sidebar:
+                          token: reference
+                      route:
+                        path: /pricing-order-operation
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/pricing-order-operation.md
+                    - title: Price Lists
+                      route:
+                        path: /price-list-overview
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/price-list-overview.md
+              - title: Store Management
+                route:
+                  path: /store-management
+                data: {}
               - title: Shipping
                 route:
                   path: /shipping
@@ -338,37 +394,32 @@ pages:
                         blocks: []
                         $ref: >-
                           https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/store-management/shipping/shipping-provider-api.md
-        - title: Customers & Subscribers
-          route:
-            path: /customers
-          data:
-            blocks: []
-            children:
-              - title: 'Overview '
+              - title: Customers & Subscribers
                 route:
-                  path: /customers-subscribers-overview
+                  path: /customers
                 data:
                   blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customers-subscribers-overview.md
-              - title: Customer Login API
-                route:
-                  path: /customer-login-api
-                data:
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customer-login-api.md
-              - title: Current Customer API
-                route:
-                  path: /current-customer-api
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/current-customer-api.md
-        - title: Storefront
-          route:
-            path: /storefront
-          data:
-            children:
+                  children:
+                    - title: 'Overview '
+                      route:
+                        path: /customers-subscribers-overview
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customers-subscribers-overview.md
+                    - title: Customer Login API
+                      route:
+                        path: /customer-login-api
+                      data:
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customer-login-api.md
+                    - title: Current Customer API
+                      route:
+                        path: /current-customer-api
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/current-customer-api.md
               - title: Scripts
                 route:
                   path: /scripts-overview
@@ -408,90 +459,37 @@ pages:
                         blocks: []
                         $ref: >-
                           https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/storefront/widgets/widgets-code-samples.md
-        - title: Cart and Checkout
-          route:
-            path: /cart-and-checkout
-          data:
-            children:
-              - title: Overview
+              - title: Payments
                 route:
-                  path: /cart-and-checkout-overview
+                  path: /payments
                 data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/cart-and-checkout-overview.md
-              - title: Working with Storefront APIs
-                config:
-                  sidebar:
-                    token: tutorial
+                  children:
+                    - title: Payments API
+                      route:
+                        path: /payments-api-overview
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/payments/payments-api-overview.md
+              - title: Orders
                 route:
-                  path: /working-sf-apis
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/working-sf-apis.md
-              - title: Checkout SDK
-                route:
-                  path: /checkout-sdk
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/checkout-sdk.md
-              - title: Add to Cart URLs
-                route:
-                  path: /add-to-cart-url
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/add-to-cart-url.md
-              - title: Embedded Checkout
-                route:
-                  path: /embedded-checkout
+                  path: /orders
                 data:
                   children:
                     - title: Overview
                       route:
-                        path: /embedded-checkout-overview
+                        path: /orders-overview
                       data:
+                        blocks: []
                         $ref: >-
-                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/embedded-checkout-overview.md
-                    - title: Embedded Checkout Tutorial
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/orders/orders-overview.md
+                    - title: Orders API
                       route:
-                        path: /embedded-checkout-tutorial
+                        path: /orders-api-overview
                       data:
+                        blocks: []
                         $ref: >-
-                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/embedded-checkout-tutorial.md
-        - title: Payments
-          route:
-            path: /payments
-          data:
-            children:
-              - title: Payments API
-                route:
-                  path: /payments-api-overview
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/payments/payments-api-overview.md
-        - title: Orders
-          route:
-            path: /orders
-          data:
-            children:
-              - title: Overview
-                route:
-                  path: /orders-overview
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/orders/orders-overview.md
-              - title: Orders API
-                route:
-                  path: /orders-api-overview
-                data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/orders/orders-api-overview.md
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/orders/orders-api-overview.md
   /api-reference:
     title: API Reference
     data:
