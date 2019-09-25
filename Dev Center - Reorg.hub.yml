@@ -292,7 +292,10 @@ pages:
                   path: /catalog
                 data:
                   children:
-                    - title: Products Overview
+                    - title: Products
+                      config:
+                        sidebar:
+                          token: OVERVIEW
                       route:
                         path: /products-overview
                       data:
@@ -300,20 +303,28 @@ pages:
                         $ref: >-
                           https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/products-overview.md
                     - title: Price Lists
+                      config:
+                        sidebar:
+                          token: OVERVIEW
                       route:
                         path: /price-list-overview
                       data:
                         blocks: []
                         $ref: >-
                           https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/price-list-overview.md
-              - title: 'Customers & Subscribers Overview '
+              - title: Customers
                 route:
-                  path: /customers-subscribers-overview
+                  path: /Customers
                 data:
-                  blocks: []
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customers-subscribers-overview.md
-                  children: []
+                  children:
+                    - title: About Customer APIs
+                      route:
+                        path: /customers-subscribers-overview
+                      data:
+                        blocks: []
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customers-subscribers-overview.md
+                        children: []
               - title: Customer Login API
                 route:
                   path: /customer-login-api
