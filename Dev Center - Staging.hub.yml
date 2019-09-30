@@ -479,14 +479,25 @@ pages:
     title: API Reference
     data:
       children:
-        - title: Webhooks
-          config:
-            includeDownloadLink: true
+        - title: Storefront API
           route:
-            path: /webhooks
+            path: /new-subpage-1
           data:
-            $ref: >-
-              https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Webhooks.oas2.json
+            $ref: ./BigCommerce_Orders_API.oas2.yml
+        - title: Store API
+          route:
+            path: /new-subpage
+          data:
+            children:
+              - title: API OVERVIEW
+                route:
+                  path: /new-subpage
+              - title: Reference
+                route:
+                  path: /new-subpage
+                data:
+                  $ref: >-
+                    https://raw.githubusercontent.com/aglensmith/pyoas/master/reference/json/oas2/aggregated.json
         - title: Catalog
           route:
             path: /catalog
@@ -508,6 +519,14 @@ pages:
                 data:
                   $ref: >-
                     https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Price_Lists_API.oas2.json
+        - title: Webhooks
+          config:
+            includeDownloadLink: true
+          route:
+            path: /webhooks
+          data:
+            $ref: >-
+              https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Webhooks.oas2.json
         - title: Store Management
           route:
             path: /store-management
