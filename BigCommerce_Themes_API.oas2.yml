@@ -27,6 +27,7 @@ basePath: '/stores/{store_hash}/v3'
 tags:
   - name: Themes
     description: BigCommerce Themes API Definition.
+  - name: /themes
 schemes:
   - https
 produces:
@@ -36,7 +37,8 @@ consumes:
 paths:
   /themes:
     get:
-      tags: []
+      tags:
+        - /themes
       operationId: getStoreThemes
       summary: Get All Store Themes
       responses:
@@ -192,7 +194,8 @@ paths:
         - $ref: '#/parameters/Content-Type'
       description: Returns a list of store *Themes*.
     post:
-      tags: []
+      tags:
+        - /themes
       operationId: uploadTheme
       summary: Upload New Theme
       consumes:
@@ -224,7 +227,8 @@ paths:
         * file
   '/themes/{uuid}':
     get:
-      tags: []
+      tags:
+        - /themes
       operationId: getStoreTheme
       summary: Get a Store Theme
       parameters:
@@ -295,7 +299,8 @@ paths:
         Returns a store *Theme*. The theme variation is not available at this
         endpoint.
     delete:
-      tags: []
+      tags:
+        - /themes
       operationId: deleteStoreTheme
       summary: Delete a Store Theme
       parameters:
@@ -327,7 +332,8 @@ paths:
         type: string
         required: true
     post:
-      tags: []
+      tags:
+        - /themes
       operationId: downloadTheme
       summary: Download a Store Theme
       parameters:
@@ -356,7 +362,8 @@ paths:
       description: Downloads a stores *Theme*.
   /themes/actions/activate:
     post:
-      tags: []
+      tags:
+        - /themes
       operationId: activateStoreTheme
       summary: Activate a Store Theme
       parameters:
@@ -387,7 +394,8 @@ paths:
         This returns a 204 response upon success.
   '/themes/jobs/{job_id}':
     get:
-      tags: []
+      tags:
+        - /themes
       operationId: getJob
       summary: Get a Theme Job
       parameters:
