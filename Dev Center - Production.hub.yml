@@ -546,6 +546,179 @@ pages:
             path: /cart-checkout
           data:
             children:
+              - title: GraphQL API Schema
+                route:
+                  path: /new-subpage
+                data:
+                  blocks:
+                    - type: jsonSchema
+                      data:
+                        type: object
+                        properties:
+                          _queryType:
+                            type: string
+                          _mutationType:
+                            type: 'null'
+                          _subscriptionType:
+                            type: 'null'
+                          _directives:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                description:
+                                  type: string
+                                locations:
+                                  type: array
+                                  items:
+                                    type: string
+                                args:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                      description:
+                                        type: string
+                                      type:
+                                        type: string
+                                      defaultValue:
+                                        type: string
+                          astNode:
+                            type: 'null'
+                          _typeMap:
+                            type: object
+                            properties:
+                              Query:
+                                type: string
+                              Site:
+                                type: string
+                              CategoryTreeItem:
+                                type: string
+                              Int:
+                                type: string
+                              String:
+                                type: string
+                              BrandConnection:
+                                type: string
+                              PageInfo:
+                                type: string
+                              Boolean:
+                                type: string
+                              BrandEdge:
+                                type: string
+                              Brand:
+                                type: string
+                              Node:
+                                type: string
+                              ID:
+                                type: string
+                              Image:
+                                type: string
+                              ProductConnection:
+                                type: string
+                              ProductEdge:
+                                type: string
+                              Product:
+                                type: string
+                              Prices:
+                                type: string
+                              Money:
+                                type: string
+                              BigDecimal:
+                                type: string
+                              PriceRanges:
+                                type: string
+                              MoneyRange:
+                                type: string
+                              Measurement:
+                                type: string
+                              Float:
+                                type: string
+                              OptionConnection:
+                                type: string
+                              OptionEdge:
+                                type: string
+                              ProductOption:
+                                type: string
+                              OptionValueConnection:
+                                type: string
+                              OptionValueEdge:
+                                type: string
+                              ProductOptionValue:
+                                type: string
+                              Reviews:
+                                type: string
+                              CategoryConnection:
+                                type: string
+                              CategoryEdge:
+                                type: string
+                              Category:
+                                type: string
+                              VariantConnection:
+                                type: string
+                              VariantEdge:
+                                type: string
+                              Variant:
+                                type: string
+                              CustomFieldConnection:
+                                type: string
+                              CustomFieldEdge:
+                                type: string
+                              CustomField:
+                                type: string
+                              ImageConnection:
+                                type: string
+                              ImageEdge:
+                                type: string
+                              OptionValueId:
+                                type: string
+                              Route:
+                                type: string
+                              Settings:
+                                type: string
+                              StorefrontStatusType:
+                                type: string
+                              LogoField:
+                                type: string
+                              ContactField:
+                                type: string
+                              UrlField:
+                                type: string
+                              DisplayField:
+                                type: string
+                              Customer:
+                                type: string
+                              CustomerAttributes:
+                                type: string
+                              CustomerAttribute:
+                                type: string
+                              __Schema:
+                                type: string
+                              __Type:
+                                type: string
+                              __TypeKind:
+                                type: string
+                              __Field:
+                                type: string
+                              __InputValue:
+                                type: string
+                              __EnumValue:
+                                type: string
+                              __Directive:
+                                type: string
+                              __DirectiveLocation:
+                                type: string
+                          _implementations:
+                            type: object
+                            properties:
+                              Node:
+                                type: array
+                                items:
+                                  type: string
               - title: Storefront API Token
                 route:
                   path: /storefront-api-token
@@ -638,7 +811,7 @@ pages:
                 data:
                   $ref: >-
                     https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Enabled_Payment_Methods_API.oas2.json
-        - title: Management
+        - title: Store Management
           route:
             path: /store-management
           data:
@@ -778,6 +951,17 @@ pages:
                 data:
                   $ref: >-
                     https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Widgets_API.oas2.json
+        - title: Third-Party Providers
+          route:
+            path: /third-party-providers
+          data:
+            children:
+              - title: Shipping Provider API
+                route:
+                  path: /shipping-provider-api
+                data:
+                  $ref: >-
+                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Shipping_Provider_API.oas2.json
         - title: Catalog
           route:
             path: /catalog
@@ -936,17 +1120,6 @@ pages:
           data:
             $ref: >-
               https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Webhooks.oas2.json
-        - title: Third-Party Providers
-          route:
-            path: /third-party-providers
-          data:
-            children:
-              - title: Shipping Provider API
-                route:
-                  path: /shipping-provider-api
-                data:
-                  $ref: >-
-                    https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Shipping_Provider_API.oas2.json
       blocks:
         - type: text
           data: "<h1 class=\"TextBlock-header-title wb-bw\">API Reference</h1>\n<ul>\n\t<li><a href=\"/api-reference/webhooks\">Webhooks</a></li>\n\t<li><a href=\"/api-reference/catalog\">Catalog</a></li>\n\t<li><a href=\"/api-reference/store-management\">Store Management</a></li>\n\t<li><a href=\"/api-reference/customer-subscribers\">Customers &amp; Subscribers</a></li>\n\t<li><a href=\"/api-reference/marketing\">Marketing</a></li>\n\t<li><a href=\"/api-reference/storefront\">Storefront</a></li>\n\t<li><a href=\"/api-reference/cart-checkout\">Cart &amp; Checkout</a></li>\n\t<li><a href=\"/api-reference/orders\">Orders</a></li>\n\t<li><a href=\"/api-reference/payments\">Payments</a></li>\n</ul>"
