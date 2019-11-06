@@ -1,1 +1,49 @@
-<div class="studio"></div>
+    <div id="stoplight-hub" class="flex h-full h-screen w-full">
+      <div id="stoplight-toc" class="border-r"></div>
+      <div id="stoplight-page" class="flex-1 overflow-auto"></div>
+    </div>
+
+ <script>
+window.addEventListener("SL.ready", function () {
+  // The SRN to the project that we want to load
+  var projectSrn = "gh/stevenbennitt/dev-docs";
+
+  SL.config.components = {
+    link: function link(_ref) {
+      var node = _ref.node;
+      var children = _ref.children;
+
+      var href = /^http/.test(node.url) ? node.url : node.url.replace(projectSrn, "/studio-docs");
+
+      return SL.createElement("a", {
+        className: node.className,
+        title: node.title,
+        href: href,
+        onClick: function onClick(e) {
+          if (!/^http/.test(node.url)) {
+            e.preventDefault();
+
+            SL.elements.page.srn = node.url;
+            SL.elements.toc.srn = node.url;
+            history.pushState({}, node.title, href);
+          }
+        }
+      }, children);
+    }
+  };
+
+  (function (history) {
+    var pushState = history.pushState;
+    history.pushState = function (state, title, url) {
+      // When the URL is changes, re-render the page component with the new SRN
+      SL.elements.page.srn = url.replace("/studio-docs", projectSrn);
+      SL.elements.toc.srn = url.replace("/studio-docs", projectSrn);
+      return pushState.apply(history, arguments);
+    };
+  })(window.history);
+
+  // Render the initial components
+  SL.elements.toc.render("stoplight-toc", projectSrn + "/README.md");
+  SL.elements.page.render("stoplight-page", projectSrn + "/README.md");
+}, { once: true });
+    </script>
