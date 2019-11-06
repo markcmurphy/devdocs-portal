@@ -69,8 +69,8 @@
             var pushState = history.pushState;
             history.pushState = function(state, title, url) {
               // When the URL is changes, re-render the page component with the new SRN
-              SL.elements.page.srn = url.replace("/dev-docs", projectSrn);
-              SL.elements.toc.srn = url.replace("/dev-docs", projectSrn);
+              SL.elements.page.srn = url.replace("/studio-docs", projectSrn);
+              SL.elements.toc.srn = url.replace("/studio-docs", projectSrn);
               return pushState.apply(history, arguments);
             };
           })(window.history);
