@@ -68,9 +68,9 @@ definitions:
     title: _links
   response_errorBase:
     allOf:
-      - type: object
-        description: |
+      - description: |
           Error payload for the BigCommerce API.
+        title: Base Error
         properties:
           status:
             description: |
@@ -84,9 +84,7 @@ definitions:
             type: string
           instance:
             type: string
-        title: Base Error
-      - type: object
-        properties:
+      - properties:
           errors:
             type: object
             title: Detailed Errors
@@ -94,6 +92,7 @@ definitions:
               additionalProperties:
                 type: string
     title: response_errorBase
+    type: object
   _errorBase:
     type: object
     description: |
@@ -128,11 +127,5 @@ definitions:
       instance:
         type: string
     title: response_404
-  DetailedErrors:
-    type: object
-    title: Detailed Errors
-    properties:
-      additionalProperties:
-        type: string
 schemes:
   - https
