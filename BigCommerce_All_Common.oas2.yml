@@ -68,23 +68,9 @@ definitions:
     title: _links
   response_errorBase:
     allOf:
-      - description: |
-          Error payload for the BigCommerce API.
-        title: Base Error
+      - $ref: '#/definitions/_errorBase'
+      - type: object
         properties:
-          status:
-            description: |
-              The HTTP status code.
-            type: integer
-          title:
-            description: |
-              The error title describing the particular error.
-            type: string
-          type:
-            type: string
-          instance:
-            type: string
-      - properties:
           errors:
             type: object
             title: Detailed Errors
@@ -92,7 +78,6 @@ definitions:
               additionalProperties:
                 type: string
     title: response_errorBase
-    type: object
   _errorBase:
     type: object
     description: |
