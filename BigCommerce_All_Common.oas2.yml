@@ -109,36 +109,9 @@ definitions:
   _errorDetailed:
     type: object
     properties:
-      errors:
-        type: object
-        title: Detailed Errors
-        properties:
-          additionalProperties:
-            type: string
+      additionalProperties:
+        type: string
     description: Detailed Error messages for BigCommerce APIs.
-  ErrorResponse:
-    allOf:
-      - $ref: '#/definitions/BaseError'
-      - $ref: '#/definitions/DetailedErrors'
-  BaseError:
-    type: object
-    description: |
-      Error payload for the BigCommerce API.
-    properties:
-      status:
-        description: |
-          The HTTP status code.
-        type: integer
-      title:
-        description: |
-          The error title describing the particular error.
-        type: string
-      type:
-        type: string
-  DetailedErrors:
-    type: object
-    additionalProperties:
-      type: string
 schemes:
   - https
 parameters:
