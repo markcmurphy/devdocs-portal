@@ -146,7 +146,45 @@
         }
       },
       "description": "Detailed Error messages for BigCommerce APIs."
-    }
+    },
+          "ErrorResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseError"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "errors": {
+                "$ref": "#/components/schemas/DetailedErrors"
+              }
+            }
+          }
+        ]
+      },
+      "BaseError": {
+        "type": "object",
+        "description": "Error payload for the BigCommerce API.\n",
+        "properties": {
+          "status": {
+            "description": "The HTTP status code.\n",
+            "type": "integer"
+          },
+          "title": {
+            "description": "The error title describing the particular error.\n",
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "DetailedErrors": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
   },
   "schemes": [
     "https"
