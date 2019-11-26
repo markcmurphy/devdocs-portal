@@ -1,176 +1,138 @@
-{
-  "swagger": "2.0",
-  "info": {
-    "title": "BigCommerce Common Models",
-    "version": "",
-    "description": "Models that are shared across BigCommerce APIs."
-  },
-  "host": "api.bigcommerce.com",
-  "paths": {},
-  "definitions": {
-    "_metaEmpty": {
-      "type": "object",
-      "description": "Used in responses for single objects",
-      "title": "_metaEmpty"
-    },
-    "_pagination": {
-      "type": "object",
-      "title": "_pagination",
-      "properties": {
-        "total": {
-          "description": "Total number of items in the result set.",
-          "type": "integer",
-          "format": "int32"
-        },
-        "count": {
-          "description": "Total number of items in the collection response.",
-          "type": "integer",
-          "format": "int32"
-        },
-        "per_page": {
-          "description": "The amount of items returned in the collection per page, controlled by the limit parameter.",
-          "type": "integer",
-          "format": "int32"
-        },
-        "current_page": {
-          "description": "The page you are currently on within the collection.",
-          "type": "integer",
-          "format": "int32"
-        },
-        "total_pages": {
-          "description": "The total number of pages in the collection.",
-          "type": "integer",
-          "format": "int32"
-        },
-        "links": {
-          "$ref": "#/definitions/_links"
-        }
-      },
-      "description": "In metaCollection"
-    },
-    "_metaCollection": {
-      "type": "object",
-      "title": "_metaCollection",
-      "properties": {
-        "pagination": {
-          "$ref": "#/definitions/_pagination"
-        }
-      },
-      "description": "Used in responses that contains collections."
-    },
-    "_links": {
-      "type": "object",
-      "description": "Links for the previous and next parts of the whole collection. In pagination.\n",
-      "properties": {
-        "previous": {
-          "type": "string",
-          "description": "Link to the previous page returned in the response.\n"
-        },
-        "current": {
-          "type": "string",
-          "description": "Link to the current page returned in the response.\n",
-          "example": "?page=1&limit=50"
-        },
-        "next": {
-          "type": "string",
-          "description": "Link to the next page returned in the response.\n"
-        }
-      },
-      "title": "_links"
-    },
-    "ErrorResponse": {
-      "allOf": [
-        {
-          "type": "object",
-          "description": "Error payload for the BigCommerce API.\n",
-          "properties": {
-            "status": {
-              "description": "The HTTP status code.\n",
-              "type": "integer"
-            },
-            "title": {
-              "description": "The error title describing the particular error.\n",
-              "type": "string"
-            },
-            "type": {
-              "type": "string"
-            },
-            "instance": {
-              "type": "string"
-            }
-          },
-          "title": "Base Error"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "errors": {
-              "type": "object",
-              "title": "Detailed Errors",
-              "properties": {
-                "additionalProperties": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "title": "Error Response"
-    },
-    "BaseError": {
-      "type": "object",
-      "description": "Error payload for the BigCommerce API.\n",
-      "properties": {
-        "status": {
-          "description": "The HTTP status code.\n",
-          "type": "integer"
-        },
-        "title": {
-          "description": "The error title describing the particular error.\n",
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "instance": {
-          "type": "string"
-        }
-      },
-      "title": "Base Error"
-    },
-    "NotFound": {
-      "description": "Error payload for the BigCommerce API.",
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "404 HTTP status code.\n",
-          "type": "integer"
-        },
-        "title": {
-          "description": "The error title describing the particular error.",
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "instance": {
-          "type": "string"
-        }
-      },
-      "title": "Not Found"
-    },
-    "DetailedErrors": {
-      "type": "object",
-      "title": "Detailed Errors",
-      "properties": {
-        "additionalProperties": {
-          "type": "string"
-        }
-      }
-    }
-  },
-  "schemes": [
-    "https"
-  ]
-}
+swagger: '2.0'
+info:
+  title: BigCommerce Common Models
+  version: ''
+  description: Models that are shared across BigCommerce APIs.
+host: api.bigcommerce.com
+paths: {}
+definitions:
+  _metaEmpty:
+    type: object
+    description: Used in responses for single objects
+    title: _metaEmpty
+  _pagination:
+    type: object
+    title: _pagination
+    properties:
+      total:
+        description: Total number of items in the result set.
+        type: integer
+        format: int32
+      count:
+        description: Total number of items in the collection response.
+        type: integer
+        format: int32
+      per_page:
+        description: >-
+          The amount of items returned in the collection per page, controlled by
+          the limit parameter.
+        type: integer
+        format: int32
+      current_page:
+        description: The page you are currently on within the collection.
+        type: integer
+        format: int32
+      total_pages:
+        description: The total number of pages in the collection.
+        type: integer
+        format: int32
+      links:
+        $ref: '#/definitions/_links'
+    description: In metaCollection
+  _metaCollection:
+    type: object
+    title: _metaCollection
+    properties:
+      pagination:
+        $ref: '#/definitions/_pagination'
+    description: Used in responses that contains collections.
+  _links:
+    type: object
+    description: >
+      Links for the previous and next parts of the whole collection. In
+      pagination.
+    properties:
+      previous:
+        type: string
+        description: |
+          Link to the previous page returned in the response.
+      current:
+        type: string
+        description: |
+          Link to the current page returned in the response.
+        example: '?page=1&limit=50'
+      next:
+        type: string
+        description: |
+          Link to the next page returned in the response.
+    title: _links
+  ErrorResponse:
+    allOf:
+      - type: object
+        description: |
+          Error payload for the BigCommerce API.
+        properties:
+          status:
+            description: |
+              The HTTP status code.
+            type: integer
+          title:
+            description: |
+              The error title describing the particular error.
+            type: string
+          type:
+            type: string
+          instance:
+            type: string
+        title: Base Error
+      - type: object
+        properties:
+          errors:
+            type: object
+            title: Detailed Errors
+            properties:
+              additionalProperties:
+                type: string
+    title: Error Response
+  _errorBase:
+    type: object
+    description: |
+      Error payload for the BigCommerce API.
+    properties:
+      status:
+        description: |
+          The HTTP status code.
+        type: integer
+      title:
+        description: |
+          The error title describing the particular error.
+        type: string
+      type:
+        type: string
+      instance:
+        type: string
+    title: _errorBase
+  response_404:
+    description: Error payload for the BigCommerce API.
+    type: object
+    properties:
+      status:
+        description: |
+          404 HTTP status code.
+        type: integer
+      title:
+        description: The error title describing the particular error.
+        type: string
+      type:
+        type: string
+      instance:
+        type: string
+    title: _404
+  DetailedErrors:
+    type: object
+    title: Detailed Errors
+    properties:
+      additionalProperties:
+        type: string
+schemes:
+  - https
