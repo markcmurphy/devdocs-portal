@@ -544,11 +544,12 @@ definitions:
             description: |
               Link to the next page returned in the response.
     title: _pagination
-  Errors:
+  _errors:
     type: object
     description: >-
       The keys and values in an errors object will vary depending on the error
       received.
+    title: _errors
   post_Site:
     type: object
     properties:
@@ -625,7 +626,7 @@ responses:
         title:
           type: string
         errors:
-          $ref: '#/definitions/Errors'
+          $ref: '#/definitions/_errors'
         meta:
           $ref: '#/definitions/_metaEmpty'
         type:
@@ -653,7 +654,7 @@ responses:
           type: string
           description: HTTP status code
         errors:
-          $ref: '#/definitions/Errors'
+          $ref: '#/definitions/_errors'
         type:
           type: string
     examples:
