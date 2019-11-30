@@ -181,7 +181,7 @@ paths:
               data:
                 type: array
                 items:
-                  $ref: '#/definitions/Route'
+                  $ref: '#/definitions/_route'
               meta:
                 $ref: '#/definitions/_metaCollection'
           examples:
@@ -216,12 +216,12 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#/definitions/Route'
+            $ref: '#/definitions/_route'
       responses:
         '200':
           description: Created
           schema:
-            $ref: '#/definitions/Route'
+            $ref: '#/definitions/_route'
           examples:
             application/json:
               id: 1
@@ -281,7 +281,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Route'
+              $ref: '#/definitions/_route'
           x-examples:
             application/json:
               - id: 1
@@ -314,7 +314,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/Route'
+            $ref: '#/definitions/_route'
           examples:
             Example 1: |-
               {
@@ -341,7 +341,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#/definitions/Route'
+            $ref: '#/definitions/_route'
           x-examples:
             application/json: |-
               [{
@@ -360,7 +360,7 @@ paths:
         '201':
           description: Created
           schema:
-            $ref: '#/definitions/Route'
+            $ref: '#/definitions/_route'
           examples:
             Example 1: |-
               {
@@ -400,7 +400,7 @@ definitions:
   _metaCollection:
     $ref: './BigCommerce_All_Common.oas2.yml#/definitions/_metaCollection'
     title: _metaCollection
-  Route:
+  _route:
     type: object
     properties:
       id:
@@ -451,6 +451,7 @@ definitions:
 
           - {language} The language string that the client is using
         example: /my-amazing-product
+    title: _route
   put_Site:
     type: object
     properties:
@@ -492,7 +493,7 @@ definitions:
           Limited to 200 routes side loaded (query routes direction via
           `/routes` for bulk)
         items:
-          $ref: '#/definitions/Route'
+          $ref: '#/definitions/_route'
     title: _site
   Meta:
     type: object
