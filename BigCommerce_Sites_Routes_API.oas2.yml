@@ -27,7 +27,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/Site'
+            $ref: '#/definitions/_site'
           examples:
             application/json: |-
               {
@@ -69,7 +69,7 @@ paths:
                   - string
                   - array
                 items:
-                  $ref: '#/definitions/Site'
+                  $ref: '#/definitions/_site'
               meta:
                 type: object
                 properties:
@@ -461,7 +461,7 @@ definitions:
           hosted. All URLs generated for this site will be appended to this.
         example: 'http://kittens.mybigcommerce.com/'
     title: put_Site
-  Site:
+  _site:
     type: object
     properties:
       id:
@@ -493,6 +493,7 @@ definitions:
           `/routes` for bulk)
         items:
           $ref: '#/definitions/Route'
+    title: _site
   Meta:
     type: object
     description: Empty meta object; may be used later.
@@ -607,7 +608,7 @@ responses:
       type: object
       properties:
         data:
-          $ref: '#/definitions/Site'
+          $ref: '#/definitions/_site'
         meta:
           $ref: '#/definitions/Meta'
   BulkErrorResponse:
