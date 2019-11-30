@@ -343,19 +343,15 @@ paths:
           schema:
             $ref: '#/definitions/_route'
           x-examples:
-            application/json: |-
-              [{
-                  "id": 1, // will update
-                  "type": "product",
-                  "matching": "*",
-                  "route": "/products/{id}"
-                },
-                {
-                  "type": "product", // will create
-                  "matching": "10",
-                  "route": "/products?id={id}"
-                }
-              ]
+            application/json:
+              - id: 1
+                type: product
+                matching: '*'
+                route: '/products/{id}'
+              - id: 2
+                type: product
+                matching: '10'
+                route: '/products?id={id}'
       responses:
         '201':
           description: Created
