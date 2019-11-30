@@ -18,7 +18,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#/definitions/sitePost'
+            $ref: '#/definitions/put_Site'
           x-examples:
             application/json:
               url: 'http://kittens.mybigcommerce.com/'
@@ -450,7 +450,7 @@ definitions:
 
           - {language} The language string that the client is using
         example: /my-amazing-product
-  sitePost:
+  put_Site:
     type: object
     properties:
       url:
@@ -464,6 +464,7 @@ definitions:
         description: >-
           The channel this site is attached to. Each site belongs to a single
           channel, and each channel can have either zero or one sites.
+    title: post_Site
   Site:
     type: object
     properties:
@@ -499,16 +500,6 @@ definitions:
   Meta:
     type: object
     description: Empty meta object; may be used later.
-  put_Site:
-    type: object
-    description: Request body for site PUT calls
-    properties:
-      url:
-        type: string
-        description: >-
-          The Fully Qualified URL (including host and scheme) where this site is
-          hosted. All URLs generated for this site will be appended to this.
-    title: put_Site
   Pagination:
     type: object
     description: |
