@@ -3,8 +3,138 @@ info:
   version: ''
   title: BigCommerce Channels API
   description: >-
-    The Channels API enables you to create and manage listings across a
-    BigCommerce merchant's sales channels.
+
+    - [OAuth Scopes](#oauth-scopes)
+
+    - [Authentication](#authentication)
+
+    - [Available Endpoints](#available-endpoints)
+
+    - [Usage Notes](#usage-notes)
+
+    - [Resources](#resources)
+
+
+    Create and manage product listings for multiple storefronts and sales
+    channels.
+
+
+    ## OAuth Scopes
+
+    | UI Name                                      | Permission |
+    Parameter                                     |
+
+    |----------------------------------------------|------------|-----------------------------------------------|
+
+    | Channel Listings                             | modify     |
+    `store_channel_listings`                      |
+
+    | Channel Listings                             | read-only  |
+    `store_channel_listings_read_only`            |
+
+    | Channel Settings                             | modify     |
+    `store_channel_settings`                      |
+
+    | Channel Settings                             | read-only  |
+    `store_channel_settings_read_only`            |
+
+
+    For more information on OAuth Scopes, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## Authentication
+
+
+    Requests can be authenticated by sending a `client_id` and `access_token`
+    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+
+
+    ```http
+
+    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+
+    host: api.bigcommerce.com
+
+    Accept: application/json
+
+    X-Auth-Client: {client_id}
+
+    X-Auth-Token: {access_token}
+
+    ```
+
+
+    |Header|Parameter|Description|
+
+    |-|-|-|
+
+    |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
+    installing an app in a BigCommerce control panel.|
+
+    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
+    installing an app in a BigCommerce control panel.|
+
+
+    For more information on Authenticating BigCommerce APIs, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## Available Endpoints
+
+    | Resource / Endpoint                     |
+    Description                                                              |
+
+    |-----------------------------------------|--------------------------------------------------------------------------|
+
+    | Channels                                | Create and manage catalog
+    listings and channels                          |
+
+    | Channel Site                            | Manage sites and routing for
+    headless storefronts                        |
+
+    | Channel Listings                        | Manage catalog differences among
+    different storefronts or marketplaces   |
+
+
+    For more information on Authenticating BigCommerce APIs, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## Usage Notes
+
+
+    **Channels and Channel Listings:**
+
+    * A channel is anywhere a merchant sells their products. This encompasses
+    headless storefronts, marketplaces, POS systems, and marketing platforms.
+
+    * Channel listings allow you to manage catalog differences among different
+    storefronts or marketplaces.
+
+
+    **Sites and Site Routes:**
+
+    * Sites and routes control the paths that make up a headless storefront
+
+    * Site refers to the domain associated with a channel
+
+    * Routes point to the URLs for key pages on the headless storefront. They
+    define where your homepage is, where your cart page is, etc.
+
+    * Sites and routes ensure links point where they’re supposed to and sales
+    are attributed correctly. For example, a shopper’s order confirmation email
+    should link back to Storefront A, where they placed their order, not
+    Storefront B, which they’ve never visited.
+
+
+    ## Resources
+
+
+    ### Related Endpoints
+
+    *
+    [Sites](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api)
 host: api.bigcommerce.com
 tags:
   - name: Channels
