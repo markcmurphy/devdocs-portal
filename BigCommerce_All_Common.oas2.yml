@@ -330,7 +330,37 @@ definitions:
     title: _responseHeaders
   _requestHeaders:
     type: object
-    properties: {}
+    properties:
+      Accept:
+        type: >-
+          application/json (for .json requests) application/xml (for .xml
+          requests)
+        description: The MIME type for the format you want to receive a response in.
+        example: application/xml
+      Content-Type:
+        type: >-
+          application/json (for JSON requests) application/xml (for XML
+          requests)
+        description: >-
+          The MIME type of the request body. Used to validate and parse the
+          request to the API.
+        example: application/json
+      User-Agent:
+        type: String
+        description: >-
+          While it is not required, we ask that you specify a user agent which
+          identifies your integration/client with your requests.
+        example: ''
+      X-Auth-Client:
+        type: String
+        description: Client ID of the requesting app
+        example: ''
+      X-Auth-Token:
+        type: String
+        description: >-
+          Access token authorizing the app to access resources on behalf of a
+          user
+        example: ''
     title: _requestHeaders
 schemes:
   - https
