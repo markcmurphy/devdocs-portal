@@ -35383,65 +35383,9 @@ definitions:
         description: Publicly available image url
   Option:
     allOf:
-      - description: Common Option properties.
-        title: Option Base
+      - $ref: '#/definitions/OptionBase'
+      - type: object
         properties:
-          id:
-            type: integer
-            description: |
-              The unique numerical ID of the option, increments sequentially.
-            x-nullable: true
-            example: 55
-          product_id:
-            type: integer
-            description: >
-              The unique numerical ID of the product to which the option
-              belongs.
-            x-required:
-              - post
-              - put
-            example: 4
-          display_name:
-            type: string
-            description: |
-              The name of the option shown on the storefront.
-            x-required:
-              - post
-              - put
-            minLength: 1
-            maxLength: 255
-            example: Add-a-$5-Donation1535042499-187
-          type:
-            type: string
-            description: >
-              The type of option, which determines how it will display on the
-              storefront. Acceptable values: `radio_buttons`, `rectangles`,
-              `dropdown`, `product_list`, `product_list_with_images`, `swatch`.
-              For reference, the former v2 API values are: RB = radio_buttons,
-              RT = rectangles, S = dropdown, P = product_list, PI =
-              product_list_with_images, CS = swatch.
-            enum:
-              - radio_buttons
-              - rectangles
-              - dropdown
-              - product_list
-              - product_list_with_images
-              - swatch
-            x-required:
-              - post
-              - put
-          config:
-            $ref: '#/definitions/OptionConfig'
-          sort_order:
-            type: integer
-            example: 1
-            description: 'Order in which the option is displayed on the storefront. '
-          option_values:
-            $ref: '#/definitions/OptionValue'
-          image_url:
-            type: string
-            description: Publicly available image url
-      - properties:
           name:
             type: string
             description: >
@@ -35449,7 +35393,6 @@ definitions:
               timestamp, and the product ID.
             example: Add-a-$5-Donation1535042499-187
     title: Option
-    type: object
   OptionPost:
     type: object
     description: The model for a POST to create options on a product.
@@ -37563,6 +37506,9 @@ definitions:
         type: object
         description: Empty meta object; may be used later.
         title: Meta
+        properties:
+          '':
+            type: string
   OptionValueBase:
     type: object
     description: Common Option Value properties.
@@ -40699,14 +40645,15 @@ definitions:
     description: |
       Errors during batch usage for the BigCommerce API.
     type: object
+    title: resp_variantBatchError
     properties:
       batch_errors:
         type: array
         items:
           allOf:
-            - type: object
-              description: |
+            - description: |
                 Error payload for the BigCommerce API.
+              title: Base Error
               properties:
                 status:
                   description: |
@@ -40720,9 +40667,7 @@ definitions:
                   type: string
                 instance:
                   type: string
-              title: Base Error
-            - type: object
-              properties:
+            - properties:
                 errors:
                   type: object
                   title: Detailed Errors
@@ -40730,7 +40675,7 @@ definitions:
                     additionalProperties:
                       type: string
           title: Error Response
-    title: resp_variantBatchError
+          type: object
   _metaCollection:
     type: object
     description: 'Data about the response, including pagination and collection totals.'
