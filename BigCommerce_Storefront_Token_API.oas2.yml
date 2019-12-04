@@ -312,15 +312,12 @@ definitions:
       - expires_at
   TokenPostSimple:
     type: object
-    allOf:
-      - $ref: '#/components/schemas/TokenPostImpersonation'
-      - type: object
-        properties:
-          allowed_cors_origins:
-            type: array
-            description: List of allowed domains for Cross-Origin Request Sharing.
-            items:
-              type: string
+    properties:
+      allowed_cors_origins:
+        type: array
+        description: List of allowed domains for Cross-Origin Request Sharing.
+        items:
+          type: string
   TokenResponse:
     type: object
     properties:
