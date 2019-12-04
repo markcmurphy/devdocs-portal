@@ -41284,45 +41284,7 @@ definitions:
       custom_fields:
         type: array
         items:
-          type: object
-          description: >-
-            Gets custom fields associated with a product. These allow you to
-            specify additional information that will appear on the product's
-            page, such as a book's ISBN or a DVD's release date.
-          title: Custom Field
-          properties:
-            id:
-              type: integer
-              description: >-
-                The unique numeric ID of the custom field; increments
-                sequentially.
-
-                Read-Only
-              minimum: 1
-              example: 6
-            name:
-              type: string
-              description: >
-                The name of the field, shown on the storefront, orders, etc.
-                Required for /POST
-              x-required:
-                - post
-              minLength: 1
-              maxLength: 250
-              example: ISBN
-            value:
-              type: string
-              description: >
-                The name of the field, shown on the storefront, orders, etc.
-                Required for /POST
-              x-required:
-                - post
-              minLength: 1
-              maxLength: 250
-              example: '1234567890123'
-          required:
-            - name
-            - value
+          $ref: '#/definitions/_customFieldBase'
       bulk_pricing_rules:
         type: array
         items:
