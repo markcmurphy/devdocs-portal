@@ -38090,50 +38090,10 @@ definitions:
       - title
       - date_reviewed
   ProductReview:
-    type: object
     description: |
       A product review model.
     allOf:
-      - type: object
-        title: Product Review Base
-        properties:
-          title:
-            type: string
-            description: |-
-              The title for the product review.
-              Required in /POST.
-            minLength: 0
-            maxLength: 255
-          text:
-            type: string
-            description: |
-              The text for the product review.
-          status:
-            type: string
-            description: >
-              The status of the product review. Must be one of `approved`,
-              `disapproved` or `pending`.
-          rating:
-            type: integer
-            description: 'The rating of the product review. Must be one of 0, 1, 2, 3, 4, 5.'
-          email:
-            type: string
-            description: >-
-              The email of the reviewer. Must be a valid email, or an empty
-              string.
-          name:
-            type: string
-            description: The name of the reviewer.
-            minLength: 0
-            maxLength: 255
-          date_reviewed:
-            type: string
-            format: date-time
-            description: |
-              Date the product was reviewed. Required in /POST.
-        required:
-          - title
-          - date_reviewed
+      - $ref: '#/definitions/ProductReviewBase'
       - type: object
         properties:
           id:
