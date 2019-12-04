@@ -682,71 +682,7 @@ definitions:
         description: ''
         type: string
       billingAddress:
-        title: Address Response
-        allOf:
-          - title: Address Properties
-            properties:
-              firstName:
-                description: ''
-                type: string
-              lastName:
-                description: ''
-                type: string
-              email:
-                description: ''
-                type: string
-              company:
-                description: ''
-                type: string
-              address1:
-                description: ''
-                type: string
-              address2:
-                description: ''
-                type: string
-              city:
-                description: ''
-                type: string
-              stateOrProvince:
-                description: Represents state or province.
-                type: string
-              stateOrProvinceCode:
-                description: ''
-                type: string
-              countryCode:
-                description: >-
-                  ISO 3166-1 alpha-2 country code. (See:
-                  https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
-                type: string
-              postalCode:
-                description: ''
-                type: string
-              phone:
-                description: ''
-                type: string
-                pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
-              customFields:
-                description: ''
-                type: array
-                items:
-                  title: Custom Field
-                  type: object
-                  properties:
-                    fieldId:
-                      description: ''
-                      type: string
-                    fieldValue:
-                      description: >-
-                        This can also be an array for fields that need to
-                        support list of values (e.g., a set of check boxes.)
-                      type: string
-            required:
-              - countryCode
-          - properties:
-              id:
-                description: ''
-                type: string
-        type: object
+        $ref: '#/definitions/AddressResponse'
       status:
         title: Status
         description: Order status.
