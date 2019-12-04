@@ -520,7 +520,6 @@ definitions:
             title: Address Response
             allOf:
               - title: Address Properties
-                type: object
                 properties:
                   firstName:
                     description: ''
@@ -578,11 +577,11 @@ definitions:
                           type: string
                 required:
                   - countryCode
-              - type: object
-                properties:
+              - properties:
                   id:
                     description: ''
                     type: string
+            type: object
           status:
             title: Status
             description: Order status.
@@ -639,27 +638,7 @@ definitions:
         type: string
         format: uuid
       currency:
-        title: Currency
-        description: This will always be the same between cart and checkout.
-        type: object
-        properties:
-          name:
-            description: The currency name.
-            type: string
-          code:
-            description: >-
-              ISO-4217 currency code. (See:
-              http://en.wikipedia.org/wiki/ISO_4217.)
-            type: string
-          symbol:
-            description: The currency symbol.
-            type: string
-          decimalPlaces:
-            description: >-
-              Number of decimal places for the currency. For example, USD
-              currency has two decimal places.
-            type: number
-            format: double
+        $ref: '#/definitions/Currency'
       isTaxIncluded:
         description: Whether this item is taxable.
         type: boolean
@@ -996,7 +975,6 @@ definitions:
         title: Address Response
         allOf:
           - title: Address Properties
-            type: object
             properties:
               firstName:
                 description: ''
@@ -1054,11 +1032,11 @@ definitions:
                       type: string
             required:
               - countryCode
-          - type: object
-            properties:
+          - properties:
               id:
                 description: ''
                 type: string
+        type: object
       status:
         title: Status
         description: Order status.
