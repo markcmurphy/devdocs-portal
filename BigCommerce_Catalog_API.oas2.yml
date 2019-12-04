@@ -37969,11 +37969,11 @@ definitions:
             type: string
         title: Product Image Base
     title: Product Image Put
-  ProductVideoBase:
+  _productVideoBase:
     type: object
     description: |
       The model for a POST to create a video on a product.
-    title: Product Video Base
+    title: _productVideoBase
     properties:
       title:
         type: string
@@ -38011,7 +38011,7 @@ definitions:
       A product video model.
     title: Product Video
     allOf:
-      - $ref: '#/definitions/ProductVideoBase'
+      - $ref: '#/definitions/_productVideoBase'
       - type: object
         properties:
           id:
@@ -38033,13 +38033,13 @@ definitions:
     description: |
       The model for a POST to create a video on a product.
     allOf:
-      - $ref: '#/definitions/ProductVideoBase'
+      - $ref: '#/definitions/_productVideoBase'
     title: post_productVideo
   put_productVideo:
     description: |
       The model for a PUT to update a video on a product.
     allOf:
-      - $ref: '#/definitions/ProductVideoBase'
+      - $ref: '#/definitions/_productVideoBase'
       - type: object
         properties:
           id:
@@ -42637,7 +42637,7 @@ definitions:
                           Use the image_url when creating a product. 
                 type: object
             videos:
-              $ref: '#/definitions/ProductVideoBase'
+              $ref: '#/definitions/_productVideoBase'
             variants:
               type: array
               items:
