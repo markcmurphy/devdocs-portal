@@ -37399,10 +37399,8 @@ definitions:
             example: Beige
     title: Option Value Product Post
   _optionValueVariant:
-    type: object
     allOf:
-      - type: object
-        description: Common Option Value Product properties.
+      - description: Common Option Value Product properties.
         title: Option Value Product Base
         properties:
           option_display_name:
@@ -37423,13 +37421,13 @@ definitions:
             minLength: 1
             maxLength: 255
             example: Beige
-      - type: object
-        properties:
+      - properties:
           id:
             type: integer
           option_id:
             type: integer
     title: _optionValueVariant
+    type: object
   post_pptionValueVariant:
     type: object
     description: The model for a POST to create option values on a variant.
@@ -37557,59 +37555,14 @@ definitions:
       - sort_order
   _optionValue:
     allOf:
-      - description: Common Option Value properties.
-        title: Option Value Base
+      - $ref: '#/definitions/_optionValueBase'
+      - type: object
         properties:
-          is_default:
-            type: boolean
-            description: >
-              The flag for preselecting a value as the default on the
-              storefront. This field is not supported for swatch
-              options/modifiers.
-            example: false
-          label:
-            type: string
-            description: >
-              The text display identifying the value on the storefront. Required
-              in a /POST.
-            x-required:
-              - post
-            example: Green
-          sort_order:
-            type: integer
-            description: >
-              The order in which the value will be displayed on the product
-              page. Required in a /POST.
-            minimum: -2147483648
-            maximum: 2147483647
-            x-required:
-              - post
-            example: 0
-          value_data:
-            type:
-              - object
-              - 'null'
-            description: >+
-              Extra data describing the value, based on the type of option or
-              modifier with which the value is associated. The `swatch` type
-              option can accept an array of `colors`, with up to three
-              hexidecimal color keys; or an `image_url`, which is a full image
-              URL path including protocol. The `product list` type option
-              requires a `product_id`. The `checkbox` type option requires a
-              boolean flag, called `checked_value`, to determine which value is
-              considered to be the checked state. If no data is available,
-              returns `null`.
-
-        required:
-          - label
-          - sort_order
-      - properties:
           id:
             type: integer
             description: |
               The unique numeric ID of the value; increments sequentially.
     title: _optionValue
-    type: object
   OptionValuePost:
     description: The model for a POST to create option values on a product.
     allOf:
