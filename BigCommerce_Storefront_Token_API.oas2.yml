@@ -2,7 +2,7 @@ swagger: 2.0.0
 info:
   title: Storefront Token
   version: ''
-  description: >+
+  description: >
 
     - [OAuth Scopes](#oauth-scopes)
 
@@ -91,9 +91,47 @@ info:
 
     ## Creating Customer Impersonation Tokens
 
+    Its possible to generate tokens for use in server-to-server interactions
+    with a trusted consumer by POSTing to the API Token Customer Impersonation
+    Endpoint with the X-Bc-Customer-Id header set to the customer’s ID:
+
+
+    ```http
+
+    POST
+    /stores/{$$.env.store_hash}/v3/storefront/api-token-customer-impersonation
+
+    host: api.bigcommerce.com
+
+    x-Auth-Client: {client_id}
+
+    x-Auth-Token: {access_token}
+
+    X-Bc-Customer-Id: {customer_id}
+
+    ```
+
 
     ## Revoking Tokens
 
+    To revoke tokens, send a `DELETE` request to the Revoke a Token endpoint and
+    include the `JWT` in the `Sf-Api-Token` header
+
+
+    ```http
+
+    DELETE
+    /stores/{$$.env.store_hash}/v3/storefront/api-token-customer-impersonation
+
+    host: api.bigcommerce.com
+
+    x-Auth-Client: {client_id}
+
+    x-Auth-Token: {access_token}
+
+    Sf-Api-Token: {customer_id}
+
+    ```
   termsOfService: ''
 tags:
   - name: API Token
