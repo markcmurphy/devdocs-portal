@@ -41308,63 +41308,7 @@ definitions:
       videos:
         type: array
         items:
-          description: |
-            A product video model.
-          allOf:
-            - description: Common ProductVideo properties.
-              title: Product Video Base
-              properties:
-                title:
-                  type: string
-                  description: >
-                    The title for the video. If left blank, this will be filled
-                    in according to data on a host site.
-                  minLength: 0
-                  maxLength: 255
-                description:
-                  type: string
-                  description: >
-                    The description for the video. If left blank, this will be
-                    filled in according to data on a host site.
-                sort_order:
-                  type: integer
-                  description: >
-                    The order in which the video will be displayed on the
-                    product page. Higher integers give the video a lower
-                    priority. When updating, if the video is given a lower
-                    priority, all videos with a `sort_order` the same as or
-                    greater than the video's new `sort_order` value will have
-                    their `sort_order`s reordered.
-                  minimum: -2147483648
-                  maximum: 2147483647
-                type:
-                  type: string
-                  description: |
-                    The video type (a short name of a host site).
-                  enum:
-                    - youtube
-            - properties:
-                id:
-                  type: integer
-                  description: >
-                    The unique numeric ID of the product video; increments
-                    sequentially.
-                video_id:
-                  description: |
-                    The ID of the video on a host site.
-                  type: string
-                product_id:
-                  description: >
-                    The unique numeric identifier for the product with which the
-                    image is associated.
-                  type: integer
-                length:
-                  description: >
-                    Length of the video. This will be filled in according to
-                    data on a host site.
-                  type: string
-          title: Product Video
-          type: object
+          $ref: '#/definitions/_productVideo'
       variants:
         type: array
         items:
