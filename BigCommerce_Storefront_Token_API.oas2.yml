@@ -301,6 +301,10 @@ paths:
           name: body
           schema:
             $ref: '#/definitions/TokenPostImpersonation'
+          x-examples:
+            application/json:
+              channel_id: 67577889
+              expires_at: 32017027.87134908
       summary: Create a Token
 security:
   - X-Auth-Client: []
@@ -314,10 +318,9 @@ definitions:
         description: Channel ID for requested token
         minimum: 0
       expires_at:
-        type: number
+        type: integer
         description: Unix timestamp (UTC time) defining when the token should expire.
         format: double
-        minimum: 0
     required:
       - channel_id
       - expires_at
