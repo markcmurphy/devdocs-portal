@@ -33466,11 +33466,9 @@ definitions:
       option_values:
         type: array
         items:
-          type: object
           allOf:
             - allOf:
-                - type: object
-                  description: Common Option Value properties.
+                - description: Common Option Value properties.
                   title: Option Value Base
                   properties:
                     is_default:
@@ -33520,6 +33518,7 @@ definitions:
                         price:
                           type: object
                           title: Adjuster
+                          description: Adjuster for Complex Rules.
                           properties:
                             adjuster:
                               type: string
@@ -33539,10 +33538,10 @@ definitions:
                                 variant, when the modifier value is selected on
                                 the storefront.
                               example: 5
-                          description: Adjuster for Complex Rules.
                         weight:
                           type: object
                           title: Adjuster
+                          description: Adjuster for Complex Rules.
                           properties:
                             adjuster:
                               type: string
@@ -33562,7 +33561,6 @@ definitions:
                                 variant, when the modifier value is selected on
                                 the storefront.
                               example: 5
-                          description: Adjuster for Complex Rules.
                         image_url:
                           type: string
                           description: >
@@ -33587,15 +33585,14 @@ definitions:
                                 The message displayed on the storefront when the
                                 purchasing disabled status is `true`.
               title: Modifier Value Base
-              type: object
-            - type: object
-              properties:
+            - properties:
                 id:
                   type: integer
                   description: |
                     The unique numeric ID of the value; increments sequentially.
           title: Modifier Value
           description: 'Part of Modifier Value Response '
+          type: object
     required:
       - type
       - required
@@ -33989,11 +33986,9 @@ definitions:
     title: Modifier Post
     type: object
   ModifierPut:
-    type: object
     description: The model for a PUT to update a modifier on a product.
     allOf:
-      - type: object
-        description: Common Modifier properties.
+      - description: Common Modifier properties.
         title: Modifier Base
         properties:
           type:
@@ -34203,11 +34198,9 @@ definitions:
           option_values:
             type: array
             items:
-              type: object
               allOf:
                 - allOf:
-                    - type: object
-                      description: Common Option Value properties.
+                    - description: Common Option Value properties.
                       title: Option Value Base
                       properties:
                         is_default:
@@ -34258,6 +34251,7 @@ definitions:
                             price:
                               type: object
                               title: Adjuster
+                              description: Adjuster for Complex Rules.
                               properties:
                                 adjuster:
                                   type: string
@@ -34277,10 +34271,10 @@ definitions:
                                     of the variant, when the modifier value is
                                     selected on the storefront.
                                   example: 5
-                              description: Adjuster for Complex Rules.
                             weight:
                               type: object
                               title: Adjuster
+                              description: Adjuster for Complex Rules.
                               properties:
                                 adjuster:
                                   type: string
@@ -34300,7 +34294,6 @@ definitions:
                                     of the variant, when the modifier value is
                                     selected on the storefront.
                                   example: 5
-                              description: Adjuster for Complex Rules.
                             image_url:
                               type: string
                               description: >
@@ -34325,9 +34318,7 @@ definitions:
                                     The message displayed on the storefront when
                                     the purchasing disabled status is `true`.
                   title: Modifier Value Base
-                  type: object
-                - type: object
-                  properties:
+                - properties:
                     id:
                       type: integer
                       description: >
@@ -34335,10 +34326,12 @@ definitions:
                         sequentially.
               title: Modifier Value
               description: 'Part of Modifier Value Response '
+              type: object
         required:
           - type
           - required
     title: Modifier Put
+    type: object
   _productModifierValueBase:
     allOf:
       - description: Common Option Value properties.
