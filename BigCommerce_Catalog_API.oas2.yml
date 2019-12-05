@@ -40023,66 +40023,70 @@ definitions:
         description: ID of the product. Read Only
   _productImage:
     title: _productImage
-    type: object
     description: Common ProductImage properties.
-    properties:
-      id:
-        description: |
-          The unique numeric ID of the image; increments sequentially.
-        type: integer
-      product_id:
-        description: >
-          The unique numeric identifier for the product with which the image is
-          associated.
-        type: integer
-      image_file:
-        description: |
-          The local path to the original image file uploaded to BigCommerce.
-        type: string
-      url_zoom:
-        description: >
-          The zoom URL for this image. By default, this is used as the zoom
-          image on product pages when zoom images are enabled.
-        type: string
-      url_standard:
-        description: >
-          The standard URL for this image. By default, this is used for
-          product-page images.
-        type: string
-      url_thumbnail:
-        description: >
-          The thumbnail URL for this image. By default, this is the image size
-          used on the category page and in side panels.
-        type: string
-      url_tiny:
-        description: >
-          The tiny URL for this image. By default, this is the image size used
-          for thumbnails beneath the product image on a product page.
-        type: string
-      date_modified:
-        format: date-time
-        description: |
-          The date on which the product image was modified.
-        type: string
-      is_thumbnail:
-        description: >
-          Flag for identifying whether the image is used as the product's
-          thumbnail.
-        type: boolean
-      sort_order:
-        type: integer
-        description: >
-          The order in which the image will be displayed on the product page.
-          Higher integers give the image a lower priority. When updating, if the
-          image is given a lower priority, all images with a `sort_order` the
-          same as or greater than the image's new `sort_order` value will have
-          their `sort_order`s reordered.
-        minimum: -2147483648
-        maximum: 2147483647
-      description:
-        description: |
-          The description for the image.
-        type: string
+    allOf:
+      - $ref: '#/definitions/_productImageBase'
+      - title: _productImage
+        type: object
+        description: Common ProductImage properties.
+        properties:
+          id:
+            description: |
+              The unique numeric ID of the image; increments sequentially.
+            type: integer
+          product_id:
+            description: >
+              The unique numeric identifier for the product with which the image
+              is associated.
+            type: integer
+          image_file:
+            description: |
+              The local path to the original image file uploaded to BigCommerce.
+            type: string
+          url_zoom:
+            description: >
+              The zoom URL for this image. By default, this is used as the zoom
+              image on product pages when zoom images are enabled.
+            type: string
+          url_standard:
+            description: >
+              The standard URL for this image. By default, this is used for
+              product-page images.
+            type: string
+          url_thumbnail:
+            description: >
+              The thumbnail URL for this image. By default, this is the image
+              size used on the category page and in side panels.
+            type: string
+          url_tiny:
+            description: >
+              The tiny URL for this image. By default, this is the image size
+              used for thumbnails beneath the product image on a product page.
+            type: string
+          date_modified:
+            format: date-time
+            description: |
+              The date on which the product image was modified.
+            type: string
+          is_thumbnail:
+            description: >
+              Flag for identifying whether the image is used as the product's
+              thumbnail.
+            type: boolean
+          sort_order:
+            type: integer
+            description: >
+              The order in which the image will be displayed on the product
+              page. Higher integers give the image a lower priority. When
+              updating, if the image is given a lower priority, all images with
+              a `sort_order` the same as or greater than the image's new
+              `sort_order` value will have their `sort_order`s reordered.
+            minimum: -2147483648
+            maximum: 2147483647
+          description:
+            description: |
+              The description for the image.
+            type: string
   post_resourceMetafield:
     type: object
     allOf:
