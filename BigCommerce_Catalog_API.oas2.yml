@@ -35571,12 +35571,10 @@ definitions:
     items:
       $ref: '#/definitions/_productVariant'
   put_variant:
-    type: object
     description: |
       The model for a PUT to update variants on a product.
     allOf:
-      - type: object
-        description: Common Variant properties.
+      - description: Common Variant properties.
         title: Variant Base
         properties:
           cost_price:
@@ -35704,13 +35702,13 @@ definitions:
             x-nullable: true
             minLength: 0
             maxLength: 255
-      - type: object
-        properties:
+      - properties:
           id:
             type: integer
             x-required:
               - put
     title: put_variant
+    type: object
   post_variantProduct:
     type: object
     description: |
@@ -41381,6 +41379,10 @@ definitions:
             description: >
               The message displayed on the storefront when the purchasing
               disabled status is `true`.
+  _variantBase:
+    type: object
+    properties: {}
+    title: _variantBase
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
