@@ -34029,7 +34029,6 @@ definitions:
     allOf:
       - description: Common Option Value properties.
         title: Option Value Base
-        type: object
         properties:
           is_default:
             type: boolean
@@ -34074,8 +34073,11 @@ definitions:
         required:
           - label
           - sort_order
-      - $ref: '#/definitions/_adjusters'
+      - properties:
+          adjusters:
+            $ref: '#/definitions/_adjusters'
     title: _productModifierOptionValueBase
+    type: object
   _productModifierOptionValue:
     allOf:
       - allOf:
