@@ -36838,28 +36838,30 @@ definitions:
             maxLength: 255
     title: put_variantProductPut
   _productVariantOptionValueBase:
-    type: object
     description: Common Product Variant Option properties.
     title: _productVariantOptionValue
-    properties:
-      option_display_name:
-        type: string
-        description: |
-          The name of the option.
-        x-required:
-          - post
-        minLength: 1
-        maxLength: 255
-        example: Color
-      label:
-        type: string
-        description: |
-          The label of the option value.
-        x-required:
-          - post
-        minLength: 1
-        maxLength: 255
-        example: Beige
+    allOf:
+      - type: object
+        properties:
+          option_display_name:
+            type: string
+            description: |
+              The name of the option.
+            x-required:
+              - post
+            minLength: 1
+            maxLength: 255
+            example: Color
+          label:
+            type: string
+            description: |
+              The label of the option value.
+            x-required:
+              - post
+            minLength: 1
+            maxLength: 255
+            example: Beige
+      - $ref: '#/definitions/_productVariantOptionValue'
   OptionValueProductPost:
     type: object
     description: The model for a POST to create option values on a product.
