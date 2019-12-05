@@ -36462,44 +36462,11 @@ definitions:
   _productImageBase:
     type: object
     description: Common ProductImage properties.
+    title: _productImageBase
     properties:
-      id:
-        description: |
-          The unique numeric ID of the image; increments sequentially.
-        type: integer
-      product_id:
-        description: >
-          The unique numeric identifier for the product with which the image is
-          associated.
-        type: integer
       image_file:
         description: |
           The local path to the original image file uploaded to BigCommerce.
-        type: string
-      url_zoom:
-        description: >
-          The zoom URL for this image. By default, this is used as the zoom
-          image on product pages when zoom images are enabled.
-        type: string
-      url_standard:
-        description: >
-          The standard URL for this image. By default, this is used for
-          product-page images.
-        type: string
-      url_thumbnail:
-        description: >
-          The thumbnail URL for this image. By default, this is the image size
-          used on the category page and in side panels.
-        type: string
-      url_tiny:
-        description: >
-          The tiny URL for this image. By default, this is the image size used
-          for thumbnails beneath the product image on a product page.
-        type: string
-      date_modified:
-        format: date-time
-        description: |
-          The date on which the product image was modified.
         type: string
       is_thumbnail:
         description: >
@@ -36520,7 +36487,6 @@ definitions:
         description: |
           The description for the image.
         type: string
-    title: _productImageBase
   post_productImage:
     description: The model for a POST to create an image on a product.
     allOf:
@@ -36911,6 +36877,7 @@ definitions:
       * Create Category Image
       * Create Brand Image
     type: object
+    title: resp_productImage
     properties:
       data:
         type: object
@@ -36928,7 +36895,6 @@ definitions:
         type: object
         description: Empty meta object; may be used later.
         title: Meta
-    title: resp_productImage
   _resourceImage:
     type: object
     description: >-
