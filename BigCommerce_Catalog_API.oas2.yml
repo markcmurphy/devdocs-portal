@@ -34392,13 +34392,11 @@ definitions:
         title: Modifier Value Base
         type: object
     title: post_productModifierOptionValue
-  ModifierValuePut:
-    type: object
+  put_productModifierOptionValue:
     description: The model for a PUT to update a modifier value on a product.
     allOf:
       - allOf:
-          - type: object
-            description: Common Option Value properties.
+          - description: Common Option Value properties.
             title: Option Value Base
             properties:
               is_default:
@@ -34447,6 +34445,7 @@ definitions:
                   price:
                     type: object
                     title: Adjuster
+                    description: Adjuster for Complex Rules.
                     properties:
                       adjuster:
                         type: string
@@ -34465,10 +34464,10 @@ definitions:
                           either the price or the weight of the variant, when
                           the modifier value is selected on the storefront.
                         example: 5
-                    description: Adjuster for Complex Rules.
                   weight:
                     type: object
                     title: Adjuster
+                    description: Adjuster for Complex Rules.
                     properties:
                       adjuster:
                         type: string
@@ -34487,7 +34486,6 @@ definitions:
                           either the price or the weight of the variant, when
                           the modifier value is selected on the storefront.
                         example: 5
-                    description: Adjuster for Complex Rules.
                   image_url:
                     type: string
                     description: >
@@ -34511,16 +34509,15 @@ definitions:
                           The message displayed on the storefront when the
                           purchasing disabled status is `true`.
         title: Modifier Value Base
-        type: object
-      - type: object
-        properties:
+      - properties:
           id:
             type: integer
             description: |
               The unique numeric ID of the value; increments sequentially.
             x-required:
               - put
-    title: Modifier Value Put
+    title: put_productModifierOptionValue
+    type: object
   OptionResponse:
     type: object
     title: Option Response
@@ -42155,6 +42152,10 @@ definitions:
           - package
         example: weight
     title: _configBase
+  _adjusters:
+    type: object
+    properties: {}
+    title: _adjusters
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
