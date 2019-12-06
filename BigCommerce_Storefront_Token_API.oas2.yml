@@ -190,10 +190,14 @@ paths:
               - $ref: '#/definitions/TokenPostSimple'
               - $ref: '#/definitions/TokenPostImpersonation'
           x-examples:
-            application/json:
-              channel_id: 1
-              expires_at: 1231231231122
-              allowed_cors_origins: 'https://www.yourstorefront.com/'
+            application/json: |-
+              {
+                "channel_id": 1,
+                "expires_at": {expires_at},
+                "allowed_cors_origins": [
+                  "{allowed_cors_origin}"
+                ]
+              }
     delete:
       tags:
         - API Token
