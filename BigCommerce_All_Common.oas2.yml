@@ -735,6 +735,109 @@ securityDefinitions:
     type: apiKey
     in: header
     name: X-Auth-Token
+    description: >-
+      ## OAuth Scopes
+
+      |  **UI Name** | **Permission** | **Parameter** |
+
+      | --- | --- | --- |
+
+      |  Carts | modify | `store_cart` |
+
+      |  Carts | read-only | `store_cart_read_only` |
+
+      |  Channel Listings | modify | `store_channel_listings` |
+
+      |  Channel Listings | read-only | `store_channel_listings_read_only` |
+
+      |  Channel Settings | modify | store_channel_settings` |
+
+      |  Channel Settings | read-only | `store_channel_settings_read_only` |
+
+      |  Checkout Content | modify | `store_content_checkout` |
+
+      |  Checkouts | modify | `store_checkout` |
+
+      |  Checkouts | read-only | `store_checkout_read_only` |
+
+      |  Content | modify | `store_v2_content` |
+
+      |  Content | read-only | `store_v2_content_read_only` |
+
+      |  Create Payments | create | `store_payments_access_token_create` |
+
+      |  Customer Login | login | `store_v2_customers_login` |
+
+      |  Customers | modify | `store_v2_customers` |
+
+      |  Customers | read-only | `store_v2_customers_read_only` |
+
+      |  Get Payment Methods | read-only | `store_payments_methods_read` |
+
+      |  Information & Settings | modify | `store_v2_information` |
+
+      |  Information & Settings | read-only | `store_v2_information_read_only` |
+
+      |  Marketing | modify | `store_v2_marketing` |
+
+      |  Marketing | read-only | `store_v2_marketing_read_only` |
+
+      |  Order Transactions | modify | `store_v2_transactions` |
+
+      |  Order Transactions | read-only | `store_v2_transactions_read_only` |
+
+      |  Orders | modify | `store_v2_orders` |
+
+      |  Orders | read-only | `store_v2_orders_read_only` |
+
+      |  Products | modify | `store_v2_products` |
+
+      |  Products | read-only | `store_v2_products_read_only` |
+
+      |  Sites & Routes | modify | `store_sites` |
+
+      |  Sites & Routes | read-only | `store_sites_read_only` |
+
+      |  Storefront API Customer Impersonation Tokens | manage |
+      `store_storefront_api_customer_impersonation` |
+
+      |  Storefront API Tokens | manage | `store_storefront_api` |
+
+      |  Themes | modify | `store_themes_manage` |
+
+
+      For more information on OAuth Scopes, see:
+      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+
+
+      |Header|Parameter|Description|
+
+      |-|-|-|
+
+      |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
+      installing an app in a BigCommerce control panel.|
+
+      |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
+      installing an app in a BigCommerce control panel.|
+
+
+      ```http
+
+      GET /stores/{$$.env.store_hash}/v3/catalog/summary
+
+      host: api.bigcommerce.com
+
+      Accept: application/json
+
+      X-Auth-Client: {client_id}
+
+      X-Auth-Token: {access_token}
+
+      ```
+
+
+      For more information on Authenticating BigCommerce APIs, see:
+      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
   OAuth:
     type: oauth2
     flow: accessCode
