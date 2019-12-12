@@ -3617,9 +3617,39 @@ definitions:
     title: Error
     description: 'Returns for incorrect requests. '
   orderStatus_Base:
+    title: orderStatus
     type: object
-    properties: {}
-    title: orderStatus_Base
+    properties:
+      id:
+        description: The id of the type of order status
+        example: 0
+        type: integer
+      name:
+        description: Name of the type of order status
+        example: Incomplete
+        type: string
+      system_label:
+        description: System name of the type of order status.
+        example: Incomplete
+        type: string
+      custom_label:
+        description: Custom order status label given in the Control Panel
+        example: Incomplete- Waiting on Shipment
+        type: string
+      system_description:
+        description: System description of the order status
+        example: >-
+          An incomplete order happens when a shopper reached the payment page,
+          but did not complete the transaction.
+        type: string
+      count:
+        description: Number of orders that exist with this status
+        example: 6
+        type: number
+      sort_order:
+        description: The sort order of the order status from the Control Panel
+        example: 0
+        type: number
 tags:
   - name: Orders
   - name: Order Coupons
