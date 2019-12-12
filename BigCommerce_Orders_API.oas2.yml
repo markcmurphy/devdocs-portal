@@ -3622,9 +3622,14 @@ definitions:
             example: 0
             type: number
   orderStatus_OrderStatuses:
-    type: object
-    properties: {}
-    title: orderStatus_OrderStatuses
+    allOf:
+      - $ref: '#/definitions/orderStatus_Base'
+      - type: object
+        properties:
+          order:
+            description: The sort order of the order status from the Control Panel
+            example: 0
+            type: integer
 tags:
   - name: Orders
   - name: Order Coupons
