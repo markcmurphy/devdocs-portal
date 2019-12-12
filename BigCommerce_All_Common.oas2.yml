@@ -1192,12 +1192,8 @@ securityDefinitions:
       [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication)
     name: X-Auth-Token
   OAuthScopes:
-    type: oauth2
-    flow: application
-    tokenUrl: 'https://login.bigcommerce.com/oauth2/token'
+    type: basic
     description: >-
-      ## OAuth Scopes
-
       |  **UI Name** | **Permission** | **Parameter** |
 
       | --- | --- | --- |
@@ -1264,70 +1260,6 @@ securityDefinitions:
       |  Storefront API Tokens | manage | `store_storefront_api` |
 
       |  Themes | modify | `store_themes_manage` |
-
-
-      For more information on OAuth Scopes, see:
-      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
-
-
-      ## Request Headers
-
-
-      API requests are authenticated by the following HTTP headers:
-
-
-      * `X-Auth-Client` -- The Client ID of the requesting app. 
-
-      * `X-Auth-Token` -- Access token authorizing an app to access store data
-      on behalf of a user.
-
-
-      In addition, while not all resources require the Accept and Content-Type
-      headers, many do. To ensure that your calls succeed, always include these
-      headers. For more details on request headers and their accepted values,
-      see [Request
-      Headers](https://developer.bigcommerce.com/api-docs/getting-started/about-our-api#request-headers).
-
-
-      `https://login.bigcommerce.com/oauth2/token`
-
-
-      ### Request
-
-
-      ```http
-
-      POST /oauth2/token HTTP/1.1
-
-      Host: login.bigcommerce.com
-
-      Content-Type: application/x-www-form-urlencoded
-
-      Content-Length: 186
-
-      client_id={CLIENT_ID}&client_secret={CLIENT_SECRET}&code=qr6h3thvbvag2ffq&scope=store_v2_orders&grant_type=authorization_code&redirect_uri=https://app.example.com/oauth&context=stores/{STORE_HASH}
-
-      ```
-
-
-      ### Response
-
-
-      ```json
-
-      {
-        "access_token": "ACCESS_TOKEN",
-        "scope": "store_v2_orders",
-        "user": {
-          "id": 24654,
-          "email": "merchant@mybigcommerce.com"
-        },
-        "context": "stores/STORE_HASH"
-      }
-
-      ```
-    scopes:
-      '': ''
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
