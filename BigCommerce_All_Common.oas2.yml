@@ -1,1271 +1,568 @@
-swagger: '2.0'
-info:
-  title: BigCommerce Common Models
-  version: ''
-  description: ''
-  contact:
-    url: 'https://developer.bigcommerce.com'
-    name: BigCommerce Developer Documentation
-  license:
-    name: ''
-  termsOfService: ''
-host: api.bigcommerce.com
-paths:
-  /example:
-    get:
-      responses:
-        '200':
-          description: ''
-          schema:
-            type: object
-            properties: {}
-      description: >-
-        ## OAuth Scopes
-
-        | UI Name                                      | Permission |
-        Parameter                                     |
-
-        |----------------------------------------------|------------|-----------------------------------------------|
-
-        | Carts                                        | modify     |
-        `store_cart`                                  |
-
-        | Carts                                        | read-only  |
-        `store_cart_read_only`                        |
-
-        | Channel Listings                             | modify     |
-        `store_channel_listings`                      |
-
-        | Channel Listings                             | read-only  |
-        `store_channel_listings_read_only`            |
-
-        | Channel Settings                             | modify     |
-        `store_channel_settings`                      |
-
-        | Channel Settings                             | read-only  |
-        `store_channel_settings_read_only`            |
-
-        | Checkout Content                             | modify     |
-        `store_content_checkout`                      |
-
-        | Checkout Content                             | read-only  |
-        `store_content_checkout_read_only`            |
-
-        | Checkouts                                    | modify     |
-        `store_checkout`                              |
-
-        | Checkouts                                    | read-only  |
-        `store_checkout_read_only`                    |
-
-        | Content                                      | modify     |
-        `store_v2_content`                            |
-
-        | Content                                      | read-only  |
-        `store_v2_content_read_only`                  |
-
-        | Create Payments                              | create     |
-        `store_payments_access_token_create`          |
-
-        | Customer Login                               | login      |
-        `store_v2_customers_login`                    |
-
-        | Customers                                    | modify     |
-        `store_v2_customers_login`                    |
-
-        | Customers                                    | read-only  |
-        `store_v2_customers_login_read_only`          |
-
-        | Get Payment Methods                          | read-only  |
-        `store_payments_methods_read`                 |
-
-        | Information & Settings                       | modify     |
-        `store_v2_information`                        |
-
-        | Information & Settings                       | read-only  |
-        `store_v2_information_read_only`              |
-
-        | Marketing                                    | modify     |
-        `store_v2_marketing`                          |
-
-        | Marketing                                    | read-only  |
-        `store_v2_marketing_read_only`                |
-
-        | Order Transactions                           | modify     |
-        `store_v2_transactions`                       |
-
-        | Order Transactions                           | read-only  |
-        `store_v2_transactions_read_only`             |
-
-        | Orders                                       | modify     |
-        `store_v2_orders`                             |
-
-        | Orders                                       | read-only  |
-        `store_v2_orders_read_only`                   |
-
-        | Products                                     | modify     |
-        `store_v2_products`                           |
-
-        | Products                                     | read-only  |
-        `store_v2_products_read_only`                 |
-
-        | Sites & Routes                               | modify     |
-        `store_sites`                                 |
-
-        | Sites & Routes                               | read-only  |
-        `store_sites_read_only`                       |
-
-        | Storefront API Customer Impersonation Tokens | manage     |
-        `store_storefront_api_customer_impersonation` |
-
-        | Storefront API Tokens                        | manage     |
-        `store_storefront_api`                        |
-
-        | Themes                                       | modify     |
-        `store_themes_manage`                         |
-
-
-        ## Usage Notes
-
-
-        **Topic**
-
-        * thing
-
-        * thing
-
-        * thing
-
-
-        **Topic**
-
-        * thing
-
-        * thing
-
-        * thing
-      summary: Get a Thing
-      tags:
-        - Example
-      operationId: getExample
-definitions:
-  _metaEmpty:
-    type: object
-    title: _metaEmpty
-  _pagination:
-    type: object
-    title: _pagination
-    properties:
-      total:
-        description: Total number of items in the result set.
-        type: integer
-        format: int32
-      count:
-        description: Total number of items in the collection response.
-        type: integer
-        format: int32
-      per_page:
-        description: >-
-          The amount of items returned in the collection per page, controlled by
-          the limit parameter.
-        type: integer
-        format: int32
-      current_page:
-        description: The page you are currently on within the collection.
-        type: integer
-        format: int32
-      total_pages:
-        description: The total number of pages in the collection.
-        type: integer
-        format: int32
-      links:
-        $ref: '#/definitions/_links'
-  _metaCollection:
-    type: object
-    title: _metaCollection
-    properties:
-      pagination:
-        $ref: '#/definitions/_pagination'
-  _links:
-    type: object
-    properties:
-      previous:
-        type: string
-        description: |
-          Link to the previous page returned in the response.
-      current:
-        type: string
-        description: |
-          Link to the current page returned in the response.
-        example: '?page=1&limit=50'
-      next:
-        type: string
-        description: |
-          Link to the next page returned in the response.
-    title: _links
-  response_defaultError:
-    allOf:
-      - $ref: '#/definitions/_errorBase'
-      - $ref: '#/definitions/_errorDetailed'
-    title: response_defaultError
-  _errorBase:
-    type: object
-    properties:
-      status:
-        description: |
-          The HTTP status code.
-        type: integer
-      title:
-        description: |
-          The error title describing the particular error.
-        type: string
-      type:
-        type: string
-      instance:
-        type: string
-    title: _errorBase
-  response_404:
-    type: object
-    properties:
-      status:
-        description: |
-          404 HTTP status code.
-        type: integer
-      title:
-        description: The error title describing the particular error.
-        type: string
-      type:
-        type: string
-      instance:
-        type: string
-    title: response_404
-  _errorDetailed:
-    type: object
-    properties:
-      errors:
-        type: object
-        additionalProperties:
-          type: string
-        title: DetailedErrors
-  _responseHeaders:
-    type: object
-    properties:
-      Date:
-        type: string
-        description: The date the response was sent.
-        example: 'Tue, 15 Nov 2011 12:45:26 GMT'
-      last-modified:
-        type: string
-        description: >-
-          The date the resource was last modified. Please refer to the
-          individual resource pages for support for this header.
-        example: 'Tue, 15 Nov 2011 12:45:26 GMT'
-      Content-Type:
-        type: string
-        description: >-
-          The MIME type of the response, dependent on the extension of the
-          endpoint that was requested.
-        example: application/json
-      Content-Location:
-        type: string
-        description: Sent if the request was redirected.
-        example: /api/v2/orders/5.json
-      Location:
-        type: string
-        description: The URI of a newly created resource. Sent with a 201 Created response.
-        example: /api/v2/products/7
-      X-Retry-After:
-        type: integer
-        description: >-
-          Rate limited response, indicating the number of seconds before the
-          quota refreshes. See Rate Limits for more information.
-        example: '15'
-      X-BC-ApiLimit-Remaining:
-        type: integer
-        description: >-
-          The number of API requests remaining for the current period (rolling
-          one hour). See Rate Limits for more information.
-        example: '987'
-      X-BC-Store-Version:
-        type: string
-        description: >-
-          The version of BigCommerce the store is running on. This header is
-          available on versions 7.3.6+.
-        example: 7.3.6
-      Content-Encoding:
-        type: string
-        description: >-
-          Allows API clients to request content to be compressed before being
-          sent back in the response to an API request.
-        example: gzip
-      Transfer-Encoding:
-        type: string
-        description: Specifies the form of encoding used to transfer the resource.
-        example: chunked
-      X-Rate-Limit-Requests-Left:
-        type: integer
-        description: >-
-          Details how many remaining requests your client can make in the
-          current window before being rate-limited. In this case, you would
-          expect to be able to make 6 more requests in the next 3000
-          milliseconds; on the 7th request within 3000 milliseconds, you would
-          be rate-limited and would receive an HTTP 429 response.
-        example: '16101491'
-      X-Rate-Limit-Requests-Quota:
-        type: integer
-        description: >-
-          Shows how many API requests are allowed in the current window for your
-          client.
-        example: '16101495'
-      X-Rate-Limit-Time-Reset-Ms:
-        type: integer
-        description: >-
-          Shows how many milliseconds are remaining in the window. In this case,
-          3000 milliseconds – so, 3000 milliseconds after this request, the API
-          quota will be refreshed.
-        example: '30000'
-      X-Rate-Limit-Time-Window-Ms:
-        type: integer
-        description: Shows the size of your current rate-limiting window.
-        example: '9762'
-    title: _responseHeaders
-  _requestHeaders:
-    type: object
-    properties:
-      Accept:
-        type: >-
-          application/json (for .json requests) application/xml (for .xml
-          requests)
-        description: The MIME type for the format you want to receive a response in.
-        example: application/xml
-      Content-Type:
-        type: >-
-          application/json (for JSON requests) application/xml (for XML
-          requests)
-        description: >-
-          The MIME type of the request body. Used to validate and parse the
-          request to the API.
-        example: application/json
-      User-Agent:
-        type: String
-        description: >-
-          While it is not required, we ask that you specify a user agent which
-          identifies your integration/client with your requests.
-        example: ''
-      X-Auth-Client:
-        type: String
-        description: Client ID of the requesting app
-        example: ''
-      X-Auth-Token:
-        type: String
-        description: >-
-          Access token authorizing the app to access resources on behalf of a
-          user
-        example: ''
-    title: _requestHeaders
-  _availableAPIs:
-    type: object
-    title: _availableAPIs
-    properties:
-      Banners:
-        description: >-
-          Create and manage store banners| **Path**: `/banners` | **Scopes:**
-          `store_v2_marketing`
-      Blog Posts:
-        description: >-
-          Create and manage store blog posts| **Path**: `/blog/posts` |
-          **Scopes:** `store_v2_content`
-      Blog Tags:
-        description: >-
-          Create and manage store blog tags| **Path**: `/blog/tags` |
-          **Scopes:** `store_v2_content`
-      Brand Images:
-        description: >-
-          Create and manage brand images| **Path**:
-          `/catalog/brands/{id}/images` | **Scopes:** `store_v2_products`
-      Brand Metafields:
-        description: >-
-          Create and manage brand metafields| **Path**:
-          `/catalog/brands/{id}/metafields` | **Scopes:** `store_v2_products`
-      Brands:
-        description: >-
-          Create and manage brands| **Path**: `/catalog/brands` | **Scopes:**
-          `store_v2_products`
-      Carts:
-        description: >-
-          Create an manage store carts| **Path**: `/carts` | **Scopes:**
-          `store_cart`
-      Catalog:
-        description: >-
-          Create and manage store categories, products, and brands| **Path**:
-          `/catalog` | **Scopes:** `store_v2_products`
-      Categories:
-        description: >-
-          Create and manage categorties| **Path**: `/catalog/categories` |
-          **Scopes:** `store_v2_products`
-      Category Images:
-        description: >-
-          Create and manage category images| **Path**:
-          `/catalog/categories/{id}/images` | **Scopes:** `store_v2_products`
-      Category Metafields:
-        description: >-
-          Create and manage category metafields| **Path**:
-          `/catalog/categories/{id}/metafields` | **Scopes:**
-          `store_v2_products`
-      Channels:
-        description: >-
-          Create and manage catalog listings and channels| **Path**: `/channels`
-          | **Scopes:** `store_channel_listings`
-      Checkouts:
-        description: >-
-          Create checkouts for a store| **Path**: `/checkouts` | **Scopes:**
-          `store_checkout`
-      Coupons:
-        description: >-
-          Create and manage store coupons| **Path**: `/coupons` | **Scopes:**
-          `store_v2_marketing`
-      Currenies:
-        description: >-
-          Create and manage store currencies and their display| **Path**:
-          `/currencies` | **Scopes:** `store_v2_information`
-      Current Customer:
-        description: >-
-          Identify customer's on the front-end securely| **Path**:
-          `/current/customer.jwt` | **Scopes:** `store_v2_customers_login`
-      Customer Login:
-        description: >-
-          Use JWT & SSO to login a customer| **Path**: `/login/token/{token}` |
-          **Scopes:** `store_v2_customers_login`
-      Customers Attribute Values:
-        description: >-
-          Create and manage customer attribute values| **Path**:
-          `/customers/attribute-values` | **Scopes:** `store_v3_customers`
-      Customers Attributes:
-        description: >-
-          Create and manage customer attributes| **Path**:
-          `/customers/attributes` | **Scopes:** `store_v2_customers`
-      Customers Form Field Values:
-        description: >-
-          Create an manage customer form field values| **Path**:
-          `/customers/form-field-values
-
-          ` | **Scopes:** `store_v2_customers`
-      Customers Groups:
-        description: >-
-          Create and manage customer groups| **Path**: `/customer_groups` |
-          **Scopes:** `store_v2_customers`
-      Customers v2:
-        description: >-
-          Create and manage  customers and their addresses| **Path**:
-          `/customers` | **Scopes:** `store_v2_customers`
-      Customers v3:
-        description: >-
-          Create and manage customers and their addresses| **Path**:
-          `/customers` | **Scopes:** `store_v3_customers`
-      Customers Validate Password:
-        description: >-
-          Validate customer passwords| **Path**: `/customers/{id}/validate` |
-          **Scopes:** `store_v2_customers`
-      Geography:
-        description: >-
-          Get a list of states, provincies, and countries| **Path**:
-          `/countries` | **Scopes:** `store_v2_information`
-      Gift Certificates:
-        description: >-
-          Manage gift certificates| **Path**: `/gift_certificates` | **Scopes:**
-          `store_v2_marketing`
-      Order Transactions:
-        description: >-
-          View order payment information| **Path**: `/orders{id}/transactions` |
-          **Scopes:** `store_v2_transactions`
-      Orders:
-        description: >-
-          Create and manage orders| **Path**: `/orders` | **Scopes:**
-          `store_v2_orders`
-      Pages:
-        description: >-
-          Create and manage store content pages| **Path**: `/pages` |
-          **Scopes:** `store_v2_content`
-      Payment Methods:
-        description: >-
-          Get a store's enabled payment methods| **Path**: `/payments/methods` |
-          **Scopes:** `store_v2_information`
-      Payment Processing:
-        description: >-
-          Process payments on orders and checkouts| **Path**: `/payments` |
-          **Scopes:** `store_payments_access_token_create`
-      Payment Processing Methods:
-        description: >-
-          Get order payment methods for processing| **Path**:
-          `/payments/methods` | **Scopes:** `store_payments_methods_read`
-      Payment Processing Token:
-        description: >-
-          Get an access token for payment processing| **Path**:
-          `/payments/accsess_tokens` | **Scopes:**
-          `store_payments_access_token_create`
-      Price List Records:
-        description: >-
-          Create and manage price list records| **Path**: `/pricelists/records`
-          | **Scopes:** `store_v2_products`
-      Price Lists:
-        description: >-
-          Create and manage catalog pricing variations| **Path**: `/pricelists`
-          | **Scopes:** `store_v2_products`
-      Product Bulk Pricing Rules:
-        description: >-
-          Create and manage product bulk pricing rules| **Path**:
-          `/catalog/products/{id}/buld-pricing-rules` | **Scopes:**
-          `store_v2_products`
-      Product Complex Rules:
-        description: >-
-          Create and manage product complex rules| **Path**:
-          `/catalog/products/{id}/complex-rules` | **Scopes:**
-          `store_v2_products`
-      Product Custom Fields:
-        description: >-
-          Create and manage product custom fields| **Path**:
-          `/catalog/products/{id}/custom-fields` | **Scopes:**
-          `store_v2_products`
-      Product Images:
-        description: >-
-          Create and manage product images| **Path**:
-          `/catalog/products/{id}/images` | **Scopes:** `store_v2_products`
-      Product Metafields:
-        description: >-
-          Create and manage product meta fields| **Path**:
-          `/catalog/products/{id}/metafields` | **Scopes:** `store_v2_products`
-      Product Modifier Images:
-        description: >-
-          Create and manage product modifer images| **Path**:
-          `/catalog/products/{id}/modifiers/{id}/images` | **Scopes:**
-          `store_v2_products`
-      Product Modifier Values:
-        description: >-
-          Create and manage product modifier values| **Path**:
-          `/catalog/products/{id}/modifers/{id}/values` | **Scopes:**
-          `store_v2_products`
-      Product Modifiers:
-        description: >-
-          Create and manage product midifiers| **Path**:
-          `/catalog/products/{id}/modifiers` | **Scopes:** `store_v2_products`
-      Product Reviews:
-        description: >-
-          Create and manage product reviews| **Path**:
-          `/catalog/products/{id}/reviews` | **Scopes:** `store_v2_products`
-      Product Variant Option Values:
-        description: >-
-          Create and manage product variant option values| **Path**:
-          `/catalog/products/{id}/options/{id}/values` | **Scopes:**
-          `store_v2_products`
-      Product Variant Options:
-        description: >-
-          Create and manage product variant options| **Path**:
-          `/catalog/products/{id}/options` | **Scopes:** `store_v2_products`
-      Product Variants:
-        description: >-
-          Create and manage product variants| **Path**:
-          `/catalog/products/{id}/variants` | **Scopes:** `store_v2_products`
-      Product Videos:
-        description: >-
-          Create and manage product videos| **Path**:
-          `/catalog/products/{id}/videos` | **Scopes:** `store_v2_products`
-      Products:
-        description: >-
-          Create and manage products| **Path**: `/catalog/products` |
-          **Scopes:** `store_v2_products`
-      ProductVariant Metafields:
-        description: >-
-          Create and manage product meta flields| **Path**:
-          `/catalog/products/{id}/variants/{id}/metafields` | **Scopes:**
-          `store_v2_products`
-      Redirects:
-        description: >-
-          Manage a store's URL redirects| **Path**: `/redirects` | **Scopes:**
-          `store_v2_content`
-      Scripts:
-        description: >-
-          Add client-side code to a store| **Path**: `/content/scripts` |
-          **Scopes:** `store_v2_content`
-      Shipping:
-        description: >-
-          Create and manage a store's shipping methods and zones.| **Path**:
-          `/shipping` | **Scopes:** `store_v2_information`
-      Shipping Carriers:
-        description: >-
-          Create and manage shipping carriers| **Path**: `/shipping` |
-          **Scopes:** `store_v2_information`
-      Shipping Methods:
-        description: >-
-          Create and manage shipping methods| **Path**: `/shipping` |
-          **Scopes:** `store_v2_information`
-      Shipping Poviders Connection Options:
-        description: >-
-          Specification for creating an external shipping carrier service|
-          **Path**: `/check_connection_options` | **Scopes:** `n/a`
-      Shipping Provider Rate Request:
-        description: >-
-          Specification for creating an external shipping carrier service|
-          **Path**: `/rate` | **Scopes:** `n/a`
-      Shipping Zones:
-        description: >-
-          Create and manage shipping zones| **Path**: `/shipping` | **Scopes:**
-          `store_v2_information`
-      Sites:
-        description: >-
-          Manage sites and routing for headless storefronts| **Path**: `/Sites`
-          | **Scopes:** `store_sites`
-      Store Infomation:
-        description: >-
-          Get store metadata| **Path**: `/store` | **Scopes:**
-          `store_v2_information`
-      Storefront API Token:
-        description: >-
-          Create Auth Tokens for use with Storefront APIs| **Path**:
-          `/api-token` | **Scopes:** `store_storefront_api`
-      Storefront Carts:
-        description: >-
-          Create and get carts on the front-end| **Path**: `/carts` |
-          **Scopes:** `store_storefront_api`
-      Storefront Checkouts:
-        description: >-
-          Create and get checkouts on the front-end| **Path**: `/checkouts` |
-          **Scopes:** `store_storefront_api`
-      Storefront Customer Impersonation Token:
-        description: >-
-          Create a storefront API token for customer impersonation| **Path**:
-          `/api-token-customer-impersonation` | **Scopes:**
-          `store_storefront_api_customer_impersonation`
-      Storefront Orders:
-        description: >-
-          Get order data on the front-end after order is palced| **Path**:
-          `/orders` | **Scopes:** `store_storefront_api`
-      Subscribers:
-        description: >-
-          Create and manage store newsletter subscribers| **Path**:
-          `/customers/subscribers` | **Scopes:** `store_v2_customers`
-      Tax Class:
-        description: >-
-          Get a store's available tax classes| **Path**: `/tax_classes` |
-          **Scopes:** `store_v2_information`
-      Themes:
-        description: >-
-          Create and manage store theme's| **Path**: `/themes` | **Scopes:**
-          `store_themes_manage`
-      Time Zone:
-        description: >-
-          Get store system timestamp| **Path**: `/time` | **Scopes:**
-          `store_v2_information`
-      Variants:
-        description: >-
-          Get and update all variants| **Path**: `/catalog/variants` |
-          **Scopes:** `store_v2_products`
-      Webhooks:
-        description: 'Manage store Webhooks| **Path**: `/hooks` | **Scopes:** `default`'
-      Widgets:
-        description: >-
-          Create and manage store widgets| **Path**: `/content/widgets` |
-          **Scopes:** `store_v2_content`
-      Widgets Placements:
-        description: >-
-          Place, move, and remove store widgets| **Path**: `/content/placements`
-          | **Scopes:** `store_v2_content`
-      Widgets Regions:
-        description: >-
-          Get list of regions widgets can be placed for a specified template
-          file| **Path**: `/content/regions` | **Scopes:** `store_v2_content`
-      Widgets Templates:
-        description: >-
-          Create and manage widget templates| **Path**:
-          `/content/widget-templates` | **Scopes:** `store_v2_content`
-      Wishlist:
-        description: >-
-          Create and manage customer wishlists| **Path**: `/wishlists` |
-          **Scopes:** `store_v2_customers`
-schemes:
-  - https
-parameters:
-  Accept:
-    in: header
-    type: string
-    name: Accept
-    default: application/json
-    required: true
-    description: Accept
-  Content-Type:
-    name: Content-Type
-    in: header
-    type: string
-    default: application/json
-    required: true
-    description: Content-Type
-securityDefinitions:
-  X-Auth-Client:
-    type: apiKey
-    name: X-Auth-Client
-    in: header
-    description: >-
-      |Header|Parameter|Description|
-
-      |-|-|-|
-
-      |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
-      installing an app in a BigCommerce control panel.|
-
-      |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
-      installing an app in a BigCommerce control panel.|
-
-
-      ```http
-
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
-
-      host: api.bigcommerce.com
-
-      Accept: application/json
-
-      X-Auth-Client: {client_id}
-
-      X-Auth-Token: {access_token}
-
-      ```
-
-
-      For more information on Authenticating BigCommerce APIs, see:
-      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
-  X-Auth-Token:
-    type: apiKey
-    in: header
-    description: >-
-      |Header|Parameter|Description|
-
-      |-|-|-|
-
-      |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
-      installing an app in a BigCommerce control panel.|
-
-      |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
-      installing an app in a BigCommerce control panel.|
-
-
-      - [OAuth Scopes](#oauth-scopes)
-
-      - [Authentication](#authentication)
-
-      - [Available Endpoints](#available-endpoints)
-
-      - [Usage Notes](#usage-notes)
-
-      - [FAQ](#faq)
-
-      - [Resources](#resources)
-
-
-      Introduction
-
-
-      ## OAuth Scopes
-
-      | UI Name                                      | Permission |
-      Parameter                                     |
-
-      |----------------------------------------------|------------|-----------------------------------------------|
-
-      | Carts                                        | modify     |
-      `store_cart`                                  |
-
-      | Carts                                        | read-only  |
-      `store_cart_read_only`                        |
-
-      | Channel Listings                             | modify     |
-      `store_channel_listings`                      |
-
-      | Channel Listings                             | read-only  |
-      `store_channel_listings_read_only`            |
-
-      | Channel Settings                             | modify     |
-      `store_channel_settings`                      |
-
-      | Channel Settings                             | read-only  |
-      `store_channel_settings_read_only`            |
-
-      | Checkout Content                             | modify     |
-      `store_content_checkout`                      |
-
-      | Checkout Content                             | read-only  |
-      `store_content_checkout_read_only`            |
-
-      | Checkouts                                    | modify     |
-      `store_checkout`                              |
-
-      | Checkouts                                    | read-only  |
-      `store_checkout_read_only`                    |
-
-      | Content                                      | modify     |
-      `store_v2_content`                            |
-
-      | Content                                      | read-only  |
-      `store_v2_content_read_only`                  |
-
-      | Create Payments                              | create     |
-      `store_payments_access_token_create`          |
-
-      | Customer Login                               | login      |
-      `store_v2_customers_login`                    |
-
-      | Customers                                    | modify     |
-      `store_v2_customers_login`                    |
-
-      | Customers                                    | read-only  |
-      `store_v2_customers_login_read_only`          |
-
-      | Get Payment Methods                          | read-only  |
-      `store_payments_methods_read`                 |
-
-      | Information & Settings                       | modify     |
-      `store_v2_information`                        |
-
-      | Information & Settings                       | read-only  |
-      `store_v2_information_read_only`              |
-
-      | Marketing                                    | modify     |
-      `store_v2_marketing`                          |
-
-      | Marketing                                    | read-only  |
-      `store_v2_marketing_read_only`                |
-
-      | Order Transactions                           | modify     |
-      `store_v2_transactions`                       |
-
-      | Order Transactions                           | read-only  |
-      `store_v2_transactions_read_only`             |
-
-      | Orders                                       | modify     |
-      `store_v2_orders`                             |
-
-      | Orders                                       | read-only  |
-      `store_v2_orders_read_only`                   |
-
-      | Products                                     | modify     |
-      `store_v2_products`                           |
-
-      | Products                                     | read-only  |
-      `store_v2_products_read_only`                 |
-
-      | Sites & Routes                               | modify     |
-      `store_sites`                                 |
-
-      | Sites & Routes                               | read-only  |
-      `store_sites_read_only`                       |
-
-      | Storefront API Customer Impersonation Tokens | manage     |
-      `store_storefront_api_customer_impersonation` |
-
-      | Storefront API Tokens                        | manage     |
-      `store_storefront_api`                        |
-
-      | Themes                                       | modify     |
-      `store_themes_manage`                         |
-
-
-      For more information on OAuth Scopes, see:
-      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
-
-
-      ## Authentication
-
-
-      Requests can be authenticated by sending a `client_id` and `access_token`
-      via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
-
-
-      ```http
-
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
-
-      host: api.bigcommerce.com
-
-      Accept: application/json
-
-      X-Auth-Client: {client_id}
-
-      X-Auth-Token: {access_token}
-
-      ```
-
-
-      |Header|Parameter|Description|
-
-      |-|-|-|
-
-      |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
-      installing an app in a BigCommerce control panel.|
-
-      |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
-      installing an app in a BigCommerce control panel.|
-
-
-      For more information on Authenticating BigCommerce APIs, see:
-      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
-
-
-      ## Available Endpoints
-
-      | Resource / Endpoint                     |
-      Description                                                             |
-
-      |-----------------------------------------|-------------------------------------------------------------------------|
-
-      | Banners                                 | Create and manage store
-      banners                                         |
-
-      | Blog Posts                              | Create and manage store blog
-      posts                                      |
-
-      | Blog Tags                               | Create and manage store blog
-      tags                                       |
-
-      | Brand Images                            | Create and manage brand
-      images                                          |
-
-      | Brand Metafields                        | Create and manage brand
-      metafields                                      |
-
-      | Brands                                  | Create and manage
-      brands                                                |
-
-      | Carts                                   | Create an manage store
-      carts                                            |
-
-      | Catalog                                 | Create and manage store
-      categories, products, and brands                |
-
-      | Categories                              | Create and manage
-      categorties                                           |
-
-      | Category Images                         | Create and manage category
-      images                                       |
-
-      | Category Metafields                     | Create and manage category
-      metafields                                   |
-
-      | Channels                                | Create and manage catalog
-      listings and channels                         |
-
-      | Checkouts                               | Create checkouts for a
-      store                                            |
-
-      | Coupons                                 | Create and manage store
-      coupons                                         |
-
-      | Currenies                               | Create and manage store
-      currencies and their display                    |
-
-      | Current Customer                        | Identify customer's on the
-      front-end securely                           |
-
-      | Customer Login                          | Use JWT & SSO to login a
-      customer                                       |
-
-      | Customers Attribute Values              | Create and manage customer
-      attribute values                             |
-
-      | Customers Attributes                    | Create and manage customer
-      attributes                                   |
-
-      | Customers Form Field Values             | Create an manage customer form
-      field values                             |
-
-      | Customers Groups                        | Create and manage customer
-      groups                                       |
-
-      | Customers v2                            | Create and manage  customers
-      and their addresses                        |
-
-      | Customers v3                            | Create and manage customers
-      and their addresses                         |
-
-      | Customers Validate Password             | Validate customer
-      passwords                                             |
-
-      | Geography                               | Get a list of states,
-      provincies, and countries                         |
-
-      | Gift Certificates                       | Manage gift
-      certificates                                                |
-
-      | Order Transactions                      | View order payment
-      information                                          |
-
-      | Orders                                  | Create and manage
-      orders                                                |
-
-      | Pages                                   | Create and manage store
-      content pages                                   |
-
-      | Payment Methods                         | Get a store's enabled payment
-      methods                                   |
-
-      | Payment Processing                      | Process payments on orders and
-      checkouts                                |
-
-      | Payment Processing Methods              | Get order payment methods for
-      processing                                |
-
-      | Payment Processing Token                | Get an access token for
-      payment processing                              |
-
-      | Price List Records                      | Create and manage price list
-      records                                    |
-
-      | Price Lists                             | Create and manage catalog
-      pricing variations                            |
-
-      | Product Bulk Pricing Rules              | Create and manage product bulk
-      pricing rules                            |
-
-      | Product Complex Rules                   | Create and manage product
-      complex rules                                 |
-
-      | Product Custom Fields                   | Create and manage product
-      custom fields                                 |
-
-      | Product Images                          | Create and manage product
-      images                                        |
-
-      | Product Metafields                      | Create and manage product meta
-      fields                                   |
-
-      | Product Modifier Images                 | Create and manage product
-      modifer images                                |
-
-      | Product Modifier Values                 | Create and manage product
-      modifier values                               |
-
-      | Product Modifiers                       | Create and manage product
-      midifiers                                     |
-
-      | Product Reviews                         | Create and manage product
-      reviews                                       |
-
-      | Product Variant Option Values           | Create and manage product
-      variant option values                         |
-
-      | Product Variant Options                 | Create and manage product
-      variant options                               |
-
-      | Product Variants                        | Create and manage product
-      variants                                      |
-
-      | Product Videos                          | Create and manage product
-      videos                                        |
-
-      | Products                                | Create and manage
-      products                                              |
-
-      | ProductVariant Metafields               | Create and manage product meta
-      flields                                  |
-
-      | Redirects                               | Manage a store's URL
-      redirects                                          |
-
-      | Scripts                                 | Add client-side code to a
-      store                                         |
-
-      | Shipping                                | Create and manage a store's
-      shipping methods and zones.                 |
-
-      | Shipping Carriers                       | Create and manage shipping
-      carriers                                     |
-
-      | Shipping Methods                        | Create and manage shipping
-      methods                                      |
-
-      | Shipping Poviders Connection Options    | Specification for creating an
-      external shipping carrier service         |
-
-      | Shipping Provider Rate Request          | Specification for creating an
-      external shipping carrier service         |
-
-      | Shipping Zones                          | Create and manage shipping
-      zones                                        |
-
-      | Sites                                   | Manage sites and routing for
-      headless storefronts                       |
-
-      | Store Infomation                        | Get store
-      metadata                                                      |
-
-      | Storefront API Token                    | Create Auth Tokens for use
-      with Storefront APIs                         |
-
-      | Storefront Carts                        | Create and get carts on the
-      front-end                                   |
-
-      | Storefront Checkouts                    | Create and get checkouts on
-      the front-end                               |
-
-      | Storefront Customer Impersonation Token | Create a storefront API token
-      for customer impersonation                |
-
-      | Storefront Orders                       | Get order data on the
-      front-end after order is palced                   |
-
-      | Subscribers                             | Create and manage store
-      newsletter subscribers                          |
-
-      | Tax Class                               | Get a store's available tax
-      classes                                     |
-
-      | Themes                                  | Create and manage store
-      theme's                                         |
-
-      | Time Zone                               | Get store system
-      timestamp                                              |
-
-      | Variants                                | Get and update all
-      variants                                             |
-
-      | Webhooks                                | Manage store
-      Webhooks                                                   |
-
-      | Widgets                                 | Create and manage store
-      widgets                                         |
-
-      | Widgets Placements                      | Place, move, and remove store
-      widgets                                   |
-
-      | Widgets Regions                         | Get list of regions widgets
-      can be placed for a specified template file |
-
-      | Widgets Templates                       | Create and manage widget
-      templates                                      |
-
-      | Wishlist                                | Create and manage customer
-      wishlists                                    |
-
-
-      ## Usage Notes
-
-
-      **Topic**
-
-      * thing
-
-      * thing
-
-      * thing
-
-
-      ## FAQ
-
-
-      **question** 
-
-
-      answer
-
-
-      **question**
-
-
-      answer
-
-
-      ## Resources 
-
-
-      ```http
-
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
-
-      host: api.bigcommerce.com
-
-      Accept: application/json
-
-      X-Auth-Client: {client_id}
-
-      X-Auth-Token: {access_token}
-
-      ```
-
-
-      For more information on Authenticating BigCommerce APIs, see:
-      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication)
-    name: X-Auth-Token
-  OAuthScopes:
-    type: basic
-    description: >-
-      |  **UI Name** | **Permission** | **Parameter** |
-
-      | --- | --- | --- |
-
-      |  Carts | modify | `store_cart` |
-
-      |  Carts | read-only | `store_cart_read_only` |
-
-      |  Channel Listings | modify | `store_channel_listings` |
-
-      |  Channel Listings | read-only | `store_channel_listings_read_only` |
-
-      |  Channel Settings | modify | store_channel_settings` |
-
-      |  Channel Settings | read-only | `store_channel_settings_read_only` |
-
-      |  Checkout Content | modify | `store_content_checkout` |
-
-      |  Checkouts | modify | `store_checkout` |
-
-      |  Checkouts | read-only | `store_checkout_read_only` |
-
-      |  Content | modify | `store_v2_content` |
-
-      |  Content | read-only | `store_v2_content_read_only` |
-
-      |  Create Payments | create | `store_payments_access_token_create` |
-
-      |  Customer Login | login | `store_v2_customers_login` |
-
-      |  Customers | modify | `store_v2_customers` |
-
-      |  Customers | read-only | `store_v2_customers_read_only` |
-
-      |  Get Payment Methods | read-only | `store_payments_methods_read` |
-
-      |  Information & Settings | modify | `store_v2_information` |
-
-      |  Information & Settings | read-only | `store_v2_information_read_only` |
-
-      |  Marketing | modify | `store_v2_marketing` |
-
-      |  Marketing | read-only | `store_v2_marketing_read_only` |
-
-      |  Order Transactions | modify | `store_v2_transactions` |
-
-      |  Order Transactions | read-only | `store_v2_transactions_read_only` |
-
-      |  Orders | modify | `store_v2_orders` |
-
-      |  Orders | read-only | `store_v2_orders_read_only` |
-
-      |  Products | modify | `store_v2_products` |
-
-      |  Products | read-only | `store_v2_products_read_only` |
-
-      |  Sites & Routes | modify | `store_sites` |
-
-      |  Sites & Routes | read-only | `store_sites_read_only` |
-
-      |  Storefront API Customer Impersonation Tokens | manage |
-      `store_storefront_api_customer_impersonation` |
-
-      |  Storefront API Tokens | manage | `store_storefront_api` |
-
-      |  Themes | modify | `store_themes_manage` |
-security:
-  - X-Auth-Client: []
-  - X-Auth-Token: []
-  - OAuthScopes: []
-consumes: []
-produces: []
-basePath: '/stores/{$$.env.store_hash}/v3'
-tags:
-  - name: Example
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "BigCommerce Common Models",
+    "version": "",
+    "description": "",
+    "contact": {
+      "url": "https://developer.bigcommerce.com",
+      "name": "BigCommerce Developer Documentation"
+    },
+    "license": {
+      "name": ""
+    },
+    "termsOfService": ""
+  },
+  "host": "api.bigcommerce.com",
+  "paths": {
+    "/example": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "description": "## OAuth Scopes\n| UI Name                                      | Permission | Parameter                                     |\n|----------------------------------------------|------------|-----------------------------------------------|\n| Carts                                        | modify     | `store_cart`                                  |\n| Carts                                        | read-only  | `store_cart_read_only`                        |\n| Channel Listings                             | modify     | `store_channel_listings`                      |\n| Channel Listings                             | read-only  | `store_channel_listings_read_only`            |\n| Channel Settings                             | modify     | `store_channel_settings`                      |\n| Channel Settings                             | read-only  | `store_channel_settings_read_only`            |\n| Checkout Content                             | modify     | `store_content_checkout`                      |\n| Checkout Content                             | read-only  | `store_content_checkout_read_only`            |\n| Checkouts                                    | modify     | `store_checkout`                              |\n| Checkouts                                    | read-only  | `store_checkout_read_only`                    |\n| Content                                      | modify     | `store_v2_content`                            |\n| Content                                      | read-only  | `store_v2_content_read_only`                  |\n| Create Payments                              | create     | `store_payments_access_token_create`          |\n| Customer Login                               | login      | `store_v2_customers_login`                    |\n| Customers                                    | modify     | `store_v2_customers_login`                    |\n| Customers                                    | read-only  | `store_v2_customers_login_read_only`          |\n| Get Payment Methods                          | read-only  | `store_payments_methods_read`                 |\n| Information & Settings                       | modify     | `store_v2_information`                        |\n| Information & Settings                       | read-only  | `store_v2_information_read_only`              |\n| Marketing                                    | modify     | `store_v2_marketing`                          |\n| Marketing                                    | read-only  | `store_v2_marketing_read_only`                |\n| Order Transactions                           | modify     | `store_v2_transactions`                       |\n| Order Transactions                           | read-only  | `store_v2_transactions_read_only`             |\n| Orders                                       | modify     | `store_v2_orders`                             |\n| Orders                                       | read-only  | `store_v2_orders_read_only`                   |\n| Products                                     | modify     | `store_v2_products`                           |\n| Products                                     | read-only  | `store_v2_products_read_only`                 |\n| Sites & Routes                               | modify     | `store_sites`                                 |\n| Sites & Routes                               | read-only  | `store_sites_read_only`                       |\n| Storefront API Customer Impersonation Tokens | manage     | `store_storefront_api_customer_impersonation` |\n| Storefront API Tokens                        | manage     | `store_storefront_api`                        |\n| Themes                                       | modify     | `store_themes_manage`                         |\n\n## Usage Notes\n\n**Topic**\n* thing\n* thing\n* thing\n\n**Topic**\n* thing\n* thing\n* thing",
+        "summary": "Get a Thing",
+        "tags": [
+          "Example"
+        ],
+        "operationId": "getExample"
+      }
+    }
+  },
+  "definitions": {
+    "_metaEmpty": {
+      "type": "object",
+      "title": "_metaEmpty"
+    },
+    "_pagination": {
+      "type": "object",
+      "title": "_pagination",
+      "properties": {
+        "total": {
+          "description": "Total number of items in the result set.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "count": {
+          "description": "Total number of items in the collection response.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "per_page": {
+          "description": "The amount of items returned in the collection per page, controlled by the limit parameter.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "current_page": {
+          "description": "The page you are currently on within the collection.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_pages": {
+          "description": "The total number of pages in the collection.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "links": {
+          "$ref": "#/definitions/_links"
+        }
+      }
+    },
+    "_metaCollection": {
+      "type": "object",
+      "title": "_metaCollection",
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/_pagination"
+        }
+      }
+    },
+    "_links": {
+      "type": "object",
+      "properties": {
+        "previous": {
+          "type": "string",
+          "description": "Link to the previous page returned in the response.\n"
+        },
+        "current": {
+          "type": "string",
+          "description": "Link to the current page returned in the response.\n",
+          "example": "?page=1&limit=50"
+        },
+        "next": {
+          "type": "string",
+          "description": "Link to the next page returned in the response.\n"
+        }
+      },
+      "title": "_links"
+    },
+    "response_defaultError": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_errorBase"
+        },
+        {
+          "$ref": "#/definitions/_errorDetailed"
+        }
+      ],
+      "title": "response_defaultError"
+    },
+    "_errorBase": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "The HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the particular error.\n",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "_errorBase"
+    },
+    "response_404": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "404 HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the particular error.",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "response_404"
+    },
+    "_errorDetailed": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "DetailedErrors"
+        }
+      }
+    },
+    "_responseHeaders": {
+      "type": "object",
+      "properties": {
+        "Date": {
+          "type": "string",
+          "description": "The date the response was sent.",
+          "example": "Tue, 15 Nov 2011 12:45:26 GMT"
+        },
+        "last-modified": {
+          "type": "string",
+          "description": "The date the resource was last modified. Please refer to the individual resource pages for support for this header.",
+          "example": "Tue, 15 Nov 2011 12:45:26 GMT"
+        },
+        "Content-Type": {
+          "type": "string",
+          "description": "The MIME type of the response, dependent on the extension of the endpoint that was requested.",
+          "example": "application/json"
+        },
+        "Content-Location": {
+          "type": "string",
+          "description": "Sent if the request was redirected.",
+          "example": "/api/v2/orders/5.json"
+        },
+        "Location": {
+          "type": "string",
+          "description": "The URI of a newly created resource. Sent with a 201 Created response.",
+          "example": "/api/v2/products/7"
+        },
+        "X-Retry-After": {
+          "type": "integer",
+          "description": "Rate limited response, indicating the number of seconds before the quota refreshes. See Rate Limits for more information.",
+          "example": "15"
+        },
+        "X-BC-ApiLimit-Remaining": {
+          "type": "integer",
+          "description": "The number of API requests remaining for the current period (rolling one hour). See Rate Limits for more information.",
+          "example": "987"
+        },
+        "X-BC-Store-Version": {
+          "type": "string",
+          "description": "The version of BigCommerce the store is running on. This header is available on versions 7.3.6+.",
+          "example": "7.3.6"
+        },
+        "Content-Encoding": {
+          "type": "string",
+          "description": "Allows API clients to request content to be compressed before being sent back in the response to an API request.",
+          "example": "gzip"
+        },
+        "Transfer-Encoding": {
+          "type": "string",
+          "description": "Specifies the form of encoding used to transfer the resource.",
+          "example": "chunked"
+        },
+        "X-Rate-Limit-Requests-Left": {
+          "type": "integer",
+          "description": "Details how many remaining requests your client can make in the current window before being rate-limited. In this case, you would expect to be able to make 6 more requests in the next 3000 milliseconds; on the 7th request within 3000 milliseconds, you would be rate-limited and would receive an HTTP 429 response.",
+          "example": "16101491"
+        },
+        "X-Rate-Limit-Requests-Quota": {
+          "type": "integer",
+          "description": "Shows how many API requests are allowed in the current window for your client.",
+          "example": "16101495"
+        },
+        "X-Rate-Limit-Time-Reset-Ms": {
+          "type": "integer",
+          "description": "Shows how many milliseconds are remaining in the window. In this case, 3000 milliseconds – so, 3000 milliseconds after this request, the API quota will be refreshed.",
+          "example": "30000"
+        },
+        "X-Rate-Limit-Time-Window-Ms": {
+          "type": "integer",
+          "description": "Shows the size of your current rate-limiting window.",
+          "example": "9762"
+        }
+      },
+      "title": "_responseHeaders"
+    },
+    "_requestHeaders": {
+      "type": "object",
+      "properties": {
+        "Accept": {
+          "type": "application/json (for .json requests) application/xml (for .xml requests)",
+          "description": "The MIME type for the format you want to receive a response in.",
+          "example": "application/xml"
+        },
+        "Content-Type": {
+          "type": "application/json (for JSON requests) application/xml (for XML requests)",
+          "description": "The MIME type of the request body. Used to validate and parse the request to the API.",
+          "example": "application/json"
+        },
+        "User-Agent": {
+          "type": "String",
+          "description": "While it is not required, we ask that you specify a user agent which identifies your integration/client with your requests.",
+          "example": ""
+        },
+        "X-Auth-Client": {
+          "type": "String",
+          "description": "Client ID of the requesting app",
+          "example": ""
+        },
+        "X-Auth-Token": {
+          "type": "String",
+          "description": "Access token authorizing the app to access resources on behalf of a user",
+          "example": ""
+        }
+      },
+      "title": "_requestHeaders"
+    },
+    "_availableAPIs": {
+      "type": "object",
+      "title": "_availableAPIs",
+      "properties": {
+        "Banners": {
+          "description": "Create and manage store banners| **Path**: `/banners` | **Scopes:** `store_v2_marketing`"
+        },
+        "Blog Posts": {
+          "description": "Create and manage store blog posts| **Path**: `/blog/posts` | **Scopes:** `store_v2_content`"
+        },
+        "Blog Tags": {
+          "description": "Create and manage store blog tags| **Path**: `/blog/tags` | **Scopes:** `store_v2_content`"
+        },
+        "Brand Images": {
+          "description": "Create and manage brand images| **Path**: `/catalog/brands/{id}/images` | **Scopes:** `store_v2_products`"
+        },
+        "Brand Metafields": {
+          "description": "Create and manage brand metafields| **Path**: `/catalog/brands/{id}/metafields` | **Scopes:** `store_v2_products`"
+        },
+        "Brands": {
+          "description": "Create and manage brands| **Path**: `/catalog/brands` | **Scopes:** `store_v2_products`"
+        },
+        "Carts": {
+          "description": "Create an manage store carts| **Path**: `/carts` | **Scopes:** `store_cart`"
+        },
+        "Catalog": {
+          "description": "Create and manage store categories, products, and brands| **Path**: `/catalog` | **Scopes:** `store_v2_products`"
+        },
+        "Categories": {
+          "description": "Create and manage categorties| **Path**: `/catalog/categories` | **Scopes:** `store_v2_products`"
+        },
+        "Category Images": {
+          "description": "Create and manage category images| **Path**: `/catalog/categories/{id}/images` | **Scopes:** `store_v2_products`"
+        },
+        "Category Metafields": {
+          "description": "Create and manage category metafields| **Path**: `/catalog/categories/{id}/metafields` | **Scopes:** `store_v2_products`"
+        },
+        "Channels": {
+          "description": "Create and manage catalog listings and channels| **Path**: `/channels` | **Scopes:** `store_channel_listings`"
+        },
+        "Checkouts": {
+          "description": "Create checkouts for a store| **Path**: `/checkouts` | **Scopes:** `store_checkout`"
+        },
+        "Coupons": {
+          "description": "Create and manage store coupons| **Path**: `/coupons` | **Scopes:** `store_v2_marketing`"
+        },
+        "Currenies": {
+          "description": "Create and manage store currencies and their display| **Path**: `/currencies` | **Scopes:** `store_v2_information`"
+        },
+        "Current Customer": {
+          "description": "Identify customer's on the front-end securely| **Path**: `/current/customer.jwt` | **Scopes:** `store_v2_customers_login`"
+        },
+        "Customer Login": {
+          "description": "Use JWT & SSO to login a customer| **Path**: `/login/token/{token}` | **Scopes:** `store_v2_customers_login`"
+        },
+        "Customers Attribute Values": {
+          "description": "Create and manage customer attribute values| **Path**: `/customers/attribute-values` | **Scopes:** `store_v3_customers`"
+        },
+        "Customers Attributes": {
+          "description": "Create and manage customer attributes| **Path**: `/customers/attributes` | **Scopes:** `store_v2_customers`"
+        },
+        "Customers Form Field Values": {
+          "description": "Create an manage customer form field values| **Path**: `/customers/form-field-values\n` | **Scopes:** `store_v2_customers`"
+        },
+        "Customers Groups": {
+          "description": "Create and manage customer groups| **Path**: `/customer_groups` | **Scopes:** `store_v2_customers`"
+        },
+        "Customers v2": {
+          "description": "Create and manage  customers and their addresses| **Path**: `/customers` | **Scopes:** `store_v2_customers`"
+        },
+        "Customers v3": {
+          "description": "Create and manage customers and their addresses| **Path**: `/customers` | **Scopes:** `store_v3_customers`"
+        },
+        "Customers Validate Password": {
+          "description": "Validate customer passwords| **Path**: `/customers/{id}/validate` | **Scopes:** `store_v2_customers`"
+        },
+        "Geography": {
+          "description": "Get a list of states, provincies, and countries| **Path**: `/countries` | **Scopes:** `store_v2_information`"
+        },
+        "Gift Certificates": {
+          "description": "Manage gift certificates| **Path**: `/gift_certificates` | **Scopes:** `store_v2_marketing`"
+        },
+        "Order Transactions": {
+          "description": "View order payment information| **Path**: `/orders{id}/transactions` | **Scopes:** `store_v2_transactions`"
+        },
+        "Orders": {
+          "description": "Create and manage orders| **Path**: `/orders` | **Scopes:** `store_v2_orders`"
+        },
+        "Pages": {
+          "description": "Create and manage store content pages| **Path**: `/pages` | **Scopes:** `store_v2_content`"
+        },
+        "Payment Methods": {
+          "description": "Get a store's enabled payment methods| **Path**: `/payments/methods` | **Scopes:** `store_v2_information`"
+        },
+        "Payment Processing": {
+          "description": "Process payments on orders and checkouts| **Path**: `/payments` | **Scopes:** `store_payments_access_token_create`"
+        },
+        "Payment Processing Methods": {
+          "description": "Get order payment methods for processing| **Path**: `/payments/methods` | **Scopes:** `store_payments_methods_read`"
+        },
+        "Payment Processing Token": {
+          "description": "Get an access token for payment processing| **Path**: `/payments/accsess_tokens` | **Scopes:** `store_payments_access_token_create`"
+        },
+        "Price List Records": {
+          "description": "Create and manage price list records| **Path**: `/pricelists/records` | **Scopes:** `store_v2_products`"
+        },
+        "Price Lists": {
+          "description": "Create and manage catalog pricing variations| **Path**: `/pricelists` | **Scopes:** `store_v2_products`"
+        },
+        "Product Bulk Pricing Rules": {
+          "description": "Create and manage product bulk pricing rules| **Path**: `/catalog/products/{id}/buld-pricing-rules` | **Scopes:** `store_v2_products`"
+        },
+        "Product Complex Rules": {
+          "description": "Create and manage product complex rules| **Path**: `/catalog/products/{id}/complex-rules` | **Scopes:** `store_v2_products`"
+        },
+        "Product Custom Fields": {
+          "description": "Create and manage product custom fields| **Path**: `/catalog/products/{id}/custom-fields` | **Scopes:** `store_v2_products`"
+        },
+        "Product Images": {
+          "description": "Create and manage product images| **Path**: `/catalog/products/{id}/images` | **Scopes:** `store_v2_products`"
+        },
+        "Product Metafields": {
+          "description": "Create and manage product meta fields| **Path**: `/catalog/products/{id}/metafields` | **Scopes:** `store_v2_products`"
+        },
+        "Product Modifier Images": {
+          "description": "Create and manage product modifer images| **Path**: `/catalog/products/{id}/modifiers/{id}/images` | **Scopes:** `store_v2_products`"
+        },
+        "Product Modifier Values": {
+          "description": "Create and manage product modifier values| **Path**: `/catalog/products/{id}/modifers/{id}/values` | **Scopes:** `store_v2_products`"
+        },
+        "Product Modifiers": {
+          "description": "Create and manage product midifiers| **Path**: `/catalog/products/{id}/modifiers` | **Scopes:** `store_v2_products`"
+        },
+        "Product Reviews": {
+          "description": "Create and manage product reviews| **Path**: `/catalog/products/{id}/reviews` | **Scopes:** `store_v2_products`"
+        },
+        "Product Variant Option Values": {
+          "description": "Create and manage product variant option values| **Path**: `/catalog/products/{id}/options/{id}/values` | **Scopes:** `store_v2_products`"
+        },
+        "Product Variant Options": {
+          "description": "Create and manage product variant options| **Path**: `/catalog/products/{id}/options` | **Scopes:** `store_v2_products`"
+        },
+        "Product Variants": {
+          "description": "Create and manage product variants| **Path**: `/catalog/products/{id}/variants` | **Scopes:** `store_v2_products`"
+        },
+        "Product Videos": {
+          "description": "Create and manage product videos| **Path**: `/catalog/products/{id}/videos` | **Scopes:** `store_v2_products`"
+        },
+        "Products": {
+          "description": "Create and manage products| **Path**: `/catalog/products` | **Scopes:** `store_v2_products`"
+        },
+        "ProductVariant Metafields": {
+          "description": "Create and manage product meta flields| **Path**: `/catalog/products/{id}/variants/{id}/metafields` | **Scopes:** `store_v2_products`"
+        },
+        "Redirects": {
+          "description": "Manage a store's URL redirects| **Path**: `/redirects` | **Scopes:** `store_v2_content`"
+        },
+        "Scripts": {
+          "description": "Add client-side code to a store| **Path**: `/content/scripts` | **Scopes:** `store_v2_content`"
+        },
+        "Shipping": {
+          "description": "Create and manage a store's shipping methods and zones.| **Path**: `/shipping` | **Scopes:** `store_v2_information`"
+        },
+        "Shipping Carriers": {
+          "description": "Create and manage shipping carriers| **Path**: `/shipping` | **Scopes:** `store_v2_information`"
+        },
+        "Shipping Methods": {
+          "description": "Create and manage shipping methods| **Path**: `/shipping` | **Scopes:** `store_v2_information`"
+        },
+        "Shipping Poviders Connection Options": {
+          "description": "Specification for creating an external shipping carrier service| **Path**: `/check_connection_options` | **Scopes:** `n/a`"
+        },
+        "Shipping Provider Rate Request": {
+          "description": "Specification for creating an external shipping carrier service| **Path**: `/rate` | **Scopes:** `n/a`"
+        },
+        "Shipping Zones": {
+          "description": "Create and manage shipping zones| **Path**: `/shipping` | **Scopes:** `store_v2_information`"
+        },
+        "Sites": {
+          "description": "Manage sites and routing for headless storefronts| **Path**: `/Sites` | **Scopes:** `store_sites`"
+        },
+        "Store Infomation": {
+          "description": "Get store metadata| **Path**: `/store` | **Scopes:** `store_v2_information`"
+        },
+        "Storefront API Token": {
+          "description": "Create Auth Tokens for use with Storefront APIs| **Path**: `/api-token` | **Scopes:** `store_storefront_api`"
+        },
+        "Storefront Carts": {
+          "description": "Create and get carts on the front-end| **Path**: `/carts` | **Scopes:** `store_storefront_api`"
+        },
+        "Storefront Checkouts": {
+          "description": "Create and get checkouts on the front-end| **Path**: `/checkouts` | **Scopes:** `store_storefront_api`"
+        },
+        "Storefront Customer Impersonation Token": {
+          "description": "Create a storefront API token for customer impersonation| **Path**: `/api-token-customer-impersonation` | **Scopes:** `store_storefront_api_customer_impersonation`"
+        },
+        "Storefront Orders": {
+          "description": "Get order data on the front-end after order is palced| **Path**: `/orders` | **Scopes:** `store_storefront_api`"
+        },
+        "Subscribers": {
+          "description": "Create and manage store newsletter subscribers| **Path**: `/customers/subscribers` | **Scopes:** `store_v2_customers`"
+        },
+        "Tax Class": {
+          "description": "Get a store's available tax classes| **Path**: `/tax_classes` | **Scopes:** `store_v2_information`"
+        },
+        "Themes": {
+          "description": "Create and manage store theme's| **Path**: `/themes` | **Scopes:** `store_themes_manage`"
+        },
+        "Time Zone": {
+          "description": "Get store system timestamp| **Path**: `/time` | **Scopes:** `store_v2_information`"
+        },
+        "Variants": {
+          "description": "Get and update all variants| **Path**: `/catalog/variants` | **Scopes:** `store_v2_products`"
+        },
+        "Webhooks": {
+          "description": "Manage store Webhooks| **Path**: `/hooks` | **Scopes:** `default`"
+        },
+        "Widgets": {
+          "description": "Create and manage store widgets| **Path**: `/content/widgets` | **Scopes:** `store_v2_content`"
+        },
+        "Widgets Placements": {
+          "description": "Place, move, and remove store widgets| **Path**: `/content/placements` | **Scopes:** `store_v2_content`"
+        },
+        "Widgets Regions": {
+          "description": "Get list of regions widgets can be placed for a specified template file| **Path**: `/content/regions` | **Scopes:** `store_v2_content`"
+        },
+        "Widgets Templates": {
+          "description": "Create and manage widget templates| **Path**: `/content/widget-templates` | **Scopes:** `store_v2_content`"
+        },
+        "Wishlist": {
+          "description": "Create and manage customer wishlists| **Path**: `/wishlists` | **Scopes:** `store_v2_customers`"
+        }
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "parameters": {
+    "Accept": {
+      "in": "header",
+      "type": "string",
+      "name": "Accept",
+      "default": "application/json",
+      "required": true,
+      "description": "Accept"
+    },
+    "Content-Type": {
+      "name": "Content-Type",
+      "in": "header",
+      "type": "string",
+      "default": "application/json",
+      "required": true,
+      "description": "Content-Type"
+    }
+  },
+  "securityDefinitions": {
+    "X-Auth-Client": {
+      "type": "apiKey",
+      "name": "X-Auth-Client",
+      "in": "header",
+      "description": "|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Client`|`client_id`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n\n```http\nGET /stores/{$$.env.store_hash}/v3/catalog/summary\nhost: api.bigcommerce.com\nAccept: application/json\nX-Auth-Client: {client_id}\nX-Auth-Token: {access_token}\n```\n\nFor more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication)."
+    },
+    "X-Auth-Token": {
+      "type": "apiKey",
+      "in": "header",
+      "description": "|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Client`|`client_id`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n\n- [OAuth Scopes](#oauth-scopes)\n- [Authentication](#authentication)\n- [Available Endpoints](#available-endpoints)\n- [Usage Notes](#usage-notes)\n- [FAQ](#faq)\n- [Resources](#resources)\n\nIntroduction\n\n## OAuth Scopes\n| UI Name                                      | Permission | Parameter                                     |\n|----------------------------------------------|------------|-----------------------------------------------|\n| Carts                                        | modify     | `store_cart`                                  |\n| Carts                                        | read-only  | `store_cart_read_only`                        |\n| Channel Listings                             | modify     | `store_channel_listings`                      |\n| Channel Listings                             | read-only  | `store_channel_listings_read_only`            |\n| Channel Settings                             | modify     | `store_channel_settings`                      |\n| Channel Settings                             | read-only  | `store_channel_settings_read_only`            |\n| Checkout Content                             | modify     | `store_content_checkout`                      |\n| Checkout Content                             | read-only  | `store_content_checkout_read_only`            |\n| Checkouts                                    | modify     | `store_checkout`                              |\n| Checkouts                                    | read-only  | `store_checkout_read_only`                    |\n| Content                                      | modify     | `store_v2_content`                            |\n| Content                                      | read-only  | `store_v2_content_read_only`                  |\n| Create Payments                              | create     | `store_payments_access_token_create`          |\n| Customer Login                               | login      | `store_v2_customers_login`                    |\n| Customers                                    | modify     | `store_v2_customers_login`                    |\n| Customers                                    | read-only  | `store_v2_customers_login_read_only`          |\n| Get Payment Methods                          | read-only  | `store_payments_methods_read`                 |\n| Information & Settings                       | modify     | `store_v2_information`                        |\n| Information & Settings                       | read-only  | `store_v2_information_read_only`              |\n| Marketing                                    | modify     | `store_v2_marketing`                          |\n| Marketing                                    | read-only  | `store_v2_marketing_read_only`                |\n| Order Transactions                           | modify     | `store_v2_transactions`                       |\n| Order Transactions                           | read-only  | `store_v2_transactions_read_only`             |\n| Orders                                       | modify     | `store_v2_orders`                             |\n| Orders                                       | read-only  | `store_v2_orders_read_only`                   |\n| Products                                     | modify     | `store_v2_products`                           |\n| Products                                     | read-only  | `store_v2_products_read_only`                 |\n| Sites & Routes                               | modify     | `store_sites`                                 |\n| Sites & Routes                               | read-only  | `store_sites_read_only`                       |\n| Storefront API Customer Impersonation Tokens | manage     | `store_storefront_api_customer_impersonation` |\n| Storefront API Tokens                        | manage     | `store_storefront_api`                        |\n| Themes                                       | modify     | `store_themes_manage`                         |\n\nFor more information on OAuth Scopes, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).\n\n## Authentication\n\nRequests can be authenticated by sending a `client_id` and `access_token` via `X-Auth-Client` and `X-Auth-Token` HTTP headers:\n\n```http\nGET /stores/{$$.env.store_hash}/v3/catalog/summary\nhost: api.bigcommerce.com\nAccept: application/json\nX-Auth-Client: {client_id}\nX-Auth-Token: {access_token}\n```\n\n|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Client`|`client_id`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n\nFor more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).\n\n## Available Endpoints\n| Resource / Endpoint                     | Description                                                             |\n|-----------------------------------------|-------------------------------------------------------------------------|\n| Banners                                 | Create and manage store banners                                         |\n| Blog Posts                              | Create and manage store blog posts                                      |\n| Blog Tags                               | Create and manage store blog tags                                       |\n| Brand Images                            | Create and manage brand images                                          |\n| Brand Metafields                        | Create and manage brand metafields                                      |\n| Brands                                  | Create and manage brands                                                |\n| Carts                                   | Create an manage store carts                                            |\n| Catalog                                 | Create and manage store categories, products, and brands                |\n| Categories                              | Create and manage categorties                                           |\n| Category Images                         | Create and manage category images                                       |\n| Category Metafields                     | Create and manage category metafields                                   |\n| Channels                                | Create and manage catalog listings and channels                         |\n| Checkouts                               | Create checkouts for a store                                            |\n| Coupons                                 | Create and manage store coupons                                         |\n| Currenies                               | Create and manage store currencies and their display                    |\n| Current Customer                        | Identify customer's on the front-end securely                           |\n| Customer Login                          | Use JWT & SSO to login a customer                                       |\n| Customers Attribute Values              | Create and manage customer attribute values                             |\n| Customers Attributes                    | Create and manage customer attributes                                   |\n| Customers Form Field Values             | Create an manage customer form field values                             |\n| Customers Groups                        | Create and manage customer groups                                       |\n| Customers v2                            | Create and manage  customers and their addresses                        |\n| Customers v3                            | Create and manage customers and their addresses                         |\n| Customers Validate Password             | Validate customer passwords                                             |\n| Geography                               | Get a list of states, provincies, and countries                         |\n| Gift Certificates                       | Manage gift certificates                                                |\n| Order Transactions                      | View order payment information                                          |\n| Orders                                  | Create and manage orders                                                |\n| Pages                                   | Create and manage store content pages                                   |\n| Payment Methods                         | Get a store's enabled payment methods                                   |\n| Payment Processing                      | Process payments on orders and checkouts                                |\n| Payment Processing Methods              | Get order payment methods for processing                                |\n| Payment Processing Token                | Get an access token for payment processing                              |\n| Price List Records                      | Create and manage price list records                                    |\n| Price Lists                             | Create and manage catalog pricing variations                            |\n| Product Bulk Pricing Rules              | Create and manage product bulk pricing rules                            |\n| Product Complex Rules                   | Create and manage product complex rules                                 |\n| Product Custom Fields                   | Create and manage product custom fields                                 |\n| Product Images                          | Create and manage product images                                        |\n| Product Metafields                      | Create and manage product meta fields                                   |\n| Product Modifier Images                 | Create and manage product modifer images                                |\n| Product Modifier Values                 | Create and manage product modifier values                               |\n| Product Modifiers                       | Create and manage product midifiers                                     |\n| Product Reviews                         | Create and manage product reviews                                       |\n| Product Variant Option Values           | Create and manage product variant option values                         |\n| Product Variant Options                 | Create and manage product variant options                               |\n| Product Variants                        | Create and manage product variants                                      |\n| Product Videos                          | Create and manage product videos                                        |\n| Products                                | Create and manage products                                              |\n| ProductVariant Metafields               | Create and manage product meta flields                                  |\n| Redirects                               | Manage a store's URL redirects                                          |\n| Scripts                                 | Add client-side code to a store                                         |\n| Shipping                                | Create and manage a store's shipping methods and zones.                 |\n| Shipping Carriers                       | Create and manage shipping carriers                                     |\n| Shipping Methods                        | Create and manage shipping methods                                      |\n| Shipping Poviders Connection Options    | Specification for creating an external shipping carrier service         |\n| Shipping Provider Rate Request          | Specification for creating an external shipping carrier service         |\n| Shipping Zones                          | Create and manage shipping zones                                        |\n| Sites                                   | Manage sites and routing for headless storefronts                       |\n| Store Infomation                        | Get store metadata                                                      |\n| Storefront API Token                    | Create Auth Tokens for use with Storefront APIs                         |\n| Storefront Carts                        | Create and get carts on the front-end                                   |\n| Storefront Checkouts                    | Create and get checkouts on the front-end                               |\n| Storefront Customer Impersonation Token | Create a storefront API token for customer impersonation                |\n| Storefront Orders                       | Get order data on the front-end after order is palced                   |\n| Subscribers                             | Create and manage store newsletter subscribers                          |\n| Tax Class                               | Get a store's available tax classes                                     |\n| Themes                                  | Create and manage store theme's                                         |\n| Time Zone                               | Get store system timestamp                                              |\n| Variants                                | Get and update all variants                                             |\n| Webhooks                                | Manage store Webhooks                                                   |\n| Widgets                                 | Create and manage store widgets                                         |\n| Widgets Placements                      | Place, move, and remove store widgets                                   |\n| Widgets Regions                         | Get list of regions widgets can be placed for a specified template file |\n| Widgets Templates                       | Create and manage widget templates                                      |\n| Wishlist                                | Create and manage customer wishlists                                    |\n\n## Usage Notes\n\n**Topic**\n* thing\n* thing\n* thing\n\n## FAQ\n\n**question** \n\nanswer\n\n**question**\n\nanswer\n\n## Resources \n\n```http\nGET /stores/{$$.env.store_hash}/v3/catalog/summary\nhost: api.bigcommerce.com\nAccept: application/json\nX-Auth-Client: {client_id}\nX-Auth-Token: {access_token}\n```\n\nFor more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication)",
+      "name": "X-Auth-Token"
+    },
+    "OAuthScopes": {
+      "type": "OAuthScopes",
+      "description": "|  **UI Name** | **Permission** | **Parameter** |\n| --- | --- | --- |\n|  Carts | modify | `store_cart` |\n|  Carts | read-only | `store_cart_read_only` |\n|  Channel Listings | modify | `store_channel_listings` |\n|  Channel Listings | read-only | `store_channel_listings_read_only` |\n|  Channel Settings | modify | store_channel_settings` |\n|  Channel Settings | read-only | `store_channel_settings_read_only` |\n|  Checkout Content | modify | `store_content_checkout` |\n|  Checkouts | modify | `store_checkout` |\n|  Checkouts | read-only | `store_checkout_read_only` |\n|  Content | modify | `store_v2_content` |\n|  Content | read-only | `store_v2_content_read_only` |\n|  Create Payments | create | `store_payments_access_token_create` |\n|  Customer Login | login | `store_v2_customers_login` |\n|  Customers | modify | `store_v2_customers` |\n|  Customers | read-only | `store_v2_customers_read_only` |\n|  Get Payment Methods | read-only | `store_payments_methods_read` |\n|  Information & Settings | modify | `store_v2_information` |\n|  Information & Settings | read-only | `store_v2_information_read_only` |\n|  Marketing | modify | `store_v2_marketing` |\n|  Marketing | read-only | `store_v2_marketing_read_only` |\n|  Order Transactions | modify | `store_v2_transactions` |\n|  Order Transactions | read-only | `store_v2_transactions_read_only` |\n|  Orders | modify | `store_v2_orders` |\n|  Orders | read-only | `store_v2_orders_read_only` |\n|  Products | modify | `store_v2_products` |\n|  Products | read-only | `store_v2_products_read_only` |\n|  Sites & Routes | modify | `store_sites` |\n|  Sites & Routes | read-only | `store_sites_read_only` |\n|  Storefront API Customer Impersonation Tokens | manage | `store_storefront_api_customer_impersonation` |\n|  Storefront API Tokens | manage | `store_storefront_api` |\n|  Themes | modify | `store_themes_manage` |"
+    }
+  },
+  "security": [
+    {
+      "X-Auth-Client": []
+    },
+    {
+      "X-Auth-Token": []
+    },
+    {
+      "OAuthScopes": []
+    }
+  ],
+  "consumes": [],
+  "produces": [],
+  "basePath": "/stores/{$$.env.store_hash}/v3",
+  "tags": [
+    {
+      "name": "Example"
+    }
+  ]
+}
