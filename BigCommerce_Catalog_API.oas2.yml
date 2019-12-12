@@ -39851,10 +39851,8 @@ definitions:
               The date on which the product image was modified.
             type: string
   metafield_Post:
-    type: object
     allOf:
-      - type: object
-        description: Common Metafield properties.
+      - description: Common Metafield properties.
         title: Metafield
         properties:
           id:
@@ -39950,14 +39948,14 @@ definitions:
           - key
           - value
     title: metafield_Post
+    type: object
   productCollection_Put:
     title: productCollection_Put
     type: array
     items:
       description: The model for a PUT to update a product.
       allOf:
-        - type: object
-          description: Common Product properties.
+        - description: Common Product properties.
           title: Product
           properties:
             name:
@@ -41333,6 +41331,7 @@ definitions:
     title: config_Full
   adjusters_Full:
     type: object
+    title: adjusters_Full
     properties:
       price:
         $ref: '#/definitions/adjuster_Full'
@@ -41359,7 +41358,6 @@ definitions:
             description: >
               The message displayed on the storefront when the purchasing
               disabled status is `true`.
-    title: adjusters_Full
   variantBase:
     type: object
     title: variantBase
