@@ -3779,131 +3779,129 @@ definitions:
     title: customer_Base
   page_Base:
     title: page_Base
-    allOf:
-      - properties:
-          parent_id:
-            description: ID of any parent Web page.
-            example: 5
-            type: integer
-          type:
-            type: string
-            description: "`page`: free-text page  \n`link`: link to another web address  \n`rss_feed`: syndicated content from an RSS feed  \n`contact_form`: When the store's contact form is used.\n\n\t"
-            enum:
-              - page
-              - rss_feed
-              - contact_form
-              - raw
-              - link
-          contact_fields:
-            description: >-
-              Where the page’s type is a contact form: object whose members are
-              the fields enabled (in the control panel) for storefront display.
-              Possible members are:`fullname`: full name of the customer
-              submitting the form; `phone`: customer’s phone number, as
-              submitted on the form; `companyname`: customer’s submitted company
-              name; `orderno`: customer’s submitted order number; `rma`:
-              customer’s submitted RMA (Return Merchandise Authorization)
-              number.
-            example: 'fullname,companyname,phone,orderno,rma'
-            type: string
-          email:
-            description: >-
-              Where the page’s type is a contact form: email address that
-              receives messages sent via the form.
-            example: janedoes@email.com
-            type: string
-          name:
-            type: string
-            description: 'Page name, as displayed on the storefront.'
-            example: Contact Form
-          url:
-            description: Relative URL on the storefront for this page.
-            example: /contact-us/
-            type: string
-          meta_description:
-            description: Description contained within this page’s <meta> element.
-            type: string
-          body:
-            type: string
-            description: >-
-              HTML or variable that populates this page’s <body> element, in
-              default/desktop view. Required in POST if page type is `raw`.
-            example: >-
-              <p>We're happy to answer questions or help you with returns.<br
-              />Please fill out the form below if you need assistance.</p>
-          mobile_body:
-            description: >-
-              HTML to use for this page's body when viewed in the mobile
-              template (deprecated).
-            example: 0
-            type: string
-          has_mobile_version:
-            description: 'If true, this page has a mobile version.'
-            example: false
-            type: boolean
-          is_visible:
-            description: 'If true, this page appears in the storefront’s navigation menu.'
-            example: true
-            type: boolean
-          is_homepage:
-            description: 'If true, this page is the storefront’s home page.'
-            example: false
-            type: boolean
-          meta_title:
-            description: >-
-              Text specified for this page’s <title> element. (If empty, the
-              value of the name property is used.)
-            type: string
-          layout_file:
-            description: >-
-              Layout template for this page. This field is writable only for
-              stores with a Blueprint theme applied.
-            example: page.html
-            type: string
-          sort_order:
-            description: >-
-              Order in which this page should display on the storefront. (Lower
-              integers specify earlier display.)
-            example: 3
-            type: integer
-          search_keywords:
-            description: >-
-              Comma-separated list of keywords that shoppers can use to locate
-              this page when searching the store.
-            type: string
-          meta_keywords:
-            description: >-
-              Comma-separated list of SEO-relevant keywords to include in the
-              page’s <meta> element.
-            type: string
-          feed:
-            type: string
-            description: >-
-              If page type is `rss_feed` the n this field is visisble. Required
-              in POST required for `rss page` type.
-          link:
-            type: string
-            description: >-
-              If page type is `link` this field is returned. Required in  POST
-              to create a `link` page.
-          id:
-            type: integer
-            example: 44
-            description: ID of the page.
-          content_type:
-            type: string
-            enum:
-              - application/json
-              - text/javascript
-              - text/html
-            example: text/html
-        required:
-          - type
-          - name
-          - body
-          - feed
-          - link
     type: object
+    properties:
+      parent_id:
+        description: ID of any parent Web page.
+        example: 5
+        type: integer
+      type:
+        type: string
+        description: "`page`: free-text page  \n`link`: link to another web address  \n`rss_feed`: syndicated content from an RSS feed  \n`contact_form`: When the store's contact form is used.\n\n\t"
+        enum:
+          - page
+          - rss_feed
+          - contact_form
+          - raw
+          - link
+      contact_fields:
+        description: >-
+          Where the page’s type is a contact form: object whose members are the
+          fields enabled (in the control panel) for storefront display. Possible
+          members are:`fullname`: full name of the customer submitting the form;
+          `phone`: customer’s phone number, as submitted on the form;
+          `companyname`: customer’s submitted company name; `orderno`:
+          customer’s submitted order number; `rma`: customer’s submitted RMA
+          (Return Merchandise Authorization) number.
+        example: 'fullname,companyname,phone,orderno,rma'
+        type: string
+      email:
+        description: >-
+          Where the page’s type is a contact form: email address that receives
+          messages sent via the form.
+        example: janedoes@email.com
+        type: string
+      name:
+        type: string
+        description: 'Page name, as displayed on the storefront.'
+        example: Contact Form
+      url:
+        description: Relative URL on the storefront for this page.
+        example: /contact-us/
+        type: string
+      meta_description:
+        description: Description contained within this page’s <meta> element.
+        type: string
+      body:
+        type: string
+        description: >-
+          HTML or variable that populates this page’s <body> element, in
+          default/desktop view. Required in POST if page type is `raw`.
+        example: >-
+          <p>We're happy to answer questions or help you with returns.<br
+          />Please fill out the form below if you need assistance.</p>
+      mobile_body:
+        description: >-
+          HTML to use for this page's body when viewed in the mobile template
+          (deprecated).
+        example: 0
+        type: string
+      has_mobile_version:
+        description: 'If true, this page has a mobile version.'
+        example: false
+        type: boolean
+      is_visible:
+        description: 'If true, this page appears in the storefront’s navigation menu.'
+        example: true
+        type: boolean
+      is_homepage:
+        description: 'If true, this page is the storefront’s home page.'
+        example: false
+        type: boolean
+      meta_title:
+        description: >-
+          Text specified for this page’s <title> element. (If empty, the value
+          of the name property is used.)
+        type: string
+      layout_file:
+        description: >-
+          Layout template for this page. This field is writable only for stores
+          with a Blueprint theme applied.
+        example: page.html
+        type: string
+      sort_order:
+        description: >-
+          Order in which this page should display on the storefront. (Lower
+          integers specify earlier display.)
+        example: 3
+        type: integer
+      search_keywords:
+        description: >-
+          Comma-separated list of keywords that shoppers can use to locate this
+          page when searching the store.
+        type: string
+      meta_keywords:
+        description: >-
+          Comma-separated list of SEO-relevant keywords to include in the page’s
+          <meta> element.
+        type: string
+      feed:
+        type: string
+        description: >-
+          If page type is `rss_feed` the n this field is visisble. Required in
+          POST required for `rss page` type.
+      link:
+        type: string
+        description: >-
+          If page type is `link` this field is returned. Required in  POST to
+          create a `link` page.
+      id:
+        type: integer
+        example: 44
+        description: ID of the page.
+      content_type:
+        type: string
+        enum:
+          - application/json
+          - text/javascript
+          - text/html
+        example: text/html
+    required:
+      - type
+      - name
+      - body
+      - feed
+      - link
 tags:
   - name: Blog Posts
   - name: Blog Tags
