@@ -3760,9 +3760,19 @@ definitions:
         format: time
         example: '+00:00'
   authentication:
+    description: >-
+      Not returned in any responses, but accepts up to two fields allowing you
+      to set the customer’s password. If a password is not supplied, it is
+      generated automatically. For further information about using this object,
+      please see the Customers resource documentation.
     type: object
-    properties: {}
-    title: authentication
+    properties:
+      force_reset:
+        type: string
+      password:
+        type: string
+      password_confirmation:
+        type: string
 tags:
   - name: Blog Posts
   - name: Blog Tags
