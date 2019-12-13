@@ -12748,6 +12748,11 @@ paths:
                 type: object
                 description: Common Metafield properties.
                 title: Metafield
+                required:
+                  - permission_set
+                  - namespace
+                  - key
+                  - value
                 properties:
                   id:
                     type: integer
@@ -12839,11 +12844,6 @@ paths:
                       Date and time when the metafield was last updated.
                       Read-Only.
                     example: '2018-05-07T20:14:17+00:00'
-                required:
-                  - permission_set
-                  - namespace
-                  - key
-                  - value
               meta:
                 type: object
                 description: Empty meta object; may be used later.
@@ -12884,7 +12884,6 @@ paths:
       summary: Update Product Variant Metafields
       tags:
         - Product Variants Metafields
-        - Catalog
     delete:
       description: Deletes a product variant *Metafield*.
       operationId: deleteVariantMetafieldById
