@@ -54,4 +54,35 @@ responses:
 definitions:
   new-model:
     type: object
-    properties: {}
+    properties:
+      scope:
+        type: string
+        example: store/order/created
+        description: The event that triggered the webhook.
+      store_id:
+        type: string
+        example: '1025646'
+        description: The store ID
+      data:
+        type: object
+        description: >-
+          A lightweight description of the event that triggered the webhook.
+          Will vary depending on the event registered.
+        properties:
+          type:
+            type: string
+            description: The entity that triggered the webhook
+            example: order
+          id:
+            type: integer
+      hash:
+        type: string
+        example: dd70c0976e06b67aaf671e73f49dcb79230ebf9d
+        description: The payload data json encoded then passed through sh1 encryption
+      created_at:
+        type: integer
+        format: int64
+      producer:
+        type: string
+        description: The store that created the webhook
+        example: 'stores/{store_hash}'
