@@ -3,18 +3,7 @@ info:
   title: Webhook Events
   version: '1.0'
 host: example.com
-paths:
-  /store/order/message/created:
-    post:
-      responses: {}
-      summary: Order Message Created
-      tags:
-        - Orders
-      parameters:
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/new-model'
+paths: {}
 responses:
   new-response:
     description: ''
@@ -63,7 +52,7 @@ responses:
         created_at: 1561479335
         producer: 'stores/{store_hash}'
 definitions:
-  new-model:
+  orderCreated:
     type: object
     properties:
       scope:
@@ -97,5 +86,6 @@ definitions:
         type: string
         description: The store that created the webhook
         example: 'stores/{store_hash}'
+    title: Order Created
 tags:
   - name: Orders
