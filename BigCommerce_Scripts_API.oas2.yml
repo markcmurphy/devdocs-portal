@@ -989,83 +989,17 @@ definitions:
       visibility: storefront
       kind: src
     title: script_Post
-    type: object
-    properties:
-      name:
-        type: string
-        description: The user-friendly name.
-        minLength: 1
-        maxLength: 255
-      description:
-        type: string
-        description: The user-friendly description.
-        maxLength: 255
-      html:
-        type: string
-        description: >-
-          An html string containing exactly one `script` tag. Required if `kind`
-          is `script_tag`.
-        maxLength: 65535
-      src:
-        type: string
-        description: >-
-          The `src` attribute of the script to load. Required if `kind` is
-          `src`. Must be in `https` format.
-        maxLength: 255
-      auto_uninstall:
-        type: boolean
-        description: >-
-          Whether to uninstall this script when the app associated with it is
-          removed.
-        default: true
-      load_method:
-        type: string
-        description: >-
-          The load method to use for the script. Acceptable values are
-          `default`, `async`, or `defer`.
-        default: defer
-        enum:
-          - default
-          - async
-          - defer
-      location:
-        type: string
-        description: >-
-          Where on the page to place the script. Acceptable values are `head` or
-          `footer`.
-        default: footer
-        enum:
-          - head
-          - footer
-      visibility:
-        type: string
-        description: >-
-          Which set of pages the script should load on. The values allowed for
-          this parameter are `storefront`, `all_pages`, `checkout` and
-          `order_confirmation`. Please note that you need to have `Checkout
-          content` scope to use `all_pages` and `checkout`.
-
-          For a list of all locations visit [Scripts
-          Visibility](https://developer.bigcommerce.com/api-docs/storefront/scripts-overview#scripts_scripts-visibility).
-        default: storefront
-        enum:
-          - storefront
-          - all_pages
-          - checkout
-          - order_confirmation
-      kind:
-        type: string
-        description: >-
-          What type of script this is. Acceptable values are `src` - a `script`
-          tag will be generated with its `src` attribute set to the value of
-          `src`; `script_tag` - The value of `html` (which must contain a single
-          `script` tag) will be injected directly onto the page.
-        default: src
-        enum:
-          - src
-          - html
-    required:
-      - name
+    allOf:
+      - type: object
+        properties:
+          name:
+            type: string
+            description: The user-friendly name.
+            minLength: 1
+            maxLength: 255
+        required:
+          - name
+      - $ref: '#/definitions/script_Base'
   script_Put:
     allOf:
       - properties:
