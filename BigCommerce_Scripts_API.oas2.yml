@@ -1517,7 +1517,6 @@ definitions:
         type: string
     title: No Content
   script_Full:
-    type: object
     example:
       uuid: 2bf40be2-e57a-4bc8-860a-5bf45edd3795
       name: jQuery
@@ -1532,19 +1531,21 @@ definitions:
       date_created: '2017-12-05T23:37:45.506Z'
       date_modified: '2017-12-05T23:37:45.506Z'
     title: script_Full
-    properties:
-      uuid:
-        type: string
-        format: uuid
-        description: The primary identifier.
-      date_created:
-        type: string
-        format: date-time
-        description: The date on which this object was initially created.
-      date_modified:
-        type: string
-        format: date-time
-        description: The date on which this object was last updated.
+    allOf:
+      - properties:
+          uuid:
+            type: string
+            format: uuid
+            description: The primary identifier.
+          date_created:
+            type: string
+            format: date-time
+            description: The date on which this object was initially created.
+          date_modified:
+            type: string
+            format: date-time
+            description: The date on which this object was last updated.
+    type: object
   ScriptPost:
     example:
       name: jQuery
