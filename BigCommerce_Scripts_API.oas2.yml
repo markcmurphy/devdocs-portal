@@ -1532,7 +1532,8 @@ definitions:
       date_modified: '2017-12-05T23:37:45.506Z'
     title: script_Full
     allOf:
-      - properties:
+      - type: object
+        properties:
           uuid:
             type: string
             format: uuid
@@ -1545,7 +1546,7 @@ definitions:
             type: string
             format: date-time
             description: The date on which this object was last updated.
-    type: object
+      - $ref: '#/definitions/script_Base'
   ScriptPost:
     example:
       name: jQuery
