@@ -713,13 +713,13 @@ pages:
                 data:
                   $ref: ./BigCommerce_Enabled_Payment_Methods_API.oas2.yml
               - title: Payment Processing Methods
+                config:
+                  sidebar:
+                    token: v3
                 route:
                   path: /payment-processing-methods
                 data:
                   $ref: ./BigCommerce_Payments_API.oas2.yml
-                config:
-                  sidebar:
-                    token: v3
               - title: Payment Processing Token
                 config:
                   includeDownloadLink: true
@@ -811,11 +811,21 @@ pages:
                 data:
                   $ref: ./BigCommerce_Storefront_Cart_API.oas2.yml
               - title: Storefront GraphQL
-                route:
-                  path: /new-subpage
                 config:
                   sidebar:
                     token: graphql
+                route:
+                  path: /new-subpage
+                data:
+                  children:
+                    - title: GraphQL Playground
+                      route:
+                        path: /graphql-playground
+                      data: {}
+                    - title: GraphQL Explorer
+                      route:
+                        path: /graphql-explorer
+                      data: {}
               - title: Storefront Orders
                 config:
                   includeDownloadLink: true
@@ -843,7 +853,6 @@ pages:
                   path: /storefront-api-token
                 data:
                   $ref: ./BigCommerce_Storefront_Token_API.oas2.yml
-                  children: []
               - title: Subscribers
                 config:
                   includeDownloadLink: true
