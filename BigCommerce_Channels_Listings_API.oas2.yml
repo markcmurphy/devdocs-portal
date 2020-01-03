@@ -631,53 +631,19 @@ paths:
       consumes: []
       produces: []
       description: Updates a site for provided channel
-    post:
-      summary: Create Channel Site
-      description: Alias of POST `/sites`. Creates a site for provided channel.
-      operationId: post-channel-site
-      parameters:
-        - name: channel_id
-          in: path
-          required: true
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/post_site'
-          x-examples:
-            application/json:
-              url: 'http://kittens.mybigcommerce.com/'
-              channel_id: 123
-      responses:
-        '200':
-          description: Created
-          schema:
-            $ref: '#/definitions/_site'
-          examples:
-            application/json:
-              id: 12
-              url: 'http://kittens.mybigcommerce.com/'
-              channel_id: 5425562
-              created_at: '2018-01-04T04:15:50.000Z'
-              updated_at: '2018-01-04T04:15:50.000Z'
-        '422':
-          $ref: '#/responses/ErrorResponse'
-      tags:
-        - Channel Site
-      consumes: []
-      produces: []
     parameters:
       - name: channel_id
         in: path
         type: string
         required: true
-    patch:
+    post:
       responses:
         '200':
           description: ''
           schema:
             type: object
             properties: {}
+      summary: Create a Channel Site
 definitions:
   _metaCollection:
     title: _metaCollection
