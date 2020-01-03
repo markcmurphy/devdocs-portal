@@ -75,11 +75,12 @@
                   }
                 },
                 {
-                  "title": "About Our APIs",
+                  "title": "About Our API",
                   "route": {
                     "path": "/about-our-api"
                   },
                   "data": {
+                    "blocks": [],
                     "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/getting-started/about-our-api.md"
                   }
                 },
@@ -152,6 +153,55 @@
                       }
                     ]
                   }
+                },
+                {
+                  "title": "Webhooks",
+                  "route": {
+                    "path": "/webhooks"
+                  },
+                  "data": {
+                    "children": [
+                      {
+                        "title": "Overview",
+                        "route": {
+                          "path": "/about-webhooks"
+                        },
+                        "data": {
+                          "blocks": [],
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/getting-started/webhooks/about-webhooks.md"
+                        }
+                      },
+                      {
+                        "title": "Webhooks Tutorial",
+                        "config": {
+                          "sidebar": {
+                            "token": "Tutorial"
+                          }
+                        },
+                        "route": {
+                          "path": "/setting-up-webhooks"
+                        },
+                        "data": {
+                          "blocks": [],
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/getting-started/webhooks/setting-up-webhooks.md"
+                        }
+                      },
+                      {
+                        "title": "Webhook Events",
+                        "config": {
+                          "sidebar": {
+                            "token": "reference"
+                          }
+                        },
+                        "route": {
+                          "path": "/webhook-events"
+                        },
+                        "data": {
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/getting-started/webhooks/webhook-events.md"
+                        }
+                      }
+                    ]
+                  }
                 }
               ]
             }
@@ -162,15 +212,6 @@
               "path": "/partner"
             },
             "data": {
-              "children": []
-            }
-          },
-          {
-            "title": "Guides",
-            "route": {
-              "path": "/guides"
-            },
-            "data": {
               "children": [
                 {
                   "title": "Becoming A Partner",
@@ -179,104 +220,302 @@
                   },
                   "data": {
                     "blocks": [],
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/partner/becoming-a-partner.md",
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/partner/becoming-a-partner.md"
+                  }
+                },
+                {
+                  "title": "App Store Approval Requirements",
+                  "route": {
+                    "path": "/app-store-approval-requirements"
+                  },
+                  "data": {
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/partner/app-store-approval-requirements.md"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Catalog",
+            "route": {
+              "path": "/catalog"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "Currencies",
+                  "route": {
+                    "path": "/currencies"
+                  },
+                  "data": {
                     "children": [
                       {
-                        "title": "App Store Approval Requirements",
+                        "title": "Currencies Overview",
                         "route": {
-                          "path": "/app-store-approval-requirements"
+                          "path": "/currencies-overview"
                         },
                         "data": {
-                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/partner/app-store-approval-requirements.md"
+                          "$ref": "https://raw.githubusercontent.com/aglensmith/dev-docs/master/docs/api-docs/catalog/currencies/currencies-overview.md"
+                        }
+                      },
+                      {
+                        "title": "How Currencies Work",
+                        "route": {
+                          "path": "/how-currencies-work"
+                        },
+                        "data": {
+                          "$ref": "https://raw.githubusercontent.com/aglensmith/dev-docs/master/docs/api-docs/catalog/currencies/how-currencies-work.md"
+                        }
+                      },
+                      {
+                        "title": "Endpoints",
+                        "config": {
+                          "sidebar": {
+                            "token": "reference"
+                          }
+                        },
+                        "route": {
+                          "path": "/payments-api"
+                        },
+                        "data": {
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Currency_API.oas2.json"
                         }
                       }
                     ]
                   }
                 },
                 {
-                  "title": "Developing Headless Solutions",
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
-                  },
+                  "title": "Products",
                   "route": {
-                    "path": "/developers-guide-headless"
+                    "path": "/products-overview"
                   },
                   "data": {
                     "blocks": [],
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/developers-guide-headless.md"
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/products-overview.md"
                   }
                 },
                 {
-                  "title": "Creating Carts and Checkouts",
+                  "title": "Pricing Order",
+                  "config": {
+                    "sidebar": {
+                      "token": "reference"
+                    }
+                  },
                   "route": {
-                    "path": "/cart-and-checkout-overview"
+                    "path": "/pricing-order-operation"
                   },
                   "data": {
                     "blocks": [],
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/cart-and-checkout-overview.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/pricing-order-operation.md"
                   }
                 },
                 {
-                  "title": "Handling Customers & Subscribers",
+                  "title": "Price Lists",
+                  "route": {
+                    "path": "/price-list-overview"
+                  },
+                  "data": {
+                    "blocks": [],
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/price-list-overview.md"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Store Management",
+            "route": {
+              "path": "/store-management"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "Shipping",
+                  "route": {
+                    "path": "/shipping"
+                  },
+                  "data": {
+                    "children": [
+                      {
+                        "title": "Overview",
+                        "route": {
+                          "path": "/shipping-overview"
+                        },
+                        "data": {
+                          "blocks": [],
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/store-management/shipping/shipping-overview.md"
+                        }
+                      },
+                      {
+                        "title": "Shipper HQ",
+                        "route": {
+                          "path": "/shipper-hq"
+                        },
+                        "data": {
+                          "blocks": [],
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/store-management/shipping/shipper-hq.md"
+                        }
+                      },
+                      {
+                        "title": "Shipping Provider API",
+                        "route": {
+                          "path": "/shipping-provider-api"
+                        },
+                        "data": {
+                          "blocks": [],
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/store-management/shipping/shipping-provider-api.md"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Customers & Subscribers",
+            "route": {
+              "path": "/customers"
+            },
+            "data": {
+              "blocks": [],
+              "children": [
+                {
+                  "title": "Overview ",
                   "route": {
                     "path": "/customers-subscribers-overview"
                   },
                   "data": {
                     "blocks": [],
                     "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customers-subscribers-overview.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
                   }
                 },
                 {
-                  "title": "Managing Shipping",
+                  "title": "Customer Login API",
                   "route": {
-                    "path": "/shipping-overview"
+                    "path": "/customer-login-api"
+                  },
+                  "data": {
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customer-login-api.md"
+                  }
+                },
+                {
+                  "title": "Current Customer API",
+                  "route": {
+                    "path": "/current-customer-api"
                   },
                   "data": {
                     "blocks": [],
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/store-management/shipping/shipping-overview.md"
-                  },
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/current-customer-api.md"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Storefront",
+            "route": {
+              "path": "/storefront"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "GraphQL",
                   "config": {
                     "sidebar": {
-                      "token": ""
+                      "token": "new"
                     }
-                  }
-                },
-                {
-                  "title": "Working with Orders",
+                  },
                   "route": {
-                    "path": "/orders-overview"
+                    "path": "/graphql"
                   },
                   "data": {
-                    "blocks": [],
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/orders/orders-overview.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
+                    "children": [
+                      {
+                        "title": "Overview",
+                        "route": {
+                          "path": "/graphql-storefront-api-overview"
+                        },
+                        "data": {
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/storefront/graphql/graphql-api-overview.md"
+                        }
+                      },
+                      {
+                        "title": "Code Samples",
+                        "config": {
+                          "sidebar": {
+                            "token": "code samples"
+                          }
+                        },
+                        "route": {
+                          "path": "/graphql-storefront-api-samples"
+                        },
+                        "data": {
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/storefront/graphql/graphql-api-examples.md"
+                        }
+                      },
+                      {
+                        "title": "GraphQL Playground",
+                        "route": {
+                          "path": "/playground"
+                        },
+                        "data": {
+                          "$ref": "./graphql_playground.html"
+                        }
+                      },
+                      {
+                        "title": "GraphQL Explorer",
+                        "route": {
+                          "path": "/explorer"
+                        },
+                        "data": {
+                          "$ref": "./voyager.html"
+                        }
+                      },
+                      {
+                        "title": "Product List Example",
+                        "route": {
+                          "path": "/new-subpage"
+                        },
+                        "data": {
+                          "$ref": "./Graph QL example.html"
+                        }
+                      },
+                      {
+                        "title": "Storefront Auth Token",
+                        "config": {
+                          "sidebar": {
+                            "token": "reference"
+                          }
+                        },
+                        "route": {
+                          "path": "/storefront-auth-token"
+                        },
+                        "data": {
+                          "$ref": "./BigCommerce_Storefront_Token_API.oas2.yml"
+                        }
+                      }
+                    ]
                   }
                 },
                 {
-                  "title": "Building Custom Widgets",
+                  "title": "Scripts",
+                  "route": {
+                    "path": "/scripts-overview"
+                  },
+                  "data": {
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/storefront/scripts-overview.md"
+                  }
+                },
+                {
+                  "title": "Widgets",
                   "route": {
                     "path": "/widgets"
                   },
                   "data": {
                     "children": [
                       {
-                        "title": "Widgets Overview",
+                        "title": "Overview",
                         "route": {
                           "path": "/widgets-overview"
                         },
@@ -314,69 +553,6 @@
                           "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/storefront/widgets/widgets-code-samples.md"
                         }
                       }
-                    ],
-                    "blocks": [
-                      {
-                        "type": "text",
-                        "data": {
-                          "$ref": ""
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "title": "Setting up Webhooks",
-                  "route": {
-                    "path": "/webhooks"
-                  },
-                  "data": {
-                    "children": [
-                      {
-                        "title": "Overview",
-                        "route": {
-                          "path": "/about-webhooks"
-                        },
-                        "data": {
-                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/getting-started/webhooks/about-webhooks.md"
-                        }
-                      },
-                      {
-                        "title": "Webhooks Tutorial",
-                        "config": {
-                          "sidebar": {
-                            "token": "Tutorial"
-                          }
-                        },
-                        "route": {
-                          "path": "/setting-up-webhooks"
-                        },
-                        "data": {
-                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/getting-started/webhooks/setting-up-webhooks.md"
-                        }
-                      },
-                      {
-                        "title": "Webhook Events",
-                        "config": {
-                          "sidebar": {
-                            "token": "reference"
-                          }
-                        },
-                        "route": {
-                          "path": "/webhook-events"
-                        },
-                        "data": {
-                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/getting-started/webhooks/webhook-events.md"
-                        }
-                      }
-                    ],
-                    "blocks": [
-                      {
-                        "type": "text",
-                        "data": {
-                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/getting-started/webhooks/about-webhooks.md"
-                        }
-                      }
                     ]
                   }
                 }
@@ -384,28 +560,24 @@
             }
           },
           {
-            "title": "Tutorials",
+            "title": "Cart and Checkout",
             "route": {
-              "path": "/tutorials"
+              "path": "/cart-and-checkout"
             },
             "data": {
               "children": [
                 {
-                  "title": "GraphQL Storefront API",
+                  "title": "Overview",
                   "route": {
-                    "path": "/storefront-graphql-api"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "tutorial"
-                    }
+                    "path": "/cart-and-checkout-overview"
                   },
                   "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/storefront-api-"
+                    "blocks": [],
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/cart-and-checkout-overview.md"
                   }
                 },
                 {
-                  "title": "Storefront Cart & Checkout",
+                  "title": "Working with Storefront APIs",
                   "config": {
                     "sidebar": {
                       "token": "tutorial"
@@ -415,74 +587,18 @@
                     "path": "/working-sf-apis"
                   },
                   "data": {
+                    "blocks": [],
                     "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/working-sf-apis.md"
                   }
                 },
                 {
-                  "title": "Embedded Checkout",
+                  "title": "Checkout SDK",
                   "route": {
-                    "path": "/embedded-checkout-tutorial"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "tutorial"
-                    }
+                    "path": "/checkout-sdk"
                   },
                   "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/embedded-checkout-tutorial.md"
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "title": "API Resource Overviews",
-            "route": {
-              "path": "/payments"
-            },
-            "data": {
-              "children": [
-                {
-                  "title": "Payments",
-                  "route": {
-                    "path": "/payments-api-overview"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/payments/payments-api-overview.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
-                  }
-                },
-                {
-                  "title": "Current Customer",
-                  "route": {
-                    "path": "/current-customer-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/current-customer-api.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
-                  }
-                },
-                {
-                  "title": "Customer Login",
-                  "route": {
-                    "path": "/customer-login-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customer-login-api.md",
-                    "children": []
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
+                    "blocks": [],
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/checkout-sdk.md"
                   }
                 },
                 {
@@ -493,192 +609,99 @@
                   "data": {
                     "blocks": [],
                     "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/add-to-cart-url.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
                   }
                 },
                 {
-                  "title": "Catalog",
+                  "title": "Embedded Checkout",
                   "route": {
-                    "path": "/products-overview"
+                    "path": "/embedded-checkout"
+                  },
+                  "data": {
+                    "children": [
+                      {
+                        "title": "Overview",
+                        "route": {
+                          "path": "/embedded-checkout-overview"
+                        },
+                        "data": {
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/embedded-checkout-overview.md"
+                        }
+                      },
+                      {
+                        "title": "Embedded Checkout Tutorial",
+                        "route": {
+                          "path": "/embedded-checkout-tutorial"
+                        },
+                        "data": {
+                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/embedded-checkout-tutorial.md"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Headless Commerce",
+            "config": {
+              "sidebar": {
+                "token": "GUIDE"
+              }
+            },
+            "route": {
+              "path": "/developers-guide-headless"
+            },
+            "data": {
+              "blocks": [],
+              "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/developers-guide-headless.md"
+            }
+          },
+          {
+            "title": "Payments",
+            "route": {
+              "path": "/payments"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "Payments API",
+                  "route": {
+                    "path": "/payments-api-overview"
                   },
                   "data": {
                     "blocks": [],
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/products-overview.md"
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/payments/payments-api-overview.md"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Orders",
+            "route": {
+              "path": "/orders"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "Overview",
+                  "route": {
+                    "path": "/orders-overview"
                   },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
+                  "data": {
+                    "blocks": [],
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/orders/orders-overview.md"
                   }
                 },
                 {
-                  "title": "Orders",
+                  "title": "Orders API",
                   "route": {
                     "path": "/orders-api-overview"
                   },
                   "data": {
                     "blocks": [],
                     "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/orders/orders-api-overview.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
-                  }
-                },
-                {
-                  "title": "Price Lists",
-                  "route": {
-                    "path": "/price-list-overview"
-                  },
-                  "data": {
-                    "blocks": [],
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/price-list-overview.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
-                  }
-                },
-                {
-                  "title": "Scripts",
-                  "route": {
-                    "path": "/scripts-overview"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/storefront/scripts-overview.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
-                  }
-                }
-              ]
-            },
-            "config": {
-              "sidebar": {
-                "token": ""
-              }
-            }
-          },
-          {
-            "title": "Storefront Resources",
-            "route": {
-              "path": "/new-subpage"
-            },
-            "data": {
-              "children": []
-            }
-          },
-          {
-            "title": "Store Management Resources",
-            "route": {
-              "path": "/store-management"
-            },
-            "data": {
-              "children": [
-                {
-                  "title": "Product Pricing Order",
-                  "config": {
-                    "sidebar": {
-                      "token": "reference"
-                    }
-                  },
-                  "route": {
-                    "path": "/pricing-order-operation"
-                  },
-                  "data": {
-                    "blocks": [],
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/catalog/pricing-order-operation.md"
-                  }
-                },
-                {
-                  "title": "Shipper HQ Configuration",
-                  "route": {
-                    "path": "/shipper-hq"
-                  },
-                  "data": {
-                    "blocks": [],
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/store-management/shipping/shipper-hq.md"
-                  }
-                }
-              ]
-            },
-            "config": {
-              "sidebar": {
-                "token": ""
-              }
-            }
-          },
-          {
-            "title": "Tools",
-            "route": {
-              "path": "/storefront"
-            },
-            "data": {
-              "children": [
-                {
-                  "title": "Checkout SDK",
-                  "route": {
-                    "path": "/checkout-sdk"
-                  },
-                  "data": {
-                    "blocks": [],
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/checkout-sdk.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "overview"
-                    }
-                  }
-                },
-                {
-                  "title": "Embedded Checkout",
-                  "route": {
-                    "path": "/embedded-checkout-overview"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/cart-and-checkout/embedded-checkout-overview.md"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "overview"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "title": "Store Management",
-            "route": {
-              "path": "/store-management"
-            },
-            "data": {
-              "children": [
-                {
-                  "title": "Shipping",
-                  "route": {
-                    "path": "/shipping"
-                  },
-                  "data": {
-                    "children": [
-                      {
-                        "title": "Shipping Provider API",
-                        "route": {
-                          "path": "/shipping-provider-api"
-                        },
-                        "data": {
-                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/store-management/shipping/shipping-provider-api.md"
-                        }
-                      }
-                    ]
                   }
                 }
               ]
@@ -692,16 +715,128 @@
       "data": {
         "children": [
           {
-            "title": "About our APIs",
+            "title": "Headless Commerce",
             "route": {
-              "path": "/about-our-apis"
+              "path": "/cart-checkout"
             },
             "data": {
-              "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/getting-started/about-our-api.md"
+              "children": [
+                {
+                  "title": "Storefront API Token",
+                  "config": {
+                    "includeDownloadLink": true,
+                    "sidebar": {
+                      "token": "beta"
+                    }
+                  },
+                  "route": {
+                    "path": "/storefront-api-token"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Storefront_Token_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Storefront Carts",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/storefront-cart-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Storefront_Cart_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Storefront Checkouts",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/storefront-checkout-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Storefront_Checkout_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Storefront Orders",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/storefront-orders"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Storefront_Orders_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Server-to-Server Carts",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/server-server-cart-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Server_to_Server_Cart_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Server-to-Server Checkouts",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/server-server-checkout-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Server_to_Server_Checkout_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Channels and Listings",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/channels-listings-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Channels_Listings_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Sites and Routes",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/sites-routes-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Sites_Routes_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Wishlists",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/wishlists"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Wishlist_API.oas2.yml"
+                  }
+                }
+              ]
             }
           },
           {
-            "title": "Payments API",
+            "title": "Payments",
             "route": {
               "path": "/payments"
             },
@@ -716,7 +851,19 @@
                     "path": "/payments-create-payment-token-api"
                   },
                   "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Payments_API.oas2.json"
+                    "$ref": "./BigCommerce_Payments_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Enabled Store Payment Methods",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/payment-methods-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Enabled_Payment_Methods_API.oas2.yml"
                   }
                 },
                 {
@@ -728,204 +875,63 @@
                     "path": "/payments-process-payments"
                   },
                   "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Process_Payment_API.oas2.json"
-                  }
-                }
-              ],
-              "blocks": [
-                {
-                  "type": "text",
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/payments/payments-api-overview.md"
+                    "$ref": "./BigCommerce_Process_Payment_API.oas2.yml"
                   }
                 }
               ]
             }
           },
           {
-            "title": "Storefront API",
-            "route": {
-              "path": "/storefront"
-            },
-            "data": {
-              "children": [
-                {
-                  "title": "API Token",
-                  "config": {
-                    "sidebar": {
-                      "token": "Server-to-server"
-                    }
-                  },
-                  "route": {
-                    "path": "/storefront-token-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/develop/spec/json/BigCommerce_Storefront_Token_API.oas3.json"
-                  }
-                },
-                {
-                  "title": "Carts",
-                  "config": {
-                    "includeDownloadLink": true,
-                    "sidebar": {
-                      "token": ""
-                    }
-                  },
-                  "route": {
-                    "path": "/storefront-cart-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Storefront_Cart_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Checkouts",
-                  "config": {
-                    "includeDownloadLink": true,
-                    "sidebar": {
-                      "token": ""
-                    }
-                  },
-                  "route": {
-                    "path": "/storefront-checkout-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Storefront_Checkout_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Orders",
-                  "config": {
-                    "includeDownloadLink": true,
-                    "sidebar": {
-                      "token": ""
-                    }
-                  },
-                  "route": {
-                    "path": "/storefront-orders-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Storefront_Orders_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Customer",
-                  "route": {
-                    "path": "/customer"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/current-customer-api.md"
-                  }
-                },
-                {
-                  "title": "Login",
-                  "route": {
-                    "path": "/login"
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    }
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/customers/customer-login-api.md"
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "title": "Store Management APIs",
+            "title": "Store Management",
             "route": {
               "path": "/store-management"
             },
             "data": {
               "children": [
                 {
-                  "title": "Carts",
-                  "config": {
-                    "includeDownloadLink": true,
-                    "sidebar": {
-                      "token": ""
-                    }
-                  },
-                  "route": {
-                    "path": "/server-server-cart-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Server_to_Server_Cart_API.oas2.json"
-                  }
-                },
-                {
                   "title": "Catalog",
                   "config": {
                     "includeDownloadLink": true
                   },
                   "route": {
-                    "path": "/catalog-api"
+                    "path": "/catalog"
                   },
                   "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Catalog_API.oas2.json"
+                    "$ref": "./BigCommerce_Catalog_API.oas2.yml"
                   }
                 },
                 {
-                  "title": "Channels",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/channels-listings-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Channels_Listings_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Checkouts",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/server-server-checkout-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Server_to_Server_Checkout_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Customers v2",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/customers-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Customers_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Customers v3",
+                  "title": "Customers",
                   "config": {
                     "sidebar": {
-                      "token": ""
+                      "token": "v2"
                     },
                     "includeDownloadLink": true
                   },
                   "route": {
-                    "path": "/v3-customers-api"
+                    "path": "/customers-v2"
                   },
                   "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Customers_V3_API.oas2.json"
+                    "$ref": "./BigCommerce_Customers_API.oas2.yml"
                   }
                 },
                 {
-                  "title": "Countries",
+                  "title": "Customers (v3)",
+                  "config": {
+                    "sidebar": {
+                      "token": "v3"
+                    },
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/customers-v3"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Customers_V3_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Geography",
                   "config": {
                     "includeDownloadLink": true
                   },
@@ -933,7 +939,7 @@
                     "path": "/geography-api"
                   },
                   "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Geography_API.oas2.json"
+                    "$ref": "./BigCommerce_Geography_API.oas2.yml"
                   }
                 },
                 {
@@ -945,9 +951,322 @@
                     "path": "/currency-api"
                   },
                   "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Currency_API.oas2.json"
+                    "$ref": "./BigCommerce_Currency_API.oas2.yml"
                   }
                 },
+                {
+                  "title": "Marketing",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/marketing"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Marketing_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Order Transactions",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/order-transactions"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Order_Transactions_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Orders",
+                  "config": {
+                    "sidebar": {
+                      "token": ""
+                    },
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/orders"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Orders_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Payment Methods",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/payment-methods"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Payments_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Price Lists",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/price-lists"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Price_Lists_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Scripts",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/scripts"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Scripts_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Shipping",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/shipping-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Shipping_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Shipping Provider",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/shipping-provider-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Shipping_Provider_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Store Content",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/store-content"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Store_Content_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Store Information",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/store-information-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Store_Information_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Subscribers",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/subscribers"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Subscribers_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Tax Class",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/tax-classes-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Tax_Class_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Themes",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/themes"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Themes_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Widgets",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/widgets"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Widgets_API.oas2.yml"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Providers",
+            "route": {
+              "path": "/providers"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "Shipping Provider API",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/shipping-provider-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Shipping_Provider_API.oas2.yml"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Webhooks",
+            "config": {
+              "includeDownloadLink": true
+            },
+            "route": {
+              "path": "/webhooks"
+            },
+            "data": {
+              "$ref": "./BigCommerce_Webhooks.oas2.yml"
+            }
+          },
+          {
+            "title": "Catalog",
+            "route": {
+              "path": "/catalog"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "Catalog",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/catalog-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Catalog_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Price Lists",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/pricelists-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Price_Lists_API.oas2.yml"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Customers & Subscribers",
+            "route": {
+              "path": "/customer-subscribers"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "V3 Customers",
+                  "config": {
+                    "sidebar": {
+                      "token": ""
+                    },
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/v3-customers-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Customers_V3_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Customers",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/customers-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Customers_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Subscribers",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/subscribers-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Subscribers_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Wishlist",
+                  "config": {
+                    "sidebar": {
+                      "token": ""
+                    },
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/wishlist-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Wishlist_API.oas2.yml"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Marketing",
+            "route": {
+              "path": "/marketing"
+            },
+            "data": {
+              "children": [
                 {
                   "title": "Marketing",
                   "config": {
@@ -960,6 +1279,89 @@
                     "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Marketing_API.oas2.json"
                   }
                 },
+                {
+                  "title": "Store Content",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/store-content-api"
+                  },
+                  "data": {
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/ecab9340edcd5383625ff4e94051b11256163241/spec/json/BigCommerce_Store_Content_API.oas2.json"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Storefront",
+            "route": {
+              "path": "/storefront"
+            },
+            "data": {
+              "children": [
+                {
+                  "title": "Scripts",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/content-scripts-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Scripts_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Storefront API Token",
+                  "config": {
+                    "sidebar": {
+                      "token": "beta"
+                    },
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/storefront-token-api"
+                  },
+                  "data": {
+                    "$ref": "./BigCommerce_Storefront_Token_API.oas2.yml"
+                  }
+                },
+                {
+                  "title": "Themes",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/themes-api"
+                  },
+                  "data": {
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Themes_API.oas2.json"
+                  }
+                },
+                {
+                  "title": "Widgets",
+                  "config": {
+                    "includeDownloadLink": true
+                  },
+                  "route": {
+                    "path": "/widgets-api"
+                  },
+                  "data": {
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Widgets_API.oas2.json"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Orders",
+            "route": {
+              "path": "/orders"
+            },
+            "data": {
+              "children": [
                 {
                   "title": "Orders",
                   "config": {
@@ -985,210 +1387,27 @@
                   }
                 },
                 {
-                  "title": "Payment Methods",
+                  "title": "Storefront Orders",
                   "config": {
                     "includeDownloadLink": true
                   },
                   "route": {
-                    "path": "/payment-methods-api"
+                    "path": "/storefront-orders-api"
                   },
                   "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Enabled_Payment_Methods_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Price Lists",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/pricelists-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Price_Lists_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Scripts",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/content-scripts-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Scripts_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Shipping",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/shipping-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Shipping_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Sites",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/sites-routes-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Sites_Routes_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Store Content",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/store-content-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/ecab9340edcd5383625ff4e94051b11256163241/spec/json/BigCommerce_Store_Content_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Store Information",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/store-information-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Store_Information_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Subscribers",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/subscribers-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Subscribers_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Tax Class",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/tax-classes-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Tax_Class_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Themes",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/themes-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Themes_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Webhooks",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/webhooks"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Webhooks.oas2.json"
-                  }
-                },
-                {
-                  "title": "Wishlist",
-                  "config": {
-                    "sidebar": {
-                      "token": ""
-                    },
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/wishlist-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Wishlist_API.oas2.json"
-                  }
-                },
-                {
-                  "title": "Widgets",
-                  "config": {
-                    "includeDownloadLink": true
-                  },
-                  "route": {
-                    "path": "/widgets-api"
-                  },
-                  "data": {
-                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Widgets_API.oas2.json"
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Storefront_Orders_API.oas2.json"
                   }
                 }
               ]
             }
-          },
-          {
-            "title": "Provider APIs",
-            "route": {
-              "path": "/new-subpage"
-            },
-            "data": {
-              "children": [
-                {
-                  "title": "Shipping Provider API",
-                  "route": {
-                    "path": "/new-subpage"
-                  },
-                  "data": {
-                    "children": [
-                      {
-                        "title": "Reference",
-                        "config": {
-                          "includeDownloadLink": true
-                        },
-                        "route": {
-                          "path": "/shipping-provider-api"
-                        },
-                        "data": {
-                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/reference/json/BigCommerce_Shipping_Provider_API.oas2.json"
-                        }
-                      }
-                    ],
-                    "blocks": [
-                      {
-                        "type": "text",
-                        "data": {
-                          "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/api-docs/store-management/shipping/shipping-provider-api.md"
-                        }
-                      }
-                    ]
-                  }
-                }
-              ],
-              "blocks": []
-            }
           }
         ],
-        "blocks": []
+        "blocks": [
+          {
+            "type": "text",
+            "data": "## Available API Resources\nThe following is a list of all resources available via BigCommerce's APIs. \n\n| Resource / Endpoint                     | Description                                                             |\n|-----------------------------------------|-------------------------------------------------------------------------|\n| Banners                                 | Create and manage store banners                                         |\n| Blog Posts                              | Create and manage store blog posts                                      |\n| Blog Tags                               | Create and manage store blog tags                                       |\n| Brand Images                            | Create and manage brand images                                          |\n| Brand Metafields                        | Create and manage brand metafields                                      |\n| Brands                                  | Create and manage brands                                                |\n| Carts                                   | Create an manage store carts                                            |\n| Catalog                                 | Create and manage store categories, products, and brands                |\n| Categories                              | Create and manage categorties                                           |\n| Category Images                         | Create and manage category images                                       |\n| Category Metafields                     | Create and manage category metafields                                   |\n| Channels                                | Create and manage catalog listings and channels                         |\n| Checkouts                               | Create checkouts for a store                                            |\n| Coupons                                 | Create and manage store coupons                                         |\n| Currenies                               | Create and manage store currencies and their display                    |\n| Current Customer                        | Identify customer's on the front-end securely                           |\n| Customer Login                          | Use JWT & SSO to login a customer                                       |\n| Customers Attribute Values              | Create and manage customer attribute values                             |\n| Customers Attributes                    | Create and manage customer attributes                                   |\n| Customers Form Field Values             | Create an manage customer form field values                             |\n| Customers Groups                        | Create and manage customer groups                                       |\n| Customers v2                            | Create and manage  customers and their addresses                        |\n| Customers v3                            | Create and manage customers and their addresses                         |\n| Customers Validate Password             | Validate customer passwords                                             |\n| Geography                               | Get a list of states, provincies, and countries                         |\n| Gift Certificates                       | Manage gift certificates                                                |\n| Order Transactions                      | View order payment information                                          |\n| Orders                                  | Create and manage orders                                                |\n| Pages                                   | Create and manage store content pages                                   |\n| Payment Methods                         | Get a store's enabled payment methods                                   |\n| Payment Processing                      | Process payments on orders and checkouts                                |\n| Payment Processing Methods              | Get order payment methods for processing                                |\n| Payment Processing Token                | Get an access token for payment processing                              |\n| Price List Records                      | Create and manage price list records                                    |\n| Price Lists                             | Create and manage catalog pricing variations                            |\n| Product Bulk Pricing Rules              | Create and manage product bulk pricing rules                            |\n| Product Complex Rules                   | Create and manage product complex rules                                 |\n| Product Custom Fields                   | Create and manage product custom fields                                 |\n| Product Images                          | Create and manage product images                                        |\n| Product Metafields                      | Create and manage product meta fields                                   |\n| Product Modifier Images                 | Create and manage product modifer images                                |\n| Product Modifier Values                 | Create and manage product modifier values                               |\n| Product Modifiers                       | Create and manage product midifiers                                     |\n| Product Reviews                         | Create and manage product reviews                                       |\n| Product Variant Option Values           | Create and manage product variant option values                         |\n| Product Variant Options                 | Create and manage product variant options                               |\n| Product Variants                        | Create and manage product variants                                      |\n| Product Videos                          | Create and manage product videos                                        |\n| Products                                | Create and manage products                                              |\n| ProductVariant Metafields               | Create and manage product meta flields                                  |\n| Redirects                               | Manage a store's URL redirects                                          |\n| Scripts                                 | Add client-side code to a store                                         |\n| Shipping                                | Create and manage a store's shipping methods and zones.                 |\n| Shipping Carriers                       | Create and manage shipping carriers                                     |\n| Shipping Methods                        | Create and manage shipping methods                                      |\n| Shipping Poviders Connection Options    | Specification for creating an external shipping carrier service         |\n| Shipping Provider Rate Request          | Specification for creating an external shipping carrier service         |\n| Shipping Zones                          | Create and manage shipping zones                                        |\n| Sites                                   | Manage sites and routing for headless storefronts                       |\n| Store Infomation                        | Get store metadata                                                      |\n| Storefront API Token                    | Create Auth Tokens for use with Storefront APIs                         |\n| Storefront Carts                        | Create and get carts on the front-end                                   |\n| Storefront Checkouts                    | Create and get checkouts on the front-end                               |\n| Storefront Customer Impersonation Token | Create a storefront API token for customer impersonation                |\n| Storefront Orders                       | Get order data on the front-end after order is palced                   |\n| Subscribers                             | Create and manage store newsletter subscribers                          |\n| Tax Class                               | Get a store's available tax classes                                     |\n| Themes                                  | Create and manage store theme's                                         |\n| Time Zone                               | Get store system timestamp                                              |\n| Variants                                | Get and update all variants                                             |\n| Webhooks                                | Manage store Webhooks                                                   |\n| Widgets                                 | Create and manage store widgets                                         |\n| Widgets Placements                      | Place, move, and remove store widgets                                   |\n| Widgets Regions                         | Get list of regions widgets can be placed for a specified template file |\n| Widgets Templates                       | Create and manage widget templates                                      |\n| Wishlist                                | Create and manage customer wishlists   "
+          }
+        ]
       }
     },
     "/stencil-docs": {
@@ -1458,6 +1677,15 @@
                   "data": {
                     "blocks": [],
                     "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/stencil-docs/developing-further/catalog-price-object.md"
+                  }
+                },
+                {
+                  "title": "Modifying Forms",
+                  "route": {
+                    "path": "/new-subpage"
+                  },
+                  "data": {
+                    "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/stencil-docs/developing-further/modifying-forms.md"
                   }
                 },
                 {
@@ -1739,7 +1967,7 @@
             "data": {
               "children": [
                 {
-                  "title": "Theme Objects",
+                  "title": "Object Schemas",
                   "route": {
                     "path": "/theme-objects"
                   },
@@ -2411,29 +2639,22 @@
         "$ref": "./stencil-licenses.html"
       }
     },
-    "/contributing": {
-      "title": "Contributing",
+    "/graphql-playground": {
+      "title": "GraphQL Playground",
       "data": {
-        "children": [
-          {
-            "title": "Style Guide",
-            "route": {
-              "path": "/style-guide"
-            },
-            "data": {
-              "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/_styleguide.md"
-            }
-          },
-          {
-            "title": "Components",
-            "route": {
-              "path": "/components"
-            },
-            "data": {
-              "$ref": "https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/_components.md"
-            }
-          }
-        ]
+        "$ref": "./graphql_playground.html"
+      }
+    },
+    "/graohql-product-list-example": {
+      "title": "GraphQL Product List Example",
+      "data": {
+        "$ref": "./Graph QL example.html"
+      }
+    },
+    "/graphql-explorer": {
+      "title": "GraphQL Explorer",
+      "data": {
+        "$ref": "./GraphQL Explorer.html"
       }
     }
   },
