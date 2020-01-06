@@ -606,7 +606,7 @@ pages:
                   Exposes `/payments` endpoint for processing order payments|
 
                   |Storefront|`{$$.env.store_domain}/api/storefront/`| Client
-                  API that Exposes storefront data to stencil themes|
+                  API that exposes storefront data to stencil themes|
 
                   |Storefront GraphQL|`{$$.env.store_domain}/graphql`| Client
                   API for fetching storefront data via GraphQL queries |
@@ -639,12 +639,11 @@ pages:
 
                   BigCommerce's **V2 REST API** exposes many endpoints
                   developers can use to programmatically interact with store
-                  resources (including webhooks). The **V2** API contains some
-                  endpoints for resources not yet exposed in the **V3** API;
-                  however, for resources that are accessible from both APIs, it
-                  is recommended to use the **V3** API, which contains
-                  performance optimizations and a number of [additional
-                  improvements](#v3-rest-api).
+                  resources (including webhooks). Some **V2 API** resources are
+                  not yet exposed in the **V3 API**; however, for resources that
+                  are accessible via both APIs, the **V3 API** is recommended,
+                  as it contains performance optimizations as well as a number
+                  of [other improvements](#v3-rest-api).
 
 
                   **Server**:
@@ -746,12 +745,15 @@ pages:
                   ## V3 REST API
 
 
-                  BigCommerce's **V3 REST API** exposes many endpoints
-                  developers can use to programmatically interact with store
-                  resources (including server-to-server carts and checkouts for
-                  using BigCommerce headlessly). Interactions with the **V3**
-                  API are very similar to that of the **V2** API; however, the
-                  **V3** API introduces a number of improvements: 
+                  Like the **V2 API**, BigCommerce's **V3 REST API** exposes
+                  many endpoints developers can use to programmatically interact
+                  with store resources (including [server-to-server
+                  carts]((https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api)
+                  and
+                  [checkouts](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api)
+                  for using BigCommerce headlessly). Interactions with the
+                  **V3** API are very similar to that of the **V2** API;
+                  however, the **V3** API introduces a number of improvements: 
 
                   * Most tasks can be performed with fewer API calls (for
                   example, a product with variants and custom fields can be
@@ -794,7 +796,7 @@ pages:
 
                   | 
                   [Carts](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api)
-                  | Create an manage store carts | `/carts` |
+                  | Create an manage store carts headlessly | `/carts` |
 
                   | 
                   [Categories](https://developer.bigcommerce.com/api-reference/store-management/catalog/category)
@@ -817,7 +819,7 @@ pages:
 
                   | 
                   [Checkouts](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api)
-                  | Create checkouts for a store | `/checkouts` |
+                  | Create checkouts headlessly | `/checkouts` |
 
                   |  [Customer
                   Addresses](https://developer.bigcommerce.com/api-reference/store-management/customers-v3/customer-addresses)
@@ -1015,7 +1017,7 @@ pages:
 
 
                   **Webhooks** allow app developers to be notified when specific
-                  events occur. Webhooks are managed via the **V2** API and are
+                  events occur. Webhooks are managed via the **V2 API** and are
                   listed separately here for visibility.
 
 
@@ -1257,6 +1259,54 @@ pages:
 
 
                   ## Add to Cart URLs
+
+
+                  Query string parameters can be appended to Bigcommerce product
+                  and `/cart.php` urls in order to pre-select an SKU or add a
+                  product to cart. These parameters make it possible to build
+                  custom add to cart links and forms for use on BigCommerce
+                  storefronts and remote sites (such as WordPress, blog posts,
+                  and social media).
+
+
+                  **Server**: `{$$.env.store_domain}`
+
+
+                  | **Type**| **Parameter** |
+                  **Description**                                     |
+                  **Example**                                                 |
+
+                  |--|-|--|-|
+
+                  | string  | `action=`     | `add` or  `buy`; `buy` goes
+                  directly to checkout    |
+                  `/cart.php?action=add&product_id=123`                       |
+
+                  | string  | `couponcode=` | coupon code to apply to the
+                  cart                    |
+                  `/cart.php?action=add&product_id=123&couponcode=10off100`   |
+
+                  | int     | `product_id=` | product id to add to the
+                  cart                       |
+                  `/cart.php?action=add&product_id=123`                       |
+
+                  | int     | `qty=`        | quantity to add to the
+                  cart                         |
+                  `/cart.php?action=add&product_id=123&qty=3`                 |
+
+                  | string  | `sku=`        | SKU to add to the cart (or select
+                  on product page)  |
+                  `/cart.php?action=add&sku=xlredtshirt`                      |
+
+                  | string  | `source=`     | source of the sale for analytics;
+                  can be any string |
+                  `/cart.php?action=buy&sku=xlredtshirt&source=emailcampaign` |
+
+
+
+                  **Additional Information:** [Add to Cart URLs
+                  Overivew](https://developer.bigcommerce.com/api-docs/cart-and-checkout/add-to-cart-url)
+                  |
         - title: Reference
           route:
             path: /store-management
