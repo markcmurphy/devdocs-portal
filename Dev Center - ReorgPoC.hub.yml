@@ -565,9 +565,9 @@ pages:
                   - [BigCommerce APIs at a
                   Glance](#bigcommerce-apis-at-a-glance)
 
-                  - [V3 API](#v3-api)
+                  - [V2 REST API](#v2-rest-api)
 
-                  - [V2 API](#v2-api)
+                  - [V3 REST API](#v3-rest-api)
 
                   - [Webhooks](#webhooks)
 
@@ -577,7 +577,7 @@ pages:
 
                   - [Storefront GraphQL API](#storefront-graphql-api)
 
-                  - [Customer SSO Login API](#customer-sso-login-api)
+                  - [Customer Login API](#customer-login-api)
 
                   - [Current Customer API](#current-customer-api)
 
@@ -592,24 +592,21 @@ pages:
 
                   |-|-|-|
 
-                  |v3|`api.bigcommerce.com/v3/`| JSON/REST API that exposes many
-                  resources, including carts and checkouts for headless
-                  implementations|
+                  |v2 REST|`api.bigcommerce.com/v2/`| Exposes many resources
+                  (including webhooks); some not yet accessibly via `v3` API |
 
-                  |v2|`api.bigcommerce.com/v2/`| JSON/REST API that exposes many
-                  resources, including webhooks |
+                  |v3 REST|`api.bigcommerce.com/v3/`| Exposes many resources
+                  (including carts and checkouts for headless implementations)|
 
                   |Webhooks|`api.bigcommerce.com/v2/hooks/`| Webhooks are
                   managed via the `v2` API and are listed separately here for
                   visibility |
 
                   |Payment Processing|`payments.bigcommerce.com/stores/`|
-                  JSON/REST API that exposes `/payments` endpoint for processing
-                  order payments|
+                  Exposes `/payments` endpoint for processing order payments|
 
                   |Storefront|`{$$.env.store_domain}/api/storefront/`| Client
-                  API that Exposes storefront data to stencil themes; consumed
-                  by the client|
+                  API that Exposes storefront data to stencil themes|
 
                   |Storefront GraphQL|`{$$.env.store_domain}/graphql`| Client
                   API for fetching storefront data via GraphQL queries |
@@ -622,13 +619,11 @@ pages:
                   |`{$$.env.store_domain}/customer/current.jwt`| Client API for
                   confirming a customer's identity in the browser|
 
-                  |Provider APIs|`{provider_server}`|Endpoints to be implemented
-                  by partners and consumed by BigCommerce (ex: custom shipping
-                  rates via `/rates`) |
+                  |Provider|`{provider_server}`|Implemented by partners and
+                  consumed by BigCommerce for custom integrations |
 
                   |Add to Cart URLs|`{$$.env.store_domain}`| Query string params
-                  that can be appended to product pages and `/cart.php` to
-                  pre-select SKUs and add to cart|
+                  that can be used to pre-select SKUs and add to cart|
 
 
                   **Additional Information:** [About our
@@ -637,31 +632,142 @@ pages:
                   [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication)
                   | [API Status
                   Codes](https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes)
-                   
-                  ## V3 API
 
 
-                  BigCommerce's `v3` JSON/REST API. This API exposes many
-                  resources, including carts and checkouts for headless
-                  implementations. Interactions with the `v3` API are very
-                  similar to that of the `v2` API; however, the `v3`API
-                  introduces a number of improvements: 
+                  ## V2 REST API
+
+
+                  BigCommerce's **V2 REST API** exposes many endpoints
+                  developers can use to programmatically interact with store
+                  resources (including webhooks). The **V2** API contains some
+                  endpoints for resources not yet exposed in the **V3** API;
+                  however, for resources that are accessible from both APIs, it
+                  is recommended to use the **V3** API, which contains
+                  performance optimizations and a number of [additional
+                  improvements](#v3-rest-api).
+
+
+                  **Server**:
+                  `api.bigcommerce.com/stores/{$$.env.store_hash}/v2`
+
+
+                  |  Resources | Description | Endpoint |
+
+                  | --- | --- | --- |
+
+                  | 
+                  [Banners](https://developer.bigcommerce.com/api-reference/store-management/marketing/banners)
+                  | Create / manage banners | `/banners` |
+
+                  |  [Blog
+                  Posts](https://developer.bigcommerce.com/api-reference/store-management/store-content/blog-posts)
+                  | Create / manage blog posts | `/blog/posts` |
+
+                  |  [Blog
+                  Tags](https://developer.bigcommerce.com/api-reference/store-management/store-content/blog-tags)
+                  | Create / manage blog tags | `/blog/tags` |
+
+                  | 
+                  [Coupons](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons)
+                  | Create / manage coupons | `/coupons` |
+
+                  | 
+                  [Currencies]https://developer.bigcommerce.com/api-reference/store-management/currency-api/currencies()
+                  | Create / manage currencies | `/currencies` |
+
+                  |  [Customer
+                  Addresses](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-addresses)
+                  | Create / manage customer addresses |
+                  `/customers/{customer_id}/addresses` |
+
+                  |  [Customer
+                  Groups](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-groups)
+                  | Create / manage customer groups | `/customer_groups` |
+
+                  | 
+                  [Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customers)
+                  | Create / manage customers | `/customers` |
+
+                  |  [Customers Validate
+                  Password](developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-passwords)
+                  | Validate customer passwords | `/customers/{id}/validate` |
+
+                  | 
+                  [Countries](https://developer.bigcommerce.com/api-reference/store-management/geography-api/countries)
+                  | List of states, provinces, and countries | `/countries` |
+
+                  |  [Gift
+                  Certificates](https://developer.bigcommerce.com/api-reference/store-management/marketing/gift-certificates)
+                  | Create / manage gift certificates | `/gift_certificates` |
+
+                  | 
+                  [Orders](https://developer.bigcommerce.com/api-reference/store-management/orders)
+                  | Create / manage orders | `/orders` |
+
+                  | 
+                  [Pages](https://developer.bigcommerce.com/api-reference/store-management/store-content/pages)
+                  | Create / manage content pages | `/pages` |
+
+                  |  [Payment
+                  Methods](https://developer.bigcommerce.com/api-reference/payments/payment-methods-api/payment-methods)
+                  | Create / manage enabled payment methods |
+                  `/payments/methods` |
+
+                  | 
+                  [Redirects](https://developer.bigcommerce.com/api-reference/store-management/store-content/redirects)
+                  | Create / manage URL redirects | `/redirects` |
+
+                  |  [Shipping
+                  Carriers](https://developer.bigcommerce.com/api-reference/store-management/shipping-api/shipping-carrier)
+                  | Create / manage shipping carriers |
+                  `/shipping/carrier/connection` |
+
+                  |  [Shipping
+                  Methods](https://developer.bigcommerce.com/api-reference/store-management/shipping-api/shipping-method)
+                  | Create / manage shipping methods | `/shipping` |
+
+                  |  [Shipping
+                  Zones](https://developer.bigcommerce.com/api-reference/store-management/shipping-api/shipping-zones)
+                  | Create / manage shipping Zones | `/shipping` |
+
+                  |  [Store
+                  Infomation](https://developer.bigcommerce.com/api-reference/store-management/store-information-api/store-information-reference)
+                  | Create / manage metadata | `/store` |
+
+                  |  [Tax
+                  Class](https://developer.bigcommerce.com/api-reference/store-management/tax-classes-api)
+                  | Get available tax classes | `/tax_classes` |
+
+                  |  [Time
+                  Zone](https://developer.bigcommerce.com/api-reference/store-management/store-information-api/time-zone)
+                  | Get system timestamp | `/time` |
+
+
+                  ## V3 REST API
+
+
+                  BigCommerce's **V3 REST API** exposes many endpoints
+                  developers can use to programmatically interact with store
+                  resources (including server-to-server carts and checkouts for
+                  using BigCommerce headlessly). Interactions with the **V3**
+                  API are very similar to that of the **V2** API; however, the
+                  **V3** API introduces a number of improvements: 
 
                   * Most tasks can be performed with fewer API calls (for
                   example, a product with variants and custom fields can be
                   created in a single request)
 
-                  * Each `v3` resource includes a `meta` object, simplifying
+                  * Each **V3** resource includes a `meta` object, simplifying
                   pagination
 
-                  * `v3` Brands, Categories, Products, and Product Variants
+                  * **V3** Brands, Categories, Products, and Product Variants
                   expose a
                   [metafields](https://developer.bigcommerce.com/api-reference/store-management/catalog/product-metafields/createproductmetafield)
                   resource for use by developers to store custom data.
 
-                  * `v3` API is optimized for performance (in general, data can
-                  be sent, received, and processed faster via `v3`, relative to
-                  `v2`). 
+                  * **V3** API is optimized for performance (in general, data
+                  can be sent, received, and processed faster via **V3**,
+                  relative to **V2**). 
 
 
                   **Server**:
@@ -905,116 +1011,12 @@ pages:
                   Codes](https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes)
 
 
-                  ## V2 API
-
-
-                  BigCommerce's `v2` JSON/REST management API; exposes many
-                  resources, including webhooks.
-
-
-                  **Server**:
-                  `api.bigcommerce.com/stores/{$$.env.store_hash}/v2`
-
-
-                  |  Resources | Description | Endpoint |
-
-                  | --- | --- | --- |
-
-                  | 
-                  [Banners](https://developer.bigcommerce.com/api-reference/store-management/marketing/banners)
-                  | Create / manage banners | `/banners` |
-
-                  |  [Blog
-                  Posts](https://developer.bigcommerce.com/api-reference/store-management/store-content/blog-posts)
-                  | Create / manage blog posts | `/blog/posts` |
-
-                  |  [Blog
-                  Tags](https://developer.bigcommerce.com/api-reference/store-management/store-content/blog-tags)
-                  | Create / manage blog tags | `/blog/tags` |
-
-                  | 
-                  [Coupons](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons)
-                  | Create / manage coupons | `/coupons` |
-
-                  | 
-                  [Currencies]https://developer.bigcommerce.com/api-reference/store-management/currency-api/currencies()
-                  | Create / manage currencies | `/currencies` |
-
-                  |  [Customer
-                  Addresses](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-addresses)
-                  | Create / manage customer addresses |
-                  `/customers/{customer_id}/addresses` |
-
-                  |  [Customer
-                  Groups](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-groups)
-                  | Create / manage customer groups | `/customer_groups` |
-
-                  | 
-                  [Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customers)
-                  | Create / manage customers | `/customers` |
-
-                  |  [Customers Validate
-                  Password](developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-passwords)
-                  | Validate customer passwords | `/customers/{id}/validate` |
-
-                  | 
-                  [Countries](https://developer.bigcommerce.com/api-reference/store-management/geography-api/countries)
-                  | List of states, provinces, and countries | `/countries` |
-
-                  |  [Gift
-                  Certificates](https://developer.bigcommerce.com/api-reference/store-management/marketing/gift-certificates)
-                  | Create / manage gift certificates | `/gift_certificates` |
-
-                  | 
-                  [Orders](https://developer.bigcommerce.com/api-reference/store-management/orders)
-                  | Create / manage orders | `/orders` |
-
-                  | 
-                  [Pages](https://developer.bigcommerce.com/api-reference/store-management/store-content/pages)
-                  | Create / manage content pages | `/pages` |
-
-                  |  [Payment
-                  Methods](https://developer.bigcommerce.com/api-reference/payments/payment-methods-api/payment-methods)
-                  | Create / manage enabled payment methods |
-                  `/payments/methods` |
-
-                  | 
-                  [Redirects](https://developer.bigcommerce.com/api-reference/store-management/store-content/redirects)
-                  | Create / manage URL redirects | `/redirects` |
-
-                  |  [Shipping
-                  Carriers](https://developer.bigcommerce.com/api-reference/store-management/shipping-api/shipping-carrier)
-                  | Create / manage shipping carriers |
-                  `/shipping/carrier/connection` |
-
-                  |  [Shipping
-                  Methods](https://developer.bigcommerce.com/api-reference/store-management/shipping-api/shipping-method)
-                  | Create / manage shipping methods | `/shipping` |
-
-                  |  [Shipping
-                  Zones](https://developer.bigcommerce.com/api-reference/store-management/shipping-api/shipping-zones)
-                  | Create / manage shipping Zones | `/shipping` |
-
-                  |  [Store
-                  Infomation](https://developer.bigcommerce.com/api-reference/store-management/store-information-api/store-information-reference)
-                  | Create / manage metadata | `/store` |
-
-                  |  [Tax
-                  Class](https://developer.bigcommerce.com/api-reference/store-management/tax-classes-api)
-                  | Get available tax classes | `/tax_classes` |
-
-                  |  [Time
-                  Zone](https://developer.bigcommerce.com/api-reference/store-management/store-information-api/time-zone)
-                  | Get system timestamp | `/time` |
-
-
                   ## Webhooks
 
 
-                  Webhooks allow app developers to be notified, in near
-                  real-time, when specific events occur on a BigCommerce store.
-                  Webhooks are managed via the `v2` API and are listed
-                  separately here for visibility.
+                  **Webhooks** allow app developers to be notified when specific
+                  events occur. Webhooks are managed via the **V2** API and are
+                  listed separately here for visibility.
 
 
                   **Server**:
@@ -1037,6 +1039,11 @@ pages:
                   ## Payment Processing API
 
 
+                  Using the Payment Processing API, developers can
+                  programmatically process payments through a BigCommerce
+                  store's payment gateway.
+
+
                   **Server**:
                   `payments.bigcommerce.com/stores/{$$.env.store_hash}`
 
@@ -1054,13 +1061,13 @@ pages:
 
 
                   In addition to the payment processing API's `/payments`
-                  endpoint, there are two `v3` API endpoints related to payment
-                  processing. The first (`/v3/payments/access_tokens`) is
-                  required to retrieve a payment access token for authenticating
-                  payment processing requests against `api.bigcommerce.com`.
+                  endpoint, there are two **v3** API endpoints related to
+                  payment processing. The first (`/v3/payments/access_tokens`)
+                  is required to retrieve a payment access token for
+                  authenticating requests against `payments.bigcommerce.com`.
                   Requests to the second endpoint (`/v3/payments/methods`) are
-                  optional, and are used to retrieve an order's accepted payment
-                  methods, when necessary.
+                  optional, and can be used to retrieve an order's accepted
+                  payment methods, when necessary.
 
 
                   | Request                                   |
@@ -1087,6 +1094,12 @@ pages:
 
 
                   ## Storefront API
+
+
+                  BigCommerce's **Storefront API** is a client API that exposes
+                  storefront data to stencil themes. The Storefront API can be
+                  used to manage a shopper's cart and checkout and fetch order
+                  data via client-side JavaScript.
 
 
                   **Server**: `{$$.env.store_domain}/api/storefront`
@@ -1125,6 +1138,17 @@ pages:
                   ## Storefront GraphQL API
 
 
+                  BigCommerce’s **GraphQL Storefront API** makes it possible to
+                  query storefront data from within a Stencil theme or remote
+                  site. This means information previously only available on the
+                  back-end via Stencil’s template logic can now be accessed via
+                  front-end javascript. Additionally, by leveraging the power of
+                  GraphQL, data for multiple resources can be returned from a
+                  single API call, which simplifies integration and increases
+                  performance so that developers can focus on building
+                  delightful shopper experiences.
+
+
                   **Server**: `{$$.env.store_domain}/graphql`
 
 
@@ -1132,16 +1156,20 @@ pages:
 
                   |-------------------------|
 
-                  | [GraphQL PlayGround]()  |
+                  | [GraphQL
+                  PlayGround](https://developer.bigcommerce.com/graphql-playground) 
+                  |
 
-                  | [GraphQL Explorer]()    |
+                  | [GraphQL
+                  Explorer](https://developer.bigcommerce.com/graphql-explorer)   
+                  |
 
 
                   **Additional Information:** [GraphQL Storefront API
                   Overview](https://developer.bigcommerce.com/api-docs/storefront/graphql/graphql-storefront-api-overview)
 
 
-                  ## Customer SSO Login API
+                  ## Customer Login API
 
 
                   The **Customer Login API** enables single sign-on (SSO). It
@@ -1206,7 +1234,8 @@ pages:
 
                   Provider API references describe endpoints, responses, and
                   requests that can be implemented by partners and consumed by
-                  BigCommerce (ex: custom shipping rates via `/rates`).
+                  BigCommerce for the purpose of creating custom integrations
+                  (ex: custom shipping carrier rates via `/rates`).
 
 
                   **Server**: `{providers_server}`
