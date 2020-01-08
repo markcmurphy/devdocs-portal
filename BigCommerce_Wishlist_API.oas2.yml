@@ -1109,19 +1109,17 @@ paths:
         - in: body
           name: body
           schema:
-            title: Add Item to Wishlist
             type: object
             properties:
-              product_id:
-                description: The ID of the product.
-                type: integer
-                format: int32
-                example: 12
-              variant_id:
-                description: The variant ID of the product.
-                type: integer
-                format: int32
-                example: 152
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    product_id:
+                      type: integer
+                    variant_id:
+                      type: integer
           x-examples:
             application/json:
               items:
