@@ -19,6 +19,16 @@ Through the use of BigCommerce's Powered-By API, partners can programmaticly:
 * Build a fully customizable onboarding flow that meets the needs of their own platform experience
 * Auto install BigCommerce apps when a store is created via API
 
+
+## Requesting Access to Powered-By
+
+Name
+Company
+Email address
+Phone
+Notes (so they can provide any additional details about their request.
+
+## Accessing Detailed Powered-By Documentation
 Within this document, you will find an overview of the solution and troubleshooting information to assist as you integrate to each endpoint. For a complete endpoint reference, see the [Powered-By API Reference](/reference)
 
 Detailed Documentation: https://bigcommerce-poweredby.docs.stoplight.io
