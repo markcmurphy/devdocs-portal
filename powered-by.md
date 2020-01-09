@@ -4,6 +4,8 @@
 ### On this Page
 </div>
 
+
+## About Powered-By
 **BigCommerce Powered-By** is an API-focused product that enables partners to seamlessly provide the BigCommerce solution to their merchants alongside their own product offering. 
 
 Through the use of BigCommerce's Powered-By API, partners can programmaticly:
