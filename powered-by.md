@@ -14,5 +14,6 @@ Through the use of BigCommerce's Powered-By API, partners can programmaticly:
 * Auto install BigCommerce apps when a store is created via API
 
 ## Next Steps
-- [Requesting Access to Powered-By](/powered-by/how-it-works)
+- [See How it Works](/powered-by/how-it-works)
+- [Requesting Access to Powered-By](/powered-by/requesting-access)
 - [Powered-By Documentation](/powered-by/documentation)
