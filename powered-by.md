@@ -25,7 +25,7 @@ Through the use of BigCommerce's Powered-By API, partners can programmaticly:
 
 ## Requesting Access
 
-To submit a request to access BigCommerce's Powered-By program, email the following information to <a href="mailto:partnerships%40bigcommerce.com?body=Name%3A%0D%0ACompany%3A%0D%0AEmail%3A%0D%0APhone%3A%0D%0ANotes&subject=Powered-By%20Request%20Submission">partnerships&#x40;&#xA;bigcommerce.com</a>:
+To join BigCommerce's **Powered-By** program and gain access to the **Powered-By API** and **Documentation**, submit an access request by emailing the following information to <a href="mailto:partnerships%40bigcommerce.com?body=Name%3A%0D%0ACompany%3A%0D%0AEmail%3A%0D%0APhone%3A%0D%0ANotes&subject=Powered-By%20Request%20Submission">partnerships&#x40;&#xA;bigcommerce.com</a>:
 
 > Name:
 > 
@@ -40,7 +40,7 @@ To submit a request to access BigCommerce's Powered-By program, email the follow
 
 ## Documentation
 
-To access our **Powered-By API Documentation**, first request access to the **Powered-By** program. 
+To access our **Powered-By API Documentation**, you'll fgirst need to [request access](#requesting-access).
 
-Once the request is reviewed and approved, you will receive a **login** and **password** to access **Powered-By API** Documentation located at: [bigcommerce-poweredby.docs.stoplight.io](https://bigcommerce-poweredby.docs.stoplight.io)
+Once the request is reviewed and approved, you will receive a **login** and **password** to access **Powered-By API** documentation located at: [bigcommerce-poweredby.docs.stoplight.io](https://bigcommerce-poweredby.docs.stoplight.io)
 
