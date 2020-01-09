@@ -25,19 +25,6 @@ Through the use of BigCommerce's Powered-By API, partners can programmaticly:
 ## Store Creation Flow
 
 
-## Requesting Access to Powered-By
-
-To submit a request to access BigCommerce's Powered-By program, email the following information to <a href="mailto:partnerships%40bigcommerce.com?body=Name%3A%0D%0ACompany%3A%0D%0AEmail%3A%0D%0APhone%3A%0D%0ANotes&subject=Powered-By%20Request%20Submission">partnerships&#x40;&#xA;bigcommerce.com</a>:
-
-```
-Name:
-Company:
-Email:
-Phone:
-Notes:
-```
-
-
 ## Accessing Detailed Powered-By Documentation
 
 
