@@ -16,4 +16,4 @@ Through the use of BigCommerce's Powered-By API, partners can programmaticly:
 ## Next Steps
 - [See How it Works](/powered-by/how-it-works)
 - [Request Access](/powered-by/requesting-access)
-- [Powered-By Documentation](/powered-by/documentation)
+- [Access Powered-By Docs](/powered-by/documentation)
