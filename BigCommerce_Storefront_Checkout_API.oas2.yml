@@ -7322,7 +7322,7 @@ paths:
               customerMessage: ''
   '/checkouts/{checkoutId}/consignments/{consignmentId}':
     put:
-      description: "Updates an existing consignment. Shipping address, line item IDs or the shipping option ID can be updated using this endpoint.\n\nThere are two steps to add a new shipping address and shipping options with line items. \n1. Add a [new Consignment](/api-reference/cart-checkout/storefront-checkout-api/checkout/checkoutsconsignmentsbycheckoutidpost) to Checkout.\n3. [Update the Consignment](/api-reference/cart-checkout/storefront-checkout-api/checkout/checkoutsconsignmentsbycheckoutidandconsignmentidput) with Shipping Options.\n\t4. Update each *Consignment* `shippingOptionId` (shipping address and line items) with the `availableShippingOption > id` from Step One. \n\n\n**Required Fields**\n* shippingOptionId\n\nTo learn more about creating a Checkout Consignment see [Working with the Fetch API](/api-docs/cart-and-checkout/working-sf-apis)."
+      description: "Updates an existing consignment. Shipping address, line item IDs or the shipping option ID can be updated using this endpoint.\n\nThere are two steps to add a new shipping address and shipping options with line items. \n1. Add a [new Consignment](/api-reference/cart-checkout/storefront-checkout-api/checkout/checkoutsconsignmentsbycheckoutidpost) to Checkout.\n3. [Update the Consignment](/api-reference/cart-checkout/storefront-checkout-api/checkout/checkoutsconsignmentsbycheckoutidandconsignmentidput) with Shipping Options.\n\t4. Update each *Consignment* `shippingOptionId` (shipping address and line items) with the `availableShippingOption > id` from Step One. \n\n**Required Fields**\n* shippingOptionId\n\nTo learn more about creating a Checkout Consignment see [Working with the Fetch API](/api-docs/cart-and-checkout/working-sf-apis).\n\n**Notes**\n* You cannot pass both a `shippingAddress` and `shippingOptionId` because the shipping option may not be able to be applied to the given address "
       tags:
         - Checkout Consignments
       operationId: CheckoutsConsignmentsByCheckoutIdAndConsignmentIdPut
@@ -7536,6 +7536,8 @@ paths:
                     items:
                       title: Applied Coupon
                       type: object
+                      required:
+                        - code
                       properties:
                         id:
                           description: The coupon ID.
@@ -7557,8 +7559,6 @@ paths:
                             context.
                           type: number
                           format: double
-                      required:
-                        - code
                   discounts:
                     description: ''
                     type: array
@@ -7581,6 +7581,9 @@ paths:
                     items:
                       title: Line Item
                       type: object
+                      required:
+                        - physicalItems
+                        - digitalItems
                       properties:
                         physicalItems:
                           description: ''
@@ -7588,6 +7591,8 @@ paths:
                           items:
                             title: Item Physical
                             type: object
+                            required:
+                              - quantity
                             properties:
                               id:
                                 description: The line-item ID.
@@ -7705,14 +7710,14 @@ paths:
                                     description: ''
                                     type: number
                                     format: double
-                            required:
-                              - quantity
                         digitalItems:
                           description: ''
                           type: array
                           items:
                             title: Item Digital
                             type: object
+                            required:
+                              - quantity
                             properties:
                               id:
                                 description: The line-item ID.
@@ -7822,14 +7827,17 @@ paths:
                                   Combined download size, in human-readable
                                   style. E.g.: `30MB`.
                                 type: string
-                            required:
-                              - quantity
                         giftCertificate:
                           type: array
                           description: ''
                           items:
                             title: Item Gift Certificate
                             type: object
+                            required:
+                              - theme
+                              - amount
+                              - sender
+                              - recipient
                             properties:
                               id:
                                 description: Gift certificate identifier
@@ -7880,11 +7888,6 @@ paths:
                                   Explicitly specifying the gift certificate
                                   type
                                 type: string
-                            required:
-                              - theme
-                              - amount
-                              - sender
-                              - recipient
                         customItems:
                           type: array
                           items:
@@ -7914,9 +7917,6 @@ paths:
                                 description: >-
                                   Price of the item. With or without tax
                                   depending on your stores set up.
-                      required:
-                        - physicalItems
-                        - digitalItems
                   createdTime:
                     description: Time when the cart was created.
                     type: string
@@ -7925,72 +7925,67 @@ paths:
                     type: string
               billingAddress:
                 title: Address Response
-                allOf:
-                  - title: Address Properties
-                    type: object
-                    properties:
-                      firstName:
-                        description: ''
-                        type: string
-                      lastName:
-                        description: ''
-                        type: string
-                      email:
-                        description: ''
-                        type: string
-                      company:
-                        description: ''
-                        type: string
-                      address1:
-                        description: ''
-                        type: string
-                      address2:
-                        description: ''
-                        type: string
-                      city:
-                        description: ''
-                        type: string
-                      stateOrProvince:
-                        description: Represents state or province.
-                        type: string
-                      stateOrProvinceCode:
-                        description: ''
-                        type: string
-                      countryCode:
-                        description: >-
-                          ISO 3166-1 alpha-2 country code. (See:
-                          https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
-                        type: string
-                      postalCode:
-                        description: ''
-                        type: string
-                      phone:
-                        description: ''
-                        type: string
-                        pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
-                      customFields:
-                        description: ''
-                        type: array
-                        items:
-                          title: CustomField
-                          type: object
-                          properties:
-                            fieldId:
-                              description: ''
-                              type: string
-                            fieldValue:
-                              description: >-
-                                This can also be an array for fields that need
-                                to support list of values (e.g., a set of check
-                                boxes.)
-                              type: string
-                    required:
-                      - countryCode
-                  - type: object
-                    properties:
-                      id:
-                        description: ''
-                        type: string
+                type: object
+                required:
+                  - countryCode
+                properties:
+                  firstName:
+                    description: ''
+                    type: string
+                  lastName:
+                    description: ''
+                    type: string
+                  email:
+                    description: ''
+                    type: string
+                  company:
+                    description: ''
+                    type: string
+                  address1:
+                    description: ''
+                    type: string
+                  address2:
+                    description: ''
+                    type: string
+                  city:
+                    description: ''
+                    type: string
+                  stateOrProvince:
+                    description: Represents state or province.
+                    type: string
+                  stateOrProvinceCode:
+                    description: ''
+                    type: string
+                  countryCode:
+                    description: >-
+                      ISO 3166-1 alpha-2 country code. (See:
+                      https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+                    type: string
+                  postalCode:
+                    description: ''
+                    type: string
+                  phone:
+                    description: ''
+                    type: string
+                    pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
+                  customFields:
+                    description: ''
+                    type: array
+                    items:
+                      title: CustomField
+                      type: object
+                      properties:
+                        fieldId:
+                          description: ''
+                          type: string
+                        fieldValue:
+                          description: >-
+                            This can also be an array for fields that need to
+                            support list of values (e.g., a set of check boxes.)
+                          type: string
+                  id:
+                    description: ''
+                    type: string
               consignments:
                 description: ''
                 type: array
@@ -8007,72 +8002,68 @@ paths:
                       type: string
                     shippingAddress:
                       title: Address Response
-                      allOf:
-                        - title: Address Properties
-                          type: object
-                          properties:
-                            firstName:
-                              description: ''
-                              type: string
-                            lastName:
-                              description: ''
-                              type: string
-                            email:
-                              description: ''
-                              type: string
-                            company:
-                              description: ''
-                              type: string
-                            address1:
-                              description: ''
-                              type: string
-                            address2:
-                              description: ''
-                              type: string
-                            city:
-                              description: ''
-                              type: string
-                            stateOrProvince:
-                              description: Represents state or province.
-                              type: string
-                            stateOrProvinceCode:
-                              description: ''
-                              type: string
-                            countryCode:
-                              description: >-
-                                ISO 3166-1 alpha-2 country code. (See:
-                                https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
-                              type: string
-                            postalCode:
-                              description: ''
-                              type: string
-                            phone:
-                              description: ''
-                              type: string
-                              pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
-                            customFields:
-                              description: ''
-                              type: array
-                              items:
-                                title: CustomField
-                                type: object
-                                properties:
-                                  fieldId:
-                                    description: ''
-                                    type: string
-                                  fieldValue:
-                                    description: >-
-                                      This can also be an array for fields that
-                                      need to support list of values (e.g., a
-                                      set of check boxes.)
-                                    type: string
-                          required:
-                            - countryCode
-                        - type: object
-                          properties:
-                            id:
-                              description: ''
-                              type: string
+                      type: object
+                      required:
+                        - countryCode
+                      properties:
+                        firstName:
+                          description: ''
+                          type: string
+                        lastName:
+                          description: ''
+                          type: string
+                        email:
+                          description: ''
+                          type: string
+                        company:
+                          description: ''
+                          type: string
+                        address1:
+                          description: ''
+                          type: string
+                        address2:
+                          description: ''
+                          type: string
+                        city:
+                          description: ''
+                          type: string
+                        stateOrProvince:
+                          description: Represents state or province.
+                          type: string
+                        stateOrProvinceCode:
+                          description: ''
+                          type: string
+                        countryCode:
+                          description: >-
+                            ISO 3166-1 alpha-2 country code. (See:
+                            https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+                          type: string
+                        postalCode:
+                          description: ''
+                          type: string
+                        phone:
+                          description: ''
+                          type: string
+                          pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
+                        customFields:
+                          description: ''
+                          type: array
+                          items:
+                            title: CustomField
+                            type: object
+                            properties:
+                              fieldId:
+                                description: ''
+                                type: string
+                              fieldValue:
+                                description: >-
+                                  This can also be an array for fields that need
+                                  to support list of values (e.g., a set of
+                                  check boxes.)
+                                type: string
+                        id:
+                          description: ''
+                          type: string
                     availableShippingOptions:
                       description: >-
                         This is available only when
@@ -8081,38 +8072,34 @@ paths:
                       type: array
                       items:
                         title: Shipping Option Entity
-                        allOf:
-                          - title: Selected Shipping Option
-                            type: object
-                            properties:
-                              description:
-                                description: Read-only
-                                type: string
-                              id:
-                                description: ''
-                                type: string
-                              type:
-                                description: >-
-                                  Specified the type of shipping option. Flat
-                                  rate, UPS, etc.,
-                                type: string
-                              imageUrl:
-                                description: ''
-                                type: string
-                              cost:
-                                description: ''
-                                type: number
-                                format: double
-                              transitTime:
-                                description: An estimate of the arrival time.
-                                type: string
-                          - type: object
-                            properties:
-                              isRecommended:
-                                description: >-
-                                  Is this shipping method the recommended
-                                  shipping option or not.
-                                type: boolean
+                        type: object
+                        properties:
+                          description:
+                            description: Read-only
+                            type: string
+                          id:
+                            description: ''
+                            type: string
+                          type:
+                            description: >-
+                              Specified the type of shipping option. Flat rate,
+                              UPS, etc.,
+                            type: string
+                          imageUrl:
+                            description: ''
+                            type: string
+                          cost:
+                            description: ''
+                            type: number
+                            format: double
+                          transitTime:
+                            description: An estimate of the arrival time.
+                            type: string
+                          isRecommended:
+                            description: >-
+                              Is this shipping method the recommended shipping
+                              option or not.
+                            type: boolean
                     selectedShippingOption:
                       title: Selected Shipping Option
                       type: object
@@ -8183,6 +8170,8 @@ paths:
                 items:
                   title: Applied Coupon
                   type: object
+                  required:
+                    - code
                   properties:
                     id:
                       description: The coupon ID.
@@ -8202,8 +8191,6 @@ paths:
                       description: The discounted amount applied within a given context.
                       type: number
                       format: double
-                  required:
-                    - code
               orderId:
                 description: ''
                 type: string
