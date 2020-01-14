@@ -33865,25 +33865,27 @@ definitions:
       additionalProperties:
         type: string
   product_Full:
-    type: object
     description: Common Product properties.
     title: product_Full
-    properties:
-      date_created:
-        type: string
-        format: date-time
-        description: |
-          The date on which the product was created.
-        example: '2018-08-15T14:49:05+00:00'
-      date_modified:
-        type: string
-        format: date-time
-        description: |
-          The date on which the product was modified.
-        example: '2018-08-24T14:41:00+00:00'
-      id:
-        type: integer
-        description: ID of the product. Read Only
+    allOf:
+      - type: object
+        properties:
+          date_created:
+            type: string
+            format: date-time
+            description: |
+              The date on which the product was created.
+            example: '2018-08-15T14:49:05+00:00'
+          date_modified:
+            type: string
+            format: date-time
+            description: |
+              The date on which the product was modified.
+            example: '2018-08-24T14:41:00+00:00'
+          id:
+            type: integer
+            description: ID of the product. Read Only
+      - $ref: '#/definitions/product_Base'
   productImage_Full:
     title: productImage_Full
     description: Common ProductImage properties.
