@@ -38236,13 +38236,13 @@ responses:
     schema:
       description: Modifier Collection Response return for /GET All Modifiers.
       type: object
+      title: Modifier Collection Response
       properties:
         data:
           type: array
           items:
             allOf:
-              - type: object
-                description: Common Modifier properties.
+              - description: Common Modifier properties.
                 title: Modifier Base
                 properties:
                   type:
@@ -38458,11 +38458,9 @@ responses:
                   option_values:
                     type: array
                     items:
-                      type: object
                       allOf:
                         - allOf:
-                            - type: object
-                              description: Common Option Value properties.
+                            - description: Common Option Value properties.
                               title: Option Value Base
                               properties:
                                 is_default:
@@ -38516,6 +38514,7 @@ responses:
                                     price:
                                       type: object
                                       title: Adjuster
+                                      description: Adjuster for Complex Rules.
                                       properties:
                                         adjuster:
                                           type: string
@@ -38536,10 +38535,10 @@ responses:
                                             weight of the variant, when the modifier
                                             value is selected on the storefront.
                                           example: 5
-                                      description: Adjuster for Complex Rules.
                                     weight:
                                       type: object
                                       title: Adjuster
+                                      description: Adjuster for Complex Rules.
                                       properties:
                                         adjuster:
                                           type: string
@@ -38560,7 +38559,6 @@ responses:
                                             weight of the variant, when the modifier
                                             value is selected on the storefront.
                                           example: 5
-                                      description: Adjuster for Complex Rules.
                                     image_url:
                                       type: string
                                       description: >
@@ -38587,9 +38585,7 @@ responses:
                                             when the purchasing disabled status is
                                             `true`.
                           title: Modifier Value Base
-                          type: object
-                        - type: object
-                          properties:
+                        - properties:
                             id:
                               type: integer
                               description: >
@@ -38597,6 +38593,7 @@ responses:
                                 sequentially.
                       title: Modifier Value
                       description: 'Part of Modifier Value Response '
+                      type: object
                 required:
                   - type
                   - required
@@ -38628,63 +38625,7 @@ responses:
             description: Product Modifier
             type: object
         meta:
-          type: object
-          description: 'Data about the response, including pagination and collection totals.'
-          properties:
-            pagination:
-              type: object
-              description: >-
-                Data about the response, including pagination and collection
-                totals.
-              title: Pagination
-              properties:
-                total:
-                  type: integer
-                  description: |
-                    Total number of items in the result set.
-                  example: 36
-                count:
-                  type: integer
-                  description: |
-                    Total number of items in the collection response.
-                  example: 36
-                per_page:
-                  type: integer
-                  description: >
-                    The amount of items returned in the collection per page,
-                    controlled by the limit parameter.
-                  example: 50
-                current_page:
-                  type: integer
-                  description: |
-                    The page you are currently on within the collection.
-                  example: 1
-                total_pages:
-                  type: integer
-                  description: |
-                    The total number of pages in the collection.
-                  example: 1
-                links:
-                  type: object
-                  description: >
-                    Pagination links for the previous and next parts of the
-                    whole collection.
-                  properties:
-                    previous:
-                      type: string
-                      description: |
-                        Link to the previous page returned in the response.
-                    current:
-                      type: string
-                      description: |
-                        Link to the current page returned in the response.
-                      example: '?page=1&limit=50'
-                    next:
-                      type: string
-                      description: |
-                        Link to the next page returned in the response.
-          title: Collection Meta
-      title: Modifier Collection Response
+          $ref: '#/definitions/_metaCollection_Full'
     examples:
       application/json:
         data:
