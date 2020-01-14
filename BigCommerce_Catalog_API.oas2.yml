@@ -41197,14 +41197,14 @@ responses:
       description: |
         Response payload for the BigCommerce API.
       type: object
+      title: Product Video Response
       properties:
         data:
-          type: object
           description: |
             A product video model.
           allOf:
-            - type: object
-              description: Common ProductVideo properties.
+            - description: Common ProductVideo properties.
+              title: Product Video Base
               properties:
                 title:
                   type: string
@@ -41235,9 +41235,7 @@ responses:
                     The video type (a short name of a host site).
                   enum:
                     - youtube
-              title: Product Video Base
-            - type: object
-              properties:
+            - properties:
                 id:
                   type: integer
                   description: >
@@ -41258,11 +41256,9 @@ responses:
                     data on a host site.
                   type: string
           title: Product Video
-        meta:
           type: object
-          description: Empty meta object; may be used later.
-          title: Meta
-      title: Product Video Response
+        meta:
+          $ref: '#/definitions/_metaCollection_Full'
     examples:
       application/json:
         title: Your Video
