@@ -241,55 +241,7 @@ definitions:
         example: orders@emai
         type: string
       timezone:
-        title: Time Zone
-        type: object
-        properties:
-          name:
-            description: >-
-              a string identifying the time zone, in the format:
-              <Continent-name>/<City-name>.
-            example: America/Chicago
-            type: string
-          raw_offset:
-            description: >-
-              a negative or positive number, identifying the offset from
-              UTC/GMT, in seconds, during winter/standard time.
-            example: -21600
-            type: integer
-          dst_offset:
-            description: >-
-              "-/+" offset from UTC/GMT, in seconds, during summer/daylight
-              saving time.
-            example: -18000
-            type: integer
-          dst_correction:
-            description: >-
-              a boolean indicating whether this time zone observes daylight
-              saving time.
-            example: true
-            type: boolean
-          date_format:
-            title: Date Format
-            type: object
-            properties:
-              display:
-                description: >-
-                  string that defines dates’ display format, in the pattern: M
-                  jS Y
-                example: M jS Y
-                type: string
-              export:
-                description: >-
-                  string that defines the CSV export format for orders,
-                  customers, and products, in the pattern: M jS Y
-                example: M jS Y
-                type: string
-              extended_display:
-                description: >-
-                  string that defines dates’ extended-display format, in the
-                  pattern: M jS Y @ g:i A.
-                example: 'M jS Y @ g:i A'
-                type: string
+        $ref: '#/definitions/Timezone'
       language:
         description: Default language code.
         example: en
