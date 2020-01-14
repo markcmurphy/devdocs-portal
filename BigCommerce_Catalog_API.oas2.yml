@@ -41058,16 +41058,16 @@ responses:
     description: ''
     schema:
       type: object
+      title: Product Video Collection Response
       properties:
         data:
           type: array
           items:
-            type: object
             description: |
               A product video model.
             allOf:
-              - type: object
-                description: Common ProductVideo properties.
+              - description: Common ProductVideo properties.
+                title: Product Video Base
                 properties:
                   title:
                     type: string
@@ -41098,9 +41098,7 @@ responses:
                       The video type (a short name of a host site).
                     enum:
                       - youtube
-                title: Product Video Base
-              - type: object
-                properties:
+              - properties:
                   id:
                     type: integer
                     description: >
@@ -41121,64 +41119,10 @@ responses:
                       data on a host site.
                     type: string
             title: Product Video
+            type: object
         meta:
-          type: object
           description: 'Data about the response, including pagination and collection totals.'
-          properties:
-            pagination:
-              type: object
-              description: >-
-                Data about the response, including pagination and collection
-                totals.
-              title: Pagination
-              properties:
-                total:
-                  type: integer
-                  description: |
-                    Total number of items in the result set.
-                  example: 36
-                count:
-                  type: integer
-                  description: |
-                    Total number of items in the collection response.
-                  example: 36
-                per_page:
-                  type: integer
-                  description: >
-                    The amount of items returned in the collection per page,
-                    controlled by the limit parameter.
-                  example: 50
-                current_page:
-                  type: integer
-                  description: |
-                    The page you are currently on within the collection.
-                  example: 1
-                total_pages:
-                  type: integer
-                  description: |
-                    The total number of pages in the collection.
-                  example: 1
-                links:
-                  type: object
-                  description: >
-                    Pagination links for the previous and next parts of the
-                    whole collection.
-                  properties:
-                    previous:
-                      type: string
-                      description: |
-                        Link to the previous page returned in the response.
-                    current:
-                      type: string
-                      description: |
-                        Link to the current page returned in the response.
-                      example: '?page=1&limit=50'
-                    next:
-                      type: string
-                      description: |
-                        Link to the next page returned in the response.
           title: Collection Meta
-      title: Product Video Collection Response
     examples:
       application/json:
         data:
