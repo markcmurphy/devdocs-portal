@@ -1,5 +1,21 @@
 <script>
-    document.head.appendChild(heroAnimationScript());
+     var heroAnimationScript = function () {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://storage.googleapis.com/bigcommerce-production-dev-center/scripts/lottie.js';
+        script.onload = function loadAnimation(theObject) {
+           var container = document.getElementById('animateBg');
+           lottie.loadAnimation({
+               container: container, // the dom element that will contain the animation
+               renderer: 'svg',
+               loop: true,
+               autoplay: true,
+               path: 'https://storage.googleapis.com/bigcommerce-production-dev-center/scripts/data.json' // the path to the animation json
+           });
+        };
+        return script;
+    };
+	document.head.appendChild(heroAnimationScript());
 </script>
 
 <div style="display:block;" class="cBrCommunityTheme">
