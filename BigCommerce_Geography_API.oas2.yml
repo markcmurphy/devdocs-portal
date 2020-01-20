@@ -935,6 +935,19 @@ paths:
       summary: Get all States
       tags:
         - States
+  '/countries/{country_id}/states/count':
+    get:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+    parameters:
+      - name: country_id
+        in: path
+        type: string
+        required: true
 definitions:
   country_Full:
     title: country_Full
@@ -1117,6 +1130,10 @@ securityDefinitions:
 
       * For more information on Authenticating BigCommerce APIs, see:
       [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+  new-auth:
+    type: apiKey
+    name: api_key
+    in: header
 security:
   - X-Auth-Token: []
   - X-Auth-Client: []
