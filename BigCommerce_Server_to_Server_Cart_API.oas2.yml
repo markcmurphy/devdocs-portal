@@ -30,46 +30,44 @@ paths:
   /carts:
     post:
       description: >-
-        Creates a *Cart*. 
+        Creates a **Cart**. 
 
 
         **Required Fields**
 
-        * line_items object
+        |Field|Details|
 
-        * custom_items object -- If adding a item that does not already exist in
-        the store
+        |-|-|
 
-        * gift_certificates object -- Only if adding a gift certificate to for
-        shopper purchase
+        |`line_items`|| 
 
+        |`custom_items`||
 
-        **Notes**
-
-
-        *Cart* ID is generated in the response.
+        |`gift_certificates`|Only required if adding gift certificate to cart|
 
 
-        To create a redirect_url upon *Cart* creation use the query param:
-        `include=redirect_urls`
+        **Usage Notes**
 
 
-        A cart can be created using an existing catalog item, or by adding a
+        * A **cart** `id` (UUID) is returned in the response.
+
+        * To get cart `redirect_urls` in the response, append the following
+        query parameter to the reuest URL: `include=redirect_urls`
+
+        * Redirect URLs can only be generated from carts created using the
+        **Server-to-Server Carts API**. 
+
+        * To restore a cart that was created by a shopper or via Storefront Cart
+        API, first recreate the cart using the Server to Server Cart API.
+
+        * A cart can be created using an existing catalog item, or by adding a
         custom item using [Item
         Custom](/api-reference/cart-checkout/server-server-cart-api/models/itemcustom).
 
+        * **cart** `id` is the same as the **checkout** `id`.
 
-        Cart ID is the same as the checkout ID.
-
-
-        Carts are valid for 30 days from the last modification. This can include
-        creating the cart or editing the cart.
-
-
-        Redirect URLs can be generated only from carts created using the Server
-        to Server Cart API. To restore a cart that was created on the
-        storefront, either by a shopper or the Storefront Cart API, first
-        recreate the cart using the Server to Server Cart API.
+        * Carts are valid for **30 days** from the **last modification** (this
+        includes creating the cart or editing the cart).
       parameters:
         - name: cartData
           in: body
