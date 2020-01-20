@@ -3,21 +3,89 @@ info:
   version: ''
   title: Geography API
   description: >-
-    ### Geography
 
-    Geography APIs handle geographic information resources. They include
-    Countries and States.
+    - [OAuth Scopes](#oauth-scopes)
 
+    - [Authentication](#authentication)
 
-    ### Country
-
-    A country or territory, identifiable by an ISO 3166 country code.
+    - [Available Endpoints](#available-endpoints)
 
 
-    ### State
+    Introduction
 
-    A state or province, identifiable by an [ISO
-    3166](https://en.wikipedia.org/wiki/ISO_3166-2) subdivision code.
+
+    ## OAuth Scopes
+
+    | UI Name                                      | Permission |
+    Parameter                                     |
+
+    |----------------------------------------------|------------|-----------------------------------------------|
+
+    | Information & Settings                       | modify     |
+    `store_v2_information`                        |
+
+    | Information & Settings                       | read-only  |
+    `store_v2_information_read_only`              |
+
+
+    For more information on OAuth Scopes, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## Authentication
+
+
+    Requests can be authenticated by sending a `client_id` and `access_token`
+    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+
+
+    ```http
+
+    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+
+    host: api.bigcommerce.com
+
+    Accept: application/json
+
+    X-Auth-Client: {client_id}
+
+    X-Auth-Token: {access_token}
+
+    ```
+
+
+    |Header|Parameter|Description|
+
+    |-|-|-|
+
+    |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
+    installing an app in a BigCommerce control panel.|
+
+    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
+    installing an app in a BigCommerce control panel.|
+
+
+    For more information on Authenticating BigCommerce APIs, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## Available Endpoints
+
+    |
+    Resource                                                                                             
+    | Description                      |
+
+    |-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+
+    |
+    [Countries](https://developer.bigcommerce.com/api-reference/store-management/geography-api/countries)
+    | A country or territory, identifiable by an ISO 3166 country
+    code.                                              |
+
+    |
+    [States](https://developer.bigcommerce.com/api-reference/store-management/geography-api/states)      
+    | A state or province, identifiable by an [ISO
+    3166](https://en.wikipedia.org/wiki/ISO_3166-2) subdivision code. |
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v2'
 schemes:
