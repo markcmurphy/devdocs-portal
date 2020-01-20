@@ -179,59 +179,7 @@ paths:
           default: application/json
       responses:
         '200':
-          description: ''
-          schema:
-            title: Country
-            example:
-              id: 13
-              country: Australia
-              country_iso2: AU
-              country_iso3: AUS
-              states:
-                url: >-
-                  https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/countries/13/states
-                resource: /countries/13/states
-            type: object
-            properties:
-              id:
-                description: Id of the country.
-                example: 13
-                type: integer
-              country:
-                description: Country name.
-                example: Australia
-                type: string
-              country_iso2:
-                description: 2-letter country code.
-                example: AU
-                type: string
-              country_iso3:
-                description: 3-letter country code.
-                example: AUS
-                type: string
-              states:
-                title: States Resource
-                type: object
-                properties:
-                  url:
-                    description: ''
-                    example: >-
-                      https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/countries/13/states
-                    type: string
-                  resource:
-                    description: ''
-                    example: /countries/13/states
-                    type: string
-          examples:
-            application/json:
-              id: 13
-              country: Australia
-              country_iso2: AU
-              country_iso3: AUS
-              states:
-                url: >-
-                  https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/countries/13/states
-                resource: /countries/13/states
+          $ref: '#/responses/countriesResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
