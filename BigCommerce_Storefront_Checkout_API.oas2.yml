@@ -9682,7 +9682,6 @@ paths:
                 title: Address Response
                 allOf:
                   - title: Address Properties
-                    type: object
                     properties:
                       firstName:
                         description: ''
@@ -9741,11 +9740,11 @@ paths:
                               type: string
                     required:
                       - countryCode
-                  - type: object
-                    properties:
+                  - properties:
                       id:
                         description: ''
                         type: string
+                type: object
               consignments:
                 description: ''
                 type: array
@@ -9764,7 +9763,6 @@ paths:
                       title: Address Response
                       allOf:
                         - title: Address Properties
-                          type: object
                           properties:
                             firstName:
                               description: ''
@@ -9823,11 +9821,11 @@ paths:
                                     type: string
                           required:
                             - countryCode
-                        - type: object
-                          properties:
+                        - properties:
                             id:
                               description: ''
                               type: string
+                      type: object
                     availableShippingOptions:
                       description: >-
                         This is available only when
@@ -9838,7 +9836,6 @@ paths:
                         title: Shipping Option Entity
                         allOf:
                           - title: Selected Shipping Option
-                            type: object
                             properties:
                               description:
                                 description: Read-only
@@ -9861,13 +9858,13 @@ paths:
                               transitTime:
                                 description: An estimate of the arrival time.
                                 type: string
-                          - type: object
-                            properties:
+                          - properties:
                               isRecommended:
                                 description: >-
                                   Is this shipping method the recommended
                                   shipping option or not.
                                 type: boolean
+                        type: object
                     selectedShippingOption:
                       title: Selected Shipping Option
                       type: object
@@ -9936,29 +9933,7 @@ paths:
                 description: Coupons applied at checkout level.
                 type: array
                 items:
-                  title: Applied Coupon
-                  type: object
-                  properties:
-                    id:
-                      description: The coupon ID.
-                      type: string
-                    code:
-                      description: the coupon code
-                      type: string
-                    displayName:
-                      description: >-
-                        The coupon title based on different types provided in
-                        control panel section
-                      type: string
-                    couponType:
-                      description: Key name to identify the type of coupon.
-                      type: string
-                    discountedAmount:
-                      description: The discounted amount applied within a given context.
-                      type: number
-                      format: double
-                  required:
-                    - code
+                  $ref: '#/definitions/AppliedCoupon'
               orderId:
                 description: ''
                 type: string
