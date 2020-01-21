@@ -152,29 +152,7 @@ paths:
           required: true
           description: ''
           schema:
-            title: Coupon
-            example:
-              id: 2
-              name: Australia Customers Discount
-              type: per_item_discount
-              amount: 5
-              min_purchase: 25
-              expires: ''
-              enabled: true
-              code: S2549JM0Y
-              applies_to:
-                entity: categories
-                ids:
-                  - '0,3'
-              num_uses: 0
-              max_uses: 25
-              max_uses_per_customer: 0
-              restricted_to:
-                countries:
-                  - AU
-              shipping_methods:
-                - shipping_endicia
-              date_created: 'Tue, 13 Mar 2018 16:18:59 +0000'
+            $ref: '#/definitions/coupon_Base'
           x-examples:
             application/json:
               name: 5% off order total
@@ -3441,9 +3419,6 @@ definitions:
               its value in a POST or PUT request.
             example: 2
       - $ref: '#/definitions/coupon_Base'
-  coupon_Post:
-    $ref: '#/definitions/coupon_Base'
-    title: coupon_Post
   count_Full:
     type: object
     properties:
