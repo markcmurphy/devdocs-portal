@@ -7392,8 +7392,6 @@ paths:
                     items:
                       title: Applied Coupon
                       type: object
-                      required:
-                        - code
                       properties:
                         id:
                           description: The coupon ID.
@@ -7415,6 +7413,8 @@ paths:
                             context.
                           type: number
                           format: double
+                      required:
+                        - code
                   discounts:
                     description: ''
                     type: array
@@ -7437,9 +7437,6 @@ paths:
                     items:
                       title: Line Item
                       type: object
-                      required:
-                        - physicalItems
-                        - digitalItems
                       properties:
                         physicalItems:
                           description: ''
@@ -7447,8 +7444,6 @@ paths:
                           items:
                             title: Item Physical
                             type: object
-                            required:
-                              - quantity
                             properties:
                               id:
                                 description: The line-item ID.
@@ -7566,14 +7561,14 @@ paths:
                                     description: ''
                                     type: number
                                     format: double
+                            required:
+                              - quantity
                         digitalItems:
                           description: ''
                           type: array
                           items:
                             title: Item Digital
                             type: object
-                            required:
-                              - quantity
                             properties:
                               id:
                                 description: The line-item ID.
@@ -7683,17 +7678,14 @@ paths:
                                   Combined download size, in human-readable
                                   style. E.g.: `30MB`.
                                 type: string
+                            required:
+                              - quantity
                         giftCertificate:
                           type: array
                           description: ''
                           items:
                             title: Item Gift Certificate
                             type: object
-                            required:
-                              - theme
-                              - amount
-                              - sender
-                              - recipient
                             properties:
                               id:
                                 description: Gift certificate identifier
@@ -7744,6 +7736,11 @@ paths:
                                   Explicitly specifying the gift certificate
                                   type
                                 type: string
+                            required:
+                              - theme
+                              - amount
+                              - sender
+                              - recipient
                         customItems:
                           type: array
                           items:
@@ -7773,6 +7770,9 @@ paths:
                                 description: >-
                                   Price of the item. With or without tax
                                   depending on your stores set up.
+                      required:
+                        - physicalItems
+                        - digitalItems
                   createdTime:
                     description: Time when the cart was created.
                     type: string
@@ -7782,8 +7782,6 @@ paths:
               billingAddress:
                 title: Address Response
                 type: object
-                required:
-                  - countryCode
                 properties:
                   firstName:
                     description: ''
@@ -7842,6 +7840,8 @@ paths:
                   id:
                     description: ''
                     type: string
+                required:
+                  - countryCode
               consignments:
                 description: ''
                 type: array
@@ -7859,8 +7859,6 @@ paths:
                     shippingAddress:
                       title: Address Response
                       type: object
-                      required:
-                        - countryCode
                       properties:
                         firstName:
                           description: ''
@@ -7920,6 +7918,8 @@ paths:
                         id:
                           description: ''
                           type: string
+                      required:
+                        - countryCode
                     availableShippingOptions:
                       description: >-
                         This is available only when
@@ -8024,29 +8024,7 @@ paths:
                 description: Coupons applied at checkout level.
                 type: array
                 items:
-                  title: Applied Coupon
-                  type: object
-                  required:
-                    - code
-                  properties:
-                    id:
-                      description: The coupon ID.
-                      type: string
-                    code:
-                      description: the coupon code
-                      type: string
-                    displayName:
-                      description: >-
-                        The coupon title based on different types provided in
-                        control panel section
-                      type: string
-                    couponType:
-                      description: Key name to identify the type of coupon.
-                      type: string
-                    discountedAmount:
-                      description: The discounted amount applied within a given context.
-                      type: number
-                      format: double
+                  $ref: '#/definitions/AppliedCoupon'
               orderId:
                 description: ''
                 type: string
