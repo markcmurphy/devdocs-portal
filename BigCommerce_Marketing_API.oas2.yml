@@ -3690,8 +3690,140 @@ definitions:
       - from_email
       - amount
   coupon_Base:
+    title: coupon_Full
+    example:
+      id: 2
+      name: Australia Customers Discount
+      type: per_item_discount
+      amount: 5
+      min_purchase: 25
+      expires: ''
+      enabled: true
+      code: S2549JM0Y
+      applies_to:
+        entity: categories
+        ids:
+          - '0,3'
+      num_uses: 0
+      max_uses: 25
+      max_uses_per_customer: 0
+      restricted_to:
+        countries:
+          - AU
+      shipping_methods:
+        - shipping_endicia
+      date_created: 'Tue, 13 Mar 2018 16:18:59 +0000'
     type: object
-    properties: {}
+    properties:
+      id:
+        description: >-
+          The coupon's ID. This is a read-only field; do not set or modify its
+          value in a POST or PUT request.
+        example: 2
+        type: integer
+      name:
+        type: string
+        description: The name of the coupon.
+        example: Australia Customers Discount
+      type:
+        type: string
+        enum:
+          - per_item_discount
+          - per_total_discount
+          - shipping_discount
+          - free_shipping
+          - percentage_discount
+          - promotion
+      amount:
+        type: string
+        description: >-
+          The discount to apply to an order, as either an amount or a
+          percentage. This field's usage is determined by the coupon `type`. For
+          example, a `type` of + `percentage_discount` would determine a
+          percentage here.
+        example: 5
+      min_purchase:
+        description: >-
+          Specifies a minimum value that an order must have before the coupon
+          can be applied to it.
+        example: 25
+        type: string
+      expires:
+        description: >-
+          Specifies when a coupon expires. Coupons need not have an expiry date
+          – you can also control expiry via + `max_uses` or
+          `max_uses_per_customer`. If you do use this date field, the value must
+          be in <a href="http://tools.ietf.org/html/rfc2822#section-3.3"
+          target="_blank">RFC 2822</a> format.
+        type: string
+      enabled:
+        description: >-
+          If the coupon is enabled, this field's value is `true`; otherwise,
+          `false`.
+        example: true
+        type: boolean
+      code:
+        type: string
+        description: >-
+          The coupon code that customers will use to receive their discounts.
+          Value must be unique.
+        example: S2549JM0Y
+      applies_to:
+        type: object
+        description: >-
+          If it is not included in the PUT request, its existing value on the
+          coupon will be cleared. Also required to be set on the POST request
+        properties:
+          id:
+            type: integer
+            description: ID of either the products or categories
+          entities:
+            type: array
+            enum:
+              - products
+              - categories
+            description: What the discount applies to. Can be products or categories.
+            example: categories
+            items:
+              type: string
+      num_uses:
+        description: >-
+          Number of times this coupon has been used. This is a read-only field;
+          do not set or modify its value in a POST or PUT request.
+        example: 0
+        type: integer
+      max_uses:
+        description: Maximum number of times this coupon can be used.
+        example: 25
+        type: integer
+      max_uses_per_customer:
+        description: Maximum number of times each customer can use this coupon.
+        example: 0
+        type: integer
+      restricted_to:
+        type: object
+        properties:
+          countries:
+            type: string
+      shipping_methods:
+        description: >-
+          This is a list of shipping-method names. A shipping method must be
+          enabled on the store to use it with a coupon. To check which shipping
+          methods are enabled, please use the [List Shipping
+          Methods](/api/v2#list-shipping-methods) endpoint.
+        type: array
+        items:
+          type: string
+      date_created:
+        description: Date Created
+        example: 'Tue, 13 Mar 2018 16:18:59 +0000'
+        type: string
+    required:
+      - name
+      - type
+      - amount
+      - code
+      - applies_to
   coupon_Put:
     type: object
     properties: {}
