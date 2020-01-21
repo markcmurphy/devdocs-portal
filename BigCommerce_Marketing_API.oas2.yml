@@ -34,7 +34,24 @@ paths:
     get:
       description: >-
         Returns a list of *Coupons*. Default sorting is by coupon/discount id,
-        from lowest to highest. Optional filter parameters can be passed in. 
+        from lowest to highest. Optional filter parameters can be passed in.
+
+
+        |Type|
+
+        |-|
+
+        |`per_item_discount`|
+
+        |`percentage_discount`|
+
+        |`per_total_discount`|
+
+        |`shipping_discount`|
+
+        |`free_shipping`|
+
+        |`promotion`|
       summary: Get All Coupons
       parameters:
         - name: Accept
@@ -68,7 +85,15 @@ paths:
           in: query
           required: false
           type: string
-          description: 'Optional filter param `/api/v2/coupons?type={value}`'
+          description: |-
+            |Type|
+            |-|
+            |`per_item_discount`|
+            |`percentage_discount`|
+            |`per_total_discount`|
+            |`shipping_discount`|
+            |`free_shipping`|
+            |`promotion`|
         - name: min_id
           in: query
           required: false
@@ -101,14 +126,14 @@ paths:
           name: exclude_type
           type: string
           description: |-
-            |Type `int`|Type Name|
-            |-|-|
-            |`0`|`per_item_discount`|
-            |`1`|`percentage_discount`|
-            |`2`|`per_total_discount`|
-            |`3`|`shipping_discount`|
-            |`4`|`free_shipping`|
-            |`5`|`promotion`|
+            |Type|
+            |-|
+            |`per_item_discount`|
+            |`percentage_discount`|
+            |`per_total_discount`|
+            |`shipping_discount`|
+            |`free_shipping`|
+            |`promotion`|
       responses:
         '200':
           $ref: '#/responses/coupon_Resp_Collection'
