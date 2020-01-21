@@ -37,6 +37,12 @@ paths:
         from lowest to highest. Optional filter parameters can be passed in.
 
 
+        ## Usage Notes
+
+
+        Available types for `type` and `exclude_type` filters:
+
+
         |Type|
 
         |-|
@@ -52,6 +58,29 @@ paths:
         |`free_shipping`|
 
         |`promotion`|
+
+
+        Coupons with `type=promotion` will not populate usable data for the
+        following fields but instead be set to the following default values:
+
+
+        ```json
+
+        ...
+
+        amount : 0.0000
+
+        min_purchase: 0.0000
+
+        applies_to
+
+        restricted_to: []
+
+        shipping_methods : null
+
+        ...
+
+        ```
       summary: Get All Coupons
       parameters:
         - name: Accept
