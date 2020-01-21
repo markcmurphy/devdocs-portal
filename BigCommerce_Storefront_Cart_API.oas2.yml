@@ -5504,8 +5504,7 @@ definitions:
     title: Product Option
   AppliedCoupon:
     type: object
-    required:
-      - code
+    title: Applied Coupon
     properties:
       id:
         type: string
@@ -5515,12 +5514,21 @@ definitions:
         description: The coupon code.
       couponType:
         type: string
-        description: Key name to identify the type of coupon.
+        description: |-
+          |Type `int`|Type Name|
+          |-|-|
+          |`0`|`per_item_discount`|
+          |`1`|`percentage_discount`|
+          |`2`|`per_total_discount`|
+          |`3`|`shipping_discount`|
+          |`4`|`free_shipping`|
+          |`5`|`promotion`|
       discountedAmount:
         type: number
         format: float
         description: The discounted amount applied within a given context.
-    title: Applied Coupon
+    required:
+      - code
   AppliedDiscount:
     type: object
     properties:
