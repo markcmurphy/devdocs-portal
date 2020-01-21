@@ -4274,6 +4274,7 @@ definitions:
       Custom Items is a read only field. A custom item can only be added to a
       cart using the Server to Server Cart API. 
     type: object
+    title: Cart
     properties:
       id:
         description: 'Cart ID, provided after creating a cart with a POST.'
@@ -4290,6 +4291,7 @@ definitions:
       currency:
         type: object
         description: This will always be the same between cart and checkout.
+        title: Currency
         properties:
           code:
             type: string
@@ -4297,7 +4299,6 @@ definitions:
             description: >-
               ISO-4217 currency code. (See:
               http://en.wikipedia.org/wiki/ISO_4217.)
-        title: Currency
       isTaxIncluded:
         type: boolean
         description: Whether this item is taxable.
@@ -4317,29 +4318,13 @@ definitions:
         type: array
         description: Array of `AppliedCoupon` objects applied to this cart.
         items:
-          type: object
-          required:
-            - code
-          properties:
-            id:
-              type: string
-              description: The coupon ID.
-            code:
-              type: string
-              description: The coupon code.
-            couponType:
-              type: string
-              description: Key name to identify the type of coupon.
-            discountedAmount:
-              type: number
-              format: float
-              description: The discounted amount applied within a given context.
-          title: Applied Coupon
+          $ref: '#/definitions/AppliedCoupon'
       discounts:
         type: array
         description: Array of `AppliedDiscount` objects applied to this cart.
         items:
           type: object
+          title: Applied Discount
           properties:
             id:
               type: number
@@ -4348,7 +4333,6 @@ definitions:
               type: number
               format: float
               description: The discounted amount applied within a given context.
-          title: Applied Discount
       lineItems:
         type: array
         description: Array of `LineItem` objects.
@@ -4361,8 +4345,7 @@ definitions:
               description: Array of `ItemPhysical` objects.
               items:
                 allOf:
-                  - type: object
-                    title: Base Item
+                  - title: Base Item
                     properties:
                       id:
                         type: string
@@ -4411,6 +4394,7 @@ definitions:
                           AppliedDiscount objects.
                         items:
                           type: object
+                          title: Applied Discount
                           properties:
                             id:
                               type: number
@@ -4421,7 +4405,6 @@ definitions:
                               description: >-
                                 The discounted amount applied within a given
                                 context.
-                          title: Applied Discount
                       discountAmount:
                         type: number
                         format: float
@@ -4452,6 +4435,7 @@ definitions:
                         type: array
                         items:
                           type: object
+                          title: Product Option
                           properties:
                             name:
                               type: string
@@ -4469,20 +4453,20 @@ definitions:
                             valueId:
                               type: number
                               description: The product option value identifier.
-                          title: Product Option
                       brand:
                         type: string
                         description: The products brand
                     required:
                       - quantity
-                  - type: object
-                    properties:
+                  - properties:
                       isShippingRequired:
                         type: boolean
                         description: >-
                           Whether this item requires shipping to a physical
                           address.
                       giftWrapping:
+                        title: Gift Wrapping
+                        type: object
                         properties:
                           name:
                             type: string
@@ -4491,15 +4475,14 @@ definitions:
                             type: number
                             format: float
                             description: Gift-wrapping price per product.
-                        title: Gift Wrapping
                 title: Item Physical
+                type: object
             digitalItems:
               type: array
               description: Array of `ItemDigital` objects.
               items:
                 allOf:
-                  - type: object
-                    title: Base Item
+                  - title: Base Item
                     properties:
                       id:
                         type: string
@@ -4548,6 +4531,7 @@ definitions:
                           AppliedDiscount objects.
                         items:
                           type: object
+                          title: Applied Discount
                           properties:
                             id:
                               type: number
@@ -4558,7 +4542,6 @@ definitions:
                               description: >-
                                 The discounted amount applied within a given
                                 context.
-                          title: Applied Discount
                       discountAmount:
                         type: number
                         format: float
@@ -4589,6 +4572,7 @@ definitions:
                         type: array
                         items:
                           type: object
+                          title: Product Option
                           properties:
                             name:
                               type: string
@@ -4606,23 +4590,19 @@ definitions:
                             valueId:
                               type: number
                               description: The product option value identifier.
-                          title: Product Option
                       brand:
                         type: string
                         description: The products brand
                     required:
                       - quantity
                 title: Item Digital
+                type: object
             giftCertificates:
               type: array
               description: Array of `ItemGiftCertificate` objects.
               items:
                 type: object
-                required:
-                  - sender
-                  - recipient
-                  - amount
-                  - theme
+                title: Item Gift Certificate
                 properties:
                   id:
                     type: string
@@ -4647,6 +4627,7 @@ definitions:
                     description: Whether or not the gift certificate is taxable.
                   sender:
                     type: object
+                    title: Contact Entity
                     properties:
                       name:
                         type: string
@@ -4655,9 +4636,9 @@ definitions:
                         type: string
                         format: email
                         description: Contact's email address.
-                    title: Contact Entity
                   recipient:
                     type: object
+                    title: Contact Entity
                     properties:
                       name:
                         type: string
@@ -4666,13 +4647,16 @@ definitions:
                         type: string
                         format: email
                         description: Contact's email address.
-                    title: Contact Entity
                   message:
                     type: string
                     description: >-
                       Message that will be sent to the gift certificate's
                       recipient. Limited to 200 characters.
-                title: Item Gift Certificate
+                required:
+                  - theme
+                  - amount
+                  - sender
+                  - recipient
             customItems:
               type: array
               items:
@@ -4730,7 +4714,6 @@ definitions:
         type: string
         format: ISO-8601
         description: Time when the cart was last updated.
-    title: Cart
   Currency:
     type: object
     description: This will always be the same between cart and checkout.
