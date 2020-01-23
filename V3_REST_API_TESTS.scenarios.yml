@@ -34,6 +34,23 @@ scenarios:
             - target: output.status
               op: eq
               expected: 200
+  csmvn:
+    name: New Scenario
+    steps:
+      - type: http
+        name: Get Store Information
+        input:
+          method: get
+          url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/store'
+          headers:
+            Accept: application/json
+            Content-Type: application/json
+            X-Auth-Client: '{$$.env.X-Auth-Client}'
+        after:
+          assertions:
+            - target: output.status
+              op: eq
+              expected: 200
 name: V3 REST API Tests
 settings:
   testing:
