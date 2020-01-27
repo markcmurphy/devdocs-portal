@@ -3,29 +3,138 @@ info:
   title: Orders V3
   version: ''
   description: >-
-    ### Order Transactions
+
+    - [OAuth Scopes](#oauth-scopes)
+
+    - [Authentication](#authentication)
+
+    - [Available Endpoints](#available-endpoints)
+
+    - [Order Transactions](#order-transactions)
+
+    - [Resources](#resources)
 
 
-    The Transactions API returns granular details about the payment instruments
-    used to pay for an order. Depending on the payment method used, different
-    details will be available. Not all credit card payment gateways will return
-    full card details or all CVV/fraud response details. This is primarily used
-    to get detailed gateway response information for credit card transactions,
-    however it will also return any available information about digital wallet
-    payments, as well as details about orders paid (partially or in full) via a
-    gift certificate or store credit. 
+    The V3 REST API's Orders resource surfaces endpoints related to payment
+    processing. The `/orders/{id}/transactions` endpoint returns transaction
+    details for the specified order. Use `/orders/{id}/payment_actions/capture`
+    and `/orders/{id}/payment_actions/void` to capture and void order payment
+    authorizations.
 
 
-    The [test payment
-    gateway](https://forum.bigcommerce.com/s/article/Testing-Shipping-Tax-and-Payment-Settings#test-payment)
-    available in the BigCommerce control panel does not return any payment
-    information.
+    To programmatically create, update, and delete orders themselves, see
+    [Orders
+    v2](https://developer.bigcommerce.com/api-reference/store-management/orders).
+    To create authorizations or process payments without an authorizations, see
+    [Payment
+    Processing](https://developer.bigcommerce.com/api-reference/payments/payments-process-payments).
 
 
-    For an API for more general Order information, such as the information
-    needed to create a new Order, or get all the details of an order for
-    fulfillment purposes, see the [Orders
-    API](/api-reference/orders/orders-api).
+    ## OAuth Scopes
+
+    | UI Name                                      | Permission |
+    Parameter                                     |
+
+    |----------------------------------------------|------------|-----------------------------------------------|
+
+    | Order Transactions                           | modify     |
+    `store_v2_transactions`                       |
+
+    | Order Transactions                           | read-only  |
+    `store_v2_transactions_read_only`             |
+
+    | Orders                                       | modify     |
+    `store_v2_orders`                             |
+
+    | Orders                                       | read-only  |
+    `store_v2_orders_read_only`                   |
+
+
+    For more information on OAuth Scopes, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## Authentication
+
+
+    Requests can be authenticated by sending a `client_id` and `access_token`
+    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+
+
+    ```http
+
+    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+
+    host: api.bigcommerce.com
+
+    Accept: application/json
+
+    X-Auth-Client: {client_id}
+
+    X-Auth-Token: {access_token}
+
+    ```
+
+
+    |Header|Parameter|Description|
+
+    |-|-|-|
+
+    |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
+    installing an app in a BigCommerce control panel.|
+
+    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
+    installing an app in a BigCommerce control panel.|
+
+
+    For more information on Authenticating BigCommerce APIs, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## Available Endpoints
+
+    | Endpoint                                |
+    Description                                                             |
+
+    |-----------------------------------------|-------------------------------------------------------------------------|
+
+    | `/orders/{id}/transactions`             | Get list of transaction data for
+    an order                               |
+
+    | `/orders/{id}/payment_actions/capture`  | Capture a payment authorization
+    for an order                            |
+
+    | `/orders/{id}/payment_actions/void`     | Void the payment authorization
+    on an order                              | 
+
+
+    ## Order Transactions
+
+
+    The `/orders/{id}/transactions` endpoint returns details about the payment
+    instruments used to pay for an order. Depending on the payment method used,
+    different details will be available. Not all credit card payment gateways
+    will return full card details or all CVV/fraud response details. This is
+    primarily used to get detailed gateway response information for credit card
+    transactions, however it will also return any available information about
+    digital wallet payments, as well as details about orders paid (partially or
+    in full) via a gift certificate or store credit.
+
+
+    The test payment gateway available in the BigCommerce control panel does not
+    return any payment information.
+
+
+    ## Resources 
+
+    * [Orders
+    Overview](https://developer.bigcommerce.com/api-docs/orders/orders-overview)
+
+    * [Orders
+    V2](https://developer.bigcommerce.com/api-reference/store-management/orders)
+
+    * [Payment
+    Processing](https://developer.bigcommerce.com/api-reference/payments/payments-process-payments)
   termsOfService: ''
   license:
     name: ''
