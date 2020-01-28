@@ -192,3 +192,18 @@ responses:
     schema:
       type: object
       properties: {}
+  CallbackResponse:
+    description: >-
+      To acknowledge that you received the webhook without issue, your server
+      should return a 200 HTTP status code. Any other information you return in
+      the request headers or request body will be ignored. Any response code
+      outside the 200 range, including 3_xx_ codes, will indicate to us that you
+      did not receive the webhook. When a webhook is not received (for whatever
+      reason), we will retry the callback as described below.
+
+
+      Need to set up a quick destination URL for testing? See Tools for testing
+      webhooks.
+    schema:
+      type: object
+      properties: {}
