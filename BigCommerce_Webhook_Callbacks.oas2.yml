@@ -161,6 +161,45 @@
           "application/json"
         ]
       }
+    },
+    "/store/cart/abandoned": {
+      "post": {
+        "responses": {
+          "200": {
+            "$ref": "#/responses/CallbackResponse"
+          }
+        },
+        "description": "This webhook will fire whenever a new cart is created either via a storefront shopper adding their first item to the cart or when a new cart being created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before) For the API it means a POST to /carts, (V3 and Storefront API). The store/cart/updated will also fire.",
+        "security": [],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {},
+            "x-examples": {
+              "application/json": {
+                "scope": "store/cart/created",
+                "store_id": "1025646",
+                "data": {
+                  "type": "cart",
+                  "id": "09346904-4175-44fd-be53-f7e598531b6c"
+                },
+                "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
+                "created_at": 1561482670,
+                "producer": "stores/{$$.env.store_hash}"
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Cart"
+        ],
+        "summary": "/store/cart/created",
+        "produces": [],
+        "consumes": [
+          "application/json"
+        ]
+      }
     }
   },
   "basePath": "",
