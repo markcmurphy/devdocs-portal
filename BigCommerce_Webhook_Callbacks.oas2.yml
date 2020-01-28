@@ -49,79 +49,7 @@ parameters:
     in: header
     type: string
     default: application/json
-definitions:
-  putOrPostWebhook:
-    type: object
-    title: Create or Update A Webhook
-    properties:
-      scope:
-        type: string
-        example: store/order/*
-        description: Event you subscribe to
-      destination:
-        type: string
-        example: 'https://665b65a6.ngrok.io/webhooks'
-        description: URL must be active and return a 200 response
-      is_active:
-        type: boolean
-        example: true
-        description: If webhook is active or not
-      headers:
-        type: object
-        description: >-
-          You can pass in any number of custom headers to validate webhooks
-          being returned. 
-        properties:
-          custom:
-            type: string
-    required:
-      - scope
-      - destination
-      - is_active
-      - headers
-  Webhook:
-    type: object
-    properties:
-      id:
-        type: integer
-        description: Id of the webhook
-        example: 18048287
-      client_id:
-        type: string
-        description: 'Client ID, unique to the store'
-        example: m9r6keqmo7h7f23btnpwernbez1kglkl
-      store_hash:
-        type: string
-        description: 'Store permanent ID. '
-        example: sftg45fsd
-      scope:
-        type: string
-        description: Webhook event subscribed to
-        example: store/order/*
-      destination:
-        type: string
-        example: 'https://665b65a6.ngrok.io/webhooks'
-        description: URL that returns a 200 response for webhooks
-      headers:
-        type: object
-        description: >-
-          You can pass in any number of custom headers to validate webhooks
-          being returned.
-        properties:
-          custom:
-            type: string
-      is_active:
-        type: boolean
-        example: false
-        description: If the webhook is active or not
-      created_at:
-        type: integer
-        example: 1561488106
-        description: Created time
-      updated_at:
-        type: integer
-        example: 1561488106
-        description: Updated time
+definitions: {}
 responses:
   Webhooks Response:
     description: ''
@@ -191,7 +119,24 @@ responses:
       API). The store/cart/updated will also fire.
     schema:
       type: object
-      properties: {}
+      properties:
+        scope:
+          type: string
+        store_id:
+          type: string
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+            id:
+              type: string
+        hash:
+          type: string
+        created_at:
+          type: integer
+        producer:
+          type: string
   CallbackResponse:
     description: >-
       To acknowledge that you received the webhook without issue, your server
