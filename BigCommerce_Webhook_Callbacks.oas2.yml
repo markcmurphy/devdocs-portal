@@ -5,7 +5,7 @@ info:
   description: >-
     For a list of all webhook events see [Webhook
     Events](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events). 
-host: api.bigcommerce.com
+host: '{{$$.env.remote_host}}'
 paths:
   /store/cart/created:
     post:
@@ -30,7 +30,7 @@ paths:
       summary: /store/cart/created
       produces:
         - application/json
-basePath: '/stores/{$$.env.store_hash}/v2/'
+basePath: ''
 schemes:
   - https
 consumes:
