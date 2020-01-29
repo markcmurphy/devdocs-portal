@@ -6,6 +6,123 @@
     "description": "For a list of all webhook events see [Webhook Events](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events). "
   },
   "paths": {
+    "/store/customer/created": {
+  "post": {
+    "responses": {
+      "200": {
+        "$ref": "#/responses/CallbackResponse"
+      }
+    },
+    "description": "This webhook will fire whenever a new cart is created either via a storefront shopper adding their first item to the cart or when a new cart being created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before) For the API it means a POST to /carts, (V3 and Storefront API). The store/customer/updated will also fire.",
+    "security": [],
+    "parameters": [
+      {
+        "in": "body",
+        "name": "body",
+        "schema": {},
+        "x-examples": {
+          "application/json": {
+            "scope": "store/customer/created",
+            "store_id": "1025646",
+            "data": {
+              "type": "cart",
+              "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            },
+            "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
+            "created_at": 1561482670,
+            "producer": "stores/{$$.env.store_hash}"
+          }
+        }
+      }
+    ],
+    "tags": [
+      "Cart"
+    ],
+    "summary": "/store/customer/created",
+    "produces": [],
+    "consumes": [
+      "application/json"
+    ]
+  }
+},
+"/store/customer/updated": {
+  "post": {
+    "responses": {
+      "200": {
+        "$ref": "#/responses/CallbackResponse"
+      }
+    },
+    "description": "\tThis webhook is fired whenever a cart is modified through the changes in its line items. Eg. when a new item is added to a cart or an existing item’s quantity is updated. This hook also fires when the email is changed during guest checkout or an existing item is deleted. The payload will include the ID of the cart being updated.\nThis webhook is also fired along with cart created, because the first product being added to an empty cart triggers an update.\n- Logging into customer account after creating a cart (email is inherited from customer account email)\n- Entering email address via guest checkout\n-Changing the email in guest checkout",
+    "security": [],
+    "parameters": [
+      {
+        "in": "body",
+        "name": "body",
+        "schema": {},
+        "x-examples": {
+          "application/json": {
+            "scope": "store/customer/created",
+            "store_id": "1025646",
+            "data": {
+              "type": "cart",
+              "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            },
+            "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
+            "created_at": 1561482670,
+            "producer": "stores/{$$.env.store_hash}"
+          }
+        }
+      }
+    ],
+    "tags": [
+      "Cart"
+    ],
+    "summary": "/store/customer/updated",
+    "produces": [],
+    "consumes": [
+      "application/json"
+    ]
+  }
+},
+"/store/customer/deleted": {
+  "post": {
+    "responses": {
+      "200": {
+        "$ref": "#/responses/CallbackResponse"
+      }
+    },
+    "description": "This webhook will fire whenever a cart is deleted. This will occur either when all items have been removed from a cart and it is auto-deleted, or when the cart is explicitly removed via a DELETE request by an API consumer. This ends the lifecycle of the cart. The store/customer/updated webhook will also fire when the last item is removed.",
+    "security": [],
+    "parameters": [
+      {
+        "in": "body",
+        "name": "body",
+        "schema": {},
+        "x-examples": {
+          "application/json": {
+            "scope": "store/customer/created",
+            "store_id": "1025646",
+            "data": {
+              "type": "cart",
+              "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            },
+            "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
+            "created_at": 1561482670,
+            "producer": "stores/{$$.env.store_hash}"
+          }
+        }
+      }
+    ],
+    "tags": [
+      "Cart"
+    ],
+    "summary": "/store/customer/deleted",
+    "produces": [],
+    "consumes": [
+      "application/json"
+    ]
+  }
+},
 "/store/sku/created": {
   "post": {
     "responses": {
