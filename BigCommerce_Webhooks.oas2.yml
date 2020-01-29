@@ -124,7 +124,7 @@ paths:
       summary: Get Webhooks
       description: >-
         Returns a list of all webhooks on a store associated to the `client_id`
-        used to authenticate the request
+        used to authenticate the request.
       operationId: getAllWebhooks
       tags:
         - Webhooks
@@ -187,29 +187,6 @@ paths:
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
-  /store/cart/created:
-    post:
-      responses:
-        '200':
-          $ref: '#/responses/store/cart/created'
-      description: >-
-        This webhook will fire whenever a new cart is created either via a
-        storefront shopper adding their first item to the cart or when a new
-        cart being created via an API consumer. If it is from the storefront,
-        then it fires when the first product is added to a new session.(The cart
-        did not exist before) For the API it means a POST to /carts, (V3 and
-        Storefront API). The store/cart/updated will also fire.
-      security: []
-      parameters:
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/putOrPostWebhook'
-      tags:
-        - Callbacks
-      summary: /store/cart/created
-      produces:
-        - application/json
 basePath: '/stores/{$$.env.store_hash}/v2/'
 schemes:
   - https
