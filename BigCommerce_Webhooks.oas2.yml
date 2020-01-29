@@ -12,6 +12,19 @@ paths:
       responses:
         '200':
           $ref: '#/responses/Webhooks Response'
+          examples:
+            application/json:
+              id: 18048287
+              client_id: m9r6keqmo7h7f23btnp3anbez1kglkl
+              store_hash: '{store_hash}'
+              scope: store/order/*
+              destination: 'https://665b65a6.ngrok.io/webhooks'
+              headers:
+                username: Webhooks User
+                password: Webhooks Password
+              is_active: true
+              created_at: 1561488106
+              updated_at: 1561488106
       summary: Create a Webhook
       description: >-
         Creates a webhook. Only one webhook at a time can be created. Custom
@@ -25,11 +38,8 @@ paths:
           x-examples:
             application/json:
               scope: store/order/*
-              destination: 'https://665b65a6.ngrok.io/webhooks'
+              destination: '{{$$.env.destination}}'
               is_active: true
-              headers:
-                username: Webhooks User
-                password: Webhooks Password
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
       tags:
