@@ -5,12 +5,7 @@
 ### On this Page	
 - [Supported Templates](#supported-templates)
 - [Global](#global)
-- [Category](#category)
-- [Blog](#blog)
-- [Brand](#brand)
-- [Brand List](#brand-list)
-- [Cart](#cart)
-- [Search](#search)
+- [Page Specific](#page-specific)
 
 </div>
 
@@ -48,20 +43,97 @@ customer:                        # customer specific settings
 |  `recently_viewed_products` | Boolean indicating whether to display recently viewed products. No filtering avaiable. |
 |  `limit` | The maximum number of the entity to display. |
 
-## Category
-Content
+## Page Specific
 
-## Blog
-Content
+`templates/pages/category.html`
 
-## Brand
-Content
+```yaml
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+```
+|Property|Description|
+|-|-|
+|||
+|||
+|||
 
-## Brand List
-Content
+`templates/pages/blog.html`
 
-## Cart
-Content
+```yaml
+---
+blog:
+    posts:
+        limit: 5
+        pages: 3
+        summary: 200
+---
+```
 
-## Search
-Content 
+|Property|Description|
+|-|-|
+|||
+|||
+|||
+
+`templates/pages/brand.html`
+
+```yaml
+---
+brand:
+    products:
+        limit: {{theme_settings.brandpage_products_per_page}}
+---
+```
+
+|Property|Description|
+|-|-|
+|||
+|||
+|||
+
+`templates/pages/brands.html`
+
+```yaml
+---
+brands:
+---
+```
+
+|Property|Description|
+|-|-|
+|||
+|||
+|||
+
+`templates/pages/cart.html`
+
+```yaml
+---
+cart: true
+---
+```
+
+|Property|Description|
+|-|-|
+|||
+|||
+|||
+
+`templates/pages/search.html`
+
+```yaml
+---
+product_results:
+    limit: {{theme_settings.searchpage_products_per_page}}
+---
+``` 
+
+|Property|Description|
+|-|-|
+|||
+|||
+|||
