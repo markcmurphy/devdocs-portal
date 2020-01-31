@@ -3005,38 +3005,48 @@ definitions:
   template: {}
   retailPriceRange: {}
   blogBlog:
-    type: array
-    items:
-      type: object
-      properties:
-        author:
-          type: string
-        date_published:
-          type: string
-        show_read_more:
-          type: boolean
-        summary:
-          type: string
-        tags:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              url:
-                type: string
-        thumbnail:
-          type:
-            - 'null'
-            - object
+    type: object
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      posts:
+        type: array
+        items:
+          type: object
           properties:
-            alt:
+            author:
               type: string
-            data:
+            date_published:
               type: string
-        title:
-          type: string
-        url:
-          type: string
-    title: '{{blog}} Blog'
+            show_read_more:
+              type: boolean
+            summary:
+              type: string
+            tags:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  url:
+                    type: string
+            thumbnail:
+              type:
+                - 'null'
+                - object
+              properties:
+                alt:
+                  type: string
+                data:
+                  type: string
+            title:
+              type: string
+            url:
+              type: string
+      tag:
+        type: 'null'
+      url:
+        type: string
