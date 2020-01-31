@@ -3588,7 +3588,15 @@ definitions:
       url:
         type: string
     title: '{{ blog }}'
-    description: Blog page.
+    description: |-
+      Blog page.
+
+
+      ```html
+          {{#each blog.posts}}
+              {{> components/blog/post post=this}}
+          {{/each}}
+      ```
   search:
     type: string
     title: '{{search}}'
