@@ -1465,31 +1465,6 @@ pages:
                         path: /customer
                       data:
                         blocks:
-                          - type: jsonSchema
-                            data:
-                              $ref: >-
-                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/customer
-                            header:
-                              title: '{{ customer }}'
-                              token: templates/pages/account/*
-                          - type: jsonSchema
-                            data:
-                              $ref: >-
-                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/customerPaymentMethodsV1
-                            header:
-                              title: '{{ customer.payment_methods }}'
-                          - type: jsonSchema
-                            data:
-                              $ref: >-
-                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/customerPaymentMethodsV2
-                            header:
-                              subtitle: >-
-                                Replaces customerPaymentMethods object used in
-                                payment_methods.html templates when
-                                account_payment_methods_v2 is enabled in
-                                config.json > meta > features.
-                              token: 'account_payment_methods_v2 '
-                              title: '{{ customer.payment_methods }}'
                           - type: text
                             data: >-
                               ## {{ customer }}
@@ -1520,6 +1495,31 @@ pages:
 
 
                               ## Schemas
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/customer
+                            header:
+                              title: '{{ customer }}'
+                              token: templates/pages/account/*
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/customerPaymentMethodsV1
+                            header:
+                              title: '{{ customer.payment_methods }}'
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/customerPaymentMethodsV2
+                            header:
+                              subtitle: >-
+                                Replaces customerPaymentMethods object used in
+                                payment_methods.html templates when
+                                account_payment_methods_v2 is enabled in
+                                config.json > meta > features.
+                              token: 'account_payment_methods_v2 '
+                              title: '{{ customer.payment_methods }}'
                     - title: '{{ currency_selector }}'
                       route:
                         path: /currency_selector
