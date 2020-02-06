@@ -1466,14 +1466,31 @@ pages:
                       data:
                         blocks:
                           - type: text
-                            data: |-
+                            data: >-
                               # {{ customer }}
+
 
                               ## Examples
 
+
                               ```html
 
+                              <!--
+                              templates/components/account/payment-methods-list.html
+                              -->
+
+
+                              {{#each customer.payment_methods}}
+                                  {{!-- Check that the current instrument type is within our whitelist to stop future ones automagically coming through --}}
+                                  {{#inArray ../theme_settings.supported_payment_methods type}}
+                                      <h4 class="paymentMethodsTitle">
+                                          {{display_name}}
+                                      </h4>
+                                      ...
+                              {{/each}}
+
                               ```
+
 
                               ## Schemas
                           - type: jsonSchema
