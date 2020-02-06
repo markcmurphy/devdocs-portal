@@ -12,6 +12,8 @@ definitions:
   configJson:
     type: object
     minProperties: 0
+    description: The main configuration file for Stencil Themes.
+    title: config.json
     properties:
       name:
         type: string
@@ -70,28 +72,6 @@ definitions:
               x vertical).
           features:
             type: array
-            example:
-              - fully_responsive
-              - mega_navigation
-              - multi_tiered_sidebar_menu
-              - masonry_design
-              - frontpage_slideshow
-              - quick_add_to_cart
-              - switchable_product_view
-              - product_comparison_table
-              - complex_search_filtering
-              - customizable_product_selector
-              - cart_suggested_products
-              - free_customer_support
-              - free_theme_upgrades
-              - high_res_product_images
-              - product_filtering
-              - advanced_quick_view
-              - product_showcase
-              - persistent_cart
-              - one_page_check_out
-              - customized_check_out
-              - product_videos
             description: >-
               This should be an array of exact feature names supported in the
               theme. The "Default/Examples"column lists the complete namespace.
@@ -103,6 +83,8 @@ definitions:
               be present if you want to enable [Optimized One-Page
               Checkout](https://support.bigcommerce.com/articles/Public/Optimized-Single-Page-Checkout)
               for your theme.</td>
+            enum:
+              - fully_responsive
             items:
               type: string
       css_compiler:
@@ -1186,8 +1168,6 @@ definitions:
       - meta
       - settings
       - variations
-    description: The main configuration file for Stencil Themes.
-    title: config.json
   global_objects:
     type: object
     description: >-
