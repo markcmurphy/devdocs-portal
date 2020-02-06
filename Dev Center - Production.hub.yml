@@ -1465,14 +1465,13 @@ pages:
                         path: /customer
                       data:
                         blocks:
-                          - type: text
-                            data: "# {{ customer }}\n\n<div class=\"otp\">\n\t\n### On This Page\n* [Contexts](#contexts)\n* [Examples](#examples)\n* [Schemas](#schemas)\n\t\n</div>\n\n\n## Contexts\n\n```\ntemplates/pages/account/*\n```\n\n\n## Examples\n\n**{{ customer.payment_methods }}**\n```html\n<!-- templates/components/account/payment-methods-list.html -->\n\n{{#each customer.payment_methods}}\n    {{!-- Check that the current instrument type is within our whitelist to stop future ones automagically coming through --}}\n    {{#inArray ../theme_settings.supported_payment_methods type}}\n        <h4 class=\"paymentMethodsTitle\">\n            {{display_name}}\n        </h4>\n        ...\n{{/each}}\n```\n\n## Schemas"
                           - type: jsonSchema
                             data:
                               $ref: >-
                                 ./BigCommerce_Theme_Objects.oas2.yml#/definitions/customer
                             header:
                               title: '{{ customer }}'
+                              token: templates/pages/account/*
                           - type: jsonSchema
                             data:
                               $ref: >-
@@ -1491,6 +1490,44 @@ pages:
                                 config.json > meta > features.
                               token: 'account_payment_methods_v2 '
                               title: '{{ customer.payment_methods }}'
+                          - type: text
+                            data: >-
+                              ## Contexts
+
+
+                              ```
+
+                              templates/pages/account/*
+
+                              ```
+
+
+
+                              ## Examples
+
+
+                              **{{ customer.payment_methods }}**
+
+                              ```html
+
+                              <!--
+                              templates/components/account/payment-methods-list.html
+                              -->
+
+
+                              {{#each customer.payment_methods}}
+                                  {{!-- Check that the current instrument type is within our whitelist to stop future ones automagically coming through --}}
+                                  {{#inArray ../theme_settings.supported_payment_methods type}}
+                                      <h4 class="paymentMethodsTitle">
+                                          {{display_name}}
+                                      </h4>
+                                      ...
+                              {{/each}}
+
+                              ```
+
+
+                              ## Schemas
                     - title: '{{ currency_selector }}'
                       route:
                         path: /currency_selector
