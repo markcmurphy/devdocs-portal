@@ -436,8 +436,8 @@ info:
   termsOfService: ''
 host: api.bigcommerce.com
 paths:
-  '/{namespace}/{resource}':
-    put:
+  /namespace/resource:
+    post:
       responses:
         '200':
           description: ''
@@ -448,24 +448,6 @@ paths:
       operationId: postPaymentActionsCapture
       tags:
         - Payment Actions
-    parameters:
-      - name: namespace
-        in: path
-        type: string
-        required: true
-      - name: resource
-        in: path
-        type: string
-        required: true
-  /namespace/resource:
-    get:
-      responses:
-        '200':
-          description: ''
-          schema:
-            type: object
-            properties: {}
-      summary: Get a Namespace Resource
 definitions:
   metaEmpty_Full:
     type: object
