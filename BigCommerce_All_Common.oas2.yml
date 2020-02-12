@@ -436,7 +436,7 @@ info:
   termsOfService: ''
 host: api.bigcommerce.com
 paths:
-  '/orders/{id}/payment_actions/capture':
+  '/{namespace}/{resource}':
     post:
       responses:
         '200':
@@ -444,12 +444,16 @@ paths:
           schema:
             type: object
             properties: {}
-      summary: Capture Payment for an Order
+      summary: Create a Namespace Resource
       operationId: postPaymentActionsCapture
       tags:
         - Payment Actions
     parameters:
-      - name: id
+      - name: namespace
+        in: path
+        type: string
+        required: true
+      - name: resource
         in: path
         type: string
         required: true
