@@ -6751,37 +6751,41 @@ paths:
                   - red
                   - green
                   - black
-  /customers/{customerId}/consent:
+  '/customers/{customerId}/consent':
     get:
       description: Gets the customer consent.
-      summary: CustomersConsentByCustomerId_GET
+      summary: Get Customer Consent
       tags:
-      - Retrieving Customer Consent
+        - Retrieving Customer Consent
       operationId: CustomersConsentByCustomerId_GET
       deprecated: false
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: customerId
-        in: path
-        required: true
-        type: string
-        description: ''
+        - name: customerId
+          in: path
+          required: true
+          type: string
+          description: ''
       responses:
-        200:
+        '200':
           description: Customer consent is returned.
           schema:
             $ref: '#/definitions/CustomerConsentResponse'
           headers: {}
-        401:
-          description: Unauthorized - the v3 Auth client ID or token in the request are not a valid combination for this store.
+        '401':
+          description: >-
+            Unauthorized - the v3 Auth client ID or token in the request are not
+            a valid combination for this store.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        403:
-          description: Missing scope - the v3 Auth token is valid but does not have proper permissions to access this endpoint.
+        '403':
+          description: >-
+            Missing scope - the v3 Auth token is valid but does not have proper
+            permissions to access this endpoint.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        422:
+        '422':
           description: Invalid JSON request body - missing or invalid data.
           schema:
             $ref: '#/definitions/ErrorResponse'
@@ -6789,44 +6793,48 @@ paths:
       description: Gets the customer consent.
       summary: CustomersConsentByCustomerId_PUT
       tags:
-      - Declaring Customer Consent
+        - Declaring Customer Consent
       operationId: CustomersConsentByCustomerId_PUT
       deprecated: false
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: Content-Type
-        in: header
-        required: false
-        default: application/json
-        type: string
-        description: ''
-      - name: body
-        in: body
-        required: false
-        description: ''
-        schema:
-          $ref: '#/definitions/DeclareCustomerConsentRequest'
-      - name: customerId
-        in: path
-        required: true
-        type: string
-        description: ''
+        - name: Content-Type
+          in: header
+          required: false
+          default: application/json
+          type: string
+          description: ''
+        - name: body
+          in: body
+          required: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DeclareCustomerConsentRequest'
+        - name: customerId
+          in: path
+          required: true
+          type: string
+          description: ''
       responses:
-        200:
+        '200':
           description: Customer consent is returned.
           schema:
             $ref: '#/definitions/DeclareCustomerConsentResponse'
           headers: {}
-        401:
-          description: Unauthorized - the v3 Auth client ID or token in the request are not a valid combination for this store.
+        '401':
+          description: >-
+            Unauthorized - the v3 Auth client ID or token in the request are not
+            a valid combination for this store.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        403:
-          description: Missing scope - the v3 Auth token is valid but does not have proper permissions to access this endpoint.
+        '403':
+          description: >-
+            Missing scope - the v3 Auth token is valid but does not have proper
+            permissions to access this endpoint.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        422:
+        '422':
           description: Invalid JSON request body - missing or invalid data.
           schema:
             $ref: '#/definitions/ErrorResponse'
@@ -7668,9 +7676,7 @@ definitions:
         maxLength: 255
       type:
         title: Type
-        description: >-
-          Attribute type should match one of: string, number, date. When doing
-          a
+        description: 'Attribute type should match one of: string, number, date. When doing a'
         example: string
         type: string
         enum:
@@ -7727,9 +7733,7 @@ definitions:
         maxLength: 255
       type:
         title: Type
-        description: >-
-          Attribute type should match one of: string, number, date. When doing
-          a
+        description: 'Attribute type should match one of: string, number, date. When doing a'
         example: string
         type: string
         enum:
@@ -8440,18 +8444,18 @@ definitions:
     title: Allow
     type: string
     enum:
-    - essential
-    - functional
-    - analytics
-    - targeting
+      - essential
+      - functional
+      - analytics
+      - targeting
   Deny:
     title: Deny
     type: string
     enum:
-    - essential
-    - functional
-    - analytics
-    - targeting
+      - essential
+      - functional
+      - analytics
+      - targeting
   DeclareCustomerConsentRequest:
     title: DeclareCustomerConsentRequest
     description: Request payload for the BigCommerce API.
