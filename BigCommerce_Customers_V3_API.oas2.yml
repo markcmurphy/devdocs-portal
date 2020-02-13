@@ -8436,7 +8436,35 @@ definitions:
         description: The date of which the customer consent was last updated.
         type: string
         format: date-time
+  Allow:
+    title: Allow
+    type: string
+    enum:
+    - essential
+    - functional
+    - analytics
+    - targeting
+  Deny:
+    title: Deny
+    type: string
+    enum:
+    - essential
+    - functional
+    - analytics
+    - targeting
   DeclareCustomerConsentRequest:
+    title: DeclareCustomerConsentRequest
+    description: Request payload for the BigCommerce API.
+    type: object
+    properties:
+      allow:
+        type: array
+        items:
+          $ref: '#/definitions/Allow'
+      deny:
+        type: array
+        items:
+          $ref: '#/definitions/Deny'
 tags:
   - name: Customers
     description: BigCommerce Customers API Definition.
