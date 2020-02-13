@@ -8399,6 +8399,44 @@ definitions:
                 - address_id
           title: Customer Address Form Field Value
       title: 'Form Field Value '
+  CustomerConsentResponse:
+    title: CustomerConsentResponse
+    description: Response payload for the BigCommerce API.
+    type: object
+    properties:
+      allow:
+        type: array
+        items:
+          $ref: '#/definitions/Allow'
+      deny:
+        type: array
+        items:
+          $ref: '#/definitions/Deny'
+      updated_at:
+        description: The date of which the customer consent was last updated.
+        type: string
+        format: date-time
+  DeclareCustomerConsentResponse:
+    title: DeclareCustomerConsentResponse
+    description: Response payload for the BigCommerce API.
+    type: object
+    properties:
+      customer_id:
+        description: Customer ID.
+        type: object
+      allow:
+        type: array
+        items:
+          $ref: '#/definitions/Allow'
+      deny:
+        type: array
+        items:
+          $ref: '#/definitions/Deny'
+      updated_at:
+        description: The date of which the customer consent was last updated.
+        type: string
+        format: date-time
+  DeclareCustomerConsentRequest:
 tags:
   - name: Customers
     description: BigCommerce Customers API Definition.
