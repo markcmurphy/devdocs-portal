@@ -2057,7 +2057,7 @@ paths:
 
         | Name | Type | Description |
 
-        |  |  |  |
+        | - | - | - |
 
         | rate | number | Flat rate per order. |
 
@@ -2065,13 +2065,15 @@ paths:
         #### JSON Example 
 
 
-        ```
-            {
+        ```json
+
+        {
             "name": "Flat Rate per Order",
             "type": "perorder",
             "settings": {
-              "rate": 7
-            },
+                "rate": 7
+        },
+
         ```
 
 
@@ -2083,7 +2085,7 @@ paths:
 
         | Name | Type | Description |
 
-        |  |  |  |
+        | - | - | - |
 
         | rate | number | Flat rate per item. |
 
@@ -2091,13 +2093,15 @@ paths:
         #### JSON Example 
 
 
-        ```
-            {
+        ```json
+
+        {
             "name": "Flat Rate per Item",
             "type": "peritem",
             "settings": {
-              "rate": 8
-            },
+                "rate": 8
+        },
+
         ```
 
 
@@ -2109,7 +2113,7 @@ paths:
 
         | Name | Type | Description |
 
-        |  |  |  |
+        | - | - | - |
 
         | default_cost | number | Default shipping cost, applied either as a
         percentage of the order's total value or as a fixed amount. |
@@ -2125,30 +2129,27 @@ paths:
 
         #### JSON Example 
            
-        ```
+        ```json
 
         {
-
-        "name": "Rate per Weight",
-
-        "type": "weight",
-
-        "settings": {
-             "default_cost": 12,
-             "default_cost_type": "fixed_amount",
-             "range": [
-               {
-                 "lower_limit": 0,
-                 "upper_limit": 20,
-                 "shipping_cost": 8
-               },
-               {
-                 "lower_limit": 20,
-                 "upper_limit": 40,
-                 "shipping_cost": 12
-               }
-             ]
-           }
+            "name": "Rate per Weight",
+            "type": "weight",
+            "settings": {
+                "default_cost": 12,
+                "default_cost_type": "fixed_amount",
+                "range": [
+                    {
+                        "lower_limit": 0,
+                        "upper_limit": 20,
+                        "shipping_cost": 8
+                    },
+                    {
+                        "lower_limit": 20,
+                        "upper_limit": 40,
+                        "shipping_cost": 12
+                    }
+                ]
+            }
         }
 
         ```
@@ -2162,7 +2163,7 @@ paths:
 
         | Name | Type | Description |
 
-        |  |  |  |
+        | - | - | - |
 
         | default_cost | number | Default shipping cost, applied either as a
         percentage of the order's total value or as a fixed amount. |
@@ -2184,46 +2185,43 @@ paths:
         This example sets free shipping above a certain order total:
 
 
-        ```
+        ```json
 
         {
-
-        "name": "Per Total or Free",
-
-        "type": "total",
-
-        "settings": {
-             "default_cost": 12,
-             "default_cost_type": "fixed_amount",
-             "include_order_total_taxes": 0,
-             "range": [
-               {
-                 "lower_limit": 0,
-                 "upper_limit": 5,
-                 "shipping_cost": 5
-               },
-               {
-                 "lower_limit": 5,
-                 "upper_limit": 10,
-                 "shipping_cost": 8
-               },
-               {
-                 "lower_limit": 10,
-                 "upper_limit": 20,
-                 "shipping_cost": 10
-               },
-               {
-                 "lower_limit": 20,
-                 "upper_limit": 49.99,
-                 "shipping_cost": 15
-               },
-               {
-                 "lower_limit": 50,
-                 "upper_limit": 100000,
-                 "shipping_cost": 0
-               }       
-             ]
-           }
+            "name": "Per Total or Free",
+            "type": "total",
+            "settings": {
+                "default_cost": 12,
+                "default_cost_type": "fixed_amount",
+                "include_order_total_taxes": 0,
+                "range": [
+                    {
+                        "lower_limit": 0,
+                        "upper_limit": 5,
+                        "shipping_cost": 5
+                    },
+                    {
+                        "lower_limit": 5,
+                        "upper_limit": 10,
+                        "shipping_cost": 8
+                    },
+                    {
+                        "lower_limit": 10,
+                        "upper_limit": 20,
+                        "shipping_cost": 10
+                    },
+                    {
+                        "lower_limit": 20,
+                        "upper_limit": 49.99,
+                        "shipping_cost": 15
+                    },
+                    {
+                        "lower_limit": 50,
+                        "upper_limit": 100000,
+                        "shipping_cost": 0
+                    }       
+                ]
+            }
         }
 
         ```
@@ -2238,7 +2236,7 @@ paths:
 
         | Name | Type | Description |
 
-        |  |  |  |
+        | - | - | - |
 
         | lower_limit | number | Lower limit for order total. |
 
@@ -2251,12 +2249,14 @@ paths:
         #### JSON Example 
 
 
-        ```
-               {
-                 "lower_limit": 0,
-                 "upper_limit": 20,
-                 "shipping_cost": 8
-               }
+        ```json
+
+        {
+            "lower_limit": 0,
+            "upper_limit": 20,
+            "shipping_cost": 8
+        }
+
         ```
       summary: Get a Shipping Method
       tags:
