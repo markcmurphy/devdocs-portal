@@ -158,11 +158,22 @@ paths:
               channel_id:
                 type: integer
                 description: 'If no channel is specified, defaults to 1. '
+              currency:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    format: ISO-4217
           x-examples:
-            Simple Product:
-              line_items:
-                - quantity: 5
-                  product_id: 191
+            Simple Product: |-
+              {
+                "line_items": [
+                  {
+                    "quantity": 5,
+                    "product_id": 191
+                  }
+                ]
+              }
             Create a Cart with a Variant: |-
               {
                   "line_items":[
