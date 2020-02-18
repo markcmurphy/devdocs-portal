@@ -3602,6 +3602,301 @@ definitions:
       - fedex
       - royalmail
       - upsready
+  new-model:
+    title: Shipping Method
+    type: object
+    properties:
+      id:
+        description: Shipping-method ID. READ-ONLY
+        example: 1
+        type: integer
+      name:
+        description: Display name for shipping method.
+        example: Flat Rate
+        type: string
+      type:
+        title: Shipping Method Type
+        example: perorder
+        x-enum-elements:
+          - name: perorder
+            description: ''
+          - name: peritem
+            description: ''
+          - name: weight
+            description: ''
+          - name: total
+            description: ''
+          - name: auspost
+            description: ''
+          - name: canadapost
+            description: ''
+          - name: endicia
+            description: ''
+          - name: usps
+            description: ''
+          - name: fedex
+            description: ''
+          - name: royalmail
+            description: ''
+          - name: upsready
+            description: ''
+        type: string
+        enum:
+          - perorder
+          - peritem
+          - weight
+          - total
+          - auspost
+          - canadapost
+          - endicia
+          - usps
+          - fedex
+          - royalmail
+          - upsready
+      settings:
+        description: >-
+          Depends on the shipping-method type. See the [supported settings
+          object](#supported-settings).
+        type: object
+      enabled:
+        description: Whether or not this shipping-zone method is enabled.
+        example: true
+        type: boolean
+      handling_fees:
+        type: object
+        enum:
+          - fixed_surcharge
+          - percentage_surcharge
+        example: percentage_surcharge
+        description: >-
+          `fixed_surcharge`: flat-rate handling fee applied to shipping cost.
+
+
+          `percentage_surcharge`: percentage handling fee applied to shipping
+          cost
+      is_fallback:
+        description: >-
+          Whether or not this shipping zone is the fallback if all others are
+          not valid for the order.
+        example: false
+        type: boolean
+    description: >-
+      ### Settings Objects 
+
+
+      A shipping method's `type` and `settings` properties can match one of the
+      following models:
+
+
+      ### perorder Object – Properties 
+
+
+      Object model for flat-rate shipping quotes per order.
+
+
+      | Name | Type | Description |
+
+      |  |  |  |
+
+      | rate | number | Flat rate per order. |
+
+
+      #### JSON Example 
+
+
+      ```
+          {
+          "name": "Flat Rate per Order",
+          "type": "perorder",
+          "settings": {
+            "rate": 7
+          },
+      ```
+
+
+      ### peritem Object – Properties 
+
+
+      Object model for flat-rate shipping quotes per item ordered.
+
+
+      | Name | Type | Description |
+
+      |  |  |  |
+
+      | rate | number | Flat rate per item. |
+
+
+      #### JSON Example 
+
+
+      ```
+          {
+          "name": "Flat Rate per Item",
+          "type": "peritem",
+          "settings": {
+            "rate": 8
+          },
+      ```
+
+
+      ### weight Object – Properties 
+
+
+      Object model for shipping quotes by weight.
+
+
+      | Name | Type | Description |
+
+      |  |  |  |
+
+      | default_cost | number | Default shipping cost, applied either as a
+      percentage of the order's total value or as a fixed amount. |
+
+      | default_cost_type | string | How the default shipping cost is
+      calculated. One of: `percentage_of_total` or `fixed_amount`. |
+
+      | range | number | Array of [range](#range) objects. The units for these
+      ranges' `lower_limit` and `upper_limit` properties depend on the default
+      units set in the store's control panel. |
+
+
+
+      #### JSON Example 
+         
+      ```
+
+      {
+
+      "name": "Rate per Weight",
+
+      "type": "weight",
+
+      "settings": {
+           "default_cost": 12,
+           "default_cost_type": "fixed_amount",
+           "range": [
+             {
+               "lower_limit": 0,
+               "upper_limit": 20,
+               "shipping_cost": 8
+             },
+             {
+               "lower_limit": 20,
+               "upper_limit": 40,
+               "shipping_cost": 12
+             }
+           ]
+         }
+      }
+
+      ```
+
+
+      ### total Object – Properties 
+
+
+      Object model for shipping quotes by order's total value.
+
+
+      | Name | Type | Description |
+
+      |  |  |  |
+
+      | default_cost | number | Default shipping cost, applied either as a
+      percentage of the order's total value or as a fixed amount. |
+
+      | default_cost_type | string | How the default shipping cost is
+      calculated. One of: `percentage_of_total` or `fixed_amount`. |
+
+      | include_order_total_taxes | boolean | Whether or not to include taxes on
+      the order's total value in the shipping-cost calculation. |
+
+      | range | number | Array of [range](#range) objects. The units for these
+      ranges' `lower_limit` and `upper_limit` properties are values in the
+      store's currency. |
+
+
+      #### JSON Example 
+
+
+      This example sets free shipping above a certain order total:
+
+
+      ```
+
+      {
+
+      "name": "Per Total or Free",
+
+      "type": "total",
+
+      "settings": {
+           "default_cost": 12,
+           "default_cost_type": "fixed_amount",
+           "include_order_total_taxes": 0,
+           "range": [
+             {
+               "lower_limit": 0,
+               "upper_limit": 5,
+               "shipping_cost": 5
+             },
+             {
+               "lower_limit": 5,
+               "upper_limit": 10,
+               "shipping_cost": 8
+             },
+             {
+               "lower_limit": 10,
+               "upper_limit": 20,
+               "shipping_cost": 10
+             },
+             {
+               "lower_limit": 20,
+               "upper_limit": 49.99,
+               "shipping_cost": 15
+             },
+             {
+               "lower_limit": 50,
+               "upper_limit": 100000,
+               "shipping_cost": 0
+             }       
+           ]
+         }
+      }
+
+      ```
+
+
+      ### Range Object – Properties 
+
+
+      Object model to define ranges for shipping quotes. Units are defined in
+      the parent object.
+
+
+      | Name | Type | Description |
+
+      |  |  |  |
+
+      | lower_limit | number | Lower limit for order total. |
+
+      | upper_limit | number | Upper limit for order total. |
+
+      | shipping_cost | number | Shipping cost for orders whose total falls
+      between the lower and upper limits. |
+
+
+      #### JSON Example 
+
+
+      ```
+             {
+               "lower_limit": 0,
+               "upper_limit": 20,
+               "shipping_cost": 8
+             }
+      ```
 tags:
   - name: Shipping Method
   - name: Shipping Carrier
