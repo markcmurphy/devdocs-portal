@@ -325,10 +325,14 @@ definitions:
   PaymentRequest:
     title: Payment Request
     type: object
+    description: "## Stored Card\n\n```json\n{\n\t\"payment\": {\n\t\t\"instrument\": {\n\t\t\t\"type\": \"stored_card\",\n\t\t\t\"token\": \"vaulted instrument token\",\n\t\t\t\"verification_value\": \"123\"\n\t\t},\n\t\t\"payment_method_id\": \"stripe.card\",\n\t\t\"save_instrument\": true\n\t}\n}\n```"
     properties:
       payment:
         title: Payment
         type: object
+        required:
+          - instrument
+          - payment_method_id
         properties:
           amount:
             description: Amount in smallest currency unit
@@ -345,12 +349,8 @@ definitions:
             description: Identifier for payment method that will be used for this payment
             type: string
             minLength: 1
-        required:
-          - instrument
-          - payment_method_id
     required:
       - payment
-    description: "## Credit Card\n```json\n{\n\t\"payment\": {\n\t\t\"instrument\": {\n\t\t\t\"type\": \"card\",\n\t\t\t\"number\": \"4111111111111111\",\n\t\t\t\"cardholder_name\": \"BP\",\n\t\t\t\"expiry_month\": 12,\n\t\t\t\"expiry_year\": 2020,\n\t\t\t\"verification_value\": \"411\"\n\t\t},\n\t\t\"payment_method_id\": \"authorizenet.card\",\n\t\t\"save_instrument\": true\t\t\n\t}\n}\n```\n\n## Stored Card\n\n```json\n{\n\t\"payment\": {\n\t\t\"instrument\": {\n\t\t\t\"type\": \"stored_card\",\n\t\t\t\"token\": \"vaulted instrument token\",\n\t\t\t\"verification_value\": \"123\"\n\t\t},\n\t\t\"payment_method_id\": \"stripe.card\",\n\t\t\"save_instrument\": true\n\t}\n}\n```"
   Payment:
     title: Payment
     type: object
