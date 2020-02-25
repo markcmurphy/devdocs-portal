@@ -655,47 +655,43 @@ paths:
             type: object
             properties:
               data:
-                allOf:
-                  - properties:
-                      id:
-                        type: integer
-                        description: >
-                          The unique numeric ID of the `Price List`; increments
-                          sequentially.
-                        example: 3
-                      date_created:
-                        type: string
-                        format: date-time
-                        description: |
-                          The date on which the `Price List` was created.
-                        example: '2018-04-05T16:05:12Z'
-                      date_modified:
-                        type: string
-                        format: date-time
-                        description: |
-                          The date on which the `Price List` was created.
-                        example: '2018-04-05T16:05:12Z'
-                  - type: object
-                    description: Common Price List properties.
-                    title: PriceList Base
-                    properties:
-                      name:
-                        type: string
-                        description: |
-                          The unique name of the Price List. Required in /POST. 
-                        x-required:
-                          - post
-                        example: Wholesale
-                      active:
-                        type: boolean
-                        description: >
-                          Whether or not this `Price List` and its prices are
-                          active.  Defaults to `true`.
-                        example: true
-                    required:
-                      - name
                 title: Price List
                 type: object
+                description: Common Price List properties.
+                required:
+                  - name
+                properties:
+                  id:
+                    type: integer
+                    description: >
+                      The unique numeric ID of the `Price List`; increments
+                      sequentially.
+                    example: 3
+                  date_created:
+                    type: string
+                    format: date-time
+                    description: |
+                      The date on which the `Price List` was created.
+                    example: '2018-04-05T16:05:12Z'
+                  date_modified:
+                    type: string
+                    format: date-time
+                    description: |
+                      The date on which the `Price List` was created.
+                    example: '2018-04-05T16:05:12Z'
+                  name:
+                    type: string
+                    description: |
+                      The unique name of the Price List. Required in /POST. 
+                    x-required:
+                      - post
+                    example: Wholesale
+                  active:
+                    type: boolean
+                    description: >
+                      Whether or not this `Price List` and its prices are
+                      active.  Defaults to `true`.
+                    example: true
               meta:
                 type: object
                 description: Empty meta object; may be used later.
@@ -714,7 +710,36 @@ paths:
         - Price Lists
       summary: Get a Price List
       parameters:
-        - $ref: '#/parameters/FilterVariantIdParam'
+        - in: query
+          name: id
+          type: integer
+          description: Filter items by id.
+        - in: query
+          name: name
+          type: string
+          description: Filter items by name.
+        - in: query
+          name: date_created
+          type: string
+          format: date-time
+          description: Filter items by date_created.
+        - in: query
+          name: date_modified
+          type: string
+          format: date-time
+          description: >-
+            Filter items by date_modified. For example
+            `v3/catalog/products?date_last_imported:min=2018-06-15`
+        - in: query
+          name: page
+          type: integer
+          description: Specifies the page number in a limited (paginated) list of products.
+        - in: query
+          name: limit
+          type: integer
+          description: >-
+            Controls the number of items per page in a limited (paginated) list
+            of products.
     put:
       description: Updates a *Price List*.
       operationId: updatePriceList
