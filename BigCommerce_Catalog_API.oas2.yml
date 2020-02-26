@@ -26071,38 +26071,37 @@ definitions:
   product_Full:
     description: Common Product properties.
     title: product_Full
-    allOf:
-      - type: object
-        properties:
-          date_created:
-            type: string
-            format: date-time
-            description: |
-              The date on which the product was created.
-            example: '2018-08-15T14:49:05+00:00'
-          date_modified:
-            type: string
-            format: date-time
-            description: |
-              The date on which the product was modified.
-            example: '2018-08-24T14:41:00+00:00'
-          id:
-            type: integer
-            description: ID of the product. Read Only
-            minimum: 1
-          base_variant_id:
-            type: integer
-            description: >-
-              The unique identifier of the base variant associated with a simple
-              product. This value is `null` for complex products.
-          calculated_price:
-            type: number
-            description: >-
-              The price of the product as seen on the storefront. It will be
-              equal to the `sale_price`, if set, and the `price` if there is not
-              a `sale_price`
-            format: float
-      - $ref: '#/definitions/product_Base'
+    type: object
+    $ref: '#/definitions/product_Base'
+    properties:
+      date_created:
+        type: string
+        format: date-time
+        description: |
+          The date on which the product was created.
+        example: '2018-08-15T14:49:05+00:00'
+      date_modified:
+        type: string
+        format: date-time
+        description: |
+          The date on which the product was modified.
+        example: '2018-08-24T14:41:00+00:00'
+      id:
+        type: integer
+        description: ID of the product. Read Only
+        minimum: 1
+      base_variant_id:
+        type: integer
+        description: >-
+          The unique identifier of the base variant associated with a simple
+          product. This value is `null` for complex products.
+      calculated_price:
+        type: number
+        description: >-
+          The price of the product as seen on the storefront. It will be equal
+          to the `sale_price`, if set, and the `price` if there is not a
+          `sale_price`
+        format: float
   productImage_Full:
     title: productImage_Full
     description: Common ProductImage properties.
@@ -26588,6 +26587,11 @@ definitions:
   product_Base:
     title: product_Base
     type: object
+    description: |-
+      Shared `Product` properties used in:
+      * `POST`
+      * `PUT`
+      * `GET`
     properties:
       name:
         type: string
@@ -27043,11 +27047,10 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/productVariant_Put_Product'
-    description: |-
-      Shared `Product` properties used in:
-      * `POST`
-      * `PUT`
-      * `GET`
+      options:
+        type: array
+        items:
+          $ref: '#/definitions/productOption_Base'
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
