@@ -192,20 +192,19 @@ paths:
           in: query
           type: string
           description: 'Filter items by email. `email:in=janedoe@email.com`'
-        - name: name
+        - name: 'name:in'
           in: query
           type: array
-          description: 'Filter items by first_name and last_name. `name=moriarty,holmes`'
+          description: Filter items by first_name and last_name. `name=james moriarty`
           items:
             type: string
         - name: 'name:like'
           in: query
           type: array
-          description: >-
-            Filter items by substring in first_name and last_name (%substring% -
-            use with % symbols).
-
-            `name:like=moriarty&name:like=doe`
+          description: |
+            Filter items by substring in first_name and last_name. 
+            Concatenates first_name and last_name fields.
+            `name:like=moriarty, holmes`
           items:
             type: string
         - name: 'registration_ip_address:in'
