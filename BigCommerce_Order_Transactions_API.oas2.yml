@@ -1,9 +1,8 @@
 swagger: '2.0'
 info:
-  title: Order Refunds
+  title: Orders V3
   version: ''
-  description: >
-
+  description: >-
     - [OAuth Scopes](#oauth-scopes)
 
     - [Authentication](#authentication)
@@ -15,35 +14,36 @@ info:
     - [Resources](#resources)
 
 
-    The Order API refund endpoints allow developers to process refunds against
-    orders with settled payments. 
+    The V3 REST API's Orders resource surfaces endpoints related to payment
 
+    processing. The `/orders/{id}/transactions` endpoint returns transaction
+
+    details for the specified order.
 
     To programmatically create, update, and delete orders themselves, see
+
     [Orders
+
     v2](https://developer.bigcommerce.com/api-reference/store-management/orders).
+
     To process payments, see [Payment
+
     Processing](https://developer.bigcommerce.com/api-reference/payments/payments-process-payments).
 
 
     ## OAuth Scopes
 
-    | UI Name                                      | Permission |
-    Parameter                                     |
+    | UI Name| Permission |Parameter|                                     
 
     |----------------------------------------------|------------|-----------------------------------------------|
 
-    | Order Transactions                           | modify     |
-    `store_v2_transactions`                       |
+    | Order Transactions|modify|`store_v2_transactions`|
 
-    | Order Transactions                           | read-only  |
-    `store_v2_transactions_read_only`             |
+    | Order Transactions|read-only  |`store_v2_transactions_read_only`|
 
-    | Orders                                       | modify     |
-    `store_v2_orders`                             |
+    | Orders| modify|`store_v2_orders`|
 
-    | Orders                                       | read-only  |
-    `store_v2_orders_read_only`                   |
+    | Orders| read-only|`store_v2_orders_read_only`|
 
 
     For more information on OAuth Scopes, see:
@@ -51,7 +51,6 @@ info:
 
 
     ## Authentication
-
 
     Requests can be authenticated by sending a `client_id` and `access_token`
     via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
@@ -84,14 +83,19 @@ info:
 
 
     For more information on Authenticating BigCommerce APIs, see:
+
     [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
 
 
     ## Available Endpoints
 
-    |Endpoint|Operations|Reference|
+    | Endpoint|Description|
 
-    |---|---|---|
+    |-----------------------------------------|-------------------------------------------------------------------------|
+
+    | `/orders/{id}/transactions`             | Get list of transaction data for
+    an order|[Get
+    Transactions](https://developer.bigcommerce.com/api-reference/store-management/order-transactions/transactions/gettransactions)
 
     |`/orders/{id}/payment_actions/refund_quotes`|` POST` - Create refund quote
     for order ID `{id}`.|[Create a Refund
@@ -110,18 +114,38 @@ info:
     Refunds](https://developer.bigcommerce.com/api-reference/store-management/order-transactions/order-refunds/getrefunds)
 
 
+    ## Order Transactions
+
+    The `/orders/{id}/transactions` endpoint returns details about the payment
+    instruments used to pay for an order. Depending on the payment method used,
+    different details will be available. Not all credit card payment gateways
+    will return full card details or all CVV/fraud response details. This is
+    primarily used to get detailed gateway response information for credit card
+    transactions, however it will also return any available information about
+    digital wallet payments, as well as details about orders paid (partially or
+    in full) via a gift certificate or store credit. The test payment gateway
+    available in the BigCommerce control panel does not return any payment
+    information.
+
+
     ## Order Refunds
 
+    The Order API refund endpoints allow developers to process refunds against
+    orders with settled payments. Refund endpoints are useful when building
+    order management or payment integrations. They make embedding refund
+    functionality directly into the the application possible without requiring
+    merchants to return to their BigCommerce Control Panel.
 
-    The Order Refund API endpoints are useful when building order management or
-    payment integrations. They make embedding refund functionality directly into
-    the the application possible without requiring merchants to return to their
-    BigCommerce Control Panel.
 
+    ## Resources
 
-    The first section of this article is a brief walkthrough of a refund
-    example. Subsequent sections provide detailed information about refund
-    request objects and batching.
+    * [Orders
+
+    Overview](https://developer.bigcommerce.com/api-docs/orders/orders-overview)
+
+    * [Orders
+
+    V2](https://developer.bigcommerce.com/api-reference/store-management/orders)
   termsOfService: ''
   license:
     name: ''
