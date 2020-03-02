@@ -1,8 +1,8 @@
 swagger: '2.0'
 info:
-  title: Orders V3
+  title: Order Refunds
   version: ''
-  description: >-
+  description: >
 
     - [OAuth Scopes](#oauth-scopes)
 
@@ -15,9 +15,8 @@ info:
     - [Resources](#resources)
 
 
-    The V3 REST API's Orders resource surfaces endpoints related to payment
-    processing. The `/orders/{id}/transactions` endpoint returns transaction
-    details for the specified order. 
+    The Order API refund endpoints allow developers to process refunds against
+    orders with settled payments. 
 
 
     To programmatically create, update, and delete orders themselves, see
@@ -90,42 +89,39 @@ info:
 
     ## Available Endpoints
 
-    | Endpoint                                |
-    Description                                                             |
+    |Endpoint|Operations|Reference|
 
-    |-----------------------------------------|-------------------------------------------------------------------------|
+    |---|---|---|
 
-    | `/orders/{id}/transactions`             | Get list of transaction data for
-    an order                               |
+    |`/orders/{id}/payment_actions/refund_quotes`|` POST` - Create refund quote
+    for order ID `{id}`.|[Create a Refund
+    Quote](https://developer.bigcommerce.com/api-reference/store-management/order-transactions/order-refunds/postrefundquote)
 
+    |`/orders/{id}/payment_actions/refunds`|`POST` Create a refund for order ID
+    `{id}`.|[Create a
+    Refund](https://developer.bigcommerce.com/api-reference/store-management/order-transactions/order-refunds/postrefund)
 
-    ## Order Transactions
+    |`/orders/{id}/payment_actions/refunds`|` GET` - Returns the refunds for
+    order ID `{id}`.|[Get Refunds For
+    Order](https://developer.bigcommerce.com/api-reference/store-management/order-transactions/order-refunds/getorderrefunds)
 
-
-    The `/orders/{id}/transactions` endpoint returns details about the payment
-    instruments used to pay for an order. Depending on the payment method used,
-    different details will be available. Not all credit card payment gateways
-    will return full card details or all CVV/fraud response details. This is
-    primarily used to get detailed gateway response information for credit card
-    transactions, however it will also return any available information about
-    digital wallet payments, as well as details about orders paid (partially or
-    in full) via a gift certificate or store credit.
-
-
-    The test payment gateway available in the BigCommerce control panel does not
-    return any payment information.
+    |`/orders/payment_actions/refunds`|`GET` - Returns a list of refunds ordered
+    by refund ID.|[Get All
+    Refunds](https://developer.bigcommerce.com/api-reference/store-management/order-transactions/order-refunds/getrefunds)
 
 
-    ## Resources 
+    ## Order Refunds
 
-    * [Orders
-    Overview](https://developer.bigcommerce.com/api-docs/orders/orders-overview)
 
-    * [Orders
-    V2](https://developer.bigcommerce.com/api-reference/store-management/orders)
+    The Order Refund API endpoints are useful when building order management or
+    payment integrations. They make embedding refund functionality directly into
+    the the application possible without requiring merchants to return to their
+    BigCommerce Control Panel.
 
-    * [Payment
-    Processing](https://developer.bigcommerce.com/api-reference/payments/payments-process-payments)
+
+    The first section of this article is a brief walkthrough of a refund
+    example. Subsequent sections provide detailed information about refund
+    request objects and batching.
   termsOfService: ''
   license:
     name: ''
