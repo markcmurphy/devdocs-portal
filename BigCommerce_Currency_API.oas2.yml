@@ -556,15 +556,25 @@ paths:
               last_updated: '1947-12-04T17:27:38.508Z'
               enabled: true
       summary: Update a Currency
-      description: |-
+      description: >-
         Updates a *Currency*.
+
 
         **Read-Only Fields**
 
+
         * id
+
         * date_created
+
         * date_modified
+
         * currency_code
+
+
+
+        The `is_default` property can only be set to true. The value of
+        `is_default` cannot be unset, only overridden. 
       parameters:
         - name: Accept
           in: header
@@ -696,7 +706,12 @@ paths:
             type: object
             properties: {}
       summary: Delete a Currency
-      description: Deletes a *Currency*.
+      description: >-
+        Deletes a *Currency*.
+
+
+        If a currency's `is_default` property is set to true, this currency
+        cannot be deleted. 
       tags:
         - Currencies
       parameters:
