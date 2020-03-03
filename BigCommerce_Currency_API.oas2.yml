@@ -613,9 +613,9 @@ paths:
                 type: integer
               is_default:
                 description: >-
-                  Specifies whether this is the store’s default currency display
-                  format and may only be adjusted in the control panel.
-                  READ-ONLY
+                  Specifies the store’s default currency display format. For
+                  write operations, only true value is accepted. When set to
+                  true, it cannot be unset, only overridden.
                 example: false
                 type: boolean
               last_updated:
@@ -675,9 +675,8 @@ paths:
                 example: false
                 type: boolean
             required:
-              - country_iso2
+              - currency_code
               - currency_exchange_rate
-              - auto_update
               - token_location
               - token
               - decimal_token
