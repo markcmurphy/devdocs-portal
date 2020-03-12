@@ -17,9 +17,7 @@ paths:
               store_hash: '{store_hash}'
               scope: store/order/*
               destination: 'https://665b65a6.ngrok.io/webhooks'
-              headers:
-                username: Webhooks User
-                password: Webhooks Password
+              headers: {}
               is_active: true
               created_at: 1561488106
               updated_at: 1561488106
@@ -35,9 +33,9 @@ paths:
             $ref: '#/definitions/webhook_Base'
           x-examples:
             application/json:
-              scope: '{{$$.env.scope}}'
-              destination: '{{$$.env.destination}}'
-              is_active: true
+              scope: store/order/*
+              destination: 'https://665b65a6.ngrok.io/webhooks'
+              headers: {}
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
       tags:
