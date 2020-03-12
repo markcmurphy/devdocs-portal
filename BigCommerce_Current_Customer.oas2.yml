@@ -1,6 +1,104 @@
 swagger: '2.0'
 info:
-  title: Big Commerce Current Customer API
+  title: Current Customer API
   version: '1.0'
+  description: >-
+    If your application interacts dynamically with the BigCommerce storefront,
+    and conveys information that is specific to a particular logged-in customer,
+    you must confirm that customer’s identity within the insecure environment of
+    the user’s browser.
+
+
+    To address this need, BigCommerce provides a Current Customer endpoint,
+    which your app can access via JavaScript on the storefront. This endpoint
+    returns a JWT with identifying details about the customer. The information
+    is signed with your [OAuth client
+    secret](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    **Note:**
+
+    - An App Client ID is required in requests to `/customer/current.jwt`.
+
+    - To generate an App Client ID, create an app in the [BigCommerce Developer
+    Portal](https://login.bigcommerce.com/login).
+
+    - Use the app’s secret to validate the signature on the JWT.
+
+    - The app doesn’t need to be installed or published on a store to use the
+    client ID to get the JWT.
 host: example.com
-paths: {}
+paths:
+  /customer/current.jwt:
+    get:
+      x-private: true
+      responses:
+        default:
+          description: ''
+          examples:
+            application/json:
+              customer:
+                id: 4927
+                email: john.doe@gmail.com
+                group_id: '6'
+              iss: bc/apps
+              sub: abc123
+              iat: 1480831863
+              exp: 1480832763
+              version: 1
+              aud: 6sv16tfx3j5gsopm42ss5dd67g2srvq
+              application_id: 6sv16tasdgr2b5hs5dd67g2srvq
+              store_hash: abc123
+              operation: current_customer
+          schema:
+            type: object
+            properties:
+              customer:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 4927
+                  email:
+                    type: string
+                    example: john.doe@gmail.com
+                  group_id:
+                    type: string
+                    example: '"6"'
+              iss:
+                type: string
+                description: >-
+                  Indicates the token’s issuer. This is your application’s
+                  client ID, which is obtained during application registration
+                  in Developer Portal.
+                example: '"bc/apps"'
+              sub:
+                type: string
+                example: '"abc123"'
+              iat:
+                type: integer
+                description: >-
+                  Time when the token was generated. This is a numeric value
+                  indicating the number of seconds since the [Unix
+                  epoch](https://en.wikipedia.org/wiki/Unix_time).
+                example: 1480831863
+              exp:
+                type: integer
+                example: 1480832763
+              version:
+                type: integer
+                example: 1
+              aud:
+                type: string
+                example: '"6sv16tfx3j5gsopm42ss5dd67g2srvq"'
+              application_id:
+                type: string
+                example: '"6sv16tasdgr2b5hs5dd67g2srvq"'
+              store_hash:
+                type: string
+                description: Store hash identifying the store you are logging into.
+              operation:
+                type: string
+                description: Must contain the string “current_customer”.
+                example: '"curent_customer"'
+      summary: Get Current Customer
