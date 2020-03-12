@@ -32,7 +32,7 @@ paths:
         - in: body
           name: body
           schema:
-            $ref: '#/definitions/putOrPostWebhook'
+            $ref: '#/definitions/webhook_Base'
           x-examples:
             application/json:
               scope: '{{$$.env.scope}}'
@@ -168,7 +168,7 @@ paths:
         - in: body
           name: body
           schema:
-            $ref: '#/definitions/putOrPostWebhook'
+            $ref: '#/definitions/webhook_Base'
           x-examples:
             application/json:
               scope: store/cart/lineItem/*
@@ -322,9 +322,9 @@ parameters:
     type: string
     default: application/json
 definitions:
-  putOrPostWebhook:
+  webhook_Base:
     type: object
-    title: Create or Update A Webhook
+    title: webhook_Base
     properties:
       scope:
         type: string
