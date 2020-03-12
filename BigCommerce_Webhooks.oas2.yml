@@ -399,48 +399,7 @@ responses:
   webhooks_Resp:
     description: ''
     schema:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Id of the webhook
-          example: 18048287
-        client_id:
-          type: string
-          description: 'Client ID, unique to the store'
-          example: m9r6keqmo7h7f23btnpwernbez1kglkl
-        store_hash:
-          type: string
-          description: 'Store permanent ID. '
-          example: sftg45fsd
-        scope:
-          type: string
-          description: Webhook event subscribed to
-          example: store/order/*
-        destination:
-          type: string
-          example: 'https://665b65a6.ngrok.io/webhooks'
-          description: URL that returns a 200 response for webhooks
-        headers:
-          type: object
-          description: >-
-            You can pass in any number of custom headers to validate webhooks
-            being returned.
-          properties:
-            custom:
-              type: string
-        is_active:
-          type: boolean
-          example: false
-          description: If the webhook is active or not
-        created_at:
-          type: integer
-          example: 1561488106
-          description: Created time
-        updated_at:
-          type: integer
-          example: 1561488106
-          description: Updated time
+      $ref: '#/definitions/webhook_Full'
     examples:
       application/json:
         id: 18048287
