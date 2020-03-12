@@ -26093,7 +26093,7 @@ definitions:
             example: '2018-08-24T14:41:00+00:00'
           id:
             type: integer
-            description: ID of the product. Read Only
+            description: ID of the product. Read Only.
             minimum: 1
           base_variant_id:
             type: integer
@@ -26105,7 +26105,7 @@ definitions:
             description: >-
               The price of the product as seen on the storefront. It will be
               equal to the `sale_price`, if set, and the `price` if there is not
-              a `sale_price`
+              a `sale_price`.
             format: float
           options:
             type: array
@@ -26115,6 +26115,19 @@ definitions:
             type: array
             items:
               $ref: '#/definitions/productModifier_Full'
+          map_price:
+            type: number
+            description: Minimum Advertised Price.
+          option_set_id:
+            type: integer
+            description: >-
+              Indicates that the product is in an Option Set (legacy V2
+              concept).
+          option_set_display:
+            type: string
+            description: >-
+              Legacy template setting which controls if the option set shows up
+              to the side of or below the product image and description.
     title: product_Full
   productImage_Full:
     title: productImage_Full
