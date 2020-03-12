@@ -27,7 +27,7 @@ info:
 
     - The app doesn’t need to be installed or published on a store to use the
     client ID to get the JWT.
-host: example.com
+host: '{{$$.env.store_domain}}'
 paths:
   /customer/current.jwt:
     get:
@@ -59,6 +59,7 @@ paths:
                   id:
                     type: integer
                     example: 4927
+                    description: Uniq.ue numeric ID of the customer
                   email:
                     type: string
                     example: john.doe@gmail.com
