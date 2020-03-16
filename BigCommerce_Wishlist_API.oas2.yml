@@ -35,41 +35,7 @@ paths:
           required: true
           description: ''
           schema:
-            title: Create a Wishlist
-            type: object
-            properties:
-              customer_id:
-                description: The customer id.
-                type: integer
-                format: int32
-                example: 12
-              is_public:
-                description: Whether the wishlist is available to the public.
-                type: boolean
-                example: false
-              name:
-                description: The title of the wishlist.
-                type: string
-                example: School Shopping
-              items:
-                description: Array of Wishlist items.
-                type: array
-                items:
-                  title: Add Item to Wishlist
-                  type: object
-                  properties:
-                    product_id:
-                      description: The ID of the product.
-                      type: integer
-                      format: int32
-                      example: 12
-                    variant_id:
-                      description: The variant ID of the product.
-                      type: integer
-                      format: int32
-                      example: 152
-            required:
-              - customer_id
+            $ref: '#/definitions/wishlist_Post'
           x-examples:
             application/json:
               name: School Shopping
