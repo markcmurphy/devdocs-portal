@@ -83,6 +83,12 @@
             Authorization: authHeader
         }
     }];
+  
+    const url = new URL(window.location.href);
+    if (url.searchParams.get('storefront_token')) {
+        url.searchParams.delete('token')
+        window.location.href = url.toString();
+    }
 
     try {
       if (location.origin === "https://developer.bigcommerce.com") {
