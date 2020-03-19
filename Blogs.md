@@ -1,3 +1,5 @@
-# Header
+## Blogs
 
-A paragraph of content.
+## Blog Posts
+
+## Blog Tags
