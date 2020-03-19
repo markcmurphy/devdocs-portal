@@ -4543,10 +4543,8 @@ paths:
           in: body
           required: true
           schema:
-            type: object
             allOf:
-              - type: object
-                description: Common Metafield properties.
+              - description: Common Metafield properties.
                 title: Metafield
                 properties:
                   id:
@@ -4564,8 +4562,8 @@ paths:
                       - app_only
                       - read
                       - write
-                    x-required:
-                      - post
+                      - read_and_sf_access
+                      - write_and_sf_access
                   namespace:
                     type: string
                     description: >
@@ -4645,6 +4643,7 @@ paths:
                   - key
                   - value
             title: Metafield Post
+            type: object
           x-examples:
             application/json:
               permission_set: app_only
