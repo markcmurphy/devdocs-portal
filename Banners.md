@@ -1,3 +1,2 @@
-# Banners
+## Banners
 
-A paragraph of content.
