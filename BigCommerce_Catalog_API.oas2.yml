@@ -5062,10 +5062,8 @@ paths:
           in: body
           required: true
           schema:
-            type: object
             allOf:
-              - type: object
-                description: Common Metafield properties.
+              - description: Common Metafield properties.
                 title: Metafield
                 properties:
                   id:
@@ -5083,8 +5081,8 @@ paths:
                       - app_only
                       - read
                       - write
-                    x-required:
-                      - post
+                      - read_and_sf_access
+                      - write_and_sf_access
                   namespace:
                     type: string
                     description: >
@@ -5164,6 +5162,7 @@ paths:
                   - key
                   - value
             title: Metafield Post
+            type: object
           x-examples:
             application/json:
               permission_set: app_only
@@ -5193,11 +5192,6 @@ paths:
                 type: object
                 description: Common Metafield properties.
                 title: Metafield
-                required:
-                  - permission_set
-                  - namespace
-                  - key
-                  - value
                 properties:
                   id:
                     type: integer
@@ -5214,8 +5208,8 @@ paths:
                       - app_only
                       - read
                       - write
-                    x-required:
-                      - post
+                      - read_and_sf_access
+                      - write_and_sf_access
                   namespace:
                     type: string
                     description: >
@@ -5289,6 +5283,11 @@ paths:
                       Date and time when the metafield was last updated.
                       Read-Only.
                     example: '2018-05-07T20:14:17+00:00'
+                required:
+                  - permission_set
+                  - namespace
+                  - key
+                  - value
               meta:
                 type: object
                 description: Empty meta object; may be used later.
