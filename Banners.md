@@ -1,3 +1,3 @@
-# Header
+# Banners
 
 A paragraph of content.
