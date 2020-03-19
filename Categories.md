@@ -1,3 +1,5 @@
-# Header
+## Categories
 
-A paragraph of content.
+## Category Images
+
+## Category Metafields
