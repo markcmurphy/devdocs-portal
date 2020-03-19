@@ -1,3 +1,7 @@
-# Header
+## Widgets
 
-A paragraph of content.
+## Widgets Placements
+
+## Widgets Region
+
+## Widgets Templates
