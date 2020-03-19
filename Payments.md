@@ -1,3 +1,7 @@
-# Header
+## Payments
 
-A paragraph of content.
+## Payment Methods (Enabled on Store)
+
+## Payment Processing Methods (On Order)
+
+## Payment Processing Token
