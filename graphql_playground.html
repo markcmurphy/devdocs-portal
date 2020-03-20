@@ -84,6 +84,14 @@
         }
     }];
 
+    var pageUrl = new URL(window.location.href);
+    if (pageUrl.searchParams.get('storefront_token')) {
+        pageUrl.searchParams.delete('storefront_token');
+        history.replaceState({storefront_hostname:pageUrl.searchParams.get('storefront_hostname')},
+                             '', 
+                             `?${pageUrl.searchParams.toString()}`);
+    }
+
     try {
       if (location.origin === "https://developer.bigcommerce.com") {
         authHeader= "Bearer {$$.env.storefront_token}"
