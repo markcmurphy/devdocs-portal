@@ -86,7 +86,7 @@
 
     var pageUrl = new URL(window.location.href);
     if (pageUrl.searchParams.get('storefront_token')) {
-      	localStorage.setItem('graphql-playground-token', url.searchParams.get('storefront_token'));	
+      	localStorage.setItem('graphql-playground-token', pageUrl.searchParams.get('storefront_token'));	
         pageUrl.searchParams.delete('storefront_token');
         window.location.href = pageUrl.toString();
     } else if (!pageUrl.searchParams.get('storefront_hostname')) {
