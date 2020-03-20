@@ -316,48 +316,17 @@ paths:
           required: true
           schema:
             type: object
+            title: Cart Request Data
             properties:
               line_items:
-                type: array
-                items:
-                  type: object
-                  title: Line Item Request Data
-                  properties:
-                    quantity:
-                      type: number
-                    product_id:
-                      type: number
-                    variant_id:
-                      type: number
-                      description: Required if the product has variants
-                    list_price:
-                      type: number
-                      description: Optional price override
-                    option_selections:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          option_id:
-                            type: number
-                          option_value:
-                            type: string
-                        title: Product Option Selection
-                  required:
-                    - quantity
-                    - product_id
-                    - variant_id
+                oneOf:
+                  - $ref: '#/definitions/cart_PostVariant'
+                  - $ref: '#/definitions/cart_PostModifier'
               gift_certificates:
                 type: array
                 items:
                   type: object
-                  required:
-                    - sender
-                    - recipient
-                    - amount
-                    - theme
-                    - name
-                    - quantity
+                  title: Line Item Gift Certificate Request Data
                   properties:
                     name:
                       type: string
@@ -394,8 +363,13 @@ paths:
                       type: string
                       maximum: 200
                       description: 'Message shown to recipient, as provided by sender.'
-                  title: Line Item Gift Certificate Request Data
-            title: Cart Request Data
+                  required:
+                    - name
+                    - theme
+                    - amount
+                    - quantity
+                    - sender
+                    - recipient
           x-examples:
             application/json:
               line_items:
