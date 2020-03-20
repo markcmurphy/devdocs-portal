@@ -84,22 +84,9 @@
         }
     }];
 
-    var pageUrl = new URL(window.location.href);
-    if (pageUrl.searchParams.get('storefront_token')) {
-      	localStorage.setItem('graphql-playground-token', pageUrl.searchParams.get('storefront_token'));	
-        pageUrl.searchParams.delete('storefront_token');
-        window.location.href = pageUrl.toString();
-    } else if (!pageUrl.searchParams.get('storefront_hostname')) {
-        localStorage.removeItem('graphql-playground-token');
-    }
-
     try {
       if (location.origin === "https://developer.bigcommerce.com") {
-        if (localStorage.getItem('graphql-playground-token')) {
-          authHeader=`Bearer ${localStorage.getItem('graphql-playground-token')}`
-        } else {
-          authHeader= "Bearer {$$.env.storefront_token}"
-        }
+        authHeader= "Bearer {$$.env.storefront_token}"
         var definedTabs = playgroundTabs(endpoint, authHeader);
         tabs = definedTabs.get("{$$.env.playground_tab}")
       } else {
