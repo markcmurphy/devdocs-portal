@@ -303,12 +303,19 @@ paths:
       operationId: createACart
   '/carts/{cartId}/items':
     post:
-      description: |-
+      description: >-
         Adds a line items to the *Cart*
 
-        **Notes**
+
+        **Usage Notes**
+
 
         To add a custom item use `custom_items`. 
+
+
+        If a product has modifiers, omit the `variant_id` and instead use the
+        `option_selections` array to describe both the **variant** and the
+        **modifier** selections.
       parameters:
         - name: cartId
           in: path
