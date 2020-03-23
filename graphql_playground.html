@@ -2,15 +2,6 @@
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
 <title>BigCommerce GraphQL Playground</title><link rel="stylesheet" href="https://bigcommerce.github.io/dev-docs/assets/css/graphql/index.css">
 <link rel="shortcut icon" href="https://bigcommerce.github.io/dev-docs/assets/images/graphql/favicon.png">
-<script>
-    var pageUrl = new URL(window.location.href);
-    if (pageUrl.searchParams.get('storefront_token')) {
-        pageUrl.searchParams.delete('storefront_token');
-        history.replaceState({storefront_hostname:pageUrl.searchParams.get('storefront_hostname')},
-                             '', 
-                             `?${pageUrl.searchParams.toString()}`);
-    }
-</script>
 <script src="https://bigcommerce.github.io/dev-docs/assets/js/graphql/middleware.js"></script>
 <script src="https://bigcommerce.github.io/dev-docs/assets/js/playground_tabs.js"></script>
 <script async defer src="https://cdn.noticeable.io/v1/noticeable-widget.js"></script>
@@ -103,6 +94,14 @@
       }
     } catch {
       console.log("playground.html: Couldn't get tabs. There was an error.");
+    }
+  
+  	var pageUrl = new URL(window.location.href);
+    if (pageUrl.searchParams.get('storefront_token')) {
+        pageUrl.searchParams.delete('storefront_token');
+        history.replaceState({storefront_hostname:pageUrl.searchParams.get('storefront_hostname')},
+                             '', 
+                             `?${pageUrl.searchParams.toString()}`);
     }
     
     var playgroundOptions = {
