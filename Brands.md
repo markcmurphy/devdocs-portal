@@ -11,6 +11,8 @@
 
 For general information on brands and their use cases, see [Managing Brands](https://support.bigcommerce.com/s/article/Managing-Brands) in the BigCommerce Help Center. 
 
+For V2 Catalog Brands, see [Legacy](https://developer.bigcommerce.com/legacy/v2-catalog-products/v2-brands). 
+
 ## Brand Images
 
 |Resource / Endpoint|Description|
