@@ -17,8 +17,8 @@ For V2 Catalog Brands, see [Legacy](https://developer.bigcommerce.com/legacy/v2-
 
 |Resource / Endpoint|Description|
 |-|-|
-|[`Create a Brand Image`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brand-images/createbrandimage)|Create a Brand Image|
-|[`Delete a Brand Image`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brand-images/deletebrandimage)|Delete a Brand Image|
+|[`Create a Brand Image`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brand-images/createbrandimage)|Creates a Brand Image|
+|[`Delete a Brand Image`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brand-images/deletebrandimage)|Deletes a Brand Image|
 
 ## Brand Metafields
 Metafields can be added to variants, products, categories, and brands.
