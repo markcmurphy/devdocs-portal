@@ -1065,14 +1065,14 @@ definitions:
     description: |
       Response payload for the BigCommerce API.
     type: object
+    title: Subscriber Collection Response
     properties:
       data:
         type: array
         items:
-          type: object
           allOf:
-            - type: object
-              description: Common Subscriber properties.
+            - description: Common Subscriber properties.
+              title: Subscriber Base
               properties:
                 id:
                   type: integer
@@ -1113,9 +1113,7 @@ definitions:
                   x-nullable: true
                   minimum: 1
                   maximum: 2147483647
-              title: Subscriber Base
-            - type: object
-              properties:
+            - properties:
                 date_modified:
                   type: string
                   format: date-time
@@ -1126,9 +1124,11 @@ definitions:
                   format: date-time
                   description: |
                     The date of which the subscriber was created.
+          type: object
       meta:
         type: object
         description: 'Data about the response, including pagination and collection totals.'
+        title: Collection Meta
         properties:
           pagination:
             type: object
@@ -1182,8 +1182,6 @@ definitions:
                     type: string
                     description: |
                       Link to the next page returned in the response.
-        title: Collection Meta
-    title: Subscriber Collection Response
   SubscriberResponse:
     type: object
     properties:
