@@ -1,8 +1,27 @@
 ## Carts
 
+Allows for a cart to be created using BigCommerce cart logic. The existing BigCommerce front-end cart can be bypassed.
+
+A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.
+
+**Notes:**
+
+* A cart can be creted using an existing catalog item or by adding a custom item. 
+* `cartId` is the same as the `checkoutId`.
+* Carts are valid for 30 days from the last modification. This includes creating the cart or editing the cart.
+* If a product has modifiers, omit the `variant_id` and instead use the `option_selections` array to describe both the variant and the modifier selections.
+* Changing the Cart `customer_id` will remove any promotions or shipping on the Cart. These are tied to the customer depending on cart conditions and any customer groups.
+
 **Guest Cart**
 
 A guest cart assumes the shopper is not a customer and is not logging in or creating an account during checkout. Guest checkouts should be handled by displaying the cart data to the customer and then moving them to Checkout using the [Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api). 
+
+|Resource / Endpoint|Description|
+|-|-|
+|[`Create a Cart`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart/createacart)|Creates a Cart|
+|[`Get a Cart`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart/getacart)|Returns a stored Cart|
+|[`Update a Cart`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart/updateacart)|Updates a Cart's `customer_id`|
+|[`Delete a Cart`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart/deleteacart)|Deletes a Cart|
 
 ## Abandoned Carts
 
@@ -10,7 +29,29 @@ A guest cart assumes the shopper is not a customer and is not logging in or crea
 
 A list of items added to the cart in the current session.
 
-## Cart Redirect URIs
+To add a custom item, use `custom_items`.
+
+|Resource / Endpoint|Description|
+|-|-|
+|[`Add Cart Line Items`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart-items/addcartlineitem)|Adds a Line Item to the Cart|
+|[`Update Cart Line Item`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart-items/updatecartlineitem)|Updates a Cart Line Item|
+|[`Delete Cart Line Item`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart-items/deletecartlineitem)|Deletes a Cart Line Item|
+
+## Cart Redirect URLs
+
+A Cart Redirect URL is used to redirect a shopper to an already created cart using the `cartId`.
+
+Redirect URLs can only be generated from carts created using the Server-to-Server Cart API. The `cart_id` is used to generate a `redirect_url`. 
+
+To get cart `redirect_urls` in the response, append the `include=redirect_urls` query parameter to the request URL.
+
+To restore a cart that was created on the storefront, either by a shopper or the Storefront Cart API, recreate the cart using the Server-to-Server Cart API.
+
+|Resource / Endpoint|Description|
+|-|-|
+|[`Create Cart Redirect URL`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart-redirect-urls/createcartredirecturl)|Creates a Cart Redirect URL|
+
+**Custom Add to Cart Links**
 
 Query string parameters can be appended to Bigcommerce product and `/cart.php` urls in order to pre-select an SKU or add a product to cart. These parameters make it possible to build custom add to cart links and forms for use on BigCommerce storefronts and remote sites (such as WordPress, blog posts, and social media).
 
