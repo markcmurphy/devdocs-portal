@@ -31,6 +31,38 @@ To add a product that has both an option and a modifier associated with it, then
 
 **Missing line_items in request body [422]**
 
+*Issue*: When a required product modifier is missing. A product can have a modifier that is not required. In those cases the product can be added to a cart without the modifier.
+
+*Resolution*: Use the [Get Products](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/products/getproducts) or [Get Modifier](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/product-modifiers/getmodifiers) endpoints to return the modifier ID. The `modifier_id` = `option_id`.
+
+**A shipping address for this order is incomplete [422]**
+
+*Issue*: This can return when the customer ID of a cart has changed.
+
+*Resolution*: The customer ID is linked to discounts and pricing available to that customer. If that is changed then anything that affects the cart price is invalidated. This includes coupons, discounts, taxes and shipping.
+
+A cart should be created with the `customer_id` as part of the request body. Use the [Get Customers](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customers/getallcustomers) endpoint to get the `customer_id`.
+
+**This product has options, variant ID is required [422]**
+
+*Issue*: When a product has options and variant ID is not supplied in either the create or update cart request.
+
+*Resolution*: To get the variant ID use the [Get Products](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/products/getproducts) endpoint or the [Get Variants](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/product-variants/getvariantsbyproductid) endpoint. 
+
+**You can only purchase a maximum of :qty of the :product per order [409]**
+
+*Issue*: When less than a product’s minimum required purchase or more than the maximum allowed purchase is added to cart.
+
+*Resolution*: Check the product for `order_quantity_minimum` and `order_quantity_maximum` for the correct amount to add the cart. Use the [Get Product](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/products/getproducts) endpoint.
+
+**Internal Server Error [500]**
+
+*Issue*: Trying to edit a Cart that does not exist.
+
+*Resolution*: Carts are only valid 30 days past the `date_last_modified`. Check the [Get Carts](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-cart-api/cart/getacart) endpoint for the current available session cart.
+
+[Cart Webhook Events](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_cart)
+
 [Handlebars Reference](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/cart)
 
 {{cart}}
