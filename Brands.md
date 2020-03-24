@@ -1,5 +1,7 @@
 ## Brands
 
+[Theme Docs](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#brand)
+
 |Resource / Endpoint|Description|
 |-|-|
 |[`Get All Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrands)|Returns a list of Brands|
