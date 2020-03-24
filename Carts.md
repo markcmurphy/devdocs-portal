@@ -1,8 +1,14 @@
 ## Carts
 
+**Guest Cart**
+
+A guest cart assumes the shopper is not a customer and is not logging in or creating an account during checkout. Guest checkouts should be handled by displaying the cart data to the customer and then moving them to Checkout using the [Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api). 
+
 ## Abandoned Carts
 
 ## Cart Items 
+
+A list of items added to the cart in the current session.
 
 ## Cart Redirect URIs
 
@@ -15,7 +21,7 @@ URLs constructed with these parameters can be used to:
 * Add a specific SKU to the cart and go directly to checkout.
 * Attach a `source` for marketing an analytics purposes
 
-## Parameters
+**Parameters**
 
 | **Type**| **Parameter** | **Description**                                     | **Example**                                                 |
 |-- |-|--|-|
@@ -26,7 +32,7 @@ URLs constructed with these parameters can be used to:
 | string  | `sku=`        | SKU to add to the cart (or select on product page)  | `/cart.php?action=add&sku=xlredtshirt`                      |
 | string  | `source=`     | source of the sale for analytics; can be any string | `/cart.php?action=buy&sku=xlredtshirt&source=emailcampaign` |
 
-## Common Usage
+**Common Usage**
 
 Below is a table of common scenarios and example URLs.
 
@@ -45,11 +51,11 @@ Once constructed, a URL can be inserted directly as text or as an HTML link:
 <a href="https://example.com/cart.php?action=buy&product_id=123&source=blogpost">Purchase Our New Product Now!</a>
 ```
 
-## Adding Multiple Products
+**Adding Multiple Products**
 
 The `sku` and `product_id` parameters accept a single value; if a comma separated list of values is passed in, only the first value is used. In other words, only one product can be added for each request made to an add to cart URL.
 
-Although it is possible to combine several HTTP requests into a single button click using JavaScript, this method is limited to the BigCommerce storefront with the domain the request is being made to. Depending on the complexities and specifics of the use case, the [Storefront Cart API](https://developer.bigcommerce.com/api-docs/cart-and-checkout/working-sf-apis) may be a more suitable option. 
+Although it is possible to combine several HTTP requests into a single button click using JavaScript, this method is limited to the BigCommerce storefront. Depending on the complexities and specifics of the use case, the [Storefront Cart API](https://developer.bigcommerce.com/api-docs/cart-and-checkout/working-sf-apis) may be a more suitable option. 
 
 ### Troubleshooting Cart Errors
 
