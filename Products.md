@@ -52,6 +52,8 @@ Custom fields will appear automatically in the product's details if they are def
 
 ## Product Reviews
 
+Product reviews are comments submitted by customers or viewers of your site directly onto the product page.
+
 ## Product Videos
 
 Videos hosted on YouTube can be added as product videos. 
