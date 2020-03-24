@@ -13,3 +13,9 @@ Banners are part of Marketing. Marketing APIs support demand generation and loya
 |[`Update a Banner`](https://developer.bigcommerce.com/api-reference/marketing/marketing-api/banners/updateabanner)|Updates a Banner|
 |[`Delete a Banner`](https://developer.bigcommerce.com/api-reference/marketing/marketing-api/banners/deleteabanner)|Deletes a Banner|
 |[`Get a Count of Store Banners`](https://developer.bigcommerce.com/api-reference/marketing/marketing-api/banners/getacountofbanners)|Returns a count of Banners|
+
+[Handlebars Reference](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/new-subpage)
+
+{{banners}}
+
+Elements of marketing banners at page’s top and/or bottom.
