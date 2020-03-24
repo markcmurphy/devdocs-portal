@@ -54,4 +54,4 @@ Custom fields will appear automatically in the product's details if they are def
 
 ## Product Videos
 
-Videos hosted on YouTube can be added as a product video. 
+Videos hosted on YouTube can be added as product videos. 
