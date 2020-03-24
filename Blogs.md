@@ -1,6 +1,11 @@
 ## Blogs
 
+[Theme Docs](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#blog)
+
+
 ## Blog Posts
+
+[Theme Docs](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#blog-post)
 
 A content entry in the store’s blog.
 
