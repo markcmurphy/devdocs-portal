@@ -14,6 +14,47 @@ GraphQL Storefront API requests are authenticated with tokens sent via the HTTP 
 
 ## API Tokens
 
+JWT tokens for authenticating cross-origin requests to the Storefront API can be created using the [Storefront API Token endpoint](https://developer.bigcommerce.com/api-reference/storefront/graphql-api-tokens/api-token/createtoken):
+
+**`POST`** `https://api.bigcommerce.com/stores/{store_hash}/v3/storefront/api-token`
+
+```javascript
+{
+  "channel_id": 1,            // int (only ID 1 currently accepted)
+  "expires_at": 1602288000,   // double utc unix timestamp (required)
+  "allowed_cors_origins": [   // array (accepts 1 origin currently)
+    "https://example.com"
+  ]  
+}
+```
+
+**Response:**
+
+```json
+{
+  "token":"...eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9...",
+  "meta": {
+    // ...
+  }
+}
+```
+
+<div class="HubBlock--callout">
+<div class="CalloutBlock--warning">
+<div class="HubBlock-content">
+<!-- theme: warning -->
+
+### Note
+> * `1` can be passed in for the `channel_id` for generating tokens for use on the default Stencil storefront.
+> * To create a channel for a remote site, see [Create Channel].(https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channels/createchannel) in the API Reference.
+> * `allowed_cors_origins` array accepts only a single origin currently -- one token must be generated for each origin.
+> * `/storefront/api-token` endpoint requires the `Manage` `Storefront API Tokens` OAuth Scope.
+> * `storefront/api-token-customer-impersonation` endpoint requires the `Manage` `Storefront API Customer Impersonation Tokens` OAuth Scope.
+
+</div> 
+</div>
+</div>
+
 ## Customer Impersonation Token
 Its also possible to generate tokens for use in server-to-server interactions with a trusted consumer by POSTing to the [API Token Customer Impersonation Endpoint](https://developer.bigcommerce.com/api-reference/storefront/graphql-api-tokens/api-token-customer-impersonation/createtokenwithcustomerimpersonation) with the `X-Bc-Customer-Id` header set to the customer's ID:
 
