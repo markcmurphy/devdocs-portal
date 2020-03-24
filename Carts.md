@@ -25,6 +25,12 @@ A guest cart assumes the shopper is not a customer and is not logging in or crea
 
 ## Abandoned Carts
 
+Use `/abandoned-carts/{token}` on headless storefronts to retrieve the `cart_id` via the abandoned cart token passed in to headless storefront via an abandoned cart email link clicked on by a shopper. Once the `cart_id` has been retrieved, it can be used to fetch and display information about the cart to the shopper via the storefront cart and/or Server-to-Server Cart APIs.
+
+|Resource / Endpoint|Description|
+|-|-|
+|[`Get an Abandoned Cart`](https://developer.bigcommerce.com/api-reference/cart-checkout/s2s-abandoned-carts/abandoned-carts/getabandonedcarts)|Returns a `cartId` corresponding to the abandoned cart `token`|
+
 ## Cart Items 
 
 A list of items added to the cart in the current session.
