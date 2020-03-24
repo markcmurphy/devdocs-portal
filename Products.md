@@ -50,6 +50,8 @@ Custom fields will appear automatically in the product's details if they are def
 
 ## Product Metafields
 
+Metafields are key and value pair intended for programmaticly storing data against a product or other entity. Data stored in metafields does not appear in the storefront or the control panel. This is useful for when information needs to be passed back and forth between an app and BigCommerce.
+
 ## Product Reviews
 
 Product reviews are comments submitted by customers or viewers of your site directly onto the product page.
