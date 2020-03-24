@@ -25,7 +25,9 @@ A guest cart assumes the shopper is not a customer and is not logging in or crea
 
 ## Abandoned Carts
 
-Use `/abandoned-carts/{token}` on headless storefronts to retrieve the `cart_id` via the abandoned cart token passed in to headless storefront via an abandoned cart email link clicked on by a shopper. Once the `cart_id` has been retrieved, it can be used to fetch and display information about the cart to the shopper via the storefront cart and/or Server-to-Server Cart APIs.
+Use `/abandoned-carts/{token}` on headless storefronts to retrieve the `cartId` via the abandoned cart token passed in to headless storefront via an abandoned cart email link clicked on by a shopper. Once the `cartId` has been retrieved, it can be used to fetch and display information about the cart to the shopper via the Storefront Cart and/or Server-to-Server Cart APIs.
+
+`{token}` is the token in the query string of the abandoned cart link found in the abandoneed cart email notifications to shoppers. 
 
 |Resource / Endpoint|Description|
 |-|-|
@@ -47,7 +49,7 @@ To add a custom item, use `custom_items`.
 
 A Cart Redirect URL is used to redirect a shopper to an already created cart using the `cartId`.
 
-Redirect URLs can only be generated from carts created using the Server-to-Server Cart API. The `cart_id` is used to generate a `redirect_url`. 
+Redirect URLs can only be generated from carts created using the Server-to-Server Cart API. The `cartId` is used to generate a `redirect_url`. 
 
 To get cart `redirect_urls` in the response, append the `include=redirect_urls` query parameter to the request URL.
 
