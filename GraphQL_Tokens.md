@@ -8,12 +8,41 @@
 - [Customer Impersonation Token](#customer-impersonation-token)
 </div>
 
-GraphQL Storefront API requests are authenticated with tokens sent via the HTTP Authorization header
+GraphQL Storefront API requests are authenticated with tokens sent via the HTTP `Authorization` header:
 
-## GraphQL Tokens
+```bash
+curl 'https://{bigcommerce_storefront_domain}.com/graphql'\
+  # ...
+  -H 'Authorization: Bearer {token}'\
+  # ...
+```
+
+JWT tokens for authenticating cross-origin requests to the Storefront API can be created using the [Storefront API Token endpoint](https://developer.bigcommerce.com/api-reference/storefront/graphql-api-tokens/api-token/createtoken):
+
+**`POST`** `https://api.bigcommerce.com/stores/{store_hash}/v3/storefront/api-token`
+
+```javascript
+{
+  "channel_id": 1,            // int (only ID 1 currently accepted)
+  "expires_at": 1602288000,   // double utc unix timestamp (required)
+  "allowed_cors_origins": [   // array (accepts 1 origin currently)
+    "https://example.com"
+  ]  
+}
+```
+
+**Response:**
+
+```json
+{
+  "token":"...eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9...",
+  "meta": {
+    // ...
+  }
+}
+```
 
 ## API Tokens
-
 JWT tokens for authenticating cross-origin requests to the Storefront API can be created using the [Storefront API Token endpoint](https://developer.bigcommerce.com/api-reference/storefront/graphql-api-tokens/api-token/createtoken):
 
 **`POST`** `https://api.bigcommerce.com/stores/{store_hash}/v3/storefront/api-token`
