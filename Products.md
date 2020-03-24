@@ -48,6 +48,14 @@ Custom fields will appear automatically in the product's details if they are def
 
 ## Product Images
 
+### Image Requirements
+Images must meet the following requirements. Attempting to import or upload an image that does not meet these requirements can cause products not to have images.
+
+* Image file names are restricted to **a-z**, **0-9**, - and **_**.
+* Image file names **cannot contain any spaces or special characters**.
+* Image file types must be **JPEG/JPG**, **GIF**, or **PNG**. They **cannot** be TIFF, BMP, or PDF file formats.
+* The optimal size for your product images is **1280 x 1280 pixels**. Other product images (like thumbnails) will be created from the original image you upload.
+
 ## Product Metafields
 
 Metafields are key and value pair intended for programmaticly storing data against a product or other entity. Data stored in metafields does not appear in the storefront or the control panel. This is useful for when information needs to be passed back and forth between an app and BigCommerce.
