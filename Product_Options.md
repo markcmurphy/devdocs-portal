@@ -1,4 +1,5 @@
 ## Product Options 
+Product Options allow you to sell items that come in several variations, like different colors or sizes. They also provide a way for your customers to customize or modify products, like a text field to include a name for personalization, or a checkbox to add an optional insurance fee.
 
 ### Variations
 For more information on variations, see the [Product Variants](#) page.
