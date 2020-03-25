@@ -27,6 +27,6 @@ Index of tags used on the store’s blog.
 |-|-|
 |[`Get All Blog Tags`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-tags/getallblogtags)|Returns a List of Blog Tags|
 
-[Handlebars Reference](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/blog)
+### Resources
 
-{{blog}}
+[Handlebars Reference](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/blog)
