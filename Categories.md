@@ -8,7 +8,7 @@
 </div>
 <br>
 
-The Catalog API manages products, brnds, and categories for a store. This section focuses on categories.
+The Catalog API manages products, brands, and categories for a store. This section focuses on categories.
 
 ## Categories
 
