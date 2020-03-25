@@ -1,6 +1,6 @@
 ## Carts
 
-Server-to_server Carts API allows for a cart to be created using BigCommerce cart logic. The existing BigCommerce front-end cart can be bypassed.
+Server-to-Server Carts API allows for a cart to be created using BigCommerce cart logic. The existing BigCommerce front-end cart can be bypassed.
 
 A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.
 
