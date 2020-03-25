@@ -1,5 +1,3 @@
-# Title
-
 <div class="otp" id="no-index">
 
 ### On this Page	
@@ -8,8 +6,9 @@
 - [Section3](#section3)
 
 </div>
+<br>
 
-Introduction
+The Server-to-Server APIs are for managing the contents of a shopping cart and checkout remotely, from a server.
 
 ## Checkouts
 
@@ -24,4 +23,8 @@ Introduction
 ## Checkout Cart Items
 
 ## Checkout Gift Certificates
+
+### Troubleshooting Checkout Errors
+
+
 
