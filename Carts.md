@@ -25,7 +25,7 @@ A guest cart assumes the shopper is not a customer and is not logging in or crea
 
 **Persistent Cart**
 
-Persistent Cart allows for a logged in shopper to access the same cart across devices. Persistent Cart is available on Plus, Pro, and Enterprise plans.
+Persistent Cart allows for a logged in shopper to access the same cart across devices. Persistent Cart is available on [Plus, Pro, and Enterprise](https://www.bigcommerce.com/essentials/pricing/) plans.
 
 Persistent Cart works with the Storefront Cart and Server-to-Server Cart APIs. To learn more, see [Persistent Cart](https://support.bigcommerce.com/s/article/Persistent-Cart). 
 
