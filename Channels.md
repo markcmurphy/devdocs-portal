@@ -21,12 +21,10 @@ A channel is anywhere a merchant sells their products. This encompasses headless
 
 |Resource / Endpoint|Description|
 |-|-|
-|[`Get All Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrands)|Returns a list of Brands|
-|[`Create a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/createbrand)|Create a Brand|
-|[`Delete Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrands)|Deletes all Brand objects|
-|[`Get a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrandbyid)|Returns a single Brand|
-|[`Update a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/updatebrand)|Updates a Brand|
-|[`Delete a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrandbyid)|Deletes a Brand|
+|[`Get All Channels`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channels/listchannels)|Returns a list of Channels|
+|[`Create a Channel`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channels/createchannel)|Creates a Channel|
+|[`Get a Channel`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channels/getchannel)|Returns a Channel|
+|[`Update a Channel`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channels/updatechannel)|Updates a Channel|
 
 ### Sites and Routes
 
