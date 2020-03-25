@@ -23,13 +23,42 @@ A product associated with categories does not currently have any priority or wei
 
 Categoty Tree endpoint returns a simple view of the parent - child relationship of all categories in the store. This endpoint can be used to fetch categories when building a custom navigation for a store. 
 
+|Resource / Endpoint|Description|
+|-|-|
+|[`Get All Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrands)|Returns a list of Brands|
+|[`Create a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/createbrand)|Create a Brand|
+|[`Delete Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrands)|Deletes all Brand objects|
+|[`Get a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrandbyid)|Returns a single Brand|
+|[`Update a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/updatebrand)|Updates a Brand|
+|[`Delete a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrandbyid)|Deletes a Brand|
+
 ## Category Images
 
 Create and manage category images.
 
+**Notes**
+
+* Only one image can be created at a time. 
+* Limit image size to 1MB. 
+* To update a Category Image, use [Update a Category](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category/updatecategory) and an `image_url`.
+
+|Resource / Endpoint|Description|
+|-|-|
+|[`Create a Category Image`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category-images/createcategoryimage)|Creates a Category Image|
+|[`Delete a Category Image`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category-images/deletecategoryimage)|Deletes a Category Image|
+
 ## Category Metafields
 
 Create and manage category metafields. 
+
+|Resource / Endpoint|Description|
+|-|-|
+|[`Get All Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrands)|Returns a list of Brands|
+|[`Create a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/createbrand)|Create a Brand|
+|[`Delete Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrands)|Deletes all Brand objects|
+|[`Get a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrandbyid)|Returns a single Brand|
+|[`Update a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/updatebrand)|Updates a Brand|
+|[`Delete a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrandbyid)|Deletes a Brand|
 
 ### Resources
 
