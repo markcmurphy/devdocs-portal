@@ -12,3 +12,29 @@
 Introduction
 
 ## Coupons
+Returns a list of *Coupons*. Default sorting is by coupon/discount id, from lowest to highest. Optional filter parameters can be passed in.
+
+## Usage Notes
+
+Available types for `type` and `exclude_type` filters:
+
+|Type|
+|-|
+|`per_item_discount`|
+|`percentage_discount`|
+|`per_total_discount`|
+|`shipping_discount`|
+|`free_shipping`|
+|`promotion`|
+
+Coupons with `type=promotion` will not populate usable data for the following fields but instead be set to the following default values:
+
+```json
+...
+amount : 0.0000
+min_purchase: 0.0000
+applies_to
+restricted_to: []
+shipping_methods : null
+...
+```
