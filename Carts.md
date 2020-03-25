@@ -167,3 +167,7 @@ A cart should be created with the `customer_id` as part of the request body. Use
 [Theme Docs](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#cart)
 
 [Handlebars Reference](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/cart)
+
+[Help Center: Persistent Cart](https://support.bigcommerce.com/s/article/Persistent-Cart)
+
+[Help Center: Using the Abandoned Cart Saver](https://support.bigcommerce.com/s/article/Using-the-Abandoned-Cart-Saver)
