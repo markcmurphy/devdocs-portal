@@ -41,7 +41,14 @@ Channel listings allow you to manage catalog differences among different storefr
 
 ## Channel Sites
 
+Manage sites and routing for headless storefronts. 
 
+|Resource / Endpoint|Description|
+|-|-|
+|[`Get a Channel Site`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channel-site/get-channel-site)|Returns Site data|
+|[`Update a Channel Site`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channel-site/put-channel-site)|Updates a Site|
+|[`Create a Channel Site`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channel-site/postchannelsite)|Creates a Channel Site|
+|[`Delete a Channel Site`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channel-site/deletechannelschannelidsite)|Deletes a Channel Site|
 
 ## Channel Site Routes
 
