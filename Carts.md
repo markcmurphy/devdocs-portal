@@ -1,6 +1,6 @@
 ## Carts
 
-Allows for a cart to be created using BigCommerce cart logic. The existing BigCommerce front-end cart can be bypassed.
+Server-to_server Carts API allows for a cart to be created using BigCommerce cart logic. The existing BigCommerce front-end cart can be bypassed.
 
 A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.
 
@@ -61,7 +61,7 @@ To restore a cart that was created on the storefront, either by a shopper or the
 
 **Custom Add to Cart Links**
 
-Query string parameters can be appended to Bigcommerce product and `/cart.php` urls in order to pre-select an SKU or add a product to cart. These parameters make it possible to build custom add to cart links and forms for use on BigCommerce storefronts and remote sites (such as WordPress, blog posts, and social media).
+Query string parameters can be appended to BigCommerce product and `/cart.php` urls in order to pre-select an SKU or add a product to cart. These parameters make it possible to build custom add to cart links and forms for use on BigCommerce storefronts and remote sites (such as WordPress, blog posts, and social media).
 
 URLs constructed with these parameters can be used to:
 
