@@ -55,10 +55,12 @@ Manage sites and routing for headless storefronts.
 
 ### Sites and Routes
 
-Sites and routes control the paths that make up a headless storefront. For more information, see [Sites and Routes API](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api). 
+Sites and routes control the paths that make up a headless storefront.
 
 A site refers to the domain associated with a channel. 
 
 Routes point to the URLs for key pages on the headless storefront. They define where your homepage is, where your cart page is, etc.
 
 Sites and routes ensure links point where they’re supposed to and sales are attributed correctly. For example, a shopper’s order confirmation email should link back to Storefront A, where they placed their order, not Storefront B, which they’ve never visited. 
+
+For more information, see [Sites and Routes API](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api). 
