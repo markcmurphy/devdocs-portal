@@ -168,7 +168,9 @@ A cart should be created with the `customer_id` as part of the request body. Use
 
 *Resolution*: Carts are only valid 30 days past the `date_last_modified`. Check the [Get Carts](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-cart-api/cart/getacart) endpoint for the current available session cart.
 
-[Cart Webhook Events](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_cart)
+### Resources
+
+[Webhook Events: Cart](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_cart)
 
 [Theme Docs](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#cart)
 
