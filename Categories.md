@@ -26,12 +26,13 @@ Categoty Tree endpoint returns a simple view of the parent - child relationship 
 
 |Resource / Endpoint|Description|
 |-|-|
-|[`Get All Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrands)|Returns a list of Brands|
-|[`Create a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/createbrand)|Create a Brand|
-|[`Delete Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrands)|Deletes all Brand objects|
-|[`Get a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrandbyid)|Returns a single Brand|
-|[`Update a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/updatebrand)|Updates a Brand|
-|[`Delete a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrandbyid)|Deletes a Brand|
+|[`Get All Categories`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category/getcategories)|Returns a list of Categories|
+|[`Create a Category`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category/createcategory)|Creates a Category|
+|[`Delete Categories`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category/deletecategories)|Deletes all Category objects|
+|[`Get a Category`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category/getcategorybyid)|Returns a single Category|
+|[`Update a Category`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category/updatecategory)|Updates a Category|
+|[`Delete a Category`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category/deletecategorybyid)|Deletes a Category|
+|[`Get Category Tree`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category/getcategorytree)|Returns a view of the parent-child relationship of all categories|
 
 ## Category Images
 
