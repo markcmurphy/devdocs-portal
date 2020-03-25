@@ -38,3 +38,5 @@ Metafields can be added to variants, products, categories, and brands.
 [Handlebars Reference](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/brands)
 
 [Help Center: Managing Brands](https://support.bigcommerce.com/s/article/Managing-Brands)
+
+[Theme Docs: Brand](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#brand)
