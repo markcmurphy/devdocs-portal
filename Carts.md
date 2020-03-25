@@ -172,7 +172,7 @@ A cart should be created with the `customer_id` as part of the request body. Use
 
 [Webhook Events: Cart](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_cart)
 
-[Theme Docs](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#cart)
+[Theme Docs: Cart](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#cart)
 
 [Handlebars Reference](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/cart)
 
