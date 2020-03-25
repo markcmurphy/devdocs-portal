@@ -23,6 +23,12 @@ A guest cart assumes the shopper is not a customer and is not logging in or crea
 |[`Update a Cart`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart/updateacart)|Updates a Cart's `customer_id`|
 |[`Delete a Cart`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart/deleteacart)|Deletes a Cart|
 
+**Persistent Cart**
+
+Persistent Cart allows for a logged in shopper to access the same cart across devices. Persistent Cart is available on Plus, Pro, and Enterprise plans.
+
+Persistent Cart works with the Storefront Cart and Server-to-Server Cart APIs. To learn more, see [Persistent Cart](https://support.bigcommerce.com/s/article/Persistent-Cart). 
+
 ## Abandoned Carts
 
 Use `/abandoned-carts/{token}` on headless storefronts to retrieve the `cartId` via the abandoned cart token passed in to headless storefront via an abandoned cart email link clicked on by a shopper. Once the `cartId` has been retrieved, it can be used to fetch and display information about the cart to the shopper via the Storefront Cart and/or Server-to-Server Cart APIs.
