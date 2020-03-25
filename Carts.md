@@ -122,11 +122,11 @@ To add a product to the cart that has a single modifier (text field), POST to th
 
 *Single Option*
 
-To add a product to the cart that has one option (radio button) associated with it, use just the `variant_id` in the request.
+To add a product to the cart that has one option (radio button) associated with it, use the `variant_id`.
 
 *Modifier and Option*
 
-To add a product that has both an option and a modifier associated with it, then use the `option_id` and `option_value`. 
+To add a product that has both an option and a modifier associated with it, use the `option_id` and `option_value`. 
 
 **Missing line_items in request body [422]**
 
