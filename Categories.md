@@ -54,12 +54,11 @@ Create and manage category metafields.
 
 |Resource / Endpoint|Description|
 |-|-|
-|[`Get All Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrands)|Returns a list of Brands|
-|[`Create a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/createbrand)|Create a Brand|
-|[`Delete Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrands)|Deletes all Brand objects|
-|[`Get a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrandbyid)|Returns a single Brand|
-|[`Update a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/updatebrand)|Updates a Brand|
-|[`Delete a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrandbyid)|Deletes a Brand|
+|[`Get All Category Metafields`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category-metafields/getcategorymetafieldsbycategoryid)|Returns a list of Metafields on a Category|
+|[`Create a Category Metafield`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category-metafields/createcategorymetafield)|Creates a Cateory Metafield|
+|[`Get a Category Metafield`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category-metafields/getcategorymetafieldbycategoryid)|Returns a single Category Metafield|
+|[`Update a Category Metafield`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category-metafields/updatecategorymetafield)|Updates a Category Metafield|
+|[`Delete a Category Metafield`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/category-metafields/deletecategorymetafieldbyid)|Deletes a Category Metafield|
 
 ### Resources
 
