@@ -1,14 +1,13 @@
-# Coupons
-
 <div class="otp" id="no-index">
 
 ### On this Page	
-- [Section1](#section1)
+- [Coupons](#Coupons)
 - [Section2](#section2)
 - [Section3](#section3)
 
 </div>
 
+## Coupons
 Category or product discounts that can be applied to orders for customers who enter a given code.
 
 |Resource / Endpoint|Description|
