@@ -19,9 +19,10 @@ Category or product discounts that can be applied to orders for customers who en
 |[`Delete a Coupon`](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons/deleteacoupon)|Deletes a Coupon.
 
 **Notes**
-* Default sorting is by coupon/discount id, from lowest to highest. Optional filter parameters can be passed in.
 
-* Available types for `type` and `exclude_type` filters:
+Default sorting is by coupon/discount id, from lowest to highest. Optional filter parameters can be passed in.
+
+Available types for `type` and `exclude_type` filters:
 
 |Type|
 |-|
@@ -32,7 +33,7 @@ Category or product discounts that can be applied to orders for customers who en
 |`free_shipping`|
 |`promotion`|
 
-* Coupons with `type=promotion` will not populate usable data for the following fields but instead be set to the following default values:
+Coupons with `type=promotion` will not populate usable data for the following fields but instead be set to the following default values:
 
 ```json
 ...
@@ -43,3 +44,11 @@ restricted_to: []
 shipping_methods : null
 ...
 ```
+
+If the `applies_to` value is cleared, you can restore it to the coupon by reapplying the `applies_to` value in a new PUT request.
+
+Only the following fields can be updated via `PUT`:
+
+* `code`
+* `max_uses`
+* `max_uses_per_customer`
