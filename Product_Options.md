@@ -12,3 +12,4 @@ Customizations are used to modify existing products or variants, not to generate
 The part of a customization option that a shopper interacts with is called a *modifier option* and can be things like a checkbox, text box, or a file upload button. If you want any of your modifier options to change the overall product price or weight when selected, then you can use a *Rule*.
 
 ## Product Options Values
+N/A
