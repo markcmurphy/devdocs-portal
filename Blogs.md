@@ -30,3 +30,5 @@ Index of tags used on the store’s blog.
 ### Resources
 
 [Handlebars Reference](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/blog)
+
+[Theme Docs: Blog](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#blog)
