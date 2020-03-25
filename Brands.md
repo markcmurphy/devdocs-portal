@@ -5,7 +5,7 @@
 |Resource / Endpoint|Description|
 |-|-|
 |[`Get All Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrands)|Returns a list of Brands|
-|[`Create a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/createbrand)|Create a Brand|
+|[`Create a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/createbrand)|Creates a Brand|
 |[`Delete Brands`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/deletebrands)|Deletes all Brand objects|
 |[`Get a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/getbrandbyid)|Returns a single Brand|
 |[`Update a Brand`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brands/updatebrand)|Updates a Brand|
