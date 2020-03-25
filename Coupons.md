@@ -13,7 +13,7 @@ Category or product discounts that can be applied to orders for customers who en
 |Resource / Endpoint|Description|
 |-|-|
 |[`Get All Coupons`](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons/getallcoupons)|Returns a list of Coupons|
-|[`Get All Coupons`](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons/getallcoupons)|Returns a list of Coupons|
+|[`Create a Coupon`](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons/postcoupons)|Creates a new coupon|
 |[`Get All Coupons`](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons/getallcoupons)|Returns a list of Coupons|
 |[`Get All Coupons`](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons/getallcoupons)|Returns a list of Coupons|
 |[`Get All Coupons`](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons/getallcoupons)|Returns a list of Coupons|
