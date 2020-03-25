@@ -26,16 +26,6 @@ A channel is anywhere a merchant sells their products. This encompasses headless
 |[`Get a Channel`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channels/getchannel)|Returns a Channel|
 |[`Update a Channel`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channels/updatechannel)|Updates a Channel|
 
-### Sites and Routes
-
-Sites and routes control the paths that make up a headless storefront. For more information, see [Sites and Routes API](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api). 
-
-A site refers to the domain associated with a channel. 
-
-Routes point to the URLs for key pages on the headless storefront. They define where your homepage is, where your cart page is, etc.
-
-Sites and routes ensure links point where they’re supposed to and sales are attributed correctly. For example, a shopper’s order confirmation email should link back to Storefront A, where they placed their order, not Storefront B, which they’ve never visited. 
-
 ## Channel Listings 
 
 Manage catalog differences among different storefronts or marketplaces. 
@@ -55,3 +45,13 @@ Channel listings allow you to manage catalog differences among different storefr
 
 ## Channel Site Routes
 
+
+### Sites and Routes
+
+Sites and routes control the paths that make up a headless storefront. For more information, see [Sites and Routes API](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api). 
+
+A site refers to the domain associated with a channel. 
+
+Routes point to the URLs for key pages on the headless storefront. They define where your homepage is, where your cart page is, etc.
+
+Sites and routes ensure links point where they’re supposed to and sales are attributed correctly. For example, a shopper’s order confirmation email should link back to Storefront A, where they placed their order, not Storefront B, which they’ve never visited. 
