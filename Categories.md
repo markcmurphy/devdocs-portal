@@ -6,8 +6,9 @@
 - [Categories](#categories)
 - [Category Images](#category-images)
 - [Category Metafields](#category-metafields)
-
+	
 </div>
+<br>
 
 The Catalog API manages products, brnds, and categories for a store. This section focuses on categories.
 
