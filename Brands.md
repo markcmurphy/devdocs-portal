@@ -33,6 +33,8 @@ Metafields can be added to variants, products, categories, and brands.
 |[`Update a Brand Metafield`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brand-metafields/updatebrandmetafield)|Updates a Brand Metafield|
 |[`Delete a Brand Metafield`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brand-metafields/deletebrandmetafieldbyid)|Deletes a Brand Metafield|
 
+### Resources
+
 [Handlebars Reference](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/brands)
 
 {{brands}}
