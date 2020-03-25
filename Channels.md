@@ -36,6 +36,13 @@ Manage catalog differences among different storefronts or marketplaces.
 
 Channel listings allow you to manage catalog differences among different storefronts or marketplaces.
 
+|Resource / Endpoint|Description|
+|-|-|
+|[`Get Channel Listings`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channel-listings/listchannellistings)|Returns a list of all Channel Listings|
+|[`Update Channel Listings`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channel-listings/updatechannellistings)|Updates a Channel Listing|
+|[`Create a Channel Listing`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channel-listings/createchannellistings)|Creates a Channel Listing|
+|[`Get a Channel Listing`](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channel-listings/getchannellisting)|Returns a Channel Listing|
+
 ## Channel Sites
 
 A site refers to the domain associated with a channel. 
