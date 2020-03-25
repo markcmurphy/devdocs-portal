@@ -21,6 +21,8 @@ All products must be associated with at least one Category, although a Category 
 
 A product associated with categories does not currently have any priority or weighted order (there’s no “primary category”), which can make it difficult to integrate with some external systems which might wish to use a product’s categories to map to a category structure in that external system.
 
+Categoty Tree endpoint returns a simple view of the parent - child relationship of all categories in the store. This endpoint can be used to fetch categories when building a custom navigation for a store. 
+
 ## Category Images
 
 Create and manage category images.
