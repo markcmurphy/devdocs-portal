@@ -35,3 +35,6 @@ Create and manage category metafields.
 
 [Webhook Events](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_category)
 
+[Theme Docs: Category](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#category)
+
+[Help Center: Product Categories](https://support.bigcommerce.com/s/article/Product-Categories)
