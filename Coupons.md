@@ -15,12 +15,10 @@ Category or product discounts that can be applied to orders for customers who en
 |-|-|
 |[`Get All Coupons`](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons/getallcoupons)|Returns a list of Coupons|
 
+**Notes**
+* Default sorting is by coupon/discount id, from lowest to highest. Optional filter parameters can be passed in.
 
-Returns a list of *Coupons*. Default sorting is by coupon/discount id, from lowest to highest. Optional filter parameters can be passed in.
-
-## Usage Notes
-
-Available types for `type` and `exclude_type` filters:
+* Available types for `type` and `exclude_type` filters:
 
 |Type|
 |-|
@@ -31,7 +29,7 @@ Available types for `type` and `exclude_type` filters:
 |`free_shipping`|
 |`promotion`|
 
-Coupons with `type=promotion` will not populate usable data for the following fields but instead be set to the following default values:
+* Coupons with `type=promotion` will not populate usable data for the following fields but instead be set to the following default values:
 
 ```json
 ...
