@@ -59,7 +59,9 @@ To restore a cart that was created on the storefront, either by a shopper or the
 |-|-|
 |[`Create Cart Redirect URL`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api/cart-redirect-urls/createcartredirecturl)|Creates a Cart Redirect URL|
 
-[**Custom Add to Cart Links**](https://developer.bigcommerce.com/api-docs/cart-and-checkout/add-to-cart-url)
+**Custom Add to Cart URLs**
+
+[Add to Cart URLs](https://developer.bigcommerce.com/api-docs/cart-and-checkout/add-to-cart-url)
 
 Query string parameters can be appended to BigCommerce product and `/cart.php` urls in order to pre-select an SKU or add a product to cart. These parameters make it possible to build custom add to cart links and forms for use on BigCommerce storefronts and remote sites (such as WordPress, blog posts, and social media).
 
