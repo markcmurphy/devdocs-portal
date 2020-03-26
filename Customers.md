@@ -37,6 +37,8 @@ Customer Addresses are the addresses that are stored within a Customer Account w
 
 ### Difference between v2 and v3
 
+
+
 ## Customer Attributes
 
 ## Customer Attribute Values
