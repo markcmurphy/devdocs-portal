@@ -3,6 +3,7 @@
 Widgets are the units of content to be placed on specific pages in a Stencil theme. Each widget is comprised of a widget configuration and a widget template. 
 
 >**Note**
+>
 >There is a limit of 1000 widgets per store.
 
 The Widgets API allows developers to programmatically associate content with regions on a BigCommerce storefront. The content can consist of HTML, CSS, and JavaScript. The API supports configuration via Handlebars variables. It can support many types of content such as YouTube Videos, image sliders, and chat apps.
@@ -17,7 +18,19 @@ Placements determine the Region where the Widget is placed and in what order. Th
 
 Placements can be used with `sort_order` and region to determine placement in a theme.
 
-Placements `entity_id`
+Placements are the records to track which widget appears on which page, and in what order. Currently, placements can only exist on the following pages:
+* pages/blog-post
+* pages/blog
+* pages/brand
+* pages/brands
+* pages/cart
+* pages/category
+* pages/home
+* pages/page
+* pages/product
+* pages/search
+
+### Placements `entity_id`
 When creating a placement, there is an option to provide an `entity_id`. This is the ID for a specific product, brand, category or page. For example, if a Widget needs to be on all product pages, leave `entity_id` blank. If the Widget should only appear on a certain product page, then assign `entity_id` the product ID.
 
 `entity_id` can be used with the following page types:
@@ -35,4 +48,5 @@ Most themes in the BigCommerce marketplace come with predefined regions. It is b
 Widget Templates are Handlebars-enabled HTML templates which define the widget’s structure on a page. These templates can include conditional logic as well as looping. 
 
 >**Note**
+>
 >There is a limit of 100 total custom widget templates per store. This does not include templates pre-provided by BigCommerce.
