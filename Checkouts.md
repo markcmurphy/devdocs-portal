@@ -93,5 +93,10 @@ It allows a developer to create a custom checkout experience to move a customer 
 
 To learn more about the Checkout JS SDK, see [Checkout SDK](https://developer.bigcommerce.com/api-docs/cart-and-checkout/checkout-sdk). 
 
+### Embedded Checkout
+
+Embedded Checkout lets you place BigCommerce’s checkout onto any website. Customers can check out on an external storefront while their order information syncs simultaneously to the BigCommerce Control Panel. You can see this in action within the BigCommerce for WordPress plugin, which uses the same process described here as a checkout option for merchants. To learn more, visit [Embedded Checkout Overview](https://developer.bigcommerce.com/api-docs/cart-and-checkout/embedded-checkout/embedded-checkout-overview).
+To create a working Embedded Checkout, follow this step-by-step [tutorial](https://developer.bigcommerce.com/api-docs/cart-and-checkout/embedded-checkout/embedded-checkout-tutorial). 
+
 
 
