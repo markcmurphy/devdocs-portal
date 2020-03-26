@@ -8,7 +8,7 @@
 </div>
 
 ## Coupons
-Category or product discounts that can be applied to orders for customers who enter a given code.
+Category or product discounts that can be applied to orders for customers who enter a given code at checkout.
 
 |Resource / Endpoint|Description|
 |-|-|
@@ -28,7 +28,7 @@ Available types for `type` and `exclude_type` filters:
 |-|
 |`per_item_discount`|
 |`percentage_discount`|
-|`per_total_discount`|
+|`per_total_discount`|Dollar amount off the order total (subtotal)|
 |`shipping_discount`|
 |`free_shipping`|
 |`promotion`|
