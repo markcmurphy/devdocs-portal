@@ -1,1 +1,82 @@
 ## Webhooks
+
+Webhooks allow applications to be notified when specific events occur on a BigCommerce store. For example when:
+* an order is created, 
+* a product's inventory changes, or 
+* an item is added to a shopper's cart.
+
+## Callback Payload
+
+When a webhook is triggered, BigCommerce will `POST` a light payload containing minimum event details to the destination server.
+
+## Handling Callbacks
+
+To acknowledge the callback has been received without issue, the destination server must return an `HTTP 200` response -- any response outside the `200` range indicates the callback was not received. If this happens, the webhook service will use the [retry mechanism](#callback-retry-mechanism) described below.
+
+Need to set up a quick webhook destination URL for testing? See [Tools for Debugging and Testing Webhooks](#tools-for-debugging-and-testing-webhooks).
+
+## Callback Retry Mechanism
+
+The webhooks service will do its best to deliver events to the destination callback URI. It is best practice for the application to respond to the callback before taking any other action that would slow its response. If an app server responds to a webhook payload with anything other than a `2xx` response, or times out and indicates the payload has not been received, the following process will determine whether the destination URI gets blacklisted.
+
+The webhook service may send many payloads to a single URI in quick succession. Because of this, we use a sliding scale across a **two minute window** to calculate a callback response success rate for each remote destination. When the webhook service receives a `2xx` response, the destination's success count is increased. If there's no response or the remote server times out, the destination's failure count is increased. Based on these two numbers, the success ratio is calculated. 
+
+The webhook service flow is as follows:
+
+1. Once a webhook is triggered, the service checks if your callback URI is on the blacklist
+2. If it's not, we calculate a success ratio for the remote server based on its success/failure count in a **two minute window**
+3. If at any point in the two minute window the success/failure ratio dips below **90%**, the destination URI's domain will be blacklisted for **three minutes**
+4. Webhook events triggered during this time are sent to our retry queues to be executed later when the domain is no longer blacklisted and once the retry queue time has elapsed.
+
+Once a domain is no longer blacklisted, all new webhook requests will be sent as they occur. Event requests sent to the retry queue during a blacklisting period will be delivered according to the retry queue schedule.
+
+The webhook dispatcher will then attempt several retries (at increasing intervals) until the maximum retry limit is reached.
+
+**Retry Intervals**:
+* `60` seconds after the most recent failure  
+* `180` seconds after the most recent failure  
+* `180` seconds after the most recent failure  
+* `300` seconds after the most recent failure  
+* `600` seconds after the most recent failure  
+* `900` seconds after the most recent failure  
+* `1800` seconds after the most recent failure  
+* `3600` seconds after the most recent failure  
+* `7200` seconds after the most recent failure  
+* `21600` seconds after the most recent failure  
+* `50400` seconds after the most recent failure  
+* `86400` seconds (24 hours) after the most recent failure
+
+After the final retry attempt (cumulatively **48 hours** after the first delivery attempt), the webhook will be deactivated, and an email will be sent to the email address registered on the subscribing app. To reactivate the webhook, set `is_active`  back to `true` by making a `PUT` request to `/hooks/{id}`.
+
+<div class="HubBlock--callout">
+<div class="CalloutBlock--info">
+<div class="HubBlock-content">
+    
+### Note
+> * A domain's success rate for a given sliding window is not calculated until `100` webhook requests are sent -- this means the domain will not be blacklisted for the first `100` webhooks sent within the time window (regardless of response) as all webhooks are sent until the minimum threshold has been reached for the current time window.
+> * The webhook dispatcher determines whether retries are needed based on responses from the subscribed domain as a whole, not by specific hooks. For example, `domain.com/webhook-1` and `domain.com/webhook-2` will affect each other for failures and retries, as both URLs belong to the same domain.
+
+</div>
+</div>
+</div>
+
+## Security
+
+To ensure webhook callback requests are secure:
+1. Webhook payloads contain minimal information about the store and event
+2. Webhook payloads are sent over **TLS-encrypted** connection
+3. Create Webhook requests accept an optional headers objects which can be used to authenticate callbacks requests:
+
+```json
+{
+"scope": "store/cart/lineItem/*",
+  "destination": "{{DESTINATION_URL}}",
+  "is_active": true,
+  "headers": {
+  	"Username": "Hello",
+  	"Password": "Goodbye"
+  }
+}
+```
+
+BigCommerce will send the specified headers when making callback requests to the destination server -- this allows webhook destination URIs to be secured via basic authentication.
