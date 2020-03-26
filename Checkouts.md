@@ -32,7 +32,7 @@ The Storefront Checkout does not use API Tokens and allows for Checkout data to 
 
 ## Checkouts
 
-Allows for a checkout to be created from an existing cart using BigCommerce checkout logic. The existing BigCommerce front end cart/checkout can be bypassed.
+Allows for a checkout to be created from an existing cart using BigCommerce checkout logic.
 
 **Notes:** `checkoutId` is the same as `cartId`.
 
@@ -50,7 +50,7 @@ Resource / Endpoint|Description|
 
 ## Checkouts Consignments
 
-A consignment consists of a shipping address with the associated line items. At a minimum, one shipping address with line items and shipping options must be included in the checkout. If multiple shipping locations are used, match each lineItem with the correct shipping address. When adding a shipping address to the checkout, include the ?include=consignments.availableShippingOptions query parameter to return the shipping options available for any address.
+A consignment consists of a shipping address with the associated line items. At a minimum, one shipping address with line items and shipping options must be included in the checkout. If multiple shipping locations are used, match each `lineItem` with the correct shipping address. When adding a shipping address to the checkout, include the `?include=consignments.availableShippingOptions` query parameter to return the shipping options available for any address.
 
 **Note:** Only one consignment can be updated at a time. 
 
@@ -61,6 +61,7 @@ Resource / Endpoint|Description|
 |[`Update Checkout Consignment`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentiddelete)|Deletes a Consignment from Checkout|
 
 ## Checkouts Coupons
+
 Resource / Endpoint|Description|
 |-|-|
 |[`Add Coupon to Checkout`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-coupons/checkoutscouponsbycheckoutidpost)|Adds a Coupon Code to Checkout|
@@ -68,7 +69,7 @@ Resource / Endpoint|Description|
 
 ## Checkouts Orders
 
-Orders created will be set to incomplete order status.
+Orders created using the Create an Order endpoint will be set to incomplete order status.
 
 You can create as many orders from the same order(cart) as you want. Order duplication creates the same order with a new order number with the incomplete status. Once the order is paid, then the cart is deleted. Cart deletion occurs if you are using BigCommerce to accept payments on orders.
 
@@ -79,6 +80,7 @@ Resource / Endpoint|Description|
 ## Checkout Cart Items (Storefront API)
 
 **Notes:**
+
 * If a variant needs to be changed or updated, the product will need to be removed and re-added to the cart with the correct variants using the [Add Cart Line Items](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-cart-api/cart-items/addcartlineitem) endpoint.
 
 Resource / Endpoint|Description|
