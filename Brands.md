@@ -8,7 +8,7 @@
 </div>
 <br>
 
-The Catalog API manages products, brands and categories for a store. 
+The Catalog API manages products, brands, and categories for a store. 
 
 ## Brands
 
@@ -29,6 +29,8 @@ For V2 Catalog Brands, see [Legacy](https://developer.bigcommerce.com/legacy/v2-
 
 ## Brand Images
 
+**Note:** Only one image can be created at a time.
+
 |Resource / Endpoint|Description|
 |-|-|
 |[`Create a Brand Image`](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/brand-images/createbrandimage)|Creates a Brand Image|
@@ -36,6 +38,8 @@ For V2 Catalog Brands, see [Legacy](https://developer.bigcommerce.com/legacy/v2-
 
 ## Brand Metafields
 Metafields can be added to variants, products, categories, and brands.
+
+**Note:** Attempting to modify `namespace`, `key`, and `permission_set` fields using a client ID different from the one used to create those metafields will result in a 403 error message.
 
 |Resource / Endpoint|Description|
 |-|-|
