@@ -83,7 +83,13 @@ Resource / Endpoint|Description|
 |[`Add Gift Certificate to Checkout`](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api/checkout-gift-certificates/checkoutsgiftcertificatesbycheckoutidpost)|Adds a Gift Certificate Code to Checkout|
 |[`Delete Gift Certificate`](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api/checkout-gift-certificates/checkoutsgiftcertificatesbycheckoutidandgiftcertificatecodedelete)|Deletes a Gift Certificate|
 
-### Troubleshooting Checkout Errors
+### Checkout SDK
+
+The Checkout JS SDK is a wrapper for the BigCommerce Storefront Checkout API.
+
+It allows a developer to create a custom checkout experience to move a customer through the checkout process. The SDK handles all the ‘heavy-lifting’ such as customer login, getting shipping quotes and submitting payment for an order. With the Checkout JS SDK, you can build a [custom checkout](https://github.com/bigcommerce/checkout-sdk-js-example) presentation layer in popular frontend frameworks such as React.
+
+To learn more about the Checkout JS SDK, see [Checkout SDK](https://developer.bigcommerce.com/api-docs/cart-and-checkout/checkout-sdk). 
 
 
 
