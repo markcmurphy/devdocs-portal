@@ -1,6 +1,11 @@
 ## Widgets
 
-The Widgets API allows developers to programmatically associate content with regions on a BigCommerce storefront. The content can consist of HTML, CSS, and JavaScript, and the API supports configuration via Handlebars variables. It can support many types of content such as YouTube Videos, image sliders, and chat apps.
+Widgets are the units of content to be placed on specific pages in a Stencil theme. Each widget is comprised of a widget configuration and a widget template. 
+
+>**Note**
+>There is a limit of 1000 widgets per store.
+
+The Widgets API allows developers to programmatically associate content with regions on a BigCommerce storefront. The content can consist of HTML, CSS, and JavaScript. The API supports configuration via Handlebars variables. It can support many types of content such as YouTube Videos, image sliders, and chat apps.
 
 Some benefits are:
 * Inject modular, reusable blocks of content inside new and existing store pages
@@ -27,3 +32,7 @@ Regions are specific locations in the Stencil theme files where a widget is plac
 Most themes in the BigCommerce marketplace come with predefined regions. It is best to utilize those first. By editing the theme and adding theme regions, updates will need to be manually managed.
 
 ## Widgets Templates
+Widget Templates are Handlebars-enabled HTML templates which define the widget’s structure on a page. These templates can include conditional logic as well as looping. 
+
+>**Note**
+>There is a limit of 100 total custom widget templates per store. This does not include templates pre-provided by BigCommerce.
