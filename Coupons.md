@@ -24,7 +24,7 @@ Category or product discounts that can be applied to orders for customers who en
 
 Default sorting is by coupon/discount id, from lowest to highest. Optional filter parameters can be passed in.
 
-Available types for `type` and `exclude_type` filters:
+Available coupon types for `type` and `exclude_type` filters:
 
 |Type|Description|
 |-|-|
