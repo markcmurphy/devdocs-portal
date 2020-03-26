@@ -33,7 +33,8 @@ A Customer is a shopper who has created an account on the storefront. Customer A
 
 ## Customer Addresses
 
-Customer Addresses are the addresses that customers enter at checkout.
+Customer Addresses are the addresses that are stored within a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
+
 
 
 ### Difference between v2 and v3
