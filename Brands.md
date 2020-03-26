@@ -1,6 +1,18 @@
+<div class="otp" id="no-index">
+
+### On this Page	
+- [Brands](#brands)
+- [Brand Images](#brand-images)
+- [Brand Metafields](#brand-metafields)
+	
+</div>
+<br>
+
+The Catalog API manages products, brands and categories for a store. 
+
 ## Brands
 
-[Theme Docs](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#brand)
+Create and manage brands.
 
 |Resource / Endpoint|Description|
 |-|-|
