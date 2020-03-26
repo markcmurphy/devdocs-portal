@@ -60,7 +60,7 @@ Coupons can also be created via the Promotions API (Beta). These Coupons can be 
 **Limitations**
 * Cannot be restricted by location
 * Cannot be restricted by shipping method
-* You cannot exclude them from being used with Automatic Promotions
+* You cannot exclude them from being used with [Automatic Promotions](https://support.bigcommerce.com/s/article/Automatic-Promotions)
 
 
 
