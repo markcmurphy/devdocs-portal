@@ -42,9 +42,7 @@ Resource / Endpoint|Description|
 
 A consignment consists of a shipping address with the associated line items. At a minimum, one shipping address with line items and shipping options must be included in the checkout. If multiple shipping locations are used, match each lineItem with the correct shipping address. When adding a shipping address to the checkout, include the ?include=consignments.availableShippingOptions query parameter to return the shipping options available for any address.
 
-**Note:** 
-
-Only one consignment can be updated at a time. 
+**Note:** Only one consignment can be updated at a time. 
 
 Resource / Endpoint|Description|
 |-|-|
