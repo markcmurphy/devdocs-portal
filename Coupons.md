@@ -10,6 +10,8 @@
 ## Coupons
 Category or product discounts that can be applied to orders for customers who enter a given code at checkout.
 
+
+
 |Resource / Endpoint|Description|
 |-|-|
 |[`Get All Coupons`](https://developer.bigcommerce.com/api-reference/store-management/marketing/coupons/getallcoupons)|Returns a list of Coupons.|
