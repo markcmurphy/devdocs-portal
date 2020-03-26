@@ -33,6 +33,15 @@ Available coupon types for `type` and `exclude_type` filters:
 |`shipping_discount`|Dollar amount off the shipping total|
 |`free_shipping`|Free shipping|
 
+If the `applies_to` value is cleared, you can restore it to the coupon by reapplying the `applies_to` value in a new PUT request.
+
+Only the following fields can be updated via `PUT`:
+
+* `code`
+* `max_uses`
+* `max_uses_per_customer`
+
+
 Coupons with `type=promotion` will not populate usable data for the following fields but instead be set to the following default values:
 
 ```json
@@ -44,15 +53,6 @@ restricted_to: []
 shipping_methods : null
 ...
 ```
-
-If the `applies_to` value is cleared, you can restore it to the coupon by reapplying the `applies_to` value in a new PUT request.
-
-Only the following fields can be updated via `PUT`:
-
-* `code`
-* `max_uses`
-* `max_uses_per_customer`
-
 ## Promotions Coupon (V3)
 Coupons can also be created via the Promotions API (Beta). These Coupons can be used to offer discounts if shoppers meet specific conditions. The conditions available are the same as those that can be 
 [Automatic Promotions](https://support.bigcommerce.com/s/article/Automatic-Promotions) (Beta).
