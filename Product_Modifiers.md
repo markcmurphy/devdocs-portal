@@ -25,5 +25,7 @@ An adjuster can be added to a modifier option to change things such as increasin
 > Swatch, radio buttons, drop-down, rectangle list, product list, product list with images, and checkbox.
 
 ## Product Modifier Images
+N/A
 
 ## Product Modifier Values
+N/A
