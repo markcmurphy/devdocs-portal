@@ -7,7 +7,7 @@
 </div>
 
 ## Coupons (V2)
-Category or product discounts that can be applied to orders for customers who enter a given code at checkout.
+A coupon is a category or product discounts that can be applied to orders for customers who enter a given code at checkout.
 
 Only one coupon can be used per order.
 
