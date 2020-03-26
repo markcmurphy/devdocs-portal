@@ -16,6 +16,8 @@ The Server-to-Server APIs are for managing the contents of a shopping cart and c
 
 The Server-to-Server Checkout API represents an extension of the Server-to-Server Cart API and can be used to complete a purchase from product selection to conversion.
 
+The Server-to-Server Checkout API allows you to create a checkout programmatically and then convert it to an order. From there, the order can be managed in the Control Panel or using the V2 Orders API.
+
 **Storefront APIs**
 
 The Storefront APIs are for managing the contents of a shopper’s cart and checkout using JavaScript in the context of a storefront session.
@@ -103,5 +105,9 @@ To create a working Embedded Checkout, follow this step-by-step [tutorial](https
 ### Resources
 
 [Headless Commerce: Checkout Management](https://developer.bigcommerce.com/api-docs/developers-guide-headless#checkout-management)
+
+[Server-to-Server Checkouts](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api)
+
+[Storefront Checkouts](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api)
 
 
