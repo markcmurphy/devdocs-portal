@@ -24,8 +24,6 @@ A channel is anywhere a merchant sells their products. This encompasses headless
 
 ## Channel Listings 
 
-Manage catalog differences among different storefronts or marketplaces. 
-
 Channel listings allow you to manage catalog differences among different storefronts or marketplaces.
 
 |Resource / Endpoint|Description|
@@ -48,8 +46,11 @@ Manage sites and routing for headless storefronts.
 
 ## Channel Site Routes
 
+N/A 
 
-### Sites and Routes
+### Sites and Routes API
+
+The Sites and Routes API is used to create and manage sites and routes for headless storefronts. 
 
 Sites and routes control the paths that make up a headless storefront.
 
