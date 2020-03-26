@@ -14,34 +14,29 @@
 
 </div>
 
-
-
 ## Customers
 
-A Customer is a shopper who has created an account on the storefront. Customer Accounts allow shoppers to login and manage the following:
-
-- Order Messages
-- Viewing Orders
-- Reordering Products
-- Return Requests
-- Address Book
-- Stored Payment Methods
-- Wishlists
-- Account Settings
-- Recently Viewed Products
-- Store Credit
+A Customer is a shopper who has created an account on the storefront. Customers data is comprised of attributes about the shopper including their name, email address and physical addresses. 
 
 ## Customer Addresses
 
 Customer Addresses are the addresses that are stored within a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
 
 ### Difference between v2 and v3
+The main distinction between Customers V2 and V3 is only certain resources can be managed through each API.
 
+V2 Customers API allows you to manage the following resources:
+* Customers
+* Customer Addresses
+* Customer Groups
+* Customer Passwords
 
+V3 Customers API allows you to manage the following:
+* Customer Addresses
+* Customer Form Fields
+* Customer Consent
 
 ## Customer Attributes
-
-## Customer Attribute Values
 
 ## Customer Form Field Values
 
