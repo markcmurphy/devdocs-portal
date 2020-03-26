@@ -86,18 +86,18 @@ If your app does not return an HTTP 200 to BigCommerce after receiving the webho
 
 To see if a webhook is still active, make a GET request to /hooks/{id} and check the value of the is_active property in the response.
 
-If you receive an email, or discover is_active is false, try the following:
-* Verify the app is responding to the callback with a 200 response.
+If you receive an email, or discover `is_active` is `false`, try the following:
+* Verify the app is responding to the callback with a `200` response.
 * Verify the destination server has a valid TLS/SSL setup by visiting https://sslcheck.globalsign.com. Any of the following will cause the TLS/SSL handshake to fail:
 	* Self-signed certificates
 	* Hostname on certificate doesn’t match the hostname in DNS settings
 	* Key and trust stores are not configured with the required intermediate certificates.
 
-Once the issue is resolved, set is_active to true by making a PUT request to /hooks/{id} – BigCommerce start sending event Callback requests again.
+Once the issue is resolved, set `is_active` to true by making a `PUT` request to `/hooks/{id}` – BigCommerce start sending event Callback requests again.
 
 No 200 response when making `POST` to `/hooks`
-* Check TLS/SSL configuration on machine making POST request.
-* Verify POST request contains the required HTTP headers:
+* Check TLS/SSL configuration on machine making `POST` request.
+* Verify `POST` request contains the required `HTTP` headers:
 
 ```bash
 POST https://api.bigcommerce.com/stores/{{STORE_HASH}}/v2/hooks
