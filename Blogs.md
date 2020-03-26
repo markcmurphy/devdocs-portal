@@ -1,11 +1,20 @@
+<div class="otp" id="no-index">
+
+### On this Page	
+- [Blogs](#blogs)
+- [Blog Posts](#blog-posts)
+- [Blog Tags](#blog-tags)
+	
+</div>
+<br>
+
+Store Content APIs help merchants edit and publish blog posts and Web pages, improve SEO, and drive traffic to stores. They include Blog Posts, Blog Tags, Redirects, and Pages.
+
 ## Blogs
 
-[Theme Docs](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#blog)
-
+N/A
 
 ## Blog Posts
-
-[Theme Docs](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#blog-post)
 
 A content entry in the store’s blog.
 
