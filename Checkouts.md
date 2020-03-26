@@ -3,9 +3,13 @@
 <div class="otp" id="no-index">
 
 ### On this Page	
-- [Section1](#section1)
-- [Section2](#section2)
-- [Section3](#section3)
+- [Checkouts](#checkouts)
+- [Checkouts Billing Address](#checkouts-billing-address)
+- [Checkouts Consignments](#checkouts-consignments)
+- [Checkouts Coupons](#checkouts-coupons)
+- [Checkouts Orders](#checkouts-orders)
+- [Checkout Cart Items](#checkout-cart-items)
+- [Checkout Gift Certificates](#checkout-gift-certificates)
 
 </div>
 <br>
