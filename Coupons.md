@@ -54,13 +54,15 @@ Only the following fields can be updated via `PUT`:
 * `max_uses_per_customer`
 
 ## Promotions Coupon
-Coupons can also be created via the Promotions API (Beta). These Coupons can be used to offer discounts after shoppers meet specific conditions. The conditions available are the same as those that can be 
+Coupons can also be created via the Promotions API (Beta). These Coupons can be used to offer discounts if shoppers meet specific conditions. The conditions available are the same as those that can be 
 [Automatic Promotions](https://support.bigcommerce.com/s/article/Automatic-Promotions) (Beta).
 
 **Limitations**
 * Cannot be restricted by location
 * Cannot be restricted by shipping method
 * You cannot exclude them from being used with Automatic Promotions
+
+
 
 
 
