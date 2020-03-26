@@ -14,6 +14,8 @@
 
 The Server-to-Server APIs are for managing the contents of a shopping cart and checkout remotely, from a server.
 
+The Server-to-Server Checkout API represents an extension of the Server-to-Server Cart API and can be used to complete a purchase from product selection to conversion.
+
 **Storefront APIs**
 
 The Storefront APIs are for managing the contents of a shopper’s cart and checkout using JavaScript in the context of a storefront session.
@@ -98,5 +100,8 @@ To learn more about the Checkout JS SDK, see [Checkout SDK](https://developer.bi
 Embedded Checkout lets you place BigCommerce’s checkout onto any website. Customers can check out on an external storefront while their order information syncs simultaneously to the BigCommerce Control Panel. You can see this in action within the BigCommerce for WordPress plugin, which uses the same process described here as a checkout option for merchants. To learn more, visit [Embedded Checkout Overview](https://developer.bigcommerce.com/api-docs/cart-and-checkout/embedded-checkout/embedded-checkout-overview).
 To create a working Embedded Checkout, follow this step-by-step [tutorial](https://developer.bigcommerce.com/api-docs/cart-and-checkout/embedded-checkout/embedded-checkout-tutorial). 
 
+### Resources
+
+[Headless Commerce: Checkout Management](https://developer.bigcommerce.com/api-docs/developers-guide-headless#checkout-management)
 
 
