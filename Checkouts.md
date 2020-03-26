@@ -54,11 +54,15 @@ Resource / Endpoint|Description|
 |-|-|
 |[`Create an Order`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-orders/createanorder)|Creates an Order|
 
-## Checkout Cart Items
+## Checkout Cart Items (Storefront API)
+
+**Notes:**
+* If a variant needs to be changed or updated, the product will need to be removed and re-added to the cart with the correct variants using the [Add Cart Line Items](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-cart-api/cart-items/addcartlineitem) endpoint.
+
 
 Resource / Endpoint|Description|
 |-|-|
-|[`Add Consignment to Checkout`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidpost)|Adds a new Consignment to Checkout|
+|[`Update a Line Item`](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api/checkout-cart-items/checkoutscartsitemsitemidbycheckoutidandcartidput)|Updates a Checkout Line Item|
 |[`Update Checkout Consignment`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-billing-address/checkoutsbillingaddressbycheckoutidandaddressidput)|Updates a Consignment|
 |[`Update Checkout Consignment`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentiddelete)|Deletes a Consignment from Checkout|
 
