@@ -1,8 +1,8 @@
+Marketing APIs support demand generation and loyalty programs. They include Coupons, Banners, and Gift Certificates.
+
 ## Banners
 
 Banners available to display on a store. 
-
-Banners are part of Marketing. Marketing APIs support demand generation and loyalty programs.
 
 |Resource / Endpoint|Description|
 |-|-|
