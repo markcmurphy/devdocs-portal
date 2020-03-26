@@ -14,11 +14,25 @@
 
 </div>
 
-Introduction
+
 
 ## Customers
 
+A Customer is a shopper who has created an account on the storefront. Customer Accounts allow shoppers to login and manage the following:
+
+- Order Messages
+- Viewing Orders
+- Reordering Products
+- Return Requests
+- Address Book
+- Stored Payment Methods
+- Wishlists
+- Account Settings
+- Recently Viewed Products
+- Store Credit
+
 ## Customer Addresses
+
 
 ### Difference between v2 and v3
 
