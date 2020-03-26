@@ -8,7 +8,15 @@
 </div>
 <br>
 
+**Server-to-Server APIs**
+
 The Server-to-Server APIs are for managing the contents of a shopping cart and checkout remotely, from a server.
+
+**Storefront APIs**
+
+The Storefront APIs are for managing the contents of a shopper’s cart and checkout using JavaScript in the context of a storefront session.
+
+BigCommerce’s Storefront API exposes storefront data to Stencil themes. You can use this client API to manage a shopper’s cart, checkout, and order data via client-side JavaScript.
 
 The Storefront Checkout does not use API Tokens and allows for Checkout data to be scraped directly from the front end or used in a Stencil Theme.
 
@@ -31,6 +39,12 @@ Resource / Endpoint|Description|
 |[`Update Checkout Billing Address`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-billing-address/checkoutsbillingaddressbycheckoutidandaddressidput)|Updates a billing address on a Checkout|
 
 ## Checkouts Consignments
+
+A consignment consists of a shipping address with the associated line items. At a minimum, one shipping address with line items and shipping options must be included in the checkout. If multiple shipping locations are used, match each lineItem with the correct shipping address. When adding a shipping address to the checkout, include the ?include=consignments.availableShippingOptions query parameter to return the shipping options available for any address.
+
+**Note:** 
+
+Only one consignment can be updated at a time. 
 
 Resource / Endpoint|Description|
 |-|-|
