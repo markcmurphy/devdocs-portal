@@ -28,12 +28,11 @@ Available types for `type` and `exclude_type` filters:
 
 |Type|Description|
 |-|-|
-|`per_item_discount`|
-|`percentage_discount`|
+|`per_item_discount`|Dollar amount off each item in the order|
+|`percentage_discount`|Percentage off each item in the order|
 |`per_total_discount`|Dollar amount off the order total (subtotal)|
-|`shipping_discount`|
-|`free_shipping`|
-|`promotion`|
+|`shipping_discount`|Dollar amount off the shipping total|
+|`free_shipping`|Free shipping|
 
 Coupons with `type=promotion` will not populate usable data for the following fields but instead be set to the following default values:
 
