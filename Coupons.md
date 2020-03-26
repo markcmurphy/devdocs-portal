@@ -41,7 +41,6 @@ Only the following fields can be updated via `PUT`:
 * `max_uses`
 * `max_uses_per_customer`
 
-
 Coupons with `type=promotion` will not populate usable data for the following fields but instead be set to the following default values:
 
 ```json
