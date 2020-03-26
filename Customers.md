@@ -33,6 +33,8 @@ A Customer is a shopper who has created an account on the storefront. Customer A
 
 ## Customer Addresses
 
+Customer Addresses are the addresses that customers enter at checkout.
+
 
 ### Difference between v2 and v3
 
