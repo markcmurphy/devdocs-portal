@@ -30,6 +30,10 @@ Placements are the records to track which widget appears on which page, and in w
 * pages/product
 * pages/search
 
+>**Note**
+>
+>There is a limit of 75 placements per template file and 6500 total placements per store.
+
 ### Placements `entity_id`
 When creating a placement, there is an option to provide an `entity_id`. This is the ID for a specific product, brand, category or page. For example, if a Widget needs to be on all product pages, leave `entity_id` blank. If the Widget should only appear on a certain product page, then assign `entity_id` the product ID.
 
