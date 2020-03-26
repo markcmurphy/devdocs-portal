@@ -9,8 +9,6 @@
 </div>
 <br>
 
-Introduction
-
 ## Channels
 
 Create and manage product listings for multiple storefronts and sales channels. 
