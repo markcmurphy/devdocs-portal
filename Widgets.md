@@ -44,12 +44,12 @@ When creating a placement, there is an option to provide an `entity_id`. This is
 * pages/product
 
 ## Widgets Region
-Regions are specific locations in the Stencil theme files where a widget is placed. A region is added at the file level using the format `{{{region name="…"}}}`. A region can be named however you like, but it is best practice to give it a name that is descriptive of the location and function. A theme file can have as many regions as you want, with more than one widget assigned to the region and the Placement sort_order controlling how the widgets appear on the Storefront.
+Regions are specific locations in the Stencil theme files where a Widget is placed. A region is added at the file level using the format `{{{region name="…"}}}`. A region can be named however you like, but it is best practice to give it a name that is descriptive of the location and function. A theme file can have as many regions as you want, with more than one widget assigned to the region and the Placement sort_order controlling how the widgets appear on the Storefront.
 
 Most themes in the BigCommerce marketplace come with predefined regions. It is best to utilize those first. By editing the theme and adding theme regions, updates will need to be manually managed.
 
 ## Widgets Templates
-Widget Templates are Handlebars-enabled HTML templates which define the widget’s structure on a page. These templates can include conditional logic as well as looping. 
+Widget Templates are Handlebars-enabled HTML templates which define the Widget’s structure on a page. These templates can include conditional logic as well as looping. Widget templates can be reused to build multiple widgets.
 
 >**Note**
 >
