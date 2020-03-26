@@ -10,6 +10,8 @@
 
 The Server-to-Server APIs are for managing the contents of a shopping cart and checkout remotely, from a server.
 
+The Storefront Checkout does not use API Tokens and allows for Checkout data to be scraped directly from the front end or used in a Stencil Theme.
+
 ## Checkouts
 
 Allows for a checkout to be created from an existing cart using BigCommerce checkout logic. The existing BigCommerce front end cart/checkout can be bypassed.
@@ -19,6 +21,7 @@ Allows for a checkout to be created from an existing cart using BigCommerce chec
 Resource / Endpoint|Description|
 |-|-|
 |[`Get a Checkout`](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout/checkoutsbycheckoutidget)|Returns a Checkout|
+|[`Update Customer Messages`](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api/checkout/checkoutsbycheckoutidput)|Updates Checkout customer messages (**Storefront API**)|
 
 ## Checkouts Billing Address
 
