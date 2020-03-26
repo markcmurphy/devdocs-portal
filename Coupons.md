@@ -10,6 +10,7 @@
 ## Coupons
 Category or product discounts that can be applied to orders for customers who enter a given code at checkout.
 
+Only one coupon can be used per order.
 
 |Resource / Endpoint|Description|
 |-|-|
@@ -52,3 +53,14 @@ Only the following fields can be updated via `PUT`:
 * `code`
 * `max_uses`
 * `max_uses_per_customer`
+
+## Promotions Coupon
+Coupons can also be created via the Promotions API (Beta). These Coupons can be used to offer discounts under more specific conditions as with Automatic Promotions (Beta).
+
+**Limitations**
+* Cannot be restricted by location
+* Cannot be restricted by shipping method
+* You cannot exclude them from being used with Automatic Promotions
+
+
+
