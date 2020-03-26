@@ -1,22 +1,20 @@
 ## Webhooks
-
-Webhooks allow applications to be notified when specific events occur on a BigCommerce store. For example when:
-* an order is created, 
-* a product's inventory changes, or 
-* an item is added to a shopper's cart.
+Webhooks allow applications to be notified when specific events occur on a BigCommerce store. Some examples include
+* creation of an order
+* changes in a product's inventory 
+* addition of an item to a shopper's cart
 
 ## Callback Payload
-
 When a webhook is triggered, BigCommerce will `POST` a light payload containing minimum event details to the destination server.
 
+For more information on specific webhook events and their payloads, see the [Webhook Events](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events) page.
+
 ## Handling Callbacks
+To acknowledge the callback has been received without issue, the destination server must return an `HTTP 200` response -- any response outside the `200` range indicates the callback was not received. If this happens, the webhook service will use the [callback retry mechanism](#) described below.
 
-To acknowledge the callback has been received without issue, the destination server must return an `HTTP 200` response -- any response outside the `200` range indicates the callback was not received. If this happens, the webhook service will use the [retry mechanism](#callback-retry-mechanism) described below.
-
-Need to set up a quick webhook destination URL for testing? See [Tools for Debugging and Testing Webhooks](#tools-for-debugging-and-testing-webhooks).
+Need to set up a quick webhook destination URL for testing? See [Tools for Debugging and Testing Webhooks](#).
 
 ## Callback Retry Mechanism
-
 The webhooks service will do its best to deliver events to the destination callback URI. It is best practice for the application to respond to the callback before taking any other action that would slow its response. If an app server responds to a webhook payload with anything other than a `2xx` response, or times out and indicates the payload has not been received, the following process will determine whether the destination URI gets blacklisted.
 
 The webhook service may send many payloads to a single URI in quick succession. Because of this, we use a sliding scale across a **two minute window** to calculate a callback response success rate for each remote destination. When the webhook service receives a `2xx` response, the destination's success count is increased. If there's no response or the remote server times out, the destination's failure count is increased. Based on these two numbers, the success ratio is calculated. 
@@ -80,3 +78,44 @@ To ensure webhook callback requests are secure:
 ```
 
 BigCommerce will send the specified headers when making callback requests to the destination server -- this allows webhook destination URIs to be secured via basic authentication.
+
+## Troubleshooting
+Not receiving Webhook Event Callbacks
+
+If your app does not return an HTTP 200 to BigCommerce after receiving the webhook event payload, BigCommerce considers it a failure. BigCommerce will keep trying for a little over 48 hours. At the end of that time, BigCommerce sends an email to the email address set during app registration and disables the webhook by setting the is_active flag to false.
+
+To see if a webhook is still active, make a GET request to /hooks/{id} and check the value of the is_active property in the response.
+
+If you receive an email, or discover is_active is false, try the following:
+* Verify the app is responding to the callback with a 200 response.
+* Verify the destination server has a valid TLS/SSL setup by visiting https://sslcheck.globalsign.com. Any of the following will cause the TLS/SSL handshake to fail:
+	* Self-signed certificates
+	* Hostname on certificate doesn’t match the hostname in DNS settings
+	* Key and trust stores are not configured with the required intermediate certificates.
+
+Once the issue is resolved, set is_active to true by making a PUT request to /hooks/{id} – BigCommerce start sending event Callback requests again.
+
+No 200 response when making `POST` to `/hooks`
+* Check TLS/SSL configuration on machine making POST request.
+* Verify POST request contains the required HTTP headers:
+
+```bash
+POST https://api.bigcommerce.com/stores/{{STORE_HASH}}/v2/hooks
+Accept: application/json
+Content-Type: application/json
+X-Auth-Token: {{ACCESS_TOKEN}}
+X-Auth-Client: {{CLIENT_ID}}
+```
+
+## Tools for Debugging and Testing
+Below is a collection of third-party tools that can be used to aid in the development, testing, and debugging of webhooks:
+
+|Tool|Description|
+|---|---|
+|[ngrok](#)|Easily set up tunnels between localhost and an ngrok public URL to test callback requests on your machine|
+|[Webhook Tester](#)|Test webhooks and other types of HTTP requests in your browser|
+
+## Resources
+* [Webhook Tutorial](#)
+* [Webhook Events](#)
+* [Webhook Reference](#)
