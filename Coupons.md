@@ -26,7 +26,7 @@ Default sorting is by coupon/discount id, from lowest to highest. Optional filte
 
 Available types for `type` and `exclude_type` filters:
 
-|Type|
+|Type|Description|
 |-|-|
 |`per_item_discount`|
 |`percentage_discount`|
