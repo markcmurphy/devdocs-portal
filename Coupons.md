@@ -2,8 +2,7 @@
 
 ### On this Page	
 - [Coupons](#Coupons)
-- [Section2](#section2)
-- [Section3](#section3)
+- [Promotions Coupons](#promotions-coupons)
 
 </div>
 
