@@ -3003,6 +3003,67 @@ definitions:
       count:
         type: integer
         minimum: 0
+  banner_Base:
+    type: object
+    title: banner_Base
+    properties:
+      name:
+        type: string
+        example: Sale Banner
+        description: Name of the banner.
+      content:
+        type: string
+        example: <p> Sale! Tuesday at 9am! </p>
+        description: >-
+          Contains the banner content. Returned as a string and includes HTML
+          formatting.
+      page:
+        type: string
+        description: Page the Banner is located.
+        enum:
+          - home_page
+          - category_page
+          - brand_page
+          - search_page
+      location:
+        type: string
+        enum:
+          - top
+          - bottom
+        example: top
+        description: Location on the page.
+      date_type:
+        type: string
+        enum:
+          - always
+          - custom
+        description: >-
+          This specifies whether the banner should be visible during a specific
+          date range.
+      date_from:
+        type: string
+        description: >-
+          If the datetype is set as 'custom’, this field specifies the date when
+          the banner should become visible on the storefront.
+        example: '0'
+      date_to:
+        type: string
+        description: >-
+          If the datetype is set as 'custom’, this field specifies the date when
+          the banner should stop being visible on the storefront.
+        example: '0'
+      visible:
+        type: string
+        description: >-
+          Integer value denoting whether or not the banner is visible on the
+          storefront: 1 = visible; 0 = not visible
+        example: '1'
+    required:
+      - name
+      - content
+      - page
+      - location
+      - date_type
 tags:
   - name: Banners
   - name: Coupons
