@@ -368,26 +368,12 @@ definitions:
         url: >-
           https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/countries/13/states
         resource: /countries/13/states
-    type: object
-    properties:
-      id:
-        description: Id of the country.
-        example: 13
-        type: integer
-      country:
-        description: Country name.
-        example: Australia
-        type: string
-      country_iso2:
-        description: 2-letter country code.
-        example: AU
-        type: string
-      country_iso3:
-        description: 3-letter country code.
-        example: AUS
-        type: string
-      states:
-        $ref: '#/definitions/countriesStates_Full'
+    allOf:
+      - $ref: '#/definitions/country_Base'
+      - type: object
+        properties:
+          states:
+            $ref: '#/definitions/countriesStates_Full'
   countriesStates_Full:
     title: countriesStates_Full
     type: object
