@@ -3065,8 +3065,29 @@ definitions:
       - location
       - date_type
   banner_Full:
-    type: object
-    properties: {}
+    allOf:
+      - $ref: '#/definitions/banner_Base'
+      - type: object
+        properties:
+          id:
+            type: integer
+            example: 1
+            description: >
+              Id of the banner.
+
+              This is a READ-ONLY field; do not set or modify its value in a
+              POST or PUT request.
+          item_id:
+            type: string
+            example: '0'
+            description: >-
+              If the banner is on a specific category or brand page then the
+              `item_id` will correspond the category or brand id.
+          date_created:
+            type: string
+            format: date-time
+            description: Date the banner is created.
+            example: '1522169082'
     title: banner_Full
 tags:
   - name: Banners
