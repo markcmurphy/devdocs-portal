@@ -1182,34 +1182,9 @@ definitions:
       customer_id:
         type: integer
       line_items:
-        type: array
-        items:
-          type: object
-          title: Line Item Request Data
-          properties:
-            quantity:
-              type: number
-            product_id:
-              type: number
-            variant_id:
-              type: number
-              description: Required if the product has variants
-            list_price:
-              type: number
-            option_selections:
-              type: array
-              items:
-                type: object
-                title: Product Option Selection
-                properties:
-                  option_id:
-                    type: number
-                  option_value:
-                    type: string
-          required:
-            - quantity
-            - product_id
-            - variant_id
+        oneOf:
+          - $ref: '#/definitions/cart_PostVariant'
+          - $ref: '#/definitions/cart_PostModifier'
       gift_certificates:
         type: array
         items:
