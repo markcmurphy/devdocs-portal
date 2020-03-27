@@ -42,6 +42,10 @@ paths:
           description: Quote response
           schema:
             type: object
+            title: Rate Response Payload
+            description: >-
+              The response from the Shipping Service, will contain zero to many
+              quotes.
             properties:
               quote_id:
                 type: string
@@ -50,6 +54,8 @@ paths:
                 type: array
                 items:
                   type: object
+                  title: Message
+                  description: A simple string/type response for returning information.
                   properties:
                     text:
                       type: string
@@ -64,8 +70,6 @@ paths:
                   required:
                     - text
                     - type
-                  title: Message
-                  description: A simple string/type response for returning information.
               carrier_quotes:
                 type: array
                 items:
@@ -73,6 +77,7 @@ paths:
                   description: >-
                     A grouping of carrier rates and optionally info about that
                     carrier
+                  title: Carrier Quote Object
                   properties:
                     carrier_info:
                       type: object
@@ -91,6 +96,8 @@ paths:
                       type: array
                       items:
                         type: object
+                        title: Rate Quote Object
+                        description: A quote being returned as part of the rate request.
                         properties:
                           display_name:
                             description: A display name for the service
@@ -99,6 +106,10 @@ paths:
                           cost:
                             description: Value object for a money amount
                             type: object
+                            title: Money Value
+                            required:
+                              - currency
+                              - amount
                             properties:
                               currency:
                                 type: string
@@ -106,14 +117,14 @@ paths:
                               amount:
                                 type: number
                                 minimum: 0
-                            required:
-                              - currency
-                              - amount
-                            title: Money Value
                           messages:
                             type: array
                             items:
                               type: object
+                              title: Message
+                              description: >-
+                                A simple string/type response for returning
+                                information.
                               properties:
                                 text:
                                   type: string
@@ -128,15 +139,13 @@ paths:
                               required:
                                 - text
                                 - type
-                              title: Message
-                              description: >-
-                                A simple string/type response for returning
-                                information.
                           description:
                             type: string
                             maxLength: 500
                           transit_time:
                             type: object
+                            title: Transit Time Object
+                            description: Value object for the length of time in transit
                             properties:
                               units:
                                 type: string
@@ -148,24 +157,15 @@ paths:
                                 type: integer
                                 minimum: 1
                                 maximum: 90
-                            title: Transit Time Object
-                            description: Value object for the length of time in transit
                         required:
                           - display_name
                           - cost
-                        title: Rate Quote Object
-                        description: A quote being returned as part of the rate request.
                   required:
                     - quotes
-                  title: Carrier Quote Object
             required:
               - quote_id
               - messages
               - carrier_quotes
-            title: Rate Response Payload
-            description: >-
-              The response from the Shipping Service, will contain zero to many
-              quotes.
       summary: Request shipping rates
       tags:
         - Shipping Provider
