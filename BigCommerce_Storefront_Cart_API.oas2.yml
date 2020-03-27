@@ -323,78 +323,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              lineItem:
-                type: object
-                title: Line Item Request Data
-                properties:
-                  quantity:
-                    type: number
-                    description: Quantity of this item.
-                  productId:
-                    type: number
-                    description: ID of the product.
-                  variantId:
-                    type: number
-                    description: ID of the variant.
-                required:
-                  - quantity
-              giftCertificate:
-                type: object
-                title: Line Item Gift Certificate Request Data
-                properties:
-                  name:
-                    type: string
-                    description: Name assigned to this gift-certificate line item.
-                  theme:
-                    type: string
-                    description: >-
-                      Currently supports `Birthday`, `Boy`, `Celebration`,
-                      `Christmas`, `General`, and `Girl`.
-                  amount:
-                    type: number
-                    description: Gift-certificate amount.
-                    minimum: 1
-                    maximum: 1000
-                  quantity:
-                    type: integer
-                    description: Quantity of this item.
-                    minimum: 1
-                  sender:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        description: Contact's name.
-                      email:
-                        type: string
-                        format: email
-                        description: Contact's email address.
-                    title: Contact Entity
-                  recipient:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        description: Contact's name.
-                      email:
-                        type: string
-                        format: email
-                        description: Contact's email address.
-                    title: Contact Entity
-                  message:
-                    type: string
-                    maximum: 200
-                    description: 'Message shown to recipient, as provided by sender.'
-                required:
-                  - name
-                  - theme
-                  - amount
-                  - quantity
-                  - sender
-                  - recipient
-            title: Cart Update Request
+            $ref: '#/definitions/CartUpdateRequest'
           x-examples:
             application/json:
               lineItem:
