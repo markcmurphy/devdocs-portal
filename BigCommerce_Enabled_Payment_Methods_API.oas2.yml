@@ -54,61 +54,7 @@ paths:
           description: 'Optional filter param `/api/v2/payments/methods?limit={count}`'
       responses:
         '200':
-          description: ''
-          schema:
-            type: array
-            items:
-              title: PaymentMethod
-              example:
-                code: squarev2
-                name: Square
-                test_mode: false
-              type: object
-              properties:
-                code:
-                  description: Unique platform-wide code identifying the payment method.
-                  example: squarev2
-                  type: string
-                name:
-                  description: Descriptive name of the payment method.
-                  example: Square
-                  type: string
-                test_mode:
-                  description: >-
-                    Determines whether the payment gateway is in test mode.
-                    Always false for offline payment methods.
-                  example: false
-                  type: boolean
-          examples:
-            application/json:
-              - code: braintree
-                name: Braintree
-                test_mode: false
-              - code: braintreepaypal
-                name: Braintree (PayPal)
-                test_mode: false
-              - code: braintreepaypalcredit
-                name: Braintree (PayPal Credit)
-                test_mode: false
-              - code: instore
-                name: Pay in Store
-                test_mode: false
-            Response Schema:
-              - code: fugiat aliqua elit
-                name: do consequat
-                test_mode: true
-              - code: quis
-                name: dolor ad ut anim
-                test_mode: false
-              - code: nisi
-                name: in deserunt in
-                test_mode: true
-              - code: ullamco est
-                name: 'sit '
-                test_mode: true
-              - code: id ut sunt consequa
-                name: cupidata
-                test_mode: false
+          $ref: '#/responses/paymentCollection_Resp'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
