@@ -76,72 +76,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            title: Cart Create Request Data
-            properties:
-              customer_id:
-                type: integer
-              line_items:
-                oneOf:
-                  - $ref: '#/definitions/cart_PostVariant'
-                  - $ref: '#/definitions/cart_PostModifier'
-              gift_certificates:
-                type: array
-                items:
-                  type: object
-                  title: Line Item Gift Certificate Request Data
-                  properties:
-                    name:
-                      type: string
-                      description: Given name for gift certificate line item.
-                    theme:
-                      type: string
-                      description: >-
-                        Currently supports `Birthday`, `Boy`, `Celebration`,
-                        `Christmas`, `General`, and `Girl`.
-                    amount:
-                      type: number
-                      minimum: 1
-                      maximum: 1000
-                    quantity:
-                      type: integer
-                      minimum: 1
-                    sender:
-                      title: Contact Entity
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                        email:
-                          type: string
-                    recipient:
-                      title: Contact Entity
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                        email:
-                          type: string
-                    message:
-                      type: string
-                      maximum: 200
-                      description: 'Message shown to recipient, as provided by sender.'
-                  required:
-                    - name
-                    - theme
-                    - amount
-                    - quantity
-                    - sender
-                    - recipient
-              channel_id:
-                type: integer
-                description: 'If no channel is specified, defaults to 1. '
-              currency:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    format: ISO-4217
+            $ref: '#/definitions/CartCreateRequestData'
           x-examples:
             Simple Product: |-
               {
