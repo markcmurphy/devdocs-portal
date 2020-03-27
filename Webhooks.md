@@ -114,8 +114,3 @@ Below is a collection of third-party tools that can be used to aid in the develo
 |---|---|
 |[ngrok](#)|Easily set up tunnels between localhost and an ngrok public URL to test callback requests on your machine|
 |[Webhook Tester](#)|Test webhooks and other types of HTTP requests in your browser|
-
-## Resources
-* [Webhook Tutorial](#)
-* [Webhook Events](#)
-* [Webhook Reference](#)
