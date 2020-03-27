@@ -1887,8 +1887,286 @@ definitions:
     title: Date Value
     description: Value Object representing a Date
   BaseOptions:
+    description: The minimum required payload that is sent to retrieve rates
     type: object
-    properties: {}
+    title: Base Rate Request
+    required:
+      - origin
+      - destination
+      - items
+      - store_id
+    properties:
+      origin:
+        type: object
+        title: Shipping Address
+        description: Object representing a destination or origin address for items.
+        required:
+          - zip
+          - country_iso2
+        properties:
+          street_1:
+            type: string
+            maxLength: 255
+          street_2:
+            type: string
+            maxLength: 255
+          zip:
+            type: string
+            maxLength: 20
+            example: '94105'
+          city:
+            type: string
+            maxLength: 50
+            example: San Francisco
+          state_iso2:
+            type: string
+            description: State in ISO_3166 2 format
+            maxLength: 2
+          country_iso2:
+            type: string
+            description: Country in ISO_3166 2 format
+            maxLength: 2
+            example: US
+          address_type:
+            description: 'Optional, defaults to residential'
+            type: string
+            enum:
+              - RESIDENTIAL
+              - COMMERCIAL
+      destination:
+        type: object
+        title: Shipping Address
+        description: Object representing a destination or origin address for items.
+        required:
+          - zip
+          - country_iso2
+        properties:
+          street_1:
+            type: string
+            maxLength: 255
+          street_2:
+            type: string
+            maxLength: 255
+          zip:
+            type: string
+            maxLength: 20
+            example: '94105'
+          city:
+            type: string
+            maxLength: 50
+            example: San Francisco
+          state_iso2:
+            type: string
+            description: State in ISO_3166 2 format
+            maxLength: 2
+          country_iso2:
+            type: string
+            description: Country in ISO_3166 2 format
+            maxLength: 2
+            example: US
+          address_type:
+            description: 'Optional, defaults to residential'
+            type: string
+            enum:
+              - RESIDENTIAL
+              - COMMERCIAL
+      items:
+        type: array
+        items:
+          type: object
+          description: A cart item along with it's shipping specific attributes
+          title: Rate Request Item
+          properties:
+            sku:
+              type: string
+              description: The variant SKU
+            variant_id:
+              type: string
+            product_id:
+              type: string
+            name:
+              type: string
+            length:
+              description: Value object for a length measurement
+              type: object
+              title: Dimension Value
+              properties:
+                units:
+                  type: string
+                  enum:
+                    - cm
+                    - in
+                value:
+                  type: number
+                  minimum: 0
+              required:
+                - units
+                - value
+            width:
+              description: Value object for a length measurement
+              type: object
+              title: Dimension Value
+              properties:
+                units:
+                  type: string
+                  enum:
+                    - cm
+                    - in
+                value:
+                  type: number
+                  minimum: 0
+              required:
+                - units
+                - value
+            height:
+              description: Value object for a length measurement
+              type: object
+              title: Dimension Value
+              properties:
+                units:
+                  type: string
+                  enum:
+                    - cm
+                    - in
+                value:
+                  type: number
+                  minimum: 0
+              required:
+                - units
+                - value
+            weight:
+              description: Value object for a weight measurement
+              type: object
+              title: Weight Value
+              properties:
+                units:
+                  type: string
+                  enum:
+                    - oz
+                    - g
+                value:
+                  type: number
+                  minimum: 0
+              required:
+                - units
+                - value
+            discounted_price:
+              description: Value object for a money amount
+              type: object
+              title: Money Value
+              properties:
+                currency:
+                  type: string
+                  pattern: '^[A-Z]{3,3}$'
+                amount:
+                  type: number
+                  minimum: 0
+              required:
+                - currency
+                - amount
+            declared_value:
+              description: Value object for a money amount
+              type: object
+              title: Money Value
+              properties:
+                currency:
+                  type: string
+                  pattern: '^[A-Z]{3,3}$'
+                amount:
+                  type: number
+                  minimum: 0
+              required:
+                - currency
+                - amount
+            quantity:
+              type: number
+              format: int32
+            attributes:
+              description: >-
+                A list of arbitrary properties stored as part of the product or
+                product variant meta fields. These consist of public fields
+                specific to the carrier integration.
+              type: array
+              items:
+                type: object
+                title: Attribute Value
+                properties:
+                  key:
+                    type: string
+                    description: The key associated with the meta field
+                  value:
+                    type: string
+                    description: The value associated with the meta field
+                  namespace:
+                    type: string
+                    description: >-
+                      The namespace associated with
+                      product(https://developer.bigcommerce.com/api-reference/catalog/catalog-api/product-metafields/createproductmetafield)
+                      or product variant
+                      (https://developer.bigcommerce.com/api-reference/catalog/catalog-api/product-variants-metafields/createvariantmetafield)
+                      meta fields. The meta field namespace should be saved
+                      under this format 'shipping_carrier_{yourCarrierId}'
+                      otherwise it will not be recognized as an attribute.
+                  resource_type:
+                    type: string
+                    enum:
+                      - product
+                      - variant
+                    description: >-
+                      Resource type associated with the meta field. Currently
+                      the only values available are 'product' or 'variant'
+                  resource_id:
+                    type: string
+                    description: The resource id of the meta field
+                  attribute_type:
+                    type: string
+                    enum:
+                      - metafield
+                    description: >-
+                      Attribute type associated with the product or product
+                      variant meta field. Currently the only value for this is
+                      'metafield'
+      customer:
+        type: object
+        title: Customer Details
+        description: The details of the Customer that has made the purchase.
+        properties:
+          customer_groups:
+            type: array
+            items:
+              type: object
+              title: Customer Group
+              description: >-
+                The Group (if any) that this customer is in. This will be
+                default to zero if the customer is not in a group or is a
+                guest. 
+              properties:
+                customer_group_id:
+                  type: integer
+                customer_group_name:
+                  type: string
+          customer_id:
+            type: integer
+      cart_id:
+        type: string
+      store_id:
+        type: string
+      request_context:
+        type: object
+        title: Request Context
+        description: A collection of Reference Value objects.
+        properties:
+          reference_values:
+            type: array
+            items:
+              type: object
+              title: Reference Value
+              description: Value objects contained within the request context
+              properties:
+                name:
+                  type: string
+                value:
+                  type: string
 tags:
   - name: Shipping Provider
 host: <yourserver.com>
