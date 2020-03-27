@@ -647,6 +647,20 @@ definitions:
   currency_Put:
     $ref: '#/definitions/currency_Post'
     title: currency_Put
+  currency_Full_N:
+    title: currency_Full_N
+    allOf:
+      - $ref: '#/definitions/currency_Base'
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: Id of the currency. READ-ONLY.
+            example: 2
+          last_updated:
+            type: string
+            description: 'Date the currency was last updated, created or modified.'
+            format: date-time
 tags:
   - name: /currencies
     description: ''
