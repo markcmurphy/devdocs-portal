@@ -182,17 +182,7 @@ paths:
         - application/json
       responses:
         '200':
-          description: A collection of return item summaries with updated received statuses
-          schema:
-            properties:
-              data:
-                $ref: '#/definitions/UpdateReceivedItems'
-              errors:
-                type: array
-                items:
-                  $ref: '#/definitions/Problem'
-              meta:
-                $ref: '#/definitions/BatchOperationMeta'
+          $ref: '#/responses/ReturnReceivedItemsResponse'
       summary: Update Return Received Items
   '/orders/{order_id}/returns/{return_id}/reviewed-items':
     put:
