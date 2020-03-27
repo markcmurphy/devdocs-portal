@@ -97,35 +97,17 @@ paths:
           description: Check connection options response
           schema:
             type: object
-            properties:
-              valid:
-                type: boolean
-                description: Indicates whether or not the connection options are valid
-              messages:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    text:
-                      type: string
-                      minLength: 1
-                      maxLength: 500
-                    type:
-                      type: string
-                      enum:
-                        - INFO
-                        - WARNING
-                        - ERROR
-                  required:
-                    - text
-                    - type
-                  title: Message
-                  description: A simple string/type response for returning information.
             title: Check Connection Options Response Payload
             description: >-
               The response recieved back from the Shipping Provider connection
               check this allows the store to understand if the connection was
               successful.
+            properties:
+              valid:
+                type: boolean
+                description: Indicates whether or not the connection options are valid
+              messages:
+                $ref: '#/definitions/Message'
       summary: Validate connection options
       tags:
         - Shipping Provider
