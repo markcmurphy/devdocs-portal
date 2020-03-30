@@ -33,12 +33,12 @@ V2 Customers API allows you to manage the following resources:
 
 V3 Customers API allows you to manage the following:
 * Customer Addresses
+* Cusrtomer Attributes
 * Customer Form Fields
 * Customer Consent
 
-
-
 ## Customer Attributes
+Customer Attributes are fields that allow 
 
 ## Customer Form Field Values
 
