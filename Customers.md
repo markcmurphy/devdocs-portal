@@ -86,3 +86,21 @@ Where possible, the API indicates the origin of the subscriber. If the subscribe
 - A subscriber is not always a customer. Someone can sign up for the newsletter only and not create an account.
 - A customer is not always a subscriber. Signing up for the newsletter is a separate action from creating an account and purchasing an item.
 - A customer and a subscriber can be the same. If a shopper checks out on the storefront, creates an account and opts into the newsletter, they are a customer and a subscriber.
+
+## Resources
+
+### Related Endpoints
+  [Customer Login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
+- [Current Customer API](https://developer.bigcommerce.com/api-docs/customers/current-customer-api)
+- [Customers API](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api)
+- [Customer Groups](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-groups/getallcustomergroups) (Customer V2 API)
+- [Password Validation](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-passwords/validatecustomerpassword) (Customer V2 API)
+- [Password Confirmation](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customers/createanewcustomer) (Customer V2 API)
+- [Subscribers API](https://developer.bigcommerce.com/api-reference/customer-subscribers/subscribers-api)
+
+### Webhooks
+- [Customers](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)
+
+### Related Articles
+- [Adding and Editing Fields in the Account Signup Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields#account-fields) (Knowledge Base)
+- [Checkout Settings](https://support.bigcommerce.com/s/article/Checkout-Settings#checkout-settings) (Knowledge Base)
