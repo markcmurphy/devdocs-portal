@@ -14,7 +14,7 @@ Gift Certificates are a record of store credit that can be used to pay for order
 
 - When a gift certificate is created through the API, no email notification is triggered to the specified recipient.
 - Gift Certificates are not tied to the [Customer Account](https://support.bigcommerce.com/s/article/Customer-Account-Creation) associated with the `to_email` of the recipient. They are redeemed by a shopper entering the `code` at checkout.
-- Gift Certificates cannot be managed or created via the Control Panel. They can only be created via the storefront, or via API.
+- Gift Certificates cannot be managed or created via the Control Panel. They can only be created by being purchased through the storefront, or via API.
 
 ## Resources
 - [Gift Certificates](https://support.bigcommerce.com/s/article/Gift-Certificates)
