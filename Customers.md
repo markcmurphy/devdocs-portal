@@ -42,6 +42,9 @@ V3 Customers API allows you to manage the following:
 ## Customer Attributes
 Customer Attributes are a name/value key pair associated with a Customer. They are readable/writable via API only.
 
+**Note**
+Each customer can have up to 100 name, value pairs stored
+
 
 
 ## Customer Form Field Values
