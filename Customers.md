@@ -70,6 +70,7 @@ Customer groups allow you to organize your customers, give them discounts, and r
 The Customer Groups feature is only available on certain plans.
 
 ## Customers Validate Password
+Password validation is only available on V2 Customers API. Validation will return a true or false. The V3 Customers API can reset a customers password or input a new password. 
 
 ## Subscribers
 A subscriber is someone who has signed up for a store’s newsletter.  
