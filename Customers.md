@@ -60,6 +60,8 @@ Each customer can have up to 100 name, value pairs stored
 
 
 ## Customer Form Field Values
+These are the values customers enter at checkout via [Account Sign Up Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
+
 
 ## Customer Groups
 
