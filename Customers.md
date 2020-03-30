@@ -35,6 +35,31 @@ V3 Customers API allows you to manage the following:
 * Customer Form Fields
 * Customer Consent
 
+### Making Requests
+
+The new Customers API is easier to use. It reduces the API calls needed to accomplish a task. For example, creating a new Customer with the V2 API there was a need to hit several endpoints. Now the customer attributes and address are created in one step with Create a Customer, allowing you to batch create multiple customers, and their subresources, in a single API call.
+
+**Create a Customer**
+
+Single Customer on V3
+- `/customers`
+
+Single Customer on V2
+* `/customers/{customer_id}`
+* `/customers/{customer_id}/addresses`
+
+### Queries
+
+With the V3 Customers API, queries become a powerful tool. Instead of using a different endpoint to get customer sub-resources, there is one GET endpoint per resource with filters to refine the request. 
+
+**Get Customer Addresses**
+
+Get Customer Address by name and company on V3
+`/customers/addresses?company:in=bigcommerce,commongood&customer_id:in1,2,3`
+
+Get Customer Address by name and company on V2
+`/customers/{customer_id}/addresses/{customer_address_id}`
+
 ### Upsert
 
 Upsert is used for Form Field Values and Customer Attributes. Upsert looks for a match to the existing record, and if one is found, then it makes an update. If a match is not found, it creates a new record.
