@@ -2906,24 +2906,23 @@ definitions:
       - location
       - date_type
   banner_Full:
-    allOf:
-      - $ref: '#/definitions/banner_Base'
-      - type: object
-        properties:
-          id:
-            type: integer
-            example: 1
-            description: >
-              Id of the banner.
-
-              This is a READ-ONLY field; do not set or modify its value in a
-              POST or PUT request.
-          date_created:
-            type: string
-            format: date-time
-            description: Date the banner is created.
-            example: '1522169082'
     title: banner_Full
+    $ref: '#/definitions/banner_Base'
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+        description: >
+          Id of the banner.
+
+          This is a READ-ONLY field; do not set or modify its value in a POST or
+          PUT request.
+      date_created:
+        type: string
+        format: date-time
+        description: Date the banner is created.
+        example: '1522169082'
 tags:
   - name: Banners
   - name: Coupons
@@ -3138,3 +3137,8 @@ responses:
           date_from: '0'
           date_to: '0'
           visible: '1'
+  new-response:
+    description: ''
+    schema:
+      type: object
+      properties: {}
