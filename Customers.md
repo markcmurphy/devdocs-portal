@@ -38,7 +38,7 @@ V3 Customers API allows you to manage the following:
 * Customer Consent
 
 ## Customer Attributes
-Customer Attributes are values that can 
+Customer Attributes are values that can be associated with a Customer and accessed via API only.
 
 ## Customer Form Field Values
 
