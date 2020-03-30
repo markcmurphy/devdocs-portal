@@ -9,10 +9,11 @@
 ## Gift Certificates
 Gift Certificates are a record of store credit that can be used to pay for an order when the shopper enters a gift certificate code. 
 
-**Note**
+**Notes**
 <br>
 
-When a gift certificate is created through the API, no email notification is triggered to the specified recipient.
+- When a gift certificate is created through the API, no email notification is triggered to the specified recipient.
+- Gift Certificates are not tied to the Customer Account associated with the `to_email` of the recipient. They are redeemed via the unique code.
 
 ## Resources
 - [Gift Certificates](https://support.bigcommerce.com/s/article/Gift-Certificates)
