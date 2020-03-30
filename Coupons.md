@@ -63,6 +63,8 @@ Coupons can also be created via the Promotions API (Beta). These Coupons can be 
 
 ## Resources
 
+- [Using Coupon Codes](https://support.bigcommerce.com/s/article/Using-Coupon-Codes)
+- [Coupon Promotions](https://support.bigcommerce.com/s/article/Coupon-Promotions)
 
 
 
