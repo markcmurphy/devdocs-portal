@@ -27,6 +27,8 @@ Customer Addresses are the addresses that are associated with a Customer Account
 
 The main distinction between Customers V2 and V3 is you can only manage certain resources using either API.
 
+## V2 vs. V3
+
 V2 Customers API allows you to manage the following resources:
 * Customers
 * Customer Addresses
@@ -38,6 +40,16 @@ V3 Customers API allows you to manage the following:
 * Cusrtomer Attributes
 * Customer Form Fields
 * Customer Consent
+
+### Upsert
+
+Upsert is used for Form Field Values and Customer Attributes. Upsert looks for a match to the existing record, and if one is found, then it makes an update. If a match is not found, it creates a new record.
+
+### Authentication Object
+
+On the new Customers endpoint, when creating a customer there are two ways to set customers passwords. 
+- A new password can be set under the `authentication > new password` object in a /PUT or /POST. 
+- To have customers reset the password set `force_password_reset` to `true` under `authentication > new password` object in a /PUT or /POST
 
 ## Customer Attributes
 Customer Attributes are a name/value key pair associated with a Customer. They are readable/writable via API only.
