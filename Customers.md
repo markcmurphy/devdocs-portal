@@ -51,6 +51,8 @@ Each customer can have up to 100 name, value pairs stored
 
 ## Customer Groups
 
+Customer groups allow you to organize your customers, give them discounts, and restrict access to specific products or categories. For more information see [Customer Groups](https://support.bigcommerce.com/s/article/Customer-Groups).
+
 ## Customers Validate Password
 
 ## Subscribers
