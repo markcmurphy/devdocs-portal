@@ -3,7 +3,6 @@
 ### On this Page	
 - [Coupons](#Coupons)
 - [Promotions Coupons](#promotions-coupons)
-- Resources
 
 </div>
 
