@@ -21,12 +21,6 @@ A Customer is a shopper who has created an account on the storefront. Customers 
 ### What is a Guest?
 Store settings can be set to allow a shopper to complete checkout without creating an account. These shoppers are not captured as customers or stored in the BigCommerce system. If you want to capture guest data, using the Storefront APIs can help.
 
-## Customer Addresses
-
-Customer Addresses are the addresses that are associated with a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
-
-The main distinction between Customers V2 and V3 is you can only manage certain resources using either API.
-
 ## V2 vs. V3
 
 V2 Customers API allows you to manage the following resources:
@@ -50,6 +44,13 @@ Upsert is used for Form Field Values and Customer Attributes. Upsert looks for a
 On the new Customers endpoint, when creating a customer there are two ways to set customers passwords. 
 - A new password can be set under the `authentication > new password` object in a /PUT or /POST. 
 - To have customers reset the password set `force_password_reset` to `true` under `authentication > new password` object in a /PUT or /POST
+
+## Customer Addresses
+
+Customer Addresses are the addresses that are associated with a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
+
+The main distinction between Customers V2 and V3 is you can only manage certain resources using either API.
+
 
 ## Customer Attributes
 Customer Attributes are a name/value key pair associated with a Customer. They are readable/writable via API only.
