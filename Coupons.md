@@ -62,6 +62,9 @@ Coupons can also be created via the Promotions API (Beta). These Coupons can be 
 * Cannot be restricted by shipping method
 * You cannot exclude them from being used with Automatic Promotions
 
+## Resources
+
+
 
 
 
