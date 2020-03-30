@@ -47,7 +47,6 @@ Customer Attributes are a name/value key pair associated with a Customer. They a
 Each customer can have up to 100 name, value pairs stored
 
 
-
 ## Customer Form Field Values
 
 ## Customer Groups
