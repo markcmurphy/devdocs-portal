@@ -18,6 +18,9 @@
 
 A Customer is a shopper who has created an account on the storefront. Customers data is comprised of attributes about the shopper including their name, email address and physical addresses. 
 
+### What is a Guest?
+Store settings can be set to allow a shopper to complete checkout without creating an account. These shoppers are not captured as customers or stored in the BigCommerce system. If you want to capture guest data, using the Storefront APIs can help.
+
 ## Customer Addresses
 
 Customer Addresses are the addresses that are associated with a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
