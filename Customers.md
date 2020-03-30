@@ -22,7 +22,6 @@ A Customer is a shopper who has created an account on the storefront. Customers 
 
 Customer Addresses are the addresses that are associated with a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
 
-### Difference between v2 and v3
 The main distinction between Customers V2 and V3 is you can only manage certain resources using either API.
 
 V2 Customers API allows you to manage the following resources:
@@ -38,7 +37,9 @@ V3 Customers API allows you to manage the following:
 * Customer Consent
 
 ## Customer Attributes
-Customer Attributes are values that are associated with a Customer. They are readable/writable via API only.
+Customer Attributes are a name/value key pair associated with a Customer. They are readable/writable via API only.
+
+
 
 ## Customer Form Field Values
 
