@@ -23,6 +23,8 @@ Store settings can be set to allow a shopper to complete checkout without creati
 
 ## V2 vs. V3
 
+The main distinction between Customers V2 and V3 is you can only manage certain resources using either API.
+
 V2 Customers API allows you to manage the following resources:
 * Customers
 * Customer Addresses
@@ -73,8 +75,6 @@ On the new Customers endpoint, when creating a customer there are two ways to se
 ## Customer Addresses
 
 Customer Addresses are the addresses that are associated with a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
-
-The main distinction between Customers V2 and V3 is you can only manage certain resources using either API.
 
 
 ## Customer Attributes
