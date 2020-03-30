@@ -11,11 +11,11 @@
     <div id="voyager">Loading...</div>
     <script>
       function introspectionProvider(query) {
-        return fetch('https://{$$.env.storefront_hostname}/graphql', {
+        return fetch('https://{$$.env.default_storefront_hostname}/graphql', {
             method: 'post',
             headers: { 
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer {$$.env.storefront_token}'
+                'Authorization': 'Bearer {$$.env.default_storefront_token}'
             },
             body: JSON.stringify({query: query}),
         }).then(response => response.json());
