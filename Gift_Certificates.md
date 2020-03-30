@@ -1,7 +1,8 @@
 <div class="otp" id="no-index">
 
 ### On this Page	
-- 
+- [Gift Certificates](#gift_certificates)
+- [Resources](#resources)
 
 </div>
 
