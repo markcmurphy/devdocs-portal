@@ -7,3 +7,6 @@
 
 ## Gift Certificates
 
+## Resources
+- [Gift Certificates](https://support.bigcommerce.com/s/article/Gift-Certificates)
+
