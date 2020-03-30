@@ -7,7 +7,7 @@
 </div>
 
 ## Gift Certificates
-Gift Certificates are a record of store credit that can be used to pay for an order when the shopper enters a gift certificate code. 
+Gift Certificates are a record of store credit that can be used to pay for orders when the shopper enters a gift certificate code. 
 
 **Notes**
 <br>
