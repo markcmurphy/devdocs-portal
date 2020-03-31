@@ -40,3 +40,4 @@ The Storefront Checkout does not use API Tokens and allows for Checkout data to 
 - The Try It Now at each endpoint will not work. Please see Cart and Checkout for a script that can be used to get Cart details.
 - `checkoutId` is the same as the `cartId`.
 - The redirect url endpoint does not work using the Storefront Cart. At this time shoppers can not be directed to any carts or checkouts created using the Storefront APIs. 
+- If a variant needs to be changed or updated, the product will need to be removed and re-added to the cart with the correct variants using the Add Cart Line Items endpoint.
