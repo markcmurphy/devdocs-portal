@@ -38,7 +38,7 @@ Because of this, you’ll need to check whether a user is running Stencil to det
 
 For Apps being installed on Stencil stores, we recommend inserting your scripts immediately after receiving the POST response during the [Auth Callback flow](https://developer.bigcommerce.com/api-docs/getting-started/building-apps-bigcommerce/building-apps#installation-and-update-sequence). Add your scripts using the `Create Script` endpoint of the Script Manager API.
 
-We highly recommend leaving the auto_uninstall flag set to true, so that your App will properly clean itself up when uninstalled. More information about this flag can be found <a href="#script_object-properties">here</a>.
+We recommend leaving the `auto_uninstall` flag set to true, so that your App will properly clean itself up when uninstalled. More information about this flag can be found <a href="#script_object-properties">here</a>.
 
 #### Upgrading Existing Apps on Stencil
 
