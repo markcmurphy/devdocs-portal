@@ -1730,7 +1730,37 @@ definitions:
           expiry_date:
             type: string
             description: Date on which the gift certificate is set to expire.
-            example: '0'
+          template:
+            type: string
+            enum:
+              - Birthday
+              - Girl
+              - Boy
+              - Celebration
+              - Christmas
+              - General
+            description: The email theme to use in the message sent to the recipient.
+            example: Celebration
+          message:
+            type: string
+            description: >-
+              Text that will be sent to the recipient, such as
+              “Congratulations.”
+            example: Congratulations!
+          code:
+            type: string
+            description: >-
+              A unique string that the customer can input to redeem the gift
+              certificate. If this field is not set, a value will be generated.
+            example: FFZ-5N4-C7M-S78
+          status:
+            type: string
+            enum:
+              - active
+              - pending
+              - disabled
+              - expired
+            example: active
     title: giftCertificate_Full
   giftCertificate_Put:
     allOf:
