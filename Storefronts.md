@@ -22,6 +22,12 @@ Notes:
 - Carts are valid for 30 days after the last modification. A modification includes the initial cart creation or editing the existing cart.
 - Redirect URLs can be generated only from carts created using the server-to-server cart API. To restore a cart that was created on the storefront–either by a shopper or the Storefront Cart API–first recreate the cart using the server-to-server Cart API.
 
+By default, the cart response will return abbreviated details for cart line items. To get full details of selected product options, use the following query parameters:
+
+- Physical products only: ?include=lineItems.physicalItems.options
+- Digital products only: ?include=lineItems.digitalItems.options
+- Both physical and digital items: `?include=lineItems.digitalItems.options,lineItems.physicalItems.options`
+
 ## Storefront Orders
 
 ## Storefront Checkouts
