@@ -1732,10 +1732,32 @@ definitions:
             description: Date on which the gift certificate is set to expire.
             example: '0'
     title: giftCertificate_Full
-  giftCertificate_Post:
-    type: object
-    properties: {}
-    title: giftCertificate_Post
+  giftCertificate_Put:
+    allOf:
+      - $ref: '#/definitions/giftCertificate_Base'
+      - type: object
+        properties:
+          balance:
+            type: string
+            description: >-
+              Remaining value of the gift certificate. If not set, will default
+              to the amount.
+            example: '0'
+          purchase_date:
+            type: string
+            description: >-
+              Date the gift certificate was purchased. If not assigned, this
+              will be set to today’s date.
+            example: '1520957992'
+          expiry_date:
+            type: string
+            description: Date on which the gift certificate is set to expire.
+            example: '1622583106'
+          customer_id:
+            type: integer
+            description: The ID of the customer placing the order.
+            example: 5
+    title: giftCertificate_Put
 tags:
   - name: Banners
   - name: Coupons
