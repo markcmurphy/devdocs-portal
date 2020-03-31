@@ -33,12 +33,6 @@ As mentioned above, BigCommerce supports two theme engines: Stencil and Blueprin
 
 Because of this, you’ll need to check whether a user is running Stencil to determine if their store supports the Script Manager API. To do this, use the [Get Store Information API](https://developer.bigcommerce.com/api/v2/#store-information-reference) endpoint and check the `stencil_enabled` flag. (requires [store_v2_information_read_only scope](https://developer.bigcommerce.com/api/#oauth-scopes)).
 
-## Prerequisites
-
-To better understand the content of this document, you should be familiar with the app installation procedure, which is outlined here:
-[App Installation](/api-docs/getting-started/building-apps-bigcommerce/building-apps#building-apps_installation-update-sequence)
-
-## Upgrades and Installation
 
 ### Installing An App on Stencil
 
