@@ -29,5 +29,14 @@ By default, the cart response will return abbreviated details for cart line item
 - Both physical and digital items: `?include=lineItems.digitalItems.options,lineItems.physicalItems.options`
 
 ## Storefront Orders
+Returns order data immediately after an order is placed on the storefront.
+
 
 ## Storefront Checkouts
+The Storefront Checkout does not use API Tokens and allows for Checkout data to be scraped directly from the front end or used in a Stencil Theme.
+
+**Note**
+
+- The Try It Now at each endpoint will not work. Please see Cart and Checkout for a script that can be used to get Cart details.
+- `checkoutId` is the same as the `cartId`.
+- The redirect url endpoint does not work using the Storefront Cart. At this time shoppers can not be directed to any carts or checkouts created using the Storefront APIS.
