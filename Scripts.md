@@ -1,6 +1,7 @@
 <div class="otp" id="no-index">
 
 ### On this Page	
+* [Scripts](#scripts)
 
 </div>
 
