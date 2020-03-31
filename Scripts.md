@@ -23,7 +23,7 @@ For Apps installed on our latest theme engine, Stencil), this process is straigh
 - Footer Scripts
 - Web Analytics
 
-Because our older, Blueprint-based, themes do not support the Script Manager API, you’ll still need a way of providing these users with the documentation they need, without burdening users of newer themes with unnecessary steps.
+Because our older, Blueprint-based themes do not support the Script Manager API, you’ll still need a way of providing these users with the documentation they need, without burdening users of newer themes with unnecessary steps.
 
 To help you transition to the Script Manager API, we’ve provided some recommended strategies to deal with these different situations. 
 
