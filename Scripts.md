@@ -46,7 +46,7 @@ If your App has already been released, you may have existing users with pasted-i
 
 1.) __Do nothing__
 
-If you don’t need to upgrade existing merchants to Stencil and take advantage of the Script Manager API, it’s OK to do so. You’ll need to maintain documentation for the manual uninstallation process so  merchants with older installations know what to remove. You won’t be able to automatically update or add scripts for these users. 
+You’ll need to maintain documentation for the manual uninstallation process so  merchants with older installations know what to remove. You won’t be able to automatically update or add scripts for these users. 
 
 2.) __Prompt merchants to upgrade__
 
