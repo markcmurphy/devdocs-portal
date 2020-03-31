@@ -1,7 +1,8 @@
 <div class="otp" id="no-index">
 
 ### On this Page	
-* [Scripts](#scripts)
+- [Scripts](#scripts)
+- [Scripts Manager API Partner Guidelines](#script-manager-partner-guidelines)
 
 </div>
 
@@ -12,11 +13,6 @@ The BigCommerce Scripts API gives developers the ability to inject scripts into 
 * inserting single-click app scripts
 * inserting live chat and support plugins
 * inserting theme extensions or connector apps
-
-### Prerequisites
-
-This article contains detailed information about the Scripts API and assumes you're familiar with BigCommerce App Installation process. For more information on the app installation process, see:
-[App Installation](/api-docs/getting-started/building-apps-bigcommerce/building-apps#building-apps_installation-update-sequence)
 
 ## Script Manager API Partner Guidelines
 
@@ -143,6 +139,8 @@ Scripts can not be injected to:
 - login.php
 
 ## Resources
+
+- [App Installation](/api-docs/getting-started/building-apps-bigcommerce/building-apps#building-apps_installation-update-sequence)
 
 ## Related Endpoints
 * [Scripts](/api-reference/content/content-scripts-api)
