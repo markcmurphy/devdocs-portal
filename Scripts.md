@@ -16,7 +16,7 @@ The BigCommerce Scripts API gives developers the ability to inject scripts into 
 
 ## Script Manager API Partner Guidelines
 
-With the Script Manager API, your Apps now have the ability to insert scripts into a user’s storefront without requiring the user to manually paste a snippet of code into their control panel. You can freely update these scripts while your App is installed, and, if desired, automatically remove scripts if your App is uninstalled.
+With the Script Manager API, your Apps now have the ability to insert scripts into a user’s storefront without requiring the user to manually paste a snippet of code into the Control Panel. You can freely update these scripts while your App is installed, and — if desired — automatically remove scripts if your App is uninstalled.
 
 For Apps being installed on our latest theme engine (Stencil), this process is relatively straightforward. However, if your App is already live, you may have already asked merchants to paste a code snippet in one of these two sections in the control panel:
 
