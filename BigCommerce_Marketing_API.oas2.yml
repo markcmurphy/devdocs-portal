@@ -1759,6 +1759,37 @@ definitions:
             type: integer
             description: The ID of the customer placing the order.
             example: 5
+          template:
+            type: string
+            enum:
+              - Birthday
+              - Boy
+              - Girl
+              - Celebration
+              - Christmas
+              - General
+            description: The email theme to use in the message sent to the recipient.
+            example: Celebration
+          message:
+            type: string
+            description: >-
+              Text that will be sent to the recipient, such as
+              “Congratulations.”
+            example: Congratulations!
+          code:
+            type: string
+            description: >-
+              A unique string that the customer can input to redeem the gift
+              certificate. If this field is not set, a value will be generated.
+            example: FFZ-5N4-C7M-S78
+          status:
+            type: string
+            enum:
+              - active
+              - pending
+              - expired
+              - disabled
+            example: active
     title: giftCertificate_Put
 tags:
   - name: Banners
