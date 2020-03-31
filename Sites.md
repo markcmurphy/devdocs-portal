@@ -22,3 +22,7 @@ The following route types are currently supported. (meaning we will redirect sho
 * Type: “forgot_password”
 * Type: “order_confirmation” (supported in future update to override order confirmation page)
 
+
+**Notes**
+- When updating an existing route, you must provide the id in the route object.
+
