@@ -20,8 +20,9 @@ Downloads a stores Theme.
 ## Actions Activate
 Actives a store Theme.
 
-
 ## Theme Jobs
+The job for theme upload or download
+
 
 ## Resources
 [Stencil Themes](https://support.bigcommerce.com/s/article/Stencil-Themes#intro1)
