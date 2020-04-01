@@ -15,7 +15,10 @@ As themes must be processed once uploaded or before being downloaded, this API p
 Themes downloaded from this endpoint may be edited using stencil-cli for local development.
 
 ## Actions Download
+Downloads a stores Theme.
 
 ## Actions Activate
+Actives a store Theme.
+
 
 ## Theme Jobs
