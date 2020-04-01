@@ -22,3 +22,6 @@ Actives a store Theme.
 
 
 ## Theme Jobs
+
+## Resources
+[Stencil Themes](https://support.bigcommerce.com/s/article/Stencil-Themes#intro1)
