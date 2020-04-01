@@ -58,24 +58,7 @@ paths:
             type: object
             properties:
               order:
-                title: Order
-                type: object
-                properties:
-                  id:
-                    description: Identifier for the order
-                    type: integer
-                    minimum: 1
-                    format: int32
-                  is_recurring:
-                    description: >-
-                      Whether this is a recurring order. If the order is
-                      recurring this field should be set to true in order to let
-                      the payment gateway know. 
-                    example: false
-                    type: boolean
-                    default: false
-                required:
-                  - id
+                $ref: '#/definitions/Order'
             required:
               - order
           x-examples:
