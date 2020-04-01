@@ -2960,7 +2960,8 @@ definitions:
       phone: 123-345-7890
       address_type: residental
     allOf:
-      - properties:
+      - type: object
+        properties:
           id:
             description: ID of this customer address. READ-ONLY
             example: 3
@@ -2969,7 +2970,7 @@ definitions:
             description: 2-letter ISO Alpha-2 code for the customer’s country. READ-ONLY
             example: US
             type: string
-    type: object
+      - $ref: '#/definitions/customerAddress_Base'
   customerGroup_Full:
     title: customerGroup_Full
     type: object
