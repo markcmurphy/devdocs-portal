@@ -10,7 +10,7 @@
 ## Themes
 The Themes API allows for the management of Stencil themes on a store. In this API, Themes are treated as a single object (.zip file), and not as a collection of files. This API is useful for backing up/restoring themes, as well as for creating a theme publishing workflow.
 
-As themes must be processed once uploaded or before being downloaded, this API provides job IDs for long-running processing jobs, and a jobs endpoint which you may poll for updates.Before a theme may be uploaded to this API, it should be bundled using stencil-cli.
+As themes must be processed once uploaded or before being downloaded, this API provides job IDs for long-running processing jobs, and a jobs endpoint which you may poll for updates.Before a theme may be uploaded to this API, it should be bundled using [stencil-cli](https://developer.bigcommerce.com/stencil-docs/installing-stencil-cli/installing-stencil).
 
 Themes downloaded from this endpoint may be edited using stencil-cli for local development.
 
