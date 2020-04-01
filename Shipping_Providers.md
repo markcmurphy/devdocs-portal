@@ -17,12 +17,3 @@ Introduction
 ## Checkout Connection Options
 
 ## Rate
-
-<div style="text-align:center;">
-
-    <span style="margin: 15px 0 15px 0;">Your donations...</span>
-
-    <form>
-    </form>
-
-</div>
