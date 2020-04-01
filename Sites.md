@@ -2,6 +2,7 @@
 
 ### On this Page	
 - [Sites and Routes](#sites-and-routes)
+- [Related Articles](#related-articles)
 
 </div>
 
@@ -26,3 +27,5 @@ The following route types are currently supported. (meaning we will redirect sho
 **Notes**
 - When updating an existing route, you must provide the id in the route object.
 
+## Related Articles
+https://developer.bigcommerce.com/api-docs/cart-and-checkout/embedded-checkout/embedded-checkout-tutorial
