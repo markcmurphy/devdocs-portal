@@ -2,7 +2,7 @@
 
 ### On this Page	
 - [Tax Class](#tax-class)
-- [Related Articles](#related-articles)
+- [Resources](#related-articles)
 
 </div>
 
