@@ -1,7 +1,8 @@
 <div class="otp" id="no-index">
 
 ### On this Page	
-- [Tax Class](#tax-class)
+- [Themes](#themes)
+- [Resources]()
 - [Related Articles](#related-articles)
 
 </div>
