@@ -1395,62 +1395,59 @@ definitions:
             example: active
     title: giftCertificate_Put
   giftCertificate_Post:
-    allOf:
-      - type: object
-        properties:
-          balance:
-            type: string
-            description: >-
-              Remaining value of the gift certificate. If not set, will default
-              to the amount.
-            example: '0'
-          purchase_date:
-            type: string
-            description: >-
-              Date the gift certificate was purchased. If not assigned, this
-              will be set to today’s date.
-            example: '1520957992'
-          expiry_date:
-            type: string
-            example: '1622583106'
-            description: Date on which the gift certificate is set to expire.
-          customer_id:
-            type: integer
-            description: The ID of the customer placing the order.
-            example: 5
-          template:
-            type: string
-            enum:
-              - Birthday
-              - Boy
-              - Girl
-              - Celebration
-              - Christmas
-              - General
-            description: The email theme to use in the message sent to the recipient.
-            example: Celebration
-          message:
-            type: string
-            description: >-
-              Text that will be sent to the recipient, such as
-              “Congratulations.”
-            example: Congratulations!
-          code:
-            type: string
-            description: >-
-              A unique string that the customer can input to redeem the gift
-              certificate. If this field is not set, a value will be generated.
-            example: FFZ-5N4-C7M-S78
-          status:
-            type: string
-            enum:
-              - active
-              - pending
-              - expired
-              - disabled
-            example: active
-      - $ref: '#/definitions/giftCertificate_Base'
     title: giftCertificate_Post
+    $ref: '#/definitions/giftCertificate_Base'
+    type: object
+    properties:
+      balance:
+        type: string
+        description: >-
+          Remaining value of the gift certificate. If not set, will default to
+          the amount.
+        example: '0'
+      purchase_date:
+        type: string
+        description: >-
+          Date the gift certificate was purchased. If not assigned, this will be
+          set to today’s date.
+        example: '1520957992'
+      expiry_date:
+        type: string
+        example: '1622583106'
+        description: Date on which the gift certificate is set to expire.
+      customer_id:
+        type: integer
+        description: The ID of the customer placing the order.
+        example: 5
+      template:
+        type: string
+        enum:
+          - Birthday
+          - Boy
+          - Girl
+          - Celebration
+          - Christmas
+          - General
+        description: The email theme to use in the message sent to the recipient.
+        example: Celebration
+      message:
+        type: string
+        description: 'Text that will be sent to the recipient, such as “Congratulations.”'
+        example: Congratulations!
+      code:
+        type: string
+        description: >-
+          A unique string that the customer can input to redeem the gift
+          certificate. If this field is not set, a value will be generated.
+        example: FFZ-5N4-C7M-S78
+      status:
+        type: string
+        enum:
+          - active
+          - pending
+          - expired
+          - disabled
+        example: active
 tags:
   - name: Banners
   - name: Coupons
