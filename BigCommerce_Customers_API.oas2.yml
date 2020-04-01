@@ -3111,7 +3111,8 @@ definitions:
           value: ''
       reset_pass_on_login: false
     allOf:
-      - properties:
+      - type: object
+        properties:
           id:
             description: >-
               Unique numeric ID of this customer. This is a READ-ONLY field; do
@@ -3134,7 +3135,7 @@ definitions:
             example: 'Tue, 10 Apr 2018 18:59:05 +0000'
             type: string
             format: date-time
-    type: object
+      - $ref: '#/definitions/customer_Base'
   categoryAccessLevel_Full:
     title: categoryAccessLevel_Full
     type: object
