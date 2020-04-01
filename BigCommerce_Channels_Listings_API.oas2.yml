@@ -463,7 +463,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/put_listing'
+              $ref: '#/definitions/listing_Put'
           x-examples:
             application/json:
               - product_id: 111
@@ -637,7 +637,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#/definitions/put_site'
+            $ref: '#/definitions/site_Put'
           x-examples:
             application/json:
               url: 'https://www.my-new-site.com'
@@ -853,8 +853,8 @@ definitions:
           This results in the channel not showing in the 'Products' section of
           the BC control panel.
         default: true
-  put_listing:
-    title: put_listing
+  listing_Put:
+    title: listing_Put
     type: object
     properties:
       listing_id:
@@ -1104,7 +1104,7 @@ definitions:
       meta:
         $ref: '#/definitions/_metaEmpty'
     description: ''
-  put_site:
+  site_Put:
     type: object
     properties:
       url:
@@ -1112,7 +1112,7 @@ definitions:
         description: >-
           The Fully Qualified URL (including host and scheme) where this site is
           hosted. All URLs generated for this site will be appended to this.
-    title: put_site
+    title: site_Put
   site_Post:
     type: object
     properties:
