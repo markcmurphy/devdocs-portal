@@ -404,7 +404,7 @@ paths:
         - in: body
           name: body
           schema:
-            $ref: '#/definitions/_listing'
+            $ref: '#/definitions/listing_Full'
           description: ''
       responses:
         '200':
@@ -413,7 +413,7 @@ paths:
             type: object
             properties:
               data:
-                $ref: '#/definitions/_listing'
+                $ref: '#/definitions/listing_Full'
               meta:
                 $ref: '#/definitions/_metaCollection'
           examples:
@@ -896,8 +896,8 @@ definitions:
       - product_id
       - state
       - variants
-  _listing:
-    title: _listing
+  listing_Full:
+    title: listing_Full
     type: object
     properties:
       channel_id:
@@ -1476,7 +1476,7 @@ responses:
       type: object
       properties:
         data:
-          $ref: '#/definitions/_listing'
+          $ref: '#/definitions/listing_Full'
         meta:
           $ref: '#/definitions/_metaEmpty'
   ListingCollectionResponse:
@@ -1488,7 +1488,7 @@ responses:
         data:
           type: array
           items:
-            $ref: '#/definitions/_listing'
+            $ref: '#/definitions/listing_Full'
         meta:
           $ref: '#/definitions/_metaCollection'
     examples:
