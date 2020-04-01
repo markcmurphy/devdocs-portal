@@ -15,3 +15,4 @@ The Tax Class object, and endpoints, manage tax calculations applied to sales. T
 Resources
 
 ## Related Articles
+- [Tax Classes and Zones](https://support.bigcommerce.com/s/question/0D51B00004EH8n1SAD/tax-classes-and-zones)
