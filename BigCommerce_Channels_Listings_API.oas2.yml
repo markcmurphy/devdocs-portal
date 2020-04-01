@@ -221,7 +221,7 @@ paths:
             being passed for 1 or more fields. Commonly, an invalid combination
             of 'type' and 'platform' was provided.
           schema:
-            $ref: '#/responses/ErrorResponse'
+            $ref: '#/responses/error_Resp'
           examples:
             application/json:
               status: 400
@@ -231,7 +231,7 @@ paths:
         '422':
           description: The request is missing 1 or more required fields
           schema:
-            $ref: '#/responses/ErrorResponse'
+            $ref: '#/responses/error_Resp'
           examples:
             application/json:
               status: 422
@@ -307,7 +307,7 @@ paths:
         '404':
           description: 'A *Channel* with the provided ID was not found. '
           schema:
-            $ref: '#/responses/ErrorResponse'
+            $ref: '#/responses/error_Resp'
       description: Returns a *Channel*. Channel ID `1` returns the BigCommerce storefront.
     put:
       tags:
@@ -345,7 +345,7 @@ paths:
         '400':
           description: The value for at least one provided field is not valid.
           schema:
-            $ref: '#/responses/ErrorResponse'
+            $ref: '#/responses/error_Resp'
           examples:
             application/json:
               status: 400
@@ -355,7 +355,7 @@ paths:
         '404':
           description: 'A *Channel* with the provided ID was not found. '
           schema:
-            $ref: '#/responses/ErrorResponse'
+            $ref: '#/responses/error_Resp'
           examples:
             application/json:
               status: 404
@@ -488,7 +488,7 @@ paths:
             When there are errors with multiple objects in the request, errors
             will be associated with the object's location in the list. 
           schema:
-            $ref: '#/responses/ErrorResponse'
+            $ref: '#/responses/error_Resp'
           examples:
             application/json:
               status: 422
@@ -578,7 +578,7 @@ paths:
               errors:
                 0.variants: error.path.missing
           schema:
-            $ref: '#/responses/ErrorResponse'
+            $ref: '#/responses/error_Resp'
       tags:
         - Channel Listings
       description: Creates a channel listing
@@ -601,7 +601,7 @@ paths:
               type: 'https://developer.bigcommerce.com/api#api-status-codes'
               errors: {}
           schema:
-            $ref: '#/responses/ErrorResponse'
+            $ref: '#/responses/error_Resp'
       tags:
         - Channel Listings
       description: Creates a Channel Listing
@@ -1450,7 +1450,7 @@ responses:
           is_enabled: true
           external_id: ''
         meta: {}
-  ErrorResponse:
+  error_Resp:
     description: ''
     schema:
       title: Error Response
