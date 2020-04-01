@@ -13,3 +13,5 @@ The Tax Class object, and endpoints, manage tax calculations applied to sales. T
 **Note**
 - Default sorting is by tax-class id, from lowest to highest.
 Resources
+
+## Related Articles
