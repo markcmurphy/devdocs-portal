@@ -3621,6 +3621,34 @@ definitions:
         example: 6
       billing_address:
         $ref: '#/definitions/billingAddress'
+      products:
+        type: array
+        items:
+          anyOf:
+            - $ref: '#/definitions/orderProduct'
+            - type: object
+              properties:
+                name:
+                  type: string
+                  example: BigCommerce T-Shirt
+                quantity:
+                  type: integer
+                  example: 5
+                price_ex_tax:
+                  type: number
+                price_inc_tax:
+                  type: number
+                sku:
+                  type: string
+                  example: BLU-SMALL
+                upc:
+                  type: string
+                  example: 01234567890
+              required:
+                - name
+                - quantity
+                - price_ex_tax
+                - price_inc_tax
     required:
       - billing_address
 tags:
