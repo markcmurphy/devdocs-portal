@@ -2541,8 +2541,8 @@ definitions:
             quantity:
               type: number
               example: 2
-  BillingAddress:
-    title: Billing Address
+  billingAddress:
+    title: billingAddress
     type: object
     properties:
       first_name:
@@ -2597,6 +2597,9 @@ definitions:
           title: Form Fields
           type: object
           readOnly: true
+          description: >-
+            Read-Only. If you have required address form fields they will need
+            to be set as optional before creating an order via API.
           properties:
             name:
               description: Name of the form field
@@ -2608,9 +2611,6 @@ definitions:
               readOnly: true
               type: string
               example: 123BAF
-          description: >-
-            Read-Only. If you have required address form fields they will need
-            to be set as optional before creating an order via API.
     description: Required to create an order.
   ProductsResource:
     title: Products Resource
