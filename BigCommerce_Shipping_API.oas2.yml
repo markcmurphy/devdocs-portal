@@ -1702,7 +1702,16 @@ paths:
           name: body
           schema:
             type: object
-            properties: {}
+            properties:
+              carrier_id:
+                type: string
+              connection:
+                type: object
+                properties:
+                  auth_key:
+                    type: string
+                  test_mode:
+                    type: boolean
           x-examples:
             application/json:
               carrier_id: auspost
@@ -2125,6 +2134,19 @@ definitions:
     type: object
     properties: {}
     title: ShippingResponse
+  carrierConnection:
+    type: object
+    properties:
+      carrier_id:
+        type: string
+      connection:
+        type: object
+        properties:
+          auth_key:
+            type: string
+          test_mode:
+            type: boolean
+    title: Carrier Connection
 tags:
   - name: Shipping Method
   - name: Shipping Carrier
