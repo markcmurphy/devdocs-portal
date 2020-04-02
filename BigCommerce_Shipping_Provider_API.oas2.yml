@@ -41,23 +41,7 @@ paths:
         '200':
           description: Quote response
           schema:
-            type: object
-            title: Rate Response Payload
-            description: >-
-              The response from the Shipping Service, will contain zero to many
-              quotes.
-            properties:
-              quote_id:
-                type: string
-                maxLength: 50
-              messages:
-                $ref: '#/definitions/Message'
-              carrier_quotes:
-                $ref: '#/definitions/CarrierQuoteObject'
-            required:
-              - quote_id
-              - messages
-              - carrier_quotes
+            $ref: '#/definitions/RateResponsePayload'
       summary: Request shipping rates
       tags:
         - Shipping Provider
