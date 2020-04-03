@@ -2376,75 +2376,24 @@ definitions:
               type: number
               example: 2
   billingAddress_Full:
+    allOf:
+      - $ref: '#/definitions/billingAddress_Base'
+      - type: object
+        properties:
+          form_fields:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the form field
+                  example: License Id
+                value:
+                  type: string
+                  description: Value of the form field
+                  example: 123BAF
     title: billingAddress_Full
-    type: object
-    properties:
-      first_name:
-        description: ''
-        example: Jane
-        type: string
-      last_name:
-        description: ''
-        example: Doe
-        type: string
-      company:
-        description: ''
-        type: string
-      street_1:
-        description: ''
-        example: 123 Main Street
-        type: string
-      street_2:
-        description: ''
-        type: string
-      city:
-        description: ''
-        example: Austin
-        type: string
-      state:
-        description: ''
-        example: TX
-        type: string
-      zip:
-        description: ''
-        example: '12345'
-        type: string
-      country:
-        description: ''
-        example: United States
-        type: string
-      country_iso2:
-        description: ''
-        example: US
-        type: string
-      phone:
-        description: ''
-        type: string
-      email:
-        description: ''
-        example: janedoe@email.com
-        type: string
-      form_fields:
-        description: ''
-        type: array
-        items:
-          title: Form Fields
-          type: object
-          readOnly: true
-          description: >-
-            Read-Only. If you have required address form fields they will need
-            to be set as optional before creating an order via API.
-          properties:
-            name:
-              description: Name of the form field
-              readOnly: true
-              type: string
-              example: License Id
-            value:
-              description: Value of the form field
-              readOnly: true
-              type: string
-              example: 123BAF
     description: Required to create an order.
   products_Resource:
     title: products_Resource
