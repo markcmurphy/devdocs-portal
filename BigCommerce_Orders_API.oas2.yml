@@ -2753,7 +2753,7 @@ definitions:
     description: >-
       Read-Only. If you have required address form fields they will need to be
       set as optional before creating an order via API.
-  OrderMessages:
+  orderMessages_Base:
     type: array
     items:
       type: object
@@ -2780,6 +2780,7 @@ definitions:
           type: string
         customer:
           type: string
+    title: orderMessages_Base
   ShippingQuotesResource:
     type: object
     title: Shipping Quotes Resource
@@ -4893,7 +4894,7 @@ responses:
   OrderMessageCollectionResponse:
     description: ''
     schema:
-      $ref: '#/definitions/OrderMessages'
+      $ref: '#/definitions/orderMessages_Base'
     examples:
       application/json:
         - id: 2
