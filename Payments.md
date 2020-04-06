@@ -79,9 +79,10 @@ There are three steps to using a stored card to make a payment.
 1. Get Payment Methods
 2. Create Access Token
 3. Process Payment
+
 To use stored cards with the Payments API or the Checkout SDK make sure stored cards are enabled in the stores Control Panel. To enable stored credit cards on your storefront, navigate to Store Setup › Payments and click the tab for your payment gateway. Toggle the switch to enable Stored Credit Cards and Save. For more on enabling stored cards, see Enabling Stored Credit Cards.
 
-Requirements for Stored Cards
+**Requirements for Stored Cards**
 
 Your store must be on a Plus plan or higher.
 Your store needs to be using Optimized One-Page Checkout.
