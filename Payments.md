@@ -6,6 +6,7 @@
 - [Payments API](#payments-api)
 - [Payment Methods (Enabled on Store)](#payment-methods-enabled-on-store)
 - [Payment Processing Methods (On Order)](#payment-processing-methods-on-order)
+- [Stored Cards](#stored-cards)
 - [Payment Processing Token](#payment-processing-token)
 - [Error Codes](#error-codes)
 - [FAQ](#faq)
