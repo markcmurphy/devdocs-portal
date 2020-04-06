@@ -69,6 +69,7 @@ The following gateways are supported for credit cards:
 * Hosted Providers
 
 **Note**
+<br>
 The API flow does not currently support hosted/offsite providers such as PayPal and Adyen and wallet type payments such as Amazon Pay.
 
 ## Payment Processing Token
