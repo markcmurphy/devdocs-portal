@@ -17,3 +17,5 @@ The Shipping Provider API allows developers to create custom shipping providers 
 The payload sent to a Shipping Provider to check that the store is connected to this provider. Each Shipping Provider will have different configurations for the payload.
 
 ## Rate
+Payload sent off to a Shipping Provider in order to get quotes.
+
