@@ -26,6 +26,9 @@ Some use cases for the Shipping Provider API are:
 * Third-party logistics
 * Create a combination of in store pickup and shipping options for shoppers
 
+**Prerequisites**
+Required OAuth scopes: `Information` and `Settings`
+
 ## Checkout Connection Options
 The payload sent to a Shipping Provider to check that the store is connected to this provider. Each Shipping Provider will have different configurations for the payload.
 
