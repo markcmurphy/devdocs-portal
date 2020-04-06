@@ -6,6 +6,7 @@
 - [Shipping Providers](#shipping-providers)
 - [Checkout Connection Options](#checkout-connection-options)
 - [Rate](#rate)
+- [Definitions](#definitions)
 - [Related Endpoints](#related-endpoints)
 - [Related Articles](#related-articles)
 
