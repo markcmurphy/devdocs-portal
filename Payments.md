@@ -31,6 +31,46 @@ Depending on merchant’s configuration in BigCommerce’s Control Panel, the pa
 
 Payments can be processed using Stored Cards, Payment Tokens or Credit Cards.
 
+Payments can be processed using cards stored with the BigCommerce Stored Credit Cards feature or by providing a credit card number.
+
+The following gateways are supported for stored cards:
+
+* AdyenV2
+* Authorize.net
+* CyberSource
+* Paymetric
+* Paypal Powered by Braintree
+* Stripe
+
+The following gateways are supported for credit cards:
+
+* Authorize.net
+* CardConnect
+* Chase Integrated Payments
+* Chase Merchant Services
+* Cybersource Direct
+* eWAY Rapid
+* First Data Payeezy Gateway
+* Heartland Payment Systems
+* MIGS
+* MyVirtualMerchant
+* NMI
+* Paymetric
+* PayPal powered by Braintree
+* PayPal Payments Pro (Payflow Edition) UK
+* PayPal Payments Pro (Payflow Edition) US
+* QuickBooks Payments
+* Sage Pay/Protx VSP Direct
+* SecureNet
+* Stripe
+* USA ePay
+* Worldpay Core
+* WorldPay
+* Hosted Providers
+
+**Note**
+The API flow does not currently support hosted/offsite providers such as PayPal and Adyen and wallet type payments such as Amazon Pay.
+
 ## Payment Processing Token
 This endpoint provides the capability to create a payment access token. The payment access token is required when making request to Payment API for submitting payment for an order.
 
