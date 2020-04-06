@@ -20,10 +20,10 @@ Shipping Provider endpoints can also be used by merchants to retrieve rates from
 
 Some use cases for the Shipping Provider API are:
 
-A drop-shipper that requires their own rates
-A merchant that already has a shipping table
-Third-party logistics
-Create a combination of in store pickup and shipping options for shoppers
+* A drop-shipper that requires their own rates
+* A merchant that already has a shipping table
+* Third-party logistics
+* Create a combination of in store pickup and shipping options for shoppers
 
 ## Checkout Connection Options
 The payload sent to a Shipping Provider to check that the store is connected to this provider. Each Shipping Provider will have different configurations for the payload.
