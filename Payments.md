@@ -18,6 +18,9 @@ v2
 Returns a list of all enabled Payment Methods on a store. If you are trying to process payment for an order see Payments API.
 
 ## Payment Processing Methods (On Order)
+Depending on merchant’s configuration in BigCommerce’s Control Panel, the payment request will be processed as either ‘Authorize only’ or ‘Authorize and Capture’.
+
+Payments can be processed using Stored Cards, Payment Tokens or Credit Cards.
 
 ## Payment Processing Token
 
