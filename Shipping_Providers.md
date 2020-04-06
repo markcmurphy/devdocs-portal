@@ -7,7 +7,7 @@
 - [Checkout Connection Options](#checkout-connection-options)
 - [Rate](#rate)
 - [Resources](#resources)
-- [Related Articles](#related-articless)
+- [Related Articles](#related-articles)
 
 
 </div>
