@@ -73,6 +73,24 @@ The following gateways are supported for credit cards:
 <br>
 The API flow does not currently support hosted/offsite providers such as PayPal and Adyen and wallet type payments such as Amazon Pay.
 
+## Stored Cards
+There are three steps to using a stored card to make a payment.
+
+1. Get Payment Methods
+2. Create Access Token
+3. Process Payment
+To use stored cards with the Payments API or the Checkout SDK make sure stored cards are enabled in the stores Control Panel. To enable stored credit cards on your storefront, navigate to Store Setup › Payments and click the tab for your payment gateway. Toggle the switch to enable Stored Credit Cards and Save. For more on enabling stored cards, see Enabling Stored Credit Cards.
+
+Requirements for Stored Cards
+
+Your store must be on a Plus plan or higher.
+Your store needs to be using Optimized One-Page Checkout.
+Your store needs to be using a compatible payment gateway.
+To pay with a stored card, first make a call to Get Payment Methods for the stored_instruments > token. The order_id is passed in as a query parameter.
+This token is the same as payment_instrument_token from Get Transactions.
+
+
+
 ## Payment Processing Token
 This endpoint provides the capability to create a payment access token. The payment access token is required when making request to Payment API for submitting payment for an order.
 
