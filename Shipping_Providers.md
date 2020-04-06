@@ -6,6 +6,8 @@
 - [Shipping Providers](#shipping-providers)
 - [Checkout Connection Options](#checkout-connection-options)
 - [Rate](#rate)
+- [Resources](#resources)
+- [Related Articles](#related-articless)
 
 
 </div>
@@ -18,4 +20,5 @@ The payload sent to a Shipping Provider to check that the store is connected to 
 
 ## Rate
 Payload sent off to a Shipping Provider in order to get quotes.
+
 
