@@ -33,7 +33,6 @@ The payload sent to a Shipping Provider to check that the store is connected to 
 Payload sent off to a Shipping Provider in order to get quotes.
 
 ## Definitions
-## Definitions
 
 | Name | Description |
 | -- | -- |
