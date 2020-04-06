@@ -65,8 +65,159 @@ v2
 Each order status represents a state in the order-fulfillment workflow.
 
 ## Order Shipments
-v2
-Tracks a package consignment from an order that is shipped from the seller to the buyer.
+We will go over creating a shipment for an order, shipping quotes, shipping carriers and shipping to multiple locations.
+
+### Create an Order Shipment
+
+**Required Fields:**
+* order_address_id
+* shipping_provider
+* items
+
+Once an Order has products, a billing address and at least one shipping address a order shipment can be created. Order shipments are a way to mark an order as shipped with the shipping information.
+
+To get the `order_address_id`  use the ID returned in [Order Shipping Address](https://developer.bigcommerce.com/api-reference/orders/orders-api/order-shipping-addresses/getallshippingaddresses).
+
+The items array requires the product quantity and `order_product_id`. The `order_product_id` is the ID returned from [Order Products](https://developer.bigcommerce.com/api-reference/orders/orders-api/order-products/getanorderproduct).
+
+There does not need to be a shipping provider. If the shipping provider is not sent in at all, it will default to custom and a tracking link is not generated. To have the tracking link generated without a shipping provider, provide an empty string. To add a shipping provider, see the available options on [Order Shipment](https://developer.bigcommerce.com/api-reference/orders/orders-api/order-shipments/getallordershipments).
+
+Once the order shipment is created, it will automatically send out an email to the billing address with the shipment confirmation. To stop this behavior adjust the [Order Notification](https://support.bigcommerce.com/s/article/Customer-Order-Notifications#enable) settings in the Control Panel.
+
+If the order shipment is deleted, the status of the shipment is still in shipped. The status will need to be [manually changed](https://developer.bigcommerce.com/api-reference/orders/orders-api/order-status/getaorderstatus).
+
+<br>
+
+<!--
+title: "Create Order Shipment"
+subtitle: ""
+lineNumbers: true
+-->
+
+**Example Create Order Shipment**
+`https://api.bigcommerce.com/stores/{store_hash}/v2/orders/{order_id}/shipments`
+
+```json
+{
+  "tracking_number": "EJ958083578UK",
+  "comments": "Janes Order",
+  "order_address_id": "128",
+  "shipping_provider": "",
+  "items": [
+        {
+            "order_product_id": 194,
+            "product_id": 0,
+            "quantity": 1
+        },
+        {
+            "order_product_id": 195,
+            "product_id": 0,
+            "quantity": 1
+        }
+  ]
+}
+```
+
+<!--
+title: "Order Shipment Response"
+subtitle: ""
+lineNumbers: true
+-->
+
+**Example Order Shipment Response**
+
+```json
+{
+    "id": 11,
+    "order_id": 228,
+    "customer_id": 11,
+    "order_address_id": 131,
+    "date_created": "Wed, 13 Mar 2019 16:35:37 +0000",
+    "tracking_number": "EJ958083578US",
+    "merchant_shipping_cost": "0.0000",
+    "shipping_method": "None",
+    "comments": "Ready to go...",
+    "shipping_provider": "",
+    "tracking_carrier": "",
+    "billing_address": {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "company": "",
+        "street_1": "123 Main Street",
+        "street_2": "",
+        "city": "Austin",
+        "state": "Texas",
+        "zip": "78751",
+        "country": "United States",
+        "country_iso2": "US",
+        "phone": "",
+        "email": "janedoe@email.com"
+    },
+    "shipping_address": {
+        "first_name": "Trishy",
+        "last_name": "Test",
+        "company": "Acme Pty Ltd",
+        "street_1": "666 Sussex St",
+        "street_2": "",
+        "city": "Anywhere",
+        "state": "Some State",
+        "zip": "12345",
+        "country": "United States",
+        "country_iso2": "US",
+        "phone": "",
+        "email": "elsie@example.com"
+    },
+    "items": [
+        {
+            "order_product_id": 194,
+            "product_id": 0,
+            "quantity": 1
+        },
+        {
+            "order_product_id": 195,
+            "product_id": 0,
+            "quantity": 1
+        }
+    ]
+}
+
+```
+
+### Multiple Locations
+
+Orders can have multiple shipment locations. There needs to be more than one product or quantity of a product and more than one shipping addresses. A shipping address can be added either during the create or using an update.
+
+To ship to multiple locations create an order shipment for each location and items. Only one POST request per shipment.
+
+<div class="HubBlock--callout">
+<div class="CalloutBlock--info">
+<div class="HubBlock-content">
+
+<!-- theme:  -->
+### Shipping Address
+> When adding shipping addresses during an order PUT or POST, the API will allow you to add more than is necessary.
+
+</div>
+</div>
+</div>
+
+### Custom Quotes
+An order can be created with a `shipping_cost_ex_tax` and `shipping_cost_inc_tax`. This is a way to add a custom shipping amount to an order. This can be added when creating or updating an order.
+
+<div class="HubBlock--callout">
+<div class="CalloutBlock--info">
+<div class="HubBlock-content">
+
+<!-- theme:  -->
+### Shipping Cost
+> Both `shipping_cost_ex_tax` and `shipping_cost_inc_tax` must be included otherwise, the final order amount will not be calculated correctly.
+
+</div>
+</div>
+</div>
+
+### Shipping Carrier
+Generating a quote through a shipping carrier is currently not supported. A shipping carrier can be specified when creating an Order Shipment. The quote can be generate elsewhere, then update the `shipping_cost_ex_tax` and `shipping_cost_inc_tax` for the order total to be correct..
 
 ## Order Shipping Addresses
 v2
