@@ -23,6 +23,7 @@ Depending on merchant’s configuration in BigCommerce’s Control Panel, the pa
 Payments can be processed using Stored Cards, Payment Tokens or Credit Cards.
 
 ## Payment Processing Token
+This endpoint provides the capability to create a payment access token. The payment access token is required when making request to Payment API for submitting payment for an order.
 
 ## Error Codes
 
