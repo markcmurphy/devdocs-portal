@@ -91,8 +91,6 @@ To use stored cards with the Payments API or the Checkout SDK make sure stored c
 To pay with a stored card, first make a call to Get Payment Methods for the stored_instruments > token. The `order_id` is passed in as a query parameter.
 This token is the same as `payment_instrument_token` from Get Transactions.
 
-
-
 ## Payment Processing Token
 This endpoint provides the capability to create a payment access token. The payment access token is required when making request to Payment API for submitting payment for an order.
 
