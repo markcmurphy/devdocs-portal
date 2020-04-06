@@ -1885,159 +1885,110 @@ definitions:
         type: number
   OrderShippingAddress:
     title: Order Shipping Address
-    type: object
-    properties:
-      id:
-        description: ID of this shipping address.
-        example: 1
-        type: integer
-      order_id:
-        description: ID of the order.
-        example: 100
-        type: integer
-      first_name:
-        description: Addressee first name.
-        example: Rick
-        type: string
-      last_name:
-        description: Addressee last name.
-        example: Sanchez
-        type: string
-      company:
-        description: Addressee company.
-        example: BigCommerce
-        type: string
-      street_1:
-        description: Street address (first line).
-        example: 123 MainStreet
-        type: string
-      street_2:
-        description: Street address (second line).
-        type: string
-      city:
-        description: Addressee city.
-        example: Austin
-        type: string
-      zip:
-        description: 'ZIP or postal code, as a string.'
-        example: '12345'
-        type: string
-      country:
-        description: Addressee’s country.
-        example: United States
-        type: string
-      country_iso2:
-        description: 2-letter ISO Alpha-2 code for the country. (Looking Up Country Codes)
-        example: US
-        type: string
-      state:
-        description: >-
-          The name of the state or province. Should be spelled out in full,
-          e.g.: California.
-        example: Texas
-        type: string
-      email:
-        description: Recipient’s email address.
-        example: janedoe@email.com
-        type: string
-      phone:
-        description: Recipient’s telephone number
-        example: '1234567890'
-        type: string
-      items_total:
-        description: The total number of items in the order.
-        example: 1
-        type: number
-      items_shipped:
-        description: The number of items that have been shipped.
-        example: 0
-        type: number
-      shipping_method:
-        description: >-
-          Text code identifying the BigCommerce shipping module selected by the
-          customer.
-        example: Free Shipping
-        type: string
-      base_cost:
-        description: 'The base value of the order’s items. (Float, Float-As-String, Integer)'
-        example: '5.0000'
-        type: string
-      cost_ex_tax:
-        description: >-
-          The value of the order’s items, excluding tax. (Float,
-          Float-As-String, Integer)
-        example: '0.0000'
-        type: string
-      cost_inc_tax:
-        description: >-
-          The value of the order’s items, including tax. (Float,
-          Float-As-String, Integer)
-        example: '0.0000'
-        type: string
-      cost_tax:
-        description: 'The tax amount on the order. (Float, Float-As-String, Integer)'
-        example: '0.0000'
-        type: string
-      cost_tax_class_id:
-        description: >-
-          The ID of the tax class applied to the product. (NOTE: Value ignored
-          if automatic tax is enabled.)
-        example: 2
-        type: integer
-      base_handling_cost:
-        description: 'The base handling charge. (Float, Float-As-String, Integer)'
-        example: '0.0000'
-        type: string
-      handling_cost_ex_tax:
-        description: 'The handling charge, excluding tax. (Float, Float-As-String, Integer)'
-        example: '0.0000'
-        type: string
-      handling_cost_inc_tax:
-        description: 'The handling charge, including tax. (Float, Float-As-String, Integer)'
-        example: '0.0000'
-        type: string
-      handling_cost_tax:
-        description: ''
-        example: '0.0000'
-        type: string
-      handling_cost_tax_class_id:
-        description: >-
-          A read-only value. Do not attempt to set or modify this value in a
-          POST or PUT operation. (NOTE: Value ignored if automatic tax is
-          enabled on the store.)
-        example: 2
-        type: integer
-      shipping_zone_id:
-        description: Numeric ID of the shipping zone.
-        example: 1
-        type: number
-      shipping_zone_name:
-        description: Name of the shipping zone.
-        example: United States
-        type: string
-      form_fields:
-        description: Empty array
-        type: array
-        items:
-          title: Form Fields
-          type: object
-          readOnly: true
-          description: >-
-            Read-Only. If you have required address form fields they will need
-            to be set as optional before creating an order via API.
-          properties:
-            name:
-              description: Name of the form field
-              readOnly: true
-              type: string
-              example: License Id
-            value:
-              description: Value of the form field
-              readOnly: true
-              type: string
-              example: 123BAF
-      shipping_quotes:
-        $ref: '#/definitions/shippingQuotes_Resource'
+    allOf:
+      - type: object
+        properties:
+          id:
+            type: integer
+            example: 1
+            description: ID of this shipping address.
+          order_id:
+            type: integer
+            description: ID of the order.
+            example: 100
+          items_total:
+            type: number
+            example: 1
+            description: The total number of items in the order.
+          items_shipped:
+            type: number
+            description: The number of items that have been shipped.
+            example: 0
+          shipping_method:
+            type: string
+            description: >-
+              Text code identifying the BigCommerce shipping module selected by
+              the customer.
+            example: Free Shipping
+          base_cost:
+            type: string
+            description: >-
+              The base value of the order’s items. (Float, Float-As-String,
+              Integer)
+            example: '5.0000'
+          cost_ex_tax:
+            type: string
+            example: '0.0000'
+            description: >-
+              The value of the order’s items, excluding tax. (Float,
+              Float-As-String, Integer)
+          cost_inc_tax:
+            type: string
+            description: >-
+              The value of the order’s items, including tax. (Float,
+              Float-As-String, Integer)
+            example: '0.0000'
+          cost_tax:
+            type: string
+            description: 'The tax amount on the order. (Float, Float-As-String, Integer)'
+            example: '0.0000'
+          cost_tax_class_id:
+            type: integer
+            description: >-
+              The ID of the tax class applied to the product. (NOTE: Value
+              ignored if automatic tax is enabled.)
+            example: 2
+          base_handling_cost:
+            type: string
+            description: 'The base handling charge. (Float, Float-As-String, Integer)'
+            example: '0.0000'
+          handling_cost_ex_tax:
+            type: string
+            description: >-
+              The handling charge, excluding tax. (Float, Float-As-String,
+              Integer)
+            example: '0.0000'
+          handling_cost_inc_tax:
+            type: string
+            description: >-
+              The handling charge, including tax. (Float, Float-As-String,
+              Integer)
+            example: '0.0000'
+          handling_cost_tax:
+            type: string
+            example: '0.0000'
+          handling_cost_tax_class_id:
+            type: integer
+            description: >-
+              A read-only value. Do not attempt to set or modify this value in a
+              POST or PUT operation. (NOTE: Value ignored if automatic tax is
+              enabled on the store.)
+            example: 2
+          shipping_zone_id:
+            type: number
+            description: Numeric ID of the shipping zone.
+            example: 1
+          shipping_zone_name:
+            type: string
+            description: Name of the shipping zone.
+            example: United States
+          form_fields:
+            type: array
+            description: Empty array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the form field
+                  example: License Id
+                value:
+                  type: string
+                  description: Value of the form field
+                  example: 123BAF
+          shipping_quotes:
+            $ref: '#/definitions/shippingQuotes_Resource'
+      - $ref: '#/definitions/shippingAddress_Base'
   OrderTaxes:
     title: Order Taxes
     example:
