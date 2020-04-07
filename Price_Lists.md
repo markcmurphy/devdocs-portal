@@ -29,6 +29,12 @@ To learn more about Price Lists, see [here](https://developer.bigcommerce.com/ap
 
 ## Price Lists Records
 
+### Webhooks
+There are no direct webhooks available for Price Lists. Since Price Lists directly relate to products, webhooks related to products will fire for corresponding changes such as pricing.
+
+* [Products](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_products)
+* [SKU](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_sku)
+
 ### Resources
 
 [Catalog Price Object Examples](https://developer.bigcommerce.com/stencil-docs/developing-further/catalog-price-object)
