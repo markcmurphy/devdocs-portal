@@ -10,10 +10,6 @@
 
 A static Web page on the storefront.
 
-## Blog Posts
-
-A content entry in the store’s blog.
-
 |Resource / Endpoint|Description|
 |-|-|
 |[`Get All Pages`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/pages/getallpages)|Returns a list of Pages|
