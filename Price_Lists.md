@@ -25,6 +25,12 @@ To learn more about Price Lists, see [here](https://developer.bigcommerce.com/ap
 
 ## Price Lists
 
+### Usage Notes
+* Price Lists cannot be assigned to a customer group that has custom group discounts – the customer group discounts must be deleted first.
+* Bulk Pricing Tiers may additionally be associated with a Price Record to indicate different pricing as the quantity in cart increases.
+* If a variant has a `Price Record` any existing product-level bulk pricing will not apply in the cart. For variants without `Price Records`, any existing product bulk pricing will apply.
+* Price Lists Records accepts bulk upsert. Only one [Bulk upsert](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecordcollection) can done at a time. Running more than one in parallel on the same store will cause a 429 error and the request will fail.
+
 ## Price Lists Assignments
 
 ## Price Lists Records
