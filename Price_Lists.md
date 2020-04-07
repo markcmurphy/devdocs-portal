@@ -33,13 +33,12 @@ To learn more about Price Lists, see [here](https://developer.bigcommerce.com/ap
 
 |Resource / Endpoint|Description|
 |-|-|
-|[`Get All Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getallblogposts)|Returns all Blog Posts|
-|[`Create a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/createablogposts)|Creates a Plog Post|
-|[`Delete Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/deleteallblogposts)|Deletes a page of Blog Posts|
-|[`Get a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getablogpost)|Returns a Single Blog Post|
-|[`Update a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/updateablogpost)|Updates a Blog Post|
-|[`Delete a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/deleteablogpost)|Deletes a Blog Post|
-|[`Get a Count of All Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getacountofallblogposts)|Returns a count of all Blog Posts|
+|[`Get All Price Lists`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists/getpricelistcollection)|Returns a list of Price Lists|
+|[`Create a Price List`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists/createpricelist)|Creates a Price List|
+|[`Delete All Price Lists`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists/deletepricelistsbyfilter)|Deletes all Price Lists|
+|[`Get a Price List`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists/getpricelist)|Returns a single Price List|
+|[`Update a Price List`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists/updatepricelist)|Updates a Price List|
+|[`Delete a Price List`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists/deletepricelist)|Deletes a Price List|
 
 ## Price Lists Assignments
 
