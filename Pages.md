@@ -18,16 +18,7 @@ A static Web page on the storefront.
 |[`Delete a Page`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/pages/deleteapage)|Deletes a Page|
 |[`Update a Page`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/pages/updateapage)|Updates a Page|
 
-## Blog Tags
-
-Index of tags used on the store’s blog.
-
-|Resource / Endpoint|Description|
-|-|-|
-|[`Get All Blog Tags`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-tags/getallblogtags)|Returns a List of Blog Tags|
 
 ### Resources
 
-[Handlebars Reference](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/blog)
-
-[Theme Docs: Blog](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#blog)
+N/A
