@@ -31,6 +31,16 @@ To learn more about Price Lists, see [here](https://developer.bigcommerce.com/ap
 * If a variant has a `Price Record` any existing product-level bulk pricing will not apply in the cart. For variants without `Price Records`, any existing product bulk pricing will apply.
 * Price Lists Records accepts bulk upsert. Only one [Bulk upsert](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecordcollection) can done at a time. Running more than one in parallel on the same store will cause a 429 error and the request will fail.
 
+|Resource / Endpoint|Description|
+|-|-|
+|[`Get All Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getallblogposts)|Returns all Blog Posts|
+|[`Create a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/createablogposts)|Creates a Plog Post|
+|[`Delete Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/deleteallblogposts)|Deletes a page of Blog Posts|
+|[`Get a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getablogpost)|Returns a Single Blog Post|
+|[`Update a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/updateablogpost)|Updates a Blog Post|
+|[`Delete a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/deleteablogpost)|Deletes a Blog Post|
+|[`Get a Count of All Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getacountofallblogposts)|Returns a count of all Blog Posts|
+
 ## Price Lists Assignments
 
 ### Order of Operations
@@ -57,6 +67,15 @@ The `Price List Assignment` Pricing Order of Operations is as follows:
 
 **Note:** Price Lists cannot be assigned to a customer group that has custom group discounts -- the customer group discounts must be deleted first.
 
+|Resource / Endpoint|Description|
+|-|-|
+|[`Get All Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getallblogposts)|Returns all Blog Posts|
+|[`Create a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/createablogposts)|Creates a Plog Post|
+|[`Delete Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/deleteallblogposts)|Deletes a page of Blog Posts|
+|[`Get a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getablogpost)|Returns a Single Blog Post|
+|[`Update a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/updateablogpost)|Updates a Blog Post|
+|[`Delete a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/deleteablogpost)|Deletes a Blog Post|
+|[`Get a Count of All Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getacountofallblogposts)|Returns a count of all Blog Posts|
 
 ## Price Lists Records
 
