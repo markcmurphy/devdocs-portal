@@ -56,7 +56,7 @@ A Price List Assignment can be created to assign a Price List to a specific sale
 The `Price List Assignment` Pricing Order of Operations is as follows:
 
 **IF** `Price list` assigned to current `Customer Group` **AND** `Price List` assigned to current `Channel`:
-* Use this Price List -- any prices not found fall back to the catalog price (or in the case of multi-currency, auto-converted prices)
+* Use this price list -- any prices not found fall back to the catalog price (or in the case of multi-currency, auto-converted prices)
 
 **ELSE IF**: `Price List` assigned to current `Channel`:
 * Use this price list -- any prices not found fall back to the catalog price (or in the case of multi-currency, auto-converted prices)
