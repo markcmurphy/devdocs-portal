@@ -4040,26 +4040,50 @@ definitions:
     properties:
       type:
         type: string
+        description: The type of setting component to display.
+        example: '"element"'
       label:
         type: string
+        example: '"Box"'
+        description: >-
+          The user friendly message to inform the user how this setting will be
+          used.
       id:
         type: string
+        description: >-
+          The variable name where the setting value will be available in the
+          widget template.
+        example: '"textBox"'
       typeMeta:
         type: object
+        description: Additional information needed based on the selected setting type.
         properties:
           controls:
             type: object
+            description: Contains the `visibility` and '`advanced` attributes.
             properties:
               visibility:
                 type: object
+                description: Displays an eyeball icon that toggles widget visibility.
                 properties:
                   default:
                     type: string
+                    description: >-
+                      The default value to use when rendering the widget for the
+                      first time. 
+                    example: '"show"'
               advanced:
                 type: object
+                description: >-
+                  Contains a list of settings that are displayed when the user
+                  clicks the brush icon.
                 properties:
                   label:
                     type: string
+                    description: >-
+                      The user friendly message to inform the user how this
+                      setting will be used.
+                    example: '"Box style"'
                   settings:
                     type: array
                     items:
@@ -4067,12 +4091,27 @@ definitions:
                       properties:
                         type:
                           type: string
+                          description: |
+                            The type of setting component to display.
+                          example: '"color"'
                         label:
                           type: string
+                          description: >-
+                            The user friendly message to inform the user how
+                            this setting will be used.
+                          example: '"Box color"'
                         id:
                           type: string
+                          description: >-
+                            The variable name where the setting value will be
+                            available in the widget template.
+                          example: '"backgroundColor"'
                         default:
                           type: string
+                          description: >-
+                            The default value to use when rendering the widget
+                            for the first time. 
+                          example: '"#FFFFFF"'
   widget_image_manager:
     type: object
     properties:
