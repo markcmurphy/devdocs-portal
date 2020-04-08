@@ -156,54 +156,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            description: |
-              The model for a POST to create a subscriber.
-            allOf:
-              - type: object
-                description: Common Subscriber properties.
-                properties:
-                  id:
-                    type: integer
-                    description: >
-                      The unique numeric ID of the subscriber; increments
-                      sequentially.
-                    x-required:
-                      - put
-                  email:
-                    type: string
-                    description: |
-                      The email of the subscriber. Must be unique.
-                    x-required:
-                      - post
-                  first_name:
-                    type: string
-                    description: |
-                      The first name of the subscriber.
-                    minLength: 0
-                    maxLength: 255
-                  last_name:
-                    type: string
-                    description: |
-                      The last name of the subscriber.
-                    minLength: 0
-                    maxLength: 255
-                  source:
-                    type: string
-                    description: >
-                      The source of the subscriber. Values are: `storefront`,
-                      `order`, or `custom`.
-                    minLength: 0
-                    maxLength: 255
-                  order_id:
-                    type: integer
-                    description: |
-                      The ID of the source order, if source was an order.
-                    x-nullable: true
-                    minimum: 1
-                    maximum: 2147483647
-                title: Subscriber Base
-            title: Subscriber Post
+            $ref: '#/definitions/SubscriberPost'
           x-examples:
             application/json:
               email: janedoe2@email.com
