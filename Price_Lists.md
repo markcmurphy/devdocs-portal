@@ -74,6 +74,16 @@ The `Price List Assignment` Pricing Order of Operations is as follows:
 
 ## Price Lists Records
 
+|Resource / Endpoint|Description|
+|-|-|
+|[`Get All Price List Records`](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/getpricelistrecordcollection)|Returns a list of Price List Records|
+|[`Upsert Price List Records`](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecordcollection)|Updates Price List Records|
+|[`Delete a Price List Record`](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/deletepricelistrecordsbyfilter)|Deletes a Price List Record|
+|[`Get Price Records by Variant`](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/getpricelistrecordsbyvariantid)|Returns Price List Records using the variant ID|
+|[`Get a Price Record by Currency Code`](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/getpricelistrecord)|Returns a Price List Record using the currency code|
+|[`Set Price List Record by Currency Code`](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecord)|Creates or updates a Price List Record using the currency code|
+|[`Delete a Price List Record by Currency Code`](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/deletepricelistrecord)|Deletes a Price List Record using the currency code|
+
 ### Webhooks
 There are no direct webhooks available for Price Lists. Since Price Lists directly relate to products, webhooks related to products will fire for corresponding changes such as pricing.
 
