@@ -21,12 +21,6 @@ To learn more about Price Lists, see [here](https://developer.bigcommerce.com/ap
 
 ## Price Lists
 
-### Usage Notes
-* Price Lists cannot be assigned to a customer group that has custom group discounts – the customer group discounts must be deleted first.
-* Bulk Pricing Tiers may additionally be associated with a Price Record to indicate different pricing as the quantity in cart increases.
-* If a variant has a `Price Record` any existing product-level bulk pricing will not apply in the cart. For variants without `Price Records`, any existing product bulk pricing will apply.
-* Price Lists Records accepts bulk upsert. Only one [Bulk upsert](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecordcollection) can done at a time. Running more than one in parallel on the same store will cause a 429 error and the request will fail.
-
 |Resource / Endpoint|Description|
 |-|-|
 |[`Get All Price Lists`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists/getpricelistcollection)|Returns a list of Price Lists|
@@ -39,6 +33,9 @@ To learn more about Price Lists, see [here](https://developer.bigcommerce.com/ap
 ## Price Lists Assignments
 
 Price List Assignments can be created to assign Price Lists to a specific Channel. Price lists assigned to a channel apply to all shoppers on that channel, unless there is a more specific assignment.
+
+### Usage Notes
+Price Lists cannot be assigned to a customer group that has custom group discounts -- the customer group discounts must be deleted first.
 
 ### Order of Operations
 
@@ -62,8 +59,6 @@ The `Price List Assignment` Pricing Order of Operations is as follows:
 **ELSE**:
 * Fall back to the catalog price (or in the case of multi-currency, auto-converted prices)
 
-**Note:** Price Lists cannot be assigned to a customer group that has custom group discounts -- the customer group discounts must be deleted first.
-
 |Resource / Endpoint|Description|
 |-|-|
 |[`Create Price List Assignments`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists-assignments/createpricelistassignments)|Creates a batch of Price List Assignments|
@@ -71,6 +66,11 @@ The `Price List Assignment` Pricing Order of Operations is as follows:
 |[`Delete Price List Assignments`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists-assignments/deletepricelistassignmentsbyfilter)|Deletes one or more Price List Assignments|
 
 ## Price Lists Records
+
+### Usage Notes
+* Bulk Pricing Tiers may additionally be associated with a Price Record to indicate different pricing as the quantity in cart increases.
+* If a variant has a `Price Record` any existing product-level bulk pricing will not apply in the cart. For variants without `Price Records`, any existing product bulk pricing will apply.
+* Price Lists Records accepts bulk upsert. Only one [Bulk upsert](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecordcollection) can done at a time. Running more than one in parallel on the same store will cause a 429 error and the request will fail.
 
 |Resource / Endpoint|Description|
 |-|-|
