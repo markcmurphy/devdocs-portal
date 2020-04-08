@@ -11,13 +11,15 @@
 
 ## Introduction
 
-A Price List allows you to populate different versions of catalog pricing and assign them to different [Customer Groups](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api). The prices are specified exclusively at the variant level.
 
-If an active Price List does not contain prices for a variant then the Catalog pricing will be used. The association of a Price List to a Customer Group can be done either via the Control Panel or using the [Customer Groups API](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api).
 
 Price Lists will provide overridden price values to the Stencil storefront. Final price display can be further customized within the Stencil template. See the [Price Object](https://developer.bigcommerce.com/stencil-docs/reference-docs/common-objects#price) in Stencil for further documentation.
 
 ## Price Lists
+
+A Price List allows you to populate different versions of catalog pricing and assign them to different [Customer Groups](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api). 
+
+The prices are specified exclusively at the variant level. If an active Price List does not contain prices for a variant then the Catalog pricing will be used. 
 
 |Resource / Endpoint|Description|
 |-|-|
@@ -33,7 +35,8 @@ Price Lists will provide overridden price values to the Stencil storefront. Fina
 Price List Assignments can be created to assign Price Lists to a specific Channel. Price lists assigned to a channel apply to all shoppers on that channel, unless there is a more specific assignment.
 
 ### Usage Notes
-Price Lists cannot be assigned to a customer group that has custom group discounts -- the customer group discounts must be deleted first.
+* The association of a Price List to a Customer Group can be done either via the Control Panel or using the [Customer Groups API](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api).
+* Price Lists cannot be assigned to a customer group that has custom group discounts -- the customer group discounts must be deleted first.
 
 ### Order of Operations
 
