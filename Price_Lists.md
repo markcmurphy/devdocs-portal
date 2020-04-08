@@ -11,9 +11,11 @@
 
 ## Introduction
 
-
-
-Price Lists will provide overridden price values to the Stencil storefront. Final price display can be further customized within the Stencil template. See the [Price Object](https://developer.bigcommerce.com/stencil-docs/reference-docs/common-objects#price) in Stencil for further documentation.
+|Resource / Endpoint|Description|
+|-|-|
+|Price Lists|Create and manage catalog pricing variations|
+|Price List Assignments|Assign price lists to Channels|
+|Price List Records|Create and manage price list records|
 
 ## Price Lists
 
@@ -81,6 +83,10 @@ The `Price List Assignment` Pricing Order of Operations is as follows:
 |[`Get a Price Record by Currency Code`](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/getpricelistrecord)|Returns a Price List Record using the currency code|
 |[`Set Price List Record by Currency Code`](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecord)|Creates or updates a Price List Record using the currency code|
 |[`Delete a Price List Record by Currency Code`](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/deletepricelistrecord)|Deletes a Price List Record using the currency code|
+
+### Stencil Storefront
+
+Price Lists will provide overridden price values to the Stencil storefront. Final price display can be further customized within the Stencil template. See the [Price Object](https://developer.bigcommerce.com/stencil-docs/reference-docs/common-objects#price) in Stencil for further documentation.
 
 ### Webhooks
 There are no direct webhooks available for Price Lists. Since Price Lists directly relate to products, webhooks related to products will fire for corresponding changes such as pricing.
