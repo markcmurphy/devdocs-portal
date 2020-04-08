@@ -4302,20 +4302,38 @@ definitions:
                 description: Unit of the range values.
   widget_regex_input:
     type: object
+    title: regex_input
     properties:
       type:
         type: string
+        description: The type of setting component to display.
+        example: '"regexInput"'
       label:
         type: string
+        description: >-
+          The user friendly message to inform the user how this setting will be
+          used.
+        example: '"Video URL (YouTube or Vimeo)"'
       id:
         type: string
+        description: >-
+          The variable name where the setting value will be available in the
+          widget template.
+        example: '"videoUrl"'
       default:
         type: string
+        description: >-
+          The default value to use when rendering the widget for the first
+          time. 
+        example: '""'
       typeMeta:
         type: object
+        description: Additional information needed based on the selected setting type.
         properties:
           placeholder:
             type: string
+            description: Placeholder text in the text editor.
+            example: '"https://"'
           regExPatterns:
             type: array
             items:
@@ -4323,11 +4341,13 @@ definitions:
               properties:
                 pattern:
                   type: string
+                  example: '"(vimeo|youtube|youtu)"'
                 matchIndex:
                   type: integer
+                  example: 0
                 configKey:
                   type: string
-    title: regex_input
+                  example: '"type"'
   widget_select:
     type: object
     properties:
