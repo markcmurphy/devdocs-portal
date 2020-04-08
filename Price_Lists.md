@@ -94,4 +94,4 @@ There are no direct webhooks available for Price Lists. Since Price Lists direct
 
 [Catalog Price Object Examples](https://developer.bigcommerce.com/stencil-docs/developing-further/catalog-price-object)
 
-[Theme Docs: Blog](https://developer.bigcommerce.com/stencil-docs/reference-docs/other-objects-and-properties-overview#blog)
+[Common Stencil Objects: Price](https://developer.bigcommerce.com/stencil-docs/reference-docs/common-objects#price)
