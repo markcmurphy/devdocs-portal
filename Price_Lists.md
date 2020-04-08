@@ -17,6 +17,16 @@
 |Price List Assignments|Assign price lists to Channels|
 |Price List Records|Create and manage price list records|
 
+### Price List Definitions
+
+`Price List` – A collection of price records. `Price Records` make up a price list.
+
+`Price Record` – A price override for a particular variant - minimally, this is a variant ID, price, and currency.
+
+`PriceRecordBatch`: A way to update several `Price Records` in a `Price List` at once. Using this bulk upsert endpoint, you can upsert up to 1000 Price Records in a single API call.
+
+`Currency`: A `Price List` can contain records for multiple currencies. At this time, only price records that match the store’s default currency will be used to determine storefront and in-cart prices. Although BigCommerce supports a storefront currency selection, this is not currently integrated with Price Lists and will merely convert prices from the store’s default currency for display convenience.
+
 ## Price Lists
 
 A Price List allows you to populate different versions of catalog pricing and assign them to different [Customer Groups](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api). 
