@@ -68,13 +68,9 @@ The `Price List Assignment` Pricing Order of Operations is as follows:
 
 |Resource / Endpoint|Description|
 |-|-|
-|[`Get All Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getallblogposts)|Returns all Blog Posts|
-|[`Create a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/createablogposts)|Creates a Plog Post|
-|[`Delete Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/deleteallblogposts)|Deletes a page of Blog Posts|
-|[`Get a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getablogpost)|Returns a Single Blog Post|
-|[`Update a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/updateablogpost)|Updates a Blog Post|
-|[`Delete a Blog Post`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/deleteablogpost)|Deletes a Blog Post|
-|[`Get a Count of All Blog Posts`](https://developer.bigcommerce.com/api-reference/marketing/store-content-api/blog-posts/getacountofallblogposts)|Returns a count of all Blog Posts|
+|[`Create Price List Assignments`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists-assignments/createpricelistassignments)|Creates a batch of Price List Assignments|
+|[`Get Price List Assignments`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists-assignments/getlistofpricelistassignments)|Returns a list of Price List Assignments|
+|[`Delete Price List Assignments`](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists-assignments/deletepricelistassignmentsbyfilter)|Deletes one or more Price List Assignments|
 
 ## Price Lists Records
 
