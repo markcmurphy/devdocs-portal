@@ -83,8 +83,8 @@ The `Price List Assignment` Pricing Order of Operations is as follows:
 
 ### Usage Notes
 * Bulk Pricing Tiers may additionally be associated with a Price Record to indicate different pricing as the quantity in cart increases.
-* If a variant has a `Price Record` any existing product-level bulk pricing will not apply in the cart. For variants without `Price Records`, any existing product bulk pricing will apply.
-* Price Lists Records accepts bulk upsert. Only one [Bulk upsert](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecordcollection) can done at a time. Running more than one in parallel on the same store will cause a 429 error and the request will fail.
+* If a variant has a `Price Record`, any existing product-level bulk pricing will not apply in the cart. For variants without `Price Records`, any existing product bulk pricing will apply.
+* Price Lists Records accept bulk upsert. Only one [Bulk upsert](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecordcollection) can done at a time. Running more than one in parallel on the same store will cause a 429 error and the request will fail.
 
 |Resource / Endpoint|Description|
 |-|-|
