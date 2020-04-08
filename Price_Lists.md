@@ -32,9 +32,8 @@ The prices are specified exclusively at the variant level. If an active Price Li
 
 ## Price Lists Assignments
 
-Price List Assignments can be created to assign Price Lists to a specific Channel. Price lists assigned to a channel apply to all shoppers on that channel, unless there is a more specific assignment.
-
 ### Usage Notes
+* Price List Assignments can be created to assign Price Lists to a specific Channel. Price lists assigned to a channel apply to all shoppers on that channel, unless there is a more specific assignment.
 * The association of a Price List to a Customer Group can be done either via the Control Panel or using the [Customer Groups API](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api).
 * Price Lists cannot be assigned to a customer group that has custom group discounts -- the customer group discounts must be deleted first.
 
