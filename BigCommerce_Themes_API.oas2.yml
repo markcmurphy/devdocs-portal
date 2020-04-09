@@ -680,69 +680,7 @@ paths:
         '200':
           description: ''
           schema:
-            type: object
-            properties:
-              data:
-                description: The job for theme upload or download
-                type: object
-                title: Job
-                properties:
-                  errors:
-                    description: The errors.
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        error:
-                          description: The error.
-                          type: string
-                        message:
-                          description: The message.
-                          type: string
-                  id:
-                    description: The identifier.
-                    type: string
-                  percent_complete:
-                    description: The percent complete.
-                    type: number
-                  result:
-                    description: The result.
-                    type: object
-                    additionalProperties:
-                      type: string
-                    properties:
-                      theme_id:
-                        type: string
-                  status:
-                    type: string
-                    description: The status.
-                    enum:
-                      - COMPLETED
-                      - QUEUED
-                      - WORKING
-                      - FAILED
-                  time:
-                    type: string
-                    description: The time.
-                    format: date-time
-                  warnings:
-                    description: The warnings.
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        message:
-                          description: The message.
-                          type: string
-                        warning:
-                          description: The warning.
-                          type: string
-              meta:
-                type: object
-                description: Empty meta object; may be used later.
-                title: Meta
-            title: Job Response
-            description: Response for /GET Jobs by Id.
+            $ref: '#/definitions/JobResponse'
           examples:
             application/json:
               data:
