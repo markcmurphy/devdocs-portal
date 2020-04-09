@@ -47,6 +47,7 @@ paths:
             description: |
               Response payload for the BigCommerce API.
             type: object
+            title: Themes Collection Response
             properties:
               data:
                 type: array
@@ -87,6 +88,7 @@ paths:
                 description: >-
                   Data about the response, including pagination and collection
                   totals.
+                title: Collection Meta
                 properties:
                   pagination:
                     type: object
@@ -141,8 +143,6 @@ paths:
                             type: string
                             description: |
                               Link to the next page returned in the response.
-                title: Collection Meta
-            title: Themes Collection Response
           examples:
             application/json:
               data:
@@ -1420,45 +1420,9 @@ definitions:
     title: Theme Response
     properties:
       data:
-        description: A theme.
-        type: object
-        properties:
-          variations:
-            description: The variations.
-            type: array
-            items:
-              description: A variation.
-              type: object
-              properties:
-                description:
-                  description: The description.
-                  type: string
-                external_id:
-                  description: The external identifier.
-                  type: string
-                name:
-                  description: The name.
-                  type: string
-                uuid:
-                  description: The identifier.
-                  type: string
-          uuid:
-            description: The identifier.
-            type: string
-          name:
-            description: The theme name identifier.
-            type: string
-          is_private:
-            description: Flag to identify private themes.
-            type: boolean
-          is_active:
-            type: boolean
-          updated_at:
-            type: string
+        $ref: '#/definitions/Theme'
       meta:
-        type: object
-        description: Empty meta object; may be used later.
-        title: Meta
+        $ref: '#/definitions/CollectionMeta'
   JobResponse:
     type: object
     properties:
