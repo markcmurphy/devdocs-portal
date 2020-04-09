@@ -601,22 +601,7 @@ paths:
           in: body
           required: true
           schema:
-            description: Request definition for activation endpoint.
-            required:
-              - variation_id
-              - which
-            properties:
-              variation_id:
-                description: The identifier for the variation to activate.
-                type: string
-              which:
-                description: Which configuration to use.
-                type: string
-                enum:
-                  - original
-                  - last_activated
-                  - last_created
-            title: Activate
+            $ref: '#/definitions/Activate'
           x-examples:
             application/json:
               variation_id: 87be3180-731f-0136-9d2f-633ff0d6ced1
@@ -1428,10 +1413,6 @@ definitions:
       Accepts:
         type: string
         default: application/json
-  activateTheme:
-    type: object
-    properties: {}
-    title: Activate Theme
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
