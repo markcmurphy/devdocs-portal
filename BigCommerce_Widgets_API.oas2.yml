@@ -3768,64 +3768,7 @@ responses:
       type: object
       properties:
         data:
-          type: object
-          properties:
-            uuid:
-              type: string
-              format: uuid
-              description: The primary identifier.
-            name:
-              type: string
-              description: The user-friendly name.
-            description:
-              type: string
-              description: The user-friendly description.
-            widget_configuration:
-              type: object
-              description: The JSON data that populates the template.
-              format: json
-            widget_template:
-              type: object
-              properties:
-                uuid:
-                  type: string
-                  format: uuid
-                  description: The primary identifier.
-                name:
-                  type: string
-                  description: The user-friendly name.
-                kind:
-                  type: string
-                  description: The kind of widget template.
-                schema:
-                  type: object
-                  format: json
-                  description: >-
-                    The JSON schema of data for this template. Used to validate
-                    a configuration.
-                template:
-                  type: string
-                  format: html
-                  description: >-
-                    The widget template HTML. Supports Handlebars and Paper
-                    helpers.
-                date_created:
-                  type: string
-                  format: datetime
-                  description: The date on which this object was initially created.
-                date_modified:
-                  type: string
-                  format: datetime
-                  description: The date on which this object was last updated.
-              title: Widget Template
-            date_created:
-              type: string
-              format: datetime
-              description: The date on which this object was initially created.
-            date_modified:
-              type: string
-              format: datetime
-              description: The date on which this object was last updated.
+          $ref: '#/definitions/widget_Full'
         meta:
           type: object
     examples:
