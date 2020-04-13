@@ -3416,11 +3416,7 @@ definitions:
     title: Customer Form Field Value
   customerAddressFormFieldValue_Full:
     allOf:
-      - type: object
-        title: Form Field Value Base
-        required:
-          - name
-          - value
+      - title: Form Field Value Base
         properties:
           name:
             type: string
@@ -3440,14 +3436,17 @@ definitions:
                   - black
                 items:
                   type: string
-      - type: object
-        properties:
+        required:
+          - name
+          - value
+      - properties:
           address_id:
             type: integer
             description: The Customer Address ID.
         required:
           - address_id
     title: customerAddressFormFieldValue_Full
+    type: object
   formFieldValue_Full:
     oneOf:
       - allOf:
