@@ -3330,6 +3330,23 @@ definitions:
         default: inactive
     required:
       - template_file
+  widgetTemplate_Base:
+    type: object
+    title: widgetTemplate_Base
+    properties:
+      name:
+        type: string
+        description: The user-friendly name.
+      schema:
+        type: object
+        format: json
+        description: >-
+          The JSON schema of data for this template. Used to validate a
+          configuration.
+      template:
+        type: string
+        format: html
+        description: Handlebars HTML content. Also has access to Stencil Paper helpers.
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
