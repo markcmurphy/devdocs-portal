@@ -3942,9 +3942,44 @@ definitions:
           It determines if the customer is signed up to receive either product
           review or abandoned cart emails or recieve both emails.
   customerAttributes_Full:
-    type: object
-    properties: {}
-    title: customerAttributes_Full
+    description: Array of customer attributes. Limited to 10
+    type: array
+    maxItems: 10
+    items:
+      title: Customer Attribute Value
+      type: object
+      properties:
+        attribute_id:
+          description: Attribute ID.
+          type: integer
+          format: int32
+        value:
+          description: >-
+            Attribute value. This will always be a string, regardless of the
+            attributes type.
+          type: string
+          minLength: 0
+          maxLength: 255
+        id:
+          description: Attribute value ID.
+          type: integer
+          format: int32
+        customer_id:
+          description: Customer ID.
+          type: integer
+          format: int32
+        date_modified:
+          description: The date on which the customer attribute value was modified.
+          type: string
+          format: date-time
+        date_created:
+          description: The date of which the customer attribute value was created.
+          type: string
+          format: date-time
+      required:
+        - attribute_id
+        - value
+        - customer_id
 tags:
   - name: Customers
     description: BigCommerce Customers API Definition.
