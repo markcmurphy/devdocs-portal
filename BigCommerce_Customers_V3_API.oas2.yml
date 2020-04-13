@@ -3971,8 +3971,39 @@ definitions:
         - attribute_id
         - value
   attribute_Base:
+    title: attribute_Full
     type: object
-    properties: {}
+    properties:
+      name:
+        description: Attribute name.
+        type: string
+        minLength: 1
+        maxLength: 255
+      type:
+        title: Type
+        description: 'Attribute type should match one of: string, number, date. When doing a'
+        example: string
+        type: string
+        enum:
+          - string
+          - number
+          - date
+      id:
+        description: Attribute ID.
+        type: integer
+        format: int32
+      date_modified:
+        description: The date on which the customer attribute was modified.
+        type: string
+        format: date-time
+      date_created:
+        description: The date of which the customer attribute was created.
+        type: string
+        format: date-time
+    required:
+      - name
+      - type
+      - id
 tags:
   - name: Customers
     description: BigCommerce Customers API Definition.
