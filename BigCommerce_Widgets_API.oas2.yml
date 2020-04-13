@@ -3888,7 +3888,7 @@ responses:
           date_created: '2019-02-25T18:37:10.658Z'
           date_modified: '2019-02-25T18:37:10.658Z'
         meta: {}
-  WidgetTemplatesCollectionResponse:
+  WidgetTemplateCollection_Resp:
     description: ''
     schema:
       type: object
@@ -3896,89 +3896,9 @@ responses:
         data:
           type: array
           items:
-            type: object
-            properties:
-              uuid:
-                type: string
-                format: uuid
-                description: The primary identifier.
-              name:
-                type: string
-                description: The user-friendly name.
-              kind:
-                type: string
-                description: The kind of widget template.
-              schema:
-                type: object
-                format: json
-                description: >-
-                  The JSON schema of data for this template. Used to validate a
-                  configuration.
-              template:
-                type: string
-                format: html
-                description: >-
-                  The widget template HTML. Supports Handlebars and Paper
-                  helpers.
-              date_created:
-                type: string
-                format: datetime
-                description: The date on which this object was initially created.
-              date_modified:
-                type: string
-                format: datetime
-                description: The date on which this object was last updated.
-            title: Widget Template
+            $ref: '#/definitions/widgetTemplate_Full'
         meta:
-          type: object
-          description: 'Data about the response, including pagination and collection totals.'
-          properties:
-            pagination:
-              type: object
-              description: >
-                Data about the response, including pagination and collection
-                totals.
-              properties:
-                total:
-                  type: integer
-                  description: |
-                    Total number of items in the result set.
-                count:
-                  type: integer
-                  description: |
-                    Total number of items in the collection response.
-                per_page:
-                  type: integer
-                  description: >
-                    The amount of items returned in the collection per page,
-                    controlled by the limit parameter.
-                current_page:
-                  type: integer
-                  description: |
-                    The page you are currently on within the collection.
-                total_pages:
-                  type: integer
-                  description: |
-                    The total number of pages in the collection.
-                links:
-                  type: object
-                  description: >
-                    Pagination links for the previous and next parts of the
-                    whole collection.
-                  properties:
-                    previous:
-                      type: string
-                      description: |
-                        Link to the previous page returned in the response.
-                    current:
-                      type: string
-                      description: |
-                        Link to the current page returned in the response.
-                    next:
-                      type: string
-                      description: |
-                        Link to the next page returned in the response.
-          title: Collection Meta
+          $ref: '#/definitions/pagination'
     examples:
       application/json:
         data:
