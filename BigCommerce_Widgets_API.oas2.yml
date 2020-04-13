@@ -176,59 +176,7 @@ paths:
           name: Content-Type
       responses:
         '200':
-          description: ''
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  uuid:
-                    type: string
-                    format: uuid
-                    description: The primary identifier.
-                  name:
-                    type: string
-                    description: The user-friendly name.
-                  kind:
-                    type: string
-                    description: The kind of widget template.
-                  schema:
-                    type: object
-                    format: json
-                    description: >-
-                      The JSON schema of data for this template. Used to
-                      validate a configuration.
-                  template:
-                    type: string
-                    format: html
-                    description: >-
-                      The widget template HTML. Supports Handlebars and Paper
-                      helpers.
-                  date_created:
-                    type: string
-                    format: datetime
-                    description: The date on which this object was initially created.
-                  date_modified:
-                    type: string
-                    format: datetime
-                    description: The date on which this object was last updated.
-                title: Widget Template
-              meta:
-                type: object
-          examples:
-            application/json:
-              data:
-                uuid: 3a1b0044-c9b3-47d3-9929-01ab0c20243b
-                name: Header Images
-                schema: []
-                template: >-
-                  {{#each images}}<a href='{{image_url}}'><img
-                  src={{image_source}} style='width:33.3%'/></a>{{/each}}
-                date_created: '2019-02-25T18:35:04.904Z'
-                date_modified: '2019-02-25T18:35:04.904Z'
-                kind: custom
-              meta: {}
+          $ref: '#/responses/WidgetTemplate_Resp'
         '404':
           description: |
             The resource was not found.
