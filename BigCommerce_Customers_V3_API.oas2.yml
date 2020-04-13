@@ -3408,9 +3408,14 @@ definitions:
         required:
           - customer_id
     title: Customer Form Field Value
-  formVieldValue_Full:
-    allOf:
-      - title: Form Field Value Base
+  formFieldValue_Full:
+    oneOf:
+      - title: Customer Form Field Value
+        type: object
+        required:
+          - customer_id
+          - name
+          - value
         properties:
           name:
             type: string
@@ -3430,84 +3435,36 @@ definitions:
                   - black
                 items:
                   type: string
+          customer_id:
+            type: integer
+      - title: Customer Address Form Field Value
+        type: object
         required:
+          - address_id
           - name
           - value
-      - properties:
+        properties:
+          name:
+            type: string
+            description: The form field name.
+            example: color
+          value:
+            oneOf:
+              - type: string
+                example: blue
+              - type: number
+                format: double
+                example: 12.345
+              - type: array
+                example:
+                  - red
+                  - green
+                  - black
+                items:
+                  type: string
           address_id:
             type: integer
             description: The Customer Address ID.
-        required:
-          - address_id
-    title: formVieldValue_Full
-    type: object
-  formFieldValue_Full:
-    oneOf:
-      - allOf:
-          - type: object
-            title: Form Field Value Base
-            required:
-              - name
-              - value
-            properties:
-              name:
-                type: string
-                description: The form field name.
-                example: color
-              value:
-                oneOf:
-                  - type: string
-                    example: blue
-                  - type: number
-                    format: double
-                    example: 12.345
-                  - type: array
-                    example:
-                      - red
-                      - green
-                      - black
-                    items:
-                      type: string
-          - type: object
-            properties:
-              customer_id:
-                type: integer
-            required:
-              - customer_id
-        title: Customer Form Field Value
-      - allOf:
-          - type: object
-            title: Form Field Value Base
-            required:
-              - name
-              - value
-            properties:
-              name:
-                type: string
-                description: The form field name.
-                example: color
-              value:
-                oneOf:
-                  - type: string
-                    example: blue
-                  - type: number
-                    format: double
-                    example: 12.345
-                  - type: array
-                    example:
-                      - red
-                      - green
-                      - black
-                    items:
-                      type: string
-          - type: object
-            properties:
-              address_id:
-                type: integer
-                description: The Customer Address ID.
-            required:
-              - address_id
-        title: Customer Address Form Field Value
     title: formFieldValue_Full
   formFieldValue_Put:
     type: array
