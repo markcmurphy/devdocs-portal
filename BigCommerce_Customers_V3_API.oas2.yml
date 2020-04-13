@@ -3259,16 +3259,18 @@ definitions:
     description: The `address` object for the `customer` object's `addresses` array.
   customerAuthentication_PostPut:
     title: customerAuthentication_PostPut
+    allOf:
+      - properties:
+          force_password_reset:
+            description: >-
+              If `true`, this customer will be forced to change password on next
+              login.
+            type: boolean
+      - properties:
+          new_password:
+            description: New password for customer. Write only field
+            type: string
     type: object
-    properties:
-      force_password_reset:
-        description: >-
-          If `true`, this customer will be forced to change password on next
-          login.
-        type: boolean
-      new_password:
-        description: New password for customer. Write only field
-        type: string
   customerAuthentication_Base:
     title: customerAuthentication_Base
     example:
