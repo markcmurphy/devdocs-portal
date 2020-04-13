@@ -2926,36 +2926,25 @@ definitions:
         format: html
     title: widgetTemplate_Post
   widgetTemplate_Full:
-    type: object
-    properties:
-      uuid:
-        type: string
-        format: uuid
-        description: The primary identifier.
-      name:
-        type: string
-        description: The user-friendly name.
-      kind:
-        type: string
-        description: The kind of widget template.
-      schema:
-        type: object
-        format: json
-        description: >-
-          The JSON schema of data for this template. Used to validate a
-          configuration.
-      template:
-        type: string
-        format: html
-        description: The widget template HTML. Supports Handlebars and Paper helpers.
-      date_created:
-        type: string
-        format: datetime
-        description: The date on which this object was initially created.
-      date_modified:
-        type: string
-        format: datetime
-        description: The date on which this object was last updated.
+    allOf:
+      - $ref: '#/definitions/widgetTemplate_Base'
+      - type: object
+        properties:
+          uuid:
+            type: string
+            format: uuid
+            description: The primary identifier.
+          kind:
+            type: string
+            description: The kind of widget template.
+          date_created:
+            type: string
+            format: datetime
+            description: The date on which this object was initially created.
+          date_modified:
+            type: string
+            format: datetime
+            description: The date on which this object was last updated.
     title: widgetTemplate_Full
   widget_Full:
     type: object
