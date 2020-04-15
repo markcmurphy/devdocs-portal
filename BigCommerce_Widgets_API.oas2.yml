@@ -293,58 +293,9 @@ paths:
         '204':
           description: An empty response.
         '404':
-          description: |
-            The resource was not found.
-          schema:
-            allOf:
-              - type: object
-                description: |
-                  Error payload for the BigCommerce API.
-                properties:
-                  status:
-                    description: |
-                      The HTTP status code.
-                    type: integer
-                  title:
-                    description: |
-                      The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                title: Base Error
-              - type: object
-                properties:
-                  errors:
-                    type: object
+          $ref: '#/responses/Error404_Resp'
         '422':
-          schema:
-            allOf:
-              - type: object
-                description: |
-                  Error payload for the BigCommerce API.
-                properties:
-                  status:
-                    description: |
-                      The HTTP status code.
-                    type: integer
-                  title:
-                    description: |
-                      The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                title: Base Error
-              - type: object
-                properties:
-                  errors:
-                    type: object
-          description: >
-            This is the result of missing required fields, or of invalid data.
-            See the response for more details.
+          $ref: '#/responses/Error422_Resp'
       description: Delete a **Widget Template**.
   /content/widgets:
     post:
