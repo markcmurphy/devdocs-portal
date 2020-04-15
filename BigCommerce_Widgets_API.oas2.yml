@@ -2479,29 +2479,26 @@ definitions:
             description: |
               Link to the next page returned in the response.
     title: pagination
-  ErrorResponse:
-    allOf:
-      - type: object
+  error_Base_1:
+    type: object
+    description: |
+      Error payload for the BigCommerce API.
+    title: error_Base_1
+    properties:
+      status:
         description: |
-          Error payload for the BigCommerce API.
-        properties:
-          status:
-            description: |
-              The HTTP status code.
-            type: integer
-          title:
-            description: |
-              The error title describing the particular error.
-            type: string
-          type:
-            type: string
-          instance:
-            type: string
-        title: Base Error
-      - type: object
-        properties:
-          errors:
-            type: object
+          The HTTP status code.
+        type: integer
+      title:
+        description: |
+          The error title describing the particular error.
+        type: string
+      type:
+        type: string
+      instance:
+        type: string
+      errors:
+        type: object
   error_Base:
     type: object
     description: |
