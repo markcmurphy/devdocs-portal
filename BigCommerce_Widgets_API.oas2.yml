@@ -1323,21 +1323,14 @@ definitions:
         description: The widget template UUID.
     title: widget_Post
   widget_Put:
-    properties:
-      name:
-        type: string
-        description: User-friendly name.
-      description:
-        type: string
-        description: The user-friendly description.
-      widget_configuration:
-        type: object
-        description: The JSON data that populates the template.
-        format: json
-      widget_template_uuid:
-        type: string
-        description: The widget template UUID.
     title: widget_Put
+    allOf:
+      - $ref: '#/definitions/widget_Base'
+      - properties:
+          widget_template_uuid:
+            type: string
+            description: The widget template UUID.
+        type: object
   placement_Post:
     type: object
     properties:
