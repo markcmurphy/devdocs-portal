@@ -1377,80 +1377,14 @@ definitions:
           - active
     title: placement_Put
   placement_Full:
-    properties:
-      uuid:
-        type: string
-        format: uuid
-        description: The primary identifier.
-      entity_id:
-        type: string
-        description: The specific instance of a page
-      status:
-        type: string
-        description: Determines whether this placement is `active` or `inactive`.
-        enum:
-          - inactive
-          - active
-      template_file:
-        type: string
-        description: The page template name.
-      region:
-        type: string
-        description: The user-friendly name.
-      sort_order:
-        type: integer
-        description: The sort order to control position of a content widget in a region.
-      widget:
-        type: object
+    title: placement_Full
+    allOf:
+      - type: object
         properties:
           uuid:
             type: string
             format: uuid
             description: The primary identifier.
-          name:
-            type: string
-            description: The user-friendly name.
-          description:
-            type: string
-            description: The user-friendly description.
-          widget_configuration:
-            type: object
-            description: The JSON data that populates the template.
-            format: json
-          widget_template:
-            type: object
-            properties:
-              uuid:
-                type: string
-                format: uuid
-                description: The primary identifier.
-              name:
-                type: string
-                description: The user-friendly name.
-              kind:
-                type: string
-                description: The kind of widget template.
-              schema:
-                type: object
-                format: json
-                description: >-
-                  The JSON schema of data for this template. Used to validate a
-                  configuration.
-              template:
-                type: string
-                format: html
-                description: >-
-                  The widget template HTML. Supports Handlebars and Paper
-                  helpers.
-              date_created:
-                type: string
-                format: datetime
-                description: The date on which this object was initially created.
-              date_modified:
-                type: string
-                format: datetime
-                description: The date on which this object was last updated.
-            title: Widget Template
           date_created:
             type: string
             format: datetime
@@ -1459,15 +1393,11 @@ definitions:
             type: string
             format: datetime
             description: The date on which this object was last updated.
-      date_created:
-        type: string
-        format: datetime
-        description: The date on which this object was initially created.
-      date_modified:
-        type: string
-        format: datetime
-        description: The date on which this object was last updated.
-    title: placement_Full
+      - $ref: '#/definitions/placement_Base'
+      - type: object
+        properties:
+          widget:
+            $ref: '#/definitions/widget_Full'
   metaCollection:
     type: object
     description: 'Data about the response, including pagination and collection totals.'
