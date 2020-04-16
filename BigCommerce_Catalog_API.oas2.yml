@@ -14998,9 +14998,9 @@ paths:
         to avoid deleting all *Category* objects in a store.
 
 
-        Deleting the category will also delete all products in that category. If
-        you want to keep the products, best practice is to move the products to
-        a new category before deleting. 
+        Sending a `DELETE` to this endpoint will result in a `422` error. Move
+        products to a new category by sending a `PUT` to the
+        `/catalog/products/{product_id}` endpoint before deleting a category.
       operationId: deleteCategories
       parameters:
         - name: name
