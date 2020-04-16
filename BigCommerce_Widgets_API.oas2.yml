@@ -1318,36 +1318,20 @@ definitions:
             description: The widget template UUID.
         type: object
   placement_Post:
-    type: object
-    properties:
-      widget_uuid:
-        type: string
-        description: A widget identifier.
-      entity_id:
-        type: string
-        description: The specific instance of a page that you would like to target.
-      sort_order:
-        type: integer
-        description: >-
-          The sort order to control the position of a content widget in a
-          region.
-      region:
-        type: string
-        description: The name of the region in which to insert content widgets.
-      template_file:
-        type: string
-        description: The template file that you would like to target.
-      status:
-        type: string
-        description: Sets the placement as either inactive or active.
-        default: inactive
-        enum:
-          - inactive
-          - active
-    required:
-      - widget_uuid
-      - template_file
     title: placement_Post
+    allOf:
+      - type: object
+        properties:
+          widget_uuid:
+            type: string
+            description: A widget identifier.
+          template_file:
+            type: string
+            description: The template file that you would like to target.
+        required:
+          - widget_uuid
+          - template_file
+      - $ref: '#/definitions/placement_Base'
   placement_Put:
     properties:
       entity_id:
