@@ -3896,6 +3896,76 @@ definitions:
         type: integer
     description: 'Describes refund failures, success and totals.'
 responses:
+  ReturnResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        data:
+          $ref: '#/definitions/Return_Full'
+        meta:
+          type: object
+          properties:
+            pagination:
+              $ref: '#/definitions/Pagination'
+    examples: {}
+  ReturnStatusResponse:
+    description: ''
+    schema:
+      properties:
+        data:
+          $ref: '#/definitions/UpdateReturnStatuses'
+        errors:
+          type: array
+          items:
+            $ref: '#/definitions/Problem'
+        meta:
+          $ref: '#/definitions/BatchOperationMeta'
+  OrderReturnableItemsResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        data:
+          $ref: '#/definitions/GetReturnableItems'
+  CreateReturnResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        data:
+          $ref: '#/definitions/CreateReturn'
+  ReturnReceivedItemsResponse:
+    description: ''
+    schema:
+      properties:
+        data:
+          $ref: '#/definitions/UpdateReceivedItems'
+        errors:
+          type: array
+          items:
+            $ref: '#/definitions/Problem'
+        meta:
+          $ref: '#/definitions/BatchOperationMeta'
+  ReturnReviewedItemsResponse:
+    description: ''
+    schema:
+      properties:
+        data:
+          $ref: '#/definitions/UpdateReviewedItems'
+        errors:
+          type: array
+          items:
+            $ref: '#/definitions/Problem'
+        meta:
+          $ref: '#/definitions/BatchOperationMeta'
+  StoreReturnSettingsResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        data:
+          $ref: '#/definitions/GetReturnsSettings'
   502_GatewayError:
     description: >-
       If something happens during the request that causes it to fail, a 502
