@@ -5302,9 +5302,34 @@ definitions:
         description: Time when the cart was last updated.
         type: string
   checkoutGiftCertificates:
-    type: object
-    properties: {}
-    title: checkoutGiftCertificates
+    description: Applied gift certificate (as a payment method).
+    type: array
+    items:
+      title: Gift Certificate
+      description: >-
+        The values presented here are projections of how much we would be using
+        out of an existent gift certificate
+      type: object
+      properties:
+        balance:
+          description: ''
+          type: number
+          format: double
+        code:
+          description: ''
+          type: string
+        purchaseDate:
+          description: ''
+          type: string
+          format: date
+        remaining:
+          description: ''
+          type: number
+          format: double
+        used:
+          description: ''
+          type: number
+          format: double
 parameters:
   include:
     name: include
