@@ -3166,37 +3166,14 @@ definitions:
   consignmentAvailableShippingOptions:
     title: consignmentAvailableShippingOptions
     allOf:
-      - title: Selected Shipping Option
+      - $ref: '#/definitions/consignmentShippingOption_Base'
+      - type: object
         properties:
-          description:
-            description: Read-only
-            type: string
-          id:
-            description: ''
-            type: string
-          type:
-            description: 'Specified the type of shipping option. Flat rate, UPS, etc.,'
-            type: string
-          imageUrl:
-            description: ''
-            type: string
-          cost:
-            description: ''
-            type: number
-            format: double
-          transitTime:
-            description: An estimate of the arrival time.
-            type: string
-          additonalDescription:
-            type: string
-            description: 'ReadOnly, Field used for Shipping Provider API.'
-      - properties:
           isRecommended:
             description: Is this shipping method the recommended shipping option or not.
             type: boolean
           additionalDescription:
             type: string
-    type: object
   consignmentSelectedShippingOption:
     allOf:
       - $ref: '#/definitions/consignmentShippingOption_Base'
