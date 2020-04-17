@@ -4121,7 +4121,6 @@ definitions:
     title: Address Response
     allOf:
       - title: Address Properties
-        type: object
         properties:
           firstName:
             description: ''
@@ -4179,11 +4178,11 @@ definitions:
                   type: string
         required:
           - countryCode
-      - type: object
-        properties:
+      - properties:
           id:
             description: ''
             type: string
+    type: object
   AddressProperties:
     title: Address Properties
     type: object
@@ -4231,17 +4230,7 @@ definitions:
         description: ''
         type: array
         items:
-          title: CustomField
-          type: object
-          properties:
-            fieldId:
-              description: ''
-              type: string
-            fieldValue:
-              description: >-
-                This can also be an array for fields that need to support list
-                of values (e.g., a set of check boxes.)
-              type: string
+          $ref: '#/definitions/CustomField'
     required:
       - countryCode
   CustomField:
@@ -5787,16 +5776,7 @@ definitions:
           objects.
         type: array
         items:
-          title: Applied Discount
-          type: object
-          properties:
-            name:
-              description: The name provided by the merchant.
-              type: string
-            discountedAmount:
-              description: The discounted amount applied within a given context.
-              type: number
-              format: double
+          $ref: '#/definitions/AppliedDiscount'
       discountAmount:
         description: >-
           The total value of all discounts applied to this item (excluding
