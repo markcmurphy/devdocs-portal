@@ -1661,8 +1661,7 @@ definitions:
     title: Item Digital
   ItemPhysical:
     allOf:
-      - type: object
-        title: Base Item
+      - title: Base Item
         properties:
           id:
             type: string
@@ -1708,6 +1707,7 @@ definitions:
               AppliedDiscount objects.
             items:
               type: object
+              title: Applied Discount
               properties:
                 id:
                   type: number
@@ -1716,7 +1716,6 @@ definitions:
                   type: number
                   format: float
                   description: The discounted amount applied within a given context.
-              title: Applied Discount
           discountAmount:
             type: number
             format: float
@@ -1745,6 +1744,7 @@ definitions:
             type: array
             items:
               type: object
+              title: Product Option
               properties:
                 name:
                   type: string
@@ -1758,28 +1758,19 @@ definitions:
                 valueId:
                   type: number
                   description: The product option value identifier.
-              title: Product Option
           brand:
             type: string
             description: The products brand
         required:
           - quantity
-      - type: object
-        properties:
+      - properties:
           isShippingRequired:
             type: boolean
             description: Whether this item requires shipping to a physical address.
           giftWrapping:
-            properties:
-              name:
-                type: string
-                description: Name of the gift-wrapping option.
-              amount:
-                type: number
-                format: float
-                description: Gift-wrapping price per product.
-            title: Gift Wrapping
+            $ref: '#/definitions/GiftWrapping'
     title: Item Physical
+    type: object
   BaseItem:
     type: object
     title: Base Item
