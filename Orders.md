@@ -24,6 +24,10 @@ The Order object contains a record of the purchase agreement between a shopper a
 ## V2 & V3
 Order resources use either the V2 or V3 REST APIs. See the corresponding reference for each resource to determine the correct path.
 
+## Order Products
+v2
+Product line items belonging to an order.
+
 ## Order Currency Fields
 
 * `currency_code` - the display currency used to present prices to the shopper on the storefront.
@@ -59,9 +63,6 @@ Coupon code applied to an order.
 v2
 Messages associated with an order.
 
-## Order Products
-v2
-Product line items belonging to an order.
 
 ## Order Status
 v2
