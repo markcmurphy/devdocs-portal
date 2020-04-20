@@ -4,10 +4,10 @@
 
 ### On this Page	
 - [Orders](#orders)
+- [Order Products](#order-products)
 - [Order Currency Fields](#order-currency-fields)
 - [Order Coupons](#order-coupons)
 - [Order Messages](#order-messages)
-- [Order Products](#order-products)
 - [Order Status](#order-status)
 - [Order Shipments](#order-shipments)
 - [Order Shipping Addresses](#order-shipping-addresses)
