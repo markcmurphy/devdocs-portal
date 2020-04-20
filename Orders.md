@@ -12,7 +12,6 @@
 - [Order Shipments](#order-shipments)
 - [Order Shipping Addresses Quotes](#order-shipping-addresses-quotes)
 - [Order Messages](#order-messages)
-
 - [Order Currency Fields](#order-currency-fields)
 - [Order Transactions](#order-transactions)
 - [Order Payment Actions](#order-payment-actions)
