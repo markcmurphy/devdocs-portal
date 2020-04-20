@@ -4027,6 +4027,39 @@ responses:
           refund_methods:
             - ''
         meta: {}
+  Refund_Resp:
+    description: ''
+    schema:
+      type: object
+      properties:
+        data:
+          $ref: '#/definitions/Refund'
+        meta:
+          type: object
+    examples:
+      application/json:
+        data:
+          id: 1
+          order_id: 1
+          user_id: 1
+          created: ''
+          reason: ''
+          total_amount: 1.99
+          total_tax: 1
+          items:
+            - item_type: HANDLING
+              item_id: 1
+              reason: ''
+              quantity: 1
+              requested_amount: 0.05
+          payments:
+            - id: 1
+              provider_id: checkout_paypalexpress
+              amount: 1.99
+              offline: true
+              is_declined: true
+              declined_message: ''
+        meta: {}
 x-stoplight:
   docs:
     includeDownloadLink: true
