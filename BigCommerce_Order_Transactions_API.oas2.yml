@@ -3409,7 +3409,7 @@ definitions:
           request path.
         example: 1
       items:
-        $ref: '#/definitions/ItemsRequest'
+        $ref: '#/definitions/ItemsRefund'
     required:
       - order_id
       - items
@@ -3519,7 +3519,7 @@ definitions:
         description: Order id against which this refund will be created
         example: 1
       items:
-        $ref: '#/definitions/ItemsRequest'
+        $ref: '#/definitions/ItemsRefund'
       reason:
         type: string
         description: Reason for refund
@@ -3552,14 +3552,14 @@ definitions:
         type: string
         description: details why the request failed
     title: Error
-  ItemsRequest:
+  ItemsRefund:
     type: array
     items:
       anyOf:
         - $ref: '#/definitions/AmountBoundItem'
         - $ref: '#/definitions/QuantityBoundItem'
         - $ref: '#/definitions/TaxExemptItem'
-    title: Items Request
+    title: ItemsRefund
   PaymentRequest:
     type: object
     properties:
