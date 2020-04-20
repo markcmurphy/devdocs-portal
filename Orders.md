@@ -254,7 +254,6 @@ You can create overrides for calculated values such as product prices, subtotal 
 | Unpaid or `Refunded` | Paid | Paid | Tax document submitted |
 
 ## Order Transactions
-v3
 The `/orders/{id}/transactions` endpoint returns details about the payment instruments used to pay for an order. Depending on the payment method used, different details will be available. Not all credit card payment gateways will return full card details or all CVV/fraud response details. This is primarily used to get detailed gateway response information for credit card transactions, however it will also return any available information about digital wallet payments, as well as details about orders paid (partially or in full) via a gift certificate or store credit. The test payment gateway available in the BigCommerce control panel does not return any payment information.
 
 Orders processed via all payment providers except PayPal Express Checkout and Test Gateway will create a transaction that is retrievable via Transactions API. Gift certificates, store credit, and offline payment methods will not create a transaction.
