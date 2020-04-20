@@ -4023,6 +4023,54 @@ responses:
             $ref: '#/definitions/PostRefundFailureResponse'
         meta:
           $ref: '#/definitions/MetaRefund'
+    examples:
+      application/json:
+        data:
+          - id: 1
+            order_id: 1
+            user_id: 1
+            created: ''
+            reason: ''
+            total_amount: 0.05
+            total_tax: 1
+            items:
+              - item_type: PRODUCT
+                item_id: 1
+                reason: ''
+                quantity: 1
+                requested_amount: 1.99
+            payments:
+              - id: 1
+                provider_id: storecredit
+                amount: 0.05
+                offline: true
+                is_declined: true
+                declined_message: ''
+          - id: 2
+            order_id: 100
+            user_id: 1
+            created: ''
+            reason: ''
+            total_amount: 0.05
+            total_tax: 1
+            items:
+              - item_type: SHIPPING
+                item_id: 1
+                reason: ''
+                quantity: 1
+                requested_amount: 1.99
+            payments:
+              - id: 1
+                provider_id: storecredit
+                amount: 0.05
+                offline: true
+                is_declined: true
+                declined_message: ''
+        errors: []
+        meta:
+          failure: 0
+          success: 2
+          total: 2
 x-stoplight:
   docs:
     includeDownloadLink: true
