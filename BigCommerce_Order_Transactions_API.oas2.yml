@@ -3313,6 +3313,51 @@ responses:
             total_pages: 1
             links:
               current: '?page=1&limit=50'
+  Transaction_Resp:
+    description: >-
+      Response payload for the BigCommerce Order Transactions API single
+      transaction.
+    schema:
+      allOf:
+        - properties:
+            data:
+              $ref: '#/definitions/TransactionPost'
+        - properties:
+            id:
+              type: integer
+              description: |
+                Unique identifier for the transaction.
+            order_id:
+              type: string
+              description: >-
+                Identifier for the BigCommerce Order with which this transaction
+                is associated.
+            date_created:
+              type: string
+              format: date-time
+              description: |
+                The datetime of the transaction.
+            payment_instrument_token:
+              type: string
+              description: >-
+                This field contains internal BigPay token for stored card that
+                is then mapped to the actual third-party token. We currently do
+                not offer a way to get third party tokens.These tokens are
+                read-only and do not return any information about the payment.
+            avs_result:
+              $ref: '#/definitions/AVSResult'
+            cvv_result:
+              $ref: '#/definitions/CVVResult'
+            credit_card:
+              $ref: '#/definitions/CreditCard'
+            gift_certificate:
+              $ref: '#/definitions/GiftCertificate'
+            store_credit:
+              $ref: '#/definitions/StoreCredit'
+        - properties:
+            meta:
+              $ref: '#/definitions/metaEmpty_Full'
+      type: object
 x-stoplight:
   docs:
     includeDownloadLink: true
