@@ -827,55 +827,7 @@ paths:
         - $ref: '#/parameters/Content-Type'
       responses:
         '201':
-          description: ''
-          schema:
-            type: object
-            properties:
-              data:
-                type: array
-                items:
-                  $ref: '#/definitions/RefundQuote_Full'
-              errors:
-                type: array
-                items:
-                  $ref: '#/definitions/FailedQuoteError'
-              meta:
-                $ref: '#/definitions/Meta'
-          examples:
-            application/json: |-
-              {
-                  "data": [
-                      {
-                          "order_id": 1,
-                          "total_refund_amount": 0.05,
-                          "total_refund_tax_amount": 1.95,
-                          "rounding": 1,
-                          "adjustment": 0.05,
-                          "tax_inclusive": true,
-                          "refund_methods": [
-                              ""
-                          ]
-                      },
-                      {
-                          "order_id": 100,
-                          "total_refund_amount": 5,
-                          "total_refund_tax_amount": 0,
-                          "rounding": 0,
-                          "adjustment": 0,
-                          "tax_inclusive": false,
-                          "refund_methods": [
-                              ""
-                          ]
-                      }
-                  ],
-                  "errors": [
-                  ],
-                  "meta": {
-                      "failure": 0,
-                      "success": 2,
-                      "total": 2
-                  }
-              }
+          $ref: '#/responses/RefundQuotesBATCH_Resp'
         '422':
           description: >-
             Partial success/failure response. Status to roll up to the most
