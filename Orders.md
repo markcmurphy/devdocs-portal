@@ -22,7 +22,7 @@
 The Order object contains a record of the purchase agreement between a shopper and a merchant. Orders contain information about the shopper, the item(s) purchased, the shopper's addresses, the payment method used for the order, and more. To learn more about creating orders, see [Orders Overview](https://developer.bigcommerce.com/api-docs/orders/orders-overview).
 
 ## V2 & V3
-
+Certain Order 
 
 ## Order Currency Fields
 
