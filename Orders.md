@@ -259,4 +259,7 @@ The `/orders/{id}/transactions` endpoint returns details about the payment instr
 
 Orders processed via all payment providers except PayPal Express Checkout and Test Gateway will create a transaction that is retrievable via Transactions API. Gift certificates, store credit, and offline payment methods will not create a transaction.
 
-## Orders Payment Actions
+## Order Payment Actions
+### Refunds
+
+## Order Returns
