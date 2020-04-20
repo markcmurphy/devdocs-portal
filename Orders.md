@@ -14,6 +14,8 @@
 - [Order Shipping Addresses Quotes](#order-shipping-addresses-quotes)
 - [Order Taxes](#order-taxes)
 - [Order Transactions](#order-transactions)
+- [Order Payment Actions](#order-payment-actions)
+- [Order Returns](#order-returns)
 
 
 </div>
