@@ -1161,7 +1161,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#/definitions/PostRefundRequest'
+            $ref: '#/definitions/RefundRequest_Post'
           x-examples:
             application/json:
               items:
@@ -3440,10 +3440,10 @@ definitions:
 
         items:
           $ref: '#/definitions/RefundMethod'
-  PostRefundRequest:
+  RefundRequest_Post:
     type: object
-    description: Request body for refund requests
-    title: Refund Request
+    description: Request body for refund requests.
+    title: RefundRequest_Post
     properties:
       order_id:
         type: integer
@@ -3468,7 +3468,7 @@ definitions:
     description: Request body for batch refunds
     title: Refunds Request - BATCH
     items:
-      $ref: '#/definitions/PostRefundRequest'
+      $ref: '#/definitions/RefundRequest_Post'
   FailedQuoteError:
     type: object
     description: Failed quote response.
