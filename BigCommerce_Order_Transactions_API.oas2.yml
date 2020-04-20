@@ -2084,7 +2084,7 @@ definitions:
                   Link to the next page returned in the response.
   ErrorResponse:
     allOf:
-      - $ref: '#/definitions/error_Full'
+      - $ref: '#/definitions/error_Base'
       - type: object
         properties:
           errors:
@@ -3333,9 +3333,9 @@ definitions:
         description: |
           Link to the next page returned in the response.
     title: links_Full
-  error_Full:
+  error_Base:
     type: object
-    title: error_Full
+    title: error_Base
     properties:
       status:
         description: |
@@ -3868,7 +3868,7 @@ responses:
       response will be returned. A new request should be made; however, it could
       fail.
     schema:
-      $ref: '#/definitions/error_Full'
+      $ref: '#/definitions/error_Base'
     examples:
       application/json:
         status: 502
@@ -3893,7 +3893,7 @@ responses:
   403_Unauthorized:
     description: ''
     schema:
-      $ref: '#/definitions/error_Full'
+      $ref: '#/definitions/error_Base'
     examples:
       application/json:
         status: 403
@@ -3904,7 +3904,7 @@ responses:
       Malformed request syntax. Typically need to fix the JSON
       Body to resend successfully.
     schema:
-      $ref: '#/definitions/error_Full'
+      $ref: '#/definitions/error_Base'
     examples:
       application/json:
         status: 400
@@ -3915,7 +3915,7 @@ responses:
       If the requested account resource is not found for the franchise, return a
       404 Not Found.
     schema:
-      $ref: '#/definitions/error_Full'
+      $ref: '#/definitions/error_Base'
     examples:
       application/json:
         status: 404
@@ -3944,7 +3944,7 @@ responses:
       request will need to be made again when it is back up (in several hours
       usually)
     schema:
-      $ref: '#/definitions/error_Full'
+      $ref: '#/definitions/error_Base'
     examples:
       application/json:
         status: 503
