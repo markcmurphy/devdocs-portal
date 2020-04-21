@@ -274,6 +274,10 @@ Orders processed via all payment providers except PayPal Express Checkout and Te
 v3
 ### Refunds
 
+## Store Return Settings
+
+## Returnable Items
+
 ## Order Returns
 v3
 ### Received Items
