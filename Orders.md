@@ -290,7 +290,7 @@ For a list of all associated endpoints, visit the [Order Payment Actions](https:
 For a list of all associated endpoints, visit the [Store Return Settings](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api/store-settings-returns/)reference page.
 
 ## Order Returns
-For a list of all associated endpoints, visit the reference page.
+For a list of all associated endpoints, visit the [Returns](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api/returns )reference page.
 
 ### Received Items
 
