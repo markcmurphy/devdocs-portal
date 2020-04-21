@@ -21,11 +21,11 @@ For a comprehensive list of associated endpoints, visit the [V2 Customers](https
 
 ### Overview
 
-
+Customers APIs handle creating and managing customers and their data. 
 
 ### What is a Customer?
 
-A Customer is a shopper who has created an account on the storefront. Customers data is comprised of attributes about the shopper including their name, email address and physical addresses.
+A Customer is a shopper who has created an account. Customers data is comprised of attributes about the shopper including their name, email address and physical addresses.
 
 ### What is a Subscriber?
 
