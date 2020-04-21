@@ -276,8 +276,6 @@ v3
 
 ## Store Return Settings
 
-## Returnable Items
-
 ## Order Returns
 v3
 ### Received Items
@@ -286,4 +284,3 @@ v3
 
 ## Returnable Items
 
-## Return Settings 
