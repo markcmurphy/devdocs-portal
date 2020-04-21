@@ -34,6 +34,36 @@ Use cases for the Orders API include:
 ### V2 & V3
 Order resources use either the V2 or V3 REST APIs. See the corresponding API reference for each resource to determine the correct path.
 
+
+### Order Currency Fields
+
+* `currency_code` - the display currency used to present prices to the shopper on the storefront.
+* `currency_exchange_rate`: the exchange rate between the store's default currency and the display currency; when the order is created by means of the V2 endpoints, this value is always 1 (only in the storefront this value can be different to 1).
+
+The following additional fields are returned on orders when Multi-Currency is enabled on the store:
+
+* `store_default_currency_code` - the store's default currency
+* `store_default_to_transactional_exchange_rate` - the exchange rate between the store's default currency and the transactional currency used in the order.
+
+**Example:**
+
+```json
+{
+  ...
+  "currency_id": 4,
+  "currency_code": "EUR",
+  "currency_exchange_rate": 1,
+  "default_currency_id": 4,
+  "default_currency_code": "EUR",
+  "store_default_currency_codev": "USD",
+  "store_default_to_transactional_exchange_rate": "100.0000000000"
+  ...
+}
+
+```
+
+
+
 ## Order Products
 Product line items that belong to an order. For a list of all associated endpoints, visit the [Order Products](https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/) reference page.
 
