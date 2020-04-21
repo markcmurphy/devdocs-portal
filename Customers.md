@@ -51,7 +51,7 @@ A subscriber is someone who has signed up for a store’s newsletter.
 To learn more about creating and managing subscribers, see [Subscribers](https://developer.bigcommerce.com/api-reference/store-management/subscribers). 
 
 ### What is a Guest?
-Store settings can be set to allow a shopper to checkout without creating an account. These shoppers are not captured as customers or stored in the BigCommerce system. If you want to capture guest data, using the Storefront APIs can help.
+Store settings can be set to allow a user to checkout without creating an account. These shoppers are not captured as customers or stored in the BigCommerce system. If you want to capture guest data, using the Storefront APIs can help.
 
 ## V2 vs. V3
 
