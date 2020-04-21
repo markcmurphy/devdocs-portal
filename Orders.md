@@ -68,42 +68,9 @@ You can create overrides for calculated values such as product prices, subtotal 
 | Paid or `Refunded` | Unpaid | Unpaid | Tax document voided |
 | Unpaid or `Refunded` | Paid | Paid | Tax document submitted |
 
-
-## Order Currency Fields
-
-* `currency_code` - the display currency used to present prices to the shopper on the storefront.
-* `currency_exchange_rate`: the exchange rate between the store's default currency and the display currency; when the order is created by means of the V2 endpoints, this value is always 1 (only in the storefront this value can be different to 1).
-
-The following additional fields are returned on orders when Multi-Currency is enabled on the store:
-
-* `store_default_currency_code` - the store's default currency
-* `store_default_to_transactional_exchange_rate` - the exchange rate between the store's default currency and the transactional currency used in the order.
-
-**Example:**
-
-```json
-{
-  ...
-  "currency_id": 4,
-  "currency_code": "EUR",
-  "currency_exchange_rate": 1,
-  "default_currency_id": 4,
-  "default_currency_code": "EUR",
-  "store_default_currency_codev": "USD",
-  "store_default_to_transactional_exchange_rate": "100.0000000000"
-  ...
-}
-
-```
-
 ## Order Coupons
 v2
 Coupon code applied to an order.
-
-## Order Messages
-v2
-Messages associated with an order.
-
 
 ## Order Shipments
 We will go over creating a shipment for an order, shipping quotes, shipping carriers and shipping to multiple locations.
@@ -262,6 +229,39 @@ Generating a quote through a shipping carrier is currently not supported. A ship
 
 
 If a store has automatic tax enabled, BigCommerce does not compute sales tax on orders created via the API.
+
+
+## Order Messages
+v2
+Messages associated with an order.
+
+## Order Currency Fields
+
+* `currency_code` - the display currency used to present prices to the shopper on the storefront.
+* `currency_exchange_rate`: the exchange rate between the store's default currency and the display currency; when the order is created by means of the V2 endpoints, this value is always 1 (only in the storefront this value can be different to 1).
+
+The following additional fields are returned on orders when Multi-Currency is enabled on the store:
+
+* `store_default_currency_code` - the store's default currency
+* `store_default_to_transactional_exchange_rate` - the exchange rate between the store's default currency and the transactional currency used in the order.
+
+**Example:**
+
+```json
+{
+  ...
+  "currency_id": 4,
+  "currency_code": "EUR",
+  "currency_exchange_rate": 1,
+  "default_currency_id": 4,
+  "default_currency_code": "EUR",
+  "store_default_currency_codev": "USD",
+  "store_default_to_transactional_exchange_rate": "100.0000000000"
+  ...
+}
+
+```
+
 
 
 ## Order Transactions
