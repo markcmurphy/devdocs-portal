@@ -276,6 +276,9 @@ v3
 
 ## Order Returns
 v3
+### Received Items
+
+### Returned Items
 
 ## Returnable Items
 
