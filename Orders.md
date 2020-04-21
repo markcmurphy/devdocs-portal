@@ -81,7 +81,7 @@ Coupon code applied to an order. For a list of all associated endpoints, visit t
 
 
 ## Order Shipments
-We will go over creating a shipment for an order, shipping quotes, shipping carriers and shipping to multiple locations. For a list of all associated endpoints, visit the reference page.
+We will go over creating a shipment for an order, shipping quotes, shipping carriers and shipping to multiple locations. For a list of all associated endpoints, visit the [Order Shipments](https://developer.bigcommerce.com/api-reference/store-management/orders/order-shipments) reference page.
 
 
 ### Create an Order Shipment
