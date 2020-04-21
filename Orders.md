@@ -242,36 +242,7 @@ If a store has automatic tax enabled, BigCommerce does not compute sales tax on 
 
 ## Order Messages
 v2
-Messages associated with an order. For a list of all associated endpoints, visit the reference page.
-
-
-## Order Currency Fields
-
-* `currency_code` - the display currency used to present prices to the shopper on the storefront.
-* `currency_exchange_rate`: the exchange rate between the store's default currency and the display currency; when the order is created by means of the V2 endpoints, this value is always 1 (only in the storefront this value can be different to 1).
-
-The following additional fields are returned on orders when Multi-Currency is enabled on the store:
-
-* `store_default_currency_code` - the store's default currency
-* `store_default_to_transactional_exchange_rate` - the exchange rate between the store's default currency and the transactional currency used in the order.
-
-**Example:**
-
-```json
-{
-  ...
-  "currency_id": 4,
-  "currency_code": "EUR",
-  "currency_exchange_rate": 1,
-  "default_currency_id": 4,
-  "default_currency_code": "EUR",
-  "store_default_currency_codev": "USD",
-  "store_default_to_transactional_exchange_rate": "100.0000000000"
-  ...
-}
-
-```
-
+Messages associated with an order. For a list of all associated endpoints, visit the [Order Messages](https://developer.bigcommerce.com/api-reference/store-management/orders/order-messages)reference page.
 
 
 ## Order Transactions
