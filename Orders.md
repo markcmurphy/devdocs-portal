@@ -47,7 +47,7 @@ Customer shipping address belonging to an order. For a list of all associated en
 
 
 ### Order Shipping Addresses Quotes
-Read Only. Gets all shipping quotes from an order.
+Gets all shipping quotes from an order.
 
 
 ## Order Taxes
