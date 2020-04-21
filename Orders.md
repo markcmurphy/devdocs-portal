@@ -51,8 +51,8 @@ Read Only. Gets all shipping quotes from an order.
 
 
 ## Order Taxes
-v2
-Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`. For a list of all associated endpoints, visit the reference page.
+
+Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`. For a list of all associated endpoints, visit the [Order Taxes](https://developer.bigcommerce.com/api-reference/store-management/orders/order-taxes) reference page.
 
 
 ### Avalara
