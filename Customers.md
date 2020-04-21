@@ -8,8 +8,9 @@
 - [Customer Attributes](#customer-attributes)
 - [Customer Attribute Values](#customer-attribute-values)
 - [Customer Form Field Values](#customer-form-field-values)
+- [Customer Consent](#customer-consent)
 - [Customer Groups](#customer-groups)
-- [Customers Validate Password](#customers-validate-password)
+- [Customer Passwords](#customer-passwords)
 - [Subscribers](#subscribers)
 
 </div>
@@ -98,6 +99,7 @@ Each customer can have up to 100 name, value pairs stored
 ## Customer Form Field Values
 These are the values customers enter in form fields at checkout via [Account Sign Up Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
 
+## Customer Consent
 
 ## Customer Groups
 
@@ -107,7 +109,7 @@ Customer groups allow you to organize your customers, give them discounts, and r
 <br>
 The Customer Groups feature is only available on certain plans.
 
-## Customers Validate Password
+## Customer Passwords
 Password validation is only available on V2 Customers API. Validation will return a true or false. The V3 Customers API can reset a customers password or input a new password. 
 
 ## Subscribers
