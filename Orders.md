@@ -8,10 +8,10 @@
 - [Order Products](#order-products)
 - [Order Status](#order-status)
 - [Order Shipping Addresses](#order-shipping-addresses)
+- [Order Shipping Addresses Quotes](#order-shipping-addresses-quotes)
 - [Order Taxes](#order-taxes)
 - [Order Coupons](#order-coupons)
 - [Order Shipments](#order-shipments)
-- [Order Shipping Addresses Quotes](#order-shipping-addresses-quotes)
 - [Order Messages](#order-messages)
 - [Order Currency Fields](#order-currency-fields)
 - [Order Transactions](#order-transactions)
@@ -34,6 +34,14 @@ Product line items belonging to an order.
 ## Order Status
 v2
 Each order status represents a state in the order-fulfillment workflow.
+
+## Order Shipping Addresses
+v2
+Customer shipping address belonging to an order.
+
+## Order Shipping Addresses Quotes
+v2
+Read Only. Get’s all shipping quotes from an order.
 
 ## Order Currency Fields
 
@@ -225,14 +233,6 @@ An order can be created with a `shipping_cost_ex_tax` and `shipping_cost_inc_tax
 
 ### Shipping Carrier
 Generating a quote through a shipping carrier is currently not supported. A shipping carrier can be specified when creating an Order Shipment. The quote can be generate elsewhere, then update the `shipping_cost_ex_tax` and `shipping_cost_inc_tax` for the order total to be correct..
-
-## Order Shipping Addresses
-v2
-Customer shipping address belonging to an order.
-
-## Order Shipping Addresses Quotes
-v2
-Read Only. Get’s all shipping quotes from an order.
 
 ## Order Taxes
 v2
