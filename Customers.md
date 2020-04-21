@@ -25,24 +25,30 @@ Customers APIs serve to programmatically create and manage customers and their d
 
 ### What is a Customer?
 
-A Customer is a shopper who has created an account. Customers data is comprised of attributes about the shopper including their name, email address and physical addresses.
+A Customer is a shopper who has created a store account. Customer data consists of such parameters as name, email, and addresses and is stored as a customer record.
 
 ### What is a Subscriber?
 
-A subscriber is someone who has signed up for a store’s newsletter.  
-Subscribers can be added by:
+A subscriber is someone who has signed up for a store’s newsletter.
 
-- Signing up for the newsletter via the signup box located in the footer of most storefront themes
-- Signing up for the newsletter during checkout
-- POSTing to the Subscribers API
+<div class="HubBlock--callout">
+<div class="CalloutBlock--">
+<div class="HubBlock-content">
+    
+### Note
+> Being a subscriber does not automatically make one a customer.
 
-Where possible, the API indicates the origin of the subscriber. If the subscriber was added during checkout, the Order ID is included.
+</div>
+</div>
+</div>
 
 ### Subscribers vs. Customers
 
 - A subscriber is not always a customer. Someone can sign up for the newsletter only and not create an account.
 - A customer is not always a subscriber. Signing up for the newsletter is a separate action from creating an account and purchasing an item.
 - A customer and a subscriber can be the same. If a shopper checks out on the storefront, creates an account and opts into the newsletter, they are a customer and a subscriber.
+
+To learn more about creating and managing subscribers, see [Subscribers](https://developer.bigcommerce.com/api-reference/store-management/subscribers). 
 
 ### What is a Guest?
 Store settings can be set to allow a shopper to complete checkout without creating an account. These shoppers are not captured as customers or stored in the BigCommerce system. If you want to capture guest data, using the Storefront APIs can help.
