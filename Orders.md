@@ -35,7 +35,8 @@ Use cases for the Orders API include:
 Order resources use either the V2 or V3 REST APIs. See the corresponding API reference for each resource to determine the correct path.
 
 ## Order Products
-Product line items that belong to an order.
+Product line items that belong to an order. For a list of all associated endpoints, visit the [Order Products](https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/) reference page.
+
 
 ## Order Status
 v2
