@@ -1,4 +1,4 @@
-## Products
+# Products
 Products are the primary catalog entity, and the primary function of the eCommerce platform is to sell products on the storefront, and other channels.
 
 Products can be physical or digital:
