@@ -4,6 +4,7 @@
 
 ### On this Page	
 - [Orders](#orders)
+- [V2 and V3](#v2-and-v3) 
 - [Order Products](#order-products)
 - [Order Status](#order-status)
 - [Order Shipping Addresses](#order-shipping-addresses)
@@ -29,6 +30,10 @@ Order resources use either the V2 or V3 REST APIs. See the corresponding referen
 ## Order Products
 v2
 Product line items belonging to an order.
+
+## Order Status
+v2
+Each order status represents a state in the order-fulfillment workflow.
 
 ## Order Currency Fields
 
@@ -65,10 +70,6 @@ Coupon code applied to an order.
 v2
 Messages associated with an order.
 
-
-## Order Status
-v2
-Each order status represents a state in the order-fulfillment workflow.
 
 ## Order Shipments
 We will go over creating a shipment for an order, shipping quotes, shipping carriers and shipping to multiple locations.
