@@ -25,7 +25,7 @@
 The Order object contains a record of the purchase agreement between a shopper and a merchant. Orders contain information about the shopper, the item(s) purchased, the shopper's addresses, the payment method used for the order, and more. To learn about creating orders, see [Orders Overview](https://developer.bigcommerce.com/api-docs/orders/orders-overview).
 
 ## V2 & V3
-Order resources use either the V2 or V3 REST APIs. See the corresponding reference for each resource to determine the correct path.
+Order resources use either the V2 or V3 REST APIs. See the corresponding API reference for each resource to determine the correct path.
 
 ## Order Products
 v2
