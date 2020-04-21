@@ -282,13 +282,12 @@ Depending on the payment method used, different details will be available. Not a
 Orders processed via all payment providers except PayPal Express Checkout and Test Gateway will create a transaction that is retrievable via Transactions API. Gift certificates, store credit, and offline payment methods will not create a transaction.
 
 ## Order Payment Actions
-For a list of all associated endpoints, visit the reference page.
+For a list of all associated endpoints, visit the [Order Payment Actions](https://developer.bigcommerce.com/api-reference/store-management/order-transactions/order-refunds/)reference page.
 
 ### Refunds
 
 ## Store Return Settings
-For a list of all associated endpoints, visit the reference page.
-
+For a list of all associated endpoints, visit the [Store Return Settings](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api/store-settings-returns/)reference page.
 
 ## Order Returns
 For a list of all associated endpoints, visit the reference page.
