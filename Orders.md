@@ -37,14 +37,14 @@ Order resources use either the V2 or V3 REST APIs. See the corresponding API ref
 ## Order Products
 Product line items that belong to an order. For a list of all associated endpoints, visit the [Order Products](https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/) reference page.
 
-
 ## Order Status
-v2
-Each order status represents a state in the order-fulfillment workflow.
+
+Each order status represents a state in the order-fulfillment workflow. For a list of all associated endpoints, visit the [Order Status](https://developer.bigcommerce.com/api-reference/store-management/orders/order-status/) reference page.
 
 ## Order Shipping Addresses
 v2
-Customer shipping address belonging to an order.
+Customer shipping address belonging to an order. For a list of all associated endpoints, visit the [Order Shipping Addresses](https://developer.bigcommerce.com/api-reference/store-management/orders/order-shipping-addresses) reference page.
+
 
 ## Order Shipping Addresses Quotes
 v2
@@ -53,7 +53,8 @@ Read Only. Get’s all shipping quotes from an order.
 
 ## Order Taxes
 v2
-Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`.
+Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`. For a list of all associated endpoints, visit the reference page.
+
 
 ### Avalara
 
@@ -77,10 +78,12 @@ You can create overrides for calculated values such as product prices, subtotal 
 
 ## Order Coupons
 v2
-Coupon code applied to an order.
+Coupon code applied to an order. For a list of all associated endpoints, visit the reference page.
+
 
 ## Order Shipments
-We will go over creating a shipment for an order, shipping quotes, shipping carriers and shipping to multiple locations.
+We will go over creating a shipment for an order, shipping quotes, shipping carriers and shipping to multiple locations. For a list of all associated endpoints, visit the reference page.
+
 
 ### Create an Order Shipment
 
@@ -240,7 +243,8 @@ If a store has automatic tax enabled, BigCommerce does not compute sales tax on 
 
 ## Order Messages
 v2
-Messages associated with an order.
+Messages associated with an order. For a list of all associated endpoints, visit the reference page.
+
 
 ## Order Currency Fields
 
@@ -280,16 +284,22 @@ Depending on the payment method used, different details will be available. Not a
 Orders processed via all payment providers except PayPal Express Checkout and Test Gateway will create a transaction that is retrievable via Transactions API. Gift certificates, store credit, and offline payment methods will not create a transaction.
 
 ## Order Payment Actions
-v3
+For a list of all associated endpoints, visit the reference page.
+
 ### Refunds
 
 ## Store Return Settings
+For a list of all associated endpoints, visit the reference page.
+
 
 ## Order Returns
-v3
+For a list of all associated endpoints, visit the reference page.
+
 ### Received Items
 
 ### Returned Items
 
 ## Returnable Items
+For a list of all associated endpoints, visit the reference page.
+
 
