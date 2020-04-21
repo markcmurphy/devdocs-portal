@@ -6,13 +6,11 @@ Products can be physical or digital:
 * Digital - Non-physical products including downloadable files such as computer software, ebooks, music, images, and other media; and services such as haircuts, consulting, or lawn care.
 
 ## Product Bulk Pricing Rules
-
 To encourage shoppers to purchase more and in higher quantities, merchants will often offer quantity discounts on certain products, also known as bulk pricing. Bulk pricing involves offering a particular item or group of items at a lower price based on the number ordered. This is particularly useful to wholesalers and merchants who sell items that are typically bought in bulk.
 
 You can offer bulk pricing for both individual products using Bulk Pricing Rules, and for whole categories of products (including multiple categories) using Automatic Promotions.
 
 ## Product Complex Rules
-
 Complex rules allow merchants to set up conditions and actions based on shopper option selections on the storefront. You can use them to vary the following based on option selections made by the shopper:
 * Price
 * Weight
@@ -29,7 +27,6 @@ Use complex rules when an adjustment should be triggered by:
 * The combination of a particular variant/SKU and a modifier option value.
 
 ### Complex Rules Example:
-
 | If the product is | Variant Option | Variant |Modifier | Complex Rule |
 | -- | -- | -- | -- | -- |
 | T-Shirt | Blue<br>-<br> Small<br> Medium<br> Large| SM-BLU<br> SM-MED <br> SM-LARG| Checkbox<br>Donate to Charity| Checkox<br> Donate to Charity.<br> Add $5
@@ -37,7 +34,6 @@ Use complex rules when an adjustment should be triggered by:
 
 
 ## Product Custom Fields
-
 Custom fields allow you to specify additional product information that will appear on the product page, such as a book's ISBN, a DVD's release date, or a product's material. The location of these fields on the product page may differ depending on your theme.
 
 Custom fields will appear automatically in the product's details if they are defined on the product. A product can have a maximum of 200 custom fields, and they can be created via [CSV import](https://support.bigcommerce.com/s/article/Importing-Exporting-Products?) or through the [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api/product-custom-fields/createcustomfield).
@@ -57,13 +53,10 @@ Images must meet the following requirements. Attempting to import or upload an i
 * The optimal size for your product images is **1280 x 1280 pixels**. Other product images (like thumbnails) will be created from the original image you upload.
 
 ## Product Metafields
-
 Metafields are key and value pair intended for programmaticly storing data against a product or other entity. Data stored in metafields does not appear in the storefront or the control panel. This is useful for when information needs to be passed back and forth between an app and BigCommerce.
 
 ## Product Reviews
-
 Product reviews are comments submitted by customers or viewers of your site directly onto the product page.
 
 ## Product Videos
-
 Videos hosted on YouTube can be added as product videos. 
