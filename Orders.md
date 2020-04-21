@@ -42,13 +42,12 @@ Product line items that belong to an order. For a list of all associated endpoin
 Each order status represents a state in the order-fulfillment workflow. For a list of all associated endpoints, visit the [Order Status](https://developer.bigcommerce.com/api-reference/store-management/orders/order-status/) reference page.
 
 ## Order Shipping Addresses
-v2
+
 Customer shipping address belonging to an order. For a list of all associated endpoints, visit the [Order Shipping Addresses](https://developer.bigcommerce.com/api-reference/store-management/orders/order-shipping-addresses) reference page.
 
 
-## Order Shipping Addresses Quotes
-v2
-Read Only. Get’s all shipping quotes from an order.
+### Order Shipping Addresses Quotes
+Read Only. Gets all shipping quotes from an order.
 
 
 ## Order Taxes
