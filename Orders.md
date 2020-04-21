@@ -43,6 +43,29 @@ Customer shipping address belonging to an order.
 v2
 Read Only. Get’s all shipping quotes from an order.
 
+
+## Order Taxes
+v2
+Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`.
+
+### Avalara
+When the store is subscribed to Avalara Premium, a value of API Tax Override is written to the Order Tax object’s name field.
+
+Abbreviated state names in shipping and billing addresses will prevent tax documents from being submitted to Avalara. To ensure successful Avalara tax-document submission, spell state names out in full. For example, supplying CA as a state name leads to no tax-document submission. Supplying California as a state name leads to a successful submission.
+
+POST or PUT orders on stores with Avalara Premium cause tax documents to be submitted. If a store has subscribed to Avalara Premium, BigCommerce automatically submits tax documents to Avalara when the order achieves a paid status. See Order Status below for a list of paid statuses.
+
+You can create overrides for calculated values such as product prices, subtotal and totals by sending a fixed value in the request. If values are not supplied for these properties, they will be automatically calculated based on the preset store values and tax rules.
+
+| Existing Status | Status Passed | Resultant Status | Avalara Tax Document Submission |
+| - | - | - | - |
+| Any | None | `Pending` | None |
+| Paid or `Refunded` | Paid | Paid | None |
+| Unpaid or `Refunded` | Unpaid | Unpaid | None |
+| Paid or `Refunded` | Unpaid | Unpaid | Tax document voided |
+| Unpaid or `Refunded` | Paid | Paid | Tax document submitted |
+
+
 ## Order Currency Fields
 
 * `currency_code` - the display currency used to present prices to the shopper on the storefront.
@@ -234,28 +257,9 @@ An order can be created with a `shipping_cost_ex_tax` and `shipping_cost_inc_tax
 ### Shipping Carrier
 Generating a quote through a shipping carrier is currently not supported. A shipping carrier can be specified when creating an Order Shipment. The quote can be generate elsewhere, then update the `shipping_cost_ex_tax` and `shipping_cost_inc_tax` for the order total to be correct..
 
-## Order Taxes
-v2
-Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`.
 
 If a store has automatic tax enabled, BigCommerce does not compute sales tax on orders created via the API.
 
-### Avalara
-When the store is subscribed to Avalara Premium, a value of API Tax Override is written to the Order Tax object’s name field.
-
-Abbreviated state names in shipping and billing addresses will prevent tax documents from being submitted to Avalara. To ensure successful Avalara tax-document submission, spell state names out in full. For example, supplying CA as a state name leads to no tax-document submission. Supplying California as a state name leads to a successful submission.
-
-POST or PUT orders on stores with Avalara Premium cause tax documents to be submitted. If a store has subscribed to Avalara Premium, BigCommerce automatically submits tax documents to Avalara when the order achieves a paid status. See Order Status below for a list of paid statuses.
-
-You can create overrides for calculated values such as product prices, subtotal and totals by sending a fixed value in the request. If values are not supplied for these properties, they will be automatically calculated based on the preset store values and tax rules.
-
-| Existing Status | Status Passed | Resultant Status | Avalara Tax Document Submission |
-| - | - | - | - |
-| Any | None | `Pending` | None |
-| Paid or `Refunded` | Paid | Paid | None |
-| Unpaid or `Refunded` | Unpaid | Unpaid | None |
-| Paid or `Refunded` | Unpaid | Unpaid | Tax document voided |
-| Unpaid or `Refunded` | Paid | Paid | Tax document submitted |
 
 ## Order Transactions
 v3
