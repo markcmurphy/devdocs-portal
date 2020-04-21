@@ -16,7 +16,9 @@
 - [Order Currency Fields](#order-currency-fields)
 - [Order Transactions](#order-transactions)
 - [Order Payment Actions](#order-payment-actions)
+- [Store Return Settings](#store-return-settings)
 - [Order Returns](#order-returns)
+- [Returnable Items](#returnable-items)
 
 
 </div>
