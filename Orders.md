@@ -297,6 +297,6 @@ For a list of all associated endpoints, visit the [Returns](https://developer.bi
 ### Returned Items
 
 ## Returnable Items
-For a list of all associated endpoints, visit the reference page.
+For a list of all associated endpoints, visit the [Returnable Items](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api/returnable-items)reference page.
 
 
