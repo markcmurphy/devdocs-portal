@@ -17,11 +17,11 @@
 
 ## Customers
 
-For a comprehensive list of associated endpoints, visit the [V2 Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v2) and [V3 Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v3) reference pages. 
+For a list of associated endpoints, visit the [V2 Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v2) and [V3 Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v3) reference pages. 
 
 ### Overview
 
-Customers APIs handle creating and managing customers and their data. 
+Customers APIs serve to programmatically create and manage customers and their data. 
 
 ### What is a Customer?
 
