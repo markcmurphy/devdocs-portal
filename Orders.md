@@ -31,7 +31,7 @@ Use cases for the Orders API include:
 * Generating shipments for orders 
 * Determine which payment instrument was used to complete an order
 
-## V2 & V3
+### V2 & V3
 Order resources use either the V2 or V3 REST APIs. See the corresponding API reference for each resource to determine the correct path.
 
 ## Order Products
