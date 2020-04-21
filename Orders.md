@@ -19,8 +19,6 @@
 - [Store Return Settings](#store-return-settings)
 - [Order Returns](#order-returns)
 - [Returnable Items](#returnable-items)
-
-
 </div>
 
 ## Orders
