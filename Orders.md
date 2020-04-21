@@ -4,7 +4,6 @@
 
 ### On this Page	
 - [Orders](#orders)
-- [V2 and V3](#v2-and-v3) 
 - [Order Products](#order-products)
 - [Order Status](#order-status)
 - [Order Shipping Addresses](#order-shipping-addresses)
@@ -13,7 +12,6 @@
 - [Order Coupons](#order-coupons)
 - [Order Shipments](#order-shipments)
 - [Order Messages](#order-messages)
-- [Order Currency Fields](#order-currency-fields)
 - [Order Transactions](#order-transactions)
 - [Order Payment Actions](#order-payment-actions)
 - [Store Return Settings](#store-return-settings)
