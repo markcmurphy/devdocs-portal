@@ -28,7 +28,6 @@ The Order object contains a record of the purchase agreement between a shopper a
 Order resources use either the V2 or V3 REST APIs. See the corresponding API reference for each resource to determine the correct path.
 
 ## Order Products
-v2
 Product line items belonging to an order.
 
 ## Order Status
