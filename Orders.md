@@ -49,6 +49,9 @@ v2
 Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`.
 
 ### Avalara
+
+Merchants have the option to enable automatic tax calculation for orders with [Avalara](https://support.bigcommerce.com/s/article/Avalara-Avatax-Sales-Tax-Calculation).
+
 When the store is subscribed to Avalara Premium, a value of API Tax Override is written to the Order Tax object’s name field.
 
 Abbreviated state names in shipping and billing addresses will prevent tax documents from being submitted to Avalara. To ensure successful Avalara tax-document submission, spell state names out in full. For example, supplying CA as a state name leads to no tax-document submission. Supplying California as a state name leads to a successful submission.
