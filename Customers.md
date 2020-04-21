@@ -29,6 +29,21 @@ A Customer is a shopper who has created an account on the storefront. Customers 
 
 ### What is a Subscriber?
 
+A subscriber is someone who has signed up for a store’s newsletter.  
+Subscribers can be added by:
+
+- Signing up for the newsletter via the signup box located in the footer of most storefront themes
+- Signing up for the newsletter during checkout
+- POSTing to the Subscribers API
+
+Where possible, the API indicates the origin of the subscriber. If the subscriber was added during checkout, the Order ID is included.
+
+### Subscribers vs. Customers
+
+- A subscriber is not always a customer. Someone can sign up for the newsletter only and not create an account.
+- A customer is not always a subscriber. Signing up for the newsletter is a separate action from creating an account and purchasing an item.
+- A customer and a subscriber can be the same. If a shopper checks out on the storefront, creates an account and opts into the newsletter, they are a customer and a subscriber.
+
 ### What is a Guest?
 Store settings can be set to allow a shopper to complete checkout without creating an account. These shoppers are not captured as customers or stored in the BigCommerce system. If you want to capture guest data, using the Storefront APIs can help.
 
@@ -111,22 +126,6 @@ The Customer Groups feature is only available on certain plans.
 
 ## Customer Passwords
 Password validation is only available on V2 Customers API. Validation will return a true or false. The V3 Customers API can reset a customers password or input a new password. 
-
-## Subscribers
-A subscriber is someone who has signed up for a store’s newsletter.  
-Subscribers can be added by:
-
-- Signing up for the newsletter via the signup box located in the footer of most storefront themes
-- Signing up for the newsletter during checkout
-- POSTing to the Subscribers API
-
-Where possible, the API indicates the origin of the subscriber. If the subscriber was added during checkout, the Order ID is included.
-
-### Subscribers vs. Customers
-
-- A subscriber is not always a customer. Someone can sign up for the newsletter only and not create an account.
-- A customer is not always a subscriber. Signing up for the newsletter is a separate action from creating an account and purchasing an item.
-- A customer and a subscriber can be the same. If a shopper checks out on the storefront, creates an account and opts into the newsletter, they are a customer and a subscriber.
 
 ## Resources
 
