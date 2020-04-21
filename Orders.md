@@ -29,7 +29,7 @@ Programmatic uses for the Orders API include:
 * Updating order statuses
 * Adding items to an order
 * Generating shipments for orders 
-* 
+* Determine which payment instrument was used to complete an order
 
 ## V2 & V3
 Order resources use either the V2 or V3 REST APIs. See the corresponding API reference for each resource to determine the correct path.
