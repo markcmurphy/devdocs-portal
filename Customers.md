@@ -49,6 +49,10 @@ Resources that can be managed using the V3 Customers API:
 
 A Customer is a shopper who has created a store account. Customer data consists of such parameters as name, email, and addresses and is stored as a customer record.
 
+For V2 `/customers` path opertions, see [Customers V2](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customers/).
+
+For V3 `/customers` path operations, see [Customers V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customers/).
+
 ### What is a Subscriber?
 
 A subscriber is a shopper who has signed up for a store’s newsletter.
@@ -74,6 +78,37 @@ To learn more about creating and managing subscribers, see [Subscribers](https:/
 
 ### What is a Guest?
 Store settings can be set to allow a shopper to checkout without creating an account. These users are not captured as customers or stored in the BigCommerce system. To retrieve guest checkout data, API users may want to review [the Storefront Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api). 
+
+## Customer Addresses
+
+Customer Addresses are the addresses that are associated with a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
+
+
+## Customer Attributes
+Customer Attributes are name-value pairs associated with a Customer. They are readable/writable via API only.
+
+**Note**
+<br>
+Each customer can have up to 100 name, value pairs stored
+
+
+## Customer Form Field Values
+These are the values customers enter in form fields at checkout via [Account Sign Up Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
+
+## Customer Consent
+
+## Customer Groups
+
+Customer groups allow you to organize your customers, give them discounts, and restrict access to specific products or categories. For more information see [Customer Groups](https://support.bigcommerce.com/s/article/Customer-Groups).
+
+**Note**
+<br>
+The Customer Groups feature is only available on certain plans.
+
+## Customer Passwords
+Password validation is only available on V2 Customers API. Validation will return a true or false. The V3 Customers API can reset a customers password or input a new password. 
+
+## Differences Between V2 and V3 Customers APIs
 
 ### Making Requests
 
@@ -110,36 +145,6 @@ On the new Customers endpoint, when creating a customer there are two ways to se
 - A new password can be set under the `authentication > new password` object in a /PUT or /POST. 
 - To have customers reset the password set `force_password_reset` to `true` under `authentication > new password` object in a /PUT or /POST
 
-## Customer Addresses
-
-Customer Addresses are the addresses that are associated with a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
-
-
-## Customer Attributes
-Customer Attributes are a name/value key pair associated with a Customer. They are readable/writable via API only.
-
-**Note**
-<br>
-Each customer can have up to 100 name, value pairs stored
-
-
-## Customer Form Field Values
-These are the values customers enter in form fields at checkout via [Account Sign Up Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
-
-## Customer Consent
-
-## Customer Groups
-
-Customer groups allow you to organize your customers, give them discounts, and restrict access to specific products or categories. For more information see [Customer Groups](https://support.bigcommerce.com/s/article/Customer-Groups).
-
-**Note**
-<br>
-The Customer Groups feature is only available on certain plans.
-
-## Customer Passwords
-Password validation is only available on V2 Customers API. Validation will return a true or false. The V3 Customers API can reset a customers password or input a new password. 
-
-## Differences Between V2 and V3 Customers APIs
 
 ## Resources
 
