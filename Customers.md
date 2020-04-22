@@ -89,12 +89,18 @@ For V3 *Customer Addresses* endpoint operations, see [Customer Addresses V3](htt
 
 
 ## Customer Attributes
-Customer Attributes are name-value pairs associated with a Customer. They are readable/writable via API only.
+Customer Attributes are name-value pairs associated with a Customer. For example, the name can be "Shoe Size" and the value can be 10. Multiple name-value pairs are allowed per customer.
 
-**Note**
-<br>
-Each customer can have up to 100 name, value pairs stored
+<div class="HubBlock--callout">
+<div class="CalloutBlock--">
+<div class="HubBlock-content">
+    
+### Note
+> Each customer can have up to 100 name-value pairs.
 
+</div>
+</div>
+</div>
 
 ## Customer Form Field Values
 These are the values customers enter in form fields at checkout via [Account Sign Up Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
