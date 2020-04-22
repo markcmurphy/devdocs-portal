@@ -123,9 +123,8 @@ For a list of all associated endpoints, visit the [Order Shipments](https://deve
 We will go over creating a shipment for an order, shipping quotes, shipping carriers and shipping to multiple locations. 
 
 
-### Create an Order Shipment
+### Fields required to create an Order Shipment:
 
-**Required Fields:**
 * order_address_id
 * shipping_provider
 * items
