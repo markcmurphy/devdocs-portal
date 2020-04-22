@@ -119,6 +119,7 @@ The coupon code applied to an order. This resource allows you to determine which
 
 ## Order Shipments
 For a list of all associated endpoints, visit the [Order Shipments](https://developer.bigcommerce.com/api-reference/store-management/orders/order-shipments) reference page.
+
 We will go over creating a shipment for an order, shipping quotes, shipping carriers and shipping to multiple locations. 
 
 
