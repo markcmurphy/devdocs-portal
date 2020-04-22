@@ -48,7 +48,7 @@ A subscriber is a shopper who has signed up for a store’s newsletter.
 - A customer is not always a subscriber. Signing up for the newsletter is a separate action from creating an account and purchasing an item.
 - A customer and a subscriber can be the same. If a shopper checks out on the storefront, creates an account and opts into the newsletter, they are a customer and a subscriber.
 
-To learn more about creating and managing subscribers, see [Subscribers](https://developer.bigcommerce.com/api-reference/store-management/subscribers). 
+To learn more about creating and managing subscribers, see [Subscribers](https://developer.bigcommerce.com/api-reference/customer-subscribers/subscribers-api). 
 
 ### What is a Guest?
 Store settings can be set to allow a shopper to checkout without creating an account. These users are not captured as customers or stored in the BigCommerce system. To retrieve guest checkout data, API users may want to review [the Storefront Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api). 
