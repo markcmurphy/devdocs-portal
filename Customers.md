@@ -27,7 +27,7 @@ There are two basePath properties available to the consumers of the Customers AP
 * V2 Customers API: `/stores/{$$.env.store_hash}/v2`
 * V3 Customers API: `/stores/{$$.env.store_hash}/v3`
 
-The main distinction between the V2 and V3 Customers APIs is the resources that a user can manage using either API.
+The main distinction between the V2 and V3 Customers APIs is the resources handled using either API.
 
 ## V2 vs. V3
 
