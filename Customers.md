@@ -108,7 +108,7 @@ For V3 *Customer Attributes* endpoint operations, see [Customer Attributes V3](h
 
 ## Customer Attribute Values
 
-Customer Attribute Values refer to the value field of the Customer Attribute. This resource is used to manage customer attribute values. Using the API, you are to access and edit customer's attribute values.
+Customer Attribute Values refer to the value field of the Customer Attribute. This resource is used to access and edit customer's attribute values.
 
 For V3 *Customer Attribute Values* endpoint operations, see [Customer Attribute Values V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values).
 
