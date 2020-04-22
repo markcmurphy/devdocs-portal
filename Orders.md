@@ -44,23 +44,6 @@ The following additional fields are returned on orders when Multi-Currency is en
 * `store_default_currency_code` - the store's default currency
 * `store_default_to_transactional_exchange_rate` - the exchange rate between the store's default currency and the transactional currency used in the order.
 
-**Example:**
-
-```json
-{
-  ...
-  "currency_id": 4,
-  "currency_code": "EUR",
-  "currency_exchange_rate": 1,
-  "default_currency_id": 4,
-  "default_currency_code": "EUR",
-  "store_default_currency_codev": "USD",
-  "store_default_to_transactional_exchange_rate": "100.0000000000"
-  ...
-}
-
-```
-
 ## Order Products
 For a list of all associated endpoints, visit the [Order Products](https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/) reference page.
 
