@@ -72,7 +72,7 @@ Each order status represents a state in the order-fulfillment workflow. For a li
 
 ## Order Shipping Addresses
 
-Customer shipping address belonging to an order. For a list of all associated endpoints, visit the [Order Shipping Addresses](https://developer.bigcommerce.com/api-reference/store-management/orders/order-shipping-addresses) reference page.
+Customer shipping addresses belonging to an order. For a list of all associated endpoints, visit the [Order Shipping Addresses](https://developer.bigcommerce.com/api-reference/store-management/orders/order-shipping-addresses) reference page.
 
 
 ### Order Shipping Addresses Quotes
