@@ -22,6 +22,11 @@ For a list of associated endpoints, visit the [V2 Customers](https://developer.b
 
 Customers APIs serve to programmatically create and manage customers and their data. 
 
+There are two basePath properties available for the consumers of the Customers APIs:
+
+* V3 Customers API: `/stores/{$$.env.store_hash}/v3`
+* V2 Customers API: `/stores/{$$.env.store_hash}/v2`
+
 ### What is a Customer?
 
 A Customer is a shopper who has created a store account. Customer data consists of such parameters as name, email, and addresses and is stored as a customer record.
