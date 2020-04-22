@@ -66,7 +66,6 @@ The following additional fields are returned on orders when Multi-Currency is en
 Product line items that belong to an order. For a list of all associated endpoints, visit the [Order Products](https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/) reference page.
 
 
-
 ## Order Status
 
 Each order status represents a state in the order-fulfillment workflow. For a list of all associated endpoints, visit the [Order Status](https://developer.bigcommerce.com/api-reference/store-management/orders/order-status/) reference page.
