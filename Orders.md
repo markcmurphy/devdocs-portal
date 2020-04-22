@@ -114,7 +114,7 @@ You can create overrides for calculated values such as product prices, subtotal 
 
 For a list of all associated endpoints, visit the [Order Coupons](https://developer.bigcommerce.com/api-reference/store-management/orders/order-coupons)reference page.
 
-The coupon code applied to an order. Only one coupon can be applied to an order at a time. This resource allows you to determine which type of coupon code was used for the order. 
+The coupon code applied to an order. This resource allows you to determine which type of coupon code was used for the order. Only one coupon can be applied to an order at a time. 
 
 
 ## Order Shipments
