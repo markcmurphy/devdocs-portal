@@ -15,7 +15,7 @@
 
 </div>
 
-
+</br>
 For a list of associated endpoints, visit the [V2 Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v2) and [V3 Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v3) reference pages. 
 
 ## Overview
