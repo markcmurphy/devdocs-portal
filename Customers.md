@@ -49,9 +49,9 @@ Resources that can be managed using the V3 Customers API:
 
 A Customer is a shopper who has created a store account. Customer data consists of such parameters as name, email, and addresses and is stored as a customer record.
 
-For V2 `/customers` path opertions, see [Customers V2](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customers/).
+For V2 Customers endpoint opertions, see [Customers V2](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customers/).
 
-For V3 `/customers` path operations, see [Customers V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customers/).
+For V3 Customers endpoint operations, see [Customers V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customers/).
 
 ### What is a Subscriber?
 
@@ -84,6 +84,10 @@ Store settings can be set to allow a shopper to checkout without creating an acc
 Customer Addresses are the addresses that are associated with a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
 
 Customer Addresses consist of a customer's address and phone number.Customers may have multiple addresses stored against them. 
+
+For V2 `/customers` path opertions, see [Customers V2](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customers/).
+
+For V3 `/customers` path operations, see [Customers V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customers/).
 
 
 ## Customer Attributes
