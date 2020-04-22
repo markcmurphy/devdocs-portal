@@ -33,15 +33,16 @@ The main distinction between the V2 and V3 Customers APIs pertains to the resour
 
 The main distinction between Customers V2 and V3 is you can only manage certain resources using either API.
 
-V2 Customers API allows you to manage the following resources:
+Resources that can be managed using the V2 Customers API:
 * Customers
 * Customer Addresses
 * Customer Groups
 * Customer Passwords
 
-V3 Customers API allows you to manage the following:
+Resources that can be managed using the V3 Customers API:
+* Customers
 * Customer Addresses
-* Cusrtomer Attributes
+* Customer Attributes
 * Customer Form Fields
 * Customer Consent
 
