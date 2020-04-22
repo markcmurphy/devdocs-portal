@@ -63,7 +63,8 @@ The following additional fields are returned on orders when Multi-Currency is en
 
 
 ## Order Products
-Product line items that belong to an order. This resource includes product details like pricing, options and associated discounts. For a list of all associated endpoints, visit the [Order Products](https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/) reference page.
+For a list of all associated endpoints, visit the [Order Products](https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/) reference page.
+Product line items that belong to an order. This resource includes product details like pricing, options and associated discounts.
 
 
 ## Order Status
@@ -72,7 +73,9 @@ Each order status represents a state in the order-fulfillment workflow. For a li
 
 ## Order Shipping Addresses
 
-Customer shipping addresses belonging to an order. For a list of all associated endpoints, visit the [Order Shipping Addresses](https://developer.bigcommerce.com/api-reference/store-management/orders/order-shipping-addresses) reference page.
+Customer shipping addresses associated with an order. Orders can have multiple shipping addresses. 
+
+For a list of all associated endpoints, visit the [Order Shipping Addresses](https://developer.bigcommerce.com/api-reference/store-management/orders/order-shipping-addresses) reference page.
 
 
 ### Order Shipping Addresses Quotes
