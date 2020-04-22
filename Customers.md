@@ -11,6 +11,7 @@
 - [Customer Consent](#customer-consent)
 - [Customer Groups](#customer-groups)
 - [Customer Passwords](#customer-passwords)
+- [Differences Between V2 and V3](#differences-between-v2-and-v3-customers-api)
 
 </div>
 
@@ -136,6 +137,8 @@ The Customer Groups feature is only available on certain plans.
 
 ## Customer Passwords
 Password validation is only available on V2 Customers API. Validation will return a true or false. The V3 Customers API can reset a customers password or input a new password. 
+
+## Differences Between V2 and V3 Customers APIs
 
 ## Resources
 
