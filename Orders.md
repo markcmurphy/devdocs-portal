@@ -61,7 +61,6 @@ The following additional fields are returned on orders when Multi-Currency is en
 ```
 
 
-
 ## Order Products
 Product line items that belong to an order. For a list of all associated endpoints, visit the [Order Products](https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/) reference page.
 
