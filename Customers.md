@@ -18,14 +18,32 @@
 
 For a list of associated endpoints, visit the [V2 Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v2) and [V3 Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v3) reference pages. 
 
-### Overview
+## Overview
 
 Customers APIs serve to programmatically create and manage customers and their data. 
 
-There are two basePath properties available for the consumers of the Customers APIs:
+There are two basePath properties available to the consumers of the Customers APIs:
 
-* V3 Customers API: `/stores/{$$.env.store_hash}/v3`
 * V2 Customers API: `/stores/{$$.env.store_hash}/v2`
+* V3 Customers API: `/stores/{$$.env.store_hash}/v3`
+
+The main distinction between the V2 and V3 Customers APIs pertains to the resources that a user can manage using either API.
+
+## V2 vs. V3
+
+The main distinction between Customers V2 and V3 is you can only manage certain resources using either API.
+
+V2 Customers API allows you to manage the following resources:
+* Customers
+* Customer Addresses
+* Customer Groups
+* Customer Passwords
+
+V3 Customers API allows you to manage the following:
+* Customer Addresses
+* Cusrtomer Attributes
+* Customer Form Fields
+* Customer Consent
 
 ### What is a Customer?
 
@@ -56,22 +74,6 @@ To learn more about creating and managing subscribers, see [Subscribers](https:/
 
 ### What is a Guest?
 Store settings can be set to allow a shopper to checkout without creating an account. These users are not captured as customers or stored in the BigCommerce system. To retrieve guest checkout data, API users may want to review [the Storefront Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/storefront-checkout-api). 
-
-## V2 vs. V3
-
-The main distinction between Customers V2 and V3 is you can only manage certain resources using either API.
-
-V2 Customers API allows you to manage the following resources:
-* Customers
-* Customer Addresses
-* Customer Groups
-* Customer Passwords
-
-V3 Customers API allows you to manage the following:
-* Customer Addresses
-* Cusrtomer Attributes
-* Customer Form Fields
-* Customer Consent
 
 ### Making Requests
 
