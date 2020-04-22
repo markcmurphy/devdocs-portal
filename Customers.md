@@ -89,14 +89,16 @@ For V3 *Customer Addresses* endpoint operations, see [Customer Addresses V3](htt
 
 
 ## Customer Attributes
-Customer Attributes are name-value pairs associated with a Customer. For example, the name can be "Shoe Size" and the value can be 10. Multiple name-value pairs are allowed per customer.
+Customer Attributes are name-value pairs associated with a Customer. For example, the name can be "Shoe Size" and the value can be 10.
+
+Customer Attributes are created independently of the customer and are then added to the customer programmatically. 
 
 <div class="HubBlock--callout">
 <div class="CalloutBlock--">
 <div class="HubBlock-content">
     
 ### Note
-> Each customer can have up to 100 name-value pairs.
+> Multiple name-value pairs are allowed per customer. Each customer can have up to 100 name-value pairs.
 
 </div>
 </div>
