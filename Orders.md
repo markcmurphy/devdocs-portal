@@ -32,7 +32,6 @@ Use cases for the Orders API include:
 ### V2 & V3
 Order resources use either the V2 or V3 REST APIs. See the corresponding API reference for each resource to determine the correct path.
 
-
 ### Order Currency Fields
 
 Order currency fields contain information about the store's currency settings.
@@ -65,6 +64,8 @@ The following additional fields are returned on orders when Multi-Currency is en
 
 ## Order Products
 Product line items that belong to an order. For a list of all associated endpoints, visit the [Order Products](https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/) reference page.
+
+
 
 ## Order Status
 
