@@ -129,7 +129,7 @@ We will go over creating a shipment for an order, shipping quotes, shipping carr
 * shipping_provider
 * items
 
-Once an Order has products, a billing address and at least one shipping address a order shipment can be created. Order shipments are a way to mark an order as shipped with the shipping information.
+Once an Order has products, a billing address and at least one shipping address, an order shipment can be created. Order shipments are a way to mark an order as shipped with the shipping information.
 
 To get the `order_address_id`  use the ID returned in [Order Shipping Address](https://developer.bigcommerce.com/api-reference/orders/orders-api/order-shipping-addresses/getallshippingaddresses).
 
