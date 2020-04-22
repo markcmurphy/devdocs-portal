@@ -35,6 +35,8 @@ Order resources use either the V2 or V3 REST APIs. See the corresponding API ref
 
 ### Order Currency Fields
 
+Order currency fields contain information about the store's currency settings.
+
 * `currency_code` - the display currency used to present prices to the shopper on the storefront.
 * `currency_exchange_rate`: the exchange rate between the store's default currency and the display currency; when the order is created by means of the V2 endpoints, this value is always 1 (only in the storefront this value can be different to 1).
 
