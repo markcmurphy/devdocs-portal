@@ -104,6 +104,8 @@ Customer Attributes are created independently of the customer and are then added
 </div>
 </div>
 
+For V3 *Customer Attributes* endpoint operations, see [Customer Attributes V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attributes).
+
 ## Customer Form Field Values
 These are the values customers enter in form fields at checkout via [Account Sign Up Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
 
