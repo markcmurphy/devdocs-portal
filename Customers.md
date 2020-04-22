@@ -29,7 +29,7 @@ A Customer is a shopper who has created a store account. Customer data consists 
 
 ### What is a Subscriber?
 
-A subscriber is someone who has signed up for a store’s newsletter.
+A subscriber is a shopper who has signed up for a store’s newsletter.
 
 <div class="HubBlock--callout">
 <div class="CalloutBlock--">
