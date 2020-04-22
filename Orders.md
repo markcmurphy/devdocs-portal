@@ -161,13 +161,13 @@ An order can be created with a `shipping_cost_ex_tax` and `shipping_cost_inc_tax
 ### Shipping Carrier
 Generating a quote through a shipping carrier is currently not supported. A shipping carrier can be specified when creating an Order Shipment. The quote can be generate elsewhere, then update the `shipping_cost_ex_tax` and `shipping_cost_inc_tax` for the order total to be correct..
 
-
 If a store has automatic tax enabled, BigCommerce does not compute sales tax on orders created via the API.
 
 
 ## Order Messages
-v2
-Messages associated with an order. For a list of all associated endpoints, visit the [Order Messages](https://developer.bigcommerce.com/api-reference/store-management/orders/order-messages)reference page.
+For a list of all associated endpoints, visit the [Order Messages](https://developer.bigcommerce.com/api-reference/store-management/orders/order-messages)reference page.
+
+Messages associated with an order. Messages can be submitted to by shoppers via their store accounts. These appear for merchants in the store Control Panel.
 
 
 ## Order Transactions
