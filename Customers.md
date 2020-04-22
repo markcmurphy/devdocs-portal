@@ -83,6 +83,8 @@ Store settings can be set to allow a shopper to checkout without creating an acc
 
 Customer Addresses are the addresses that are associated with a Customer Account when customers enter a new billing or shipping address at checkout. They can also be set by the customer while logged in to their store account.
 
+Customer Addresses consist of a customer's address and phone number.Customers may have multiple addresses stored against them. 
+
 
 ## Customer Attributes
 Customer Attributes are name-value pairs associated with a Customer. They are readable/writable via API only.
@@ -94,6 +96,8 @@ Each customer can have up to 100 name, value pairs stored
 
 ## Customer Form Field Values
 These are the values customers enter in form fields at checkout via [Account Sign Up Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
+
+Customer Form Fields Values are fields on either the customer address or customer signup that accept any string data. An example of a signup field can have a customer input a Wholesaler ID or for an address field, have them input any special delivery instructions. Creating form fields needs to be done from the Control Panel. Using the API you are able to access and edit the values for the fields on your Customer and Customer Address records.
 
 ## Customer Consent
 
