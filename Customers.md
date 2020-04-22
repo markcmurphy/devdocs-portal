@@ -14,7 +14,6 @@
 
 </div>
 
-## Customers
 
 For a list of associated endpoints, visit the [V2 Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v2) and [V3 Customers](https://developer.bigcommerce.com/api-reference/store-management/customers-v3) reference pages. 
 
@@ -29,10 +28,6 @@ There are two basePath properties available to the consumers of the Customers AP
 
 The main distinction between the V2 and V3 Customers APIs is the resources handled by either API.
 
-## V2 vs. V3
-
-The main distinction between Customers V2 and V3 is you can only manage certain resources using either API.
-
 Resources that can be managed using the V2 Customers API:
 * Customers
 * Customer Addresses
@@ -45,6 +40,8 @@ Resources that can be managed using the V3 Customers API:
 * Customer Attributes
 * Customer Form Fields
 * Customer Consent
+
+## Customers
 
 ### What is a Customer?
 
