@@ -61,7 +61,6 @@ The following additional fields are returned on orders when Multi-Currency is en
 
 ```
 
-
 ## Order Products
 For a list of all associated endpoints, visit the [Order Products](https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/) reference page.
 
@@ -81,7 +80,7 @@ For a list of all associated endpoints, visit the [Order Shipping Addresses](htt
 
 
 ### Order Shipping Addresses Quotes
-Gets all shipping quotes from an order.
+Gets all shipping quotes from an order. Shipping Quotes depend on 
 
 
 ## Order Taxes
