@@ -70,7 +70,8 @@ Product line items that belong to an order. This resource includes product detai
 
 ## Order Status
 
-Each order status represents a state in the order-fulfillment workflow. For a list of all associated endpoints, visit the [Order Status](https://developer.bigcommerce.com/api-reference/store-management/orders/order-status/) reference page.
+For a list of all associated endpoints, visit the [Order Status](https://developer.bigcommerce.com/api-reference/store-management/orders/order-status/) reference page.
+Each order status represents a state in the order-fulfillment workflow. 
 
 ## Order Shipping Addresses
 
