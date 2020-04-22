@@ -11,7 +11,6 @@
 - [Customer Consent](#customer-consent)
 - [Customer Groups](#customer-groups)
 - [Customer Passwords](#customer-passwords)
-- [Subscribers](#subscribers)
 
 </div>
 
