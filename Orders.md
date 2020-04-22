@@ -80,7 +80,7 @@ For a list of all associated endpoints, visit the [Order Shipping Addresses](htt
 
 
 ### Order Shipping Addresses Quotes
-Gets all shipping quotes from an order. Shipping Quotes depend on 
+Gets all shipping quotes from an order. Shipping Quotes associated with orders are dependant on the store's shipping method settings.
 
 
 ## Order Taxes
