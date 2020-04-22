@@ -182,7 +182,7 @@ Orders processed via all payment providers except PayPal Express Checkout and Te
 For a list of all associated endpoints, visit the [Order Payment Actions](https://developer.bigcommerce.com/api-reference/store-management/order-transactions/order-refunds/)reference page.
 
 ### Refunds
-Merchants can refund orders or issue partial refunds of orders in the Control Panel. Whether funds will be returned to a customer's bank account is determined by which payment gateway was used for the order. See [Supported Payment Gateways](https://support.bigcommerce.com/s/article/Processing-Refunds#payment-gateways) to L=learn more about refunds and payment gateways.
+Merchants can refund orders or issue partial refunds of orders in the Control Panel. Whether funds will be returned to a customer's bank account is determined by which payment gateway was used for the order. See [Supported Payment Gateways](https://support.bigcommerce.com/s/article/Processing-Refunds#payment-gateways) to learn more about refunds and payment gateways.
 
 ## Store Return Settings
 For a list of all associated endpoints, visit the [Store Return Settings](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api/store-settings-returns/)reference page.
