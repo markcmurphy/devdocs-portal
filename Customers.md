@@ -84,9 +84,9 @@ Store settings can be set to allow a shopper to checkout without creating an acc
 
 Customer Addresses refer to the mailing address and the phone number associated with a Customer Account. Customers may have multiple addresses stored against them.
 
-For V2 *Customer Addresses* endpoint opertions, see [Customer Addresses V2](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-addresses).
+For *V2 Customer Addresses* endpoint opertions, see [Customer Addresses V2](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-addresses).
 
-For V3 *Customer Addresses* endpoint operations, see [Customer Addresses V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-addresses).
+For *V3 Customer Addresses* endpoint operations, see [Customer Addresses V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-addresses).
 
 
 ## Customer Attributes
@@ -105,18 +105,20 @@ Customer Attributes are created independently of the customer and are then added
 </div>
 </div>
 
-For V3 *Customer Attributes* endpoint operations, see [Customer Attributes V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attributes).
+For *V3 Customer Attributes* endpoint operations, see [Customer Attributes V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attributes).
 
 ## Customer Attribute Values
 
 Customer Attribute Values is used to access and edit the `value` property of an attribute on a Customer.   
 
-For V3 *Customer Attribute Values* endpoint operations, see [Customer Attribute Values V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values).
+For *V3 Customer Attribute Values* endpoint operations, see [Customer Attribute Values V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values).
 
 ## Customer Form Field Values
 These are the values customers enter in form fields at checkout via [Account Sign Up Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
 
 Customer Form Fields Values are fields on either the customer address or customer signup that accept any string data. An example of a signup field can have a customer input a Wholesaler ID or for an address field, have them input any special delivery instructions. Creating form fields needs to be done from the Control Panel. Using the API you are able to access and edit the values for the fields on your Customer and Customer Address records.
+
+For *V3 Customer Form Fields* endpoint operations, see [Customer Form Fields V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-form-fields).
 
 ## Customer Consent
 
