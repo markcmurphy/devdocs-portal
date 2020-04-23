@@ -40,6 +40,7 @@ Resources that can be managed using the V3 Customers API:
 * Customers
 * Customer Addresses
 * Customer Attributes
+* Customer Attribute Values
 * Customer Form Fields
 * Customer Consent
 
@@ -108,7 +109,7 @@ For V3 *Customer Attributes* endpoint operations, see [Customer Attributes V3](h
 
 ## Customer Attribute Values
 
-Customer Attribute Values refer to the value field of a Customer Attribute. This resource is used to access and edit customer's attribute values.
+Customer Attribute Values is used to access and edit the `value` property of an attribute on a Customer.   
 
 For V3 *Customer Attribute Values* endpoint operations, see [Customer Attribute Values V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values).
 
