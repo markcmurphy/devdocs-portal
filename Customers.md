@@ -143,7 +143,20 @@ For *V3 Customer Consent* endpoint operations, see [Customer Consent](https://de
 
 ## Customer Groups
 
-Customer groups allow you to organize your customers, give them discounts, and restrict access to specific products or categories. For more information see [Customer Groups](https://support.bigcommerce.com/s/article/Customer-Groups).
+Customer Groups allow you to organize your customers, provide targeted discounts, and restrict access to specific products or categories.
+
+For *V2 Customer Groups* endpoint operations, see [Customer Groups](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-groups).
+
+<div class="HubBlock--callout">
+<div class="CalloutBlock--">
+<div class="HubBlock-content">
+    
+### Note
+> The Customer Groups feature is not available on the Standard plan.
+
+</div>
+</div>
+</div>
 
 **Note**
 <br>
