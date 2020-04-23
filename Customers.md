@@ -88,7 +88,6 @@ For *V2 Customer Addresses* endpoint opertions, see [Customer Addresses V2](http
 
 For *V3 Customer Addresses* endpoint operations, see [Customer Addresses V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-addresses).
 
-
 ## Customer Attributes
 Customer Attributes are name-value pairs associated with a Customer. For example, the name can be "Shoe Size" and the value can be 10.
 
@@ -105,7 +104,7 @@ Customer Attributes are created independently of the customer and are then added
 </div>
 </div>
 
-For *V3 Customer Attributes* endpoint operations, see [Customer Attributes V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attributes).
+For *V3 Customer Attributes* endpoint operations, see [Customer Attributes](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attributes).
 
 ## Customer Attribute Values
 
@@ -132,9 +131,15 @@ Customer Form Field Values is used to access and edit customer signup and addres
 
 To learn more about adding and editing fields from the Control Panel, see [Editing Form Fields](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
 
-For *V3 Customer Form Field Values* endpoint operations, see [Customer Form Fields V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-form-fields).
+For *V3 Customer Form Field Values* endpoint operations, see [Customer Form Fields](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-form-fields).
 
 ## Customer Consent
+
+Customer Consent allows merchants to access and manage customer's consent to store policies. 
+
+To learn more about requesting consent from the Control Panel, see [Requesting Consent](https://support.bigcommerce.com/s/article/Privacy-Policy#consent).
+
+For *V3 Customer Consent* endpoint operations, see [Customer Consent](https://developer.bigcommerce.com/api-reference/store-management/customers-v3/customer-consent).
 
 ## Customer Groups
 
