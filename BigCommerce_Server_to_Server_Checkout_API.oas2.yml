@@ -495,14 +495,7 @@ paths:
     post:
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Order'
-          examples:
-            application/json:
-              data:
-                id: 85424895
-              meta: {}
+          $ref: '#/responses/CheckoutResponse'
       summary: Create an Order
       description: >-
         Creates an *Order*. 
@@ -536,6 +529,10 @@ paths:
           type: string
           required: true
           description: Id of the Checkout
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/Order'
       tags:
         - Checkout Orders
       operationId: createAnOrder
