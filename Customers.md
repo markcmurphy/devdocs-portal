@@ -204,18 +204,17 @@ The V3 Customers API provides two ways to manage customer passwords.
 
 ## Resources
 
-### Related Endpoints
+### Related APIs
   [Customer Login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
-- [Current Customer API](https://developer.bigcommerce.com/api-docs/customers/current-customer-api)
-- [Customers API](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api)
-- [Customer Groups](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-groups/getallcustomergroups) (Customer V2 API)
-- [Password Validation](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-passwords/validatecustomerpassword) (Customer V2 API)
-- [Password Confirmation](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customers/createanewcustomer) (Customer V2 API)
+	[V2 Customers API](https://developer.bigcommerce.com/api-reference/store-management/customers-v2)
+	[V3 Customers API](https://developer.bigcommerce.com/api-reference/store-management/customers-v3)
 - [Subscribers API](https://developer.bigcommerce.com/api-reference/customer-subscribers/subscribers-api)
 
 ### Webhooks
 - [Customers](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)
 
 ### Related Articles
-- [Adding and Editing Fields in the Account Signup Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields#account-fields) (Knowledge Base)
+- [Editing Form Fields](https://support.bigcommerce.com/s/article/Editing-Form-Fields)  (Knowledge Base)
 - [Checkout Settings](https://support.bigcommerce.com/s/article/Checkout-Settings#checkout-settings) (Knowledge Base)
+- [Customer Groups](https://support.bigcommerce.com/s/article/Customer-Groups) (Knowledge Base)
+- [Requiring Consent](https://support.bigcommerce.com/s/article/Privacy-Policy#consent) (Knowledge Base)
