@@ -179,64 +179,7 @@ paths:
           required: true
           description: ''
           schema:
-            title: Address Properties
-            type: object
-            properties:
-              first_name:
-                description: ''
-                type: string
-              last_name:
-                description: ''
-                type: string
-              email:
-                type: string
-                description: ''
-              company:
-                description: ''
-                type: string
-              address1:
-                description: ''
-                type: string
-              address2:
-                description: ''
-                type: string
-              city:
-                description: ''
-                type: string
-              state_or_province:
-                description: Represents state or province.
-                type: string
-              state_or_province_code:
-                description: ''
-                type: string
-              country_code:
-                type: string
-                description: ''
-              postal_code:
-                description: ''
-                type: string
-              phone:
-                description: ''
-                type: string
-                pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
-              custom_fields:
-                description: ''
-                type: array
-                items:
-                  title: Custom Field
-                  type: object
-                  properties:
-                    field_id:
-                      description: ''
-                      type: string
-                    field_value:
-                      description: >-
-                        This can also be an array for fields that need to
-                        support list of values (e.g., a set of check boxes.)
-                      type: string
-            required:
-              - email
-              - country_code
+            $ref: '#/definitions/AddressProperties'
           x-examples:
             application/json:
               email: jane@email.com
