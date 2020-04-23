@@ -145,8 +145,6 @@ For *V3 Customer Consent* endpoint operations, see [Customer Consent](https://de
 
 Customer Groups allow you to organize your customers, provide targeted discounts, and restrict access to specific products or categories.
 
-For *V2 Customer Groups* endpoint operations, see [Customer Groups](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-groups).
-
 <div class="HubBlock--callout">
 <div class="CalloutBlock--">
 <div class="HubBlock-content">
@@ -158,12 +156,13 @@ For *V2 Customer Groups* endpoint operations, see [Customer Groups](https://deve
 </div>
 </div>
 
-**Note**
-<br>
-The Customer Groups feature is only available on certain plans.
+For *V2 Customer Groups* endpoint operations, see [Customer Groups](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-groups).
 
 ## Customer Passwords
-Password validation is only available on V2 Customers API. Validation will return a true or false. The V3 Customers API can reset a customers password or input a new password. 
+
+Customer Passwords endpoint is used to validate customer passwords. It returns a true/false response indicating if the provided password matches the customer's current password. 
+
+For *V2 Customer Passwords* endpoint operation, see [Validate a Password](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-passwords/validatecustomerpassword).
 
 ## Differences Between V2 and V3 Customers APIs
 
