@@ -114,11 +114,25 @@ Customer Attribute Values is used to access and edit the `value` property of an 
 For *V3 Customer Attribute Values* endpoint operations, see [Customer Attribute Values V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values).
 
 ## Customer Form Field Values
-These are the values customers enter in form fields at checkout via [Account Sign Up Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
 
-Customer Form Fields Values are fields on either the customer address or customer signup that accept any string data. An example of a signup field can have a customer input a Wholesaler ID or for an address field, have them input any special delivery instructions. Creating form fields needs to be done from the Control Panel. Using the API you are able to access and edit the values for the fields on your Customer and Customer Address records.
+Customer Form Field Values is used to access and edit customer signup and address values filled out by a customer at checkout. For example, a Wholesaler ID (a signup field) and Special Delivey Instructions (an address field). 
 
-For *V3 Customer Form Fields* endpoint operations, see [Customer Form Fields V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-form-fields).
+<div class="HubBlock--callout">
+<div class="CalloutBlock--">
+<div class="HubBlock-content">
+    
+### Note
+> Creating form fields is done from the Control Panel.
+
+</div>
+</div>
+</div>
+
+</br>
+
+To learn more about adding and editing fields from the Control Panel, see [Editing Form Fields](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
+
+For *V3 Customer Form Field Values* endpoint operations, see [Customer Form Fields V3](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-form-fields).
 
 ## Customer Consent
 
