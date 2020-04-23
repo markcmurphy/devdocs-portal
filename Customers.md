@@ -12,6 +12,7 @@
 - [Customer Groups](#customer-groups)
 - [Customer Passwords](#customer-passwords)
 - [Differences Between V2 and V3](#differences-between-v2-and-v3-customers-api)
+- [Related](#related)
 
 </div>
 
@@ -202,9 +203,9 @@ The V3 Customers API provides two ways to manage customer passwords.
 - A new password can be set under `authentication > new password` in a PUT or POST request. 
 - To have customers reset the password, change `force_password_reset` to `true` under `authentication > new password` in a PUT or POST request.
 
-## Resources
+## Related
 
-### Related APIs
+### APIs
 - [Customer Login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
 - [V2 Customers API](https://developer.bigcommerce.com/api-reference/store-management/customers-v2)
 - [V3 Customers API](https://developer.bigcommerce.com/api-reference/store-management/customers-v3)
@@ -213,7 +214,7 @@ The V3 Customers API provides two ways to manage customer passwords.
 ### Webhooks
 - [Customers](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)
 
-### Related Articles
+### Articles
 - [Editing Form Fields](https://support.bigcommerce.com/s/article/Editing-Form-Fields)  (Knowledge Base)
 - [Checkout Settings](https://support.bigcommerce.com/s/article/Checkout-Settings#checkout-settings) (Knowledge Base)
 - [Customer Groups](https://support.bigcommerce.com/s/article/Customer-Groups) (Knowledge Base)
