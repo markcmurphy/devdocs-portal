@@ -315,94 +315,7 @@ paths:
           required: true
           description: ''
           schema:
-            title: Update Consignment Request
-            description: >-
-              Shipping address and line items can be updated in one request.
-              Line items have to be passed when updating shipping address.
-              Shipping option ID has to be updated in a separate request, since
-              changing the address or line items can invalidate the previously
-              available shipping options.
-            type: object
-            properties:
-              shipping_address:
-                title: Address Properties
-                type: object
-                properties:
-                  first_name:
-                    description: ''
-                    type: string
-                  last_name:
-                    description: ''
-                    type: string
-                  email:
-                    type: string
-                    description: ''
-                  company:
-                    description: ''
-                    type: string
-                  address1:
-                    description: ''
-                    type: string
-                  address2:
-                    description: ''
-                    type: string
-                  city:
-                    description: ''
-                    type: string
-                  state_or_province:
-                    description: Represents state or province.
-                    type: string
-                  state_or_province_code:
-                    description: ''
-                    type: string
-                  country_code:
-                    type: string
-                    description: ''
-                  postal_code:
-                    description: ''
-                    type: string
-                  phone:
-                    description: ''
-                    type: string
-                    pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
-                  custom_fields:
-                    description: ''
-                    type: array
-                    items:
-                      title: Custom Field
-                      type: object
-                      properties:
-                        field_id:
-                          description: ''
-                          type: string
-                        field_value:
-                          description: >-
-                            This can also be an array for fields that need to
-                            support list of values (e.g., a set of check boxes.)
-                          type: string
-                required:
-                  - email
-                  - country_code
-              line_items:
-                description: ''
-                type: array
-                items:
-                  title: Consignment Line Item
-                  type: object
-                  properties:
-                    item_id:
-                      description: Corresponds to `line_items` > `id in Checkout response.
-                      type: string
-                    quantity:
-                      description: ''
-                      type: integer
-                      format: int32
-                  required:
-                    - item_id
-                    - quantity
-              shipping_option_id:
-                description: ''
-                type: string
+            $ref: '#/definitions/UpdateConsignmentRequest'
           x-examples:
             application/json:
               shipping_address:
@@ -526,12 +439,7 @@ paths:
           required: true
           description: ''
           schema:
-            title: Coupon Code Request
-            type: object
-            properties:
-              coupon_code:
-                description: ''
-                type: string
+            $ref: '#/definitions/CouponCodeRequest'
           x-examples:
             application/json:
               coupon_code: S2549JM0Y
