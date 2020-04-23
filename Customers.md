@@ -181,7 +181,7 @@ Single Customer on V2
 
 ### Queries
 
-With the V3 Customers API, queries become a powerful tool. Instead of using a different endpoint to get customer sub-resources, there is one GET endpoint per resource with filters to refine the request. 
+With the V3 Customers API, queries become a powerful tool. Instead of using different endpoints to get customer subresources, there is one GET endpoint per resource with filters to refine the request. 
 
 **Get Customer Addresses**
 
@@ -193,14 +193,14 @@ Get Customer Address by name and company on V2
 
 ### Upsert
 
-Upsert is used for Form Field Values and Customer Attributes. Upsert looks for a match to the existing record, and if one is found, then it makes an update. If a match is not found, it creates a new record.
+Upsert is used for Customer Attributes and Form Field Values. Upsert looks for a match to the existing record and, if found, makes an update. If a match is not found, it creates a new record.
 
 ### Authentication Object
 
-On the new Customers endpoint, when creating a customer there are two ways to set customers passwords. 
-- A new password can be set under the `authentication > new password` object in a /PUT or /POST. 
-- To have customers reset the password set `force_password_reset` to `true` under `authentication > new password` object in a /PUT or /POST
-
+The V3 Customers API provides two ways to manage customer passwords.
+ 
+- A new password can be set under`authentication > new password` in a PUT or POST request. 
+- To have customers reset the password, change `force_password_reset` to `true` under `authentication > new password` in a PUT or POST request.
 
 ## Resources
 
