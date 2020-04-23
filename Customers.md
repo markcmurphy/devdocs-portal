@@ -205,9 +205,9 @@ The V3 Customers API provides two ways to manage customer passwords.
 ## Resources
 
 ### Related APIs
-  [Customer Login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
-	[V2 Customers API](https://developer.bigcommerce.com/api-reference/store-management/customers-v2)
-	[V3 Customers API](https://developer.bigcommerce.com/api-reference/store-management/customers-v3)
+- [Customer Login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
+- [V2 Customers API](https://developer.bigcommerce.com/api-reference/store-management/customers-v2)
+- [V3 Customers API](https://developer.bigcommerce.com/api-reference/store-management/customers-v3)
 - [Subscribers API](https://developer.bigcommerce.com/api-reference/customer-subscribers/subscribers-api)
 
 ### Webhooks
