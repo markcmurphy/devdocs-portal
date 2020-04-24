@@ -158,6 +158,7 @@ Customer Groups allows you to organize your customers, provide targeted discount
 </div>
 </div>
 
+</br>
 For *V2 Customer Groups* endpoint operations, see [Customer Groups](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-groups).
 
 ## Customer Passwords
