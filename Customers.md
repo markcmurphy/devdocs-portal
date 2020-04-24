@@ -217,7 +217,7 @@ The V3 Customers API provides two ways to manage customer passwords.
 - [Customers](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)
 
 ### Articles
-- [Editing Form Fields](https://support.bigcommerce.com/s/article/Editing-Form-Fields)  (Knowledge Base)
-- [Checkout Settings](https://support.bigcommerce.com/s/article/Checkout-Settings#checkout-settings) (Knowledge Base)
-- [Customer Groups](https://support.bigcommerce.com/s/article/Customer-Groups) (Knowledge Base)
-- [Security & Privacy Settings](https://support.bigcommerce.com/s/article/Store-Settings#security) (Knowledge Base)
+- [Editing Form Fields](https://support.bigcommerce.com/s/article/Editing-Form-Fields)  
+- [Checkout Settings](https://support.bigcommerce.com/s/article/Checkout-Settings#checkout-settings) 
+- [Customer Groups](https://support.bigcommerce.com/s/article/Customer-Groups) 
+- [Security & Privacy Settings](https://support.bigcommerce.com/s/article/Store-Settings#security) 
