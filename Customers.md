@@ -188,7 +188,7 @@ Single Customer on V2
 
 With the V3 Customers API, queries become a powerful tool. Instead of using different endpoints to get customer subresources, there is one GET endpoint per resource with filters to refine the request. 
 
-Get Customer Address by name and company on V3
+Get Customer Address by name and company on V3 
 `/customers/addresses?company:in=bigcommerce,commongood&customer_id:in1,2,3`
 
 Get Customer Address by name and company on V2
