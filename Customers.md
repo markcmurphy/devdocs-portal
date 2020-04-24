@@ -106,6 +106,7 @@ Customer Attributes are created independently of the customer and are then added
 </div>
 
 </br>
+
 For *V3 Customer Attributes* endpoint operations, see [Customer Attributes](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attributes).
 
 ## Customer Attribute Values
