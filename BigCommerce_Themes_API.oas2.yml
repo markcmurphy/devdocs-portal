@@ -756,43 +756,43 @@
         "description": "Get list of Configurations related to a Theme. \n\n**Usage Notes**:\n* At least one filter must be provided."
       },
       "parameters": [
-            {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "integer"
-                }
-              },
-              "in": "query",
-              "name": "site_id:in",
-              "description": "Filter configurations by a list of site_ids",
-              "required": true
-            },
-            {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "in": "query",
-              "name": "uuid:in",
-              "description": "Filter configurations by a list of configuration UUIDs"
-            },
-            {
-              "schema": {
-                "type": "string"
-              },
-              "in": "query",
-              "name": "variation_uuid",
-              "description": "Filter configurations by a variation_uuid"
-            },
-            {
-              "$ref": "#/parameters/PageParam"
-            },
-            {
-              "$ref": "#/parameters/LimitParam"
+        {
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "integer"
             }
+          },
+          "in": "query",
+          "name": "site_id:in",
+          "description": "Filter configurations by a list of site_ids",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "in": "query",
+          "name": "uuid:in",
+          "description": "Filter configurations by a list of configuration UUIDs"
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "in": "query",
+          "name": "variation_uuid",
+          "description": "Filter configurations by a variation_uuid"
+        },
+        {
+          "$ref": "#/parameters/PageParam"
+        },
+        {
+          "$ref": "#/parameters/LimitParam"
+        }
       ]
     }
   },
@@ -824,6 +824,24 @@
       "type": "string",
       "default": "application/json",
       "required": true
+    },
+    "PageParam": {
+      "name": "page",
+      "description": "Specifies the page number in a limited (paginated) list of products.\n",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    "LimitParam": {
+      "name": "limit",
+      "description": "Controls the number of items per page in a limited (paginated) list of products.\n",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "integer"
+      }
     }
   },
   "definitions": {
