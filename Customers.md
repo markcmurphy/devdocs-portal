@@ -173,7 +173,7 @@ For *V2 Customer Passwords* endpoint operation, see [Validate a Password](https:
 
 ### Making Requests
 
-V3 API reduces the calls needed to create and update customers. For example, you can create customer attributes and addresses in one step, allowing batch creation of multiple customers and their subresources in a single API call.
+The V3 Customers API reduces the calls needed to create and update customers. For example, you can create customer attributes and addresses in one step, allowing batch creation of multiple customers and their subresources in a single API call.
 
 **Create a Customer**
 
