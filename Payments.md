@@ -21,11 +21,6 @@ Payments are processed via a sequence of requests to two API hosts:
 
 Create the payment token: https://api.bigcommerce.com/stores/{store_hash}/v3/payments/access_tokens
 
-
-## Payment Methods (Enabled on Store)
-v2
-Returns a list of all enabled Payment Methods on a store. If you are trying to process payment for an order see Payments API.
-
 ## Payment Processing Methods (On Order)
 Depending on merchant’s configuration in BigCommerce’s Control Panel, the payment request will be processed as either ‘Authorize only’ or ‘Authorize and Capture’.
 
