@@ -42,7 +42,7 @@ Resources that can be managed using the V3 Customers API:
 * Customer Addresses
 * Customer Attributes
 * Customer Attribute Values
-* Customer Form Fields
+* Customer Form Field Values
 * Customer Consent
 
 ## Customers
