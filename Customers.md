@@ -83,7 +83,7 @@ Store settings can be set to allow a shopper to checkout without creating an acc
 
 ## Customer Addresses
 
-Customer Addresses refer to the mailing address and the phone number associated with a Customer Account. Customers may have multiple addresses stored against them.
+Customer Addresses refers to the mailing address and the phone number associated with a Customer Account. Customers may have multiple addresses stored against them.
 
 For *V2 Customer Addresses* endpoint operations, see [Customer Addresses V2](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-addresses).
 
