@@ -1,4 +1,4 @@
-# Payments
+# Payment Processing
 
 <div class="otp" id="no-index">
 
