@@ -800,7 +800,11 @@ paths:
                 $ref: '#/definitions/order-updated'
       tags:
         - Cart
-      description: "\tThis webhook is fired whenever a cart is modified through the changes in its line items. Eg. when a new item is added to a cart or an existing item’s quantity is updated. This hook also fires when the email is changed during guest checkout or an existing item is deleted. The payload will include the ID of the cart being updated.\nThis webhook is also fired along with cart created, because the first product being added to an empty cart triggers an update.\n"
+      description: >-
+        This webhook fires when the status of an order is changed. It also fires
+        when an order is created, because the order status is changed from `0`
+        to a different status (depending on the payment gateway and payment
+        capture settings).
       summary: /store/order/statusUpdated
       consumes:
         - application/json
