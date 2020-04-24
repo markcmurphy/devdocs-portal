@@ -165,7 +165,7 @@ For *V2 Customer Groups* endpoint operations, see [Customer Groups](https://deve
 
 ## Customer Passwords
 
-Customer Passwords endpoint is used to validate customer passwords. It returns a true/false response indicating if the provided password matches the customer's current password. 
+Customer Passwords is used to validate customer passwords. It returns a true/false response indicating if the provided password matches the customer's current password. 
 
 For *V2 Customer Passwords* endpoint operation, see [Validate a Password](https://developer.bigcommerce.com/api-reference/store-management/customers-v2/customer-passwords/validatecustomerpassword).
 
