@@ -1,3 +1,153 @@
-# Header
+# Payment Processing
 
-A paragraph of content.
+<div class="otp" id="no-index">
+
+### On this Page
+- [Payments API](#payments-api)
+- [Payment Processing Methods (On Order)](#payment-processing-methods-on-order)
+- [Stored Cards](#stored-cards)
+- [Payment Processing Token](#payment-processing-token)
+- [Error Codes](#error-codes)
+- [FAQ](#faq)
+- [Resources](#resources)
+
+
+</div>
+
+The Payment Processing API and supporting V3 REST API endpoints enable you to process payments through the store’s connected payment gateway. A payment can be taken for an order that is created using either the Server to Server Checkout API Orders endpoint or creating an order using V2 Orders endpoint.
+
+Payments are processed via a sequence of requests to two API hosts:
+
+Create the payment token: https://api.bigcommerce.com/stores/{store_hash}/v3/payments/access_tokens
+
+## Payment Processing Methods (On Order)
+Depending on merchant’s configuration in BigCommerce’s Control Panel, the payment request will be processed as either ‘Authorize only’ or ‘Authorize and Capture’.
+
+Payments can be processed using Stored Cards, Payment Tokens or Credit Cards.
+
+Payments can be processed using cards stored with the BigCommerce Stored Credit Cards feature or by providing a credit card number.
+
+The following gateways are supported for stored cards:
+
+* AdyenV2
+* Authorize.net
+* CyberSource
+* Paymetric
+* Paypal Powered by Braintree
+* Stripe
+
+The following gateways are supported for credit cards:
+
+* Authorize.net
+* CardConnect
+* Chase Integrated Payments
+* Chase Merchant Services
+* Cybersource Direct
+* eWAY Rapid
+* First Data Payeezy Gateway
+* Heartland Payment Systems
+* MIGS
+* MyVirtualMerchant
+* NMI
+* Paymetric
+* PayPal powered by Braintree
+* PayPal Payments Pro (Payflow Edition) UK
+* PayPal Payments Pro (Payflow Edition) US
+* QuickBooks Payments
+* Sage Pay/Protx VSP Direct
+* SecureNet
+* Stripe
+* USA ePay
+* Worldpay Core
+* WorldPay
+* Hosted Providers
+
+**Note**
+<br>
+The API flow does not currently support hosted/offsite providers such as PayPal and Adyen and wallet type payments such as Amazon Pay.
+
+## Stored Cards
+There are three steps to using a stored card to make a payment.
+
+1. Get Payment Methods
+2. Create Access Token
+3. Process Payment
+
+To use stored cards with the Payments API or the Checkout SDK make sure stored cards are enabled in the stores Control Panel. To enable stored credit cards on your storefront, navigate to Store Setup › Payments and click the tab for your payment gateway. Toggle the switch to enable Stored Credit Cards and Save. For more on enabling stored cards, see Enabling Stored Credit Cards.
+
+**Requirements for Stored Cards**
+
+* Your store must be on a Plus plan or higher.
+* Your store needs to be using Optimized One-Page Checkout.
+* Your store needs to be using a compatible payment gateway.
+
+To pay with a stored card, first make a call to Get Payment Methods for the stored_instruments > token. The `order_id` is passed in as a query parameter.
+This token is the same as `payment_instrument_token` from Get Transactions.
+
+## Payment Processing Token
+This endpoint provides the capability to create a payment access token. The payment access token is required when making request to Payment API for submitting payment for an order.
+
+## Error Codes
+
+| Code | Description | Possible Causes | Possible Solutions |
+|-|-|  - |  - |
+| `10000` |  An internal error has occurred within the API. |  Connection error | Try the request again. |
+| `10001` | Missing or incorrect required fields. | Missing or Incorrect Fields |  Check the request for any data that is incorrect or is missing |
+| `30000` | Merchant payment configuration could not be found. | * The payment provider has not been configured in the store. | Check the [payment gateways](https://support.bigcommerce.com/s/article/Online-Payment-Methods#setup) settings in your BigCommerce store. |
+| `3001` | Merchant payment configuration is not correctly being configured. | The payment configuration is being rejected by the payment gateway. | Check the [payment gateways](https://support.bigcommerce.com/s/article/Online-Payment-Methods#setup) settings in your BigCommerce store. <br> Reach out the the payment gateway to check the information is correct. |
+| `30002` | Vaulting service is currently not available. |  The vaulting feature is not enabled on this store. | Reach out to the store owner to enable [Stored Credit Cards](https://support.bigcommerce.com/s/article/Enabling-Stored-Credit-Cards) |
+| `30003` | Order could not be found. | The order does not exist. <br> The order ID is not correct. |  Check the current orders in the store using [Get All Orders](https://developer.bigcommerce.com/api-reference/orders/orders-api/orders/getanorder) |
+| `30004` | The validation on line item and grand total does not match. | N/A| Recreate the payment access token <br> Recreate the order <br> Ensure the store settings for taxes and discounts are setup correctly|
+| `30050` | Payment instrument could not be saved. | Credit card information is incorrect. | Check that the card information is correct.<br> * `expiry_month` is two digits<br>* `expiry_year` is four digits |
+| `30051` | The stored card was not found. |  The card requested for payment is not associated to the shopper.| Use [Get Payment Methods](/api-reference/payments/payments-create-payment-token-api/payment-methods/paymentsmethodsget) to see available vaulted cards |
+|`30100` | Payment access token could not be created. | N/A|N/A|
+| `30101` | Order is invalid. | The order is in the wrong status. | Orders must be in Incomplete Status with a `status_id:0` <br>  The order must be created by the Checkout SDK, Checkout API or V2 Orders API. Orders created in the Control and set to an incomplete status will return this error. |
+| `30102` | The payment was declined. | The card information provided was incorrect<br>The token provided was incorrect | Check that the provider shopper information is correct<br>Make sure the token in the Authorization header field is correct |
+| `30103` | Card has expired |N/A | N/A|
+| `30104` | The payment was declined. Please contact card issuer for more information. |N/A |N/A|
+| `30105` | The payment was declined due to duplicate payment being submitted. |N/A |N/A |
+| `30106` | The payment was declined due to insufficient funds. |N/A |N/A|
+
+## FAQ
+
+**How do I get a list of stored credit cards?**
+Use the Get Payment Methods to get a list of stored payment instruments. 
+
+**Can I add my payment gateway?**
+The Payments API does not support adding a third party gateway. Payments are processed through BigCommerce.
+
+**Can I issue a refund?**
+Refunds can be issued either using the [Control Panel](https://support.bigcommerce.com/s/article/Processing-Refunds) or through the payment gateway directly.
+
+**How do I process payment for a capture credit card?**
+Once a payment has been authorized, the capture step will need to be completed using the [Control Panel](https://support.bigcommerce.com/s/article/How-can-I-set-my-payment-gateway-to-only-authorize-transactions-and-not-capture-the-funds-automatically).
+
+**Can I use this on orders with more than one shipping address?**
+Yes, checkouts and orders with more than one consignment can use the Payments API.
+
+**Is store credit supported?**
+Store credit is not a supported payment method with the Payments API. Store credit can still be used by the shopper on the storefront, part of the control panel or with the Checkout API.
+
+**Are gift certificates supported?**
+The Payment Processing API is for processing payments through a store's payment gateway. Since BigCommerce store gift cards are not processed through a payment gateway, they can not be processed through via the Payment Processing API.
+
+**Are offline payment methods supported?**
+The Payments API is designed to process credit card payments through supported payment gateways; it does not expose methods for processing [offline payment methods](https://support.bigcommerce.com/s/article/Offline-Payment-Methods) such as cash on delivery.
+
+## Resources
+
+### Webhooks
+- [Customer Payment Instrument](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)
+- [Orders](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_orders)
+- [Cart](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_cart)
+
+### Related Endpoints
+* [Create Access Token](/api-reference/payments/payments-create-payment-token-api/payment-access-token/paymentsaccesstokenspost)
+* [Get Payment Methods](/api-reference/payments/payments-create-payment-token-api/payment-methods/paymentsmethodsget)
+* [Process Payment](/api-reference/payments/payments-process-payments/payment/paymentspost)
+
+### Related Articles
+* [Enabling Stored Credit Cards](https://support.bigcommerce.com/s/article/Enabling-Stored-Credit-Cards) (BigCommerce Support)
+* [Processing Refunds](https://support.bigcommerce.com/s/article/Processing-Refunds) (BigCommerce Support)
+* [Manually Capturing Transactions (Authorize Only)](https://support.bigcommerce.com/s/article/How-can-I-set-my-payment-gateway-to-only-authorize-transactions-and-not-capture-the-funds-automatically) (BigCommerce Support)
+* [Available Payment Gateways](https://support.bigcommerce.com/s/article/Available-Payment-Gateways) (BigCommerce Support)
