@@ -145,7 +145,7 @@ For *V3 Customer Consent* endpoint operations, see [Customer Consent](https://de
 
 ## Customer Groups
 
-Customer Groups allow you to organize your customers, provide targeted discounts, and restrict access to specific products or categories.
+Customer Groups allows you to organize your customers, provide targeted discounts, and restrict access to specific products or categories.
 
 <div class="HubBlock--callout">
 <div class="CalloutBlock--">
