@@ -138,7 +138,7 @@ For *V3 Customer Form Field Values* endpoint operations, see [Customer Form Fiel
 
 Customer Consent allows merchants to access and manage customer's consent to use cookies and other technologies while shopping on a storefront. 
 
-To learn more about requesting consent from the Control Panel, see [Requesting Consent](https://support.bigcommerce.com/s/article/Privacy-Policy#consent).
+To learn more about requesting consent from the Control Panel, see [Security & Privacy Settings](https://support.bigcommerce.com/s/article/Store-Settings#security).
 
 For *V3 Customer Consent* endpoint operations, see [Customer Consent](https://developer.bigcommerce.com/api-reference/store-management/customers-v3/customer-consent).
 
