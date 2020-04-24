@@ -3,22 +3,79 @@ info:
   title: Themes
   version: ''
   description: >-
-    ### Themes
 
-    The Themes API allows for the management of Stencil themes on a store. In
-    this API, Themes are treated as a single object (.zip file), and not as a
-    collection of files. This API is useful for backing up/restoring themes, as
-    well as for creating a theme publishing workflow.
+    - [OAuth Scopes](#oauth-scopes)
+
+    - [Authentication](#authentication)
 
 
-    As themes must be processed once uploaded or before being downloaded, this
-    API provides job IDs for long-running processing jobs, and a jobs endpoint
-    which you may poll for updates.Before a theme may be uploaded to this API,
-    it should be bundled using stencil-cli.
+    With BigCommerce's V3 REST API Theme endpoints, developers can:
+
+    * backup themes
+
+    * restore themes
+
+    * download themes
+
+    * activate themes
+
+    * read theme configurations
+
+    * activate themes
+
+    * get status of theme jobs
 
 
-    Themes downloaded from this endpoint may be edited using stencil-cli for
-    local development.
+    ## OAuth Scopes
+
+    | UI Name                                      | Permission |
+    Parameter                                     |
+
+    |----------------------------------------------|------------|-----------------------------------------------|
+
+    | Themes                                       | modify     |
+    `store_themes_manage`                         |
+
+
+    For more information on OAuth Scopes, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## Authentication
+
+
+    Requests can be authenticated by sending a `client_id` and `access_token`
+    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+
+
+    ```http
+
+    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+
+    host: api.bigcommerce.com
+
+    Accept: application/json
+
+    X-Auth-Client: {client_id}
+
+    X-Auth-Token: {access_token}
+
+    ```
+
+
+    |Header|Parameter|Description|
+
+    |-|-|-|
+
+    |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
+    installing an app in a BigCommerce control panel.|
+
+    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
+    installing an app in a BigCommerce control panel.|
+
+
+    For more information on Authenticating BigCommerce APIs, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
   termsOfService: ''
   license:
     name: ''
