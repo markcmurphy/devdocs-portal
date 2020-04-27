@@ -921,6 +921,8 @@ definitions:
         type: integer
       producer:
         type: string
+      scope:
+        type: string
   order-created:
     type: object
     title: Order Created
@@ -1078,16 +1080,10 @@ responses:
     description: ''
     schema:
       $ref: '#/definitions/callback_Base'
-      allOf:
-        - $ref: '#/definitions/callback_Base'
-        - type: object
-          properties:
-            data:
-              $ref: '#/definitions/sku_Updated_Full'
-        - type: object
-          properties:
-            data:
-              $ref: '#/definitions/sku_Updated_Full'
+      type: object
+      properties:
+        data:
+          $ref: '#/definitions/sku_Updated_Full'
     examples:
       application/json:
         created_at: 1587763133
