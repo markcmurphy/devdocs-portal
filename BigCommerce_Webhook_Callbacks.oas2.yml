@@ -1086,7 +1086,7 @@ responses:
             data:
               $ref: '#/definitions/sku_Updated'
     examples:
-      application/json:
+      sku/updated:
         created_at: 1587763133
         store_id: your-store-id
         producer: stores/store_hash
@@ -1098,4 +1098,16 @@ responses:
           sku:
             product_id: 77
             variant_id: 1
+      sku/created:
+        created_at: 1588005657
+        store_id: your-store-id
+        producer: stores/store_hash
+        scope: store/sku/created
+        hash: c0e5243f541df33ac8d718a6892aab8b88ad5205
+        data:
+          type: sku
+          id: 142
+          sku:
+            product_id: 77
+            variant_id: 101
 host: '{$$.env.webhook_destination}?'
