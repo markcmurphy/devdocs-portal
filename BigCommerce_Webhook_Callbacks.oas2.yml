@@ -1080,10 +1080,12 @@ responses:
     description: ''
     schema:
       $ref: '#/definitions/callback_Base'
-      type: object
-      properties:
-        data:
-          $ref: '#/definitions/sku_Updated'
+      allOf:
+        - $ref: '#/definitions/callback_Base'
+        - type: object
+          properties:
+            data:
+              $ref: '#/definitions/sku_Updated'
     examples:
       application/json:
         created_at: 1587763133
