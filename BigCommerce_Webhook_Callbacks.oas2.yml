@@ -1091,19 +1091,7 @@ responses:
             data:
               $ref: '#/definitions/sku_Updated'
     examples:
-      sku/updated:
-        created_at: 1587763133
-        store_id: your-store-id
-        producer: stores/store_hash
-        scope: store/sku/updated
-        hash: 30548ed9eafbacc0f39ee7d44e39d20fd5cc46c1
-        data:
-          type: sku
-          id: 70
-          sku:
-            product_id: 77
-            variant_id: 1
-      sku/created:
+      store/sku/created:
         created_at: 1588005657
         store_id: your-store-id
         producer: stores/store_hash
@@ -1115,16 +1103,32 @@ responses:
           sku:
             product_id: 77
             variant_id: 101
-      sku/deleted:
-        created_at: 1588007413
+      store/sku/updated:
+        created_at: 1587763133
         store_id: your-store-id
         producer: stores/store_hash
-        scope: store/sku/deleted
-        hash: bac74aba643b575c6a7829d2e182d48cc5b0d844
+        scope: store/sku/updated
+        hash: 30548ed9eafbacc0f39ee7d44e39d20fd5cc46c1
         data:
           type: sku
-          id: 142
+          id: 70
           sku:
             product_id: 77
-            variant_id: 101
+            variant_id: 1
+      store/sku/deleted: |-
+        {
+          "created_at": 1588007413,
+          "store_id": "your-store-id",
+          "producer": "stores/store_hash",
+          "scope": "store/sku/deleted",
+          "hash": "bac74aba643b575c6a7829d2e182d48cc5b0d844",
+          "data": {
+            "type": "sku",
+            "id": 142,
+            "sku": {
+              "product_id": 77,
+              "variant_id": 101
+            }
+          }
+        }
 host: '{$$.env.webhook_destination}?'
