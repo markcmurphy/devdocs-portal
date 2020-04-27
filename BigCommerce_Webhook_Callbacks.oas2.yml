@@ -1238,4 +1238,24 @@ responses:
                 "cartId": "8bbe30bd-7d3c-4c5e-a499-7b1bb3bfb0aa"
             }
         }
+  cartCouponApplied_Resp:
+    description: ''
+    schema:
+      allOf:
+        - $ref: '#/definitions/callback_Base'
+        - type: object
+          properties:
+            data:
+              $ref: '#/definitions/cart_couponApplied'
+    examples:
+      application/json:
+        created_at: 1588014754
+        store_id: your-store-id
+        producer: stores/store_hash
+        scope: store/cart/couponApplied
+        hash: f6ff9869a37c9153c66839d652b72616ad9a3d23
+        data:
+          type: cart
+          id: 8bbe30bd-7d3c-4c5e-a499-7b1bb3bfb0aa
+          couponId: 1
 host: '{$$.env.webhook_destination}?'
