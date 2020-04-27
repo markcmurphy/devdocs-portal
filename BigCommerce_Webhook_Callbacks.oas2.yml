@@ -1285,4 +1285,29 @@ responses:
           type: cart
           id: 8bbe30bd-7d3c-4c5e-a499-7b1bb3bfb0aa
           token: d608433b40f024ef56cb808b71e566bc
+  cartConverted_Resp:
+    description: ''
+    schema:
+      allOf:
+        - $ref: '#/definitions/callback_Base'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/definitions/cart_Created'
+                - type: object
+                  properties:
+                    orderId:
+                      type: integer
+    examples:
+      application/json:
+        created_at: 1588021880
+        store_id: your-store-id
+        producer: stores/store_hash
+        scope: store/cart/converted
+        hash: adb6279b0ff032c690b764f345a4036181c6d985
+        data:
+          type: cart
+          id: f87f2856-73ae-45dd-b817-faea7c384f75
+          orderId: 121
 host: '{$$.env.webhook_destination}?'
