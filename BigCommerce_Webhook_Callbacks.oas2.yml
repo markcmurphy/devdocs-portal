@@ -1260,4 +1260,29 @@ responses:
           type: cart
           id: 8bbe30bd-7d3c-4c5e-a499-7b1bb3bfb0aa
           couponId: 1
+  cartAbandoned_Resp:
+    description: ''
+    schema:
+      allOf:
+        - $ref: '#/definitions/callback_Base'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/definitions/cart_Created'
+                - type: object
+                  properties:
+                    token:
+                      type: string
+    examples:
+      application/json:
+        created_at: 1588021465
+        store_id: your-store-id
+        producer: stores/store_hash
+        scope: store/cart/abandoned
+        hash: 7aceb38b2b3efae1d91b6a89fe7fdcc908b2d86e
+        data:
+          type: cart
+          id: 8bbe30bd-7d3c-4c5e-a499-7b1bb3bfb0aa
+          token: d608433b40f024ef56cb808b71e566bc
 host: '{$$.env.webhook_destination}?'
