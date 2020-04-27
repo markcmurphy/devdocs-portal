@@ -169,7 +169,9 @@ paths:
     post:
       responses:
         '200':
-          $ref: '#/responses/CallbackResponse'
+          description: ''
+          schema:
+            $ref: '#/definitions/callback_Base'
       description: >-
         This webhook will fire when a new customer record is created, either in
         the Control Panel or via a storefront.
@@ -1041,6 +1043,10 @@ definitions:
             properties:
               type:
                 type: string
+  customer-created:
+    type: object
+    properties: {}
+    title: Customer Created
 responses:
   Webhooks Response:
     description: ''
