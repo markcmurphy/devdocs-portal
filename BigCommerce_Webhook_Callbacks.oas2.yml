@@ -1163,4 +1163,24 @@ responses:
             }
           }
         }
+  cartLineItem_Resp:
+    description: ''
+    schema:
+      allOf:
+        - $ref: '#/definitions/callback_Base'
+        - type: object
+          properties:
+            data:
+              $ref: '#/definitions/cartLineItem_Created'
+    examples:
+      cart/lineItem/created:
+        created_at: 1588012546
+        store_id: your-store-id
+        producer: stores/store_hash
+        scope: store/cart/lineItem/created
+        hash: 000e9e5ba3cbe55f700cf2a63050f78ee19a1e5b
+        data:
+          type: cart_line_item
+          id: 32b222dc-bfe7-4327-9f75-f3f03cf267e2
+          cartId: 8bbe30bd-7d3c-4c5e-a499-7b1bb3bfb0aa
 host: '{$$.env.webhook_destination}?'
