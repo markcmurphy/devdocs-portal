@@ -565,8 +565,25 @@ paths:
     post:
       responses:
         '200':
-          $ref: '#/responses/CallbackResponse'
-      description: "\tThis webhook is fired whenever a cart is modified through the changes in its line items. Eg. when a new item is added to a cart or an existing item’s quantity is updated. This hook also fires when the email is changed during guest checkout or an existing item is deleted. The payload will include the ID of the cart being updated.\nThis webhook is also fired along with cart created, because the first product being added to an empty cart triggers an update.\n- Logging into customer account after creating a cart (email is inherited from customer account email)\n- Entering email address via guest checkout\n-Changing the email in guest checkout"
+          $ref: '#/responses/cart_Resp'
+      description: >-
+        This webhook is fired whenever a cart is modified through the changes in
+        its line items. Eg. when a new item is added to a cart or an existing
+        item’s quantity is updated. This hook also fires when the email is
+        changed during guest checkout or an existing item is deleted. The
+        payload will include the ID of the cart being updated.
+
+
+        This webhook is also fired along with cart created, because the first
+        product being added to an empty cart triggers an update.
+
+
+        - Logging into customer account after creating a cart (email is
+        inherited from customer account email).
+
+        - Entering email address via guest checkout.
+
+        - Changing the email in guest checkout.
       security: []
       parameters:
         - in: body
