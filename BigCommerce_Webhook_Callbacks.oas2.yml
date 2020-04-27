@@ -1039,7 +1039,7 @@ responses:
         is_active: true
         created_at: 1561488106
         updated_at: 1561488106
-  store/cart/created:
+  cart_Resp:
     description: >-
       This webhook will fire whenever a new cart is created either via a
       storefront shopper adding their first item to the cart or when a new cart
@@ -1048,25 +1048,22 @@ responses:
       exist before) For the API it means a POST to /carts, (V3 and Storefront
       API). The store/cart/updated will also fire.
     schema:
-      type: object
-      properties:
-        scope:
-          type: string
-        store_id:
-          type: string
-        data:
-          type: object
+      allOf:
+        - $ref: '#/definitions/callback_Base'
+        - type: object
           properties:
-            type:
-              type: string
-            id:
-              type: string
-        hash:
-          type: string
-        created_at:
-          type: integer
-        producer:
-          type: string
+            data:
+              $ref: '#/definitions/cart_Created'
+    examples:
+      store/cart/created:
+        created_at: 1588009674
+        store_id: your-store-id
+        producer: stores/store_hash
+        scope: store/cart/created
+        hash: e415a7a0e4d484b805b1d540d0aba719f62f5a01
+        data:
+          type: cart
+          id: add4e20d-5aa3-4304-83d2-246854de4a4d
   CallbackResponse:
     description: >-
       To acknowledge that you received the webhook without issue, your server
