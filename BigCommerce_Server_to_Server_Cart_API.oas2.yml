@@ -41,9 +41,10 @@ paths:
 
         |`line_items`|| 
 
-        |`custom_items`||
+        |`custom_items`|Only required if adding a custom item to the cart.|
 
-        |`gift_certificates`|Only required if adding gift certificate to cart|
+        |`gift_certificates`|Only required if adding a gift certificate to the
+        cart.|
 
 
         **Usage Notes**
@@ -51,19 +52,10 @@ paths:
 
         * A **cart** `id` (UUID) is returned in the response.
 
-        * To get cart `redirect_urls` in the response, append the following
-        query parameter to the reuest URL: `include=redirect_urls`
-
-        * Redirect URLs can only be generated from carts created using the
-        **Server-to-Server Carts API**. 
-
-        * To restore a cart that was created by a shopper or via Storefront Cart
-        API, first recreate the cart using the Server to Server Cart API.
+        * A **cart** `id` is the same as a **checkout** `id`.
 
         * A cart can be created using an existing catalog item or by adding a
         custom item.
-
-        * **Cart** `id` is the same as the **checkout** `id`.
 
         * Carts are valid for **30 days** from the **last modification** (this
         includes creating the cart or editing the cart).
@@ -71,6 +63,15 @@ paths:
         * If a product has modifiers, omit the `variant_id` and instead use the
         `option_selections` array to describe both the **variant** and the
         **modifier** selections.
+
+        * Redirect URLs can only be generated from carts created using the
+        **Server-to-Server Carts API**. 
+
+        * To get cart `redirect_urls` in the response, append the following
+        query parameter to the request URL: `include=redirect_urls`.
+
+        * To restore a cart that was created by a shopper or via the Storefront
+        Cart API, first recreate the cart using the Server to Server Cart API.
       parameters:
         - name: cartData
           in: body
