@@ -2721,6 +2721,9 @@ definitions:
     default: line_items
     items:
       type: object
+      required:
+        - quantity
+        - product_id
       properties:
         quantity:
           type: number
@@ -2731,9 +2734,6 @@ definitions:
         list_price:
           type: number
           description: Optional price override
-      required:
-        - quantity
-        - product_id
   cart_PostModifier:
     type: array
     title: cart_PostModifier
@@ -2815,6 +2815,10 @@ definitions:
             - quantity
             - sender
             - recipient
+  cart_PostCustomItem:
+    type: object
+    properties: {}
+    title: cart_PostCustomItem
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
