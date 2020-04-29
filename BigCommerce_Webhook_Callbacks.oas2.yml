@@ -305,7 +305,7 @@ paths:
               created_at: 1561482670
               producer: 'stores/{$$.env.store_hash}'
       tags:
-        - Cart
+        - SKU
       summary: /store/sku/created
       produces: []
       consumes:
@@ -349,7 +349,7 @@ paths:
               created_at: 1561482670
               producer: 'stores/{$$.env.store_hash}'
       tags:
-        - Cart
+        - SKU
       summary: /store/sku/updated
       produces: []
       consumes:
@@ -383,7 +383,7 @@ paths:
               created_at: 1561482670
               producer: 'stores/{$$.env.store_hash}'
       tags:
-        - Cart
+        - SKU
       summary: /store/sku/deleted
       produces: []
       consumes:
@@ -512,7 +512,7 @@ paths:
               created_at: 1561482670
               producer: 'stores/{$$.env.store_hash}'
       tags:
-        - Cart
+        - Order
       summary: /store/order/created
       produces: []
       consumes:
@@ -548,7 +548,7 @@ paths:
               created_at: 1561482670
               producer: 'stores/{$$.env.store_hash}'
       tags:
-        - Cart
+        - Order
       summary: /store/order/updated
       produces: []
       consumes:
@@ -575,7 +575,7 @@ paths:
               created_at: 1561482670
               producer: 'stores/{$$.env.store_hash}'
       tags:
-        - Cart
+        - Order
       summary: /store/order/deleted
       produces: []
       consumes:
@@ -890,7 +890,7 @@ paths:
               data:
                 $ref: '#/definitions/order-updated'
       tags:
-        - Cart
+        - Order
       description: >-
         This webhook fires when the status of an order is changed. It also fires
         when an order is created, because the order status is changed from `0`
@@ -913,7 +913,7 @@ paths:
                 $ref: '#/definitions/order-message-created'
       summary: "store/order/message/created\t"
       tags:
-        - Cart
+        - Order
       consumes:
         - application/json
       description: "\tThis webhook is fired whenever a cart is modified through the changes in its line items. Eg. when a new item is added to a cart or an existing item’s quantity is updated. This hook also fires when the email is changed during guest checkout or an existing item is deleted. The payload will include the ID of the cart being updated.\nThis webhook is also fired along with cart created, because the first product being added to an empty cart triggers an update.\n- Logging into customer account after creating a cart (email is inherited from customer account email)\n- Entering email address via guest checkout\n-Changing the email in guest checkout"
@@ -933,7 +933,7 @@ paths:
       consumes:
         - application/json
       tags:
-        - Cart
+        - Order
       description: This webhooks is triggered when an order is archived
   store/customer/address/created:
     post:
