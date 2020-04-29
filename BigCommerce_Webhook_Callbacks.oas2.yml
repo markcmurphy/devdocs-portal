@@ -1024,11 +1024,10 @@ paths:
         - Shipment
       consumes:
         - application/json
-      description: >
+      description: >+
         This webhook fires when a shipment is updated via either the Control
         Panel or the Orders API.
 
-        This webhook is also fired when a shipment is created.
   /store/shipment/deleted:
     post:
       responses:
@@ -1506,10 +1505,23 @@ responses:
       store/shipment/created: |-
         {
             "created_at": 1588186633,
-            "store_id": ""your-store-id"",
+            "store_id": "your-store-id",
             "producer": "stores/store_hash",
             "scope": "store/shipment/created",
             "hash": "3f83e5a23d36021c4ce56d6ec0bc1342e7911a02",
+            "data": {
+                "type": "shipment",
+                "id": 3,
+                "orderId": 121
+            }
+        }
+      store/shipment/updated: |-
+        {
+            "created_at": 1588187671,
+            "store_id": "your-store-id",
+            "producer": "stores/store_hash",
+            "scope": "store/shipment/updated",
+            "hash": "d17122edf13c9ab42dbad6d27b20bcc2359969a1",
             "data": {
                 "type": "shipment",
                 "id": 3,
