@@ -1367,11 +1367,12 @@ responses:
   cartLineItem_Resp:
     description: ''
     schema:
-      $ref: '#/definitions/callback_Base'
-      type: object
-      properties:
-        data:
-          $ref: '#/definitions/cartLineItem_Created'
+      allOf:
+        - $ref: '#/definitions/callback_Base'
+        - type: object
+          properties:
+            data:
+              $ref: '#/definitions/cartLineItem_Created'
     examples:
       cart/lineItem/created:
         created_at: 1588012546
