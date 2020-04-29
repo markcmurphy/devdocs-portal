@@ -37,7 +37,7 @@ paths:
               created_at: 1561482670
               producer: 'stores/{$$.env.store_hash}'
       tags:
-        - Cart
+        - Cart LineItem
       summary: /store/cart/lineItem/created
       produces: []
       consumes:
@@ -426,7 +426,7 @@ paths:
       responses:
         '200':
           $ref: '#/responses/CallbackResponse'
-      description: "\tThis webhook is fired whenever a cart is modified through the changes in its line items. Eg. when a new item is added to a cart or an existing item’s quantity is updated. This hook also fires when the email is changed during guest checkout or an existing item is deleted. The payload will include the ID of the cart being updated.\nThis webhook is also fired along with cart created, because the first product being added to an empty cart triggers an update.\n- Logging into customer account after creating a cart (email is inherited from customer account email)\n- Entering email address via guest checkout\n-Changing the email in guest checkout"
+      description: "\tThis webhook is fired whenever a cart is modified through the changes in its line items. Eg. when a new item is added to a cart or an existing item’s quantity is updated. This hook also fires when the email is changed during guest checkout or an existing item is deleted. The payload will include the ID of the cart being updated.\nThis webhook is also fired along with cart created, because the first product being added to an empty cart triggers an update.\n- Logging into customer account after creating a cart (email is inherited from customer account email)\n- Entering email address via guest checkout\n- Changing the email in guest checkout"
       security: []
       parameters:
         - in: body
@@ -839,7 +839,7 @@ paths:
               created_at: 1561482670
               producer: 'stores/{$$.env.store_hash}'
       tags:
-        - Cart LineItem
+        - Cart
       summary: /store/cart/abandoned
       produces: []
       consumes:
@@ -987,7 +987,7 @@ paths:
                 $ref: '#/definitions/callback_Base'
               data:
                 $ref: '#/definitions/customer-address-created'
-      summary: store/customer/address/deleted
+      summary: /store/customer/address/deleted
       tags:
         - Customer
       description: >-
