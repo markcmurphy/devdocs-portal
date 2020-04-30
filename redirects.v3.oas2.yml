@@ -25,41 +25,40 @@
             "description": "Site ID to return only redirects for a given Site"
           },
           {
-              "type": "string",
+            "type": "string",
             "in": "query",
             "name": "id:in",
             "description": "Explicitly fetch Redirects by IDs, provided as CSV string"
           },
           {
-              "type": "integer",
+            "type": "integer",
             "in": "query",
             "name": "limit",
             "description": "Number of results to return per page"
           },
           {
-
-              "type": "integer",
+            "type": "integer",
             "in": "query",
             "name": "page",
             "description": "Which page number to return, based on the page size. Used to paginate large collections."
           },
           {
-              "type": "string",
-              "enum": [
-                "from_path",
-                "type",
-                "site_id"
-              ],
+            "type": "string",
+            "enum": [
+              "from_path",
+              "type",
+              "site_id"
+            ],
             "in": "query",
             "name": "sort",
             "description": "Sorts a collection by a particular field."
           },
           {
-              "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
             "in": "query",
             "name": "direction",
             "description": "Sort direction."
@@ -109,22 +108,6 @@
               }
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "uniqueItems": true,
-                "maxItems": 100,
-                "minItems": 1,
-                "items": {
-                  "$ref": "#/definitions/301RedirectUpsert"
-                }
-              }
-            }
-          },
-          "description": ""
         },
         "description": "Upsert new redirect data across all storefronts.",
         "operationId": "UpsertRedirects"
