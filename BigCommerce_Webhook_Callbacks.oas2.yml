@@ -1000,6 +1000,20 @@ paths:
       responses:
         '200':
           $ref: '#/responses/shipment_Resp'
+          examples:
+            store/shipment/created: |-
+              {
+                  "created_at": 1588186633,
+                  "store_id": "your-store-id",
+                  "producer": "stores/store_hash",
+                  "scope": "store/shipment/created",
+                  "hash": "3f83e5a23d36021c4ce56d6ec0bc1342e7911a02",
+                  "data": {
+                      "type": "shipment",
+                      "id": 3,
+                      "orderId": 121
+                  }
+              }
       summary: /store/shipment/created
       description: >
         This webhook fires when a shipment is created via either the Control
@@ -1015,6 +1029,17 @@ paths:
           schema:
             type: object
             properties: {}
+          x-examples:
+            application/json:
+              created_at: 1588186633
+              store_id: your-store-id
+              producer: 'stores/{$$.env.store_hash}'
+              scope: store/shipment/created
+              hash: 3f83e5a23d36021c4ce56d6ec0bc1342e7911a02
+              data:
+                type: shipment
+                id: 3
+                orderId: 121
   /store/shipment/updated:
     post:
       responses:
