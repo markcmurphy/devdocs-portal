@@ -1045,6 +1045,20 @@ paths:
       responses:
         '200':
           $ref: '#/responses/shipment_Resp'
+          examples:
+            store/shipment/updated: |-
+              {
+                  "created_at": 1588187671,
+                  "store_id": "your-store-id",
+                  "producer": "stores/store_hash",
+                  "scope": "store/shipment/updated",
+                  "hash": "d17122edf13c9ab42dbad6d27b20bcc2359969a1",
+                  "data": {
+                      "type": "shipment",
+                      "id": 3,
+                      "orderId": 121
+                  }
+              }
       summary: /store/shipment/updated
       tags:
         - Shipment
@@ -1061,6 +1075,17 @@ paths:
           schema:
             type: object
             properties: {}
+          x-examples:
+            application/json:
+              created_at: 1588187671
+              store_id: your-store-id
+              producer: 'stores/{$$.env.store_hash}'
+              scope: store/shipment/updated
+              hash: d17122edf13c9ab42dbad6d27b20bcc2359969a1
+              data:
+                type: shipment
+                id: 3
+                orderId: 121
   /store/shipment/deleted:
     post:
       responses:
