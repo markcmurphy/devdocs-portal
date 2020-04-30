@@ -1091,6 +1091,20 @@ paths:
       responses:
         '200':
           $ref: '#/responses/shipment_Resp'
+          examples:
+            store/shipment/deleted: |-
+              {
+                  "created_at": 1588187853,
+                  "store_id": "your-store-id",
+                  "producer": "stores/store_hash",
+                  "scope": "store/shipment/deleted",
+                  "hash": "8f44a0a832b4a1a50c717e26a76cf55633fd90db",
+                  "data": {
+                      "type": "shipment",
+                      "id": "3",
+                      "orderId": 121
+                  }
+              }
       summary: /store/shipment/deleted
       description: >
         This webhook fires when a shipment is deleted via either the Control
@@ -1106,6 +1120,17 @@ paths:
           schema:
             type: object
             properties: {}
+          x-examples:
+            application/json:
+              created_at: 1588187853
+              store_id: your-store-id
+              producer: 'stores/{$$.env.store_hash}'
+              scope: store/shipment/deleted
+              hash: 8f44a0a832b4a1a50c717e26a76cf55633fd90db
+              data:
+                type: shipment
+                id: '3'
+                orderId: 121
 basePath: ''
 schemes:
   - https
