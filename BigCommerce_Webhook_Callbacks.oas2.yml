@@ -1730,6 +1730,20 @@ responses:
   subscriber_Resp:
     description: ''
     schema:
-      type: object
-      properties: {}
+      allOf:
+        - $ref: '#/definitions/callback_Base'
+        - type: object
+          properties:
+            data:
+              $ref: '#/definitions/subscriber_Created'
+    examples:
+      store/subscriber/created:
+        created_at: 1588350739
+        store_id: your-store-id
+        producer: stores/store_hash
+        scope: store/subscriber/created
+        hash: 20c29c5a40f23b1ca7111e683f3062ceab48f732
+        data:
+          type: subscriber
+          id: '2'
 host: '{$$.env.webhook_destination}?'
