@@ -237,6 +237,22 @@ paths:
           in: header
           type: string
           default: application/json
+        - in: query
+          name: sort
+          type: string
+          description: |-
+            Filter items by date_created or last_name:
+            * `date_created:asc` - date created, ascending
+            * `date_created:desc` - date created, descending
+            * `last_name:asc` - last name, ascending
+            * `last_name:desc` - last name, descending
+
+            Example: `sort=last_name:asc`
+          enum:
+            - 'date_created:asc'
+            - 'date_created:desc'
+            - 'last_name:asc'
+            - 'last_name:desc'
       responses:
         '200':
           $ref: '#/responses/CustomerCollectionResponse'
