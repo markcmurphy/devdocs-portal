@@ -1710,8 +1710,7 @@ definitions:
   Transaction:
     description: A BigCommerce Transaction object describes a single transaction.
     allOf:
-      - type: object
-        title: Transaction Base
+      - title: Transaction Base
         properties:
           event:
             type: string
@@ -1733,8 +1732,8 @@ definitions:
               transaction using store credit; `gift_certificate` - a transaction
               using a gift certificate; `custom` - manual payment methods;
               `token` - payment token; `nonce` - temporary payment token;
-              `offsite` - online payment off the site (e.g., PayPal); `offline`
-              - payment method that takes place offline.
+              `offsite` - online payment off the site; `offline` - payment
+              method that takes place offline.
             enum:
               - credit_card
               - electronic_wallet
@@ -1824,21 +1823,21 @@ definitions:
           offline:
             type: object
             description: 'Offline payment (e.g., check or purchase order).'
+            title: Offline
             properties:
               display_name:
                 description: |
                   Display name for the offline payment.
                 type: string
-            title: Offline
           custom:
             type: object
             description: Custom payment from manual order.
+            title: Custom
             properties:
               payment_method:
                 description: |
                   Text entered for the payment method in the control panel.
                 type: string
-            title: Custom
           '':
             type: string
         required:
@@ -1874,6 +1873,7 @@ definitions:
               Address Verification Service (AVS) result from the payment
               gateway.
             type: object
+            title: AVS Results
             properties:
               code:
                 description: AVS code.
@@ -1887,10 +1887,10 @@ definitions:
               postal_match:
                 description: AVS Code for postal matching result.
                 type: string
-            title: AVS Results
           cvv_result:
             description: Card Verification Value result from the payment gateway.
             type: object
+            title: CVV Result
             properties:
               code:
                 description: CVV code.
@@ -1898,10 +1898,10 @@ definitions:
               message:
                 description: CVV message.
                 type: string
-            title: CVV Result
           credit_card:
             type: object
             description: A credit-card model.
+            title: Credit Card
             properties:
               card_type:
                 description: |
@@ -1925,7 +1925,6 @@ definitions:
                 description: |
                   The expiry year of a credit-card.
                 type: integer
-            title: Credit Card
           gift_certificate:
             type: object
             description: A gift-certificate model.
