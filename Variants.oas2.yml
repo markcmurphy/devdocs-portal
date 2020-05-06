@@ -703,38 +703,12 @@ paths:
             description: |
               Errors during batch usage for the BigCommerce API.
             type: object
+            title: Variants Batch Error Response
             properties:
               batch_errors:
                 type: array
                 items:
-                  allOf:
-                    - type: object
-                      description: |
-                        Error payload for the BigCommerce API.
-                      properties:
-                        status:
-                          description: |
-                            The HTTP status code.
-                          type: integer
-                        title:
-                          description: |
-                            The error title describing the particular error.
-                          type: string
-                        type:
-                          type: string
-                        instance:
-                          type: string
-                      title: Base Error
-                    - type: object
-                      properties:
-                        errors:
-                          type: object
-                          title: Detailed Errors
-                          properties:
-                            additionalProperties:
-                              type: string
-                  title: Error Response
-            title: Variants Batch Error Response
+                  $ref: '#/definitions/errorResponse_Full'
       summary: Update Variants (Batch)
       operationId: updateVariantsBatch
       consumes:
