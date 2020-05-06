@@ -1,48 +1,37 @@
 swagger: '2.0'
 info:
-  title: Catalog
+  title: Brands
   version: ''
   description: >-
-    - [OAuth Scopes](#oauth-scopes)
+    The Brands resource represents a brand in your BigCommerce store. 
+
+
+    Using the related subresources, you can also manage brand images and
+    metafields.
+
+
+    **On This Page**
 
     - [Authentication](#authentication)
 
-    - [Available Endpoints](#available-endpoints)
+    - [OAuth Scopes](#oauth-scopes)
 
-    - [Resources](#resources)
+    - [Subresources](#subresources)
 
+    - [Additional Resources](#resources)
 
-    The Catalog API manages products, brands and categories for a store. To
-    learn more about the Catalog resources see [Catalog
-    Products](https://developer.bigcommerce.com/api-docs/catalog/products-overview)
-    and
-    [Categories](https://developer.bigcommerce.com/api-docs/catalog/products-overview#products-overview_categories).
-
-
-    ## OAuth Scopes
-
-    | UI Name  | Permission | Parameter                     |
-
-    |----------|------------|-------------------------------|
-
-    | Products | modify     | `store_v2_products`           |
-
-    | Products | read-only  | `store_v2_products_read_only` |
-
-
-    For more information on OAuth Scopes, see:
-    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    ---
 
 
     ## Authentication
 
-    Requests can be authenticated by sending a `client_id` and `access_token`
+    You can authenticate requests by sending a `client_id` and `access_token`
     via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
 
 
     ```http
 
-    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+    GET /stores/{$$.env.store_hash}/v3/catalog/brands
 
     host: api.bigcommerce.com
 
@@ -54,117 +43,54 @@ info:
 
     ```
 
+    You can obtain the `client_id` and `access_token` using either of the
+    following methods:
 
-    |Header|Parameter|Description|
+    - [Creating API
+    account](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-store-api-credentials)
 
-    |-|-|-|
+    - [Installing an app in the BigCommerce control
+    panel](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-app-api-credentials)
 
-    |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
-    installing an app in a BigCommerce control panel.|
-
-    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
-    installing an app in a BigCommerce control panel.|
-
-
-    For more information on Authenticating BigCommerce APIs, see:
-    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    ---
 
 
-    ## Available Endpoints
+    ## OAuth Scopes
 
-    | Resource / Endpoint                     |
-    Description                                                             |
-
-    |-----------------------------------------|-------------------------------------------------------------------------|
-
-    | Brand Images                            | Create and manage brand
-    images                                          |
-
-    | Brand Metafields                        | Create and manage brand
-    metafields                                      |
-
-    | Brands                                  | Create and manage
-    brands                                                |
-
-    | Catalog                                 | Create and manage store
-    categories, products, and brands                |
-
-    | Categories                              | Create and manage
-    categorties                                           |
-
-    | Category Images                         | Create and manage category
-    images                                       |
-
-    | Category Metafields                     | Create and manage category
-    metafields                                   |
-
-    | Product Bulk Pricing Rules              | Create and manage product bulk
-    pricing rules                            |
-
-    | Product Complex Rules                   | Create and manage product
-    complex rules                                 |
-
-    | Product Custom Fields                   | Create and manage product custom
-    fields                                 |
-
-    | Product Images                          | Create and manage product
-    images                                        |
-
-    | Product Metafields                      | Create and manage product meta
-    fields                                   |
-
-    | Product Modifier Images                 | Create and manage product
-    modifer images                                |
-
-    | Product Modifier Values                 | Create and manage product
-    modifier values                               |
-
-    | Product Modifiers                       | Create and manage product
-    midifiers                                     |
-
-    | Product Reviews                         | Create and manage product
-    reviews                                       |
-
-    | Product Variant Option Values           | Create and manage product
-    variant option values                         |
-
-    | Product Variant Options                 | Create and manage product
-    variant options                               |
-
-    | Product Variants                        | Create and manage product
-    variants                                      |
-
-    | Product Videos                          | Create and manage product
-    videos                                        |
-
-    | Products                                | Create and manage
-    products                                              |
-
-    | ProductVariant Metafields               | Create and manage product meta
-    flields                                  |
-
-    | Variants                                | Get and update all
-    variants                                             |
+    Scope limits ability to read or modify data. To interact with the Brands
+    resource, set the scope to the minimum level needed to accomplish your
+    specific task. 
 
 
-    ## Resources
+    | UI Name  | Permission | Parameter                     |
+
+    |----------|------------|-------------------------------|
+
+    | Products | modify     | `store_v2_products`           |
+
+    | Products | read-only  | `store_v2_products_read_only` |
 
 
-    ### Webhooks
-
-    *
-    [Products](/api-docs/getting-started/webhooks/webhook-events#webhook-events_products)
-
-    *
-    [Categories](/api-docs/getting-started/webhooks/webhook-events#webhook-events_category)
-
-    *
-    [SKU](/api-docs/getting-started/webhooks/webhook-events#webhook-events_sku)
+    ## Subresources
 
 
-    ### Related Endpoints
+    ## Additional Information
 
-    * [Catalog API](/api-reference/catalog/catalog-api)
+    **Webhooks**
+
+    -
+    [Product](/api-docs/getting-started/webhooks/webhook-events#webhook-events_products)
+
+
+    **Related API Resources**
+
+    - [Brand](#)
+
+    - [Category](#)
+
+    - [Summary](#)
+
+    - [Variant](#)
   termsOfService: 'https://www.bigcommerce.com/terms/'
   license:
     name: ''
