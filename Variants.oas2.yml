@@ -3663,7 +3663,7 @@
         }
       }
     },
-        "productVariantOptionValue_Base": {
+    "productVariantOptionValue_Base": {
       "title": "productVariantOptionValue_Base",
       "type": "object",
       "properties": {
@@ -3675,6 +3675,39 @@
         }
       },
       "description": "Common Product Variant Option properties."
+    },
+        "productVariantOptionValue_Full": {
+      "title": "productVariantOptionValue_Full",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "option_display_name": {
+              "type": "string",
+              "description": "The name of the option.\n",
+              "x-required": [
+                "post"
+              ],
+              "minLength": 1,
+              "maxLength": 255,
+              "example": "Color"
+            },
+            "label": {
+              "type": "string",
+              "description": "The label of the option value.\n",
+              "x-required": [
+                "post"
+              ],
+              "minLength": 1,
+              "maxLength": 255,
+              "example": "Beige"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/productVariantOptionValue_Base"
+        }
+      ]
     },
     "productVariant_Full": {
       "allOf": [
