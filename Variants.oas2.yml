@@ -17,7 +17,7 @@
   "basePath": "/stores/{$$.env.store_hash}/v3",
   "tags": [
     {
-      "name": "Summary"
+      "name": "Variants"
     }
   ],
   "schemes": [
@@ -30,19 +30,53 @@
     "application/json"
   ],
   "paths": {
-    "/catalog/summary": {
+    "/catalog/variants": {
       "get": {
-        "tags": [
-          "Summary"
-        ],
-        "description": "Returns a lightweight inventory summary from the BigCommerce Catalog.\n\nThe inventory summary includes:\n* inventory_count\n* variant_count\n* inventory_value\n* highest_variant_price\n* average_variant_price\n* lowest_variant_price\n* oldest_variant_date\n* newest_variant_date\n* primary_category_id\n* primary_category_name",
-        "responses": {
-          "200": {
-            "$ref": "#/responses/CatalogSummaryResponse"
-          }
-        },
-        "summary": "Get a Catalog Summary",
+        "description": "Returns a list of all variants in your catalog. Optional parameters can be passed in.",
+        "operationId": "getVariants",
         "parameters": [
+          {
+            "name": "id",
+            "description": "Filter items by id.\n",
+            "required": false,
+            "in": "query",
+            "type": "integer"
+          },
+          {
+            "name": "sku",
+            "description": "Filter items by sku.\n",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "description": "Specifies the page number in a limited (paginated) list of products.",
+            "required": false,
+            "in": "query",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "description": "Controls the number of items per page in a limited (paginated) list of products.",
+            "required": false,
+            "in": "query",
+            "type": "integer"
+          },
+          {
+            "name": "include_fields",
+            "description": "Fields to include, in a comma-separated list. The ID and the specified fields will be returned.",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "exclude_fields",
+            "description": "Fields to exclude, in a comma-separated list. The specified fields will be excluded from a response. The ID cannot be excluded.",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
           {
             "in": "header",
             "type": "string",
@@ -58,12 +92,2572 @@
             "required": true
           },
           {
-            "in": "body",
-            "name": "body",
-            "schema": {}
+            "name": "product_id",
+            "in": "query",
+            "type": "string",
+            "description": "A comma-separated list of ids of Products whose prices were requested. For example:\n`?product_id=:id`\n`?product_id:in=77,80,81`"
           }
         ],
-        "operationId": "getCatalogSummary"
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "title": "Variant Collection Response",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "description": "Common Variant properties.",
+                        "title": "Variant Base",
+                        "properties": {
+                          "cost_price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "The cost price of the variant. Not affected by Price List prices.",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "This variant's base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product's default price (set in the Product resource's `price` field) will be used as the base price.",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "sale_price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "This variant's sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product's sale price (set in the Product resource's `price` field) will be used as the sale price.",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "retail_price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "This variant's retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product's retail price (set in the Product resource's `price` field) will be used as the retail price.",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "weight": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "This variant's base weight on the storefront. If this value is null, the product's default weight (set in the Product resource's weight field) will be used as the base weight.",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "width": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Width of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default width (set in the Product resource's `width` field) will be used as the base width.\n",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "height": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Height of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default height (set in the Product resource's `height` field) will be used as the base height.\n",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "depth": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Depth of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default depth (set in the Product resource's `depth` field) will be used as the base depth.\n",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "is_free_shipping": {
+                            "type": "boolean",
+                            "description": "Flag used to indicate whether the variant has free shipping. If `true`, the shipping cost for the variant will be zero.\n"
+                          },
+                          "fixed_cost_shipping_price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "A fixed shipping cost for the variant. If defined, this value will be used during checkout instead of normal shipping-cost calculation.\n",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "purchasing_disabled": {
+                            "type": "boolean",
+                            "description": "If `true`, this variant will not be purchasable on the storefront."
+                          },
+                          "purchasing_disabled_message": {
+                            "type": "string",
+                            "description": "If `purchasing_disabled` is `true`, this message should show on the storefront when the variant is selected.",
+                            "minLength": 0,
+                            "maxLength": 255
+                          },
+                          "upc": {
+                            "type": "string",
+                            "description": "The UPC code used in feeds for shopping comparison sites and external channel integrations.",
+                            "x-nullable": true
+                          },
+                          "inventory_level": {
+                            "type": "integer",
+                            "description": "Inventory level for the variant, which is used when the product's inventory_tracking is set to `variant`.",
+                            "x-nullable": true
+                          },
+                          "inventory_warning_level": {
+                            "type": "integer",
+                            "description": "When the variant hits this inventory level, it is considered low stock.",
+                            "x-nullable": true
+                          },
+                          "bin_picking_number": {
+                            "type": "string",
+                            "description": "Identifies where in a warehouse the variant is located.",
+                            "x-nullable": true,
+                            "minLength": 0,
+                            "maxLength": 255
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "product_id": {
+                            "type": "integer"
+                          },
+                          "sku": {
+                            "type": "string"
+                          },
+                          "sku_id": {
+                            "type": "integer",
+                            "description": "Read-only reference to v2 API's SKU ID. Null if it is a base variant.",
+                            "x-nullable": true
+                          },
+                          "option_values": {
+                            "type": "array",
+                            "description": "Array of option and option values IDs that make up this variant. Will be empty if the variant is the product's base variant.",
+                            "items": {
+                              "allOf": [
+                                {
+                                  "description": "Common Option Value Product properties.",
+                                  "title": "Option Value Product Base",
+                                  "properties": {
+                                    "option_display_name": {
+                                      "type": "string",
+                                      "description": "The name of the option.\n",
+                                      "x-required": [
+                                        "post"
+                                      ],
+                                      "minLength": 1,
+                                      "maxLength": 255,
+                                      "example": "Color"
+                                    },
+                                    "label": {
+                                      "type": "string",
+                                      "description": "The label of the option value.\n",
+                                      "x-required": [
+                                        "post"
+                                      ],
+                                      "minLength": 1,
+                                      "maxLength": 255,
+                                      "example": "Beige"
+                                    }
+                                  }
+                                },
+                                {
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "option_id": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                }
+                              ],
+                              "title": "Option Value Variant",
+                              "type": "object"
+                            }
+                          },
+                          "calculated_price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "The price of the variant as seen on the storefront. This price takes into account `sale_price` and any price adjustment rules that are applicable to this variant.\n"
+                          }
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  }
+                },
+                "meta": {
+                  "$ref": "#/definitions/metaCollection_Full"
+                }
+              }
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 364,
+                    "product_id": 184,
+                    "sku": "SMA-RED",
+                    "sku_id": 330,
+                    "price": 15.99,
+                    "calculated_price": 15.99,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": 15,
+                    "calculated_weight": 15,
+                    "width": 4,
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 497,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 177,
+                        "label": "Small",
+                        "option_id": 199,
+                        "option_display_name": "Size"
+                      },
+                      {
+                        "id": 180,
+                        "label": "Red",
+                        "option_id": 200,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 365,
+                    "product_id": 184,
+                    "sku": "MED-RED",
+                    "sku_id": 331,
+                    "price": 555,
+                    "calculated_price": 555,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 15,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 500,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 178,
+                        "label": "Medium",
+                        "option_id": 199,
+                        "option_display_name": "Size"
+                      },
+                      {
+                        "id": 180,
+                        "label": "Red",
+                        "option_id": 200,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 366,
+                    "product_id": 184,
+                    "sku": "LAR-RED",
+                    "sku_id": 332,
+                    "price": {},
+                    "calculated_price": 253.99,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 15,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 500,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 179,
+                        "label": "Large",
+                        "option_id": 199,
+                        "option_display_name": "Size"
+                      },
+                      {
+                        "id": 180,
+                        "label": "Red",
+                        "option_id": 200,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 367,
+                    "product_id": 184,
+                    "sku": "SMA-GRE",
+                    "sku_id": 333,
+                    "price": {},
+                    "calculated_price": 249,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 15,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 177,
+                        "label": "Small",
+                        "option_id": 199,
+                        "option_display_name": "Size"
+                      },
+                      {
+                        "id": 181,
+                        "label": "Green",
+                        "option_id": 200,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 368,
+                    "product_id": 184,
+                    "sku": "MED-GRE",
+                    "sku_id": 334,
+                    "price": {},
+                    "calculated_price": 249,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 15,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 178,
+                        "label": "Medium",
+                        "option_id": 199,
+                        "option_display_name": "Size"
+                      },
+                      {
+                        "id": 181,
+                        "label": "Green",
+                        "option_id": 200,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 369,
+                    "product_id": 184,
+                    "sku": "LAR-GRE",
+                    "sku_id": 335,
+                    "price": {},
+                    "calculated_price": 253.99,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 15,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 179,
+                        "label": "Large",
+                        "option_id": 199,
+                        "option_display_name": "Size"
+                      },
+                      {
+                        "id": 181,
+                        "label": "Green",
+                        "option_id": 200,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 370,
+                    "product_id": 184,
+                    "sku": "SMA-BLU",
+                    "sku_id": 336,
+                    "price": {},
+                    "calculated_price": 249,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 15,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 177,
+                        "label": "Small",
+                        "option_id": 199,
+                        "option_display_name": "Size"
+                      },
+                      {
+                        "id": 182,
+                        "label": "Blue",
+                        "option_id": 200,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 371,
+                    "product_id": 184,
+                    "sku": "MED-BLU",
+                    "sku_id": 337,
+                    "price": {},
+                    "calculated_price": 249,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 15,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 178,
+                        "label": "Medium",
+                        "option_id": 199,
+                        "option_display_name": "Size"
+                      },
+                      {
+                        "id": 182,
+                        "label": "Blue",
+                        "option_id": 200,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 372,
+                    "product_id": 184,
+                    "sku": "LAR-BLU",
+                    "sku_id": 338,
+                    "price": {},
+                    "calculated_price": 253.99,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 15,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 179,
+                        "label": "Large",
+                        "option_id": 199,
+                        "option_display_name": "Size"
+                      },
+                      {
+                        "id": 182,
+                        "label": "Blue",
+                        "option_id": 200,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 376,
+                    "product_id": 158,
+                    "sku": "SKU-A0C8A203",
+                    "sku_id": 342,
+                    "price": {},
+                    "calculated_price": 49.99,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 1,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": {},
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 174,
+                        "label": "Beige",
+                        "option_id": 207,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 377,
+                    "product_id": 158,
+                    "sku": "SKU-E628145D",
+                    "sku_id": 343,
+                    "price": {},
+                    "calculated_price": 49.99,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 1,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": {},
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 175,
+                        "label": "Grey",
+                        "option_id": 207,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 378,
+                    "product_id": 158,
+                    "sku": "SKU-E898ABC0",
+                    "sku_id": 344,
+                    "price": {},
+                    "calculated_price": 49.99,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 1,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": {},
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 176,
+                        "label": "Black",
+                        "option_id": 207,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 382,
+                    "product_id": 192,
+                    "sku": "SMIT",
+                    "sku_id": 348,
+                    "price": 10,
+                    "calculated_price": 10,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 2,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 174,
+                        "label": "Beige",
+                        "option_id": 220,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 383,
+                    "product_id": 192,
+                    "sku": "SMIT-1",
+                    "sku_id": 349,
+                    "price": {},
+                    "calculated_price": 25,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 1,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": {},
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 175,
+                        "label": "Grey",
+                        "option_id": 220,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 384,
+                    "product_id": 192,
+                    "sku": "SMIT-2",
+                    "sku_id": 350,
+                    "price": {},
+                    "calculated_price": 25,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 1,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": {},
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 176,
+                        "label": "Black",
+                        "option_id": 220,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 325,
+                    "product_id": 157,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 66,
+                    "calculated_price": 66,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/157/images/379/showerwhite3_1024x1024_1024x1024__77046__53871.1534344510.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 330,
+                    "product_id": 159,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 34,
+                    "calculated_price": 34,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/159/images/384/BARRhandcream1_1024x1024_1024x1024__91787__18352.1534344511.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 331,
+                    "product_id": 160,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 28,
+                    "calculated_price": 28,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/160/images/386/barr_coroomspray_1024x1024__43836__61957.1534344512.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 332,
+                    "product_id": 161,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 109,
+                    "calculated_price": 109,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/161/images/387/roundterrariumlarge_1024x1024__12432__22764.1534344513.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 333,
+                    "product_id": 162,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 89,
+                    "calculated_price": 89,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/162/images/389/roundterrariumsmall_1024x1024__05749__31860.1534344513.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 3000,
+                    "inventory_warning_level": 3,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 334,
+                    "product_id": 163,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 32,
+                    "calculated_price": 32,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/163/images/391/twinestand3_1024x1024_1024x1024__17689__50909.1534344514.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 335,
+                    "product_id": 164,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 8,
+                    "calculated_price": 8,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/164/images/395/naturaltwine_1024x1024_1024x1024__72720__85337.1534344514.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 336,
+                    "product_id": 165,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 10.95,
+                    "calculated_price": 10.95,
+                    "sale_price": 0,
+                    "retail_price": 15,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/165/images/396/barrsalve1_1024x1024_1024x1024__06826__26118.1534344515.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 337,
+                    "product_id": 166,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 28,
+                    "calculated_price": 28,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/166/images/397/livingwithplants_grande__26452__28114.1534344515.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 338,
+                    "product_id": 167,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 225,
+                    "calculated_price": 225,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 339,
+                    "product_id": 168,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 55,
+                    "calculated_price": 55,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/168/images/402/chemex6cup_1024x1024_1024x1024__84712__11834.1534344517.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 340,
+                    "product_id": 169,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 44.95,
+                    "calculated_price": 44.95,
+                    "sale_price": 0,
+                    "retail_price": 50,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/169/images/406/3cupchemex5_1024x1024__40463__59678.1534344521.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 341,
+                    "product_id": 170,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 25,
+                    "calculated_price": 25,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/170/images/411/measuringsquares2_1024x1024__07108__95421.1534344522.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 342,
+                    "product_id": 171,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 70,
+                    "calculated_price": 70,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/171/images/414/japanesekettle1_1024x1024_1024x1024__83765__86479.1534344523.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 343,
+                    "product_id": 172,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 48,
+                    "calculated_price": 48,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/172/images/419/thekinfolktablecover_1024x1024__80715__29685.1534344525.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 344,
+                    "product_id": 173,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 18,
+                    "calculated_price": 18,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/173/images/424/measuringspoons1_1024x1024__22102__55079.1534344525.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 345,
+                    "product_id": 174,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 7.95,
+                    "calculated_price": 7.95,
+                    "sale_price": 0,
+                    "retail_price": 10,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/174/images/425/leparfaitmedium3_1024x1024_1024x1024__37756__81924.1534344526.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 346,
+                    "product_id": 175,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 35,
+                    "calculated_price": 35,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/175/images/428/oakcheesegrater2_1024x1024__03905__19286.1534344527.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 347,
+                    "product_id": 176,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 59,
+                    "calculated_price": 59,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/176/images/432/milkandcreamer1_1024x1024__69117__81345.1534344528.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 348,
+                    "product_id": 177,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 7,
+                    "calculated_price": 7,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/177/images/434/scrubbrush2_1024x1024_1024x1024__81254__82103.1534344529.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 349,
+                    "product_id": 178,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 120,
+                    "calculated_price": 120,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/178/images/436/tieredbasket_1024x1024__81717__38751.1534344530.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 350,
+                    "product_id": 179,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 30,
+                    "calculated_price": 30,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/179/images/440/CommonGoodLaundrySoap_1024x1024__31999__28799.1534344531.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 351,
+                    "product_id": 180,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 20,
+                    "calculated_price": 20,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/180/images/441/CommonGoodFloorCleaner_grande__73674__83339.1534344531.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 352,
+                    "product_id": 181,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 15,
+                    "calculated_price": 15,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/181/images/442/CommonGoodAllPurposeCleaner_d37aa1e8_e16f_4309_bddd_8fae0d94efc7_1024x1024__40180__66527.1534344531.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 353,
+                    "product_id": 182,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 15,
+                    "calculated_price": 15,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/182/images/443/CommonGoodHandSoap_1024x1024__94874__52907.1534344532.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 354,
+                    "product_id": 183,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 15,
+                    "calculated_price": 15,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/183/images/444/CommonGoodDishSoap_1024x1024__74820__62808.1534344532.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 356,
+                    "product_id": 185,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 46,
+                    "calculated_price": 46,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/185/images/449/utilitybucket1_1024x1024__78563__75042.1534344535.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 498,
+                    "inventory_warning_level": 3,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 357,
+                    "product_id": 186,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 17,
+                    "calculated_price": 17,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/186/images/454/SshapedScrubBrush2_1024x1024__94308__40283.1534344536.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 358,
+                    "product_id": 187,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 26,
+                    "calculated_price": 26,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/187/images/458/featherduster_1024x1024__94858__16221.1534344537.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 359,
+                    "product_id": 188,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 31.95,
+                    "calculated_price": 31.95,
+                    "sale_price": 0,
+                    "retail_price": 35,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/188/images/460/dustpan1_1024x1024_1024x1024__43447__69128.1534344539.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 360,
+                    "product_id": 189,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 18.95,
+                    "calculated_price": 18.95,
+                    "sale_price": 0,
+                    "retail_price": 22,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/189/images/465/gather_1024x1024__17195__82620.1534344540.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 361,
+                    "product_id": 190,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 23,
+                    "calculated_price": 23,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/190/images/470/kinfolkessentialissue_1024x1024__22507__36871.1534344542.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 362,
+                    "product_id": 191,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 27.95,
+                    "calculated_price": 27.95,
+                    "sale_price": 0,
+                    "retail_price": 30,
+                    "map_price": 0,
+                    "weight": 1,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 1,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "https://cdn8.bigcommerce.com/s-id30h7ohwf/products/191/images/475/openhousevol3_1024x1024__59692__16355.1534344544.560.850.jpg?c=2",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 385,
+                    "product_id": 193,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 10,
+                    "calculated_price": 10,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 4,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 4,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  },
+                  {
+                    "id": 386,
+                    "product_id": 194,
+                    "sku": "",
+                    "sku_id": {},
+                    "price": 11,
+                    "calculated_price": 11,
+                    "sale_price": 0,
+                    "retail_price": 0,
+                    "map_price": 0,
+                    "weight": 3,
+                    "width": 0,
+                    "height": 0,
+                    "depth": 0,
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": 0,
+                    "calculated_weight": 3,
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": []
+                  }
+                ],
+                "meta": {
+                  "pagination": {
+                    "total": 54,
+                    "count": 50,
+                    "per_page": 50,
+                    "current_page": 1,
+                    "total_pages": 2,
+                    "links": {
+                      "next": "?page=2&limit=50",
+                      "current": "?page=1&limit=50"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The resource was not found.",
+            "schema": {
+              "description": "Error payload for the BigCommerce API.",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "description": "404 HTTP status code.\n",
+                  "type": "integer"
+                },
+                "title": {
+                  "description": "The error title describing the particular error.",
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "instance": {
+                  "type": "string"
+                }
+              },
+              "title": "Not Found"
+            }
+          }
+        },
+        "summary": "Get All Variants",
+        "tags": [
+          "Variants"
+        ]
+      },
+      "put": {
+        "tags": [
+          "Variants",
+          "Catalog"
+        ],
+        "description": "Creates or updates a batch of `Variant` objects. At the time of writing, the current limit is `50` variants. This limit is subject to change.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "description": "The model for a PUT to update variants on a product.\n",
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Common Variant properties.",
+                    "title": "Variant Base",
+                    "properties": {
+                      "cost_price": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "The cost price of the variant. Not affected by Price List prices.",
+                        "x-nullable": true,
+                        "minimum": 0
+                      },
+                      "price": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "This variant's base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product's default price (set in the Product resource's `price` field) will be used as the base price.",
+                        "x-nullable": true,
+                        "minimum": 0
+                      },
+                      "sale_price": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "This variant's sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product's sale price (set in the Product resource's `price` field) will be used as the sale price.",
+                        "x-nullable": true,
+                        "minimum": 0
+                      },
+                      "retail_price": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "This variant's retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product's retail price (set in the Product resource's `price` field) will be used as the retail price.",
+                        "x-nullable": true,
+                        "minimum": 0
+                      },
+                      "weight": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "This variant's base weight on the storefront. If this value is null, the product's default weight (set in the Product resource's weight field) will be used as the base weight.",
+                        "x-nullable": true,
+                        "minimum": 0
+                      },
+                      "width": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "Width of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default width (set in the Product resource's `width` field) will be used as the base width.\n",
+                        "x-nullable": true,
+                        "minimum": 0
+                      },
+                      "height": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "Height of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default height (set in the Product resource's `height` field) will be used as the base height.\n",
+                        "x-nullable": true,
+                        "minimum": 0
+                      },
+                      "depth": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "Depth of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default depth (set in the Product resource's `depth` field) will be used as the base depth.\n",
+                        "x-nullable": true,
+                        "minimum": 0
+                      },
+                      "is_free_shipping": {
+                        "type": "boolean",
+                        "description": "Flag used to indicate whether the variant has free shipping. If `true`, the shipping cost for the variant will be zero.\n"
+                      },
+                      "fixed_cost_shipping_price": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "A fixed shipping cost for the variant. If defined, this value will be used during checkout instead of normal shipping-cost calculation.\n",
+                        "x-nullable": true,
+                        "minimum": 0
+                      },
+                      "purchasing_disabled": {
+                        "type": "boolean",
+                        "description": "If `true`, this variant will not be purchasable on the storefront."
+                      },
+                      "purchasing_disabled_message": {
+                        "type": "string",
+                        "description": "If `purchasing_disabled` is `true`, this message should show on the storefront when the variant is selected.",
+                        "minLength": 0,
+                        "maxLength": 255
+                      },
+                      "upc": {
+                        "type": "string",
+                        "description": "The UPC code used in feeds for shopping comparison sites and external channel integrations.",
+                        "x-nullable": true
+                      },
+                      "inventory_level": {
+                        "type": "integer",
+                        "description": "Inventory level for the variant, which is used when the product's inventory_tracking is set to `variant`.",
+                        "x-nullable": true
+                      },
+                      "inventory_warning_level": {
+                        "type": "integer",
+                        "description": "When the variant hits this inventory level, it is considered low stock.",
+                        "x-nullable": true
+                      },
+                      "bin_picking_number": {
+                        "type": "string",
+                        "description": "Identifies where in a warehouse the variant is located.",
+                        "x-nullable": true,
+                        "minLength": 0,
+                        "maxLength": 255
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "x-required": [
+                          "put"
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "title": "Variant Put"
+              },
+              "title": "Variants Collection Put"
+            },
+            "x-examples": {
+              "application/json": [
+                {
+                  "cost_price": 0,
+                  "price": 47.99,
+                  "sale_price": null,
+                  "retail_price": 49.99,
+                  "weight": null,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "This item not available at this time.",
+                  "upc": "",
+                  "inventory_level": 10,
+                  "inventory_warning_level": 5,
+                  "bin_picking_number": "123",
+                  "id": 1
+                },
+                {
+                  "cost_price": 0,
+                  "price": 47.99,
+                  "sale_price": null,
+                  "retail_price": 49.99,
+                  "weight": null,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "This item not available at this time.",
+                  "upc": "",
+                  "inventory_level": 10,
+                  "inventory_warning_level": 5,
+                  "bin_picking_number": "124",
+                  "id": 2
+                },
+                {
+                  "cost_price": 0,
+                  "price": 48.99,
+                  "sale_price": null,
+                  "retail_price": 50.99,
+                  "weight": null,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "This item not available at this time.",
+                  "upc": "",
+                  "inventory_level": 8,
+                  "inventory_warning_level": 5,
+                  "bin_picking_number": "125",
+                  "id": 3
+                },
+                {
+                  "cost_price": 0,
+                  "price": 48.99,
+                  "sale_price": null,
+                  "retail_price": 50.99,
+                  "weight": null,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": true,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "This item not available at this time.",
+                  "upc": "",
+                  "inventory_level": 7,
+                  "inventory_warning_level": 5,
+                  "bin_picking_number": "126",
+                  "id": 4
+                },
+                {
+                  "cost_price": 0,
+                  "price": 49.99,
+                  "sale_price": null,
+                  "retail_price": 51.99,
+                  "weight": null,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": true,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "This item not available at this time.",
+                  "upc": "",
+                  "inventory_level": 7,
+                  "inventory_warning_level": 4,
+                  "bin_picking_number": "127",
+                  "id": 5
+                }
+              ]
+            }
+          },
+          {
+            "in": "header",
+            "type": "string",
+            "name": "Accept",
+            "default": "application/json",
+            "required": true
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "default": "application/json",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "allOf": [
+                      {
+                        "type": "object",
+                        "description": "Common Variant properties.",
+                        "title": "Variant Base",
+                        "properties": {
+                          "cost_price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "The cost price of the variant. Not affected by Price List prices.",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "This variant's base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product's default price (set in the Product resource's `price` field) will be used as the base price.",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "sale_price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "This variant's sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product's sale price (set in the Product resource's `price` field) will be used as the sale price.",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "retail_price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "This variant's retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product's retail price (set in the Product resource's `price` field) will be used as the retail price.",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "weight": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "This variant's base weight on the storefront. If this value is null, the product's default weight (set in the Product resource's weight field) will be used as the base weight.",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "width": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Width of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default width (set in the Product resource's `width` field) will be used as the base width.\n",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "height": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Height of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default height (set in the Product resource's `height` field) will be used as the base height.\n",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "depth": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Depth of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default depth (set in the Product resource's `depth` field) will be used as the base depth.\n",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "is_free_shipping": {
+                            "type": "boolean",
+                            "description": "Flag used to indicate whether the variant has free shipping. If `true`, the shipping cost for the variant will be zero.\n"
+                          },
+                          "fixed_cost_shipping_price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "A fixed shipping cost for the variant. If defined, this value will be used during checkout instead of normal shipping-cost calculation.\n",
+                            "x-nullable": true,
+                            "minimum": 0
+                          },
+                          "purchasing_disabled": {
+                            "type": "boolean",
+                            "description": "If `true`, this variant will not be purchasable on the storefront."
+                          },
+                          "purchasing_disabled_message": {
+                            "type": "string",
+                            "description": "If `purchasing_disabled` is `true`, this message should show on the storefront when the variant is selected.",
+                            "minLength": 0,
+                            "maxLength": 255
+                          },
+                          "upc": {
+                            "type": "string",
+                            "description": "The UPC code used in feeds for shopping comparison sites and external channel integrations.",
+                            "x-nullable": true
+                          },
+                          "inventory_level": {
+                            "type": "integer",
+                            "description": "Inventory level for the variant, which is used when the product's inventory_tracking is set to `variant`.",
+                            "x-nullable": true
+                          },
+                          "inventory_warning_level": {
+                            "type": "integer",
+                            "description": "When the variant hits this inventory level, it is considered low stock.",
+                            "x-nullable": true
+                          },
+                          "bin_picking_number": {
+                            "type": "string",
+                            "description": "Identifies where in a warehouse the variant is located.",
+                            "x-nullable": true,
+                            "minLength": 0,
+                            "maxLength": 255
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "product_id": {
+                            "type": "integer"
+                          },
+                          "sku": {
+                            "type": "string"
+                          },
+                          "sku_id": {
+                            "type": "integer",
+                            "description": "Read-only reference to v2 API's SKU ID. Null if it is a base variant.",
+                            "x-nullable": true
+                          },
+                          "option_values": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "allOf": [
+                                {
+                                  "type": "object",
+                                  "description": "Common Option Value Product properties.",
+                                  "title": "Option Value Product Base",
+                                  "properties": {
+                                    "option_display_name": {
+                                      "type": "string",
+                                      "description": "The name of the option.\n",
+                                      "x-required": [
+                                        "post"
+                                      ],
+                                      "minLength": 1,
+                                      "maxLength": 255,
+                                      "example": "Color"
+                                    },
+                                    "label": {
+                                      "type": "string",
+                                      "description": "The label of the option value.\n",
+                                      "x-required": [
+                                        "post"
+                                      ],
+                                      "minLength": 1,
+                                      "maxLength": 255,
+                                      "example": "Beige"
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "option_id": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                }
+                              ],
+                              "title": "Option Value Variant"
+                            },
+                            "description": "Array of option and option values IDs that make up this variant. Will be empty if the variant is the product's base variant."
+                          },
+                          "calculated_price": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "The price of the variant as seen on the storefront. This price takes into account `sale_price` and any price adjustment rules that are applicable to this variant.\n"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "meta": {
+                  "type": "object",
+                  "description": "Data about the response, including pagination and collection totals.",
+                  "properties": {
+                    "pagination": {
+                      "type": "object",
+                      "description": "Data about the response, including pagination and collection totals.",
+                      "title": "Pagination",
+                      "properties": {
+                        "total": {
+                          "type": "integer",
+                          "description": "Total number of items in the result set.\n",
+                          "example": 36
+                        },
+                        "count": {
+                          "type": "integer",
+                          "description": "Total number of items in the collection response.\n",
+                          "example": 36
+                        },
+                        "per_page": {
+                          "type": "integer",
+                          "description": "The amount of items returned in the collection per page, controlled by the limit parameter.\n",
+                          "example": 50
+                        },
+                        "current_page": {
+                          "type": "integer",
+                          "description": "The page you are currently on within the collection.\n",
+                          "example": 1
+                        },
+                        "total_pages": {
+                          "type": "integer",
+                          "description": "The total number of pages in the collection.\n",
+                          "example": 1
+                        },
+                        "links": {
+                          "type": "object",
+                          "description": "Pagination links for the previous and next parts of the whole collection.\n",
+                          "properties": {
+                            "previous": {
+                              "type": "string",
+                              "description": "Link to the previous page returned in the response.\n"
+                            },
+                            "current": {
+                              "type": "string",
+                              "description": "Link to the current page returned in the response.\n",
+                              "example": "?page=1&limit=50"
+                            },
+                            "next": {
+                              "type": "string",
+                              "description": "Link to the next page returned in the response.\n"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "title": "Collection Meta"
+                }
+              },
+              "title": "Variant Collection Response"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 382,
+                    "product_id": 192,
+                    "sku": "SMIT",
+                    "sku_id": 348,
+                    "price": 10,
+                    "calculated_price": 10,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 2,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": 0,
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 174,
+                        "label": "Beige",
+                        "option_id": 220,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 383,
+                    "product_id": 192,
+                    "sku": "SMIT-1",
+                    "sku_id": 349,
+                    "price": {},
+                    "calculated_price": 25,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 1,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": {},
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 175,
+                        "label": "Grey",
+                        "option_id": 220,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 384,
+                    "product_id": 192,
+                    "sku": "SMIT-2",
+                    "sku_id": 350,
+                    "price": {},
+                    "calculated_price": 25,
+                    "sale_price": {},
+                    "retail_price": {},
+                    "map_price": {},
+                    "weight": {},
+                    "calculated_weight": 1,
+                    "width": {},
+                    "height": {},
+                    "depth": {},
+                    "is_free_shipping": false,
+                    "fixed_cost_shipping_price": {},
+                    "purchasing_disabled": false,
+                    "purchasing_disabled_message": "",
+                    "image_url": "",
+                    "cost_price": {},
+                    "upc": "",
+                    "mpn": "",
+                    "gtin": "",
+                    "inventory_level": 0,
+                    "inventory_warning_level": 0,
+                    "bin_picking_number": "",
+                    "option_values": [
+                      {
+                        "id": 176,
+                        "label": "Black",
+                        "option_id": 220,
+                        "option_display_name": "Color"
+                      }
+                    ]
+                  }
+                ],
+                "meta": {
+                  "pagination": {
+                    "total": 3,
+                    "count": 3,
+                    "per_page": 50,
+                    "current_page": 1,
+                    "total_pages": 1,
+                    "links": {
+                      "current": "?page=1&limit=50"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "",
+            "examples": {
+              "application/json": {
+                "errors": {},
+                "status": 413,
+                "title": "The request payload is too large. The maximum items allowed in the array is 50",
+                "type": "https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes"
+              }
+            }
+          },
+          "422": {
+            "description": "This is the result of missing required fields, or of invalid data. See the response for more details.\n",
+            "schema": {
+              "description": "Errors during batch usage for the BigCommerce API.\n",
+              "type": "object",
+              "properties": {
+                "batch_errors": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "type": "object",
+                        "description": "Error payload for the BigCommerce API.\n",
+                        "properties": {
+                          "status": {
+                            "description": "The HTTP status code.\n",
+                            "type": "integer"
+                          },
+                          "title": {
+                            "description": "The error title describing the particular error.\n",
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "instance": {
+                            "type": "string"
+                          }
+                        },
+                        "title": "Base Error"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "errors": {
+                            "type": "object",
+                            "title": "Detailed Errors",
+                            "properties": {
+                              "additionalProperties": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "title": "Error Response"
+                  }
+                }
+              },
+              "title": "Variants Batch Error Response"
+            }
+          }
+        },
+        "summary": "Update Variants (Batch)",
+        "operationId": "updateVariantsBatch",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
       }
     }
   },
@@ -803,6 +3397,241 @@
           "type": "string"
         }
       }
+    },
+    "variant_Base": {
+      "type": "object",
+      "title": "variant_Base",
+      "properties": {
+        "cost_price": {
+          "type": "number",
+          "format": "double",
+          "description": "The cost price of the variant. Not affected by Price List prices.",
+          "x-nullable": true,
+          "minimum": 0
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "description": "This variant's base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product's default price (set in the Product resource's `price` field) will be used as the base price.",
+          "x-nullable": true,
+          "minimum": 0
+        },
+        "sale_price": {
+          "type": "number",
+          "format": "double",
+          "description": "This variant's sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product's sale price (set in the Product resource's `price` field) will be used as the sale price.",
+          "x-nullable": true,
+          "minimum": 0
+        },
+        "retail_price": {
+          "type": "number",
+          "format": "double",
+          "description": "This variant's retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product's retail price (set in the Product resource's `price` field) will be used as the retail price.",
+          "x-nullable": true,
+          "minimum": 0
+        },
+        "weight": {
+          "type": "number",
+          "format": "double",
+          "description": "This variant's base weight on the storefront. If this value is null, the product's default weight (set in the Product resource's weight field) will be used as the base weight.",
+          "x-nullable": true,
+          "minimum": 0
+        },
+        "width": {
+          "type": "number",
+          "format": "double",
+          "description": "Width of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default width (set in the Product resource's `width` field) will be used as the base width.\n",
+          "x-nullable": true,
+          "minimum": 0
+        },
+        "height": {
+          "type": "number",
+          "format": "double",
+          "description": "Height of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default height (set in the Product resource's `height` field) will be used as the base height.\n",
+          "x-nullable": true,
+          "minimum": 0
+        },
+        "depth": {
+          "type": "number",
+          "format": "double",
+          "description": "Depth of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default depth (set in the Product resource's `depth` field) will be used as the base depth.\n",
+          "x-nullable": true,
+          "minimum": 0
+        },
+        "is_free_shipping": {
+          "type": "boolean",
+          "description": "Flag used to indicate whether the variant has free shipping. If `true`, the shipping cost for the variant will be zero.\n"
+        },
+        "fixed_cost_shipping_price": {
+          "type": "number",
+          "format": "double",
+          "description": "A fixed shipping cost for the variant. If defined, this value will be used during checkout instead of normal shipping-cost calculation.\n",
+          "x-nullable": true,
+          "minimum": 0
+        },
+        "purchasing_disabled": {
+          "type": "boolean",
+          "description": "If `true`, this variant will not be purchasable on the storefront."
+        },
+        "purchasing_disabled_message": {
+          "type": "string",
+          "description": "If `purchasing_disabled` is `true`, this message should show on the storefront when the variant is selected.",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "upc": {
+          "type": "string",
+          "description": "The UPC code used in feeds for shopping comparison sites and external channel integrations.",
+          "x-nullable": true
+        },
+        "inventory_level": {
+          "type": "integer",
+          "description": "Inventory level for the variant, which is used when the product's inventory_tracking is set to `variant`.",
+          "x-nullable": true
+        },
+        "inventory_warning_level": {
+          "type": "integer",
+          "description": "When the variant hits this inventory level, it is considered low stock.",
+          "x-nullable": true
+        },
+        "bin_picking_number": {
+          "type": "string",
+          "description": "Identifies where in a warehouse the variant is located.",
+          "x-nullable": true,
+          "minLength": 0,
+          "maxLength": 255
+        }
+      },
+      "description": "Variant properties used on:\n* `/catalog/products/variants`\n* `/catalog/variants`"
+    },
+        "variantCollection_Put": {
+      "type": "array",
+      "title": "variantCollection_Put",
+      "items": {
+        "$ref": "#/definitions/productVariant_Full"
+      }
+    },
+    "variant_Put": {
+      "description": "The model for a PUT to update variants on a product.\n",
+      "allOf": [
+        {
+          "description": "Common Variant properties.",
+          "title": "Variant Base",
+          "properties": {
+            "cost_price": {
+              "type": "number",
+              "format": "double",
+              "description": "The cost price of the variant. Not affected by Price List prices.",
+              "x-nullable": true,
+              "minimum": 0
+            },
+            "price": {
+              "type": "number",
+              "format": "double",
+              "description": "This variant's base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product's default price (set in the Product resource's `price` field) will be used as the base price.",
+              "x-nullable": true,
+              "minimum": 0
+            },
+            "sale_price": {
+              "type": "number",
+              "format": "double",
+              "description": "This variant's sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product's sale price (set in the Product resource's `price` field) will be used as the sale price.",
+              "x-nullable": true,
+              "minimum": 0
+            },
+            "retail_price": {
+              "type": "number",
+              "format": "double",
+              "description": "This variant's retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product's retail price (set in the Product resource's `price` field) will be used as the retail price.",
+              "x-nullable": true,
+              "minimum": 0
+            },
+            "weight": {
+              "type": "number",
+              "format": "double",
+              "description": "This variant's base weight on the storefront. If this value is null, the product's default weight (set in the Product resource's weight field) will be used as the base weight.",
+              "x-nullable": true,
+              "minimum": 0
+            },
+            "width": {
+              "type": "number",
+              "format": "double",
+              "description": "Width of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default width (set in the Product resource's `width` field) will be used as the base width.\n",
+              "x-nullable": true,
+              "minimum": 0
+            },
+            "height": {
+              "type": "number",
+              "format": "double",
+              "description": "Height of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default height (set in the Product resource's `height` field) will be used as the base height.\n",
+              "x-nullable": true,
+              "minimum": 0
+            },
+            "depth": {
+              "type": "number",
+              "format": "double",
+              "description": "Depth of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default depth (set in the Product resource's `depth` field) will be used as the base depth.\n",
+              "x-nullable": true,
+              "minimum": 0
+            },
+            "is_free_shipping": {
+              "type": "boolean",
+              "description": "Flag used to indicate whether the variant has free shipping. If `true`, the shipping cost for the variant will be zero.\n"
+            },
+            "fixed_cost_shipping_price": {
+              "type": "number",
+              "format": "double",
+              "description": "A fixed shipping cost for the variant. If defined, this value will be used during checkout instead of normal shipping-cost calculation.\n",
+              "x-nullable": true,
+              "minimum": 0
+            },
+            "purchasing_disabled": {
+              "type": "boolean",
+              "description": "If `true`, this variant will not be purchasable on the storefront."
+            },
+            "purchasing_disabled_message": {
+              "type": "string",
+              "description": "If `purchasing_disabled` is `true`, this message should show on the storefront when the variant is selected.",
+              "minLength": 0,
+              "maxLength": 255
+            },
+            "upc": {
+              "type": "string",
+              "description": "The UPC code used in feeds for shopping comparison sites and external channel integrations.",
+              "x-nullable": true
+            },
+            "inventory_level": {
+              "type": "integer",
+              "description": "Inventory level for the variant, which is used when the product's inventory_tracking is set to `variant`.",
+              "x-nullable": true
+            },
+            "inventory_warning_level": {
+              "type": "integer",
+              "description": "When the variant hits this inventory level, it is considered low stock.",
+              "x-nullable": true
+            },
+            "bin_picking_number": {
+              "type": "string",
+              "description": "Identifies where in a warehouse the variant is located.",
+              "x-nullable": true,
+              "minLength": 0,
+              "maxLength": 255
+            }
+          }
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "integer",
+              "x-required": [
+                "put"
+              ]
+            }
+          }
+        }
+      ],
+      "title": "variant_Put",
+      "type": "object"
     }
   },
   "securityDefinitions": {
