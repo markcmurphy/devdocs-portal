@@ -1,6 +1,1424 @@
-swagger: '2.0'
-info:
-  title: Customer Groups
-  version: '1.0'
-host: example.com
-paths: {}
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2",
+    "title": "Customer Groups",
+    "description": "- [OAuth Scopes](#oauth-scopes)\n- [Authentication](#authentication)\n- [Available Endpoints](#available-endpoints)\n- [Usage Notes](#usage-notes)\n- [Resources](#resources)\n\nCreate and Manage Customers, Customer Addresses, and Customer Groups. Additionally, validate customer passwords.\n\nTo learn more about Customers see [here](/api-docs/customers/customers-subscribers-overview). \n\n## OAuth Scopes\n| UI Name                                      | Permission | Parameter                                     |\n|----------------------------------------------|------------|-----------------------------------------------|\n| Customers                                    | modify     | `store_v2_customers`                          |\n| Customers                                    | read-only  | `store_v2_customers_read_only`                |\n\nFor more information on OAuth Scopes, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).\n\n## Authentication\n\nRequests can be authenticated by sending a `client_id` and `access_token` via `X-Auth-Client` and `X-Auth-Token` HTTP headers:\n\n```http\nGET /stores/{$$.env.store_hash}/v3/catalog/summary\nhost: api.bigcommerce.com\nAccept: application/json\nX-Auth-Client: {client_id}\nX-Auth-Token: {access_token}\n```\n\n|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Client`|`client_id`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n\nFor more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).\n\n## Available Endpoints\n| Resource / Endpoint                     | Description                                                                   |\n|-----------------------------------------|-------------------------------------------------------------------------------|\n| Customers                               | Identity and account details for customers shopping on BigCommerce stores     |\n| Customers Addresses                     | Postal address belonging to a customer.                                       |\n| Customers Groups                        | Groupings of customers who share the same level of access and discounts       |\n| Customers Validate Password             | Validate customer passwords                                                   |\n\n## Usage Notes\n\n**Customer Groups**\n* Customer Groups are only available on specific plans.\n\n**Customers vs. Subscribers**\n* A subscriber is not always a customer. Someone can sign up for the newsletter only and not create an account.\n* A customer is not always a subscriber. Signing up for the newsletter is a separate action from creating an account and purchasing an item.\n* A customer and a subscriber can be the same. If a shopper checks out on the storefront, creates an account and opts into the newsletter, they are a customer and a subscriber.\n\n## Resources\n\n### Related APIs / Endpoints\n  [Customer Login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)\n- [Current Customer API](https://developer.bigcommerce.com/api-docs/customers/current-customer-api)\n- [Customers API (v3)](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api)\n- [Subscribers API](https://developer.bigcommerce.com/api-reference/customer-subscribers/subscribers-api)\n\n### Webhooks\n- [Customers](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)"
+  },
+  "host": "api.bigcommerce.com",
+  "basePath": "/stores/{$$.env.store_hash}/v2",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/customer_groups": {
+      "get": {
+        "description": "Returns a list of *Customer Groups*. Default sorting is by customer-group id, from lowest to highest.",
+        "summary": "Get All Customer Groups",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Number of pages"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Count per page"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter customer groups by exact name match. Can use `name:like` to filter using a fuzzy matching method. This is good for implementing search."
+          },
+          {
+            "name": "is_default",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "description": "If customers who signup are added to this group by default"
+          },
+          {
+            "$ref": "#/parameters/is_group_for_guests"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/customerGroup_Full"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 1,
+                  "name": "B2B",
+                  "is_default": false,
+                  "category_access": {
+                    "type": "all"
+                  },
+                  "discount_rules": [
+                    {
+                      "type": "price_list",
+                      "price_list_id": 1
+                    }
+                  ]
+                },
+                {
+                  "id": 2,
+                  "name": "5% Discount",
+                  "is_default": false,
+                  "category_access": {
+                    "type": "specific",
+                    "categories": [
+                      18,
+                      19,
+                      23,
+                      34
+                    ]
+                  },
+                  "discount_rules": [
+                    {
+                      "type": "all",
+                      "method": "percent",
+                      "amount": "5.0000"
+                    }
+                  ],
+                  "is_group_for_guests": true
+                }
+              ],
+              "Response Schema": [
+                {
+                  "id": -17214385,
+                  "name": "cupidatat labore",
+                  "is_default": true,
+                  "category_access": {},
+                  "discount_rules": [
+                    {
+                      "type": "sunt in ad ea",
+                      "method": "nisi aliquip et ut magna",
+                      "amount": "consectetur anim sed"
+                    },
+                    {
+                      "type": "enim nulla magna",
+                      "method": "est sed adipisicing ut",
+                      "amount": "nostrud dolore sunt pariatur"
+                    },
+                    {
+                      "type": "consequat ipsum sunt ut",
+                      "method": "dolor tempor labore",
+                      "amount": "aliquip eiusmo"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "tags": [
+          "Customer Groups"
+        ],
+        "operationId": "getAllCustomerGroups"
+      },
+      "post": {
+        "summary": "Create a Customer Group",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "X-Auth-Client",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/customerGroup_Post"
+            },
+            "x-examples": {
+              "application/json": {
+                "name": "Student Discounts",
+                "discount_rules": [
+                  {
+                    "type": "price_list",
+                    "price_list_id": 3
+                  }
+                ]
+              },
+              "Give a 5% Discount to All Members": "{\n    \"name\": \"Student Discounts\",\n    \"discount_rules\": \n    [{\n        \"type\": \"all\",\n        \"method\": \"percent\",\n        \"amount\": 5.00\n    }]\n}",
+              "Restrict Categories for Group": {
+                "name": "Bulk Purchasers",
+                "category_access": {
+                  "type": "specific",
+                  "categories": [
+                    7,
+                    12,
+                    20
+                  ]
+                }
+              },
+              "Assign New Customers to a Group": "{\n  \"name\": \"Retail Customers\",\n  \"is_default\": true\n}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/customerGroup_Full"
+            },
+            "examples": {
+              "application/json": {
+                "name": "5% Discount",
+                "is_default": false,
+                "category_access": {
+                  "type": "specific",
+                  "categories": [
+                    18,
+                    19,
+                    23,
+                    34
+                  ]
+                },
+                "discount_rules": [
+                  {
+                    "type": "all",
+                    "method": "percent",
+                    "amount": "5.0000"
+                  }
+                ],
+                "is_group_for_guests": true
+              }
+            }
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        },
+        "description": "Creates a *Customer Group*. \n\n**Required Fields**\n* name",
+        "tags": [
+          "Customer Groups"
+        ],
+        "operationId": "createACustomerGroup"
+      },
+      "delete": {
+        "description": "By default, it deletes all *Customer Groups*. \n\nAll existing customers are unassigned from the group when it is deleted.",
+        "summary": "Delete Customer Groups",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        },
+        "tags": [
+          "Customer Groups"
+        ],
+        "operationId": "deleteAllCustomerGroups"
+      }
+    },
+    "/customer_groups/{customer_group_id}": {
+      "get": {
+        "description": "Returns a *Customer Group*.",
+        "summary": "Get a Customer Group",
+        "parameters": [
+          {
+            "name": "customer_group_id",
+            "in": "path",
+            "type": "integer",
+            "required": true,
+            "description": "Id of the customer group"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Number of pages"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "Count per page"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Name of the customer groups"
+          },
+          {
+            "name": "is_default",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "description": "If customers who signup are added to this group by default"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/customerGroup_Full"
+            },
+            "examples": {
+              "application/json": {
+                "id": 2,
+                "name": "5% Discount",
+                "is_default": false,
+                "category_access": {
+                  "type": "specific",
+                  "categories": [
+                    18,
+                    19,
+                    23,
+                    34
+                  ]
+                },
+                "discount_rules": [
+                  {
+                    "type": "all",
+                    "method": "percent",
+                    "amount": "5.0000"
+                  }
+                ],
+                "is_group_for_guests": true
+              }
+            }
+          }
+        },
+        "tags": [
+          "Customer Groups"
+        ],
+        "operationId": "getACustomerGroup"
+      },
+      "delete": {
+        "description": "Deletes a *Customer Group*. \n\n**Notes**\n\nAll existing customers are unassigned from the group when it is deleted.",
+        "summary": "Delete a Customer Group",
+        "parameters": [
+          {
+            "name": "customer_group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "exclusiveMaximum": false,
+            "exclusiveMinimum": false,
+            "description": "The id of the customer group."
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Customer Groups"
+        ],
+        "operationId": "deleteACustomerGroup"
+      },
+      "parameters": [
+        {
+          "name": "customer_group_id",
+          "in": "path",
+          "type": "integer",
+          "required": true,
+          "description": "Id of the customer group"
+        }
+      ],
+      "put": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/customerGroup_Full"
+            },
+            "examples": {
+              "application/json": {
+                "id": 2,
+                "name": "25% Discount",
+                "is_default": false,
+                "category_access": {
+                  "type": "specific",
+                  "categories": [
+                    18,
+                    19,
+                    23,
+                    34
+                  ]
+                },
+                "discount_rules": [
+                  {
+                    "type": "all",
+                    "method": "percent",
+                    "amount": "25.0000"
+                  }
+                ],
+                "is_group_for_guests": true
+              },
+              "Response Schema": {
+                "id": -16565096,
+                "name": "consequat proident",
+                "is_default": true,
+                "category_access": {},
+                "discount_rules": [
+                  {
+                    "type": "mollit laborum dolor enim",
+                    "method": "fugiat magna sint nostrud",
+                    "amount": "ea eiusmod ut ex"
+                  },
+                  {
+                    "type": "aliquip laborum",
+                    "method": "Excepteur",
+                    "amount": "aliquip cillum est do"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "summary": "Update a Customer Group",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customer_group_id",
+            "type": "integer",
+            "required": true,
+            "description": "Id of the customer group"
+          },
+          {
+            "in": "header",
+            "name": "Accepts",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/customerGroup_Full"
+            },
+            "x-examples": {
+              "application/json": {
+                "name": "25% off",
+                "discount_rules": [
+                  {
+                    "type": "all",
+                    "method": "percent",
+                    "amount": "25.0000"
+                  }
+                ]
+              },
+              "Bulk Update Rules": {
+                "discount_rules": [
+                  {
+                    "type": "all",
+                    "method": "percent",
+                    "amount": 2.5
+                  },
+                  {
+                    "type": "product",
+                    "product_id": 33,
+                    "method": "percent",
+                    "amount": 5
+                  },
+                  {
+                    "type": "category",
+                    "category_id": 7,
+                    "method": "price",
+                    "amount": 12
+                  }
+                ]
+              },
+              "Price Lists": "{\n  \"name\": \"Student Discounts\",\n  \"discount_rules\": [\n    {\n      \"type\": \"price_list\",\n      \"price_list_id\": 3\n    }\n  ]\n}"
+            }
+          }
+        ],
+        "description": "Updates a *Customer Group*.\n\n**Notes**\n\nAny combination of fields can be updated at once. Discount rules are treated in bulk. The entire set of rules is overwritten when a request is sent.",
+        "tags": [
+          "Customer Groups"
+        ],
+        "operationId": "updateACustomerGroup"
+      }
+    },
+    "/customer_groups/count": {
+      "get": {
+        "description": "Returns a count of all *Customer Groups*. ",
+        "summary": "Get a Count of Customer Groups",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "",
+            "default": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/count_Full"
+            },
+            "examples": {
+              "application/json": {
+                "count": 27
+              }
+            }
+          }
+        },
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        },
+        "tags": [
+          "Customer Groups"
+        ],
+        "operationId": "getACountOfCustomerGroups"
+      }
+    }
+  },
+  "definitions": {
+    "billingAddress_Full": {
+      "title": "billingAddress_Full",
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "description": "",
+          "example": "Jane",
+          "type": "string"
+        },
+        "last_name": {
+          "description": "",
+          "example": "Doe",
+          "type": "string"
+        },
+        "company": {
+          "description": "",
+          "type": "string"
+        },
+        "street_1": {
+          "description": "",
+          "example": "123 Main Street",
+          "type": "string"
+        },
+        "street_2": {
+          "description": "",
+          "type": "string"
+        },
+        "city": {
+          "description": "",
+          "example": "Austin",
+          "type": "string"
+        },
+        "state": {
+          "description": "",
+          "example": "TX",
+          "type": "string"
+        },
+        "zip": {
+          "description": "",
+          "example": "12345",
+          "type": "string"
+        },
+        "country": {
+          "description": "",
+          "example": "United States",
+          "type": "string"
+        },
+        "country_iso2": {
+          "description": "",
+          "example": "US",
+          "type": "string"
+        },
+        "phone": {
+          "description": "",
+          "type": "string"
+        },
+        "email": {
+          "description": "",
+          "example": "janedoe@email.com",
+          "type": "string"
+        },
+        "form_fields": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "title": "Form Fields",
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Name of the form field",
+                "type": "string",
+                "example": "License Id"
+              },
+              "value": {
+                "description": "Value of the form field",
+                "type": "string",
+                "example": "123BAF"
+              }
+            }
+          }
+        }
+      }
+    },
+    "customerFormFields": {
+      "title": "customerFormFields",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the form field",
+          "type": "string",
+          "example": "License Id"
+        },
+        "value": {
+          "description": "Value of the form field",
+          "type": "string",
+          "example": "123BAF"
+        }
+      }
+    },
+    "shippingAddress_Full": {
+      "title": "shippingAddress_Full",
+      "type": "object",
+      "properties": {
+        "url": {
+          "description": "URL of the shipping address for api requests",
+          "example": "https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/shippingaddresses",
+          "type": "string"
+        },
+        "resource": {
+          "description": "",
+          "example": "/orders/129/shippingaddresses",
+          "type": "string"
+        }
+      }
+    },
+    "customer_Full": {
+      "title": "customer_Full",
+      "example": {
+        "id": 1,
+        "_authentication": {},
+        "company": "BigCommerce",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "email": "janedoe@email.com",
+        "phone": 1234567890,
+        "date_created": "Thu, 11 Jan 2018 20:57:52 +0000",
+        "date_modified": "Tue, 10 Apr 2018 18:59:05 +0000",
+        "store_credit": 0,
+        "registration_ip_address": "12.345.678.910",
+        "customer_group_id": 2,
+        "notes": "",
+        "tax_exempt_category": "",
+        "accepts_marketing": true,
+        "addresses": {
+          "url": "https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/5/addresses",
+          "resource": "/customers/5/addresses"
+        },
+        "form_fields": [
+          {
+            "name": "",
+            "value": ""
+          }
+        ],
+        "reset_pass_on_login": false
+      },
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "Unique numeric ID of this customer. This is a READ-ONLY field; do not set or modify its value in a POST or PUT request.",
+              "example": 1,
+              "type": "integer"
+            },
+            "date_created": {
+              "description": "Date on which the customer registered from the storefront or was created in the control panel. This is a READ-ONLY field; do not set or modify its value in a POST or PUT request.",
+              "example": "Thu, 11 Jan 2018 20:57:52 +0000",
+              "type": "string",
+              "format": "date-time"
+            },
+            "date_modified": {
+              "description": "Date on which the customer updated their details in the storefront or was updated in the control panel. This is a READ-ONLY field; do not set or modify its value in a POST or PUT request.\n",
+              "example": "Tue, 10 Apr 2018 18:59:05 +0000",
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/customer_Base"
+        }
+      ]
+    },
+    "categoryAccessLevel_Full": {
+      "title": "categoryAccessLevel_Full",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "all",
+            "specific",
+            "none"
+          ],
+          "description": "+ `all` - Customers can access all categories\n + `specific`  - Customers can access a specific list of categories\n+ `none` - Customers are prevented from viewing any of the categories in this group."
+        },
+        "categories": {
+          "description": "Is an array of category IDs and should be supplied only if `type` is specific.",
+          "type": "array",
+          "example": "18,19,23,34",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "count_Full": {
+      "title": "count_Full",
+      "example": {
+        "count": 27
+      },
+      "type": "object",
+      "properties": {
+        "count": {
+          "description": "",
+          "example": 27,
+          "type": "number"
+        }
+      }
+    },
+    "customerAddress_Full": {
+      "title": "customerAddress_Full",
+      "example": {
+        "id": 3,
+        "customer_id": 5,
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "company": "BigCommerce",
+        "street_1": "123 Main Street",
+        "street_2": "",
+        "city": "Austin",
+        "state": "Texas",
+        "zip": 78726,
+        "country": "United States",
+        "country_iso2": "US",
+        "phone": "123-345-7890",
+        "address_type": "residental"
+      },
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "ID of this customer address. READ-ONLY",
+              "example": 3,
+              "type": "integer"
+            },
+            "country_iso2": {
+              "description": "2-letter ISO Alpha-2 code for the customer’s country. READ-ONLY",
+              "example": "US",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/customerAddress_Base"
+        }
+      ]
+    },
+    "customerGroup_Full": {
+      "title": "customerGroup_Full",
+      "type": "object",
+      "description": "When creating a customer group category discount using the API it defaults to \"products in this category and its subcategories\". In the [Control Panel](https://support.bigcommerce.com/s/article/Customer-Groups#pricing) this can be changed to either \"products in this category only\" or \"products in this category and its subcategories\". There are currently no settings to change this behavior via API.",
+      "properties": {
+        "id": {
+          "description": "Id of the customer group",
+          "example": 1,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Name of the group",
+          "example": "Wholesale",
+          "type": "string"
+        },
+        "is_default": {
+          "description": "Determines whether new customers are assigned to this group by default.",
+          "example": false,
+          "type": "boolean"
+        },
+        "category_access": {
+          "$ref": "#/definitions/categoryAccessLevel_Full"
+        },
+        "discount_rules": {
+          "description": "A collection of discount rules that are automatically applied to customers who are members of the group",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "price_list",
+                  "all",
+                  "category",
+                  "product"
+                ]
+              },
+              "method": {
+                "type": "string",
+                "enum": [
+                  "percent",
+                  "fixed",
+                  "price"
+                ]
+              },
+              "amount": {
+                "type": "string",
+                "example": "\"5.0000\" (Float, Float as String, Integer)",
+                "description": "A float that specifies the value applied to the price modified"
+              },
+              "price_list_id": {
+                "type": "integer",
+                "example": 3,
+                "description": "If a customer group is assigned to a price list,`method` and `amount` are not shown. `type` and `price_list_id` are returned."
+              }
+            }
+          }
+        },
+        "is_group_for_guests": {
+          "type": "boolean",
+          "description": "If the groups is for guests. There can only be one customer group for guests at a time."
+        }
+      }
+    },
+    "country_Full": {
+      "title": "country_Full",
+      "example": {
+        "id": 13,
+        "country": "Australia",
+        "country_iso2": "AU",
+        "country_iso3": "AUS",
+        "states": {
+          "url": "https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/countries/13/states",
+          "resource": "/countries/13/states"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the country.",
+          "example": 13,
+          "type": "integer"
+        },
+        "country": {
+          "description": "Country name.",
+          "example": "Australia",
+          "type": "string"
+        },
+        "country_iso2": {
+          "description": "2-letter country code.",
+          "example": "AU",
+          "type": "string"
+        },
+        "country_iso3": {
+          "description": "3-letter country code.",
+          "example": "AUS",
+          "type": "string"
+        },
+        "states": {
+          "title": "States Resource",
+          "type": "object",
+          "properties": {
+            "url": {
+              "description": "",
+              "example": "https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/countries/13/states",
+              "type": "string"
+            },
+            "resource": {
+              "description": "",
+              "example": "/countries/13/states",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "statesResource_Full": {
+      "title": "statesResource_Full",
+      "type": "object",
+      "properties": {
+        "url": {
+          "description": "",
+          "example": "https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/countries/13/states",
+          "type": "string"
+        },
+        "resource": {
+          "description": "",
+          "example": "/countries/13/states",
+          "type": "string"
+        }
+      }
+    },
+    "state_Full": {
+      "title": "state_Full",
+      "example": {
+        "id": 208,
+        "state": "Australian Capital Territory",
+        "state_abbreviation": "ACT",
+        "country_id": 13
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Numeric ID of the state/province.",
+          "example": 208,
+          "type": "integer"
+        },
+        "state": {
+          "description": "Name of the state/province.",
+          "example": "Australian Capital Territory",
+          "type": "string"
+        },
+        "state_abbreviation": {
+          "description": "Abbreviation for the state/province.",
+          "example": "ACT",
+          "type": "string"
+        },
+        "country_id": {
+          "description": "Numeric ID of the state’s/province’s associated country.",
+          "example": 13,
+          "type": "integer"
+        }
+      }
+    },
+    "customerGroup_Post": {
+      "title": "customerGroup_Post",
+      "type": "object",
+      "description": "When creating a customer group category discount using the API it defaults to \"products in this category and its subcategories\". In the [Control Panel](https://support.bigcommerce.com/s/article/Customer-Groups#pricing) this can be changed to either \"products in this category only\" or \"products in this category and its subcategories\". There are currently no settings to change this behavior via API.",
+      "properties": {
+        "name": {
+          "description": "Name of the group",
+          "example": "Wholesale",
+          "type": "string"
+        },
+        "is_default": {
+          "description": "Determines whether new customers are assigned to this group by default.",
+          "example": false,
+          "type": "boolean"
+        },
+        "category_access": {
+          "$ref": "#/definitions/categoryAccessLevel_Full"
+        },
+        "discount_rules": {
+          "description": "A collection of discount rules that are automatically applied to customers who are members of the group",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "price_list",
+                  "all",
+                  "category",
+                  "product"
+                ]
+              },
+              "method": {
+                "type": "string",
+                "enum": [
+                  "percent",
+                  "fixed",
+                  "price"
+                ]
+              },
+              "amount": {
+                "type": "string",
+                "example": "\"5.0000\" (Float, Float as String, Integer)",
+                "description": "A float that specifies the value applied to the price modified"
+              },
+              "price_list_id": {
+                "type": "integer",
+                "example": 3,
+                "description": "If a customer group is assigned to a price list,`method` and `amount` are not shown. `type` and `price_list_id` are returned."
+              }
+            }
+          }
+        },
+        "is_group_for_guests": {
+          "type": "boolean",
+          "description": "If the groups is for guests. There can only be one customer group for guests at a time."
+        }
+      }
+    },
+    "validatePassword": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "Will return `true` or `false`"
+        }
+      }
+    },
+    "customer_Base": {
+      "title": "customer_Base",
+      "example": {
+        "id": 1,
+        "_authentication": {},
+        "company": "BigCommerce",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "email": "janedoe@email.com",
+        "phone": 1234567890,
+        "date_created": "Thu, 11 Jan 2018 20:57:52 +0000",
+        "date_modified": "Tue, 10 Apr 2018 18:59:05 +0000",
+        "store_credit": 0,
+        "registration_ip_address": "12.345.678.910",
+        "customer_group_id": 2,
+        "notes": "",
+        "tax_exempt_category": "",
+        "accepts_marketing": true,
+        "addresses": {
+          "url": "https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/5/addresses",
+          "resource": "/customers/5/addresses"
+        },
+        "form_fields": [
+          {
+            "name": "",
+            "value": ""
+          }
+        ],
+        "reset_pass_on_login": false
+      },
+      "type": "object",
+      "properties": {
+        "_authentication": {
+          "description": "Not returned in any responses, but accepts up to two fields allowing you to set the customer’s password. If a password is not supplied, it is generated automatically. For further information about using this object, please see the Customers resource documentation.",
+          "type": "object",
+          "properties": {
+            "force_reset": {
+              "type": "boolean"
+            },
+            "password": {
+              "type": "string"
+            },
+            "password_confirmation": {
+              "type": "string"
+            }
+          }
+        },
+        "company": {
+          "description": "The name of the company for which the customer works.",
+          "example": "BigCommerce",
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "First name of the customer.",
+          "example": "Jane"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name of the customer.",
+          "example": "Doe"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the customer.",
+          "example": "janedoe@email.com"
+        },
+        "phone": {
+          "description": "Phone number of the customer.",
+          "example": 1234567890,
+          "type": "string"
+        },
+        "store_credit": {
+          "description": "The amount of credit the customer has. (Float, Float as String, Integer)",
+          "example": 0,
+          "type": "string"
+        },
+        "registration_ip_address": {
+          "description": "The customer’s IP address when they signed up.",
+          "example": "12.345.678.910",
+          "type": "string"
+        },
+        "customer_group_id": {
+          "description": "The group to which the customer belongs.",
+          "example": 2,
+          "type": "integer"
+        },
+        "notes": {
+          "description": "Store-owner notes on the customer.",
+          "type": "string"
+        },
+        "tax_exempt_category": {
+          "description": "Used to identify customers who fall into special sales-tax categories – in particular, those who are fully or partially exempt from paying sales tax. Can be blank, or can contain a single AvaTax code. (The codes are case-sensitive.) Stores that subscribe to BigCommerce’s Avalara Premium integration will use this code to determine how/whether to apply sales tax. Does not affect sales-tax calculations for stores that do not subscribe to Avalara Premium.",
+          "type": "string"
+        },
+        "accepts_marketing": {
+          "description": "If the customer accepts product review emails or abandon cart emails. Read-Only. ",
+          "example": true,
+          "type": "boolean",
+          "readOnly": true
+        },
+        "addresses": {
+          "title": "Address Field Resource",
+          "type": "object",
+          "properties": {
+            "url": {
+              "description": "Full URL of where the resource is located.",
+              "example": "https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/5/addresses",
+              "type": "string"
+            },
+            "resource": {
+              "description": "Resource being accessed.",
+              "example": "/customers/5/addresses",
+              "type": "string"
+            }
+          }
+        },
+        "form_fields": {
+          "description": "Array of custom fields. This is a READ-ONLY field; do not set or modify its value in a POST or PUT request.",
+          "type": "array",
+          "items": {
+            "title": "Form Fields",
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Name of the form field",
+                "type": "string",
+                "example": "License Id"
+              },
+              "value": {
+                "description": "Value of the form field",
+                "type": "string",
+                "example": "123BAF"
+              }
+            }
+          }
+        },
+        "reset_pass_on_login": {
+          "description": "Force a password change on next login.",
+          "example": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "first_name",
+        "last_name",
+        "email"
+      ]
+    },
+    "customerAddress_Base": {
+      "title": "customerAddress_Base",
+      "example": {
+        "id": 3,
+        "customer_id": 5,
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "company": "BigCommerce",
+        "street_1": "123 Main Street",
+        "street_2": "",
+        "city": "Austin",
+        "state": "Texas",
+        "zip": 78726,
+        "country": "United States",
+        "country_iso2": "US",
+        "phone": "123-345-7890",
+        "address_type": "residental"
+      },
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "description": "ID of the associated customer.",
+          "example": 5,
+          "type": "integer"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The customer’s first name.",
+          "example": "Jane"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The customer’s last name.",
+          "example": "Doe"
+        },
+        "company": {
+          "description": "The customer’s company name.",
+          "example": "BigCommerce",
+          "type": "string"
+        },
+        "street_1": {
+          "type": "string",
+          "description": "The customer’s street address, line 1.",
+          "example": "123 Main Street"
+        },
+        "street_2": {
+          "description": "The customer’s street address, line 2.",
+          "type": "string"
+        },
+        "city": {
+          "type": "string",
+          "description": "The customer’s city/town/suburb.",
+          "example": "Austin"
+        },
+        "state": {
+          "type": "string",
+          "description": "The customer’s state/province. Do not abbreviate the state; spell out the entire word, e.g.: California. (Cannot be null. As a workaround for addresses that include no state/province string, pass a space as the “state” value.)",
+          "example": "Texas"
+        },
+        "zip": {
+          "type": "string",
+          "description": "The customer’s ZIP or postal code.",
+          "example": 78726
+        },
+        "country": {
+          "type": "string",
+          "description": "The customer’s country. Must be the full country name.",
+          "example": "United States"
+        },
+        "phone": {
+          "type": "string",
+          "description": "The customer’s phone number.",
+          "example": "123-345-7890"
+        },
+        "address_type": {
+          "type": "string",
+          "enum": [
+            "residential",
+            "commercial"
+          ],
+          "example": "residential"
+        }
+      },
+      "required": [
+        "first_name",
+        "last_name",
+        "street_1",
+        "city",
+        "state",
+        "zip",
+        "country",
+        "phone"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Customers"
+    },
+    {
+      "name": "Customer Groups"
+    },
+    {
+      "name": "Customer Addresses"
+    },
+    {
+      "name": "Customer Passwords"
+    }
+  ],
+  "securityDefinitions": {
+    "X-Auth-Token": {
+      "type": "apiKey",
+      "name": "X-Auth-Token",
+      "in": "header",
+      "description": "### OAuth Scopes\n|  **UI Name** | **Permission** | **Parameter** |\n| --- | --- | --- |\n|  Customers | modify | `store_v2_customers` |\n|  Customers | read-only | `store_v2_customers_read_only` |\n\n### Headers\n\n|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Client`|`client_id`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n\n### Example\n\n```http\nGET /stores/{$$.env.store_hash}/v3/catalog/summary\nhost: api.bigcommerce.com\nContent-Type: application/json\nX-Auth-Client: {client_id}\nX-Auth-Token: {access_token}\n```\n\n* For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). "
+    },
+    "X-Auth-Client": {
+      "type": "apiKey",
+      "name": "X-Auth-Client",
+      "in": "header",
+      "description": "### OAuth Scopes\n|  **UI Name** | **Permission** | **Parameter** |\n| --- | --- | --- |\n|  Customers | modify | `store_v2_customers` |\n|  Customers | read-only | `store_v2_customers_read_only` |\n\n### Headers\n\n|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Client`|`client_id`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n\n### Example\n\n```http\nGET /stores/{$$.env.store_hash}/v3/catalog/summary\nhost: api.bigcommerce.com\nContent-Type: application/json\nX-Auth-Client: {client_id}\nX-Auth-Token: {access_token}\n```\n\n* For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). "
+    }
+  },
+  "security": [
+    {
+      "X-Auth-Token": []
+    },
+    {
+      "X-Auth-Client": []
+    }
+  ],
+  "parameters": {
+    "customer_id": {
+      "name": "customer_id",
+      "in": "path",
+      "type": "integer",
+      "required": true,
+      "description": "Id of the customer"
+    },
+    "customer_group_id": {
+      "name": "customer_group_id",
+      "in": "path",
+      "type": "integer",
+      "required": true,
+      "description": "Id of the customer group"
+    },
+    "customer_address_id": {
+      "name": "customer_address_id",
+      "in": "path",
+      "type": "integer",
+      "description": "Id of the customer address.",
+      "required": true
+    },
+    "is_group_for_guests": {
+      "name": "is_group_for_guests",
+      "in": "query",
+      "type": "boolean",
+      "description": "If the groups is for guests. There can only be one customer group for guests at a time."
+    }
+  },
+  "x-stoplight": {
+    "docs": {
+      "includeDownloadLink": true,
+      "showModels": false
+    }
+  }
+}
