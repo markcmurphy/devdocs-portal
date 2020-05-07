@@ -11,7 +11,7 @@
 - [Customer Consent](#customer-consent)
 - [Customer Groups](#customer-groups)
 - [Customer Passwords](#customer-passwords)
-- [Differences Between V2 and V3 Customers APIs](#differences-between-v2-and-v3-customers-api)
+- [Differences Between V2 and V3](#differences-between-v2-and-v3-customers-apis)
 - [Related](#related)
 
 </div>
