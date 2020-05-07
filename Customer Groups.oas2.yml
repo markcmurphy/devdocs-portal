@@ -384,13 +384,11 @@ paths:
     put:
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/customerGroup_Full'
+          $ref: '#/responses/customerGroup_Resp'
           examples:
             application/json:
               id: 2
-              name: 25% Discount
+              name: 5% Discount
               is_default: false
               category_access:
                 type: specific
@@ -402,20 +400,8 @@ paths:
               discount_rules:
                 - type: all
                   method: percent
-                  amount: '25.0000'
+                  amount: '5.0000'
               is_group_for_guests: true
-            Response Schema:
-              id: -16565096
-              name: consequat proident
-              is_default: true
-              category_access: {}
-              discount_rules:
-                - type: mollit laborum dolor enim
-                  method: fugiat magna sint nostrud
-                  amount: ea eiusmod ut ex
-                - type: aliquip laborum
-                  method: Excepteur
-                  amount: aliquip cillum est do
       summary: Update a Customer Group
       parameters:
         - in: path
@@ -437,11 +423,11 @@ paths:
             $ref: '#/definitions/customerGroup_Full'
           x-examples:
             application/json:
-              name: 25% off
+              name: 5% off
               discount_rules:
                 - type: all
                   method: percent
-                  amount: '25.0000'
+                  amount: '5.0000'
             Bulk Update Rules:
               discount_rules:
                 - type: all
