@@ -177,51 +177,7 @@ paths:
         - $ref: '#/parameters/is_group_for_guests'
       responses:
         '200':
-          description: ''
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/customerGroup_Full'
-          examples:
-            application/json:
-              - id: 1
-                name: B2B
-                is_default: false
-                category_access:
-                  type: all
-                discount_rules:
-                  - type: price_list
-                    price_list_id: 1
-              - id: 2
-                name: 5% Discount
-                is_default: false
-                category_access:
-                  type: specific
-                  categories:
-                    - 18
-                    - 19
-                    - 23
-                    - 34
-                discount_rules:
-                  - type: all
-                    method: percent
-                    amount: '5.0000'
-                is_group_for_guests: true
-            Response Schema:
-              - id: -17214385
-                name: cupidatat labore
-                is_default: true
-                category_access: {}
-                discount_rules:
-                  - type: sunt in ad ea
-                    method: nisi aliquip et ut magna
-                    amount: consectetur anim sed
-                  - type: enim nulla magna
-                    method: est sed adipisicing ut
-                    amount: nostrud dolore sunt pariatur
-                  - type: consequat ipsum sunt ut
-                    method: dolor tempor labore
-                    amount: aliquip eiusmo
+          $ref: '#/responses/customerGroupCollection_Resp'
       tags:
         - Customer Groups
       operationId: getAllCustomerGroups
