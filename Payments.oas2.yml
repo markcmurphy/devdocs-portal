@@ -6,7 +6,197 @@ info:
     name: BigCommerce Developer Documentation
     url: 'https://developer.bigcommerce.com/'
   termsOfService: 'https://www.bigcommerce.com/terms/api-terms/'
-  description: >-
+  description: >
+    The Payments resource represents a product in your BigCommerce store. You
+    can retrieve it to see information associated with the specified
+    merchandise.
+
+
+    Using the related subresources, you can also manage pricing, images, product
+    modifiers, variants, etc.
+
+
+    **On This Page**
+
+    - [Authentication](#authentication)
+
+    - [Subresources](#subresources)
+
+    - [Additional Information](#additional-information)
+
+    ---
+
+
+    ## Authentication
+
+    You can authenticate requests by sending a `client_id` and `access_token`
+    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+
+
+    ```http
+
+    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+
+    host: api.bigcommerce.com
+
+    Accept: application/json
+
+    X-Auth-Client: {client_id}
+
+    X-Auth-Token: {access_token}
+
+    ```
+
+    You can obtain the `client_id` and `access_token` using either of the
+    following methods:
+
+    - [Creating API
+    account](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-store-api-credentials)
+
+    - [Installing an app in the BigCommerce control
+    panel](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-app-api-credentials)
+
+    ---
+
+
+    ## Subresources
+
+    The Products resource contains many subresources, outlined in the following
+    sections.
+
+
+    ### Bulk Pricing Rules
+
+    Set prices for individual items or item groups based on the number of items
+    ordered. For more details, see [Bulk
+    Pricing](https://support.bigcommerce.com/s/article/Bulk-Pricing).
+
+
+    ### Complex Rules
+
+    Define specific attributes that alter a product without changing the
+    product's SKU. For more details, see [Product Option:
+    Rules](https://support.bigcommerce.com/s/article/Product-Options-Rules-Video#).
+
+
+    ### Custom Fields
+
+    Create and display additional product information on the product page. For
+    more details, see [Custom
+    Fields](https://support.bigcommerce.com/s/article/Custom-Fields). 
+
+
+    ### Images
+
+    Add and manage images for specific products. For more details, see the
+    _Images & videos_ section of the [Adding
+    Products](https://support.bigcommerce.com/s/article/Adding-Products-v3#images)
+    page.
+
+
+    ### Metafields
+
+    View, create, and modify meta information associated with products.
+
+
+    ### Modifiers
+
+    Modifiers differ in capabilities depending on which version you are using.
+    For more information, see the version comparison section on the [Product
+    Options](https://support.bigcommerce.com/s/article/Product-Options-v3#compare)
+    page.
+
+
+    ### Modifier Images
+
+    Add and manage images for specific product modifiers.
+
+
+    ### Modifier Values
+
+    Set and manage the values associated with defined product modifiers.
+
+
+    ### Reviews
+
+    View and manage the comments customers leave on product pages. For more
+    details, see [Managing
+    Reviews](https://support.bigcommerce.com/s/article/Managing-Reviews). 
+
+
+    ### Variants
+
+    View, add, and manage product variations that alter the product's SKU. For
+    more details, see
+    [Variations](https://support.bigcommerce.com/s/article/Product-Options-v3#variations).
+
+
+    ### Variant Options
+
+    Manage the variant choices displayed on product pages. For more details, see
+    the _Variations_ section on the [Product
+    Options](https://support.bigcommerce.com/s/article/Product-Options-v3#variations)
+    page. 
+
+
+    ### Variant Option Values
+
+    Add and manage the values associated with specified variant options. For
+    more details, see the _Variations_ section on the [Product
+    Options](https://support.bigcommerce.com/s/article/Product-Options-v3#variations)
+    page. 
+
+
+    ### Variant Metafields
+
+    View, create, and modify meta information associated with product variants.
+
+
+    ### Videos
+
+    Add and manage product videos hosted on YouTube. For more details, see the
+    _Images & videos_ section of the [Adding
+    Products](https://support.bigcommerce.com/s/article/Adding-Products-v3#images)
+    page.
+
+
+    ---
+
+
+    ## Additional Information
+
+    **Webhooks**
+
+    - [Customer Payment
+    Instrument](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)
+
+    -
+    [Orders](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_orders)
+
+    -
+    [Cart](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_cart)
+
+
+    **Related API Resources**
+
+    - [Payments Overview](/api-docs/payments/payments-api-overview)
+
+
+    **Related Articles**
+
+    * [Enabling Stored Credit
+    Cards](https://support.bigcommerce.com/s/article/Enabling-Stored-Credit-Cards) 
+
+    * [Processing
+    Refunds](https://support.bigcommerce.com/s/article/Processing-Refunds) 
+
+    * [Manually Capturing Transactions (Authorize
+    Only)](https://support.bigcommerce.com/s/article/How-can-I-set-my-payment-gateway-to-only-authorize-transactions-and-not-capture-the-funds-automatically) 
+
+    * [Available Payment
+    Gateways](https://support.bigcommerce.com/s/article/Available-Payment-Gateways) 
+
+
     Use [Get Payment
     Methods](/api-reference/payments/payments-create-payment-token-api/payment-methods/paymentsmethodsget)
     to get the `token` for stored cards.
@@ -15,10 +205,6 @@ info:
     Use [Create Access
     Token](/api-reference/payments/payments-create-payment-token-api/payment-access-token/paymentsaccesstokenspost),
     to generate the `token` for stored card, credit cards and orders. 
-
-
-    See [Payments Overview](/api-docs/payments/payments-api-overview) to learn
-    how to accepts payments.
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v3'
 schemes:
