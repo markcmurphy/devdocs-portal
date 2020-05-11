@@ -8,14 +8,14 @@ info:
   termsOfService: 'https://www.bigcommerce.com/terms/api-terms/'
   description: >
     The Payments resource represents a payment processed through the store’s
-    connected payment gateway. A payment can be processed for an order created
-    using either the [Server to Server Checkout API
+    connected payment gateway. A payment can be taken for an order created using
+    either the [Server to Server Checkout API
     Orders](/api-reference/cart-checkout/server-server-checkout-api/checkout-orders/createanorder)
     endpoint or the [V2 API
     Orders](/api-reference/orders/orders-api/orders/createanorder) endpoint. 
 
 
-    Payments are processed via a sequence of requests to two API hosts:
+    Payments are handled via a sequence of requests to two API hosts:
 
 
     - Create the payment token:
@@ -97,12 +97,12 @@ info:
 
     ### Note
 
-    > The API flow does not currently support hosted/offsite providers such as
-    PayPal and Adyen and wallet type payments such as Amazon Pay.
+    > The API flow does not support hosted/offsite providers such as PayPal and
+    Adyen and wallet type payments such as Amazon Pay.
 
 
-    Using the related subresources, you can also create a payment access token
-    and view accepted payment methods.
+    Using the related subresources, you can create a payment access token and
+    view accepted payment methods.
 
 
     **On This Page**
@@ -150,14 +150,14 @@ info:
 
     ## Subresources
 
-    The Payments resource contains two subresources, outlined in the following
+    The Payments resource contains two subresources outlined in the following
     sections.
 
 
     ### Payment Access Token
 
     Create a payment access token. Payment access tokens are required to process
-    payments using such payment instruments as a stored card or a credit card.
+    payments using payment instruments such as a stored card or a credit card.
 
 
     ### Payment Methods
@@ -200,16 +200,6 @@ info:
 
     * [Available Payment
     Gateways](https://support.bigcommerce.com/s/article/Available-Payment-Gateways) 
-
-
-    Use [Get Payment
-    Methods](/api-reference/payments/payments-create-payment-token-api/payment-methods/paymentsmethodsget)
-    to get the `token` for stored cards.
-
-
-    Use [Create Access
-    Token](/api-reference/payments/payments-create-payment-token-api/payment-access-token/paymentsaccesstokenspost),
-    to generate the `token` for stored card, credit cards and orders. 
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v3'
 schemes:
