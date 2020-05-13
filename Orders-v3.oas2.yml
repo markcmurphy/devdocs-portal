@@ -3,56 +3,16 @@ info:
   title: Orders-v3
   version: '3.0'
   description: >-
-    The Orders v3 resource represents a product in your BigCommerce store. You
-    can retrieve it to see information associated with the specified
-    merchandise.
+    The Orders v3 resource represents endpoints related to payment processing.
 
 
-    Using the related subresources, you can also manage pricing, images, product
-    modifiers, variants, etc.
+    Using the related subresources, you can access transaction details for an
+    order and process refunds against orders with settled payments. 
 
-
-    ### V2 & V3
-
-    Order resources use either the V2 or V3 REST APIs. See the corresponding API
-    reference for each resource to determine the correct path.
-
-
-    Use cases for the Orders v2 API include:
-
-    * Creating, updating, and deleting orders
-
-    * Retrieving the contents of an order
-
-    * Retrieving order details (ex. messages, shipping information, and taxes)
-
-    * Displaying order statuses
-
-    * Generating shipments for orders
-
-
-    Use cases for the Orders v3 API include:
-
-    * Displaying payment transactions
-
-    * Creating or retrieving refunds
-
-
-    The V3 REST API's Orders resource surfaces endpoints related to payment
-
-    processing. The `/orders/{id}/transactions` endpoint returns transaction
-
-    details for the specified order.
 
     To programmatically create, update, and delete orders themselves, see
-
-    [Orders
-
-    v2](https://developer.bigcommerce.com/api-reference/store-management/orders).
-
-    To process payments, see [Payment
-
-    Processing](https://developer.bigcommerce.com/api-reference/payments/payments-process-payments).
+    [Orders v2](/api-reference/store-management/orders). To process payments,
+    see [Payment Processing](/api-reference/payments/payments-process-payments).
 
 
     **On This Page**
@@ -130,11 +90,14 @@ info:
 
     ## Subresources
 
-    The Products resource contains many subresources, outlined in the following
+    The Orders v3 resource contains subresources outlined in the following
     sections.
 
 
     ### Order Transactions
+
+
+    View transaction details for the specified order.
 
 
     The `/orders/{id}/transactions` endpoint returns details about the payment
@@ -178,6 +141,7 @@ info:
 
     ## Order Refunds
 
+
     The Order API refund endpoints allow developers to process refunds against
     orders with settled payments. Refund endpoints are useful when building
     order management or payment integrations. They make embedding refund
@@ -191,6 +155,14 @@ info:
     [Supported Payment
     Gateways](https://support.bigcommerce.com/s/article/Processing-Refunds#payment-gateways)
     to learn more about refunds and payment gateways.
+
+
+    ### Order Refund Quotes
+
+
+    Create a refund quote for a specified order. By providing items and costs or
+    quantities to refund, you can calculate the ta amount, get the total refund
+    amount and retrieve available payment options for the order. 
 
 
     ---
