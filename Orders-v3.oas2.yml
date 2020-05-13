@@ -134,28 +134,29 @@ info:
     sections.
 
 
-    ### Bulk Pricing Rules
-
-    Set prices for individual items or item groups based on the number of items
-    ordered. For more details, see [Bulk
-    Pricing](https://support.bigcommerce.com/s/article/Bulk-Pricing).
+    ### Order Transactions
 
 
-    ### Complex Rules
-
-    Define specific attributes that alter a product without changing the
-    product's SKU. For more details, see [Product Option:
-    Rules](https://support.bigcommerce.com/s/article/Product-Options-Rules-Video#).
+    The `/orders/{id}/transactions` endpoint returns details about the payment
+    instruments used to pay for an order. To process payments, see [Payment
+    Processing](https://developer.bigcommerce.com/api-reference/payments/payments-process-payments)
 
 
-    ### Custom Fields
+    Depending on the payment method used, different details will be available.
+    Not all credit card payment gateways will return full card details or all
+    CVV/fraud response details. This is primarily used to get detailed gateway
+    response information for credit card transactions, however it will also
+    return any available information about digital wallet payments, as well as
+    details about orders paid (partially or in full) via a gift certificate or
+    store credit. The test payment gateway available in the BigCommerce control
+    panel does not return any payment information.
 
-    Create and display additional product information on the product page. For
-    more details, see [Custom
-    Fields](https://support.bigcommerce.com/s/article/Custom-Fields). 
 
+    Orders processed via all payment providers except PayPal Express Checkout
+    and Test Gateway will create a transaction that is retrievable via
+    Transactions API. Gift certificates, store credit, and offline payment
+    methods will not create a transaction.
 
-    ## Order Transactions
 
     The `/orders/{id}/transactions` endpoint returns details about the payment
     instruments used to pay for an order. Depending on the payment method used,
@@ -182,6 +183,14 @@ info:
     order management or payment integrations. They make embedding refund
     functionality directly into the the application possible without requiring
     merchants to return to their BigCommerce Control Panel.
+
+
+    Merchants can refund orders or issue partial refunds of orders in the
+    Control Panel. Whether funds will be returned to a customer's bank account
+    is determined by which payment gateway was used for the order. See
+    [Supported Payment
+    Gateways](https://support.bigcommerce.com/s/article/Processing-Refunds#payment-gateways)
+    to learn more about refunds and payment gateways.
 
 
     ---
