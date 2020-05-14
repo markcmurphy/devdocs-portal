@@ -1721,7 +1721,178 @@ pages:
                 data:
                   blocks:
                     - type: text
-                      data: ''
+                      data: >-
+                        # Title
+
+
+                        <div class="otp" id="no-index">
+
+
+                        ### On this Page
+
+
+                        - [Types of Partners](#types-of-partners)
+
+                        - [General Requirements](#general-requirements)
+
+                        - [Storefronts](#storefronts)
+
+                        - [Point of Sale](#point-of-sale)
+
+                        - [Marketplace](#marketplace)
+
+                        - [Marketing](#marketing)
+
+
+                        </div>
+
+
+                        Introduction
+
+
+                        ## Types of Partners
+
+                        Content
+
+
+                        ## General Requirements
+
+
+                        **All Partners**:
+
+                        * Use Channel API
+
+                        * Creates channel upon app installation - With app_id
+
+                        * Reads / Updates status from channel API
+
+                        * Follows requirements for specific channel type (listed
+                        below)
+
+                        * Onboarding user flow
+
+
+                        **Select Partners**:
+
+                        * Uses Big Design
+
+                        * Follows requirements for their type of channel (below)
+                        for all and select partners
+
+
+                        ## Storefronts
+
+
+                        **All Partners**
+
+                        * Uses Orders API and uses channel_id
+
+                        * Manages channel lifecycle changes appropriately
+
+                        * When channel is created, sets status to either:
+                        “active” or “inactive”
+
+                        * When app is uninstalled, sets status to “disconnected”
+
+                        * When status is set to “archived” in Channel Manager …
+
+                        * Never sets status to “connected” (and maybe
+                        “archived”?)
+
+
+                        **Select Partners**
+
+                        * Supports channel to product assignment (via Listings
+                        and/or catalog API)
+
+                        * Uses Sites and Routes APIs
+
+
+                        ## Point of Sale
+
+
+                        **All Partners**
+
+                        * Uses Orders API and uses channel_id
+
+                        * Uses Catalog API accordingly for reading and writing
+                        catalog data between BC and the POS system
+
+                        * Manages channel lifecycle changes appropriately
+
+                        * When channel is created, sets status to: “connected”
+
+                        * When app is uninstalled, sets status to “disconnected”
+
+                        * Never sets status to “active”, “inactive”, or
+                        “archived”
+
+
+                        **Select Partners**
+
+                        * Follows import pattern for POS (Square as reference
+                        example) and uses Catalog API accordingly
+
+                        * Provides programmatic authentication between BC and
+                        POS platform (NTH?)
+
+                        * Follows settings page pattern and provides following
+                        settings:
+
+                        * Sync
+
+                        * Revoke access / disable integration
+
+                        * When access is revoked or integration is disabled,
+                        “status” should be updated to “disconnected” and vice
+                        versa
+
+
+                        ## Marketplace
+
+
+                        **All Partners**
+
+                        * Uses Orders API and uses channel_id
+
+                        * Manages channel lifecycle changes appropriately
+
+                        * When channel is created, sets status to: “connected”
+
+                        * When app is uninstalled, sets status to “disconnected”
+
+                        * Never sets status to “active”, “inactive”, or
+                        “archived”
+
+
+                        **Select Partners**
+
+                        * Supports channel to product assignment (via Listings
+                        and/or catalog API)
+
+
+                        ## Marketing
+
+
+                        **All Partners**
+
+                        * Uses Orders API and uses marketing_channel_id [Note:
+                        not done yet … this is ideation)
+
+                        * Manages channel lifecycle changes appropriately
+
+                        * When channel is created, sets status to: “connected”
+
+                        * When app is uninstalled, sets status to “disconnected”
+
+                        * Never sets status to “active”, “inactive”, or
+                        “archived”
+
+
+                        **Select Partners**
+
+                        * Supports channel to product assignment (via Listings
+                        and/or catalog API)
               - title: Channels Toolkit Reference
                 route:
                   path: /new-subpage-1
