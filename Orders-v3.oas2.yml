@@ -6,13 +6,13 @@ info:
     The Orders v3 resource represents endpoints related to payment processing.
 
 
-    Using the related subresources, you can access transaction details for an
-    order and process refunds against orders with settled payments. 
+    Using the related subresources, you can access transaction details and
+    process refunds against orders with settled payments. 
 
 
-    To programmatically create, update, and delete orders themselves, see
-    [Orders v2](/api-reference/store-management/orders). To process payments,
-    see [Payment Processing](/api-reference/payments/payments-process-payments).
+    To programmatically create, update, and delete orders, see [Orders
+    v2](/api-reference/store-management/orders). To process payments, see
+    [Payment Processing](/api-reference/payments/payments-process-payments).
 
 
     **On This Page**
@@ -97,22 +97,20 @@ info:
     ### Order Transactions
 
 
-    View transaction details for the specified order.
+    View payment transaction details for an order. This subresource is primarily
+    used to get detailed gateway response information for credit card
+    transactions; however, it will also return any available information about
+    digital wallet and offline payments. 
 
 
-    The `/orders/{id}/transactions` endpoint returns details about the payment
-    instruments used to pay for an order. To process payments, see [Payment
-    Processing](https://developer.bigcommerce.com/api-reference/payments/payments-process-payments)
+    Depending on the payment method used, different data will be available,
+    e.g., not all payment gateways return full card or fraud response details.
 
 
-    Depending on the payment method used, different details will be available.
-    Not all credit card payment gateways will return full card details or all
-    CVV/fraud response details. This is primarily used to get detailed gateway
-    response information for credit card transactions, however it will also
-    return any available information about digital wallet payments, as well as
-    details about orders paid (partially or in full) via a gift certificate or
-    store credit. The test payment gateway available in the BigCommerce control
-    panel does not return any payment information.
+    ### Note
+
+    >The test payment gateway available in the BigCommerce Control Panel does
+    not return any payment information.
 
 
     Orders processed via all payment providers except PayPal Express Checkout
@@ -121,22 +119,16 @@ info:
     methods will not create a transaction.
 
 
-    The `/orders/{id}/transactions` endpoint returns details about the payment
-    instruments used to pay for an order. Depending on the payment method used,
-    different details will be available. Not all credit card payment gateways
-    return full card or fraud details. Transactions endpoints are primarily used
-    to get detailed gateway response information for credit card transactions;
-    however they will also return any available information about digital wallet
-    and offline payments. 
 
+    ### Note
 
-    **Note**: transactions are not created for the following payment methods:
+    > Transactions are not created for the following payment methods:
 
-    * Test Payment Gateway
+    >* Test Payment Gateway
 
-    * PayPal Express
+    >* PayPal Express
 
-    * Amazon Pay
+    >* Amazon Pay
 
 
     ## Order Refunds
