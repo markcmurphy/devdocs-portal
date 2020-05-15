@@ -750,9 +750,8 @@ paths:
       operationId: getAllOrderShipments
     post:
       description: >
-        Creates an *Order Shipment*. To learn how to create an Order Shipment,
-        see [Orders
-        Overview](/api-docs/orders/orders-api-overview#orders-api-overview_create-order-shipment).
+        Creates an *Order Shipment*. For more details, see [Shipping an
+        Order](/api-docs/orders/orders-api-overview#shipping-an-order).
 
 
         **Required Fields**
@@ -763,6 +762,16 @@ paths:
 
 
         **Usage Notes**
+
+
+        Presuming that a valid carrier code is used, a tracking link is
+        generated if either `shipping_provider` or `tracking_carrier` is
+        supplied alongside a `tracking_number`.
+
+
+        Omitting both `tracking_carrier` and `shipping_provider` will result in
+        no tracking link being provided in the customer facing email. If a
+        `tracking_number` is provided, it will appear as plain text.
 
 
         Acceptable values for `shipping_provider` include an empty string
