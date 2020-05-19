@@ -3,24 +3,93 @@ info:
   version: '2.0'
   title: Coupons
   description: >-
-    Marketing APIs support demand generation and loyalty programs. They include
-    Coupons, Banners, and Gift Certificates.
+    **On This Page**
+
+    - [Authentication](#authentication)
+
+    - [OAuth Scopes](#oauth-scopes)
+
+    - [Subresources](#subresources)
+
+    - [Additional Resources](#resources)
+
+    ---
 
 
-    ### Coupons
 
-    Category or product discounts that can be applied to orders for customers
-    who enter a given code.
+    ## Authentication
 
-
-    ### Banners
-
-    Banners available to display on a store.
+    Requests can be authenticated by sending a `client_id` and `access_token`
+    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
 
 
-    ### Gift Certificates
+    ```http
 
-    Gift certificates available to offer to a store’s customers.
+    GET /stores/{$$.env.store_hash}/v3/catalog/categories
+
+    host: api.bigcommerce.com
+
+    Accept: application/json
+
+    X-Auth-Client: {client_id}
+
+    X-Auth-Token: {access_token}
+
+    ```
+
+
+    ## OAuth Scopes
+
+    | UI Name  | Permission | Parameter                     |
+
+    |----------|------------|-------------------------------|
+
+    | Marketing | modify     | `store_v2_marketing`           |
+
+    | Marketing | read-only  | `store_v2_marketing` |
+
+
+    For more information on OAuth Scopes, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## Subresources
+
+
+    ### Category Images
+
+    A category image is the image that will appear in relation to a product
+    category on a storefront. Add and manage category images. For more
+    information see [Category
+    Settings](https://support.bigcommerce.com/s/article/Product-Categories#settings).
+
+
+    ### Category Tree
+
+    Will return a child categories, and subsequent child categories of those
+    nested within.
+
+
+    ### Metafields
+
+    View, create, and modify custom metafields associated with a category. These
+    key value pairs can be used for sorting or other programmatic purposes.
+
+
+    ## Additional Resources
+
+
+    **Webhooks**
+
+    *
+    [Categories](/api-docs/getting-started/webhooks/webhook-events#webhook-events_category)
+
+
+    **Related API Resources**
+
+    - [Brand](#)
+
+    - [Products](#)
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v2'
 schemes:
