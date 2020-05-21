@@ -27,7 +27,7 @@ consumes:
 produces:
   - application/json
 paths:
-  '/checkouts/{checkoutId}':
+  '/checkouts/{checkoutId}/store-credit':
     get:
       description: |-
         Returns a *Checkout*.
@@ -330,6 +330,18 @@ paths:
               createdTime: '2019-01-10T17:18:00+00:00'
               updatedTime: '2019-01-10T17:19:47+00:00'
               customerMessage: ''
+    parameters:
+      - name: checkoutId
+        in: path
+        type: string
+        required: true
+    post:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
   '/checkouts/{checkoutId}/carts/{cartId}/items/{itemId}':
     put:
       description: >-
