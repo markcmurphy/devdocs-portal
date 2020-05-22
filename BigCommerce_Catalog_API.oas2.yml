@@ -25239,11 +25239,26 @@ definitions:
         example: 6
       permission_set:
         type: string
-        description: >
-          Determines whether the field is completely private to the app that
-          owns the field (`app_only`), or visible to other API consumers
-          (`read`), or completely open for reading and writing to other apps
-          (`write`). Required for POST.
+        description: >-
+          Determines the visibility and writeability of the field by other API
+          consumers.
+
+
+          |Value|Description
+
+          |-|-|
+
+          |`app_only`|private to the app that owns the field|
+
+          |`read`|visible to other API consumers|
+
+          |`write`|Open for reading and writing by other API consumers|
+
+          |`read_and_sf_access`|Visible to other API consumers, including on
+          storefront|
+
+          |`write_and_sf_access`|Open for reading and writing by other API
+          consumers, including on storefront|
         enum:
           - app_only
           - read
