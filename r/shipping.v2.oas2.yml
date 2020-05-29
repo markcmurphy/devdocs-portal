@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: '2.0'
   title: Shipping
-  description: >-
+  description: >
 
     The Shipping resource allows you to manage how products can be shipped in a
     store. You can also create and update connections between a BigCommerce
@@ -97,7 +97,18 @@ info:
 
     Carrier connections refer to specific settings required to connect to a
     specific shipping carrier. Each carrier requires your app to supply a unique
-    set of properties/fields to establish a connection with that carrier.
+    set of properties/fields to establish a connection with that carrier. To
+    enable the carrier for a shipping zone, use the
+    `shipping/zones/{zone_id}/methods` 
+
+    There is no `GET` with this resource. It has `PUT`, `POST` and `DELETE`.
+
+    - Connections created here do not enable the shipping method. 
+
+
+    - The Carrier Connection resource returns a 204 for both succesful and
+    unsuccesful attempts to connect. If a field is missing, it will return a
+    400.
 
 
     ## Additional Resources
