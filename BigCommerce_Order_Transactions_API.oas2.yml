@@ -2250,7 +2250,7 @@ definitions:
           For example, if the order was placed by a combination of store credit
           and bank deposit the  refund methods would be:
 
-          ```
+          ```json
 
           {
             "refund_methods": [
@@ -2266,17 +2266,17 @@ definitions:
               ],
               [
                 {
-                  "provider_id": "bankdeposit",
-                  "provider_description": "Bank Deposit",
-                  "amount": 80.35,
+                  "provider_id": "custom",
+                  "provider_description": "Custom",
+                  "amount": 119.35,
                   "offline": true,
                   "offline_provider": true,
                   "offline_reason": "This is an offline payment provider."
                 },
                 {
-                  "provider_id": "storecredit",
-                  "provider_description": "Store Credit",
-                  "amount": 39,
+                  "provider_id": "bankdeposit",
+                  "provider_description": "Bank Deposit",
+                  "amount": 80.35,
                   "offline": false,
                   "offline_provider": false,
                   "offline_reason": ""
@@ -2288,13 +2288,16 @@ definitions:
           ```
 
 
-          In this case there are two refund methods available to the merchant:
+          In this case there are three refund methods available to the merchant:
 
           1. Refund the entire order amount to store credit.
 
-          2. Refund the amount paid by store credit to store credit, and the
-          amount paid by bank deposit via a manual refund which will be recorded
-          as being refunded against the bank deposit.  
+          2. Mark up an amount to the full order amount as refunded externally,
+          through a provider or means not represented directly in BC ("custom").
+
+          3. Refund the amount paid by store credit to store credit, and the
+          amount paid by bank deposit via a manual refund, which will be
+          recorded as being refunded against the bank deposit.  
 
 
           >  
