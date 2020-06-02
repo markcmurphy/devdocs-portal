@@ -11,12 +11,6 @@ info:
     level. 
 
 
-    The association of a Price List to a Customer Group can be done using the
-    [Customer Groups API](/api-reference/customer-subscribers/customers-api).
-    Price Lists cannot be assigned to a Customer Group that has custom group
-    discounts — the customer group discounts must be deleted first.
-
-
     [Price List
     Assignments](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists-records/)
     can be created to assign Price Lists to a specific
@@ -25,11 +19,10 @@ info:
     unless there is a more specific assignment.
 
 
-    If an active Price List does not contain prices for a variant, then the
-    [Catalog](https://developer.bigcommerce.com/api-reference/store-management/catalog)
-    pricing will be used. The association of a Price List to a Customer Group
-    can be done using the [Customer Groups
-    API.](/api-reference/customer-subscribers/customers-api)
+    The association of a Price List to a Customer Group can be done using the
+    [Customer Groups API.](/api-reference/customer-subscribers/customers-api).
+    Price Lists cannot be assigned to a Customer Group that has custom group
+    discounts — the customer group discounts must be deleted first.
 
 
     [Bulk Pricing](https://support.bigcommerce.com/s/article/Bulk-Pricing) tiers
@@ -37,7 +30,10 @@ info:
     pricing as the quantity in cart increases.
 
 
-    Price Lists will provide overridden price values to the Stencil storefront.
+    Price Lists records accepts bulk upsert. Only one [Bulk
+    upsert](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecordcollection)
+    can done at a time. Running more than one in parallel on the **same store**
+    will cause a 429 error and the request will fail. 
 
 
     - [Authentication](#authentication)
@@ -101,17 +97,15 @@ info:
     ---
 
 
-    - If a variant has a `Price Record` any existing product-level bulk pricing
-    will not apply in the cart. For variants without `Price Records`, any
-    existing product bulk pricing will apply.
 
-    - Price Lists Records accepts bulk upsert. Only one [Bulk
-    upsert](https://developer.bigcommerce.com/api-reference/catalog/pricelists-api/price-lists-records/setpricelistrecordcollection)
-    can done at a time. Running more than one in parallel on the **same store**
-    will cause a 429 error and the request will fail. 
+    ## Additional Information
+
+    **Additional Resources**
+
+    * [Price Lists Overview](/api-docs/price-lists/price-list-overview) 
 
 
-    ### Related Endpoints
+    **Related API Endpoints**
 
     * [Get Price List
     Collection](/api-reference/catalog/pricelists-api/price-lists/getpricelistcollection)
@@ -121,13 +115,6 @@ info:
 
     *
     [SKU](/api-docs/getting-started/webhooks/webhook-events#webhook-events_sku)
-
-
-    ## Additional Information
-
-    **Additional Resources**
-
-    * [Price Lists Overview](/api-docs/price-lists/price-list-overview) 
   termsOfService: ''
   license:
     name: ''
