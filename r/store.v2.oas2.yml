@@ -2,34 +2,74 @@ swagger: '2.0'
 info:
   version: '2.0'
   title: Store
-  description: |-
+  description: >-
     # Store
+
 
     <div class="otp" id="no-index">
 
+
     ### On this Page
+
     - [Authentication](#authentication)
+
     - [OAuth Scopes](#oauth-scopes)
+
     - [Subresources](#subresources)
+
     - [Additional Resources](#additional-resources)
+
 
     </div>
 
+
     Introduction
 
+
     ## Authentication
-    Content
+
+
+    Authenticate requests by sending a `client_id` and `access_token` via
+    `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+
+
+    ```http
+
+    GET /stores/{{STORE_HASH}}/v2/store
+
+    host: api.bigcommerce.com
+
+    Content-Type: application/json
+
+    X-Auth-Client: {{CLIENT_ID}}
+
+    X-Auth-Token: {{ACCESS_TOKEN}}
+
+    ```
+
+
+    * For more information on Authenticating BigCommerce APIs, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+
 
     ## OAuth Scopes
+
     |  **UI Name** | **Permission** | **Parameter** |
+
     | --- | --- | --- |
+
     |  Information & Settings | modify | `store_v2_information` |
+
     |  Information & Settings | read-only | `store_v2_information_read_only` |
 
+
     ## Subresources
+
     None.
 
+
     ## Additional Resources
+
     Content 
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v2'
