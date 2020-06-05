@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: '2.0'
   title: Time
-  description: >+
+  description: >
     Returns the timestamp of a store at the time of the request. The Time
     resource is useful for validating API authentication details and testing
     client connections.
@@ -18,6 +18,61 @@ info:
 
     ---
 
+
+    ## Authentication
+
+    You can authenticate requests by sending a `client_id` and `access_token`
+    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+
+
+    ```http
+
+    GET /stores/{$$.env.store_hash}/v2/time
+
+    host: api.bigcommerce.com
+
+    Accept: application/json
+
+    X-Auth-Client: {client_id}
+
+    X-Auth-Token: {access_token}
+
+    ```
+
+    You can obtain the `client_id` and `access_token` using either of the
+    following methods:
+
+    - [Creating API
+    account](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-store-api-credentials)
+
+    - [Installing an app in the BigCommerce control
+    panel](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-app-api-credentials)
+
+    ---
+
+
+    ## OAuth Scopes
+
+    Scope limits ability to read or modify data. To interact with the Products
+    resource, set the scope to the minimum level needed to accomplish your
+    specific task. 
+
+
+    | UI Name  | Permission | Parameter                     |
+
+    |----------|------------|-------------------------------|
+
+    | Products | modify     | `store_v2_products`           |
+
+    | Products | read-only  | `store_v2_products_read_only` |
+
+
+    For more information on OAuth Scopes, see the [REST API
+    Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes)
+    page.
+
+
+    ---
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v2'
 schemes:
