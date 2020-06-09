@@ -1,386 +1,283 @@
-{
-  "swagger": "2.0",
-  "info": {
-    "version": "3.0.0",
-    "title": "Order Settings",
-    "description": "API endpoints for managing the Order settings of BigCommerce stores.",
-    "contact": {
-      "email": "support@bigcommerce.com",
-      "name": "BigCommerce",
-      "url": "https://www.bigcommerce.com"
-    }
-  },
-  "host": "api.bigcommerce.com",
-  "basePath": "/stores/abc123/v3",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/orders/settings": {
-      "get": {
-        "description": "Get Global order settings",
-        "summary": "Get Global order settings",
-        "tags": [
-          "global settings"
-        ],
-        "operationId": "GetGlobalordersettings",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/OrdersSettingsResponse"
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad request. Authentication Required.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse404"
-            }
-          }
-        }
-      },
-      "put": {
-        "description": "Update global order settings",
-        "summary": "Update global order settings",
-        "tags": [
-          "global settings"
-        ],
-        "operationId": "Updateglobalordersettings",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": false,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/GlobalOrderSettings"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/OrdersSettingsResponse"
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad request. Authentication Required.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse404"
-            }
-          },
-          "422": {
-            "description": "Order settings data is not valid. This is the result of missing required fields, or of invalid data. See the response for more details.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse404"
-            }
-          }
-        }
-      }
-    },
-    "/orders/settings/channel/{channel_id}": {
-      "get": {
-        "description": "Get order settings for a specific channel",
-        "summary": "Get order settings for a specific channel",
-        "tags": [
-          "channel settings"
-        ],
-        "operationId": "Getordersettingsforaspecificchannel",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "channel_id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "minimum": 1.0,
-            "exclusiveMinimum": false,
-            "description": "Channel Id"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/OrdersSettingsChannelResponse"
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad request. Authentication Required.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse404"
-            }
-          }
-        }
-      },
-      "put": {
-        "description": "Update order settings for a specific channel",
-        "summary": "Update order settings for a specific channel",
-        "tags": [
-          "channel settings"
-        ],
-        "operationId": "Updateordersettingsforaspecificchannel",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "channel_id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "minimum": 1.0,
-            "exclusiveMinimum": false,
-            "description": "Channel Id"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": false,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/ChannelOrderSettings"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/OrdersSettingsChannelResponse"
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad request. Authentication Required.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse404"
-            }
-          },
-          "422": {
-            "description": "Order settings data is not valid. This is the result of missing required fields, or of invalid data. See the response for more details.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse404"
-            }
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "GlobalOrderSettings": {
-      "title": "GlobalOrderSettings",
-      "type": "object",
-      "properties": {
-        "notifications": {
-          "$ref": "#/definitions/Notifications"
-        }
-      }
-    },
-    "ChannelOrderSettings": {
-      "title": "ChannelOrderSettings",
-      "type": "object",
-      "properties": {
-        "notifications": {
-          "$ref": "#/definitions/Notifications1"
-        }
-      }
-    },
-    "ErrorResponse404": {
-      "title": "ErrorResponse404",
-      "type": "object",
-      "properties": {
-        "schema": {
-          "$ref": "#/definitions/ErrorResponse"
-        }
-      }
-    },
-    "ErrorResponse": {
-      "title": "ErrorResponse",
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "The HTTP status code.",
-          "type": "integer",
-          "format": "int32"
-        },
-        "title": {
-          "description": "The error title describing the particular error.",
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "errors": {
-          "type": "object"
-        }
-      }
-    },
-    "BaseError": {
-      "title": "BaseError",
-      "description": "Error payload for the BigCommerce API.",
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "The HTTP status code.",
-          "type": "integer",
-          "format": "int32"
-        },
-        "title": {
-          "description": "The error title describing the particular error.",
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        }
-      }
-    },
-    "ForwardInvoice": {
-      "title": "ForwardInvoice",
-      "description": "Global order invoice forward settings.",
-      "type": "object",
-      "properties": {
-        "email_addresses": {
-          "description": "Email addresses order invoices will be forwarded to. Empty array disables forwarding order invoices. Not nullable.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "ForwardInvoice1": {
-      "title": "ForwardInvoice1",
-      "description": "Channel order invoice forward settings.",
-      "type": "object",
-      "properties": {
-        "email_addresses": {
-          "description": "Email addresses channel order invoices will be forwarded to. If null will fall back to global value. Empty array disables forwarding order invoices for channel.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Notifications": {
-      "title": "Notifications",
-      "description": "Global notification settings.",
-      "type": "object",
-      "properties": {
-        "order_placed": {
-          "$ref": "#/definitions/OrderPlaced"
-        },
-        "forward_invoice": {
-          "$ref": "#/definitions/ForwardInvoice"
-        }
-      }
-    },
-    "Notifications1": {
-      "title": "Notifications1",
-      "description": "Channel notification settings.",
-      "type": "object",
-      "properties": {
-        "order_placed": {
-          "$ref": "#/definitions/OrderPlaced1"
-        },
-        "forward_invoice": {
-          "$ref": "#/definitions/ForwardInvoice1"
-        }
-      }
-    },
-    "OrderPlaced": {
-      "title": "OrderPlaced",
-      "description": "Global order notification settings.",
-      "type": "object",
-      "properties": {
-        "email_addresses": {
-          "description": "Email addresses order notifications will be sent to. Empty array disables order notifications. Not nullable.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "OrderPlaced1": {
-      "title": "OrderPlaced1",
-      "description": "Channel order notification settings.",
-      "type": "object",
-      "properties": {
-        "email_addresses": {
-          "description": "Email addresses channel order notifications will be sent to. If null will fall back to global value. Empty array disables order notifications for channel.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "OrdersSettingsChannelResponse": {
-      "title": "OrdersSettingsChannelResponse",
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/ChannelOrderSettings"
-        },
-        "meta": {
-          "type": "object"
-        }
-      }
-    },
-    "OrdersSettingsResponse": {
-      "title": "OrdersSettingsResponse",
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/GlobalOrderSettings"
-        },
-        "meta": {
-          "type": "object"
-        }
-      }
-    }
-  },
-  "tags": [
-    {
-      "name": "global settings",
-      "description": ""
-    },
-    {
-      "name": "channel settings",
-      "description": ""
-    }
-  ]
-}
+swagger: '2.0'
+info:
+  version: 3.0.0
+  title: Order Settings
+  description: API endpoints for managing the Order settings of BigCommerce stores.
+  contact:
+    email: support@bigcommerce.com
+    name: BigCommerce
+    url: 'https://www.bigcommerce.com'
+host: api.bigcommerce.com
+basePath: /stores/abc123/v3
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /orders/settings:
+    get:
+      description: Get Global order settings
+      summary: Get Global Order Settings
+      tags:
+        - global settings
+      operationId: GetGlobalordersettings
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrdersSettingsResponse'
+          headers: {}
+        '400':
+          description: Bad request. Authentication Required.
+          schema:
+            $ref: '#/definitions/ErrorResponse404'
+    put:
+      description: Update global order settings
+      summary: Update global order settings
+      tags:
+        - global settings
+      operationId: Updateglobalordersettings
+      deprecated: false
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: false
+          description: ''
+          schema:
+            $ref: '#/definitions/GlobalOrderSettings'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrdersSettingsResponse'
+          headers: {}
+        '400':
+          description: Bad request. Authentication Required.
+          schema:
+            $ref: '#/definitions/ErrorResponse404'
+        '422':
+          description: >-
+            Order settings data is not valid. This is the result of missing
+            required fields, or of invalid data. See the response for more
+            details.
+          schema:
+            $ref: '#/definitions/ErrorResponse404'
+  '/orders/settings/channel/{channel_id}':
+    get:
+      description: Get order settings for a specific channel
+      summary: Get order settings for a specific channel
+      tags:
+        - channel settings
+      operationId: Getordersettingsforaspecificchannel
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          type: integer
+          format: int32
+          minimum: 1
+          exclusiveMinimum: false
+          description: Channel Id
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrdersSettingsChannelResponse'
+          headers: {}
+        '400':
+          description: Bad request. Authentication Required.
+          schema:
+            $ref: '#/definitions/ErrorResponse404'
+    put:
+      description: Update order settings for a specific channel
+      summary: Update order settings for a specific channel
+      tags:
+        - channel settings
+      operationId: Updateordersettingsforaspecificchannel
+      deprecated: false
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          type: integer
+          format: int32
+          minimum: 1
+          exclusiveMinimum: false
+          description: Channel Id
+        - name: body
+          in: body
+          required: false
+          description: ''
+          schema:
+            $ref: '#/definitions/ChannelOrderSettings'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrdersSettingsChannelResponse'
+          headers: {}
+        '400':
+          description: Bad request. Authentication Required.
+          schema:
+            $ref: '#/definitions/ErrorResponse404'
+        '422':
+          description: >-
+            Order settings data is not valid. This is the result of missing
+            required fields, or of invalid data. See the response for more
+            details.
+          schema:
+            $ref: '#/definitions/ErrorResponse404'
+definitions:
+  GlobalOrderSettings:
+    title: GlobalOrderSettings
+    type: object
+    properties:
+      notifications:
+        $ref: '#/definitions/Notifications'
+  ChannelOrderSettings:
+    title: ChannelOrderSettings
+    type: object
+    properties:
+      notifications:
+        $ref: '#/definitions/Notifications1'
+  ErrorResponse404:
+    title: ErrorResponse404
+    type: object
+    properties:
+      schema:
+        $ref: '#/definitions/ErrorResponse'
+  ErrorResponse:
+    title: ErrorResponse
+    type: object
+    properties:
+      status:
+        description: The HTTP status code.
+        type: integer
+        format: int32
+      title:
+        description: The error title describing the particular error.
+        type: string
+      type:
+        type: string
+      errors:
+        type: object
+  BaseError:
+    title: BaseError
+    description: Error payload for the BigCommerce API.
+    type: object
+    properties:
+      status:
+        description: The HTTP status code.
+        type: integer
+        format: int32
+      title:
+        description: The error title describing the particular error.
+        type: string
+      type:
+        type: string
+  ForwardInvoice:
+    title: ForwardInvoice
+    description: Global order invoice forward settings.
+    type: object
+    properties:
+      email_addresses:
+        description: >-
+          Email addresses order invoices will be forwarded to. Empty array
+          disables forwarding order invoices. Not nullable.
+        type: array
+        items:
+          type: string
+  ForwardInvoice1:
+    title: ForwardInvoice1
+    description: Channel order invoice forward settings.
+    type: object
+    properties:
+      email_addresses:
+        description: >-
+          Email addresses channel order invoices will be forwarded to. If null
+          will fall back to global value. Empty array disables forwarding order
+          invoices for channel.
+        type: array
+        items:
+          type: string
+  Notifications:
+    title: Notifications
+    description: Global notification settings.
+    type: object
+    properties:
+      order_placed:
+        $ref: '#/definitions/OrderPlaced'
+      forward_invoice:
+        $ref: '#/definitions/ForwardInvoice'
+  Notifications1:
+    title: Notifications1
+    description: Channel notification settings.
+    type: object
+    properties:
+      order_placed:
+        $ref: '#/definitions/OrderPlaced1'
+      forward_invoice:
+        $ref: '#/definitions/ForwardInvoice1'
+  OrderPlaced:
+    title: OrderPlaced
+    description: Global order notification settings.
+    type: object
+    properties:
+      email_addresses:
+        description: >-
+          Email addresses order notifications will be sent to. Empty array
+          disables order notifications. Not nullable.
+        type: array
+        items:
+          type: string
+  OrderPlaced1:
+    title: OrderPlaced1
+    description: Channel order notification settings.
+    type: object
+    properties:
+      email_addresses:
+        description: >-
+          Email addresses channel order notifications will be sent to. If null
+          will fall back to global value. Empty array disables order
+          notifications for channel.
+        type: array
+        items:
+          type: string
+  OrdersSettingsChannelResponse:
+    title: OrdersSettingsChannelResponse
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/ChannelOrderSettings'
+      meta:
+        type: object
+  OrdersSettingsResponse:
+    title: OrdersSettingsResponse
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/GlobalOrderSettings'
+      meta:
+        type: object
+tags:
+  - name: global settings
+    description: ''
+  - name: channel settings
+    description: ''
