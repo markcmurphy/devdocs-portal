@@ -3,13 +3,100 @@ info:
   version: '2.0'
   title: Tax Classes
   description: >-
-    ### Tax Class
+    # Tax Classes
+
+
+    <div class="otp" id="no-index">
+
+
+    ### On this Page
+
+    - [Authentication](#authentication)
+
+    - [OAuth Scopes](#oauth-scopes)
+
+    - [Subresources](#subresources)
+
+    - [Additional Information](#additional-information)
+
+
+    </div>
 
 
     The Tax Class object, and endpoints, manage tax calculations applied to
     sales. Tax classes are used to apply different tax rates for specific types
-    of products and orders. This API is read only. Classes must be set using the
-    [Control Panel](https://forum.bigcommerce.com/s/article/Taxes-Video#).
+    of products and orders.
+
+
+    ## Authentication
+
+    Requests can be authenticated by sending a `client_id` and `access_token`
+    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+
+
+    ```http
+
+    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+
+    host: api.bigcommerce.com
+
+    Accept: application/json
+
+    X-Auth-Client: {client_id}
+
+    X-Auth-Token: {access_token}
+
+    ```
+
+
+    |Header|Parameter|Description|
+
+    |-|-|-|
+
+    |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
+    installing an app in a BigCommerce control panel.|
+
+    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
+    installing an app in a BigCommerce control panel.|
+
+
+    For more information on Authenticating BigCommerce APIs, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## OAuth Scopes
+
+
+    |  **UI Name** | **Permission** | **Parameter** |
+
+    | --- | --- | --- |
+
+    |  Information & Settings | read-only | `store_v2_information_read_only` |
+
+
+    For more information on OAuth Scopes, see:
+    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+    ## Subresources
+
+
+    None.
+
+
+    ## Additional Information
+
+
+    **Webhooks**
+
+    *
+    [Store](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#store)
+
+
+    **Related API Resources**
+
+    *
+    [Store](https://developer.bigcommerce.com/api-reference/store-management/store-information-api)
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v2'
 schemes:
