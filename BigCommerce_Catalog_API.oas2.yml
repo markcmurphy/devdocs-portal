@@ -24182,139 +24182,10 @@ definitions:
     title: variant_Put
     type: object
   productVariant_Post_Product:
-    type: object
     description: |
       The model for a POST to create variants on a product.
     allOf:
-      - type: object
-        description: Common Variant properties.
-        title: Variant Base
-        properties:
-          cost_price:
-            type: number
-            format: double
-            description: The cost price of the variant. Not affected by Price List prices.
-            x-nullable: true
-            minimum: 0
-          price:
-            type: number
-            format: double
-            description: >-
-              This variant's base price on the storefront. If a Price List ID is
-              used, the Price List value will be used. If a Price List ID is not
-              used, and this value is `null`, the product's default price (set
-              in the Product resource's `price` field) will be used as the base
-              price.
-            x-nullable: true
-            minimum: 0
-          sale_price:
-            type: number
-            format: double
-            description: >-
-              This variant's sale price on the storefront. If a Price List ID is
-              used, the Price List value will be used. If a Price List ID is not
-              used, and this value is null, the product's sale price (set in the
-              Product resource's `price` field) will be used as the sale price.
-            x-nullable: true
-            minimum: 0
-          retail_price:
-            type: number
-            format: double
-            description: >-
-              This variant's retail price on the storefront. If a Price List ID
-              is used, the Price List value will be used. If a Price List ID is
-              not used, and this value is null, the product's retail price (set
-              in the Product resource's `price` field) will be used as the
-              retail price.
-            x-nullable: true
-            minimum: 0
-          weight:
-            type: number
-            format: double
-            description: >-
-              This variant's base weight on the storefront. If this value is
-              null, the product's default weight (set in the Product resource's
-              weight field) will be used as the base weight.
-            x-nullable: true
-            minimum: 0
-          width:
-            type: number
-            format: double
-            description: >
-              Width of the variant, which can be used when calculating shipping
-              costs. If this value is `null`, the product's default width (set
-              in the Product resource's `width` field) will be used as the base
-              width.
-            x-nullable: true
-            minimum: 0
-          height:
-            type: number
-            format: double
-            description: >
-              Height of the variant, which can be used when calculating shipping
-              costs. If this value is `null`, the product's default height (set
-              in the Product resource's `height` field) will be used as the base
-              height.
-            x-nullable: true
-            minimum: 0
-          depth:
-            type: number
-            format: double
-            description: >
-              Depth of the variant, which can be used when calculating shipping
-              costs. If this value is `null`, the product's default depth (set
-              in the Product resource's `depth` field) will be used as the base
-              depth.
-            x-nullable: true
-            minimum: 0
-          is_free_shipping:
-            type: boolean
-            description: >
-              Flag used to indicate whether the variant has free shipping. If
-              `true`, the shipping cost for the variant will be zero.
-          fixed_cost_shipping_price:
-            type: number
-            format: double
-            description: >
-              A fixed shipping cost for the variant. If defined, this value will
-              be used during checkout instead of normal shipping-cost
-              calculation.
-            x-nullable: true
-            minimum: 0
-          purchasing_disabled:
-            type: boolean
-            description: 'If `true`, this variant will not be purchasable on the storefront.'
-          purchasing_disabled_message:
-            type: string
-            description: >-
-              If `purchasing_disabled` is `true`, this message should show on
-              the storefront when the variant is selected.
-            minLength: 0
-            maxLength: 255
-          upc:
-            type: string
-            description: >-
-              The UPC code used in feeds for shopping comparison sites and
-              external channel integrations.
-            x-nullable: true
-          inventory_level:
-            type: integer
-            description: >-
-              Inventory level for the variant, which is used when the product's
-              inventory_tracking is set to `variant`.
-            x-nullable: true
-          inventory_warning_level:
-            type: integer
-            description: >-
-              When the variant hits this inventory level, it is considered low
-              stock.
-            x-nullable: true
-          bin_picking_number:
-            type: string
-            description: Identifies where in a warehouse the variant is located.
-            x-nullable: true
-            minLength: 0
-            maxLength: 255
+      - $ref: '#/definitions/productVariant_Base'
       - type: object
         properties:
           product_id:
@@ -24327,12 +24198,12 @@ definitions:
             maxLength: 255
           option_values:
             type: array
+            x-required:
+              - post
             items:
-              type: object
               description: The model for a POST to create option values on a product.
               allOf:
-                - type: object
-                  description: Common Option Value Product properties.
+                - description: Common Option Value Product properties.
                   title: Option Value Product Base
                   properties:
                     option_display_name:
@@ -24354,150 +24225,140 @@ definitions:
                       maxLength: 255
                       example: Beige
               title: Option Value Product Post
-            x-required:
-              - post
+              type: object
     title: productVariant_Post_Product
   productVariant_Put_Product:
     description: |
       The model for a PUT to update variants on a product.
-    allOf:
-      - description: Common Variant properties.
-        title: Variant Base
-        properties:
-          cost_price:
-            type: number
-            format: double
-            description: The cost price of the variant. Not affected by Price List prices.
-            x-nullable: true
-            minimum: 0
-          price:
-            type: number
-            format: double
-            description: >-
-              This variant's base price on the storefront. If a Price List ID is
-              used, the Price List value will be used. If a Price List ID is not
-              used, and this value is `null`, the product's default price (set
-              in the Product resource's `price` field) will be used as the base
-              price.
-            x-nullable: true
-            minimum: 0
-          sale_price:
-            type: number
-            format: double
-            description: >-
-              This variant's sale price on the storefront. If a Price List ID is
-              used, the Price List value will be used. If a Price List ID is not
-              used, and this value is null, the product's sale price (set in the
-              Product resource's `price` field) will be used as the sale price.
-            x-nullable: true
-            minimum: 0
-          retail_price:
-            type: number
-            format: double
-            description: >-
-              This variant's retail price on the storefront. If a Price List ID
-              is used, the Price List value will be used. If a Price List ID is
-              not used, and this value is null, the product's retail price (set
-              in the Product resource's `price` field) will be used as the
-              retail price.
-            x-nullable: true
-            minimum: 0
-          weight:
-            type: number
-            format: double
-            description: >-
-              This variant's base weight on the storefront. If this value is
-              null, the product's default weight (set in the Product resource's
-              weight field) will be used as the base weight.
-            x-nullable: true
-            minimum: 0
-          width:
-            type: number
-            format: double
-            description: >
-              Width of the variant, which can be used when calculating shipping
-              costs. If this value is `null`, the product's default width (set
-              in the Product resource's `width` field) will be used as the base
-              width.
-            x-nullable: true
-            minimum: 0
-          height:
-            type: number
-            format: double
-            description: >
-              Height of the variant, which can be used when calculating shipping
-              costs. If this value is `null`, the product's default height (set
-              in the Product resource's `height` field) will be used as the base
-              height.
-            x-nullable: true
-            minimum: 0
-          depth:
-            type: number
-            format: double
-            description: >
-              Depth of the variant, which can be used when calculating shipping
-              costs. If this value is `null`, the product's default depth (set
-              in the Product resource's `depth` field) will be used as the base
-              depth.
-            x-nullable: true
-            minimum: 0
-          is_free_shipping:
-            type: boolean
-            description: >
-              Flag used to indicate whether the variant has free shipping. If
-              `true`, the shipping cost for the variant will be zero.
-          fixed_cost_shipping_price:
-            type: number
-            format: double
-            description: >
-              A fixed shipping cost for the variant. If defined, this value will
-              be used during checkout instead of normal shipping-cost
-              calculation.
-            x-nullable: true
-            minimum: 0
-          purchasing_disabled:
-            type: boolean
-            description: 'If `true`, this variant will not be purchasable on the storefront.'
-          purchasing_disabled_message:
-            type: string
-            description: >-
-              If `purchasing_disabled` is `true`, this message should show on
-              the storefront when the variant is selected.
-            minLength: 0
-            maxLength: 255
-          upc:
-            type: string
-            description: >-
-              The UPC code used in feeds for shopping comparison sites and
-              external channel integrations.
-            x-nullable: true
-          inventory_level:
-            type: integer
-            description: >-
-              Inventory level for the variant, which is used when the product's
-              inventory_tracking is set to `variant`.
-            x-nullable: true
-          inventory_warning_level:
-            type: integer
-            description: >-
-              When the variant hits this inventory level, it is considered low
-              stock.
-            x-nullable: true
-          bin_picking_number:
-            type: string
-            description: Identifies where in a warehouse the variant is located.
-            x-nullable: true
-            minLength: 0
-            maxLength: 255
-      - properties:
-          product_id:
-            type: integer
-          sku:
-            type: string
-            minLength: 1
-            maxLength: 255
     title: productVariant_Put_Product
     type: object
+    properties:
+      cost_price:
+        type: number
+        format: double
+        description: The cost price of the variant. Not affected by Price List prices.
+        x-nullable: true
+        minimum: 0
+      price:
+        type: number
+        format: double
+        description: >-
+          This variant's base price on the storefront. If a Price List ID is
+          used, the Price List value will be used. If a Price List ID is not
+          used, and this value is `null`, the product's default price (set in
+          the Product resource's `price` field) will be used as the base price.
+        x-nullable: true
+        minimum: 0
+      sale_price:
+        type: number
+        format: double
+        description: >-
+          This variant's sale price on the storefront. If a Price List ID is
+          used, the Price List value will be used. If a Price List ID is not
+          used, and this value is null, the product's sale price (set in the
+          Product resource's `price` field) will be used as the sale price.
+        x-nullable: true
+        minimum: 0
+      retail_price:
+        type: number
+        format: double
+        description: >-
+          This variant's retail price on the storefront. If a Price List ID is
+          used, the Price List value will be used. If a Price List ID is not
+          used, and this value is null, the product's retail price (set in the
+          Product resource's `price` field) will be used as the retail price.
+        x-nullable: true
+        minimum: 0
+      weight:
+        type: number
+        format: double
+        description: >-
+          This variant's base weight on the storefront. If this value is null,
+          the product's default weight (set in the Product resource's weight
+          field) will be used as the base weight.
+        x-nullable: true
+        minimum: 0
+      width:
+        type: number
+        format: double
+        description: >
+          Width of the variant, which can be used when calculating shipping
+          costs. If this value is `null`, the product's default width (set in
+          the Product resource's `width` field) will be used as the base width.
+        x-nullable: true
+        minimum: 0
+      height:
+        type: number
+        format: double
+        description: >
+          Height of the variant, which can be used when calculating shipping
+          costs. If this value is `null`, the product's default height (set in
+          the Product resource's `height` field) will be used as the base
+          height.
+        x-nullable: true
+        minimum: 0
+      depth:
+        type: number
+        format: double
+        description: >
+          Depth of the variant, which can be used when calculating shipping
+          costs. If this value is `null`, the product's default depth (set in
+          the Product resource's `depth` field) will be used as the base depth.
+        x-nullable: true
+        minimum: 0
+      is_free_shipping:
+        type: boolean
+        description: >
+          Flag used to indicate whether the variant has free shipping. If
+          `true`, the shipping cost for the variant will be zero.
+      fixed_cost_shipping_price:
+        type: number
+        format: double
+        description: >
+          A fixed shipping cost for the variant. If defined, this value will be
+          used during checkout instead of normal shipping-cost calculation.
+        x-nullable: true
+        minimum: 0
+      purchasing_disabled:
+        type: boolean
+        description: 'If `true`, this variant will not be purchasable on the storefront.'
+      purchasing_disabled_message:
+        type: string
+        description: >-
+          If `purchasing_disabled` is `true`, this message should show on the
+          storefront when the variant is selected.
+        minLength: 0
+        maxLength: 255
+      upc:
+        type: string
+        description: >-
+          The UPC code used in feeds for shopping comparison sites and external
+          channel integrations.
+        x-nullable: true
+      inventory_level:
+        type: integer
+        description: >-
+          Inventory level for the variant, which is used when the product's
+          inventory_tracking is set to `variant`.
+        x-nullable: true
+      inventory_warning_level:
+        type: integer
+        description: >-
+          When the variant hits this inventory level, it is considered low
+          stock.
+        x-nullable: true
+      bin_picking_number:
+        type: string
+        description: Identifies where in a warehouse the variant is located.
+        x-nullable: true
+        minLength: 0
+        maxLength: 255
+      product_id:
+        type: integer
+      sku:
+        type: string
+        minLength: 1
+        maxLength: 255
   productVariantOptionValue_Full:
     title: productVariantOptionValue_Full
     allOf:
