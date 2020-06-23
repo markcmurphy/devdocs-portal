@@ -25044,8 +25044,9 @@ definitions:
         description: |
           A public URL for a GIF, JPEG, or PNG image. Limit of 8MB per file. 
   product_Post:
-    $ref: '#/definitions/product_Base'
-    title: product_Post
+    allOf:
+      - $ref: '#/definitions/product_Base'
+      - $ref: '#/definitions/productVariant_Post_Product'
   product_Put:
     description: The model for a PUT to update a product.
     allOf:
