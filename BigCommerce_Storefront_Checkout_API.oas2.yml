@@ -9,17 +9,35 @@ info:
     to be scraped directly from the front end or used in a Stencil Theme.
 
 
-    Note:
+    >Note:
 
-    * The Try It Now at each endpoint will not work. Please see [Cart and
+    >
+
+    > * The Try It Now at each endpoint will not work. Please see [Cart and
     Checkout](/api-docs/cart-and-checkout/cart-and-checkout-overview) for a
     script that can be used to get Cart details.
 
-    * checkoutId is the same as the cartId.
+    > * checkoutId is the same as the cartId.
 
-    * The redirect url endpoint does not work using the Storefront Cart. At this
-    time shoppers can not be directed to any carts or checkouts created using
-    the Storefront APIS. 
+    > * The redirect url endpoint does not work using the Storefront Cart. At
+    this time shoppers can not be directed to any carts or checkouts created
+    using the Storefront APIS. 
+
+    > * If the option "*Existing Accounts: Prompt existing accounts to sign in,
+    but still allow them to check out as guests."* is selected under [Checkout
+    General Settings >
+    Customers](https://support.bigcommerce.com/s/article/Optimized-Single-Page-Checkout#checkout-settings)
+    the following errors can occur:
+
+    > 
+
+    > `403`: The email trying to be set for the guest is associated with an
+    account. The customer must sign-in.
+
+    >
+
+    > `429`: Too many attempts. Unable to determine if provided email is
+    associated with an account. The customer must sign-in regardless.
 host: '{$$.env.store_domain}'
 basePath: /api/storefront
 consumes:
