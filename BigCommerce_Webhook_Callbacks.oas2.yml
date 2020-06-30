@@ -644,7 +644,7 @@ paths:
         - application/json
       parameters:
         - in: path
-          name: ''
+          name: type
           type: string
           required: true
         - in: body
@@ -652,7 +652,26 @@ paths:
           schema:
             type: object
             properties: {}
-          description: "{\n\t\"created_at\": 1592432867,\n\t\"store_id\": \"999379820\",\n\t\"producer\": \"stores/vm2iajhsih\",\n\t\"scope\": \"store/refund/created\",\n\t\"hash\": \""
+          description: |-
+            {
+              "scope": "store/order/created",
+              "store_id": "1025646",
+              "data": {
+                "type": "cart",
+                "id": "09346904-4175-44fd-be53-f7e598531b6c"
+              },
+              "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
+              "created_at": 1561482670,
+              "producer": "stores/{$$.env.store_hash}"
+            }
+        - in: path
+          name: id
+          type: integer
+          required: true
+        - in: path
+          name: refund_id
+          type: integer
+          required: true
   /store/order/deleted:
     post:
       responses:
