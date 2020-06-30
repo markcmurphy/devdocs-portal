@@ -621,14 +621,38 @@ paths:
     get:
       responses:
         '200':
-          description: ''
-          schema:
-            type: object
-            properties: {}
+          description: |-
+            {
+                "scope": "store/order/refund/created",
+                "store_id": "1025646",
+                "data": {
+                    "type": "order",
+                    "id": 250,
+                    "refund": {
+                        "refund_id": 3
+                    }
+                },
+                "hash": "cb07cdbdda8b1965e812693d5988154807eeed02",
+                "created_at": 1561479923,
+                "producer": "stores/{store_hash}"
+            }
       summary: ''
       description: A refund has been submitted against an order.
       tags:
         - Order
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: ''
+          type: string
+          required: true
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties: {}
+          description: "{\n\t\"created_at\": 1592432867,\n\t\"store_id\": \"999379820\",\n\t\"producer\": \"stores/vm2iajhsih\",\n\t\"scope\": \"store/refund/created\",\n\t\"hash\": \""
   /store/order/deleted:
     post:
       responses:
