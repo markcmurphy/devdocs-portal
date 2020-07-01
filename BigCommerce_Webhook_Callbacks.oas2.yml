@@ -572,106 +572,6 @@ paths:
       produces: []
       consumes:
         - application/json
-  /store/order/refund/created:
-    post:
-      responses:
-        '200':
-          description: ''
-          schema:
-            type: object
-            properties:
-              '':
-                $ref: '#/definitions/callback_Base'
-              data:
-                $ref: '#/definitions/order-updated'
-          examples:
-            application/json:
-              created_at: 1592517272
-              store_id: '999379820'
-              producer: stores/vm2iajhsih
-              scope: store/order/updated
-              hash: dbf6f909d297059b12a6d11b56619449b4f24e3d
-              data:
-                type: order
-                id: 349
-      description: >
-        This webhooks is fired when an order is updated in any manner via the
-        Control Panel. This webhook is also fired along with order created
-      security: []
-      parameters:
-        - in: body
-          name: body
-          schema: {}
-          x-examples:
-            application/json:
-              scope: store/order/created
-              store_id: '1025646'
-              data:
-                type: cart
-                id: 09346904-4175-44fd-be53-f7e598531b6c
-              hash: 352e4afc6dd3fc85ea26bfdf3f91852604d57528
-              created_at: 1561482670
-              producer: 'stores/{$$.env.store_hash}'
-      tags:
-        - Order
-      summary: /store/order/updated
-      produces: []
-      consumes:
-        - application/json
-    get:
-      responses:
-        '200':
-          description: |-
-            {
-                "scope": "store/order/refund/created",
-                "store_id": "1025646",
-                "data": {
-                    "type": "order",
-                    "id": 250,
-                    "refund": {
-                        "refund_id": 3
-                    }
-                },
-                "hash": "cb07cdbdda8b1965e812693d5988154807eeed02",
-                "created_at": 1561479923,
-                "producer": "stores/{store_hash}"
-            }
-      summary: ''
-      description: A refund has been submitted against an order.
-      tags:
-        - Order
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: type
-          type: string
-          required: true
-        - in: body
-          name: body
-          schema:
-            type: object
-            properties: {}
-          description: |-
-            {
-              "scope": "store/order/created",
-              "store_id": "1025646",
-              "data": {
-                "type": "cart",
-                "id": "09346904-4175-44fd-be53-f7e598531b6c"
-              },
-              "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
-              "created_at": 1561482670,
-              "producer": "stores/{$$.env.store_hash}"
-            }
-        - in: path
-          name: id
-          type: integer
-          required: true
-        - in: path
-          name: refund_id
-          type: integer
-          required: true
   /store/order/deleted:
     post:
       responses:
@@ -1496,6 +1396,23 @@ paths:
         - application/json
       tags:
         - Product
+  /store/order/updated:
+    post:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              '':
+                $ref: '#/definitions/callback_Base'
+              data:
+                $ref: '#/definitions/order-updated'
+      summary: /store/order/updated
+      tags:
+        - Order
+      consumes:
+        - application/json
 basePath: ''
 schemes:
   - https
