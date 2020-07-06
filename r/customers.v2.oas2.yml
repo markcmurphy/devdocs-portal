@@ -3,47 +3,36 @@ info:
   version: '2.0'
   title: Customers V2
   description: >-
-    - [OAuth Scopes](#oauth-scopes)
-
-    - [Authentication](#authentication)
-
-    - [Available Endpoints](#available-endpoints)
-
-    - [Usage Notes](#usage-notes)
-
-    - [Resources](#resources)
-
-
-    Create and Manage Customers, Customer Addresses, and Customer Groups.
-    Additionally, validate customer passwords.
+    The customers resources represents a customer in a BigCommerce store. The
+    customers endpoint and it's subresources can be used to create and manage
+    Customers, Customer Addresses, and Customer Groups. Additionally, Customers
+    V2 is capable of validating customer passwords.
 
 
     To learn more about Customers see
-    [here](/api-docs/customers/customers-subscribers-overview). 
+    [here](/api-docs/customers/customers-subscribers-overview).
 
 
-    ## OAuth Scopes
-
-    | UI Name                                      | Permission |
-    Parameter                                     |
-
-    |----------------------------------------------|------------|-----------------------------------------------|
-
-    | Customers                                    | modify     |
-    `store_v2_customers`                          |
-
-    | Customers                                    | read-only  |
-    `store_v2_customers_read_only`                |
+    <div class="otp" id="no-index">
 
 
-    For more information on OAuth Scopes, see:
-    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    ### On this Page
+
+    - [Authentication](#authentication)
+
+    - [OAuth Scopes](#oauth-scopes)
+
+    - [Subresources](#subresources)
+
+    - [Additional Information](#additional-information)
+
+
+    </div>
 
 
     ## Authentication
 
-
-    Requests can be authenticated by sending a `client_id` and `access_token`
+    You can authenticate requests by sending a `client_id` and `access_token`
     via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
 
 
@@ -62,68 +51,81 @@ info:
     ```
 
 
-    |Header|Parameter|Description|
+    You can obtain the `client_id` and `access_token` using either of the
+    following methods:
 
-    |-|-|-|
+    - [Creating API
+    account](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-store-api-credentials)
 
-    |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
-    installing an app in a BigCommerce control panel.|
-
-    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
-    installing an app in a BigCommerce control panel.|
-
-
-    For more information on Authenticating BigCommerce APIs, see:
-    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    - [Installing an app in the BigCommerce control
+    panel](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-app-api-credentials)
 
 
-    ## Available Endpoints
+    ## OAuth Scopes
 
-    | Resource / Endpoint                     |
-    Description                                                                  
-    |
+    Scope limits ability to read or modify data. To interact with the Products
+    resource, set the scope to the minimum level needed to accomplish your
+    specific task.
 
-    |-----------------------------------------|-------------------------------------------------------------------------------|
 
-    | Customers                               | Identity and account details for
-    customers shopping on BigCommerce stores     |
+    | UI Name                                      | Permission |
+    Parameter                                     |
 
-    | Customers Addresses                     | Postal address belonging to a
-    customer.                                       |
+    |----------------------------------------------|------------|-----------------------------------------------|
 
-    | Customers Groups                        | Groupings of customers who share
-    the same level of access and discounts       |
+    | Customers                                    | modify     |
+    `store_v2_customers`                          |
 
-    | Customers Validate Password             | Validate customer
-    passwords                                                   |
+    | Customers                                    | read-only  |
+    `store_v2_customers_read_only`                |
+
+
+    For more information on OAuth Scopes, see the [REST API
+    Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes)
+    page.
 
 
     ## Subresources
 
 
-    **Customer Groups**
+    ### Customer Addresses
 
-    * Customer Groups are only available on specific plans.
-
-
-    **Customers vs. Subscribers**
-
-    * A subscriber is not always a customer. Someone can sign up for the
-    newsletter only and not create an account.
-
-    * A customer is not always a subscriber. Signing up for the newsletter is a
-    separate action from creating an account and purchasing an item.
-
-    * A customer and a subscriber can be the same. If a shopper checks out on
-    the storefront, creates an account and opts into the newsletter, they are a
-    customer and a subscriber.
+    Manage Customer Addresses. Customer Addresses consist of a customers address
+    and phone number. Customers can have multiple addresses stored against them.
 
 
-    ## Resources
+    ### Customer Groups
+
+    Manage Customer Groups. Customer groups allow you to organize your
+    customers, give them discounts, and restrict access to specific products or
+    categories. Customer Groups are only available on specific plans.
 
 
-    ### Related APIs / Endpoints
-      [Customer Login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
+    ### Customer Passwords
+
+    Provided a password, the `/customers/{customer_id}/validate` endpoint will
+    return a true/false response indicating if the provided password matches the
+    customer’s current password. This endpoint is useful if you want to power
+    the login of another system using BigCommerce’s stored customer accounts, or
+    as a safe way to migrate passwords to another system (by checking them
+    against BigCommerce’s password, and if correct, storing it in another system
+    securely).
+
+
+    ## Additional Information
+
+
+    **Webhooks**
+
+    -
+    [Customers](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)
+
+
+    **Related API Resources**
+
+    - [Customer Login
+    API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
+
     - [Current Customer
     API](https://developer.bigcommerce.com/api-docs/customers/current-customer-api)
 
@@ -132,12 +134,6 @@ info:
 
     - [Subscribers
     API](https://developer.bigcommerce.com/api-reference/customer-subscribers/subscribers-api)
-
-
-    ### Webhooks
-
-    -
-    [Customers](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v2'
 schemes:
