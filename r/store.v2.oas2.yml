@@ -3,7 +3,9 @@ info:
   version: '2.0'
   title: Store
   description: >-
-    # Store
+    The [store
+    resource](https://developer.bigcommerce.com/api-reference/store-management/store-information-api/store-information/getstore)
+    provides metadata information about a specified store.
 
 
     <div class="otp" id="no-index">
@@ -15,46 +17,50 @@ info:
 
     - [OAuth Scopes](#oauth-scopes)
 
-    - [Subresources](#subresources)
-
-    - [Additional Resources](#additional-resources)
+    - [Additional Information](#additional-information)
 
 
     </div>
 
 
-    The [store
-    endpoint](https://developer.bigcommerce.com/api-reference/store-management/store-information-api/store-information/getstore)
-    returns metadata about a store.
-
-
     ## Authentication
 
-
-    Authenticate requests by sending a `client_id` and `access_token` via
-    `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+    You can authenticate requests by sending a `client_id` and `access_token`
+    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
 
 
     ```http
 
-    GET /stores/{{STORE_HASH}}/v2/store
+    GET /stores/{$$.env.store_hash}/v3/catalog/summary
 
     host: api.bigcommerce.com
 
-    Content-Type: application/json
+    Accept: application/json
 
-    X-Auth-Client: {{CLIENT_ID}}
+    X-Auth-Client: {client_id}
 
-    X-Auth-Token: {{ACCESS_TOKEN}}
+    X-Auth-Token: {access_token}
 
     ```
 
 
-    * For more information on Authenticating BigCommerce APIs, see:
-    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+    You can obtain the `client_id` and `access_token` using either of the
+    following methods:
+
+    - [Creating API
+    account](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-store-api-credentials)
+
+    - [Installing an app in the BigCommerce control
+    panel](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-app-api-credentials)
 
 
     ## OAuth Scopes
+
+
+    Scope limits ability to read or modify data. To interact with the Products
+    resource, set the scope to the minimum level needed to accomplish your
+    specific task.
+
 
     |  **UI Name** | **Permission** | **Parameter** |
 
@@ -65,24 +71,24 @@ info:
     |  Information & Settings | read-only | `store_v2_information_read_only` |
 
 
-    ## Subresources
-
-    None.
-
-
-    ## Additional Resources
+    For more information on OAuth Scopes, see the [REST API
+    Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes)
+    page.
 
 
-    ### Webhooks
+    ## Additional Information
+
+
+    **Webhooks**
 
     -
     [Store](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#store)
 
 
-    ### Related API Resources
+    **Related API Resources**
 
     -
-    [Time](https://developer.bigcommerce.com/api-reference/store-management/store-information-api/time-zone/gettime) 
+    [Time](https://developer.bigcommerce.com/api-reference/store-management/store-information-api/time-zone/gettime)
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v2'
 schemes:
