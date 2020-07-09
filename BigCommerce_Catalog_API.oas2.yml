@@ -26956,14 +26956,16 @@ definitions:
         items:
           $ref: '#/definitions/productVideo_Full'
   metafield_Put:
-    type: object
     description: Properties for updating metafields.
     title: metafield_Put
-    properties:
-      id:
-        type: integer
-        description: Unique ID of the *Metafield*. Read-Only.
-        example: 6
+    allOf:
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: Unique ID of the *Metafield*. Read-Only.
+            example: 6
+      - $ref: '#/definitions/metafield_Base'
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
