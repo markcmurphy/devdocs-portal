@@ -3861,10 +3861,25 @@ definitions:
       Global. Common settings shared across every BigCommerce storefront.
     title: settings
   sitemap:
-    type: string
-    title: sitemap
-    example: /sitemap.php
-    description: Available on `sitemap.php`. Contains an array of link objects.
+    type: object
+    properties:
+      body:
+        type: array
+        items:
+          type: object
+          properties:
+            label:
+              type: string
+            url:
+              type: string
+      label:
+        type: string
+      show_all_link:
+        type: boolean
+      subsection_url:
+        type: string
+      title:
+        type: string
   social_media: {}
   template: {}
   blogBlog:
