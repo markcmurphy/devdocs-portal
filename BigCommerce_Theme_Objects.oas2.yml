@@ -3311,19 +3311,20 @@ definitions:
   pages:
     description: Global. A list of all web content pages for the BigCommerce storefront.
   pagination:
+    oneOf:
+      - properties:
+          category:
+            type: object
+            properties:
+              current:
+                type: integer
+              links:
+                type: array
+                items:
+                  type: object
+              sort:
+                type: string
     type: object
-    properties:
-      category:
-        type: object
-        properties:
-          current:
-            type: integer
-          links:
-            type: array
-            items:
-              type: object
-          sort:
-            type: string
   formsSearch:
     type: object
     properties:
