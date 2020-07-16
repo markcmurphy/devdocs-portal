@@ -714,24 +714,21 @@ definitions:
     $ref: '#/definitions/widgetTemplate_Base'
     title: widgetTemplate_Put
   widgetTemplate_Post:
-    required:
-      - name
-      - template
+    title: widgetTemplate_Post
+    type: object
     properties:
       name:
         type: string
         description: User friendly name.
       schema:
-        type: object
-        description: >-
-          The JSON schema of data for this template. Used to validate a
-          configuration.
-        format: json
+        $ref: '#/definitions/widgetSchema'
       template:
         type: string
         description: Handlebars HTML content. Also has access to Stencil Paper helpers.
         format: html
-    title: widgetTemplate_Post
+    required:
+      - name
+      - template
   widgetTemplate_Full:
     allOf:
       - $ref: '#/definitions/widgetTemplate_Base'
