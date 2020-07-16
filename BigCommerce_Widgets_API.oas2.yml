@@ -987,6 +987,122 @@ definitions:
         type: object
         format: json
         description: The JSON data that populates the template.
+  new-model:
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+        label:
+          type: string
+        id:
+          type: string
+        defaultCount:
+          type: integer
+        entryLabel:
+          type: string
+        thumbnail:
+          type: object
+          properties:
+            conditionKey:
+              type: string
+            thumbnailConditions:
+              type: object
+              properties:
+                image:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    valueKey:
+                      type: string
+                color:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    valueKey:
+                      type: string
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              settings:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    default:
+                      type: string
+              label:
+                type: string
+              sections:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    settings:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          id:
+                            type: string
+                          label:
+                            type: string
+                          default:
+                            type: string
+                          typeMeta:
+                            type: object
+                            properties:
+                              placeholder:
+                                type: string
+                              controls:
+                                type: object
+                                properties:
+                                  visibility:
+                                    type: object
+                                    properties:
+                                      default:
+                                        type: string
+                                  advanced:
+                                    type: object
+                                    properties:
+                                      label:
+                                        type: string
+                                      settings:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            type:
+                                              type: string
+                                            label:
+                                              type: string
+                                            id:
+                                              type: string
+                                            default:
+                                              type: string
+                                            typeMeta:
+                                              type: object
+                                              properties:
+                                                selectOptions:
+                                                  type: array
+                                                  items:
+                                                    type: object
+                                                    properties:
+                                                      label:
+                                                        type: string
+                                                      value:
+                                                        type: string
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
