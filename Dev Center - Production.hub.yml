@@ -956,11 +956,13 @@ pages:
             path: /storefront
           data:
             children:
-              - title: Storefront Subscriptions
+              - title: Current Customers
+                config:
+                  includeDownloadLink: true
                 route:
-                  path: /storefront-subscriptions
+                  path: /current-customers
                 data:
-                  $ref: ./subscriptions.sf.oas2.yml
+                  $ref: ./BigCommerce_Current_Customer.oas2.yml
               - title: Customer Login SSO
                 route:
                   path: /customer-login-sso
@@ -984,20 +986,6 @@ pages:
                       data:
                         $ref: >-
                           ./BigCommerce_Customer_Login_SSO.oas2.yml#/definitions/customerLoginSSO
-              - title: Current Customers
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /current-customers
-                data:
-                  $ref: ./BigCommerce_Current_Customer.oas2.yml
-              - title: Scripts
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /content-scripts-api
-                data:
-                  $ref: ./BigCommerce_Scripts_API.oas2.yml
               - title: GraphQL API Tokens
                 config:
                   sidebar:
@@ -1007,6 +995,18 @@ pages:
                   path: /graphql-api-tokens
                 data:
                   $ref: ./BigCommerce_Storefront_Token_API.oas2.yml
+              - title: Storefront Subscriptions
+                route:
+                  path: /storefront-subscriptions
+                data:
+                  $ref: ./subscriptions.sf.oas2.yml
+              - title: Scripts
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /content-scripts-api
+                data:
+                  $ref: ./BigCommerce_Scripts_API.oas2.yml
               - title: Themes
                 config:
                   includeDownloadLink: true
