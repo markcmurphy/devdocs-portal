@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: Data Model for storefront Subscription API
+  title: Storefront Subscriptions
   description: Storefront API for managing subscriptions.
   version: v0.0.1
 consumes:
@@ -12,20 +12,19 @@ paths:
     post:
       description: Creates or updates a subscriber.
       parameters:
-          - name: SubscriptionData
-            in: body
-            required: true
-            schema:
-              $ref: "#/definitions/SubscriptionRequest"
+        - name: SubscriptionData
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/SubscriptionRequest'
       tags:
         - Subscription
       responses:
-        200:
+        '200':
           description: Returns a Subscriber Entity Object.
           schema:
-            $ref: "#/definitions/Subscription"
+            $ref: '#/definitions/Subscription'
 definitions:
-  # --------------  common   -----------
   SubscriptionRequest:
     type: object
     properties:
@@ -40,8 +39,7 @@ definitions:
         description: Has subscriber provided consent for receiving Abandon Cart emails.
   Subscription:
     type: object
-    description:
-      Subscription properties.
+    description: Subscription properties.
     properties:
       id:
         type: integer
@@ -65,8 +63,9 @@ definitions:
         maxLength: 255
       source:
         type: string
-        description: |
-          The source of the subscriber. Values are: `storefront`, `order`, or `custom`.
+        description: >
+          The source of the subscriber. Values are: `storefront`, `order`, or
+          `custom`.
         minLength: 0
         maxLength: 255
       orderId:
