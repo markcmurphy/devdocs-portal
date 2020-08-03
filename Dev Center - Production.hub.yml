@@ -1200,686 +1200,681 @@ pages:
                   blocks: []
                   $ref: >-
                     https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/stencil-docs/configure-store-design-ui/defining-ui-options.md
-              - title: Page Builder
+        - title: UI
+          route:
+            path: /page-builder
+          data:
+            children:
+              - title: Page Builder Overview
                 route:
-                  path: /page-builder
+                  path: /page-builder-overview
+                data:
+                  blocks:
+                    - type: text
+                      data:
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/stencil-docs/page-builder/page-builder-overview.md
+              - title: Schema Settings
+                route:
+                  path: /schema-settings
                 data:
                   children:
-                    - title: Page Builder Overview
+                    - title: Alignment
                       route:
-                        path: /page-builder-overview
+                        path: /alignment
                       data:
                         blocks:
                           - type: text
+                            data: >-
+                              # Alignment
+
+                              Allows you to display alignment controls for your
+                              widget. Depending on the use case, you are able to
+                              display horizontal, vertical, or both alignments
+                              simultaneously.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
                             data:
                               $ref: >-
-                                https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/stencil-docs/page-builder/page-builder-overview.md
-                    - title: Schema Settings
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_alignment
+                          - type: text
+                            data: >-
+                              Depending on the alignment control type, certain
+                              values are possible:
+
+
+                              |Content alignment setting|Allowed values|
+
+                              |---|---|
+
+                              |`horizontal`|"left", "right", "center"|
+
+                              |`vertical`|"top", "bottom", "middle"|
+
+
+
+                              ## Widget Configuration Output
+                          - type: code
+                            data: |-
+                              {
+                                "contentAlignment": {
+                                  "horizontal": "center",
+                                  "vertical": "middle"
+                                }
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586300256175
+                    - title: Boolean
                       route:
-                        path: /schema-settings
-                      data:
-                        children:
-                          - title: Alignment
-                            route:
-                              path: /alignment
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Alignment
-
-                                    Allows you to display alignment controls for
-                                    your widget. Depending on the use case, you
-                                    are able to display horizontal, vertical, or
-                                    both alignments simultaneously.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_alignment
-                                - type: text
-                                  data: >-
-                                    Depending on the alignment control type,
-                                    certain values are possible:
-
-
-                                    |Content alignment setting|Allowed values|
-
-                                    |---|---|
-
-                                    |`horizontal`|"left", "right", "center"|
-
-                                    |`vertical`|"top", "bottom", "middle"|
-
-
-
-                                    ## Widget Configuration Output
-                                - type: code
-                                  data: |-
-                                    {
-                                      "contentAlignment": {
-                                        "horizontal": "center",
-                                        "vertical": "middle"
-                                      }
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586300256175
-                          - title: Boolean
-                            route:
-                              path: /boolean
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Boolean
-
-
-                                    Allows you to display boolean controls for
-                                    your widget. The control displays as a
-                                    checkbox.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_boolean
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "displayControls": true
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586301161248
-                          - title: Box Model
-                            route:
-                              path: /box-model
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Box Model
-
-
-                                    Allows you to display box model controls for
-                                    your widget.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_box_model
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "productCardMargin": {
-                                        "top": {
-                                          "value": "0",
-                                          "type": "px"
-                                        },
-                                        "right": {
-                                          "value": "10.5",
-                                          "type": "px"
-                                        },
-                                        "bottom": {
-                                          "value": "0",
-                                          "type": "px"
-                                        },
-                                        "left": {
-                                          "value": "10.5",
-                                          "type": "px"
-                                        }
-                                      }
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586301611569
-                          - title: Code
-                            route:
-                              path: /code
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Code
-
-
-                                    Allows you to display HTML editor controls
-                                    for your widget.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_code
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "html": "<div>html code can go here</div>"
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586301983604
-                          - title: Color
-                            route:
-                              path: /color
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Color
-
-
-                                    Allows you to display color controls for
-                                    your widget.
-
-
-                                    >**Note**
-
-                                    >
-
-                                    >- The resulting color picker supports RGBA.
-
-                                    >- You can select transparent as a color.
-                                    The returned value is the string
-                                    "transparent".
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_color
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "backgroundColor": "#444444"
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586302351893
-                          - title: Element Settings
-                            route:
-                              path: /element-settings
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Element Settings
-
-
-                                    Element settings are a way of grouping
-                                    together settings intended to modify one
-                                    element of a widget, complete with the
-                                    option to show or hide the element.
-
-
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_element_settings
-                                - type: text
-                                  data: >-
-                                    The `controls` attribute can contain the
-                                    following optional objects:
-
-
-                                    |Attribute|Description|
-
-                                    |---|---|
-
-                                    |`visibility`|Displays an eyeball icon
-                                    similar to the [Visibility](#) setting type|
-
-                                    |`advanced`|Displays a brush icon that
-                                    reveals a list of settings when clicked|
-
-
-                                    ## Widget Configuration Output
-                                - type: code
-                                  data: |
-                                    "textBox": {
-                                      "visibility": "show",
-                                      "backgroundColor": "#FFFFFF"
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586302990776
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586302983818
-                          - title: Image Manager
-                            route:
-                              path: /image-manager
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >
-                                    # Image Manager
-
-
-                                    Allows you to display image manager controls
-                                    for your widget. All uploaded images go to
-                                    the store's Image Manager.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_image_manager
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "imageUrl": "https://images.unsplash.com/photo-1548768041"
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586303651479
-                                - type: text
-                                  data: >-
-                                    >**Note**
-
-                                    >
-
-                                    >The "My Images" button allows the user to
-                                    select from previously uploaded images.
-                          - title: Input
-                            route:
-                              path: /input
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Input
-
-
-                                    Allows you to display input controls for
-                                    your widget.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_input
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "altText": "A cool grey shirt"
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586304148983
-                          - title: Number
-                            route:
-                              path: /number
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Number
-
-
-                                    Allows you to display number controls for
-                                    your widget.
-
-                                    The setting supports Both "integer" and
-                                    "float" parse types. 
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_number
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "fontSize": {
-                                        "value": 24,
-                                        "type": "px"
-                                      }
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586305109220
-                          - title: Product ID
-                            route:
-                              path: /product-id
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Product ID
-
-
-                                    Allows you to display product search
-                                    controls for your widget.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_product_id
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "productId":"80"
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586305667272
-                          - title: Product Image
-                            route:
-                              path: /product-image
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Product Image
-
-
-                                    Allows you to display product image controls
-                                    for your widget. The setting looks up
-                                    product images based on the desired
-                                    `reference` attribute.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_product_image
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "productImage": "https://store-url.com/products/80/images/272.png"
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586306073669
-                          - title: Range
-                            route:
-                              path: /range
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Range
-
-
-                                    Allows you to display range controls for
-                                    your widget.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_range
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "lineWidth": 100
-                                    }
-                                - type: text
-                                  data: >-
-                                    >**Note**
-
-                                    >
-
-                                    >Units are not currently stored in the
-                                    widget configuration.
-
-
-                                    ## User Interface Output
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586307107888
-                          - title: Regex Input
-                            route:
-                              path: /regex-input
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >
-                                    # Regex Input
-
-
-                                    Allows you to display regex input controls
-                                    for your widget. Regex setting can capture
-                                    and provide conditional state to other
-                                    schema settings.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_regex_input
-                                - type: text
-                                  data: '## Widget Configuration Input'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "videoUrl": {
-                                        "value": "https://www.youtube.com/watch?v=-5EQIiabJvk",
-                                        "parts": {
-                                          "type":"youtube"
-                                        }
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586307580232
-                          - title: Select
-                            route:
-                              path: /select
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Select
-
-
-                                    Allows you to display select controls for
-                                    your widget.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_select
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "imageHeight": "auto"
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586308004141
-                          - title: Text
-                            route:
-                              path: /text
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Text
-
-
-                                    Allows you to display text box controls for
-                                    your widget.
-
-
-                                    >**Note**
-
-                                    >
-
-                                    >New line characters are not supported.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_text
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |-
-                                    {
-                                      "bodyText": "This is some text."
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586308306350
-                          - title: Typography
-                            route:
-                              path: /typography
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Typography
-
-
-                                    Typography allows users to select between
-                                    either a default widget appearance or a
-                                    custom appearance.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_typography
-                                - type: text
-                                  data: >-
-                                    >**Note**
-
-                                    >
-
-                                    > We recommend exposing custom typography
-                                    settings via the `conditionalSettings`
-                                    attribute when “custom” is selected.
-
-
-                                    ## Widget Configuration Output
-                                - type: code
-                                  data: |
-                                    {
-                                      "textStyle": "default"
-                                    }
-                                - type: text
-                                  data: '## User Interface Output'
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586309237226
-                          - title: Visibility
-                            route:
-                              path: /visibility
-                            data:
-                              blocks:
-                                - type: text
-                                  data: >-
-                                    # Visibility
-
-
-                                    Visibility allows the user to toggle between
-                                    showing or hiding an element.
-
-
-                                    ## JSON Schema
-                                - type: jsonSchema
-                                  data:
-                                    $ref: >-
-                                      ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_visibility
-                                - type: text
-                                  data: '## Widget Configuration Output'
-                                - type: code
-                                  data: |
-                                    {
-                                      "buttonVisibility": "show"
-                                    }
-                                - type: text
-                                  data: |-
-                                    Output values are "show" or "hide".
-
-                                    ## User Interface Output
-                                - type: image
-                                  data: >-
-                                    //s3.amazonaws.com/user-content.stoplight.io/26545/1586309675858
-                    - title: Third-Party Widgets
-                      route:
-                        path: /third-party-widgets
+                        path: /boolean
                       data:
                         blocks:
                           - type: text
+                            data: >-
+                              # Boolean
+
+
+                              Allows you to display boolean controls for your
+                              widget. The control displays as a checkbox.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
                             data:
                               $ref: >-
-                                https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/stencil-docs/page-builder/third-party-widgets.md
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_boolean
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "displayControls": true
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586301161248
+                    - title: Box Model
+                      route:
+                        path: /box-model
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Box Model
+
+
+                              Allows you to display box model controls for your
+                              widget.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_box_model
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "productCardMargin": {
+                                  "top": {
+                                    "value": "0",
+                                    "type": "px"
+                                  },
+                                  "right": {
+                                    "value": "10.5",
+                                    "type": "px"
+                                  },
+                                  "bottom": {
+                                    "value": "0",
+                                    "type": "px"
+                                  },
+                                  "left": {
+                                    "value": "10.5",
+                                    "type": "px"
+                                  }
+                                }
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586301611569
+                    - title: Code
+                      route:
+                        path: /code
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Code
+
+
+                              Allows you to display HTML editor controls for
+                              your widget.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_code
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "html": "<div>html code can go here</div>"
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586301983604
+                    - title: Color
+                      route:
+                        path: /color
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Color
+
+
+                              Allows you to display color controls for your
+                              widget.
+
+
+                              >**Note**
+
+                              >
+
+                              >- The resulting color picker supports RGBA.
+
+                              >- You can select transparent as a color. The
+                              returned value is the string "transparent".
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_color
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "backgroundColor": "#444444"
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586302351893
+                    - title: Element Settings
+                      route:
+                        path: /element-settings
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Element Settings
+
+
+                              Element settings are a way of grouping together
+                              settings intended to modify one element of a
+                              widget, complete with the option to show or hide
+                              the element.
+
+
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_element_settings
+                          - type: text
+                            data: >-
+                              The `controls` attribute can contain the following
+                              optional objects:
+
+
+                              |Attribute|Description|
+
+                              |---|---|
+
+                              |`visibility`|Displays an eyeball icon similar to
+                              the [Visibility](#) setting type|
+
+                              |`advanced`|Displays a brush icon that reveals a
+                              list of settings when clicked|
+
+
+                              ## Widget Configuration Output
+                          - type: code
+                            data: |
+                              "textBox": {
+                                "visibility": "show",
+                                "backgroundColor": "#FFFFFF"
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586302990776
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586302983818
+                    - title: Image Manager
+                      route:
+                        path: /image-manager
+                      data:
+                        blocks:
+                          - type: text
+                            data: >
+                              # Image Manager
+
+
+                              Allows you to display image manager controls for
+                              your widget. All uploaded images go to the store's
+                              Image Manager.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_image_manager
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "imageUrl": "https://images.unsplash.com/photo-1548768041"
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586303651479
+                          - type: text
+                            data: >-
+                              >**Note**
+
+                              >
+
+                              >The "My Images" button allows the user to select
+                              from previously uploaded images.
+                    - title: Input
+                      route:
+                        path: /input
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Input
+
+
+                              Allows you to display input controls for your
+                              widget.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_input
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "altText": "A cool grey shirt"
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586304148983
+                    - title: Number
+                      route:
+                        path: /number
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Number
+
+
+                              Allows you to display number controls for your
+                              widget.
+
+                              The setting supports Both "integer" and "float"
+                              parse types. 
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_number
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "fontSize": {
+                                  "value": 24,
+                                  "type": "px"
+                                }
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586305109220
+                    - title: Product ID
+                      route:
+                        path: /product-id
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Product ID
+
+
+                              Allows you to display product search controls for
+                              your widget.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_product_id
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "productId":"80"
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586305667272
+                    - title: Product Image
+                      route:
+                        path: /product-image
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Product Image
+
+
+                              Allows you to display product image controls for
+                              your widget. The setting looks up product images
+                              based on the desired `reference` attribute.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_product_image
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "productImage": "https://store-url.com/products/80/images/272.png"
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586306073669
+                    - title: Range
+                      route:
+                        path: /range
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Range
+
+
+                              Allows you to display range controls for your
+                              widget.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_range
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "lineWidth": 100
+                              }
+                          - type: text
+                            data: >-
+                              >**Note**
+
+                              >
+
+                              >Units are not currently stored in the widget
+                              configuration.
+
+
+                              ## User Interface Output
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586307107888
+                    - title: Regex Input
+                      route:
+                        path: /regex-input
+                      data:
+                        blocks:
+                          - type: text
+                            data: >
+                              # Regex Input
+
+
+                              Allows you to display regex input controls for
+                              your widget. Regex setting can capture and provide
+                              conditional state to other schema settings.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_regex_input
+                          - type: text
+                            data: '## Widget Configuration Input'
+                          - type: code
+                            data: |-
+                              {
+                                "videoUrl": {
+                                  "value": "https://www.youtube.com/watch?v=-5EQIiabJvk",
+                                  "parts": {
+                                    "type":"youtube"
+                                  }
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586307580232
+                    - title: Select
+                      route:
+                        path: /select
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Select
+
+
+                              Allows you to display select controls for your
+                              widget.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_select
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "imageHeight": "auto"
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586308004141
+                    - title: Text
+                      route:
+                        path: /text
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Text
+
+
+                              Allows you to display text box controls for your
+                              widget.
+
+
+                              >**Note**
+
+                              >
+
+                              >New line characters are not supported.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_text
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |-
+                              {
+                                "bodyText": "This is some text."
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586308306350
+                    - title: Typography
+                      route:
+                        path: /typography
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Typography
+
+
+                              Typography allows users to select between either a
+                              default widget appearance or a custom appearance.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_typography
+                          - type: text
+                            data: >-
+                              >**Note**
+
+                              >
+
+                              > We recommend exposing custom typography settings
+                              via the `conditionalSettings` attribute when
+                              “custom” is selected.
+
+
+                              ## Widget Configuration Output
+                          - type: code
+                            data: |
+                              {
+                                "textStyle": "default"
+                              }
+                          - type: text
+                            data: '## User Interface Output'
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586309237226
+                    - title: Visibility
+                      route:
+                        path: /visibility
+                      data:
+                        blocks:
+                          - type: text
+                            data: >-
+                              # Visibility
+
+
+                              Visibility allows the user to toggle between
+                              showing or hiding an element.
+
+
+                              ## JSON Schema
+                          - type: jsonSchema
+                            data:
+                              $ref: >-
+                                ./BigCommerce_Theme_Objects.oas2.yml#/definitions/widget_visibility
+                          - type: text
+                            data: '## Widget Configuration Output'
+                          - type: code
+                            data: |
+                              {
+                                "buttonVisibility": "show"
+                              }
+                          - type: text
+                            data: |-
+                              Output values are "show" or "hide".
+
+                              ## User Interface Output
+                          - type: image
+                            data: >-
+                              //s3.amazonaws.com/user-content.stoplight.io/26545/1586309675858
+              - title: Third-Party Widgets
+                route:
+                  path: /third-party-widgets
+                data:
+                  blocks:
+                    - type: text
+                      data:
+                        $ref: >-
+                          https://raw.githubusercontent.com/bigcommerce/dev-docs/master/docs/stencil-docs/page-builder/third-party-widgets.md
         - title: Developing Further
           route:
             path: /developing-further
