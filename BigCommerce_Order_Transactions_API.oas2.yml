@@ -3081,14 +3081,13 @@ responses:
   TransactionCollection_Resp:
     description: Response payload for the BigCommerce Order Transactions API.
     schema:
-      allOf:
-        - type: object
-          properties:
-            data:
-              type: array
-              items:
-                $ref: '#/definitions/Transaction'
-        - $ref: '#/definitions/Meta'
+      type: object
+      $ref: '#/definitions/Meta'
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/Transaction'
     examples:
       application/json:
         data:
@@ -3119,7 +3118,7 @@ responses:
             offline: {}
             custom: {}
             payment_instrument_token: {}
-            payment_method_id: squarev2
+            payment_method_id: squarev2.card
         meta:
           pagination:
             total: 1
