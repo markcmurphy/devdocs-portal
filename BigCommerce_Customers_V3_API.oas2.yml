@@ -247,7 +247,16 @@ paths:
             - 'last_name:desc'
       responses:
         '200':
-          $ref: '#/responses/CustomerCollectionResponse'
+          description: ''
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/customer_Full'
+              meta:
+                $ref: '#/definitions/_metaCollection'
     post:
       description: >-
         Creates Customers. Multiple customers can be created in one call.
