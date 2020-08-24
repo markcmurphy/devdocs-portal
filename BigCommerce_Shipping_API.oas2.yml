@@ -2249,6 +2249,46 @@ definitions:
       connection:
         type: object
         description: '`connection` object varies by carrier'
+  customsInformation:
+    title: customsInformation
+    description: Data about the customs information object.
+    type: object
+    minProperties: 5
+    maxProperties: 5
+    properties:
+      product_id:
+        description: >-
+          The id of the product which the customs information data will apply
+          to.
+        type: integer
+        format: int32
+        example: 77
+      country_of_origin:
+        description: >-
+          The country of manufacture, production, or growth represented in ISO
+          3166-1 alpha-2 format.
+        type: string
+        pattern: '^[A-Z]{2}$'
+        minLength: 2
+        maxLength: 2
+        example: US
+      commodity_description:
+        description: >-
+          Description that provides information for customs to identify and
+          verify shapes physical characteristics and packaging of each shipment.
+        type: string
+        minLength: 0
+        maxLength: 100
+        example: Baseball caps
+      international_shipping:
+        description: Flag to determine whether this product will be shipped internationally
+        type: boolean
+        enum:
+          - true
+          - false
+        example: true
+      hs_codes:
+        $ref: '#/definitions/harmonizedSystemCodes'
 tags:
   - name: Shipping Method
   - name: Shipping Carrier
