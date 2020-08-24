@@ -1793,6 +1793,110 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       operationId: deleteCarrierConnection
+  /shipping/products/customs-information:
+    get:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+      description: >+
+        # Shipping Customs Information
+
+        - [OAuth Scopes](#oauth-scopes)
+
+        - [Authentication](#authentication)
+
+        - [Available Endpoints](#available-endpoints)
+
+
+        The customs duty and taxes liability amounts associated with importing
+        an overseas shipment. 
+
+
+        `GET` Returns a list of customs information.
+
+
+        This list can be filtered to return customs information objects specific
+        to a list of requested product_ids. This is achieved by appending the
+        query string **?product_id:in=4,5,6** to the resource
+        **/shipping/products/customs-information**.
+
+            GET /shipping/products/customs-information?product_id:in=4,5,6
+
+        **Note:** that usage of this API assumes that there is an existing
+        product to associate customs information data with.
+
+
+        ## OAuth Scopes
+
+        | UI Name | Permission | Parameter |
+
+        |--|--|--|
+
+        |Products|modify|`store_v2_products`|
+
+        |Products|read-only|`store_v2_products_read_only`|
+
+
+
+        For more information on OAuth Scopes, see:
+        [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+        ## Authentication
+
+
+        Requests can be authenticated by sending a `client_id` and
+        `access_token` via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+
+
+        ```http
+
+        GET /stores/{$$.env.store_hash}/v2/catalog/summary
+
+        host: api.bigcommerce.com
+
+        Accept: application/json
+
+        X-Auth-Client: {client_id}
+
+        X-Auth-Token: {access_token}
+
+        ```
+
+
+        |Header|Parameter|Description|
+
+        |-|-|-|
+
+        |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
+        installing an app in a BigCommerce control panel.|
+
+        |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
+        installing an app in a BigCommerce control panel.|
+
+
+        For more information on Authenticating BigCommerce APIs, see:
+        [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+
+
+
+      tags:
+        - Shipping Products Custom Information
+      produces:
+        - application/json
+      summary: Get all Product Customs Information
+      parameters:
+        - in: header
+          name: Accept
+          type: string
+          default: application/json
+        - in: header
+          name: Content-Type
+          type: string
+          default: application/json
 definitions:
   TrackingCarrier:
     title: Tracking Carrier
@@ -2138,6 +2242,7 @@ tags:
   - name: Shipping Method
   - name: Shipping Carrier
   - name: Shipping Zones
+  - name: Shipping Products Custom Information
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
