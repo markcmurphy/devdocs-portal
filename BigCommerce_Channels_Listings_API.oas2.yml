@@ -258,7 +258,28 @@
                 "errors": {}
               }
             }
-          }
+          },
+          "422": {
+            "description": "Unprocessable Entity (WebDAV)\n\nWhen an invalid value for a field is submitted, a 422 will be sent.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "examples": {
+              "422 Example": {
+                "status": 422,
+                "title": "JSON data is missing or invalid",
+                "type": "https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes",
+                "errors": {
+                  "status": "error.expected.jsstring"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
         },
         "description": "Updates a *Channel*. Partial updates are supported. Currently, if a field that *cannot* be updated is passed in, the API **not** respond with an error.\n\n**Fields That Can Be Updated**\n* name\n* external_id"
       }
