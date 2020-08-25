@@ -441,15 +441,24 @@ paths:
             $ref: '#/definitions/error'
       description: >-
         Updates a *Channel*. Partial updates are supported. Currently, if a
-        field that *cannot* be updated is passed in, the API **not** respond
-        with an error.
+        field that *cannot* be updated is passed in, the API **will not**
+        respond with an error. It returns a 200 response with the object, in
+        which you will see the field(s) were not updated
 
 
         **Fields That Can Be Updated**
 
-        * name
+        * `name`
 
-        * external_id
+        * `external_id`
+
+        * `status`
+
+        * `is_listable_from_ui`
+
+        * `is_visible`
+
+        * `config_meta`
   '/channels/{channel_id}/listings':
     get:
       summary: Get Channel Listings
