@@ -1242,9 +1242,22 @@ definitions:
     properties: {}
     title: resp_error
   error:
+    title: Error Response
     type: object
-    properties: {}
-    title: error
+    properties:
+      status:
+        description: The HTTP status code.
+        type: integer
+        format: int32
+      title:
+        description: The error title describing the particular error.
+        type: string
+      type:
+        type: string
+      errors:
+        type: object
+        additionalProperties:
+          type: string
 parameters:
   AfterParam:
     name: after
