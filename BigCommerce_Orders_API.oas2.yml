@@ -1180,7 +1180,148 @@
           "type": "string",
           "required": true
         }
-      ]
+      ],
+      "put": {
+        "summary": "Update a Shipping Address",
+        "operationId": "updateAShippingAddress",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/orderShippingAddress"
+            },
+            "examples": {
+              "application/json": {
+                "id": 1,
+                "order_id": 100,
+                "first_name": "first",
+                "last_name": "last",
+                "company": "company",
+                "street_1": "street 1",
+                "street_2": "street 2",
+                "city": "Sydney",
+                "zip": "2000",
+                "country": "Australia",
+                "country_iso2": "AU",
+                "state": "New South Wales",
+                "email": "email@bigcommerce.com",
+                "phone": "phone",
+                "items_total": 1,
+                "items_shipped": 0,
+                "shipping_method": "Flat Rate",
+                "base_cost": "15.0000",
+                "cost_ex_tax": "15.0000",
+                "cost_inc_tax": "15.0000",
+                "cost_tax": "0.0000",
+                "cost_tax_class_id": 2,
+                "base_handling_cost": "0.0000",
+                "handling_cost_ex_tax": "0.0000",
+                "handling_cost_inc_tax": "0.0000",
+                "handling_cost_tax": "0.0000",
+                "handling_cost_tax_class_id": 2,
+                "shipping_zone_id": 1,
+                "shipping_zone_name": "United States",
+                "shipping_quotes": {
+                  "url": "https://api-proxy.service.bcdev/stores/17hoqh4ddx/v2/orders/100/shipping_addresses/1/shipping_quotes",
+                  "resource": "/orders/100/shipping_addresses/1/shipping_quotes"
+                },
+                "form_fields": []
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "status": 404,
+                  "message": "The field 'item_total' cannot be written to. Please remove it from your request before trying again."
+                }
+              ]
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "status": 404,
+                  "message": "The requested resource was not found."
+                }
+              ]
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/shippingAddress_Base"
+            },
+            "description": "",
+            "x-examples": {
+              "application/json": {
+                "first_name": "first",
+                "last_name": "last",
+                "company": "company",
+                "street_1": "street 1",
+                "street_2": "street 2",
+                "city": "Sydney",
+                "zip": "2000",
+                "country": "Australia",
+                "country_iso2": "AU",
+                "state": "New South Wales",
+                "email": "email2@bigcommerce.com",
+                "phone": "0468444123"
+              }
+            }
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Accept",
+            "required": true,
+            "default": "application/json"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Content-Type",
+            "required": true,
+            "default": "application/json"
+          }
+        ],
+        "description": "Update a shipping address associated with an order.\n\nOnly these fields are updatable: \n- first_name\n- last_name\n- company\n- street_1\n- street_2\n- city\n- zip\n- country\n- country_iso2\n- state\n- email\n- phone\n\nNote: Updating will NOT trigger the recalculation of shipping cost and tax"
+      }
     },
     "/orders/{order_id}/shipping_addresses/{shipping_address_id}/shipping_quotes": {
       "get": {
