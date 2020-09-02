@@ -3080,14 +3080,6 @@ responses:
         meta: {}
   TransactionCollection_Resp:
     description: Response payload for the BigCommerce Order Transactions API.
-    schema:
-      type: object
-      $ref: '#/definitions/Meta'
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/definitions/Transaction'
     examples:
       application/json:
         data:
@@ -3128,6 +3120,15 @@ responses:
             total_pages: 1
             links:
               current: '?page=1&limit=50'
+    schema:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/Transaction'
+        meta:
+          $ref: '#/definitions/metaCollection_Full'
   Transaction_Resp:
     description: >-
       Response payload for the BigCommerce Order Transactions API single
