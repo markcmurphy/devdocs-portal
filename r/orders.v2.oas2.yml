@@ -5,7 +5,7 @@ info:
   description: >-
     The Orders v2 resource represents an order in your BigCommerce store. The
     Order object contains a record of the purchase agreement between a shopper
-    and a merchant. 
+    and a merchant.
 
     For more details, see [Orders
     Overview](https://developer.bigcommerce.com/api-docs/orders/orders-overview).
@@ -97,7 +97,7 @@ info:
 
     ### Order Coupons
 
-    Display all coupon codes applied to a specific order. 
+    Display all coupon codes applied to a specific order.
 
 
     ### Order Messages
@@ -108,7 +108,7 @@ info:
     ### Order Products
 
     View all products associated with an order or display a particular line
-    item. 
+    item.
 
 
     ### Order Shipments
@@ -135,7 +135,7 @@ info:
 
     ### Order Statuses
 
-    Display available order statuses. 
+    Display available order statuses.
 
 
     You can either view all or display a single order status using the
@@ -156,7 +156,7 @@ info:
 
     Merchants have the option to enable automatic tax calculation for orders
     with Avalara. For more details, see
-    [Avalara](https://support.bigcommerce.com/s/article/Avalara-Avatax-Sales-Tax-Calculation). 
+    [Avalara](https://support.bigcommerce.com/s/article/Avalara-Avatax-Sales-Tax-Calculation).
 
 
     ---
@@ -218,7 +218,6 @@ paths:
       summary: Get an Order
       tags:
         - Orders
-      produces: []
       parameters:
         - name: Accept
           in: header
@@ -247,7 +246,6 @@ paths:
       summary: Update an Order
       tags:
         - Orders
-      produces: []
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
@@ -325,7 +323,6 @@ paths:
       summary: Archive an Order
       tags:
         - Orders
-      produces: []
       parameters:
         - $ref: '#/parameters/order_id_path'
         - $ref: '#/parameters/Accept'
@@ -359,7 +356,7 @@ paths:
   /orders:
     get:
       description: |-
-        Gets a list of orders using the filter query. 
+        Gets a list of orders using the filter query.
 
         **Notes**
 
@@ -410,7 +407,6 @@ paths:
       summary: Create an Order
       tags:
         - Orders
-      produces: []
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
@@ -593,7 +589,6 @@ paths:
         |`4`|`free_shipping`|
         |`5`|`promotion`|
       summary: List Order Coupons
-      produces: []
       parameters:
         - $ref: '#/parameters/order_id_path'
         - name: Accept
@@ -628,7 +623,6 @@ paths:
         sort from lowest to highest according to a newly created ID, separate
         from the `order_id` and the `product_id`.
       summary: List Order Products
-      produces: []
       parameters:
         - $ref: '#/parameters/order_id_path'
         - $ref: '#/parameters/Accept'
@@ -656,7 +650,6 @@ paths:
         Shipping Quotes Endpoint. Using the response will return a 204 for the
         shipping quote.
       summary: Get a List of Order Shipping Addresses
-      produces: []
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
@@ -725,7 +718,6 @@ paths:
 
         | 14 | Partially Refunded | Seller has partially refunded the order. |
       summary: Get All Order Statuses
-      produces: []
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
@@ -790,7 +782,6 @@ paths:
 
         | 14 | Partially Refunded | Seller has partially refunded the order. |
       summary: Get a Single Order Status by Id
-      produces: []
       parameters:
         - $ref: '#/parameters/status_id_path'
         - $ref: '#/parameters/Accept'
@@ -805,7 +796,7 @@ paths:
   '/orders/{order_id}/taxes':
     get:
       description: >-
-        Gets all order taxes using `order_id`. 
+        Gets all order taxes using `order_id`.
 
         Each tax applied to an order. This information can be useful for
         reporting purposes.
@@ -908,7 +899,6 @@ paths:
     delete:
       description: Deletes all shipments associated with an order.
       summary: Delete All Order Shipments
-      produces: []
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
@@ -926,7 +916,6 @@ paths:
         Gets a count of the number of shipments that have been made for a single
         order.
       summary: Get a Count of Shipments Per Order
-      produces: []
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
@@ -954,7 +943,6 @@ paths:
     put:
       description: Updates an existing shipment associated with an order.
       summary: Update a Shipment
-      produces: []
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
@@ -3311,7 +3299,7 @@ parameters:
     description: >-
       Field and direction to sort orders. To specify the direction, add `:asc`
       or `:desc` to the end of the query parameter. E.g.
-      `sort=date_created:desc`. 
+      `sort=date_created:desc`.
     enum:
       - id
       - customer_id
