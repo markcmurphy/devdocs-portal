@@ -2733,9 +2733,6 @@ definitions:
     default: line_items
     items:
       type: object
-      required:
-        - quantity
-        - product_id
       properties:
         quantity:
           type: number
@@ -2743,9 +2740,13 @@ definitions:
           type: number
         variant_id:
           type: number
+          description: Catalog V3
         list_price:
           type: number
           description: Optional price override
+      required:
+        - quantity
+        - product_id
   cart_PostModifier:
     type: array
     title: cart_PostModifier
