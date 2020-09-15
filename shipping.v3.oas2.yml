@@ -156,7 +156,7 @@ paths:
         > A DELETE to the base url /shipping/products/customs-information does
         not work without the query string**
       tags:
-        - Shipping Products Custom Information
+        - Products
       produces:
         - application/json
       parameters:
@@ -234,137 +234,6 @@ definitions:
       - ups
       - upsready
       - shipperhq
-  ShippingProvider:
-    title: Shipping Provider
-    x-enum-elements:
-      - name: Enum_0
-        description: empty string
-      - name: Enum_1
-        description: ''
-      - name: Enum_2
-        description: ''
-      - name: Enum_3
-        description: ''
-      - name: Enum_4
-        description: ''
-      - name: Enum_5
-        description: ''
-      - name: Enum_6
-        description: ''
-      - name: Enum_7
-        description: ''
-      - name: Enum_8
-        description: ''
-      - name: Enum_9
-        description: ''
-      - name: Enum_10
-        description: ''
-    type: string
-    enum:
-      - '``'
-      - fedex
-      - auspost
-      - canadapost
-      - endicia
-      - usps
-      - royalmail
-      - ups
-      - upsready
-      - upsonline
-      - shipperhq
-    example: endicia
-  ShippingZone:
-    title: Shipping Zone
-    example:
-      id: 1
-      name: United States
-      type: zip
-      locations:
-        - id: 3
-          zip: 12345
-          country_iso2: US
-          state_iso2: TX
-      free_shipping:
-        enabled: false
-        minimum_subtotal: 0
-        exclude_fixed_shipping_products: false
-      handling_fees:
-        fixed_surcharge: 0
-        percentage_surcharge: ''
-        display_separately: true
-      enabled: true
-    type: object
-    properties:
-      id:
-        type: integer
-        description: Zone Id. READ-ONLY
-        example: 1
-      name:
-        type: string
-        description: Zone name. Required for /PUT
-        example: United States
-      type:
-        type: string
-        enum:
-          - zip
-          - country
-          - state
-          - global
-      locations:
-        description: Array of zone locations.
-        type: array
-        items:
-          title: Shipping Zone Locations
-          type: object
-          properties:
-            id:
-              description: Location’s ID.
-              example: 3
-              type: integer
-            zip:
-              description: Location’s ZIP/postal code.
-              example: 12345
-              type: string
-            country_iso2:
-              description: 2-letter ISO Alpha-2 code for the country.
-              example: US
-              type: string
-            state_iso2:
-              description: ISO Alpha-2 code for the state.
-              example: TX
-              type: string
-      free_shipping:
-        type: object
-        properties:
-          enabled:
-            type: boolean
-          minimum_sub_total:
-            type: string
-            example: '0.0000'
-            description: '(Float, Float-As-String, Integer)'
-          exclude_fixed_shipping_products:
-            type: boolean
-      handling_fees:
-        title: Shipping Zone Handling Fees
-        type: object
-        properties:
-          fixed_surcharge:
-            description: ''
-            example: 0
-            type: string
-          percentage_surcharge:
-            description: ''
-            type: string
-          display_separately:
-            description: ''
-            example: true
-            type: boolean
-      enabled:
-        description: Whether this shipping zone is enabled.
-        example: true
-        type: boolean
-    required:
-      - name
   ShippingZoneLocations:
     title: Shipping Zone Locations
     type: object
@@ -385,21 +254,6 @@ definitions:
         description: ISO Alpha-2 code for the state.
         example: TX
         type: string
-  HandlingFees:
-    title: Shipping Zone Handling Fees
-    type: object
-    properties:
-      fixed_surcharge:
-        description: ''
-        example: 0
-        type: string
-      percentage_surcharge:
-        description: ''
-        type: string
-      display_separately:
-        description: ''
-        example: true
-        type: boolean
   shippingMethod_Full:
     title: shippingMethod_Full
     allOf:
@@ -410,45 +264,6 @@ definitions:
             example: 1
             type: integer
       - $ref: '#/definitions/shippingMethod_Base'
-  ShippingMethodType:
-    title: Shipping Method Type
-    example: perorder
-    x-enum-elements:
-      - name: perorder
-        description: ''
-      - name: peritem
-        description: ''
-      - name: weight
-        description: ''
-      - name: total
-        description: ''
-      - name: auspost
-        description: ''
-      - name: canadapost
-        description: ''
-      - name: endicia
-        description: ''
-      - name: usps
-        description: ''
-      - name: fedex
-        description: ''
-      - name: royalmail
-        description: ''
-      - name: upsready
-        description: ''
-    type: string
-    enum:
-      - perorder
-      - peritem
-      - weight
-      - total
-      - auspost
-      - canadapost
-      - endicia
-      - usps
-      - fedex
-      - royalmail
-      - upsready
   shippingMethod_Base:
     title: shippingMethod_Base
     type: object
@@ -528,10 +343,6 @@ definitions:
           not valid for the order.
         example: false
         type: boolean
-  ShippingResponse:
-    type: object
-    properties: {}
-    title: ShippingResponse
   carrierConnection:
     type: object
     title: Carrier Connection
@@ -653,6 +464,7 @@ tags:
   - name: Shipping Carrier
   - name: Shipping Zones
   - name: Shipping Products Custom Information
+  - name: Products
 securityDefinitions:
   X-Auth-Client:
     type: apiKey
