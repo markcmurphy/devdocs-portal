@@ -3,40 +3,35 @@ info:
   title: Sites
   version: '3.0'
   description: >-
-    - [OAuth Scopes](#oauth-scopes)
+    <div class="otp" id="no-index">
+
+
+    ### On This Page
+
 
     - [Authentication](#authentication)
 
-    - [Available Endpoints](#available-endpoints)
+    - [Sites](#sites)
 
-    - [Usage Notes](#usage-notes)
+    - [Site routes](#site-routes)
 
-    - [Resources](#resources)
-
-
-    Create and manage sites and routes for headless storefronts.
+    - [Additional Information](#additional-information)
 
 
-    ## OAuth Scopes
-
-    | UI Name        | Permission | Parameter               |
-
-    |----------------|------------|-------------------------|
-
-    | Sites & Routes | modify     | `store_sites`           |
-
-    | Sites & Routess| read-only  | `store_sites_read_only` |
+    </div>
 
 
-    For more information on OAuth Scopes, see:
-    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    Create and manage [sites](#sites) and [routes](#routes) for [headless
+    storefront](https://support.bigcommerce.com/s/article/The-Headless-Approach#what-mean)
+    sales
+    [channels](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api).
 
 
     ## Authentication
 
 
-    Requests can be authenticated by sending a `client_id` and `access_token`
-    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
+    Authenticate requests by sending a `client_id` and `access_token` via
+    `X-Auth-Client` and `X-Auth-Token` HTTP headers.
 
 
     ```http
@@ -54,63 +49,229 @@ info:
     ```
 
 
-    |Header|Parameter|Description|
-
-    |-|-|-|
-
-    |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
-    installing an app in a BigCommerce control panel.|
-
-    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
-    installing an app in a BigCommerce control panel.|
+    ### OAuth Scopes
 
 
-    For more information on Authenticating BigCommerce APIs, see:
+    | UI Name        | Permission | Parameter               |
+
+    |----------------|------------|-------------------------|
+
+    | Sites & Routes | modify     | `store_sites`           |
+
+    | Sites & Routes | read-only  | `store_sites_read_only` |
+
+
+    For more information on authenticating BigCommerce APIs, see
     [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
 
 
-    ## Available Endpoints
-
-    | Resource / Endpoint                     |
-    Description                                                              |
-
-    |-----------------------------------------|--------------------------------------------------------------------------|
-
-    | Channels                                | Create and manage catalog
-    listings and channels                          |
-
-    | Channel Site                            | Manage sites and routing for
-    headless storefronts                        |
-
-    | Channel Listings                        | Manage catalog differences among
-    different storefronts or marketplaces   |
+    ## Sites
 
 
-    ## Usage Notes
+    Sites link [headless
+    storefronts](https://developer.bigcommerce.com/api-docs/storefronts/developers-guide-headless)
+    to sales
+    [channels](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api).
+    To [create a
+    site](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api/sites/post-site),
+    send a `POST` request to `/stores/{{STORE_HASH}}/v3/sites`.
 
 
-    **Sites and Site Routes:**
+    ```http
 
-    * Sites and routes control the paths that make up a headless storefront
+    POST https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/sites
 
-    * Site refers to the domain associated with a channel
+    X-Auth-Token: {{ACCESS_TOKEN}}
 
-    * Routes point to the URLs for key pages on the headless storefront. They
-    define where the homepage is, where the cart page is, etc.
+    X-Auth-Client: {{CLIENT_ID}}
 
-    * Sites and routes ensure links point where they’re supposed to and sales
-    are attributed correctly. For example, a shopper’s order confirmation email
-    should link back to Storefront A, where they placed their order, not
-    Storefront B, which they’ve never visited.
+    Content-Type: application/json
+
+    Accept: application/json
 
 
-    ## Resources
+    {
+      "url": "http://store.example.com/",
+      "channel_id": 5
+    }
+
+    ```
 
 
-    ### Related Endpoints
+    [![Open in Request
+    Runner](https://storage.googleapis.com/bigcommerce-production-dev-center/images/Open-Request-Runner.svg)](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api/sites/post-site#requestrunner)
 
-    *
-    [Channels](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api)
+
+    **[Response:](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api/sites/post-site#responses)**
+
+
+    ```json
+
+    {
+      "id": 1,
+      "url": "http://store.example.com/",
+      "channel_id": 5,
+      "created_at": "2018-01-04T04:15:50.000Z",
+      "updated_at": "2018-01-04T04:15:50.000Z"
+    }
+
+    ```
+
+
+    To [get a list of
+    sites](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api/sites/getsites),
+    send a `GET` request to `/stores/{{STORE_HASH}}/v3/sites`.
+
+
+    ```http
+
+    GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/sites
+
+    X-Auth-Token: {{ACCESS_TOKEN}}
+
+    X-Auth-Client: {{CLIENT_ID}}
+
+    Accept: application/json
+
+    ```
+
+
+    [![Open in Request
+    Runner](https://storage.googleapis.com/bigcommerce-production-dev-center/images/Open-Request-Runner.svg)](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api/sites/getsites#requestrunner)
+
+
+    </div>
+
+
+    ## Site routes
+
+
+    Site routes tell BigCommerce how to link to pages on a [headless
+    storefront](https://developer.bigcommerce.com/api-docs/storefronts/developers-guide-headless).
+    To [create a
+    route](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api/site-routes/post-site-route)
+    for a [site](#sites), send a `POST` request to
+    `/stores/{{STORE_HASH}}/v3/sites/{site_id}/routes`.
+
+
+    ```http
+
+    POST
+    https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/sites/{site_id}/routes
+
+    X-Auth-Token: {{ACCESS_TOKEN}}
+
+    X-Auth-Client: {{CLIENT_ID}}
+
+    Content-Type: application/json
+
+    Accept: application/json
+
+
+    {
+      "type": "product",
+      "matching": "12",
+      "route": "/en/product?id=12"
+    }
+
+    ```
+
+
+    [![Open in Request
+    Runner](https://storage.googleapis.com/bigcommerce-production-dev-center/images/Open-Request-Runner.svg)](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api/site-routes/post-site-route#requestrunner)
+
+
+    ### Route types
+
+
+    The following route types are supported.
+
+
+    | Type | Description |
+
+    |-|-|
+
+    |`account_new_return`|Route for shopper account page|
+
+    |`account_order_status`|Route for shopper order status account page|
+
+    |`cart`|Route to shopper's cart|
+
+    |`checkout`|Route to checkout|
+
+    |`create_account`|Route to the create a shopper account page|
+
+    |`forgot_password`|Route to shopper forgot password page|
+
+    |`home`|Route to headless storefront homepage|
+
+    |`order_confirmation`|Route to the order confirmation page|
+
+    |`product`|Route for product details pages |
+
+    |`recover_abandoned_cart`|Route for URL in emails for a shopper to recover
+    their abandoned cart|
+
+    |`unsubscribe`|Route for unsubscribe URL in emails|
+
+
+    ### Route variables
+
+
+    The following route variables are supported
+
+
+    |Variable|Description|
+
+    |-|-|-|
+
+    |`{id}`|The **ID** of the requested item|
+
+    |`{slug}`|The **slug** for the requested item (if available). Note: the
+    `slug` value may contain `/` slash|
+
+    |`{lang}`|The **language** string that the client is using|
+
+
+    **Example:**
+
+
+    ```http
+
+    POST
+    https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/sites/{site_id}/routes
+
+    X-Auth-Token: {{ACCESS_TOKEN}}
+
+    X-Auth-Client: {{CLIENT_ID}}
+
+    Content-Type: application/json
+
+    Accept: application/json
+
+
+    {
+      "type": "product",
+      "matching": "*",
+      "route": "/{lang}/{slug}?id={id}"
+    }
+
+    ```
+
+
+    ## Additional Information
+
+
+    ### Related resources
+
+    * [Channels and Listings
+    Reference](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api)
+
+    * [Channels
+    Overview](https://developer.bigcommerce.com/api-docs/channels/overview)
+
+    * [Building Headless Storefronts
+    Guide](https://developer.bigcommerce.com/api-docs/storefronts/developers-guide-headless)
   contact: {}
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v3'
