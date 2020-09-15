@@ -908,10 +908,13 @@ responses:
       type: object
       properties: {}
   405_Method_Not_Allowed:
-    description: ''
+    description: >-
+      The resource was found, but doesn't support the request method. Issued
+      when either a specific method isn't yet implemented on a resource, or the
+      resource doesn't support the method at all. For example, a `PUT` on
+      `/orders` is invalid, but a PUT on `/orders/{order_id}` is valid.
     schema:
-      type: object
-      properties: {}
+      $ref: '#/definitions/error_Full'
 x-stoplight:
   docs:
     includeDownloadLink: true
