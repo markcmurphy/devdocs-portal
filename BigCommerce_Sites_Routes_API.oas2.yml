@@ -854,57 +854,15 @@ definitions:
   _metaCollection:
     $ref: './BigCommerce_All_Common.oas2.yml#/definitions/metaCollection_Full'
   siteRoute_Full:
-    type: object
     title: siteRoute_Full
-    properties:
-      id:
-        type: integer
-        description: Unique ID for this route. Required when updating an existing route
-      type:
-        type: string
-        description: What type of resource are we routing to?
-        enum:
-          - product
-          - brand
-          - category
-          - page
-          - blog
-          - home
-          - cart
-          - checkout
-          - search
-          - account
-          - login
-          - returns
-          - static
-      matching:
-        type: string
-        description: >-
-          (entity_id?) For a given type, which resources should match this
-          route? e.g For a route with the type: "product" and matching: "5" this
-          route would be used for the product with the ID of 5.
-
-
-          Depending on the type of resource, this may be an ID (matching a
-          specific item), or a "*" wildcard matching all items of that type.
-        example: '5'
-      route:
-        type: string
-        description: >-
-          The route template that will be used to generate the URL for the
-          requested resource.
-
-
-          Supports several tokens:
-
-          - `{id}` The **ID** of the requested item
-
-          - `{slug}` The **slug** for the requested item (if available). Note:
-          the `slug` value may contain `/` slash
-
-          - `{language}` The **language** string that the client is using
-        example: /my-amazing-product
     description: Route object used in responses.
+    allOf:
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: Unique ID for this route. Required when updating an existing route
+      - $ref: '#/definitions/siteRoute_Base'
   put_Site:
     type: object
     properties:
