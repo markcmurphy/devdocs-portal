@@ -563,6 +563,11 @@ paths:
           $ref: '#/responses/ErrorResponse'
         '502':
           $ref: '#/responses/502_GatewayError'
+          examples:
+            application/json:
+              status: 502
+              title: A login URL could not be generated. Please try another request.
+              type: 'https://developer.bigcommerce.com/api#api-status-codes'
       tags:
         - Site Routes
       description: >-
@@ -1141,11 +1146,7 @@ responses:
       fail.
     schema:
       $ref: '#/definitions/error_Full'
-    examples:
-      application/json:
-        status: 502
-        title: A login URL could not be generated. Please try another request.
-        type: 'https://developer.bigcommerce.com/api#api-status-codes'
+    examples: {}
   504_GatewayTimeout:
     description: >-
       If this occurs, you should retry the request. Typically retrying the
