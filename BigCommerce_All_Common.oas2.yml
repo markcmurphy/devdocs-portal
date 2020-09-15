@@ -771,9 +771,10 @@ responses:
         title: Unauthorized Access. You do not have permission to make this request.
         type: 'https://developer.bigcommerce.com/api#api-status-codes'
   400_BadRequest:
-    description: |-
-      Malformed request syntax. Typically need to fix the JSON
-      Body to resend successfully.
+    description: >-
+      Invalid syntax, required data missing, `content-type` header missing;
+      Double-check request body for syntax errors and missing data; check
+      `content-type` header.
     schema:
       $ref: '#/definitions/error_Full'
     examples:
@@ -814,6 +815,10 @@ responses:
       [here](https://status.bigcommerce.com/). A service is likely down and the
       request will need to be made again when it is back up (in several hours
       usually)
+
+
+      Occurs hen the store is down for maintenance, being upgraded to a new
+      version, or is suspended due to administrative action or a billing issue.
     schema:
       $ref: '#/definitions/error_Full'
     examples:
