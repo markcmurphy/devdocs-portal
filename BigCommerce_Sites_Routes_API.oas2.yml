@@ -648,6 +648,31 @@ paths:
                   $ref: '#/definitions/_route'
               meta:
                 $ref: '#/definitions/_metaCollection'
+          examples:
+            application/json:
+              data:
+                - id: 123
+                  type: brand
+                  matching: '5'
+                  route: /my-amazing-product
+                - id: 345
+                  type: blog
+                  matching: '5'
+                  route: /my-amazing-product
+                - id: 234
+                  type: returns
+                  matching: '5'
+                  route: /my-amazing-product
+              meta:
+                pagination:
+                  total: 80
+                  count: 50
+                  per_page: 50
+                  current_page: 50
+                  total_pages: 2
+                  links:
+                    current: '?page=1&limit=50'
+                    next: '?page=2&limit=50'
         '422':
           $ref: '#/responses/BulkErrorResponse'
       description: |+
