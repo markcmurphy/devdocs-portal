@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3",
+    "version": "2.0",
     "title": "Shipping",
-    "description": "\nThe Shipping resource allows you to manage how products are shipped. You can also manage connections between a BigCommerce store and third-party shipping providers, as well as where in the world a store ships.\n\n**On This Page**\n- [Authentication](#authentication)\n- [OAuth Scopes](#oauth-scopes)\n- [Subresources](#subresources)\n- [Additional Information](#additional-information)\n---\n\n## Authentication\nYou can authenticate requests by sending a `client_id` and `access_token` via `X-Auth-Client` and `X-Auth-Token` HTTP headers:\n\n```http\nGET /stores/{$$.env.store_hash}/v3/catalog/shipping\nhost: api.bigcommerce.com\nAccept: application/json\nX-Auth-Client: {client_id}\nX-Auth-Token: {access_token}\n```\nYou can obtain the `client_id` and `access_token` using either of the following methods:\n- [Creating API account](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-store-api-credentials)\n- [Installing an app in the BigCommerce control panel](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#obtaining-app-api-credentials)\n---\n\n## OAuth Scopes\nScope limits ability to read or modify data. To interact with the Shipping resource, set the scope to the minimum level needed to accomplish your specific task. \n\n| UI Name  | Permission | Parameter                     |\n|----------|------------|-------------------------------|\n| Information & Settings | modify     | `store_v2_information`           |\n| Information & Settings | read-only  | `store_v2_information_read_only` |\n\nFor more information on OAuth Scopes, see the [REST API Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes) page.\n\n\n## Subresources\n### Shipping Zones\nA shipping zone refers to the geographic location where a store ships. A shipping zone is comprised of one or more countries, states/provinces, or ZIP/postcodes. The Shipping Zones resource lets you manage shipping zones.\n\n> **Note**\n> \n> To enable the carrier for a shipping zone, use the `shipping/zones/{zone_id}/methods` endpoint. You cannot make a `GET` request to this resource. It supports `PUT`, `POST` and `DELETE` operations.\n\n### Shipping Methods\nShipping methods are rules that determine the shipping rates displayed at checkout and in related parts of the control panel, such as the shipping of manual orders. The Shipping Methods resource lets you manage these shipping rules within shipping zones.\n\n### Shipping Carrier Connections\nCarrier connections refer to particular settings required to connect to a specific shipping carrier. Each carrier requires your app to supply a unique set of properties to establish a connection with that carrier. \n\n>**Note**\n>\n> The Carrier Connection resource returns a `204` response for both succesful and unsuccesful attempts to connect. If a field is missing, it will return a `400` response.\n\n## Additional Information\n**Knowledge Base**\n- [Shipping Zones](https://support.bigcommerce.com/s/article/Shipping-Zones)\n- [Shipping Carriers](https://support.bigcommerce.com/s/article/Shipping-Methods#real-time)\n\n**Related API Resources**\n- [Shipping Provider API](https://developer.bigcommerce.com/api-reference/providers/shipping-provider-api)\n"
+    "description": "### Shipping Zones\nThe Shipping Zone object and endpoints manage shipping zones within countries.\n\n### Shipping Methods\nThe Shipping Methods object and endpoints manage shipping rules within Shipping Zones. These rules determine the shipping rates displayed at checkout, and related parts of the control panel, such as the shipping of manual orders.\n\n### Shipping Carrier Connections\nCarrier connections refer to specific settings required to connect to a specific shipping carrier. Each carrier requires your app to supply a unique set of properties/fields to establish a connection with that carrier."
   },
   "host": "api.bigcommerce.com",
   "basePath": "/stores/{$$.env.store_hash}/v2",
@@ -1924,7 +1924,7 @@
         "operationId": "updateACarrierConnection"
       },
       "post": {
-        "description": "Creates a *Carrier Connection*. \n",
+        "description": "Creates a *Carrier Connection*. \n\nCarrier connections refer to specific settings required to connect to a specific shipping carrier. Each carrier requires your app to supply a unique set of properties/fields to establish a connection with that carrier.\n\n*Notes:*\n\n- There is no `GET` with this resource. It has `PUT`, `POST` and `DELETE`.\n    * `PUT` is used to update. The connection can be updated via API.\n    \n- Connections created here do not enable the shipping method. To enable the carrier for a shipping zone, use the Shipping Methods API. \n\n- The Carrier Connection resource returns a 204 for both succesful and unsuccesful attempts to connect. If a field is missing, it will return a 400.\n\n### Australia Post\n\n#### Sample Request – PUT or POST\n\n```json\n{\n\t\"carrier_id\" : \"auspost\",\n\t\"connection\" : {\n\t\t\"auth_key\" : \"yourAusPostAuthKey\",\n\t\t\"test_mode\" : false\n\t}\n}\n```\n\n#### Sample Request – DELETE\n\n```json\n{\n\t\"carrier_id\" : \"auspost\"\n}\n```\n\n#### Australia Post Connection Object – Properties\n\nAustralia Post `PUT` or `POST` requests require all of the following properties. (These requests won’t be fulfilled unless these properties are valid.) `DELETE` requests require only a `carrier_id`.\n\n\n| Property | Type | Description\n| - | - | - |\n| auth_key | string | Australia Post authorization key. |\n| test_mode | boolean | Whether or not to use Australia Post test-mode settings. Acceptable values are `true` or `false`. |\n\n\n### Endicia\nUSPS is connected through Endicia.\n\n#### Sample Request – PUT or POST\n\n```json\n{\t\"carrier_id\" : \"endicia\",\n\t\"connection\": {\n\t\t\"account_id\" : \"yourEndiciaAccountId\",\n\t\t\"pass_phrase\" : \"yourEndiciaPassphrase\"\n\t}\n}\n```\n\n#### Sample Request – DELETE\n\n```json\n{\n\t\"carrier_id\" : \"endicia\"\n}\n```\n\n#### Endicia Connection Object – Properties\n\nEndicia `PUT` or `POST` requests require all of the following properties. (These requests won’t be fulfilled unless these properties are valid.) `DELETE` requests require only a `carrier_id`.\n\n\n| Property | Type | Description |\n| - | - | - |\n| account_id | string | Endicia account ID. |\n| passphrase | string | Endicia passphrase. |\n\n\n### FedEx\n\n#### Sample Request – PUT or POST\n\n```json\n{\n\t\"carrier_id\" : \"fedex\",\n\t\"connection\" : {\n\t\t\"key\" : \"yourFedexKey\",\n\t\t\"password\" : \"yourFedexPassword\",\n\t\t\"account_number\" : \"yourFedexAccountNumber\",\n\t\t\"meter_number\" : \"yourFedexMeterNumber\"\n\t}\n}\n```\n\n#### Sample Request – DELETE\n\n```json\n{\n\t\"carrier_id\" : \"fedex\"\n}\n```\n\n#### FedEx Connection Object – Properties\n\nFedEx `PUT` or `POST` requests require all of the following properties. (These requests won’t be fulfilled unless these properties are valid.) `DELETE` requests require only a `carrier_id`.\n\n\n| Property | Type | Description | \n| - | - | - |\n| key | string | FedEx account ID. | \n| password | string | FedEx passphrase. |\n| account_number | string | FedEx account number. |\n| meter_number | string | FedEx meter number. |\n\n### Royal Mail\n\nSample Request - PUT or POST\n\n```json\n{\n    \"carrier_id\" : \"royalmail\",\n    \"connection\" : {\n        \n    }\n}\n```\n\nSample Request - DELETE\n\n```json\n{\n    \"carrier_id\" : \"royalmail\"\n}\n```\n\n#### Royal Mail Connection Object - Properties\n\nRoyal Mail has no connection object properties.\n\n\n### Zoom2U\n\n#### Sample Request – PUT or POST\n\n```json\n{\n\t\"carrier_id\" : \"zoom2u\",\n\t\"connection\" : {\n\t\t\"auth_key\" : \"yourZoom2uAuthKey\",\n\t\t\"test_mode\" : false\n\t}\n}\n```\n\n#### Sample Request – DELETE\n\n```json\n{\n\t\"carrier_id\" : \"zoom2u\"\n}\n```\n\n#### Zoom2U Connection Object – Properties\n\nZoom2U `PUT` or `POST` requests require all of the following properties. (These requests won’t be fulfilled unless these properties are valid.) `DELETE` requests require only a `carrier_id`.\n\n\n| Property | Type | Description | \n| - | - | - |\n| auth_key | string | Zoom2U authorization key. |\n| test_mode | boolean | Whether or not to use Zoom2U test-mode settings. Acceptable values are `true` or `false`. |",
         "summary": "Create a Carrier Connection",
         "produces": [
           "application/json"
@@ -2050,6 +2050,131 @@
           "IsMultiContentStreaming": false
         },
         "operationId": "deleteCarrierConnection"
+      }
+    },
+    "/shipping/products/customs-information": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/customsInformation"
+                  }
+                },
+                "meta": {
+                  "$ref": "#/definitions/metaCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "# Shipping Customs Information\n- [OAuth Scopes](#oauth-scopes)\n- [Authentication](#authentication)\n- [Available Endpoints](#available-endpoints)\n\nThe customs duty and taxes liability amounts associated with importing an overseas shipment. \n\n`GET` Returns a list of customs information.\n\nThis list can be filtered to return customs information objects specific to a list of requested product_ids. This is achieved by appending the query string **?product_id:in=4,5,6** to the resource **/shipping/products/customs-information**.\n\n    GET /shipping/products/customs-information?product_id:in=4,5,6\n\n**Note:** that usage of this API assumes that there is an existing product to associate customs information data with.\n\n## OAuth Scopes\n| UI Name | Permission | Parameter |\n|--|--|--|\n|Products|modify|`store_v2_products`|\n|Products|read-only|`store_v2_products_read_only`|\n\n\nFor more information on OAuth Scopes, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).\n\n## Authentication\n\nRequests can be authenticated by sending a `client_id` and `access_token` via `X-Auth-Client` and `X-Auth-Token` HTTP headers:\n\n```http\nGET /stores/{$$.env.store_hash}/v2/catalog/summary\nhost: api.bigcommerce.com\nAccept: application/json\nX-Auth-Client: {client_id}\nX-Auth-Token: {access_token}\n```\n\n|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Client`|`client_id`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n\nFor more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).\n\n\n\n",
+        "tags": [
+          "Shipping Products Custom Information"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Get All Product Customs Information",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Accept",
+            "type": "string",
+            "default": "application/json"
+          },
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "type": "string",
+            "default": "application/json"
+          },
+          {
+            "in": "query",
+            "name": "product_id:in",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "summary": "Delete Products Customs Information",
+        "description": "Deletes customs information objects for a product. This is a batch operation where the query string **?product_id:in=4,5,6** **MUST** be appended to the resource **/shipping/products/customs-information** to remove a list or a singular customs information object.\n\n    DELETE /shipping/products/customs-information?product_id:in=4,5,6\n\n>**Note** \n> <br>\n> A DELETE to the base url /shipping/products/customs-information does not work without the query string**",
+        "tags": [
+          "Shipping Products Custom Information"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Accept",
+            "type": "string",
+            "default": "application/json"
+          },
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "type": "string",
+            "default": "application/json"
+          },
+          {
+            "in": "query",
+            "name": "product_id:in",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        ]
+      },
+      "put": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/customsInformation"
+              }
+            }
+          }
+        },
+        "summary": "Upsert Products Customs Information",
+        "description": "Creates/Updates a list customs information.\n\nThis is a batch operation where the creation of multiple customs information objects can be done with one `PUT` request.\n\n>**Note**\n> <br>\n> Limit of 50 customs information objects can be created with one `PUT` request.",
+        "tags": [
+          "Shipping Products Custom Information"
+        ],
+        "produces": [
+          "application/json"
+        ]
       }
     }
   },
@@ -2545,6 +2670,115 @@
           "description": "`connection` object varies by carrier"
         }
       }
+    },
+    "customsInformation": {
+      "title": "customsInformation",
+      "description": "Data about the customs information object.",
+      "type": "object",
+      "minProperties": 5,
+      "maxProperties": 5,
+      "properties": {
+        "product_id": {
+          "description": "The id of the product which the customs information data will apply to.",
+          "type": "integer",
+          "format": "int32",
+          "example": 77
+        },
+        "country_of_origin": {
+          "description": "The country of manufacture, production, or growth represented in ISO 3166-1 alpha-2 format.",
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "minLength": 2,
+          "maxLength": 2,
+          "example": "US"
+        },
+        "commodity_description": {
+          "description": "Description that provides information for customs to identify and verify shapes physical characteristics and packaging of each shipment.",
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 100,
+          "example": "Baseball caps"
+        },
+        "international_shipping": {
+          "description": "Flag to determine whether this product will be shipped internationally",
+          "type": "boolean",
+          "enum": [
+            true,
+            false
+          ],
+          "example": true
+        },
+        "hs_codes": {
+          "$ref": "#/definitions/harmonizedSystemCodes"
+        }
+      }
+    },
+    "harmonizedSystemCodes": {
+      "title": "harmonizedSystemCodes",
+      "description": "Key value pair commonly used in the form of **countryISO2:'/^[0-9A-Za-z]{6,14}$/'**. This is to represent a country and the associated hs code that applies to that country. Eg {\"US\":\"508313\",\"AU\":\"850610\"}.\n\nThere is a special value of **'ALL'** which can be used in place of the countryISO2 to represent that the hs code applies to all countries. Eg {\"ALL\":\"634000\"}. This can be combined with other countries in the hs codes object. For Eg {\"All\":\"640000\", \"US\":\"641000\"}",
+      "type": "object",
+      "example": {
+        "CA": "508313",
+        "AU": "817355",
+        "ALL": "501000"
+      }
+    },
+    "metaCollection": {
+      "title": "metaCollection",
+      "description": "Meta data relating to pagination",
+      "type": "object",
+      "properties": {
+        "pagination": {
+          "type": "object",
+          "properties": {
+            "total": {
+              "type": "integer",
+              "description": "Total number of items returned.",
+              "example": 3
+            },
+            "count": {
+              "type": "integer",
+              "description": "Number of items returned on per page.",
+              "example": 1
+            },
+            "per_page": {
+              "type": "integer",
+              "description": "Number of items to be displayed per page.",
+              "example": 1
+            },
+            "current_page": {
+              "type": "integer",
+              "description": "Current page number.",
+              "example": 2
+            },
+            "total_page": {
+              "type": "integer",
+              "description": "Total number of pages.",
+              "example": 3
+            },
+            "links": {
+              "type": "object",
+              "properties": {
+                "previous": {
+                  "type": "string",
+                  "description": "Query string appended to the resource to return to the previous page.",
+                  "example": "?limit=1&page=1"
+                },
+                "next": {
+                  "type": "string",
+                  "description": "Query string appended to the resource to proceed to the next page.",
+                  "example": "?limit=1&page=3"
+                },
+                "current": {
+                  "type": "string",
+                  "description": "Query string appended to the resource to show the current page.",
+                  "example": "?limit=1&page=2"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -2556,6 +2790,9 @@
     },
     {
       "name": "Shipping Zones"
+    },
+    {
+      "name": "Shipping Products Custom Information"
     }
   ],
   "securityDefinitions": {
