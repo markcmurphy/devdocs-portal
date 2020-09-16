@@ -25,26 +25,24 @@ info:
     ## Authentication
 
 
-    Authenticate requests by sending a `client_id` and `access_token` via
-    `X-Auth-Client` and `X-Auth-Token` HTTP headers.
+    Authenticate requests by sending an
+    [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication)
+    `access_token` via `X-Auth-Token` HTTP header.
 
 
     ```http
 
-    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+    GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/sites
 
-    host: api.bigcommerce.com
+    Content-Type: application/json
 
-    Accept: application/json
-
-    X-Auth-Client: {client_id}
-
-    X-Auth-Token: {access_token}
+    X-Auth-Token: {{ACCESS_TOKEN}}
 
     ```
 
 
-    ### OAuth Scopes
+    ### [OAuth
+    Scopes](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes)
 
 
     | UI Name        | Permission | Parameter               |
