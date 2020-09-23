@@ -748,52 +748,53 @@ definitions:
     title: pagination_Full
   channel_Post:
     title: channel_Post
+    allOf:
+      - properties:
+          type:
+            type: string
+            enum:
+              - pos
+              - marketplace
+              - storefront
+              - marketing
+          name:
+            type: string
+            description: Name of the channel as it will appear to merchants in BC
+          external_id:
+            type: string
+            description: 'Associated ID within a system / platform outside of BC. '
+          is_enabled:
+            type: boolean
+            description: >-
+              SUNSET: Determines whether the channel is enabled on a store. In
+              order to disable a channel, set is_enabled to false.
+
+
+              This results in the channel not showing in the 'Products' section
+              of the BC control panel.
+            default: true
+          platform:
+            type: string
+            enum:
+              - amazon
+              - facebook
+              - google_shopping
+              - vend
+              - square
+              - clover
+              - wordpress
+              - acquia
+              - deity
+              - ebay
+              - drupal
+              - bloomreach
+              - custom
+          status:
+            $ref: '#/definitions/channelStatus'
+        required:
+          - type
+          - name
     type: object
-    properties:
-      type:
-        type: string
-        enum:
-          - pos
-          - marketplace
-          - storefront
-          - marketing
-      name:
-        type: string
-        description: Name of the channel as it will appear to merchants in BC
-      external_id:
-        type: string
-        description: 'Associated ID within a system / platform outside of BC. '
-      is_enabled:
-        type: boolean
-        description: >-
-          SUNSET: Determines whether the channel is enabled on a store. In order
-          to disable a channel, set is_enabled to false.
-
-
-          This results in the channel not showing in the 'Products' section of
-          the BC control panel.
-        default: true
-      platform:
-        type: string
-        enum:
-          - amazon
-          - facebook
-          - google_shopping
-          - vend
-          - square
-          - clover
-          - wordpress
-          - acquia
-          - deity
-          - ebay
-          - drupal
-          - bloomreach
-          - custom
-      status:
-        $ref: '#/definitions/channelStatus'
-    required:
-      - type
-      - name
   channel_Put:
     title: channel_Put
     allOf:
