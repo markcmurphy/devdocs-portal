@@ -1312,9 +1312,35 @@ definitions:
                     and will allow the app to display the appropriate section
                     within the app iFrame in the control panel.
   channel_Base:
-    type: object
-    properties: {}
     title: channel_Base
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the channel as it will appear to merchants in BC
+      external_id:
+        type: string
+        description: 'Associated ID within a system / platform outside of BC. '
+      is_enabled:
+        type: boolean
+        description: >-
+          SUNSET: Determines whether the channel is enabled on a store. In order
+          to disable a channel, set is_enabled to false.
+
+
+          This results in the channel not showing in the 'Products' section of
+          the BC control panel.
+        default: true
+      status:
+        type: string
+        enum:
+          - active
+          - inactive
+          - connected
+          - disconnected
+          - archived
+    required:
+      - status
 parameters:
   AfterParam:
     name: after
