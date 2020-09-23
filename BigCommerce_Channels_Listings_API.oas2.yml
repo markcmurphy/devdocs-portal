@@ -749,7 +749,8 @@ definitions:
   channel_Post:
     title: channel_Post
     allOf:
-      - properties:
+      - type: object
+        properties:
           type:
             type: string
             enum:
@@ -773,11 +774,9 @@ definitions:
               - drupal
               - bloomreach
               - custom
-          status:
-            $ref: '#/definitions/channelStatus'
         required:
           - type
-    type: object
+      - $ref: '#/definitions/channel_Base'
   channel_Put:
     title: channel_Put
     allOf:
