@@ -3,47 +3,47 @@ info:
   version: '3.0'
   title: Channels
   description: >-
+    Create and manage sales
+    [channels](https://developer.bigcommerce.com/api-docs/channels/overview),
+    their sites, and their [product
+    listings](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api).
 
-    - [OAuth Scopes](#oauth-scopes)
 
     - [Authentication](#authentication)
 
-    - [Available Endpoints](#available-endpoints)
+    - [Channels](#channels)
 
-    - [Usage Notes](#usage-notes)
+    - [Channel Listings](#channel-listings)
+
+    - [Channel Site](#channel-site)
 
     - [Resources](#resources)
 
 
-    Create and manage product listings for multiple storefronts and sales
-    channels.
+    ## Authentication
 
 
-    **Deprecation notice:**
-
-    <br>
-
-    As of April 2020, the new `status` property should be used instead of the
-    `is_enabled` property. The `is_enabled` property will be deprecated.
+    Authenticate requests by sending an
+    [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication)
+    `access_token` via `X-Auth-Token` HTTP header.
 
 
-    The `status` property should be used as follows based on channel `type` and
-    `platform`:
+    ```http
+
+    GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/channels
+
+    Content-Type: application/json
+
+    X-Auth-Client: {{CLIENT_ID}}
+
+    X-Auth-Token: {{ACCESS_TOKEN}}
+
+    ```
 
 
-    |Type|Platform|Status
+    ### [OAuth
+    Scopes](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes)
 
-    |--|--|--|
-
-    |`storefront`|`bigcommerce`|`active`, `inactive`, `archived`|
-
-    |`storefront`|**Is not** `bigcommerce` |`active`, `inactive`,
-    `disconnected`|
-
-    |`marketing`, `marketplace`, `pos`|N/A|`connected`, `disconnected`|
-
-
-    ## OAuth Scopes
 
     | UI Name                                      | Permission |
     Parameter                                     |
@@ -63,98 +63,119 @@ info:
     `store_channel_settings_read_only`            |
 
 
-    For more information on OAuth Scopes, see:
-    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    ##
+    [Channels](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channels)
 
 
-    ## Authentication
-
-
-    Requests can be authenticated by sending a `client_id` and `access_token`
-    via `X-Auth-Client` and `X-Auth-Token` HTTP headers:
-
-
-    ```http
-
-    GET /stores/{$$.env.store_hash}/v3/catalog/summary
-
-    host: api.bigcommerce.com
-
-    Accept: application/json
-
-    X-Auth-Client: {client_id}
-
-    X-Auth-Token: {access_token}
-
-    ```
-
-
-    |Header|Parameter|Description|
-
-    |-|-|-|
-
-    |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
-    installing an app in a BigCommerce control panel.|
-
-    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
-    installing an app in a BigCommerce control panel.|
-
-
-    For more information on Authenticating BigCommerce APIs, see:
-    [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
-
-
-    ## Available Endpoints
-
-    | Resource / Endpoint                     |
-    Description                                                              |
-
-    |-----------------------------------------|--------------------------------------------------------------------------|
-
-    | Channels                                | Create and manage catalog
-    listings and channels                          |
-
-    | Channel Site                            | Manage sites and routing for
-    headless storefronts                        |
-
-    | Channel Listings                        | Manage catalog differences among
-    different storefronts or marketplaces   |
-
-
-    ## Usage Notes
-
-
-    **Channels and Channel Listings:**
-
-    * A channel is anywhere a merchant sells their products. This encompasses
+    A channel is anywhere a merchant sells their products. This encompasses
     headless storefronts, marketplaces, POS systems, and marketing platforms.
 
-    * Channel listings allow you to manage catalog differences among different
+
+    ### Platform
+
+
+    A channel's `type` and `platform` combination must be a valid pair as
+    indicated in the table below.
+
+
+    | Platform          | Accepted Type             |
+
+    |-------------------|---------------------------|
+
+    | `square `         | `pos`                     |
+
+    | `vend`            | `pos`                     |
+
+    | `clover`          | `pos`                     |
+
+    | `facebook`        | `marketplace`,`marketing` |
+
+    | `amazon`          | `marketplace`             |
+
+    | `ebay`            | `marketplace`             |
+
+    | `wordpress`       | `storefront`              |
+
+    | `drupal`          | `storefont`               |
+
+    | `acquia`          | `storefront`              |
+
+    | `bloomreach`      | `storefront`              |
+
+    | `deity`           | `storefront`              |
+
+    | `google_shopping` | `marketing`               |
+
+    | `custom`          | `storefront`, `pos`, `marketing`, `marketplace` |
+
+
+    ### Status
+
+
+    Allowed values for a channel's `status` vary by channel `type` and
+    `platform`.
+
+
+    |Type|Platform|Allowed Statuses|
+
+    |--|--|--|
+
+    |`storefront`|`bigcommerce`|`active`, `inactive`, `archived`|
+
+    |`storefront`|**Is not** `bigcommerce` |`active`, `inactive`, `disconnected`
+
+    |`marketing`, `marketplace`, `pos`|N/A|`connected`, `disconnected`|
+
+
+    <div class="HubBlock--callout">
+
+    <div class="CalloutBlock--warning">
+
+    <div class="HubBlock-content">
+
+
+    > ### Note
+
+    > * As of April 2020, `status`  should be used in place of `is_enabled` --
+    `is_enabled` will be deprecated.
+
+
+    </div>
+
+    </div>
+
+    </div>
+
+
+    ## [Channel
+    Listings](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channel-listings)
+
+
+    Channel listings allow you to manage catalog differences among different
     storefronts or marketplaces.
 
 
-    **Sites and Site Routes:**
+    ## [Channel
+    Site](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api/channel-site)
 
-    * Sites and routes control the paths that make up a headless storefront
 
-    * Site refers to the domain associated with a channel
-
-    * Routes point to the URLs for key pages on the headless storefront. They
-    define where your homepage is, where your cart page is, etc.
-
-    * Sites and routes ensure links point where they’re supposed to and sales
-    are attributed correctly. For example, a shopper’s order confirmation email
-    should link back to Storefront A, where they placed their order, not
-    Storefront B, which they’ve never visited.
+    A site refers to the domain associated with a channel.
 
 
     ## Resources
 
 
-    ### Related Endpoints
+    * [Sites and Routes API
+    Reference](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api)
 
-    *
-    [Sites](https://developer.bigcommerce.com/api-reference/cart-checkout/sites-routes-api)
+    * [Building Channels
+    Overview](https://developer.bigcommerce.com/api-docs/channels/overview)
+
+    * [Building Channel
+    Apps](https://developer.bigcommerce.com/api-docs/channels/building-channel-apps)
+
+    * [Channels Toolkit
+    Reference](https://developer.bigcommerce.com/api-docs/channels/channels-toolkit-reference)
 host: api.bigcommerce.com
 tags:
   - name: ''
