@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: Storefront Form Fields
-  description: Storefront API endpoints for retreiving form fields.
+  description: Storefront API endpoints for reading form fields.
   version: v0.0.1
 consumes:
   - application/json
@@ -10,7 +10,7 @@ produces:
 paths:
   /form-fields:
     get:
-      description: Returns an object with form fields groups.
+      description: Creates or updates a subscriber.
       parameters:
         - name: filter
           in: query
@@ -22,104 +22,9 @@ paths:
               - billingAddress
       responses:
         '200':
-          description: ''
+          description: Returns an object with form fields groups.
           schema:
             $ref: '#/definitions/FormFieldGroups'
-          examples:
-            application/json:
-              customerAccount:
-                - id: mollit nulla
-                  name: non
-                  custom: false
-                  label: sint non laboris dolore ea
-                  required: false
-                  default: cillum aliquip qui occaecat ipsum
-                  type: array
-                  fieldType: dropdown
-                  min: aute proident culpa magna fugiat
-                  max: cillum commodo occaecat eiusmod veniam
-                  maxLength: 76370587
-                  secret: false
-                  options:
-                    helperLabel: Ut laboris
-                    items:
-                      value: sed amet qui non
-                      label: exercitation Lorem elit incididunt
-                    '': nulla
-                - id: nulla commodo qui sint
-                  name: in cupidatat e
-                  custom: true
-                  label: mollit culpa ad fugiat pariatur
-                  required: false
-                  default: cupidatat quis
-                  type: date
-                  fieldType: multiline
-                  min: irure do commo
-                  max: magna aute pariatur
-                  maxLength: 66905400
-                  secret: false
-                  options:
-                    helperLabel: eu
-                    items:
-                      value: laboris pariatur cupidatat aliquip culpa
-                      label: occaecat commodo
-                    '': irure anim et aliqua ea
-                - id: sit consequat dolor exercitation
-                  name: nulla dolor incididunt cupidatat culpa
-                  custom: false
-                  label: proident fugiat reprehenderit
-                  required: true
-                  default: velit culpa consequat ut ea
-                  type: array
-                  fieldType: radio
-                  min: in
-                  max: dolore adipisicing nisi
-                  maxLength: 81860224
-                  secret: false
-                  options:
-                    helperLabel: consequat proident consectetur laboris velit
-                    items:
-                      value: deserunt aliqua est esse tempor
-                      label: irure sed aliquip
-                    '': sunt eiusmod
-              shippingAddress:
-                - id: tempor
-                  name: laboris
-                  custom: true
-                  label: eu vol
-                  required: false
-                  default: exercitation do
-                  type: array
-                  fieldType: radio
-                  min: enim aliqui
-                  max: 'no'
-                  maxLength: 76115268
-                  secret: false
-                  options:
-                    helperLabel: ea et
-                    items:
-                      value: esse
-                      label: quis sed
-                    '': dolor nisi quis proident
-              billingAddress:
-                - id: fugiat proident dolore ut dolor
-                  name: cillum ex
-                  custom: true
-                  label: commodo incididunt aliquip minim
-                  required: true
-                  default: proident
-                  type: array
-                  fieldType: checkbox
-                  min: enim nisi ad Excepteur
-                  max: laboris non nulla
-                  maxLength: 69985224
-                  secret: false
-                  options:
-                    helperLabel: culpa commodo eu occaecat
-                    items:
-                      value: mollit nulla in qui adipisicing
-                      label: aliquip aliqua
-                    '': dolor
       tags:
         - Form Fields
 definitions:
@@ -216,11 +121,6 @@ definitions:
               label:
                 type: string
                 description: User friendly label.
-          '':
-            type: string
 tags:
   - name: Form Fields
-x-stoplight:
-  docs:
-    includeDownloadLink: true
-    showModels: false
+basePath: /api/storefront
