@@ -3377,12 +3377,11 @@ paths:
           description: ''
           schema:
             type: object
+            title: Variant Response
             properties:
               data:
-                type: object
                 allOf:
-                  - type: object
-                    description: Common Variant properties.
+                  - description: Common Variant properties.
                     title: Variant Base
                     properties:
                       cost_price:
@@ -3526,8 +3525,7 @@ paths:
                         x-nullable: true
                         minLength: 0
                         maxLength: 255
-                  - type: object
-                    properties:
+                  - properties:
                       id:
                         type: integer
                       product_id:
@@ -3542,11 +3540,13 @@ paths:
                         x-nullable: true
                       option_values:
                         type: array
+                        description: >-
+                          Array of option and option values IDs that make up
+                          this variant. Will be empty if the variant is the
+                          product's base variant.
                         items:
-                          type: object
                           allOf:
-                            - type: object
-                              description: Common Option Value Product properties.
+                            - description: Common Option Value Product properties.
                               title: Option Value Product Base
                               properties:
                                 option_display_name:
@@ -3567,17 +3567,13 @@ paths:
                                   minLength: 1
                                   maxLength: 255
                                   example: Beige
-                            - type: object
-                              properties:
+                            - properties:
                                 id:
                                   type: integer
                                 option_id:
                                   type: integer
                           title: Option Value Variant
-                        description: >-
-                          Array of option and option values IDs that make up
-                          this variant. Will be empty if the variant is the
-                          product's base variant.
+                          type: object
                       calculated_price:
                         type: number
                         format: double
@@ -3586,11 +3582,11 @@ paths:
                           This price takes into account `sale_price` and any
                           price adjustment rules that are applicable to this
                           variant.
+                type: object
               meta:
                 type: object
                 description: Empty meta object; may be used later.
                 title: Meta
-            title: Variant Response
           examples:
             application/json:
               data:
@@ -22605,7 +22601,7 @@ definitions:
               Array of option and option values IDs that make up this variant.
               Will be empty if the variant is the product's base variant.
             items:
-              $ref: '#/definitions/productVariantOptionValue_Base'
+              $ref: '#/definitions/productVariantOptionValue_Full'
           calculated_price:
             type: number
             format: double
@@ -22613,6 +22609,8 @@ definitions:
               The price of the variant as seen on the storefront. This price
               takes into account `sale_price` and any price adjustment rules
               that are applicable to this variant.
+          '':
+            type: string
     title: productVariant_Full
   productVariant_Post:
     description: |
