@@ -2859,6 +2859,102 @@
     }
   },
   "definitions": {
+    "Checkout": {
+      "title": "Checkout",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "cart": {
+          "$ref": "#/definitions/Cart"
+        },
+        "billingAddress": {
+          "$ref": "#/definitions/AddressResponse"
+        },
+        "consignments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Consignment"
+          }
+        },
+        "customer": {
+          "$ref": "#/definitions/Customer"
+        },
+        "taxes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tax"
+          }
+        },
+        "coupons": {
+          "description": "Coupons applied at checkout level.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedCoupon"
+          }
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "shippingCostTotal": {
+          "description": "Shipping cost before any discounts are applied.",
+          "type": "number",
+          "format": "double"
+        },
+        "handlingCostTotal": {
+          "description": "Handling cost for all consignments including or excluding tax.",
+          "type": "number",
+          "format": "double"
+        },
+        "taxTotal": {
+          "type": "number",
+          "format": "double"
+        },
+        "subtotal": {
+          "description": "Subtotal of the checkout before applying item level discounts. Tax inclusive based on the store settings.",
+          "type": "number",
+          "format": "double"
+        },
+        "grandTotal": {
+          "description": "The total payable amount, before applying any store credit or gift certificate.",
+          "type": "number",
+          "format": "double"
+        },
+        "outstandingBalance": {
+          "description": "grandTotal subtract the store-credit amount",
+          "type": "number",
+          "format": "double"
+        },
+        "isStoreCreditApplied": {
+          "type": "boolean"
+        },
+        "giftCertificates": {
+          "description": "Applied gift certificate (as a payment method).",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GiftCertificate"
+          }
+        },
+        "createdTime": {
+          "description": "Time when the cart was created.",
+          "type": "string"
+        },
+        "updatedTime": {
+          "description": "Time when the cart was last updated.",
+          "type": "string"
+        },
+        "customerMessage": {
+          "description": "Shopper's message provided as details for the order to be created from this cart",
+          "type": "string"
+        },
+        "shouldExecuteSpamCheck": {
+          "description": "Indicates whether checkout should be execute spam check before converting to an order",
+          "type": "boolean"
+        }
+      }
+    },
     "SpamProtectionRequest": {
       "title": "SpamProtectionRequest",
       "type": "object",
