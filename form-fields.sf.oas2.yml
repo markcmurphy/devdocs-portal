@@ -1,0 +1,122 @@
+swagger: '2.0'
+info:
+  title: Form Fields Storefront API
+  description: Storefront API for reading form fields.
+  version: v0.0.1
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /form-fields:
+    get:
+      description: Creates or updates a subscriber.
+      parameters:
+          - name: filter
+            in: query
+            schema:
+              type: string
+              enum:
+                - customerAccount
+                - shippingAddress
+                - billingAddress
+      responses:
+        200:
+          description: Returns an object with form fields groups.
+          schema:
+            $ref: "#/definitions/FormFieldGroups"
+definitions:
+  FormFieldGroups:
+    type: object
+    description: Group of form field groups
+    properties:
+      customerAccount:
+        $ref: "#/definitions/FormFields"
+      shippingAddress:
+        $ref: "#/definitions/FormFields"
+      billingAddress:
+        $ref: "#/definitions/FormFields"
+  FormFields:
+    type: array
+    description: List of form fields for the group
+    items:
+      $ref: '#/definitions/FormField'
+  FormField:
+    type: object
+    description: Form Field
+    properties:
+      id:
+        type: string
+        description: Field unique ID
+      name:
+        type: string
+        description: Field name
+      custom:
+        type: boolean
+        description: Wether is a custom field or system built-in field.
+      label:
+        type: string
+        description: User-friendly label
+      required:
+        type: boolean
+        description: Wether this field is required or not
+      default:
+        nullable: true
+        type: string
+        description: The field unique ID
+# --- custom field properties --------
+      type:
+        nullable: true
+        type: string
+        description: Type of the value hold by the field
+        enum:
+          - integer
+          - string
+          - array
+          - date
+      fieldType:
+        nullable: true
+        type: string
+        description: Type of the field
+        enum:
+          - checkbox
+          - text
+          - date
+          - multiline
+          - radio
+          - dropdown
+      min:
+        nullable: true
+        type: string
+        description: The minimun valid value for the field (integer and date type only)
+      max:
+        nullable: true
+        type: string
+        description: The minimun valid value for the field (integer and date type only)
+      maxLength:
+        nullable: true
+        type: integer
+        description: The maximum length for the value (string type only)
+      secret:
+        nullable: true
+        type: boolean
+        description: Whether the field represents a password field
+      options:
+        nullable: true
+        type: object
+        description: Extra data for radio, dropdown and checkbox field types.
+        properties:
+          helperLabel:
+            nullable: true
+            type: string
+            description: Placeholder text for dropdown field type.
+          items:
+            type: object
+            description: List of possible values for this field.
+            properties:
+              value:
+                type: string
+                description: Field option value.
+              label:
+                type: string
+                description: User friendly label.
