@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: Form Fields Storefront API
+  title: Storefront Form Fields
   description: Storefront API for reading form fields.
   version: v0.0.1
 consumes:
@@ -12,30 +12,30 @@ paths:
     get:
       description: Creates or updates a subscriber.
       parameters:
-          - name: filter
-            in: query
-            schema:
-              type: string
-              enum:
-                - customerAccount
-                - shippingAddress
-                - billingAddress
+        - name: filter
+          in: query
+          schema:
+            type: string
+            enum:
+              - customerAccount
+              - shippingAddress
+              - billingAddress
       responses:
-        200:
+        '200':
           description: Returns an object with form fields groups.
           schema:
-            $ref: "#/definitions/FormFieldGroups"
+            $ref: '#/definitions/FormFieldGroups'
 definitions:
   FormFieldGroups:
     type: object
     description: Group of form field groups
     properties:
       customerAccount:
-        $ref: "#/definitions/FormFields"
+        $ref: '#/definitions/FormFields'
       shippingAddress:
-        $ref: "#/definitions/FormFields"
+        $ref: '#/definitions/FormFields'
       billingAddress:
-        $ref: "#/definitions/FormFields"
+        $ref: '#/definitions/FormFields'
   FormFields:
     type: array
     description: List of form fields for the group
@@ -64,7 +64,6 @@ definitions:
         nullable: true
         type: string
         description: The field unique ID
-# --- custom field properties --------
       type:
         nullable: true
         type: string
@@ -104,7 +103,7 @@ definitions:
       options:
         nullable: true
         type: object
-        description: Extra data for radio, dropdown and checkbox field types.
+        description: 'Extra data for radio, dropdown and checkbox field types.'
         properties:
           helperLabel:
             nullable: true
