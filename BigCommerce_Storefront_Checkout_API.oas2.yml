@@ -2859,6 +2859,75 @@
     }
   },
   "definitions": {
+    "Cart": {
+      "title": "Cart",
+      "description": "A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Cart ID, provided after creating a cart with a POST.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "customer_id": {
+          "description": "ID of the customer to which the cart belongs.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "description": "The cart's email. This is the same email that is used in the billing address",
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency"
+        },
+        "taxIncluded": {
+          "description": "Boolean representing whether tax information is included.",
+          "type": "boolean"
+        },
+        "baseAmount": {
+          "description": "Cost of cart's contents, before applying discounts.",
+          "type": "number",
+          "format": "double"
+        },
+        "discountAmount": {
+          "description": "Discounted amount.",
+          "type": "number",
+          "format": "double"
+        },
+        "cartAmount": {
+          "description": "Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable).",
+          "type": "number",
+          "format": "double"
+        },
+        "coupons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedCoupon"
+          }
+        },
+        "discounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppliedDiscount"
+          }
+        },
+        "lineItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LineItem"
+          }
+        },
+        "createdTime": {
+          "description": "Time when the cart was created.",
+          "type": "string"
+        },
+        "updatedTime": {
+          "description": "Time when the cart was last updated.",
+          "type": "string"
+        }
+      }
+    },
     "Checkout": {
       "title": "Checkout",
       "type": "object",
