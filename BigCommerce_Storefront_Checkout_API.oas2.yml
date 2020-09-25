@@ -5177,6 +5177,42 @@ definitions:
       transitTime:
         description: An estimate of the arrival time.
         type: string
+  customer:
+    title: Customer
+    description: A Customer Object
+    type: object
+    properties:
+      id:
+        description: ID of the customer to which the cart belongs.
+        type: integer
+        format: int32
+      isGuest:
+        description: Indicates wether the customer has signed in
+        type: boolean
+      email:
+        description: The customer email address.
+        type: string
+      firstName:
+        description: The customer first name.
+        type: string
+      lastName:
+        description: The customer last name.
+        type: string
+      fullName:
+        description: The customer full name.
+        type: string
+      addresses:
+        description: The customer addresses.
+        type: array
+        items:
+          $ref: '#/definitions/AddressProperties'
+      storeCredit:
+        description: The customer store credit.
+        type: number
+        format: double
+      shouldEncourageSignIn:
+        description: Indicates if the customer should be encouraged to sign in
+        type: boolean
 parameters:
   include:
     name: include
