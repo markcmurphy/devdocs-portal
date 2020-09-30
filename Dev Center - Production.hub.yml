@@ -961,6 +961,86 @@ pages:
                   path: /widgets
                 data:
                   $ref: ./BigCommerce_Widgets_API.oas2.yml
+        - title: Storefront API
+          route:
+            path: /storefront
+          data:
+            children:
+              - title: Storefront Form Fields
+                route:
+                  path: /form-fields
+                data:
+                  $ref: ./form-fields.sf.oas2.yml
+              - title: Storefront Subscriptions
+                route:
+                  path: /storefront-subscriptions
+                data:
+                  $ref: ./subscriptions.sf.oas2.yml
+              - title: Current Customers
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /current-customers
+                data:
+                  $ref: ./BigCommerce_Current_Customer.oas2.yml
+              - title: Customer Login SSO
+                route:
+                  path: /customer-login-sso
+                data:
+                  blocks:
+                    - type: text
+                      data: >-
+                        # Customer Login SSO
+
+
+                        Customer Login enables single sign-on (SSO). It allows
+                        your apps to programmatically log in a storefront
+                        customer by using the login entry point URL:
+                        `/login/token/{token}`.
+
+
+                        For more information, see the [Customer Login
+                        API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
+                        page.
+                    - type: jsonSchema
+                      data:
+                        $ref: >-
+                          ./BigCommerce_Customer_Login_SSO.oas2.yml#/definitions/customerLoginSSO
+              - title: GraphQL API Tokens
+                config:
+                  sidebar:
+                    token: beta
+                  includeDownloadLink: true
+                route:
+                  path: /graphql-api-tokens
+                data:
+                  $ref: ./BigCommerce_Storefront_Token_API.oas2.yml
+              - title: Redirects
+                route:
+                  path: /redirects
+                data:
+                  $ref: ./redirects.v3.oas2.yml
+              - title: Scripts
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /content-scripts-api
+                data:
+                  $ref: ./BigCommerce_Scripts_API.oas2.yml
+              - title: Themes
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /themes-api
+                data:
+                  $ref: ./BigCommerce_Themes_API.oas2.yml
+              - title: Widgets
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /widgets-api
+                data:
+                  $ref: ./BigCommerce_Widgets_API.oas2.yml
         - title: Payments
           route:
             path: /payments
@@ -1081,86 +1161,6 @@ pages:
                   path: /store-content-api
                 data:
                   $ref: ./BigCommerce_Store_Content_API.oas2.yml
-        - title: Storefront
-          route:
-            path: /storefront
-          data:
-            children:
-              - title: Storefront Form Fields
-                route:
-                  path: /form-fields
-                data:
-                  $ref: ./form-fields.sf.oas2.yml
-              - title: Storefront Subscriptions
-                route:
-                  path: /storefront-subscriptions
-                data:
-                  $ref: ./subscriptions.sf.oas2.yml
-              - title: Current Customers
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /current-customers
-                data:
-                  $ref: ./BigCommerce_Current_Customer.oas2.yml
-              - title: Customer Login SSO
-                route:
-                  path: /customer-login-sso
-                data:
-                  blocks:
-                    - type: text
-                      data: >-
-                        # Customer Login SSO
-
-
-                        Customer Login enables single sign-on (SSO). It allows
-                        your apps to programmatically log in a storefront
-                        customer by using the login entry point URL:
-                        `/login/token/{token}`.
-
-
-                        For more information, see the [Customer Login
-                        API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
-                        page.
-                    - type: jsonSchema
-                      data:
-                        $ref: >-
-                          ./BigCommerce_Customer_Login_SSO.oas2.yml#/definitions/customerLoginSSO
-              - title: GraphQL API Tokens
-                config:
-                  sidebar:
-                    token: beta
-                  includeDownloadLink: true
-                route:
-                  path: /graphql-api-tokens
-                data:
-                  $ref: ./BigCommerce_Storefront_Token_API.oas2.yml
-              - title: Redirects
-                route:
-                  path: /redirects
-                data:
-                  $ref: ./redirects.v3.oas2.yml
-              - title: Scripts
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /content-scripts-api
-                data:
-                  $ref: ./BigCommerce_Scripts_API.oas2.yml
-              - title: Themes
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /themes-api
-                data:
-                  $ref: ./BigCommerce_Themes_API.oas2.yml
-              - title: Widgets
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /widgets-api
-                data:
-                  $ref: ./BigCommerce_Widgets_API.oas2.yml
         - title: Orders
           route:
             path: /orders
