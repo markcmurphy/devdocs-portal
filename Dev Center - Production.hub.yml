@@ -819,6 +819,65 @@ pages:
                   path: /wishlists
                 data:
                   $ref: ./BigCommerce_Wishlist_API.oas2.yml
+        - title: Storefront APIs
+          route:
+            path: /storefront
+          data:
+            children:
+              - title: Storefront Form Fields
+                route:
+                  path: /form-fields
+                data:
+                  $ref: ./form-fields.sf.oas2.yml
+              - title: Storefront Orders
+                route:
+                  path: /orders
+                data:
+                  $ref: ./BigCommerce_Storefront_Orders_API.oas2.yml
+              - title: Storefront Subscriptions
+                route:
+                  path: /storefront-subscriptions
+                data:
+                  $ref: ./subscriptions.sf.oas2.yml
+              - title: Current Customers
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /current-customers
+                data:
+                  $ref: ./BigCommerce_Current_Customer.oas2.yml
+              - title: Customer Login SSO
+                route:
+                  path: /customer-login-sso
+                data:
+                  blocks:
+                    - type: text
+                      data: >-
+                        # Customer Login SSO
+
+
+                        Customer Login enables single sign-on (SSO). It allows
+                        your apps to programmatically log in a storefront
+                        customer by using the login entry point URL:
+                        `/login/token/{token}`.
+
+
+                        For more information, see the [Customer Login
+                        API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
+                        page.
+                    - type: jsonSchema
+                      data:
+                        $ref: >-
+                          ./BigCommerce_Customer_Login_SSO.oas2.yml#/definitions/customerLoginSSO
+              - title: GraphQL API Tokens
+                config:
+                  sidebar:
+                    token: beta
+                  includeDownloadLink: true
+                route:
+                  path: /graphql-api-tokens
+                data:
+                  $ref: ./BigCommerce_Storefront_Token_API.oas2.yml
         - title: Management APIs
           route:
             path: /store-management
@@ -1006,77 +1065,6 @@ pages:
                   path: /payments-process-payments
                 data:
                   $ref: ./BigCommerce_Process_Payment_API.oas2.yml
-        - title: Storefront APIs
-          route:
-            path: /storefront
-          data:
-            children:
-              - title: Storefront Form Fields
-                route:
-                  path: /form-fields
-                data:
-                  $ref: ./form-fields.sf.oas2.yml
-              - title: Storefront Orders
-                route:
-                  path: /orders
-                data:
-                  $ref: ./BigCommerce_Storefront_Orders_API.oas2.yml
-              - title: Storefront Subscriptions
-                route:
-                  path: /storefront-subscriptions
-                data:
-                  $ref: ./subscriptions.sf.oas2.yml
-              - title: Current Customers
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /current-customers
-                data:
-                  $ref: ./BigCommerce_Current_Customer.oas2.yml
-              - title: Customer Login SSO
-                route:
-                  path: /customer-login-sso
-                data:
-                  blocks:
-                    - type: text
-                      data: >-
-                        # Customer Login SSO
-
-
-                        Customer Login enables single sign-on (SSO). It allows
-                        your apps to programmatically log in a storefront
-                        customer by using the login entry point URL:
-                        `/login/token/{token}`.
-
-
-                        For more information, see the [Customer Login
-                        API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
-                        page.
-                    - type: jsonSchema
-                      data:
-                        $ref: >-
-                          ./BigCommerce_Customer_Login_SSO.oas2.yml#/definitions/customerLoginSSO
-              - title: GraphQL API Tokens
-                config:
-                  sidebar:
-                    token: beta
-                  includeDownloadLink: true
-                route:
-                  path: /graphql-api-tokens
-                data:
-                  $ref: ./BigCommerce_Storefront_Token_API.oas2.yml
-        - title: Provider APIs
-          route:
-            path: /providers
-          data:
-            children:
-              - title: Shipping Provider API
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /shipping-provider-api
-                data:
-                  $ref: ./BigCommerce_Shipping_Provider_API.oas2.yml
         - title: Webhooks
           config:
             includeDownloadLink: true
@@ -1121,6 +1109,18 @@ pages:
                   path: /wishlist-api
                 data:
                   $ref: ./BigCommerce_Wishlist_API.oas2.yml
+        - title: Provider APIs
+          route:
+            path: /providers
+          data:
+            children:
+              - title: Shipping Provider API
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /shipping-provider-api
+                data:
+                  $ref: ./BigCommerce_Shipping_Provider_API.oas2.yml
         - title: Marketing
           route:
             path: /marketing
