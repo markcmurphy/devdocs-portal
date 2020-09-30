@@ -961,6 +961,51 @@ pages:
                   path: /widgets
                 data:
                   $ref: ./BigCommerce_Widgets_API.oas2.yml
+        - title: Catalog
+          route:
+            path: /catalog
+          data:
+            children:
+              - title: Catalog
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /catalog-api
+                data:
+                  $ref: ./BigCommerce_Catalog_API.oas2.yml
+              - title: Price Lists
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /pricelists-api
+                data:
+                  $ref: ./BigCommerce_Price_Lists_API.oas2.yml
+        - title: Payments
+          route:
+            path: /payments
+          data:
+            children:
+              - title: Payment Token & Payment Methods
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /payments-create-payment-token-api
+                data:
+                  $ref: ./BigCommerce_Payments_API.oas2.yml
+              - title: Enabled Store Payment Methods
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /payment-methods-api
+                data:
+                  $ref: ./BigCommerce_Enabled_Payment_Methods_API.oas2.yml
+              - title: Process Payment
+                config:
+                  includeDownloadLink: true
+                route:
+                  path: /payments-process-payments
+                data:
+                  $ref: ./BigCommerce_Process_Payment_API.oas2.yml
         - title: Storefront APIs
           route:
             path: /storefront
@@ -1020,33 +1065,7 @@ pages:
                   path: /graphql-api-tokens
                 data:
                   $ref: ./BigCommerce_Storefront_Token_API.oas2.yml
-        - title: Payments
-          route:
-            path: /payments
-          data:
-            children:
-              - title: Payment Token & Payment Methods
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /payments-create-payment-token-api
-                data:
-                  $ref: ./BigCommerce_Payments_API.oas2.yml
-              - title: Enabled Store Payment Methods
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /payment-methods-api
-                data:
-                  $ref: ./BigCommerce_Enabled_Payment_Methods_API.oas2.yml
-              - title: Process Payment
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /payments-process-payments
-                data:
-                  $ref: ./BigCommerce_Process_Payment_API.oas2.yml
-        - title: Providers
+        - title: Provider APIs
           route:
             path: /providers
           data:
@@ -1065,25 +1084,6 @@ pages:
             path: /webhooks
           data:
             $ref: ./BigCommerce_Webhooks.oas2.yml
-        - title: Catalog
-          route:
-            path: /catalog
-          data:
-            children:
-              - title: Catalog
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /catalog-api
-                data:
-                  $ref: ./BigCommerce_Catalog_API.oas2.yml
-              - title: Price Lists
-                config:
-                  includeDownloadLink: true
-                route:
-                  path: /pricelists-api
-                data:
-                  $ref: ./BigCommerce_Price_Lists_API.oas2.yml
         - title: Customers & Subscribers
           route:
             path: /customer-subscribers
