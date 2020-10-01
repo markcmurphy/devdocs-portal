@@ -3,15 +3,13 @@ info:
   version: '2.0'
   title: Orders V2
   description: >-
-    Intro
+    Manage order coupons, messages, products, shipping addresses, statuses,
+    taxes, shipments, and shipping address quotes.
 
 
     - [Authentication](#authentication)
 
-    - [Subresources](#subresources)
-
-    - [Additional Resources](#additional-resources)
-
+    - [Order](#order)
 
 
     ## Authentication
@@ -38,28 +36,18 @@ info:
     ### OAuth Scopes
 
 
-    | UI Name | Permission | Parameter 
+    |  **UI Name** | **Permission** | **Parameter** |
 
-    |-|-|-|
+    | --- | --- | --- |
 
+    |  Orders | modify | `store_v2_orders` |
 
-    ## Subresources
+    |  Orders | read-only | `store_v2_orders_read_only` |
 
-
-    Content
-
-
-    ## Additional information
-
-
-    Content 
-
-
-    `/orders`endpoints integrate with point-of-sale, shipping, distribution, and
-    inventory-management systems.
 
 
     ## Order
+
 
     The Order object contains a record of the purchase agreement between a
     shopper and a merchant. To learn more about creating orders, see [Orders API
@@ -95,7 +83,7 @@ info:
     ```json
 
     {
-      //...
+      ...
       "currency_id": 4,
       "currency_code": "EUR",
       "currency_exchange_rate": 1,
@@ -103,53 +91,10 @@ info:
       "default_currency_code": "EUR",
       "store_default_currency_code: "USD",
       "store_default_to_transactional_exchange_rate": "100.0000000000"
-      //...
+      ...
     }
 
-
     ```
-
-
-    ## Order Coupons
-
-    Coupon code applied to an order.
-
-
-    ## Order Messages
-
-    Messages associated with an order.
-
-
-    ## Order Products
-
-    Product line items belonging to an order.
-
-
-    ## Order Shipping Addresses
-
-    Customer shipping address belonging to an order.
-
-
-    ## Order Statuses
-
-    Each order status represents a state in the order-fulfillment workflow.
-
-
-    ## Order Taxes
-
-    Each tax applied to an order. This information can be useful for reporting
-    purposes. All values are read-only.
-
-
-    ## Order Shipments
-
-    Tracks a package consignment from an order that is shipped from the seller
-    to the buyer.
-
-
-    ## Order Shipping Addresses Quotes
-
-    Read Only. Gets all shipping quotes from an order.
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v2'
 schemes:
