@@ -1606,21 +1606,14 @@ definitions:
       offline:
         type: object
         description: 'Offline payment (e.g., check or purchase order).'
+        title: Offline
         properties:
           display_name:
             description: |
               Display name for the offline payment.
             type: string
-        title: Offline
       custom:
-        type: object
-        description: Custom payment from manual order.
-        properties:
-          payment_method:
-            description: |
-              Text entered for the payment method in the control panel.
-            type: string
-        title: Custom
+        $ref: '#/definitions/Custom'
     required:
       - event
       - method
