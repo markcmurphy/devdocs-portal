@@ -973,26 +973,7 @@ paths:
       description: "\tThis webhook is fired whenever a cart is modified through the changes in its line items. Eg. when a new item is added to a cart or an existing item’s quantity is updated. This hook also fires when the email is changed during guest checkout or an existing item is deleted. The payload will include the ID of the cart being updated.\nThis webhook is also fired along with cart created, because the first product being added to an empty cart triggers an update.\n- Logging into customer account after creating a cart (email is inherited from customer account email)\n- Entering email address via guest checkout\n-Changing the email in guest checkout"
   /store/order/archived:
     post:
-      responses:
-        '200':
-          description: ''
-          schema:
-            type: object
-            properties:
-              '':
-                $ref: '#/definitions/callback_Base'
-              data:
-                $ref: '#/definitions/order-created'
-          examples:
-            application/json:
-              created_at: 1592518382
-              store_id: '999379820'
-              producer: stores/vm2iajhsih
-              scope: store/order/archived
-              hash: d6ea0cd835be41dbd95b448b8827a04d2e32a2df
-              data:
-                type: order
-                id: 349
+      responses: {}
       summary: store/order/archived
       consumes:
         - application/json
