@@ -1328,6 +1328,13 @@ parameters:
     type: integer
     required: true
     format: int64
+  'product_id:in':
+    in: query
+    type: array
+    name: 'product_id:in'
+    items:
+      type: string
+    description: Filter by a comma-separated list of product Ids.
 basePath: '/stores/{$$.env.store_hash}/v3'
 securityDefinitions:
   X-Auth-Client:
@@ -1639,6 +1646,11 @@ responses:
           $ref: '#/definitions/site_Full'
         meta:
           $ref: '#/definitions/_meta'
+  new-response:
+    description: ''
+    schema:
+      type: object
+      properties: {}
 x-stoplight:
   docs:
     includeDownloadLink: true
