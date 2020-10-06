@@ -22840,12 +22840,11 @@ definitions:
         description: |
           A public URL for a GIF, JPEG, or PNG image. Limit of 8MB per file. 
   product_Post:
-    allOf:
-      - $ref: '#/definitions/product_Base'
-      - type: object
-        properties:
-          variants:
-            $ref: '#/definitions/productVariant_Post_Product'
+    $ref: '#/definitions/product_Base'
+    type: object
+    properties:
+      variants:
+        $ref: '#/definitions/productVariant_Post_Product'
   product_Put:
     description: The model for a PUT to update a product.
     allOf:
@@ -24661,6 +24660,11 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/productVideo_Full'
+    required:
+      - name
+      - type
+      - weight
+      - price
   metafield_Put:
     description: Properties for updating metafields.
     title: metafield_Put
