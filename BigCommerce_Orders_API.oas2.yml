@@ -3232,22 +3232,6 @@ definitions:
           Float-As-String, Integer)
         example: '0.0000'
         type: string
-      ip_address:
-        description: 'IP Address of the customer, if known.'
-        example: 12.345.678.910
-        type: string
-      geoip_country:
-        description: >-
-          The full name of the country where the customer made the purchase,
-          based on the IP.
-        example: United States
-        type: string
-      geoip_country_iso2:
-        description: >-
-          The country where the customer made the purchase, in ISO2 format,
-          based on the IP.
-        example: US
-        type: string
       currency_id:
         description: >-
           The ID of the currency being used in this transaction. A read-only
@@ -3270,22 +3254,6 @@ definitions:
         description: A read-only value. Do not pass in a POST or PUT.
         example: 1
         type: integer
-      staff_notes:
-        description: Any additional notes for staff.
-        example: Send Saturday
-        type: string
-      customer_message:
-        description: >-
-          Message that the customer entered (number, optiona) -o the `Order
-          Comments` box during checkout.
-        example: Thank you
-        type: string
-      discount_amount:
-        description: >-
-          Amount of discount for this transaction. (Float, Float-As-String,
-          Integer)
-        example: '0.0000'
-        type: string
       coupon_discount:
         description: >-
           A read-only value. Do not pass in a POST or PUT. (Float,
@@ -3297,12 +3265,6 @@ definitions:
         description: >-
           The number of shipping addresses associated with this transaction. A
           read-only value. Do not pass in a POST or PUT.
-      is_deleted:
-        description: >-
-          Indicates whether the order was deleted (archived). Set to to true, to
-          archive an order.
-        example: false
-        type: boolean
       is_email_opt_in:
         description: >-
           Indicates whether the shopper has selected an opt-in check box (on the
@@ -3310,18 +3272,6 @@ definitions:
           POST or PUT.
         example: false
         type: boolean
-      credit_card_type:
-        description: Credit card type
-        example: 0
-        type: integer
-      ebay_order_id:
-        description: >-
-          If the order was placed through eBay, the eBay order number will be
-          included. Otherwise, the value will be `0`.
-        example: '0'
-        type: string
-      billing_address:
-        $ref: '#/definitions/billingAddress_Full'
       order_source:
         description: >-
           Orders submitted via the store's website will include a `www` value.
@@ -3329,56 +3279,6 @@ definitions:
           value. Do not pass in a POST or PUT.
         example: www
         type: string
-      external_source:
-        description: >-
-          For orders submitted or modified via the API, using a PUT or POST
-          operation, you can optionally pass in a value identifying the system
-          used to generate the order. For example: `POS`. Otherwise, the value
-          will be null.
-        example: 'null'
-        type: string
-      products:
-        $ref: '#/definitions/products_Resource'
-      shipping_addresses:
-        $ref: '#/definitions/shippingAddresses_Resource'
-      coupons:
-        $ref: '#/definitions/coupons_Resource'
-      external_id:
-        description: >-
-          ID of the order in another system. For example, the Amazon Order ID if
-          this is an Amazon order.This field can be updated in a /POST, but
-          using a /PUT to update the order will return a 400 error. The field
-          'external_id' cannot be written to. Please remove it from your request
-          before trying again. It can not be overwritten once set.
-        example: 'null'
-        type: string
-      external_merchant_id:
-        description: ID of the merchant
-        example: 'null'
-        type: string
-      channel_id:
-        type: integer
-        example: 1
-        description: Shows where the order originated. The channel_id will default to 1.
-      tax_provider_id:
-        type: string
-        description: >+
-          BasicTaxProvider - Tax is set to manual.
-
-
-          AvaTaxProvider - This is for when the tax provider has been set to
-          automatic and the order was NOT created by the API. Used for Avalara.
-
-
-          "" (blank) - When the tax provider is unknown. This includes legacy
-          orders and orders previously created via API.
-
-          This can be set when creating an order using a POST.
-
-        enum:
-          - BasicTaxProvider
-          - AvaTaxProvider
-          - ''
 tags:
   - name: Orders
   - name: Order Coupons
