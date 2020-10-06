@@ -1051,7 +1051,7 @@ pages:
                 data:
                   blocks:
                     - type: text
-                      data: >
+                      data: >-
                         # Customer Login SSO
 
 
@@ -1141,6 +1141,11 @@ pages:
 
                         ```js
 
+                        const jwt = require('jsonwebtoken');
+
+                        const {v4: uuidv4} = require('uuid');
+
+
                         const clientId = "{{CLIENT_ID}}";
 
                         const clientSecret = "{{CLIENT_SECRET}}";
@@ -1151,10 +1156,7 @@ pages:
 
                         const storeUrl = "{{STORE_URL_ORIGIN}}";
 
-                        const jwt = require('jsonwebtoken');
 
-                        const {v4: uuidv4} = require('uuid');
-                         
                         function getLoginUrl(customerId, storeHash, storeUrl,
                         clientId, clientSecret) {
                            const dateCreated = Math. round((new Date()). getTime() / 1000);
@@ -1177,6 +1179,21 @@ pages:
                         console.log(loginUrl);
 
                         ```
+
+
+                        Replace `{{CLIENT_ID}}` and other variables with your
+                        credentials, then run the app:
+
+
+                        ```
+
+                        node youFileName.js
+
+                        ```
+
+
+                        You should receive a complete access point URL as an
+                        output.
               - title: GraphQL Storefront API
                 config:
                   sidebar:
