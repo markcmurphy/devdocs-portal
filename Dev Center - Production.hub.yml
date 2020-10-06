@@ -1077,20 +1077,6 @@ pages:
                         ## Authentication
 
 
-                        ```json
-
-                        {
-                         "iss": clientId,
-                         "iat": dateCreated,
-                         "jti": uuidv4(),
-                         "operation": "customer_login",
-                         "store_hash": storeHash,
-                         "customer_id": customerId,
-                        }
-
-                        ```
-
-
                         ### OAuth scopes
 
 
@@ -1103,7 +1089,20 @@ pages:
                         |  Customers | read-only | `store_v2_customers_login` |
 
 
-                        ## Payload
+                        ### Header
+
+
+                        ```json
+
+                        {
+                          "alg": "HS256",
+                          "typ": "JWT"
+                        }
+
+                        ```
+
+
+                        ### Payload
                     - type: jsonSchema
                       data:
                         $ref: >-
