@@ -931,7 +931,7 @@ paths:
         - in: body
           name: body
           schema:
-            $ref: '#/definitions/orderProduct'
+            $ref: '#/definitions/orderProduct_Write'
       x-private: true
   '/orders/{order_id}/shipping_addresses/{id}':
     get:
@@ -2605,9 +2605,9 @@ definitions:
       - quantity
       - price_ex_tax
       - price_inc_tax
-  orderProduct:
+  orderProduct_Write:
     type: object
-    title: orderProduct
+    title: orderProduct_Write
     description: >-
       Product from catalog; `product_options` are required if adding a product
       with variants.
@@ -2796,7 +2796,7 @@ definitions:
         type: array
         items:
           anyOf:
-            - $ref: '#/definitions/orderProduct'
+            - $ref: '#/definitions/orderProduct_Write'
             - type: object
               description: 'Custom product not in catalog. '
               properties:
