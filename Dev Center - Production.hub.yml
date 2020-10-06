@@ -1051,7 +1051,7 @@ pages:
                 data:
                   blocks:
                     - type: text
-                      data: "# Customer Login SSO\n\n* **Host**: {$$.env.store_domain}/graphql\n* **Protocols**: `https`\n* **Accepts**: `application/json`\n* **Responds With**: `application/json`\n\nCreate a login URL for customer single-signon.\n\n[Learn more about the customer login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api).\n\n* [Authenticaton](#authentication)\n\t* [OAuth Scopes](#oauth-scopes)\n\t* [Header](#header)\n\t* [Payload](#payload)\n\t* [Signature](#signature)\n* [Additional information](#additional-information)\n\n## Authentication\n\nTo log a customer into their storefront account using the Customer Login API, your app needs to redirect the customer’s browser to the following access point URL: https://storedomain.com/login/token/{{TOKEN}}.\n\nThe `{{TOKEN}}` parameter is the `JWT` containing the payload data signed by your app’s OAuth client secret.\n\nWe recommend writing a script to generate a login token since the JWT iat (issued at) claim is only valid for 30 seconds. BigCommerce supplies helper methods for generating login tokens in our [API Client Libraries](https://developer.bigcommerce.com/tools-resources).\n\n### OAuth scopes\n\n|  **UI Name** | **Permission** | **Parameter** |\n| --- | --- | --- |\n|  Customers | login | `store_v2_customers_read_only` |\n|  Customers | read-only | `store_v2_customers_login` |\n\n### JWT Header\n\n```json\n{\n  \"alg\": \"HS256\",\n  \"typ\": \"JWT\"\n}\n```\n\n### JWT Payload\n\n### JWT Signature\n\nTo create the signature, sign the encoded header, the encoded payload, and client_secret using the `HMAC SHA256` algorithm.\n\n```js\nHMACSHA256(\n  base64UrlEncode(header) + \".\" +\n  base64UrlEncode(payload),\n  {{CLIENT_SECRET}}\n)\n```"
+                      data: "# Customer Login SSO\n\n* **Host**: {$$.env.store_domain}/graphql\n* **Protocols**: `https`\n* **Accepts**: `application/json`\n* **Responds With**: `application/json`\n\nCreate a login URL for customer single-signon.\n\n[Learn more about the customer login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api).\n\n* [Authenticaton](#authentication)\n\t* [OAuth Scopes](#oauth-scopes)\n\t* [Header](#header)\n\t* [Payload](#payload)\n\t* [Signature](#signature)\n* [Additional information](#additional-information)\n\n## Authentication\n\nTo log a customer into their storefront account using the Customer Login API, your app needs to redirect the customer’s browser to the following access point URL: https://storedomain.com/login/token/{{TOKEN}}.\n\nThe `{{TOKEN}}` parameter is the `JWT` containing the payload data signed by your app’s OAuth client secret.\n\nWe recommend writing a script to generate a login token since the JWT iat (issued at) claim is only valid for 30 seconds. BigCommerce supplies helper methods for generating login tokens in our [API Client Libraries](https://developer.bigcommerce.com/tools-resources).\n\n### OAuth scopes\n\n|  **UI Name** | **Permission** | **Parameter** |\n| --- | --- | --- |\n|  Customers | login | `store_v2_customers_read_only` |\n|  Customers | read-only | `store_v2_customers_login` |\n\n### JWT Header\n\n```json\n{\n  \"alg\": \"HS256\",\n  \"typ\": \"JWT\"\n}\n```\n\n### JWT Payload"
                     - type: tabs
                       data:
                         children:
@@ -1067,6 +1067,25 @@ pages:
                                     ./BigCommerce_Customer_Login_SSO.oas2.yml#/definitions/customerLoginSSO
                     - type: text
                       data: >-
+                        ### JWT Signature
+
+
+                        To create the signature, sign the encoded header, the
+                        encoded payload, and client_secret using the `HMAC
+                        SHA256` algorithm.
+
+
+                        ```js
+
+                        HMACSHA256(
+                          base64UrlEncode(header) + "." +
+                          base64UrlEncode(payload),
+                          {{CLIENT_SECRET}}
+                        )
+
+                        ```
+
+
                         ## Node.js example
 
 
