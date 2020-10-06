@@ -3144,18 +3144,6 @@ definitions:
         description: 'The ID of the order, a read-only value. Do not pass in PUT or POST.'
         example: 118
         type: integer
-      customer_id:
-        description: >-
-          The ID of the customer placing the order; or 0 if it was a guest
-          order.
-        example: 6
-        type: number
-      date_created:
-        type: string
-        description: >-
-          The date this order was created. If not specified, will default to the
-          current time. The date should be in RFC 2822 format.
-        example: 'Tue, 20 Nov 2012 00:00:00 +0000'
       date_modified:
         type: string
         description: >-
@@ -3167,10 +3155,6 @@ definitions:
         description: >-
           A read-only value representing the date of shipment. Do not attempt to
           modify or set this value in a POST or PUT operation. RFC-2822
-      status_id:
-        description: The status ID of the order.
-        example: 11
-        type: integer
       cart_id:
         description: >-
           The cart ID from which this order originated, if applicable.
@@ -3184,24 +3168,6 @@ definitions:
           under Order Statuses. This value is read-only. Do not attempt to
           modify or set this value in a POST or PUT operation.
         example: Awaiting Fulfillment
-        type: string
-      custom_status:
-        description: >-
-          Contains the same (string, optiona) - value as the Order Statuses
-          object's `custom_label` property.
-        example: Awaiting Fulfillment
-        type: string
-      subtotal_ex_tax:
-        description: >-
-          Override value for subtotal excluding tax. If specified, the field
-          `subtotal_inc_tax` is also required. (Float, Float-As-String, Integer)
-        example: '225.0000'
-        type: string
-      subtotal_inc_tax:
-        description: >-
-          Override value for subtotal including tax. If specified, the field
-          `subtotal_ex_tax` is also required. (Float, Float-As-String, Integer)
-        example: '225.0000'
         type: string
       subtotal_tax:
         description: >-
