@@ -10,7 +10,7 @@ info:
     API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api).
 host: '{$$.env.store_domain}'
 paths:
-  /newPath:
+  '/login/token/{jwt_token}':
     get:
       responses:
         '200':
@@ -19,6 +19,11 @@ paths:
             type: object
             properties: {}
       summary: Login Token
+    parameters:
+      - name: jwt_token
+        in: path
+        type: string
+        required: true
 definitions:
   customerLoginSSO:
     type: object
