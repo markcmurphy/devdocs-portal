@@ -1075,7 +1075,85 @@ pages:
                         * [Payload](#payload)
 
 
+                        ## Authentication
+
+
+                        ```json
+
+                        {
+                         "iss": clientId,
+                         "iat": dateCreated,
+                         "jti": uuidv4(),
+                         "operation": "customer_login",
+                         "store_hash": storeHash,
+                         "customer_id": customerId,
+                        }
+
+                        ```
+
+
+                        ### OAuth Scopes
+
+
                         ## Payload
+
+
+                        ## Node.js example
+
+
+                        ```
+
+                        ```shell
+
+                        mkdir urlGenerator
+
+                        cd urlGenerator
+
+                        npm init
+
+                        npm install jsonwebtoken uuid
+
+                        ```
+
+
+                        ```js
+
+                        const clientId = "{{CLIENT_ID}}";
+
+                        const clientSecret = "{{CLIENT_SECRET}}";
+
+                        const customerId = "{{CUSTOMER_ID}}";
+
+                        const storeHash = "{{STORE_HASH}}";
+
+                        const storeUrl = "{{STORE_URL_ORIGIN}}";
+
+                        const jwt = require('jsonwebtoken');
+
+                        const {v4: uuidv4} = require('uuid');
+                         
+                        function getLoginUrl(customerId, storeHash, storeUrl,
+                        clientId, clientSecret) {
+                           const dateCreated = Math. round((new Date()). getTime() / 1000);
+                           const  payload = {
+                               "iss": clientId,
+                               "iat": dateCreated,
+                               "jti": uuidv4(),
+                               "operation": "customer_login",
+                               "store_hash": storeHash,
+                               "customer_id": customerId,
+                           }
+                           let token = jwt.sign(payload, clientSecret, {algorithm:'HS256'});
+                           return `${storeUrl}/login/token/${token}`;
+                        };
+                         
+                        const loginUrl = getLoginUrl(customerId, storeHash,
+                        storeUrl, clientId, clientSecret);
+
+
+                        console.log(loginUrl);
+
+                        ```
                     - type: jsonSchema
                       data:
                         $ref: >-
