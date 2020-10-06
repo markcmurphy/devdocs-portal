@@ -2361,14 +2361,6 @@ definitions:
       method_id:
         type: integer
         description: Shipping method ID
-  order_Post:
-    title: order_Post
-    description: >-
-      Order object used for POST requests. Products and Billing address only
-      required for POST operation.
-    allOf:
-      - $ref: '#/definitions/order_ReqOnly'
-      - $ref: '#/definitions/order_Shared'
   orderCustomProduct:
     type: object
     title: orderCustomProduct
@@ -3021,8 +3013,8 @@ definitions:
   order_Req:
     title: order_Req
     description: >-
-      Order object used for POST requests. Products and Billing address only
-      required for POST operation.
+      Order properties used in POST and PUT request bodies. Required: products,
+      billing_address.
     allOf:
       - $ref: '#/definitions/order_ReqOnly'
       - $ref: '#/definitions/order_Shared'
