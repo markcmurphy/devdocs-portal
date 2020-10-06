@@ -1051,7 +1051,7 @@ pages:
                 data:
                   blocks:
                     - type: text
-                      data: >-
+                      data: >
                         # Customer Login SSO
 
 
@@ -1104,20 +1104,29 @@ pages:
 
 
                         ## Payload
-
-
+                    - type: jsonSchema
+                      data:
+                        $ref: >-
+                          ./BigCommerce_Customer_Login_SSO.oas2.yml#/definitions/customerLoginSSO
+                    - type: text
+                      data: >-
                         ## Node.js example
 
 
-                        ```
 
                         ```shell
 
                         mkdir urlGenerator
 
+
                         cd urlGenerator
 
+
+                        touch urlGenerator.js
+
+
                         npm init
+
 
                         npm install jsonwebtoken uuid
 
@@ -1162,10 +1171,6 @@ pages:
                         console.log(loginUrl);
 
                         ```
-                    - type: jsonSchema
-                      data:
-                        $ref: >-
-                          ./BigCommerce_Customer_Login_SSO.oas2.yml#/definitions/customerLoginSSO
               - title: GraphQL Storefront API
                 config:
                   sidebar:
