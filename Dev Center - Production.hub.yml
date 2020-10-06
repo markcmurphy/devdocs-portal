@@ -1049,7 +1049,17 @@ pages:
                 route:
                   path: /customer-login-sso
                 data:
-                  $ref: ./BigCommerce_Customer_Login_SSO.oas2.yml
+                  blocks:
+                    - type: text
+                      data: |-
+                        # Customer Login SSO
+
+                        * **Host**: {$$.env.store_domain}/graphql
+                        * **Protocols**: `https`
+                        * **Accepts**: `application/json`
+                        * **Responds With**: `application/json`
+
+                        ## Payload
               - title: GraphQL Storefront API
                 config:
                   sidebar:
