@@ -1131,6 +1131,72 @@ pages:
 
 
                         ## Authentication
+
+
+                        ### Getting tokens via API
+
+
+                        Create JWT tokens for authenticating cross-origin by
+                        making a `POST` request to
+                        [`/v3/storefront/api-token`](https://developer.bigcommerce.com/api-reference/storefront/graphql-api-tokens/api-token/createtoken).
+
+
+                        ```http
+
+                        POST
+                        https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/endpoint
+
+                        X-Auth-Token: {{ACCESS_TOKEN}}
+
+                        X-Auth-Client: {{CLIENT_ID}}
+
+                        Content-Type: application/json
+
+                        Accept: application/json
+
+
+                        {
+                          "channel_id": 1,
+                          "expires_at": 1602288000,
+                          "allowed_cors_origins": [
+                            "https://example.com"
+                          ]
+                        }
+
+                        ```
+
+
+                        [![Open in Request
+                        Runner](https://storage.googleapis.com/bigcommerce-production-dev-center/images/Open-Request-Runner.svg)](https://developer.bigcommerce.com/api-reference/storefront/graphql-api-tokens/api-token/createtoken#requestrunner)
+
+
+                        ### Getting tokens via handlebars
+
+
+                        Client code in BigCommerce Stencil themes can be passed
+                        a token at render time with the
+                        `{{settings.storefront_api.token}}` Handlebars object.
+
+
+                        ```html
+
+                        <script>
+
+                        fetch('/graphql', {
+                               method: 'POST',
+                               headers: {
+                                   'Content-Type': 'application/json',
+                                   'Authorization': 'Bearer {{settings.storefront_api.token}}'
+                               },
+                               body: JSON.stringify({
+                                   query: `
+                                    query MyFirstQuery {...}
+                          `
+                        // ...
+
+                        </script>
+
+                        ```
         - title: Management APIs
           route:
             path: /store-management
