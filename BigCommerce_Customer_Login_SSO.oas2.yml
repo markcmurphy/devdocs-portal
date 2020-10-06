@@ -12,17 +12,14 @@ host: '{$$.env.store_domain}'
 paths:
   '/login/token/{jwt_token}':
     get:
-      responses:
-        '200':
-          description: ''
-          schema:
-            type: object
-            properties: {}
+      responses: {}
       summary: Login Token
       tags:
         - Login Token
-      consumes: []
-      produces: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
     parameters:
       - name: jwt_token
         in: path
