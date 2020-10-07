@@ -49,7 +49,7 @@ info:
     ### OAuth Scopes
 
 
-    | UI Name| Permission |Parameter|                                     
+    | UI Name| Permission |Parameter|
 
     |----------------------------------------------|------------|----------|
 
@@ -70,7 +70,7 @@ info:
     return full card or fraud details. Transactions endpoints are primarily used
     to get detailed gateway response information for credit card transactions;
     however they will also return any available information about digital wallet
-    and offline payments. 
+    and offline payments.
 
 
     **Note**: transactions are not created for the following payment methods:
@@ -460,7 +460,7 @@ paths:
 
 
             Must be in url-encoded RFC 3339 format.
-            e.g. `2020-01-15T01:02:34-01:00` is RFC-3339 format. 
+            e.g. `2020-01-15T01:02:34-01:00` is RFC-3339 format.
             Url-encoded this will be `2020-01-15T01%3A02%3A34%2B01%3A00`
           format: date-time
           default: RFC 3339
@@ -474,7 +474,7 @@ paths:
 
 
             Must be in url-encoded RFC 3339 format.
-            e.g. `2020-01-15T01:02:34-01:00` is RFC-3339 format. 
+            e.g. `2020-01-15T01:02:34-01:00` is RFC-3339 format.
             Url-encoded this will be `2020-01-15T01%3A02%3A34%2B01%3A00`
       responses:
         '200':
@@ -911,7 +911,7 @@ securityDefinitions:
 
 
       * For more information on Authenticating BigCommerce APIs, see:
-      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
   X-Auth-Token:
     type: apiKey
     in: header
@@ -961,7 +961,7 @@ securityDefinitions:
 
 
       * For more information on Authenticating BigCommerce APIs, see:
-      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
@@ -1910,6 +1910,25 @@ definitions:
         description: |
           The credit-card type: Visa, MasterCard, etc.
         type: string
+        enum:
+          - alelo
+          - alia
+          - american_express
+          - cabal
+          - carnet
+          - dankort
+          - diners_club
+          - discover
+          - elo
+          - forbrugsforeningen
+          - jcb
+          - maestro
+          - master
+          - naranja
+          - sodexo
+          - unionpay
+          - visa
+          - vr
       card_iin:
         description: |
           The IIN of a credit-card number.
@@ -2169,7 +2188,7 @@ definitions:
 
 
           Note that `refund_methods` is an array of refund methods, with each
-          refund method being an array of payment options. 
+          refund method being an array of payment options.
 
 
           For example, if the order was placed by a combination of store credit
@@ -2207,7 +2226,7 @@ definitions:
                   "offline": true,
                   "offline_provider": true,
                   "offline_reason": "This is an offline payment provider."
-                }, 
+                },
                 {
                   "provider_id": "storecredit",
                   "provider_description": "Store Credit",
@@ -2232,10 +2251,10 @@ definitions:
 
           3. Refund the amount paid by store credit to store credit, and the
           amount paid by bank deposit via a manual refund, which will be
-          recorded as being refunded against the bank deposit.  
+          recorded as being refunded against the bank deposit.
 
 
-          >  
+          >
 
 
 
@@ -2330,7 +2349,7 @@ definitions:
 
 
       Type of refund item that capture refunding of items in the order that are
-      of type quantity. 
+      of type quantity.
 
       * `PRODUCT`
 
@@ -2383,7 +2402,7 @@ definitions:
 
 
       Type of refund item that capture refunding of items in the order that are
-      of type amount. 
+      of type amount.
 
       * `SHIPPING`
 
