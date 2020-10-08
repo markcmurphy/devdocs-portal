@@ -320,16 +320,13 @@ paths:
   '/carts/{cartId}/items/{itemId}':
     put:
       description: >-
-        Updates a *Cart* line item. Updates an existing, single line item in the
-        cart. 
+        Updates an existing, single line item in the *Cart*. 
 
 
         **Notes**
 
 
-        Currently, only updating `list_price` and `quantity` are supported. 
-
-
+        Currently, only updating `list_price` and `quantity` are supported.
         Updating a product's `list_price` will make that item ineligible for V3
         product level promotions. 
 
@@ -342,6 +339,13 @@ paths:
         If a variant needs to be changed or updated, the product will need to be
         removed and re-added to the cart with the correct variants using the Add
         Cart Line Items endpoint.
+
+
+        `custom_items` cannot be updated via the API at this time. To update
+        your cart, add a new updated custom item and delete the outdated one.
+        Deleting all line items from the cart will invalidate the cart. If your
+        cart contains only one line item, perform the add operation before the
+        delete operation.
       parameters:
         - name: cartId
           in: path
@@ -364,17 +368,6 @@ paths:
                 quantity: 2
                 product_id: 152
                 list_price: 12.5
-            Custom Item: |-
-              {
-                "line_item": [
-                  {
-                    "sku": "abc-123",
-                    "name": "Custom Product",
-                    "quantity": 1,
-                    "list_price": 10
-                  }
-                ]
-              }
         - name: include
           in: query
           type: string
