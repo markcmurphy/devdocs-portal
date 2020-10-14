@@ -427,6 +427,7 @@ pages:
                     - title: Form Fields
                       route:
                         path: /form-fields
+                      data: {}
                     - title: Orders
                       route:
                         path: /orders
@@ -1119,49 +1120,40 @@ pages:
           data:
             children:
               - title: Carts
+                config:
+                  includeDownloadLink: true
+                  sidebar:
+                    token: sf rest
                 route:
                   path: /carts
                 data:
                   $ref: ./BigCommerce_Storefront_Cart_API.oas2.yml
+              - title: Checkouts
                 config:
                   includeDownloadLink: true
                   sidebar:
                     token: sf rest
-              - title: Checkouts
                 route:
                   path: /checkouts
                 data:
                   $ref: ./BigCommerce_Storefront_Checkout_API.oas2.yml
-                config:
-                  includeDownloadLink: true
-                  sidebar:
-                    token: sf rest
-              - title: Form Fields
-                route:
-                  path: /form-fields
-                data:
-                  $ref: ./form-fields.sf.oas2.yml
-                config:
-                  includeDownloadLink: true
-                  sidebar:
-                    token: sf rest
               - title: Newsletter Subscriptions
+                config:
+                  sidebar:
+                    token: sf rest
                 route:
                   path: /storefront-subscriptions
                 data:
                   $ref: ./subscriptions.sf.oas2.yml
-                config:
-                  sidebar:
-                    token: sf rest
               - title: Orders
-                route:
-                  path: /orders
-                data:
-                  $ref: ./BigCommerce_Storefront_Orders_API.oas2.yml
                 config:
                   includeDownloadLink: true
                   sidebar:
                     token: sf rest
+                route:
+                  path: /orders
+                data:
+                  $ref: ./BigCommerce_Storefront_Orders_API.oas2.yml
               - title: Current Customers
                 config:
                   includeDownloadLink: true
@@ -1330,50 +1322,50 @@ pages:
           data:
             children:
               - title: Abandoned Carts
+                config:
+                  sidebar:
+                    token: v3
+                  includeDownloadLink: true
                 route:
                   path: /abandoned-carts
                 data:
                   $ref: ./BigCommerce_Abandoned_Carts.oas2.yml
+              - title: Carts
                 config:
                   sidebar:
                     token: v3
                   includeDownloadLink: true
-              - title: Carts
                 route:
                   path: /carts
                 data:
                   $ref: ./BigCommerce_Server_to_Server_Cart_API.oas2.yml
+              - title: Catalog
                 config:
+                  includeDownloadLink: true
                   sidebar:
                     token: v3
-                  includeDownloadLink: true
-              - title: Catalog
                 route:
                   path: /catalog
                 data:
                   $ref: ./BigCommerce_Catalog_API.oas2.yml
+              - title: Channels and Listings
                 config:
                   includeDownloadLink: true
                   sidebar:
                     token: v3
-              - title: Channels and Listings
                 route:
                   path: /channels
                 data:
                   $ref: ./BigCommerce_Channels_Listings_API.oas2.yml
+              - title: Checkouts
                 config:
-                  includeDownloadLink: true
                   sidebar:
                     token: v3
-              - title: Checkouts
+                  includeDownloadLink: true
                 route:
                   path: /checkouts
                 data:
                   $ref: ./BigCommerce_Server_to_Server_Checkout_API.oas2.yml
-                config:
-                  sidebar:
-                    token: v3
-                  includeDownloadLink: true
               - title: ' Currencies'
                 config:
                   includeDownloadLink: true
@@ -1411,13 +1403,13 @@ pages:
                 data:
                   $ref: ./BigCommerce_Geography_API.oas2.yml
               - title: GraphQL Tokens
+                config:
+                  sidebar:
+                    token: v3
                 route:
                   path: /tokens
                 data:
                   $ref: ./BigCommerce_Storefront_Token_API.oas2.yml
-                config:
-                  sidebar:
-                    token: v3
               - title: Marketing
                 config:
                   includeDownloadLink: true
@@ -1469,14 +1461,14 @@ pages:
                 data:
                   $ref: ./payment_processing_methods.v3.oas2.yml
               - title: Payment Processing Tokens
-                route:
-                  path: /payment-tokens
-                data:
-                  $ref: ./payment_processing_tokens.v3.oas2.yml
                 config:
                   sidebar:
                     token: v3
                   includeDownloadLink: true
+                route:
+                  path: /payment-tokens
+                data:
+                  $ref: ./payment_processing_tokens.v3.oas2.yml
               - title: Price Lists
                 config:
                   includeDownloadLink: true
@@ -1487,13 +1479,13 @@ pages:
                 data:
                   $ref: ./BigCommerce_Price_Lists_API.oas2.yml
               - title: Redirects v3
+                config:
+                  sidebar:
+                    token: v3
                 route:
                   path: /redirects
                 data:
                   $ref: ./redirects.v3.oas2.yml
-                config:
-                  sidebar:
-                    token: v3
               - title: Scripts
                 config:
                   includeDownloadLink: true
@@ -1513,22 +1505,21 @@ pages:
                 data:
                   $ref: ./BigCommerce_Shipping_API.oas2.yml
               - title: Shipping V3
+                config:
+                  sidebar:
+                    token: v3
                 route:
                   path: /shipping-v3
                 data:
                   $ref: ./shipping.v3.oas2.yml
+              - title: Sites and Routes
                 config:
                   sidebar:
                     token: v3
-              - title: Sites and Routes
                 route:
                   path: /sites
                 data:
                   $ref: ./BigCommerce_Sites_Routes_API.oas2.yml
-                  children: []
-                config:
-                  sidebar:
-                    token: v3
               - title: Store Content
                 config:
                   includeDownloadLink: true
@@ -1565,7 +1556,6 @@ pages:
                   path: /tax-classes-api
                 data:
                   $ref: ./BigCommerce_Tax_Class_API.oas2.yml
-                  children: []
               - title: Themes
                 config:
                   includeDownloadLink: true
@@ -1594,13 +1584,13 @@ pages:
                 data:
                   $ref: ./BigCommerce_Widgets_API.oas2.yml
               - title: Wishlists
+                config:
+                  sidebar:
+                    token: v3
                 route:
                   path: /wishlists
                 data:
                   $ref: ./BigCommerce_Wishlist_API.oas2.yml
-                config:
-                  sidebar:
-                    token: v3
         - title: Catalog
           route:
             path: /catalog
@@ -3560,6 +3550,19 @@ pages:
     title: BigDev BootCamp
     data:
       $ref: ./BigDev Landing Page.html
+  /new-page-rokyt:
+    title: Hidden
+    data:
+      children:
+        - title: Form Fields
+          config:
+            includeDownloadLink: true
+            sidebar:
+              token: sf rest
+          route:
+            path: /form-fields
+          data:
+            $ref: ./form-fields.sf.oas2.yml
 theme:
   background: '#4d34c6'
   primary: '#4b71fc'
