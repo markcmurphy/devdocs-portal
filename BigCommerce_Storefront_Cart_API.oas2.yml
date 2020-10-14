@@ -434,10 +434,11 @@ parameters:
 definitions:
   LineItemsRequest:
     type: object
+    title: Line Items Request
     properties:
       lineItems:
         type: array
-        description: Array of `LineItemRequestData` objects.
+        description: Array of `lineItem` objects.
         items:
           type: object
           title: Line Item Request Data
@@ -455,7 +456,7 @@ definitions:
             - quantity
       giftCertificates:
         type: array
-        description: Array of `LineItemGiftCertificateRequestData` objects.
+        description: Array of `giftCertificate` objects.
         items:
           type: object
           title: Line Item Gift Certificate Request Data
@@ -479,6 +480,7 @@ definitions:
               minimum: 1
             sender:
               type: object
+              title: Contact Entity
               properties:
                 name:
                   type: string
@@ -487,9 +489,9 @@ definitions:
                   type: string
                   format: email
                   description: Contact's email address.
-              title: Contact Entity
             recipient:
               type: object
+              title: Contact Entity
               properties:
                 name:
                   type: string
@@ -498,7 +500,6 @@ definitions:
                   type: string
                   format: email
                   description: Contact's email address.
-              title: Contact Entity
             message:
               type: string
               maximum: 200
@@ -510,7 +511,6 @@ definitions:
             - quantity
             - sender
             - recipient
-    title: Line Items Request
   CreateCartPost:
     type: object
     properties:
@@ -1101,8 +1101,7 @@ definitions:
         description: Array of `ItemPhysical` objects.
         items:
           allOf:
-            - type: object
-              title: Base Item
+            - title: Base Item
               properties:
                 id:
                   type: string
@@ -1148,6 +1147,7 @@ definitions:
                     AppliedDiscount objects.
                   items:
                     type: object
+                    title: Applied Discount
                     properties:
                       id:
                         type: number
@@ -1156,7 +1156,6 @@ definitions:
                         type: number
                         format: float
                         description: The discounted amount applied within a given context.
-                    title: Applied Discount
                 discountAmount:
                   type: number
                   format: float
@@ -1187,6 +1186,7 @@ definitions:
                   type: array
                   items:
                     type: object
+                    title: Product Option
                     properties:
                       name:
                         type: string
@@ -1200,18 +1200,18 @@ definitions:
                       valueId:
                         type: number
                         description: The product option value identifier.
-                    title: Product Option
                 brand:
                   type: string
                   description: The products brand
               required:
                 - quantity
-            - type: object
-              properties:
+            - properties:
                 isShippingRequired:
                   type: boolean
                   description: Whether this item requires shipping to a physical address.
                 giftWrapping:
+                  title: Gift Wrapping
+                  type: object
                   properties:
                     name:
                       type: string
@@ -1220,15 +1220,14 @@ definitions:
                       type: number
                       format: float
                       description: Gift-wrapping price per product.
-                  title: Gift Wrapping
           title: Item Physical
+          type: object
       digitalItems:
         type: array
         description: Array of `ItemDigital` objects.
         items:
           allOf:
-            - type: object
-              title: Base Item
+            - title: Base Item
               properties:
                 id:
                   type: string
@@ -1274,6 +1273,7 @@ definitions:
                     AppliedDiscount objects.
                   items:
                     type: object
+                    title: Applied Discount
                     properties:
                       id:
                         type: number
@@ -1282,7 +1282,6 @@ definitions:
                         type: number
                         format: float
                         description: The discounted amount applied within a given context.
-                    title: Applied Discount
                 discountAmount:
                   type: number
                   format: float
@@ -1313,6 +1312,7 @@ definitions:
                   type: array
                   items:
                     type: object
+                    title: Product Option
                     properties:
                       name:
                         type: string
@@ -1326,23 +1326,19 @@ definitions:
                       valueId:
                         type: number
                         description: The product option value identifier.
-                    title: Product Option
                 brand:
                   type: string
                   description: The products brand
               required:
                 - quantity
           title: Item Digital
+          type: object
       giftCertificates:
         type: array
         description: Array of `ItemGiftCertificate` objects.
         items:
           type: object
-          required:
-            - sender
-            - recipient
-            - amount
-            - theme
+          title: Item Gift Certificate
           properties:
             id:
               type: string
@@ -1367,6 +1363,7 @@ definitions:
               description: Whether or not the gift certificate is taxable.
             sender:
               type: object
+              title: Contact Entity
               properties:
                 name:
                   type: string
@@ -1375,9 +1372,9 @@ definitions:
                   type: string
                   format: email
                   description: Contact's email address.
-              title: Contact Entity
             recipient:
               type: object
+              title: Contact Entity
               properties:
                 name:
                   type: string
@@ -1386,13 +1383,16 @@ definitions:
                   type: string
                   format: email
                   description: Contact's email address.
-              title: Contact Entity
             message:
               type: string
               description: >-
                 Message that will be sent to the gift certificate's recipient.
                 Limited to 200 characters.
-          title: Item Gift Certificate
+          required:
+            - theme
+            - amount
+            - sender
+            - recipient
       customItems:
         type: array
         items:
