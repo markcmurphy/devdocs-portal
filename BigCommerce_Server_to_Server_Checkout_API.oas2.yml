@@ -42,6 +42,19 @@ paths:
           type: string
           default: application/json
           required: true
+        - in: query
+          name: include
+          type: string
+          description: |-
+            * `cart.lineItems.physicalItems.options` - physical options
+            * `cart.lineItems.digitalItems.options` - digital options
+            * `cart.lineItems.physicalItems.categoryNames` - physical categories
+            * `cart.lineItems.digitalItems.categoryNames` - digital categories
+            * `customer` - customer
+            * `customer.customerGroup` - customer group
+            * `payments` - payments
+            * `promotions` - promotions
+            * `consignments.availableShippingOptions` - shipping options
       responses:
         '200':
           $ref: '#/responses/CheckoutResponse'
