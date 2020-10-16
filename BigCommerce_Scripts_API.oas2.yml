@@ -1200,60 +1200,6 @@ definitions:
         type: boolean
         description: Indicates whether a script is enabled.
 securityDefinitions:
-  X-Auth-Client:
-    type: apiKey
-    name: X-Auth-Client
-    in: header
-    description: >-
-      ### OAuth Scopes
-
-      |  **UI Name** | **Permission** | **Parameter** |
-
-      | --- | --- | --- |
-
-      |  Content | modify | `store_v2_content` |
-
-      |  Content | read-only | `store_v2_content_read_only` |
-
-
-      **Note:**: Injecting scripts into Checkout requires `Checkout Content`
-      scope.
-
-
-      ### Headers
-
-
-      |Header|Parameter|Description|
-
-      |-|-|-|
-
-      |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
-      installing an app in a BigCommerce control panel.|
-
-      |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
-      installing an app in a BigCommerce control panel.|
-
-
-      ### Example
-
-
-      ```http
-
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
-
-      host: api.bigcommerce.com
-
-      Content-Type: application/json
-
-      X-Auth-Client: {client_id}
-
-      X-Auth-Token: {access_token}
-
-      ```
-
-
-      * For more information on Authenticating BigCommerce APIs, see:
-      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
   X-Auth-Token:
     type: apiKey
     name: X-Auth-Token
@@ -1281,9 +1227,6 @@ securityDefinitions:
 
       |-|-|-|
 
-      |`X-Auth-Client`|`client_id`|Obtained by creating an API account or
-      installing an app in a BigCommerce control panel.|
-
       |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
       installing an app in a BigCommerce control panel.|
 
@@ -1298,8 +1241,6 @@ securityDefinitions:
       host: api.bigcommerce.com
 
       Content-Type: application/json
-
-      X-Auth-Client: {client_id}
 
       X-Auth-Token: {access_token}
 
