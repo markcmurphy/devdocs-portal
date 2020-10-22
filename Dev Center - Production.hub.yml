@@ -1197,6 +1197,9 @@ pages:
                               - [Reading channel
                               settings](#reading-channel-settings)
 
+                              - [Managing channel
+                              currencies](#managing-channel-currencies)
+
                               - [Resources](#resources)
 
 
@@ -1574,9 +1577,66 @@ pages:
                               ```
 
 
-                              [View all storefront settings endpoints in the
-                              Settings API
+                              [View the settings API
                               Reference](https://developer.bigcommerce.com/api-reference/store-management/settings).
+
+
+                              ## Managing channel currencies
+
+
+                              You can read and manage currencies assigned to a
+                              specific storefront channel using Channels API
+                              [Currency
+                              Assignments](https://developer.bigcommerce.com/api-reference/store-management/channels/channel-currency-assignments)
+                              endpoints. For example, To [get a channel's
+                              currency
+                              assignments](XX_FULL_URL_TO_OPERATION_XX), send a
+                              `GET` request to
+                              `/v3/channels/{channel_id}/currency-assignments`.
+
+
+                              ```http
+
+                              GET
+                              https://api.bigcommerce.com/stores/{{STORE_HASH}}}/v3/channels/{channel_id}/currency-assignments
+
+                              X-Auth-Token: {{ACCESS_TOKEN}}
+
+                              X-Auth-Client: {{CLIENT_ID}}
+
+                              Content-Type: application/json
+
+                              Accept: application/json
+
+                              ```
+
+
+                              [![Open in Request
+                              Runner](https://storage.googleapis.com/bigcommerce-production-dev-center/images/Open-Request-Runner.svg)](XX_FULL_URL_TO_OPERATION_XX#requestrunner)
+
+
+                              **Response:**
+
+
+                              ```json
+
+                              {
+                                "data": {
+                                  "channel_id": 1,
+                                  "default_currency": "USD",
+                                  "enabled_currencies": [
+                                    "USD",
+                                    "CAD"
+                                  ]
+                                },
+                                "meta": {}
+                              }
+
+                              ```
+
+
+                              [View the Channels API
+                              reference](https://developer.bigcommerce.com/api-reference/store-management/channels).
 
 
                               ## Resources
