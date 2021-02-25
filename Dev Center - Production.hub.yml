@@ -716,10 +716,33 @@ pages:
 
                               The handlebars-accessible data available to
                               handlebars email templates.
-                          - type: jsonSchema
+                          - type: tabs
                             data:
-                              $ref: >-
-                                https://bigcommerce.stoplight.io/api/v1/projects/bigcommerce/api-reference/nodes/models/email_templates/_all.yml?branch=master&deref=all&format=json
+                              children:
+                                - title: Reference
+                                  blocks:
+                                    - type: jsonSchema
+                                      data:
+                                        $ref: >-
+                                          https://bigcommerce.stoplight.io/api/v1/projects/bigcommerce/api-reference/nodes/models/email_templates/_all.yml?branch=master&deref=all&format=json
+                                - title: Example
+                                  blocks:
+                                    - type: code
+                                      data: >-
+                                        <!-- Combined Order Status Email
+                                        Template -->
+
+                                         <p>{{ lang 'hello' name=order.customer_name }}. Below are the products you ordered.</p>
+
+                                        {{#each order.products}}    <tr>
+                                            <td style="padding:5px; font-size:12px; border-bottom:solid 1px #CACACA">
+                                                <strong>{{ name }}</strong>
+                                            </td>
+                                            <td style="padding:5px; font-size:12px; border-bottom:solid 1px #CACACA" width="100" align="center">{{#if sku }}{{ sku }}{{else}}&nbsp;{{/if}}</td>
+                                            <td style="padding:5px; font-size:12px; border-bottom:solid 1px #CACACA" width="100" align="center">{{ quantity }}</td>
+                                        </tr>{{/each}}
+                                      config:
+                                        mode: html
               - title: Orders
                 route:
                   path: /orders
