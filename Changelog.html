@@ -13,11 +13,13 @@
 <div id="noticeable-widget" style="margin-top: 70px; margin-bottom: 130px;"></div>
  <script type="text/javascript"> 
    
-  if (typeof(noticeable) === undefined) {
-    window.onload = function() {
-  noticeable.render('widget', 'xiTytcFCj4J75VnLpuh4');
-	}   
-  } else {
+if (typeof(noticeable.render) !== "function") {
+ console.log("not function")
+    window.onload = function () {
+        noticeable.render('widget', 'xiTytcFCj4J75VnLpuh4');
+    }
+} else if (typeof noticeable.render === "function") {
+ 		console.log("function")
     noticeable.render('widget', 'xiTytcFCj4J75VnLpuh4');
-  }
+}
 </script>
