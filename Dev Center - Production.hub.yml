@@ -4855,14 +4855,50 @@ pages:
                   path: /banners
                 data:
                   blocks:
-                    - type: jsonSchema
+                    - type: tabs
                       data:
-                        $ref: >-
-                          https://stoplight.io/api/v1/projects/bigcommerce/theme-context-object-schemas/nodes/models/_root/banners.yml?branch=main&deref=all&format=json
-                      config: {}
-                      header:
-                        token: global
-                        title: banners
+                        children:
+                          - title: Schema
+                            blocks:
+                              - type: jsonSchema
+                                data:
+                                  $ref: >-
+                                    https://stoplight.io/api/v1/projects/bigcommerce/theme-context-object-schemas/nodes/models/_root/banners.yml?branch=main&deref=all&format=json
+                                header:
+                                  token: global
+                                  title: banners
+                                config: {}
+                          - title: Example
+                            blocks:
+                              - type: code
+                                data: |-
+                                  {
+                                    "banners": {
+                                      "bottom": [
+                                        "<div id='1370512507'></div>"
+                                      ],
+                                      "bottom_metadata": [
+                                        {
+                                          "banner-name": "Example Bottom Banner",
+                                          "content": "",
+                                          "id": "3",
+                                          "location": "bottom"
+                                        }
+                                      ],
+                                      "top": [
+                                        "<div id='2102203073'></div>"
+                                      ],
+                                      "top_metadata": [
+                                        {
+                                          "banner-name": "Example Top Banner",
+                                          "content": "",
+                                          "id": "2",
+                                          "location": "top"
+                                        }
+                                      ]
+                                    }
+                                config:
+                                  mode: json
                 config:
                   sidebar:
                     token: global
