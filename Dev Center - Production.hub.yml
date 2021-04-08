@@ -872,9 +872,9 @@ pages:
                         BigCommerce app so that it's discoverable by anyone, or
                         publish their app as unlisted so that it can only be
                         installed via URL. Furthermore, tax solutions that have
-                        been built in-house or for specific merchants by a
-                        digital agency are also supported as private instances,
-                        and will only work on specified stores.
+                        been built in-house or for specific merchants by digital
+                        agencies are also supported as private instances, and
+                        will only work on the stores specified.
 
 
                         ## Obtaining an app ID
@@ -904,8 +904,9 @@ pages:
 
                         Once your tax provider configuration is ready, we'll let
                         you know via email. The email will also include your
-                        `provider_id` which is required when establishing a
-                        connection with the [Tax Provider
+                        `provider_id` which is required when [establishing a
+                        connection](#establishing-a-connection) with the [Tax
+                        Provider
                         API](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api).
 
 
@@ -938,10 +939,12 @@ pages:
                         Tax`                                      |
 
                         | Tax provider type                     |
-                        Required                       | Product,
-                        Sandbox             | Determines hierarchy of your
-                        provider (Production is primary and Sandbox is
-                        secondary).               |
+                        Required                       | Production,
+                        Sandbox             | Hierarchy of your provider
+                        (Production is primary and Sandbox is secondary, see
+                        [sandbox tax provider
+                        configuration](#sandbox-tax-provider-configuration) for
+                        more information.               |
                         `Production`                                      |
 
                         | Merchant support email                |
@@ -972,11 +975,11 @@ pages:
                         `Show`                                            |
 
                         | Supported store(s)                    |
-                        Required                       | All Stores, Private
-                        Instance | Tells us which stores your tax provider is
+                        Required                       | All stores, Private
+                        instance | Tells us which stores your tax provider is
                         supported
                         on.                                              | `All
-                        Stores`                                      |
+                        stores`                                      |
 
                         | Supported store(s) - private instance | Required (if
                         private instance) | Store hashes                 | Test
@@ -1039,6 +1042,36 @@ pages:
                         `https://sampletax-test-store.mybigcommerce.com/` |
 
 
+                        ### Sandbox tax provider configuration
+
+
+                        Sandbox tax provider configurations are nested within
+                        your production tax provider configuration, as such tax
+                        providers requiring a sandbox tax provider configuration
+                        should also provide the details for their production tax
+                        provider configuration.
+
+
+                        Additionally, when providing the details for a sandbox
+                        tax provider configuration, it's unncessary to specify
+                        the below properties because they are inherited from the
+                        parent production tax provider configuration (all other
+                        properties are still required):
+
+
+                        * Supported store(s), i.e. all stores or supported store
+                        hashes in the case tax provider is a private instance
+
+                        * Supported / unsupported countries
+
+
+                        Tax providers can create multiple sandbox tax providers
+                        within their production tax provider configuration, for
+                        example a tax provider could have a development and a
+                        test sandbox tax provider nested within their production
+                        tax provider configuration.
+
+
                         ## Building the app
 
 
@@ -1067,6 +1100,30 @@ pages:
                         for some tips.
 
 
+                        <div class="HubBlock--callout">
+
+                        <div class="CalloutBlock--info">
+
+                        <div class="HubBlock-content">
+
+
+                        > ### Note
+
+                        > * If you have registered your app in the Developer
+                        Portal but have not submitted it for approval because
+                        it's still in development, the app will be in a Draft
+                        state. This means your app can only be installed on
+                        stores owned by the same email address as the Developer
+                        Portal account email.
+
+
+                        </div>
+
+                        </div>
+
+                        </div>
+
+
                         ## Installing the app
 
 
@@ -1080,10 +1137,10 @@ pages:
                         provides an overview of the OAuth flow.
 
 
-                        Notably, when handling the OAuth flow, the tax provider
-                        must ensure their app is requesting read and write
-                        permissions on the **Information and Settings** API
-                        scopes. Additionally, the tax provider should store the
+                        When handling the OAuth flow, tax providers must ensure
+                        their app is requesting read and write permissions on
+                        the **Information and Settings** API scopes.
+                        Additionally, the tax provider should store the
                         **client_id** and **access_token** that are received.
                         Both are required later when [establishing a connection
                         with the Tax Provider
@@ -1299,8 +1356,8 @@ pages:
                         invalidate it if necessary.
 
 
-                        Supporting document submission is optional; however, if
-                        a tax provider wishing to support this functionality are
+                        Supporting document submission is optional; however, tax
+                        providers wishing to support this functionality are
                         required to share document submission URLs with
                         BigCommerce when [sharing provider details with
                         BigCommerce](#sharing-provider-details-with-bigcommerce).
@@ -1386,6 +1443,9 @@ pages:
                           - [Delete a Tax Provider Connection](https://developer.bigcommerce.com/api-reference/store-management/tax/tax-provider-connection/provider-connection-delete)
                           - [Update a Tax Provider Connection](https://developer.bigcommerce.com/api-reference/store-management/tax/tax-provider-connection/provider-connection-put)
                           - [Tax Classes](https://developer.bigcommerce.com/api-reference/store-management/tax-classes-api)
+                config:
+                  sidebar:
+                    token: new
         - title: Building Apps
           route:
             path: /apps
