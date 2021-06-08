@@ -37,8 +37,8 @@ Content
 ## Section5
 Content
 
-## Section6
-Content
+## Next Steps
+* [Learn more about {{TOPIC}}]().
 
 ## Resources
-Content 
+* [Link]() 
