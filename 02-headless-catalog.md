@@ -11,11 +11,10 @@
 
 </div>
 
-Introduction
+
+You can use BigCommerce's [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api) to request product data to display on your Product Details and Product Listing pages.
 
 ## Rendering Pages
-
-Using the [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api), you can return product data to your Product Details and Product Listing pages.
 
 To retrieve the complete list of products, send a `GET` request to `/v3/catalog/products`. You can pass optional query string parameters to influence the response. 
 
