@@ -78,6 +78,7 @@ In the diagram below, the Storefront is any location the products are being rend
 
 ## Next steps
 
+
 ## Resources
 
 ### Articles
