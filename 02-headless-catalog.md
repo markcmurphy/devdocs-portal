@@ -26,7 +26,7 @@ X-Auth-Token: {{ACCESS_TOKEN}}
 
 ``` 
 
-Once you have fetched the product data, you can create a Product Listing page and, using the [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing), display pricing assigned to a specific channel or customer group on your headless storefront.
+Once you have fetched the product data, you can create a Product Listing page and, using the [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing), control the pricing displayed for a particular channel or a customer group on your storefront.
 
 **Display product data on the Product Details Page**
 
