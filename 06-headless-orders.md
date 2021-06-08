@@ -1,4 +1,4 @@
-# Processing Orders Headlessly
+# Processing Orders
 
 <div class="otp" id="no-index">
 
