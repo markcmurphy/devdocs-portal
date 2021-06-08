@@ -43,7 +43,7 @@ To customize the checkout when using a redirect URL, use our [Checkout SDK](http
 
 If you need complete control over the checkout page, you have the option to build an external checkout in your CMS or app using the server-to-server Checkout API. Then use the Payments API to process a payment through BigCommerce to take payment for the order. If you are using the Payments API, you are responsible for [PCI compliance](#pci-compliance).
 
-## Next Steps
+## Next steps
 * [Learn more about {{TOPIC}}]().
 
 ## Resources
