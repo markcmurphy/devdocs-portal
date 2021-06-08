@@ -98,7 +98,7 @@ curl --request GET \
 
 The [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing) lets you override product pricing for a specific channel or a customer group. To override the price for each of the sellable items on the page, supply their product IDs (required) and variant IDs (optional) in a `POST` request to `/v3/pricing/products`.
 
-The following example illustrates how to assign pricing for a number of items using customer group pricing.
+The following example illustrates how to assign pricing for a number of items using the customer group pricing.
 
 ```http
 POST https://api.bigcommerce.com/stores/{store_hash}/v3/pricing/products
