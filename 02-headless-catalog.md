@@ -165,11 +165,11 @@ It is best practice to cache product details in a database to improve data retri
 
 **Return real-time product data**
 
-If your catalog is changing all the time, you can use the Catalog API to return real time product information.
+You can use the Catalog API to retrieve real-time catalog data. 
 
 **Return real-time pricing and inventory data**
 
-If you prefer working with a local copy of your data, but want to make sure that high priority pieces of data like pricing and inventory are always up to date, you can consider a hybrid model. A hybrid model would cache only certain product details and pull the other information in real time.
+If you prefer working with a local copy of your catalog, but want to make sure that high priority pieces of data like pricing and inventory stay current, consider a hybrid model. With a hybrid model, you cache only certain product details and pull the other information in real time.
 
 ## Next Steps
 * [Learn how to create carts headlessly]().
