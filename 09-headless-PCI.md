@@ -20,7 +20,7 @@ The BigCommerce [PCI DSS attestation of compliance (AOC)](https://support.mybigc
 
 Merchants can use BigCommerce's [PCI DSS AOC](https://support.mybigcommerce.com/content/dojo/BigCommerce_PCI_DSS_v3.2.1_AOC_2019_Service_Provider.pdf) to satisfy the compliance requirements for the part that outlines its responsibilities.
 
-### Responsibility matrix
+## Responsibility matrix
 
 | |BigCommerce Responsibility |Merchant Responsibility |
 |--|--|--|
