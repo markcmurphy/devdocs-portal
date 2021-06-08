@@ -80,6 +80,7 @@ In the diagram below, the Storefront is any location the products are being rend
 * [Learn how to render a product catalog headlessly]().
 
 ## Resources
+* [Link]()
 
 ### Articles
 - [Customers Overview](https://developer.bigcommerce.com/api-docs/customers/customers-subscribers-overview)
