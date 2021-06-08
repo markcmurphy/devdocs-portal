@@ -1,4 +1,4 @@
-# Managing Customers Headlessly
+# Managing Customers
 
 <div class="otp" id="no-index">
 
