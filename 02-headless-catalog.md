@@ -1,4 +1,4 @@
-# Catalog
+# Headless Catalog
 
 <div class="otp" id="no-index">
 
