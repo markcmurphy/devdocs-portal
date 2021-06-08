@@ -3,8 +3,6 @@
 <div class="otp" id="no-index">
 
 ### On this Page	
-- [Section1](#section1)
-- [Section2](#section2)
 - [Next steps](#next-steps)
 - [Resources](#resources)
 
@@ -12,7 +10,13 @@
 
 Introduction
 
-## Associate cart with a customer
+## Creating customers
+
+Our WordPress plugin uses the approach of using the Customer API to [validate the password](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-passwords/validatecustomerpassword) against what is stored in BigCommerce.
+
+If a new account is created in WordPress, the password is written to the customer account in BigCommerce and used as the validation in future requests. The password is never stored in the WordPress database. You can match customers using the email address and the [Customers API](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api).
+
+## Associating customers with carts
 
 If a shopper creates a cart as a guest then logs into the store, you can use the following process to associate the cart to the customer and log them in at the same time. The [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api) is used since it allows for the front end to be bypassed when creating a cart.
 
@@ -20,11 +24,7 @@ When a cart is created, your app should store the `cart_id`.  The `cart_id` is u
 
 To populate the `customer_id` on the cart with the correct data, use the email address entered to match against the [Customers API](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api). If the email address matches what the customer input and what is in the BigCommerce database then proceed with login. If a match is not found then direct the customer to a [sign up](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customers/customerspost) screen.
 
-## Creating customers
 
-Our WordPress plugin uses the approach of using the Customer API to [validate the password](https://developer.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-passwords/validatecustomerpassword) against what is stored in BigCommerce.
-
-If a new account is created in WordPress, the password is written to the customer account in BigCommerce and used as the validation in future requests. The password is never stored in the WordPress database. You can match customers using the email address and the [Customers API](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api).
 
 ## Next Steps
 * [Learn more about {{TOPIC}}]().
