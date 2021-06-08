@@ -4,12 +4,6 @@
 
 ### On this page
 - [Ways to implement headless](#ways-to-implement-headless)
-- [Storefront channels](#storefront-channels)
-- [Multisite](#multisite)
-- [Catalog Management](#catalog-management)
-- [Cart management](#cart-management)
-- [Checkout management](#checkout-management)
-- [Customer login](#customer-login)
 - [Sample integration](#sample-integration)
 - [Next Steps](#next-steps)
 - [Resources](#related-resources)
@@ -69,7 +63,6 @@ Need to build a custom solution from scratch? BigCommerce has APIs, SDKs, and to
 * [Manage product data with the Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api).
 * [Manage orders with Orders V2 and V3 APIs](https://developer.bigcommerce.com/api-docs/store-management/orders).
 * [Use webhooks to get notified when specific events occur in BigCommerce](https://developer.bigcommerce.com/api-docs/store-management/webhooks/overview).
-
 
 ## Sample integration
 
