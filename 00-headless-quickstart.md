@@ -6,7 +6,6 @@
 - [Ways to implement headless](#ways-to-implement-headless)
 - [Sample integration](#sample-integration)
 - [Next Steps](#next-steps)
-- [Resources](#related-resources)
 
 </div>
 
