@@ -1,4 +1,4 @@
-# Headless Checkout
+# Handling Checkout
 
 <div class="otp" id="no-index">
 
