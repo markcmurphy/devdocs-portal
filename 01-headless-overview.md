@@ -86,22 +86,6 @@ Use BigCommerce as the back-end for several stores. By placing an application la
 
 [Learn more about multisite ecommerce with WordPress and BigCommerce](https://medium.com/bigcommerce-developer-blog/multi-site-ecommerce-with-wordpress-and-bigcommerce-40dee194f8a) (medium.com).
 
-## Catalog Management
-
-Using the [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api) you can return product data to your product details page and product listing page.
-
-### Sync the catalog
-
-Best practice is to get product details and cache them in a database to display them. This will speed up the application and allow you to control what information is shown to the customer. Caching the details also lets you implement search in your application.
-
-### Real time catalog
-
-If your catalog is changing all the time, you can use the Catalog API to return real time product information.
-
-### Real time pricing and inventory
-
-If you prefer working with a local copy of your data, but want to make sure that high priority pieces of data like pricing and inventory are always up to date, you can consider a hybrid model. A hybrid model would cache only certain product details and pull the other information in real time. BigCommerce has webhooks that you can use for listening to store events.
-
 ## Cart management
 
 Use the [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api) to create carts for existing customers and guest customers.
