@@ -12,7 +12,7 @@
 </div>
 
 
-You can use BigCommerce's [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api) to request product data to display on your Product Details and Product Listing pages.
+BigCommerce's [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api) enables you to request product data to display on your Product Details and Product Listing pages.
 
 ## Rendering Pages
 
