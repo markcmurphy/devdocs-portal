@@ -12,10 +12,12 @@ Introduction
 ## Creating carts
 Content
 
-## Section2
+## Clearing the cart
+
+## Redirecting to checkout
 Content
 
-## Section3
+## Abandoned carts
 Content
 
 ## Section4
