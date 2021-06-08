@@ -13,7 +13,7 @@
 - [Sample integration](#sample-integration)
 - [PCI compliance](#pci-compliance)
 - [Sample API workflows](#sample-api-workflows)
-- [Related resources](#related-resources)
+- [Resources](#related-resources)
 
 </div>
 
