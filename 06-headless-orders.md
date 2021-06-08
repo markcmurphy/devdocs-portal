@@ -10,17 +10,11 @@
 
 Introduction
 
+## Creating orders
+
 ## Sending order confirmation emails
 
 Content
-
-## Section2
-Content
-
-## Section3
-Content
-
-## Section4
 Content
 
 ## Samples
