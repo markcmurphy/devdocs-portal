@@ -3,8 +3,6 @@
 <div class="otp" id="no-index">
 
 ### On this Page	
-- [Section1](#section1)
-- [Section2](#section2)
 - [Next steps](#next-steps)
 - [Resources](#resources)
 
