@@ -55,6 +55,3 @@ Need to build a custom solution from scratch? BigCommerce has APIs, SDKs, and to
 
 ## Next steps
 * [See Developer's Guide to Headless Commerce for more information]().
-
-## Resources
-* [Link]()
