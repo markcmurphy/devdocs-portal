@@ -10,9 +10,12 @@
 Introduction
 
 ## Creating carts
+
 Content
 
 ## Clearing the cart
+
+Content
 
 ## Redirecting to checkout
 Content
