@@ -3,19 +3,13 @@
 <div class="otp" id="no-index">
 
 ### On this Page	
-- [Section1](#section1)
-- [Section2](#section2)
-- [Section3](#section3)
-- [Section1](#section4)
-- [Section2](#section5)
-- [Section3](#section6)
 - [Resources](#resources)
 
 </div>
 
 Introduction
 
-## Section1
+## Creating carts
 Content
 
 ## Section2
