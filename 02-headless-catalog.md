@@ -161,7 +161,7 @@ X-Auth-Token: {{ACCESS_TOKEN}}
 
 **Cache the catalog**
 
-It is best practice to cache product details in a database to improve data retrieval and increase efficiency. Caching product information will allow you to implement the search feature and control the information displayed to customers. 
+It is best practice to cache product details in a database to improve data retrieval and increase operational efficiency. Caching product information will allow you to implement search functionality and enable you to control the information displayed to the customers. 
 
 **Return real-time product data**
 
