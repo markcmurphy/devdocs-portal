@@ -77,7 +77,7 @@ In the diagram below, the Storefront is any location the products are being rend
 |**BigCommerce**|BigCommerce will respond to the application with the requested data to power the backend ecommerce functionality. It can handle processing payments, storing customer data, retrieving the catalog and order information.|
 
 ## Next steps
-
+* [Learn how to render a product catalog headlessly]().
 
 ## Resources
 
