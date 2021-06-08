@@ -186,7 +186,7 @@ Once you transition to a headless setup and are no longer using your Stencil sto
 	1. [Create Access Token](/api-reference/payments/payments-create-payment-token-api/payment-access-token/paymentsaccesstokenspost)
 	2. [Process Payment](/api-reference/payments/payments-process-payments/payment/paymentspost)
 
-## Related resources
+## Resources
 
 ### Articles
 - [Customers Overview](https://developer.bigcommerce.com/api-docs/customers/customers-subscribers-overview)
