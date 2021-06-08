@@ -10,7 +10,7 @@
 
 </div>
 
-This article provides a high level guide to using BigCommerce to power headless storefronts; we'll assume you're already familiar with headless commerce as a concept; if you're not, check out our whitepaper, [A New Era of Ecommerce: Headless Commerce](https://www.bigcommerce.com/new-era-headless-caas/) or the Help Center's [Headless Commerce Guide](https://support.bigcommerce.com/s/article/The-Headless-Approach).
+This article provides a high level guide to using BigCommerce to power headless storefronts; we'll assume you're already familiar with headless commerce as a concept; if you're not, check out our whitepaper, [A New Era of Ecommerce: Headless Commerce](https://www.bigcommerce.com/new-era-headless-caas/) or the Help Center's [Headless Commerce Guide](https://support.bigcommerce.com/s/article/The-Headless-Approach). For detailed technical instructions on how to use BigCommerce headlessly, see our [Developer's Guide to Headless Commerce]().
 
 ## Ways to implement headless
 
@@ -51,22 +51,10 @@ Need code up a custom storefront but don't want to start from scratch? Kick-star
 
 Need to build a custom solution from scratch? BigCommerce has APIs, SDKs, and toolkits to help you do whatever you need, headlessly.
 
-[See Developer's Guide to Headless Commerce for more information]().
-
-## Sample integration
-
-In the diagram below, the Storefront is any location the products are being rendered and where the shopper browses for products. With headless the storefront can be a CMS or an app. The Application is making API calls to BigCommerce in order to perform certain actions and return data either to display to the shopper or pass it along to another system. BigCommerce is creating the order and processing payments so you don’t need to worry about building the infrastructure.
-
-![Sample Headless Integration](https://storage.googleapis.com/bigcommerce-production-dev-center/images/developers-guide-to-headless-01.png "Sample Headless Integration")
-
-|Entity|Description|
-|-|-|
-|**Storefront**|The front end presentation layer where a shopper interacts with products. In a headless architecture, the storefront might be a CMS, native mobile app, kiosk, static site, or any other front end solution you can imagine. The BigCommerce WordPress plugin is built using an existing CMS and injecting a stores catalog. Any CMS that accepts custom integrations can be used. Another option is to build a storefront from scratch using a framework such as [Gatsby](https://www.bigcommerce.com/blog/flexible-headless-commerce-solutions/#overview-of-bigcommerce-for-react-gatsby).|
-|**Application**|Solution built by developer to control the requests and responses from the BigCommerce APIs. In addition to handling essential ecommerce tasks like requesting product information or sending the request to process a payment, the application layer can also handle logic for custom functionality, like presenting discount codes based on a shopper's history or pre filling details on the checkout page. |
-|**BigCommerce**|BigCommerce will respond to the application with the requested data to power the backend ecommerce functionality. It can handle processing payments, storing customer data, retrieving the catalog and order information.|
+[Learn more about using BigCommerce Headlessly](/link-to-headless-guide).
 
 ## Next steps
-* [Learn how to render a product catalog headlessly]().
+* [See Developer's Guide to Headless Commerce for more information]().
 
 ## Resources
 * [Link]()
