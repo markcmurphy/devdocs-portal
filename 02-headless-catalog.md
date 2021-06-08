@@ -16,7 +16,7 @@ You can use BigCommerce's [Catalog API](https://developer.bigcommerce.com/api-re
 
 ## Rendering Pages
 
-To retrieve the complete list of products, send a `GET` request to `/v3/catalog/products`. The response will contain all of the products regardless of the inventory level. You can pass optional query string parameters to influence the response. We recommend caching the product data and storing it in a database to increase performance efficiency.
+To retrieve the complete list of products, send a `GET` request to `/v3/catalog/products`. You can pass optional query string parameters to influence the response. We recommend caching the product data and storing it in a database to increase performance efficiency.
 
 ```http
 GET https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
