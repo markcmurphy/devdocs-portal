@@ -3,11 +3,9 @@
 <div class="otp" id="no-index">
 
 ### On this Page	
-- [Section1](#section1)
-- [Section2](#section2)
-- [Section3](#section3)
-- [Section1](#section4)
-- [Section2](#section5)
+- [Rendering Pages](#rendering-pages)
+- [Manaaging Product Data](#managing-product-data)
+- [Best Practices](#best-practices)
 - [Next Steps](#next-steps)
 - [Resources](#resources)
 
@@ -15,10 +13,10 @@
 
 Introduction
 
-## Rendering Pages (GraphQL)
+## Rendering Pages
 Content
 
-## Managing Product Data (Catalog API)
+## Managing Product Data
 Content
 
 ## Best Practices
