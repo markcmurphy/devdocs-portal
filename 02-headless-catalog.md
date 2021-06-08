@@ -30,7 +30,7 @@ Once you have fetched the product data, you can create a Product Listing page an
 
 **Display product data on the Product Details page**
 
-To display select product information on a product page, you will need to first retrieve the product details. You can request specific product information by sending a `GET` request to the `/v3/catalog/products/{product_id}` endpoint and passing the desired sub-resources as query parameters.
+To display select product information on a product page, you can request specific product information by sending a `GET` request to the `/v3/catalog/products/{product_id}` endpoint and passing the desired sub-resources as query parameters.
 
 ```shell
 curl --request GET \
@@ -96,9 +96,9 @@ curl --request GET \
 
 **Override pricing using the Pricing API**
 
-The [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing) lets you override product pricing for a specific channel and customer group. To override the price for each of the items on the page, supply the product IDs (required) and variant IDs (optional) in a `POST` request to `/v3/pricing/products`.
+The [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing) lets you override product pricing for a specific channel or a customer group. To override the price for each of the sellable items on the page, supply their product IDs (required) and variant IDs (optional) in a `POST` request to `/v3/pricing/products`.
 
-The following example illustrates how to override pricing for a specific customer group ID.
+The following example illustrates how to override pricing for a number of items using group pricing.
 
 ```http
 POST https://api.bigcommerce.com/stores/{store_hash}/v3/pricing/products
