@@ -10,7 +10,9 @@
 
 Introduction
 
-## Sen
+## Sending order confirmation emails
+
+Content
 
 ## Section2
 Content
