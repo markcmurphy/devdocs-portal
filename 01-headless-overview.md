@@ -11,8 +11,7 @@
 - [Checkout management](#checkout-management)
 - [Customer login](#customer-login)
 - [Sample integration](#sample-integration)
-- [PCI compliance](#pci-compliance)
-- [Sample API workflows](#sample-api-workflows)
+- [Next Steps](#next-steps)
 - [Resources](#related-resources)
 
 </div>
