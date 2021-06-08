@@ -8,30 +8,24 @@
 - [Section3](#section3)
 - [Section1](#section4)
 - [Section2](#section5)
-- [Section3](#section6)
+- [Next Steps](#next-steps)
 - [Resources](#resources)
 
 </div>
 
 Introduction
 
-## Section1
+## Rendering Pages (GraphQL)
 Content
 
-## Section2
+## Managing Product Data (Catalog API)
 Content
 
-## Section3
+## Best Practices
 Content
 
-## Section4
-Content
-
-## Section5
-Content
-
-## Section6
-Content
+## Next Steps
+* [Learn how to create carts headlessly]().
 
 ## Resources
-Content 
+* [Link]() 
