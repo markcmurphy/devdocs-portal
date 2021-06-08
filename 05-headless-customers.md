@@ -20,6 +20,10 @@ If a new account is created in WordPress, the password is written to the custome
 
 Content
 
+## Surfacing customer group pricing
+
+Content
+
 ## Associating customers with carts
 
 If a shopper creates a cart as a guest then logs into the store, you can use the following process to associate the cart to the customer and log them in at the same time. The [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-cart-api) is used since it allows for the front end to be bypassed when creating a cart.
