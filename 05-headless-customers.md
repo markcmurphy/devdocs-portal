@@ -10,10 +10,6 @@
 
 Introduction
 
-## Creating customers
-
-Content
-
 ## Logging in customers
 
 Content
