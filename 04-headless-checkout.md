@@ -11,6 +11,7 @@
 </div>
 
 In this article we'll walk through how to embed BigCommerce's checkout into an iFrame on a headless site. At the end of this article, we'll list out some other checkout options for headless users.
+
 ## Embedding the BigCommerce checkout
 
 Content
