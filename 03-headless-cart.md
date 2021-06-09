@@ -23,12 +23,6 @@ Content
 ## Abandoned carts
 Content
 
-## Section4
-Content
-
-## Section5
-Content
-
 ## Next Steps
 * [Learn more about {{TOPIC}}]().
 
