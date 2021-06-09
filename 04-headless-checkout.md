@@ -3,6 +3,7 @@
 <div class="otp" id="no-index">
 
 ### On this Page	
+	
 - [Headless checkout options](#headless-checkout-options)
 - [Next steps](#next-steps)
 - [Resources](#resources)
@@ -10,15 +11,6 @@
 </div>
 
 In this article we'll walk through how to embed BigCommerce's checkout into an iFrame on a headless site. At the end of this article, we'll list out some other checkout options for headless users.
-
-## Headless checkout options
-
-* Redirecting to checkout
-* Embedding checkout
-* Using Checkout API
-
-
-
 ## Embedding the BigCommerce checkout
 
 Content
