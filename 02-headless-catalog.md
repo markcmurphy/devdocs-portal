@@ -4,95 +4,29 @@
 
 ### On this Page	
 - [Rendering Pages](#rendering-pages)
-- [Manaaging Product Data](#managing-product-data)
+- [Managing Product Data](#managing-product-data)
 - [Best Practices](#best-practices)
 - [Next Steps](#next-steps)
 - [Resources](#resources)
 
 </div>
 
+This section demonstrates how to use BigCommerce's GraphQL Storefront API to query product data for headless storefronts. 
 
-BigCommerce's [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api) enables you to retrieve product data to display on your Product Details and Product Listing pages.
+## Rendering pages
 
-## Rendering Pages
+Before you can display products on a headless storefront, you need to create a channel and a channel site for that storefront. A channel is essentially a sales platform such as a headless storefront, a marketplace, or a POS system. A site is a domain that links a headless storefront to a sales channel.
 
-To retrieve the complete list of products, send a `GET` request to `/v3/catalog/products`. You can pass optional query string parameters to influence the response. We recommend caching the product data and storing it in a database to increase performance efficiency.
+You can create both using the [Channels API](https://developer.bigcommerce.com/api-reference/store-management/channels). 
 
-```http
-GET https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
-Accept: application/json
-Content-Type: application/json
-X-Auth-Token: {{ACCESS_TOKEN}}
+Start by sending a `POST` request to the `/channels` endpoint to create a channel for your headless platform. Retrieve the channel ID returned in the response. You will use it to create a channel site. 
 
-``` 
+Next, pass that channel ID in a `POST` request to `/channels/{channel_id}/site` to create a site for the provided channel. 
 
-Once you have fetched the product data, you can create a Product Listing page and, using the [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing), control the pricing displayed for a particular channel or a customer group on your storefront.
+Now that you have set up your channel, you can implement authentication. To authenticate cross-origin requests, [create a JWT token](https://developer.bigcommerce.com/api-reference/storefront/graphql#tokens-via-api) through the Storefront API. 
 
-**Display product data on the Product Details page**
 
-To display select product information on a product page, you can request specific product information by sending a `GET` request to the `/v3/catalog/products/{product_id}` endpoint and passing the desired sub-resources as query parameters.
-
-```shell
-curl --request GET \
-  --url 'https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/86?include=variants%2C%20primary_image%2C%20options' \
-  --header 'accept: application/json' \
-  --header 'content-type: application/json' \
-  --header 'x-auth-token: x-auth-token'
-```
-**Response**
-
-```json
-{
-  "data": {
-    "availability": "available",
-    "availability_description": "",
-    "base_variant_id": 66,
-    "bin_picking_number": "",
-    "brand_id": 0,
-    "calculated_price": 225,
-    "categories": [...],
-    "condition": "New",
-    "cost_price": 0,
-    "custom_url": {...},
-    "date_created": "2015-07-03T18:16:02+00:00",
-    "date_modified": "2021-04-27T15:40:17+00:00",
-    "depth": 10,
-    "description": "<p>Made in the USA</p> <p>Measures 20.3 x 15.2 cm / 8 in x 6 in</p> <p>Capacity 946 ml / 32 oz.</p>",
-    "fixed_cost_shipping_price": 0,
-    "gift_wrapping_options_list": [],
-    "gift_wrapping_options_type": "any",
-    "gtin": "",
-    "height": 10,
-    "id": 86,
-    "inventory_level": 0,
-    ...
-    "mpn": "",
-    "name": "[Sample] Able Brewing System",
-    ...
-    "price": 225,
-    "price_hidden_label": "",
-    "primary_image": {...},
-    "product_tax_code": "",
-    "related_products": [-1],
-    "retail_price": 0,
-    "reviews_count": 0,
-    "reviews_rating_sum": 0,
-    "sale_price": 0,
-    "search_keywords": "",
-    "sku": "ABS",
-    "sort_order": 0,
-    "tax_class_id": 0,
-    "total_sold": 2147483647,
-    "type": "physical",
-    "upc": "",
-    "variants": [{...}],
-    ...
-  },
-  "meta": {}
-}
-```
-
-## Managing Product Data
+## Managing product data
 
 **Override pricing using the Pricing API**
 
