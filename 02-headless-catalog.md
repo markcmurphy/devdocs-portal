@@ -10,6 +10,7 @@
 - [Resources](#resources)
 
 </div>
+</br>
 
 This section demonstrates how to use BigCommerce's GraphQL Storefront API to query product data for headless storefronts. 
 
