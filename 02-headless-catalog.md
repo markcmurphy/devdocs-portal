@@ -31,7 +31,7 @@ Now that you have set up your channel, you can authenticate cross-origin request
 
 BigCommerce’s GraphQL Storefront API makes it possible to query storefront data from a remote site. By leveraging the power of GraphQL, you can access product information for any product from any page.
 
-The following example demonstrates how to fetch product data using the GraphQL Storefront API. It follows the GraphQL Cursor Connections Specification model and shows a simple GraphQL query for a store's products.
+The following example demonstrates how to fetch product data using the GraphQL Storefront API. It follows the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm) model and shows a simple GraphQL query for a store's products.
 
 **Product Listing page query example**
 
