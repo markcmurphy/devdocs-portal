@@ -2,11 +2,12 @@
 
 <div class="otp" id="no-index">
 
-### On this Page	
-- [Rendering Pages](#rendering-pages)
-- [Managing Product Data](#managing-product-data)
-- [Best Practices](#best-practices)
-- [Next Steps](#next-steps)
+### On this Page
+- [Create a channel](#create-a-channel)
+- [Render pages](#render-pages)
+- [Manage product data](#manage-product-data)
+- [Best practices](#best-practices)
+- [Next steps](#next-steps)
 - [Resources](#resources)
 
 </div>
@@ -113,6 +114,43 @@ query SingleProduct {
       }
     }
   }
+}
+```
+## Manage product data
+
+BigCommerce's [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api) enables you to manage catalog data. To retrieve the complete list of products, send a `GET` request to `/v3/catalog/products`. You can pass optional query string parameters to influence the response. We recommend caching the product data and storing it in a database to improve performance.
+
+```http
+GET https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
+Accept: application/json
+Content-Type: application/json
+X-Auth-Token: {{ACCESS_TOKEN}}
+``` 
+
+Using the [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing), you can control the pricing displayed for a particular channel or a customer group on your storefront.
+
+**Override pricing using the Pricing API**
+
+The [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing) lets you override product pricing for a specific channel or customer group. To override the price for each of the sellable items on the page, supply their product IDs (required) and variant IDs (optional) in a `POST` request to `/v3/pricing/products`.
+
+The following example shows how use the Pricing API to assign customer group pricing.
+
+```http
+POST https://api.bigcommerce.com/stores/{store_hash}/v3/pricing/products
+Accept: application/json
+Content-Type: application/json
+X-Auth-Token: {{ACCESS_TOKEN}}
+
+{
+  "channel_id": 1,
+  "currency_code": "USD",
+  "customer_group_id": 1,
+  "items": [
+    {"product_id": 77},
+    {"product_id": 80},
+    {"product_id": 81},
+    {"product_id": 86}
+  ]
 }
 ```
 
