@@ -92,6 +92,30 @@ function getProductInfo(params) {
     };
 ```
 
+Following the same API fetching logic, you can retrieve single product data. The following example shows a GraphQL Storefront API query for a single product.
+
+**Product Details page query example**
+
+```
+query SingleProduct {
+  site {
+    products (entityIds: ${props.id}) {
+      id
+      entityId
+      name
+      sku
+      description
+      prices {
+        price {
+          value
+          currencyCode
+        }
+      }
+    }
+  }
+}
+```
+
 ## Best Practices
 
 **Cache the catalog**
