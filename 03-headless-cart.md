@@ -53,7 +53,7 @@ The response will contain an `id` which you will then use to generate cart redir
 
 ### Guest cart
 
-A guest cart assumes the shopper is not a customer and is not logging in or creating an account during checkout. Handle guest checkouts by displaying the cart data to the customer and then moving them to Checkout using the Checkout API.
+A guest cart assumes the shopper is not a customer and is not logging in or creating an account during checkout. You can handle guest checkouts by displaying the cart data to the customer and then moving them to Checkout using the [Checkouts API](https://developer.bigcommerce.com/api-reference/store-management/checkouts).
 
 ## Clearing the cart
 
