@@ -5,6 +5,7 @@
 ### On this Page
 - [Rendering pages](#rendering-pages)
 - [Managing product data](#managing-product-data)
+- [Using the Pricing API](#using-the-pricing-api)
 - [Best practices](#best-practices)
 - [Next steps](#next-steps)
 - [Resources](#resources)
@@ -17,9 +18,9 @@ This section demonstrates how to use BigCommerce's GraphQL Storefront API to que
 
 ## Rendering pages
 
-BigCommerce’s GraphQL Storefront API makes it possible to query storefront data from a remote site. By leveraging the power of GraphQL, you can access product information for any product from any page.
+BigCommerce’s [GraphQL Storefront API](https://developer.bigcommerce.com/api-reference/storefront/graphql) makes it possible to query storefront data from a remote site. By leveraging the power of GraphQL, you can access product information for any product from any page.
 
-The following example demonstrates how to fetch product data using the GraphQL Storefront API. It follows the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm) model and shows a simple GraphQL query for a store's products.
+The following example demonstrates how to fetch product data using the GraphQL Storefront API. It relies on the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm) model to handle pagination.
 
 **Product Listing page query example**
 
@@ -80,7 +81,7 @@ function getProductInfo(params) {
     };
 ```
 
-Following the same API fetching logic, you can retrieve data for a single product. The following example shows a GraphQL Storefront API query for a single product.
+Following the same API fetching logic, you can retrieve data for a single product.
 
 **Product Details page query example**
 
@@ -105,7 +106,7 @@ query SingleProduct {
 ```
 ## Managing product data
 
-You can use BigCommerce's [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api) to manage catalog data. To retrieve the complete list of products, send a `GET` request to `/v3/catalog/products`. To influence the response, you can pass optional query string parameters. We recommend caching the product data and storing it in a database to improve performance.
+You can manage catalog data using the BigCommerce's [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api). To retrieve the complete list of products, send a `GET` request to `/v3/catalog/products`. If you need to influence the response, optional query string parameters can be passed with the request. We recommend caching the product data and storing it in a database to improve performance.
 
 ```http
 GET https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
@@ -114,11 +115,11 @@ Content-Type: application/json
 X-Auth-Token: {{ACCESS_TOKEN}}
 ``` 
 
-**Override pricing using the Pricing API**
+## Using the Pricing API
 
 **Overview Pricing** is the mode of pricing used on the storefront to generate a starting price of an item before a shopper applies any customization to it.
 
-The [Pricing API]([Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing) allows you to fetch **Overview Pricing** for a product and its selections or variants based on the shopper’s currency, customer group, and the channel they are shopping from. 
+The [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing) allows you to fetch **Overview Pricing** for a product and its selections or variants based on the shopper’s currency, customer group, and the channel they are shopping from. 
 
 Using the [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing), you can calculate the pricing displayed for a particular channel or a customer group on your storefront.
 
