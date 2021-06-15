@@ -117,13 +117,11 @@ X-Auth-Token: {{ACCESS_TOKEN}}
 
 ## Using the Pricing API
 
-**Overview Pricing** is the mode of pricing used on the storefront to generate a starting price of an item before a shopper applies any customization to it.
+**Overview Pricing** is the mode of pricing used on the storefront to generate a starting price of an item before a shopper applies any customization.
 
 The [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing) allows you to fetch **Overview Pricing** for a product and its selections or variants based on the shopper’s currency, customer group, and the channel they are shopping from. 
 
-Using the [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing), you can calculate the pricing displayed for a particular channel or a customer group on your storefront.
-
-To calculate the price for each of the sellable items on the page, supply their product IDs (required) and variant IDs (optional) in a `POST` request to `/v3/pricing/products`.
+To calculate the pricing displayed for a particular storefront channel or a customer group, send a `POST` request to `/v3/pricing/products`.
 
 The following example shows how to call the Pricing API.
 
