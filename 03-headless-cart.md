@@ -11,7 +11,7 @@ Introduction
 
 ## Creating carts
 
-Use the [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/storefront/carts) to create carts for existing customers and guest customers.
+Use the [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/store-management/carts) to create carts for existing customers and guest customers.
 
 ### Guest cart
 
@@ -26,10 +26,19 @@ Content
 When creating a cart, there is an optional query to create a redirect URL. Use this to redirect the shopper to a BigCommerce hosted checkout page.
 
 ## Abandoned carts
-Content
+
+The [Abandoned Carts API](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts) makes it possible to retrieve the `cart_id` of the abandoned cart. The `cart_id` will correspond to the token in the query string of the link included in abandoned cart notification emails. 
+
+To do so, follow these steps:
+
+1. Because the `cart_id` corresponds to the abandoned cart token found in the query string of the link included in abandoned cart notification emails, you need to provide this token to retrieve the `cart_id`.
+2. Pass the abandoned cart token in a `GET` request to `/v3/abandoned-carts/{token}`. 
+
+Once you retrieve the `cart_id`, you can use it to fetch and display information about the cart to the shopper via the [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts) and [Server to Server Carts](https://developer.bigcommerce.com/api-reference/store-management/carts) APIs.
 
 ## Next Steps
 * [Learn how to move the cart to checkout]().
 
 ## Resources
-* [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/storefront/carts)
+* [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/store-management/carts)
+* [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts)
