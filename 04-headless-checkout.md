@@ -13,37 +13,22 @@
 
 </div>
 
-In this article we'll walk through how to embed BigCommerce's checkout into an iFrame on a headless site. At the end of this article, we'll list out some other checkout options for headless users.
+In this article, we'll discuss the checkout options available to headless storefronts. 
 
 ## Redirecting to the BigCommerce checkout
 
-
+[Learn how to redirect shoppers on a headless storefront to the BigCommerce hosted cart and checkout]().
 
 ## Embedding the BigCommerce checkout
 
-If the shopper is a guest (and the cart is a guest cart)
+[Learn how to embed the BigCommerce hosted checkout into your headless storefront using an iFrame](https://developer.bigcommerce.com/api-docs/storefronts/embedded-checkout/embedded-checkout-tutorial).
 
-* Generate embedded checkout URL from cart API, use this URL for checkout SDK
+## Creating a custom checkout experience
 
-If the shopper is a customer (and they're already signed in to the headless storefront, so you created the cart with their customer ID)
-
-* Generate embedded checkout URL from cart API
-* Create a customer login JWT using the customer ID, and set the redirect_to parameter to the relative URL of the embedded checkout URL (essentially wrapping the checkout URL in a login URL)
-* Pass this new URL to checkout SDK, which will ensure the customer is logged in before the checkout is loaded
-
-This customer login JWT must also include a `channel_id` property, which is currently undocumented. If this channel ID is not included, CORS checks will fail and the checkout won't load.
-
-[Learn more about Embedded Checkout](https://developer.bigcommerce.com/api-docs/storefronts/embedded-checkout/embedded-checkout-tutorial).
-
-## Using the checkout API
-
-## Other checkout options
-
-* [Redirect to BigCommerce's hosted checkout using the Server-to-Server Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api)
-* [Create custom BigCommerce hosted checkout pages from scratch using Checkout SDK](https://developer.bigcommerce.com/stencil-docs/customizing-checkout/checkout-sdk-quickstart).
-* [Create a custom BigCommerce hosted checkout from a fork of BigCommerce's Checkout-JS](https://github.com/bigcommerce/checkout-js).
-* [Build a custom checkout experience from scratch using the Server-to-Server Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api).
 * [Restyle the BigCommerce hosted checkout](https://developer.bigcommerce.com/stencil-docs/customizing-checkout/optimized-one-page-checkout).
+* [Create a custom BigCommerce hosted checkout from a fork of BigCommerce's Checkout-JS](https://github.com/bigcommerce/checkout-js).
+* [Create custom BigCommerce hosted checkout page from scratch using Checkout SDK](https://developer.bigcommerce.com/stencil-docs/customizing-checkout/checkout-sdk-quickstart).
+* [Build a custom checkout experience from scratch using BigCommerce's Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api).
 
 ## Next steps
 
