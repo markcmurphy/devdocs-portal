@@ -32,4 +32,4 @@ Content
 * [Learn how to move the cart to checkout]().
 
 ## Resources
-* [Link]() 
+* [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/storefront/carts)
