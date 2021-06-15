@@ -151,7 +151,7 @@ X-Auth-Token: {{ACCESS_TOKEN}}
 <div class="HubBlock-content">
 
 > ### Note
-> The Pricing API should be consumed for specific use cases that are only concerned with pricing. 
+> The Pricing API is best suited for specific use cases that are only concerned with pricing. 
 
 </div>
 </div>
