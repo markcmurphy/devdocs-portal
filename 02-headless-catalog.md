@@ -105,7 +105,7 @@ query SingleProduct {
 ```
 ## Managing product data
 
-BigCommerce's [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api) enables you to manage catalog data. To retrieve the complete list of products, send a `GET` request to `/v3/catalog/products`. You can pass optional query string parameters to influence the response. We recommend caching the product data and storing it in a database to improve performance.
+You can use BigCommerce's [Catalog API](https://developer.bigcommerce.com/api-reference/catalog/catalog-api) to manage catalog data. To retrieve the complete list of products, send a `GET` request to `/v3/catalog/products`. To influence the response, you can pass optional query string parameters. We recommend caching the product data and storing it in a database to improve performance.
 
 ```http
 GET https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products
