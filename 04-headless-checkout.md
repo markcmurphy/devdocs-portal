@@ -17,17 +17,7 @@ In this article we'll walk through how to embed BigCommerce's checkout into an i
 
 ## Redirecting to the BigCommerce checkout
 
-If the shopper is a guest (and the cart is a guest cart)
 
-* Generate embedded checkout URL from cart API, use this URL for checkout SDK
-
-If the shopper is a customer (and they're already signed in to the headless storefront, so you created the cart with their customer ID)
-
-* Generate embedded checkout URL from cart API
-* Create a customer login JWT using the customer ID, and set the redirect_to parameter to the relative URL of the embedded checkout URL (essentially wrapping the checkout URL in a login URL)
-* Pass this new URL to checkout SDK, which will ensure the customer is logged in before the checkout is loaded
-
-This customer login JWT must also include a `channel_id` property, which is currently undocumented. If this channel ID is not included, CORS checks will fail and the checkout won't load.
 
 ## Embedding the BigCommerce checkout
 
