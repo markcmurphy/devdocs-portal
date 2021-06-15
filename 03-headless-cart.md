@@ -11,7 +11,7 @@ Introduction
 
 ## Creating carts
 
-Use the Server to Server Cart API to create carts for existing customers and guest customers.
+Use the [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/storefront/carts) to create carts for existing customers and guest customers.
 
 ### Guest cart
 
