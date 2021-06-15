@@ -114,13 +114,17 @@ Content-Type: application/json
 X-Auth-Token: {{ACCESS_TOKEN}}
 ``` 
 
-Using the [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing), you can control the pricing displayed for a particular channel or a customer group on your storefront.
-
 **Override pricing using the Pricing API**
 
-The [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing) lets you override product pricing for a specific channel or customer group. To override the price for each of the sellable items on the page, supply their product IDs (required) and variant IDs (optional) in a `POST` request to `/v3/pricing/products`.
+**Overview Pricing** is the mode of pricing used on the storefront to generate a starting price of an item before a shopper applies any customization to it.
 
-The following example shows how use the Pricing API to assign customer group pricing.
+The [Pricing API]([Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing) allows you to fetch **Overview Pricing** for a product and its selections or variants based on the shopper’s currency, customer group, and the channel they are shopping from. 
+
+Using the [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing), you can calculate the pricing displayed for a particular channel or a customer group on your storefront.
+
+To calculate the price for each of the sellable items on the page, supply their product IDs (required) and variant IDs (optional) in a `POST` request to `/v3/pricing/products`.
+
+The following example shows how to call the Pricing API.
 
 ```http
 POST https://api.bigcommerce.com/stores/{store_hash}/v3/pricing/products
@@ -141,6 +145,19 @@ X-Auth-Token: {{ACCESS_TOKEN}}
 }
 ```
 
+<div class="HubBlock--callout">
+<div class="CalloutBlock--info">
+<div class="HubBlock-content">
+
+> ### Note
+> The Pricing API should be consumed for specific use cases that are only concerned with pricing. 
+
+</div>
+</div>
+</div>
+
+When building your own storefront, we recommend using the GraphQL Storefront API to consume the product data as it can retrieve pricing and other product-related information in a single call and orchestrate an aggregated response.
+
 ## Best Practices
 
 **Cache the catalog**
@@ -153,7 +170,7 @@ You can use the Catalog API to retrieve real-time catalog data.
 
 **Return real-time pricing and inventory data**
 
-If you prefer working with a local copy of your catalog, but want to make sure that high priority pieces of data like pricing and inventory stay current, consider a hybrid model. With a hybrid model, you cache only certain product details and pull the other information in real time.
+If you prefer working with a local copy of your catalog, but want to make sure that high priority pieces of data like pricing and inventory stay current, consider a hybrid model. With a hybrid model, you cache only certain product details and pull the other information in real time. 
 
 ## Next Steps
 * [Learn how to create carts headlessly]().
