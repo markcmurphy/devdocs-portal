@@ -15,7 +15,7 @@ In this article, we'll discuss how to create and manage orders for headless stor
 {{Briefly discuss,then link to 11-headless-create-order tutorial}}
 
 
-### Create an order directly
+## Create an order directly
 
 1.  Send a request /POST request to [Orders](/api-reference/orders/orders-api/orders/createanorder)
 	1. Make sure the `status_id` is 0
@@ -24,6 +24,9 @@ In this article, we'll discuss how to create and manage orders for headless stor
 	4. Add a Billing Address
 	5. Add a Shipping Address
 	6. Create a custom shipping quote
+
+## Processing payments
+
 2.  Take a Payment for the Order using one of the two methods below
 3.  Vaulted Card -- The shopper has saved a credit card
 	1. [Get Payment Methods](/api-reference/payments/payments-create-payment-token-api/payment-methods/paymentsmethodsget)
