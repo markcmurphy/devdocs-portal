@@ -49,7 +49,7 @@ To create a cart for an existing customer, include the `customer_id` in your `PO
 }
 ```
 
-The response will contain an `id` which you will then use to gebnerate cart redirect URLs.
+The response will contain an `id` which you will then use to generate cart redirect URLs.
 
 ### Guest cart
 
