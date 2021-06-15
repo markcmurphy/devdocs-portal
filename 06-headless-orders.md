@@ -12,6 +12,8 @@ In this article, we'll discuss how to create and manage orders for headless stor
 
 ## Creating orders from a cart
 
+{{Briefly discuss,then link to tutorial}}
+
 
 ### Create an Order Directly
 
