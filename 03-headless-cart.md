@@ -7,7 +7,7 @@
 
 </div>
 
-Introduction
+This section demonstrates how to use the [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/store-management/carts) to generate a cart and manage abandoned carts.
 
 ## Creating carts
 
