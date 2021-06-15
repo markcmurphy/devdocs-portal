@@ -17,22 +17,30 @@ In this article, we'll discuss the checkout options available to headless storef
 
 ## Redirecting to the BigCommerce checkout
 
-[Learn how to redirect shoppers on a headless storefront to the BigCommerce hosted cart and checkout]().
+{{brielfy discuss redirecting to the bigcommerce checkout. mention how its the easiest option, then link to the tutorial on how to generate redirect urls.}}
+
+[Learn how to redirect shoppers on a headless storefront to the BigCommerce hosted cart and checkout](/api-docs/storefronts/tutorials/redirect-urls).
 
 ## Embedding the BigCommerce checkout
 
+{{Briefly discuss embedded checkout; mention how its more difficult than redirecting to checkout, then link to the embedded checkout tutorial}}
+
 [Learn how to embed the BigCommerce hosted checkout into your headless storefront using an iFrame](https://developer.bigcommerce.com/api-docs/storefronts/embedded-checkout/embedded-checkout-tutorial).
 
-## Creating a custom checkout experience
+## Using the Checkout API
+
+{{Briefly discuss using the checkout API to create an entirely custom checkout experience hosted on the headless storefront; mention how its the most difficult option}}
+
+* 
+
+[Build a custom checkout experience from scratch using BigCommerce's Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api).
+
+
+## Next steps
 
 * [Restyle the BigCommerce hosted checkout](https://developer.bigcommerce.com/stencil-docs/customizing-checkout/optimized-one-page-checkout).
 * [Create a custom BigCommerce hosted checkout from a fork of BigCommerce's Checkout-JS](https://github.com/bigcommerce/checkout-js).
 * [Create custom BigCommerce hosted checkout page from scratch using Checkout SDK](https://developer.bigcommerce.com/stencil-docs/customizing-checkout/checkout-sdk-quickstart).
-* [Build a custom checkout experience from scratch using BigCommerce's Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api).
-
-## Next steps
-
-* [Learn more about {{TOPIC}}]().
 
 ## Resources
 
