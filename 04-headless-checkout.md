@@ -31,8 +31,6 @@ In this article, we'll discuss the checkout options available to headless storef
 
 {{Briefly discuss using the checkout API to create an entirely custom checkout experience hosted on the headless storefront; mention how its the most difficult option}}
 
-* 
-
 [Build a custom checkout experience from scratch using BigCommerce's Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api).
 
 
