@@ -2,13 +2,7 @@
 
 <div class="otp" id="no-index">
 
-### On this Page
-
-- [Creating carts](#creating-carts)
-- [Clearing the cart](#clearing-the-cart)
-- [Redirecting to checkout](#redirecting-to-checkout)
-- [Abandoned carts](#abandoned-carts)
-- [Next Steps](#next-steps)
+### On this Page	
 - [Resources](#resources)
 
 </div>
@@ -17,7 +11,11 @@ Introduction
 
 ## Creating carts
 
-{{link to a tutorial?}}
+Use the Server to Server Cart API to create carts for existing customers and guest customers.
+
+### Guest cart
+
+A guest cart assumes the shopper is not a customer and is not logging in or creating an account during checkout. Handle guest checkouts by displaying the cart data to the customer and then moving them to Checkout using the Checkout API.
 
 ## Clearing the cart
 
@@ -25,16 +23,13 @@ Content
 
 ## Redirecting to checkout
 
-[Learn how to generate redirect URLs](/api-docs/storefronts/tutorials/redirect-urls).
+When creating a cart, there is an optional query to create a redirect URL. Use this to redirect the shopper to a BigCommerce hosted checkout page.
 
 ## Abandoned carts
-
 Content
 
 ## Next Steps
-
-* [Learn about BigCommerce's headless checkout options]().
+* [Learn how to move the cart to checkout]().
 
 ## Resources
-
-* [Link]()
+* [Link]() 
