@@ -12,10 +12,10 @@ In this article, we'll discuss how to create and manage orders for headless stor
 
 ## Creating orders from a cart
 
-{{Briefly discuss,then link to tutorial}}
+{{Briefly discuss,then link to 11-headless-create-order tutorial}}
 
 
-### Create an Order Directly
+### Create an order directly
 
 1.  Send a request /POST request to [Orders](/api-reference/orders/orders-api/orders/createanorder)
 	1. Make sure the `status_id` is 0
@@ -34,6 +34,7 @@ In this article, we'll discuss how to create and manage orders for headless stor
 	2. [Process Payment](/api-reference/payments/payments-process-payments/payment/paymentspost)
 
 ## Next Steps
+
 * [Learn more about {{TOPIC}}]().
 
 ## Resources
