@@ -121,7 +121,7 @@ X-Auth-Token: {{ACCESS_TOKEN}}
 
 The [Pricing API](https://developer.bigcommerce.com/api-reference/store-management/pricing) allows you to fetch **Overview Pricing** for a product and its selections or variants based on the shopper’s currency, customer group, and the channel they are shopping from. 
 
-To calculate the pricing displayed for a particular storefront channel or a customer group, send a `POST` request to `/v3/pricing/products`.
+To calculate the pricing displayed for a particular channel or a customer group, send a `POST` request to `/v3/pricing/products`.
 
 The following example shows how to call the Pricing API.
 
