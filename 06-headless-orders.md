@@ -17,6 +17,8 @@ In this article, we'll discuss how to create and manage orders for headless stor
 
 ## Create an order directly
 
+{{we should already have a tutorial for the steps below; if not, create one and link}}.
+
 1.  Send a request /POST request to [Orders](/api-reference/orders/orders-api/orders/createanorder)
 	1. Make sure the `status_id` is 0
 	2.  Add the Customer ID or leave blank if the shopper is a guest
