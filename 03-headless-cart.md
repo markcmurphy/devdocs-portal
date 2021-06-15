@@ -11,7 +11,45 @@ Introduction
 
 ## Creating carts
 
-Use the [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/store-management/carts) to create carts for existing customers and guest customers.
+You can use the [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/store-management/carts) to create carts for both existing and guest customers. To create an active cart, send a `POST` request to `/v3/carts`.
+
+```http
+POST https://api.bigcommerce.com/stores/{store_hash}/v3/carts
+Accept: application/json
+Content-Type: application/json
+X-Auth-Token: {{ACCESS_TOKEN}}
+``` 
+
+**Create a Cart example**
+
+```json
+{
+  "channel_id": 20266,
+  "line_items": [
+    {
+      "quantity": 1,
+      "product_id": 80,
+      "variant_id": 64
+    }
+  ]
+}
+```
+
+To create a cart for an existing customer, include the `customer_id` in your `POST` request.
+
+```json
+{
+  "customer_id": 42,
+  "line_items": [
+    {
+      "quantity": 5,
+      "product_id": 191
+    }
+  ]
+}
+```
+
+The response will contain an `id` which you will then use to gebnerate cart redirect URLs.
 
 ### Guest cart
 
