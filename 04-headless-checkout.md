@@ -1,4 +1,4 @@
-# Embedding Checkout
+# Headless Checkout
 
 <div class="otp" id="no-index">
 
