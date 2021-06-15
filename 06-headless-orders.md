@@ -8,7 +8,7 @@
 
 </div>
 
-Introduction
+In this article, we'll discuss how to create and manage orders for headless storefronts.
 
 ## Creating orders from a cart
 
