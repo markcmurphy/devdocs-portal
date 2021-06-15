@@ -10,27 +10,8 @@
 
 Introduction
 
-## Creating orders
+## Creating orders from a cart
 
-## Sending order confirmation emails
-
-Content
-Content
-
-## Samples
-
-### Creating orders from a cart
-
-1.  Create a [Cart](/api-reference/cart-checkout/server-server-cart-api/cart/createacart) with a redirect url
-	1.  Add the Customer ID or leave blank if shopper is a guest
-	2.  Add Line Items or Custom Line Items
-2.  Add a [Billing Address](/api-reference/cart-checkout/server-server-checkout-api/checkout-billing-address/checkoutsbillingaddressbycheckoutidpost) to the [Cart](/api-reference/cart-checkout/server-server-cart-api/cart/createacart) changing it to a Checkout
-3.  Add a [Consignment](/api-reference/cart-checkout/server-server-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidpost) to Checkout with the line items and the `consignments.available_shipping_options` query
-4. Update each [Consignment](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-consignments) with the chosen shipping option from the Add Consignment response.
-5.  Create the Order by sending a request to [Create Order](/api-reference/cart-checkout/server-server-checkout-api/checkout/createanorder)
-	1.  Returns an `order_id`
-	2. Order is created in `incomplete` status
-6.  Take a Payment for the Order using one of the two methods below
 
 ### Create an Order Directly
 
