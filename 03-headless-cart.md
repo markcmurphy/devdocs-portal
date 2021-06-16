@@ -74,7 +74,9 @@ It is possible to generate a cart redirect URL when creating a cart via the [Cre
 
 ## Clearing the cart
 
-Content
+To clear the cart, we recommend calling the Server to Server Carts API [Delete a Cart](https://developer.bigcommerce.com/api-reference/store-management/carts/cart/deleteacart) endpoint. Removing all cart items essentially deletes the cart.
+
+To delete a line item from a cart, send a `DELETE` request to the [Delete Cart Line Item](https://developer.bigcommerce.com/api-reference/store-management/carts/cart-items/deletecartlineitem) endpoint and pass in the `cartId` and `itemId` to be deleted. 
 
 ## Abandoned carts
 
