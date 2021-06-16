@@ -15,7 +15,7 @@ This section demonstrates how to use the [Carts API](https://developer.bigcommer
 
 ## Creating carts
 
-The [Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts) allows you to create carts for both existing and guest customers. To create an active cart, send a `POST` request to `/v3/carts`.
+The [Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts) allows you to create carts for both existing and guest customers. To create an active cart, send a `POST` request to the [Create a Cart](https://developer.bigcommerce.com/api-reference/store-management/carts/cart/createacart) endpoint.
 
 ```http
 POST https://api.bigcommerce.com/stores/{store_hash}/v3/carts
