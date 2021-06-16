@@ -51,11 +51,15 @@ To create a cart for an existing customer, include the `customer_id` in your `PO
 
 The `id` returned in the response corresponds to the `cart_id` required to generate cart redirect URLs.
 
+
+
 ### Guest cart
 
 A guest cart assumes the shopper is not a customer and is not logging in or creating an account during checkout. You can handle guest checkouts by displaying the cart data to the customer and then moving them to Checkout using the [Checkouts API](https://developer.bigcommerce.com/api-reference/store-management/checkouts).
 
 ## Redirecting to checkout
+
+It is also possible to generate a cart redirect URL 
 
 When creating a cart, there is an optional query to create a redirect URL. Use this to redirect the shopper to a BigCommerce hosted checkout page.
 
