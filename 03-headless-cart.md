@@ -2,7 +2,11 @@
 
 <div class="otp" id="no-index">
 
-### On this Page	
+### On this page
+- [Creating carts](#creating-carts)
+- [Redirecting to checkout](#redirecting-to-checkout)
+- [Clearing the cart](#clearing-the-cart)
+- [Abandoned carts](#abandoned-carts)
 - [Resources](#resources)
 
 </div>
