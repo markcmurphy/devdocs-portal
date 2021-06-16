@@ -115,7 +115,7 @@ To retrieve the `cart_id`, follow these steps:
 
 2. Pass the abandoned cart token in a `GET` request to the [Get an Abandoned Cart](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts/abandoned-carts/getabandonedcarts) endpoint to retrieve the `cart_id`. 
 
-Once you retrieve the `cart_id`, you can use it to request information about the cart and display it to the shopper using the [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts) and [Carts](https://developer.bigcommerce.com/api-reference/store-management/carts) APIs.
+3. Once you retrieve the `cart_id`, you can use it to request information about the cart and display it to the shopper using the [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts) and [Carts](https://developer.bigcommerce.com/api-reference/store-management/carts) APIs.
 
 ## Next Steps
 * [Learn how to move the cart to checkout]().
