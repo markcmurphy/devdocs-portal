@@ -11,11 +11,11 @@
 
 </div>
 
-This section demonstrates how to use the [Server to Server Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts) to generate an active cart and manage abandoned carts.
+This section demonstrates how to use the [Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts) to generate an active cart and manage abandoned carts.
 
 ## Creating carts
 
-The [Server to Server Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts) allows you to create carts for both existing and guest customers. To create an active cart, send a `POST` request to `/v3/carts`.
+The [Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts) allows you to create carts for both existing and guest customers. To create an active cart, send a `POST` request to `/v3/carts`.
 
 ```http
 POST https://api.bigcommerce.com/stores/{store_hash}/v3/carts
@@ -78,7 +78,7 @@ It is possible to generate a cart redirect URL when creating a cart via the [Cre
 
 ## Clearing the cart
 
-To clear the cart, call the Server to Server Carts API [Delete a Cart](https://developer.bigcommerce.com/api-reference/store-management/carts/cart/deleteacart) endpoint. Removing all cart items essentially deletes the cart.
+To clear the cart, call the Carts API [Delete a Cart](https://developer.bigcommerce.com/api-reference/store-management/carts/cart/deleteacart) endpoint. Removing all cart items essentially deletes the cart.
 
 ```http
 DELETE https://api.bigcommerce.com/stores/{store_hash}/v3/carts/{cartId}
@@ -105,11 +105,12 @@ To retrieve the `cart_id`, follow these steps:
 1. Because the `cart_id` corresponds to the abandoned cart token found in the query string of the link included in abandoned cart notification emails, you need to provide this token to retrieve the `cart_id`.
 2. Pass the abandoned cart token in a `GET` request to `/v3/abandoned-carts/{token}`. 
 
-Once you retrieve the `cart_id`, you can use it to fetch and display information about the cart to the shopper via the [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts) and [Server to Server Carts](https://developer.bigcommerce.com/api-reference/store-management/carts) APIs.
+Once you retrieve the `cart_id`, you can use it to fetch and display information about the cart to the shopper via the [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts) and [Carts](https://developer.bigcommerce.com/api-reference/store-management/carts) APIs.
 
 ## Next Steps
 * [Learn how to move the cart to checkout]().
 
 ## Resources
-* [Server to Server Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts)
+* [Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts)
+* [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts)
 * [Persistent Cart](https://support.bigcommerce.com/s/article/Persistent-Cart)
