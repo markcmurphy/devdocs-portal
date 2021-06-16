@@ -51,17 +51,26 @@ To create a cart for an existing customer, include the `customer_id` in your `PO
 
 The `id` returned in the response corresponds to the `cart_id` required to generate cart redirect URLs.
 
-
-
 ### Guest cart
 
 A guest cart assumes the shopper is not a customer and is not logging in or creating an account during checkout. You can handle guest checkouts by displaying the cart data to the customer and then moving them to Checkout using the [Checkouts API](https://developer.bigcommerce.com/api-reference/store-management/checkouts).
 
 ## Redirecting to checkout
 
-It is also possible to generate a cart redirect URL 
+A cart redirect URL redirects a shopper to a BigCommerce hosted checkout page. Redirect URLs can be generated **only** from carts created using the Server to Server Carts API.
 
-When creating a cart, there is an optional query to create a redirect URL. Use this to redirect the shopper to a BigCommerce hosted checkout page.
+To generate a cart redirect URL, send a `POST` request to `/v3/carts/{cartId}/redirect_urls`. The `cartId` path parameter corresponds to the `id` returned in the [Create a Cart](https://developer.bigcommerce.com/api-reference/store-management/carts/cart/createacart) response. For API reference information, see [Create Cart Redirect URL](https://developer.bigcommerce.com/api-reference/store-management/carts/cart-redirect-urls/createcartredirecturl).
+
+```http
+POST https://api.bigcommerce.com/stores/{store_hash}/v3/carts/{cartId}/redirect_urls
+Accept: application/json
+Content-Type: application/json
+X-Auth-Token: {{ACCESS_TOKEN}}
+``` 
+
+### Creating a redirect using the include query parameter
+
+It is possible to generate a cart redirect URL when creating a cart via the [Create a Cart](https://developer.bigcommerce.com/api-reference/store-management/carts/cart/createacart) request by appending the `include=redirect_urls` query parameter to the request URL.
 
 ## Clearing the cart
 
