@@ -111,7 +111,7 @@ The [Abandoned Carts API](https://developer.bigcommerce.com/api-reference/store-
 
 To retrieve the `cart_id`, follow these steps:
 
-1. By default, customers receive abandoned cart emails as soon as they provide their email address in the checkout flow. Those notification emails contain a link to the cart abandoned by the shopper. You need to retrieve the abandoned cart token found in the query string of the abandoned cart link. you can do so by...
+1. By default, customers receive abandoned cart emails as soon as they provide their email address in the checkout flow. Those notification emails contain a link to the cart abandoned by the shopper. You need to retrieve the abandoned cart token found in the query string of the abandoned cart link.
 
 2. Pass the abandoned cart token in a `GET` request to the [Get an Abandoned Cart](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts/abandoned-carts/getabandonedcarts) endpoint to retrieve the `cart_id`. 
 
