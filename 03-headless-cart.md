@@ -107,12 +107,13 @@ X-Auth-Token: {{ACCESS_TOKEN}}
 
 ## Abandoned carts
 
-The [Abandoned Carts API](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts) makes it possible to retrieve the `cart_id` of an abandoned cart which can then be used to fetch and display information about the cart to the shopper. The `cart_id` will correspond to the token in the query string of the link included in the abandoned cart notification email sent to the shopper. 
+The [Abandoned Carts API](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts) makes it possible to retrieve the `cart_id` of the abandoned cart which can then be used to fetch and display information about the cart to the shopper. The `cart_id` corresponds to the token in the query string of the abandoned cart link found in abandoned cart email notifications. 
 
 To retrieve the `cart_id`, follow these steps:
 
-1. Because the `cart_id` corresponds to the abandoned cart token found in the query string of the link included in the abandoned cart notification email, you must provide this token to retrieve the `cart_id`.
-2. Pass the abandoned cart token in a `GET` request to the [Get an Abandoned Cart](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts/abandoned-carts/getabandonedcarts) endpoint. 
+1. By default, customers receive abandoned cart emails as soon as they provide their email address in the checkout flow. You need to access the abandoned cart token found in the query string of the abandoned cart link. you can do so by...
+
+2. Pass the abandoned cart token in a `GET` request to the [Get an Abandoned Cart](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts/abandoned-carts/getabandonedcarts) endpoint to retrieve the `cart_id`. 
 
 Once you retrieve the `cart_id`, you can use it to request information about the cart and display it to the shopper using the [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts) and [Carts](https://developer.bigcommerce.com/api-reference/store-management/carts) APIs.
 
