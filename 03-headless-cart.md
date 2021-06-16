@@ -7,11 +7,11 @@
 
 </div>
 
-This section demonstrates how to use the [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/store-management/carts) to generate an active cart and manage abandoned carts.
+This section demonstrates how to use the [Server to Server Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts) to generate an active cart and manage abandoned carts.
 
 ## Creating carts
 
-You can use the [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/store-management/carts) to create carts for both existing and guest customers. To create an active cart, send a `POST` request to `/v3/carts`.
+The [Server to Server Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts) allows you to create carts for both existing and guest customers. To create an active cart, send a `POST` request to `/v3/carts`.
 
 ```http
 POST https://api.bigcommerce.com/stores/{store_hash}/v3/carts
@@ -78,5 +78,5 @@ Once you retrieve the `cart_id`, you can use it to fetch and display information
 * [Learn how to move the cart to checkout]().
 
 ## Resources
-* [Server to Server Cart API](https://developer.bigcommerce.com/api-reference/store-management/carts)
+* [Server to Server Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts)
 * [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts)
