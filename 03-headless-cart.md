@@ -96,7 +96,7 @@ Content-Type: application/json
 X-Auth-Token: {{ACCESS_TOKEN}}
 ``` 
 
-To delete a line item from a cart, send a `DELETE` request to the [Delete Cart Line Item](https://developer.bigcommerce.com/api-reference/store-management/carts/cart-items/deletecartlineitem) endpoint and pass in the `cartId` and `itemId` to be deleted. 
+To delete a line item from a cart, send a `DELETE` request to the [Delete Cart Line Item](https://developer.bigcommerce.com/api-reference/store-management/carts/cart-items/deletecartlineitem) endpoint and pass in the associated `cartId` and `itemId`. 
 
 ```http
 DELETE https://api.bigcommerce.com/stores/{store_hash}/v3/carts/{cartId}/items/{itemId}
