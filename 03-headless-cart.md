@@ -108,4 +108,4 @@ Once you retrieve the `cart_id`, you can use it to fetch and display information
 
 ## Resources
 * [Server to Server Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts)
-* [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts)
+* [Persistent Cart](https://support.bigcommerce.com/s/article/Persistent-Cart)
