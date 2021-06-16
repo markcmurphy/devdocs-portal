@@ -107,7 +107,7 @@ X-Auth-Token: {{ACCESS_TOKEN}}
 
 ## Abandoned carts
 
-The [Abandoned Carts API](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts) makes it possible to retrieve the `cart_id` of the abandoned cart which can then be used to fetch and display information about the cart to the shopper. The `cart_id` corresponds to the token in the query string of the abandoned cart link found in abandoned cart email notifications. 
+The [Abandoned Carts API](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts) makes it possible to retrieve the `cart_id` of the abandoned cart which can then be used to fetch and display information about the cart to the shopper. The `cart_id` corresponds to the token in the query string of the abandoned cart link provided in abandoned cart email notifications. 
 
 To retrieve the `cart_id`, follow these steps:
 
