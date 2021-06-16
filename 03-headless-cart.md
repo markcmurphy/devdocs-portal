@@ -122,5 +122,5 @@ To retrieve the `cart_id`, follow these steps:
 
 ## Resources
 * [Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts)
-* [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts)
+* [Storefront Carts API](https://developer.bigcommerce.com/api-reference/storefront/carts)
 * [Persistent Cart](https://support.bigcommerce.com/s/article/Persistent-Cart)
