@@ -58,7 +58,7 @@ To create a cart for an existing customer, include the `customer_id` in your `PO
 <div class="HubBlock-content">
 
 > ### Note
-> * The `id` returned in the response corresponds to the `cart_id` required to generate cart redirect URLs.
+> The `id` returned in the response corresponds to the `cart_id` required to generate cart redirect URLs.
 
 </div>
 </div>
