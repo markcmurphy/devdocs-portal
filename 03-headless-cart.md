@@ -20,7 +20,7 @@ Content-Type: application/json
 X-Auth-Token: {{ACCESS_TOKEN}}
 ``` 
 
-**Create a Cart example**
+**Create a Cart request example**
 
 ```json
 {
@@ -49,19 +49,19 @@ To create a cart for an existing customer, include the `customer_id` in your `PO
 }
 ```
 
-The response will contain an `id` which you will then use to generate cart redirect URLs.
+The `id` returned in the response corresponds to the `cart_id` required to generate cart redirect URLs.
 
 ### Guest cart
 
 A guest cart assumes the shopper is not a customer and is not logging in or creating an account during checkout. You can handle guest checkouts by displaying the cart data to the customer and then moving them to Checkout using the [Checkouts API](https://developer.bigcommerce.com/api-reference/store-management/checkouts).
 
-## Clearing the cart
-
-Content
-
 ## Redirecting to checkout
 
 When creating a cart, there is an optional query to create a redirect URL. Use this to redirect the shopper to a BigCommerce hosted checkout page.
+
+## Clearing the cart
+
+Content
 
 ## Abandoned carts
 
