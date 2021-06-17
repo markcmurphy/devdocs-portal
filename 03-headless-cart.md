@@ -3,7 +3,7 @@
 <div class="otp" id="no-index">
 
 ### On this page
-- [Creating carts](#creating-carts)
+- [Creating a cart](#creating-a-cart)
 - [Redirecting to checkout](#redirecting-to-checkout)
 - [Clearing the cart](#clearing-the-cart)
 - [Abandoned carts](#abandoned-carts)
@@ -13,7 +13,7 @@
 
 This section demonstrates how to use the [Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts) to generate an active cart, redirect shoppers to checkout, and manage abandoned carts.
 
-## Creating carts
+## Creating a carts
 
 The [Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts) allows you to create carts for both existing and guest customers. To create an active cart, send a `POST` request to the [Create a Cart](https://developer.bigcommerce.com/api-reference/store-management/carts/cart/createacart) endpoint.
 
@@ -43,13 +43,14 @@ To create a cart for an existing customer, include the `customer_id` in your `PO
 
 ```json
 {
-  "customer_id": 42,
-  "line_items": [
-    {
-      "quantity": 5,
-      "product_id": 191
-    }
-  ]
+	"channel_id": 20266,
+	"customer_id": 42,
+	"line_items": [
+		{
+			"quantity": 5,
+			"product_id": 191
+		}
+	]
 }
 ```
 
@@ -58,7 +59,7 @@ To create a cart for an existing customer, include the `customer_id` in your `PO
 <div class="HubBlock-content">
 
 > ### Note
-> The `id` returned in the response corresponds to the `cart_id` required to generate cart redirect URLs.
+> The `id` returned in the response will correspond to the `cart_id` required to generate cart redirect URLs.
 
 </div>
 </div>
