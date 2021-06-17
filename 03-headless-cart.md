@@ -82,7 +82,7 @@ Content-Type: application/json
 X-Auth-Token: {{ACCESS_TOKEN}}
 ``` 
 
-### Creating a redirect using the include query parameter
+### Creating a redirect using the `include` query parameter
 
 It is possible to generate a redirect URL when creating a cart using the [Create a Cart](https://developer.bigcommerce.com/api-reference/store-management/carts/cart/createacart) endpoint by appending the `include=redirect_urls` query parameter to the request URL.
 
