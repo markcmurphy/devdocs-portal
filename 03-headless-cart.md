@@ -108,15 +108,15 @@ X-Auth-Token: {{ACCESS_TOKEN}}
 
 ## Abandoned carts
 
-The [Abandoned Carts API](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts) makes it possible to retrieve the `cart_id` of the abandoned cart which can then be used to fetch and display information about the cart to the shopper. The `cart_id` corresponds to the token in the query string of the abandoned cart link included in the abandoned cart email notification sent to the shopper. 
+The [Abandoned Carts API](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts) enables you to retrieve the `cart_id` of the abandoned cart by surfacing the abandoned cart token passed in to the headless storefront via the abandoned cart email link. You can use the `cart_id` to fetch and display the information about the cart to the shopper.
 
 To retrieve the `cart_id`, follow these steps:
 
-1. By default, customers receive abandoned cart emails as soon as they provide their email address in the checkout flow. Those notification emails contain a link to the cart abandoned by the shopper. You need to retrieve the abandoned cart token found in the query string of the abandoned cart link.
+1. By default, customers receive abandoned cart emails as soon as they provide their email address in the checkout flow. You will need to retrieve the abandoned cart token found in the query string of the abandoned cart email link.
 
 2. Pass the abandoned cart token in a `GET` request to the [Get an Abandoned Cart](https://developer.bigcommerce.com/api-reference/store-management/abandoned-carts/abandoned-carts/getabandonedcarts) endpoint to retrieve the `cart_id`. 
 
-3. Once you retrieve the `cart_id`, you can use it to request information about the cart and display it to the shopper using the [Storefront Carts](https://developer.bigcommerce.com/api-reference/storefront/carts) and [Carts](https://developer.bigcommerce.com/api-reference/store-management/carts) APIs.
+3. Once you retrieve the `cart_id`, you can use it to request information about the cart and display it to the shopper using the [Storefront Carts API](https://developer.bigcommerce.com/api-reference/storefront/carts) and/or the [Carts API](https://developer.bigcommerce.com/api-reference/store-management/carts).
 
 ## Next Steps
 * [Learn how to move the cart to checkout]().
