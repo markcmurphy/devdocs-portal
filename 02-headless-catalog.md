@@ -5,7 +5,7 @@
 ### On this Page
 - [Rendering pages](#rendering-pages)
 - [Managing product data](#managing-product-data)
-- [Using the Pricing API](#using-the-pricing-api)
+- [Calculating batch pricing](#calculating-batch-pricing)
 - [Best practices](#best-practices)
 - [Next steps](#next-steps)
 - [Resources](#resources)
@@ -115,7 +115,7 @@ Content-Type: application/json
 X-Auth-Token: {{ACCESS_TOKEN}}
 ``` 
 
-## Using the Pricing API
+## Calculating batch pricing
 
 **Overview Pricing** is the mode of pricing used on the storefront to generate a starting price of an item before a shopper applies any customization.
 
