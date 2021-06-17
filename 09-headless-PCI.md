@@ -3,6 +3,7 @@
 <div class="otp" id="no-index">
 
 ### On this page	
+- [Responsibility matrix](#responsibility-matrix)
 - [Next Steps](#next-steps)
 - [Resources](#resources)
 
