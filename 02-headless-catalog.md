@@ -149,13 +149,11 @@ X-Auth-Token: {{ACCESS_TOKEN}}
 <div class="HubBlock-content">
 
 > ### Note
-> The Pricing API is best suited for specific use cases that are only concerned with pricing. 
+> The Pricing API is best suited for specific use cases that are only concerned with pricing. When building your own storefront, we recommend using the GraphQL Storefront API to consume the product data as it can retrieve pricing and other product-related information in a single call and orchestrate an aggregated response.
 
 </div>
 </div>
 </div>
-
-When building your own storefront, we recommend using the GraphQL Storefront API to consume the product data as it can retrieve pricing and other product-related information in a single call and orchestrate an aggregated response.
 
 ## Best Practices
 
