@@ -5,6 +5,7 @@
 ### On this Page
 - [Creating a channel](#creating-a-channel)
 - [Next steps](#next-steps)
+- [Resources](#resources)
 
 </div>
 </br>
@@ -26,3 +27,6 @@ You can create both using the [Channels API](https://developer.bigcommerce.com/a
 
 ## Next steps
 * [Learn how to render a product catalog headlessly]().
+
+## Resources
+* [Building Storefront Channels](https://developer.bigcommerce.com/api-docs/channels/tutorials/storefront)
