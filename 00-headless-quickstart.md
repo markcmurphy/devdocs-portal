@@ -29,7 +29,6 @@ Want to build a headless storefront powered by a BigCommerce back-end, but don't
 | [BigCommerce for Drupal](https://www.drupal.org/project/bigcommerce) | Drupal Module | Drupal | CMS |
 | [Bloomreach](https://www.bigcommerce.com/apps/bloomreach/) | BigCommerce App | Bloomreach | CMS / DXP |
 | [DEITY Falcon](https://www.bigcommerce.com/apps/deity-falcon-pwa-storefront/) | BigCommerce App | DEITY Falcon | PWA |
-| [Next.js Commerce](https://nextjs.org/commerce) | BigCommerce App | Next/Vercel | Web App |
 | [Sitrecore Extend](https://www.bigcommerce.com/apps/sitecore-extend/) | BigCommerce App | Sitecore | CMS |
 
 [See more headless solutions and tools](https://developer.bigcommerce.com/tools-resources).
@@ -43,6 +42,7 @@ Need code up a custom storefront but don't want to start from scratch? Kick-star
 | [gatsby-bigcommerce-netlify-cms-starter](https://github.com/bigcommerce/gatsby-bigcommerce-netlify-cms-starter) | Node / React / Gatsby / Netlify |
 | [bc-nuxt-vue-starter](https://github.com/bigcommerce/bc-nuxt-vue-starter) | Node / Vue / Nuxt |
 | [acf_bc](https://github.com/thirdandgrove/acf_bc) |PHP / ACF / Drupal |
+| [Next.js Commerce](https://nextjs.org/commerce) |Node / Next |
 
 [See more headless starter apps and tools](https://developer.bigcommerce.com/tools-resources).
 
