@@ -2867,6 +2867,7 @@ definitions:
   cart:
     type: object
     title: cart
+    description: Present on `cart.php`.
     properties:
       additional_checkout_buttons:
         type: array
@@ -2876,12 +2877,56 @@ definitions:
         type: array
         items:
           type: object
+          properties:
+            id:
+              type: number
+            code:
+              type: string
+            displayName:
+              type: string
+            couponType:
+              type: string
+            discountedAmount:
+              type: number
       discount:
         type: 'null'
       gift_certificates:
         type: array
         items:
           type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            theme:
+              type: string
+            amount:
+              type: number
+            taxable:
+              type: boolean
+            sender:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  email:
+                    type: string
+            recipient:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  email:
+                    type: string
+            message:
+              type: string
+            type:
+              type: string
       gift_wrapping_cost:
         type: object
         properties:
@@ -3047,6 +3092,11 @@ definitions:
         type: array
         items:
           type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: number
       sub_total:
         type: object
         properties:
@@ -3076,7 +3126,6 @@ definitions:
               type: string
             '':
               type: string
-    description: Present on `cart.php`.
   customer:
     type: object
     properties:
