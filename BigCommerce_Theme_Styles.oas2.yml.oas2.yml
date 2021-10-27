@@ -24,27 +24,72 @@ definitions:
         $ref: '#/definitions/imageDimension'
       text:
         $ref: '#/definitions/text'
+      heading:
+        $ref: '#/definitions/heading'
+      reference:
+        $ref: '#/definitions/reference'
   color:
     type: object
     properties: {}
     title: color
+    description: Used to set color value on theme setting (hex value)
   font:
     type: object
     properties: {}
     title: font
+    description: Used to select font value on theme setting
   select:
     type: object
     properties: {}
     title: select
+    description: |-
+      Used to select custom value on theme settings. 
+
+      Note: Option types should all be the same (i.e., string, number, etc.).
   checkbox:
     type: object
-    properties: {}
     title: checkbox
+    description: >-
+      Used to toggle on theme settings (boolean value)
+
+
+      Required fields: `type`, `label`, and `id`
+
+
+      Optional field: `force_reload`
+
+
+
+      ![https://storage.googleapis.com/bigcommerce-production-dev-center/images/theme_styles_checkbox.png](https://storage.googleapis.com/bigcommerce-production-dev-center/images/theme_styles_checkbox.png)
+    properties:
+      type:
+        type: string
+      label:
+        type: string
+      force_reload:
+        type: boolean
+      id:
+        type: string
   imageDimension:
     type: object
     properties: {}
     title: imageDimension
+    description: Used to set image ratio on theme setting
   text:
     type: object
     properties: {}
     title: text
+    description: Used to set string value for theme settings
+  heading:
+    type: object
+    properties: {}
+    title: heading
+  reference:
+    type: object
+    properties: {}
+    title: reference
+    description: >-
+      The reference field on a setting can show additional settings based on the
+      value of another setting. For example, we may want to hide the `Product
+      Sale Badge Label` setting if `Show product sale badges` setting equals
+      none.
