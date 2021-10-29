@@ -68,12 +68,41 @@ definitions:
       - options
   select:
     type: object
-    properties: {}
     title: select
     description: |-
       Used to select custom value on theme settings. 
 
       Note: Option types should all be the same (i.e., string, number, etc.).
+
+      Required fields: `type`, `label`, `id`, and `options`
+
+      Optional field: `force_reload`
+    properties:
+      type:
+        type: string
+        example: select
+      label:
+        type: string
+        example: i18n.BodyTextFontSize
+      id:
+        type: string
+        example: fontSize-root
+      options:
+        type: array
+        items:
+          type: object
+          properties:
+            value:
+              type: string
+              example: 12
+            label:
+              type: string
+              example: 12px
+    required:
+      - type
+      - label
+      - id
+      - options
   checkbox:
     type: object
     title: checkbox
