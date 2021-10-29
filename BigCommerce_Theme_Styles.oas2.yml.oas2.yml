@@ -172,9 +172,30 @@ definitions:
       - options
   text:
     type: object
-    properties: {}
     title: text
-    description: Used to set string value for theme settings
+    description: |-
+      Used to set string value for theme settings
+
+      Required fields: `type`, `label`, and `id`.
+
+      Optional field: `force_reload`
+    properties:
+      type:
+        type: string
+        example: text
+      label:
+        type: string
+        example: i18n.ProductPriceLabelSale
+      force_reload:
+        type: boolean
+        example: true
+      id:
+        type: string
+        example: pdp-sale-price-label
+    required:
+      - type
+      - label
+      - id
   heading:
     type: object
     title: heading
