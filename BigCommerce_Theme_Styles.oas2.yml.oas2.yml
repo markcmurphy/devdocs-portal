@@ -28,11 +28,6 @@ definitions:
         $ref: '#/definitions/heading'
       reference:
         $ref: '#/definitions/reference'
-  color:
-    type: object
-    properties: {}
-    title: color
-    description: Used to set color value on theme setting (hex value)
   font:
     type: object
     properties: {}
@@ -95,3 +90,23 @@ definitions:
       value of another setting. For example, we may want to hide the `Product
       Sale Badge Label` setting if `Show product sale badges` setting equals
       none.
+  color:
+    type: object
+    properties:
+      type:
+        type: string
+        example: color
+      label:
+        type: string
+        example: i18n.BannerBackground
+      id:
+        type: string
+        example: color-primary
+    required:
+      - type
+      - label
+      - id
+    description: |-
+      Used to set color value on theme setting (hex value)
+
+      Required fields: `type`, `label`, and  `id`
