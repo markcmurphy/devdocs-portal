@@ -30,9 +30,42 @@ definitions:
         $ref: '#/definitions/reference'
   font:
     type: object
-    properties: {}
     title: font
-    description: Used to select font value on theme setting
+    description: |-
+      Used to select font value on theme setting
+
+      Required fields: `type`, `label`, `id`, and `options`
+
+      Optional field: `force_reload`
+    properties:
+      type:
+        type: string
+        example: font
+      label:
+        type: string
+        example: i18n.BodyTextFontFamily
+      id:
+        type: string
+        example: body-font
+      options:
+        type: array
+        items:
+          type: object
+          properties:
+            group:
+              type: string
+              example: i18n.Karla
+            label:
+              type: string
+              example: i18n.Karla
+            value:
+              type: string
+              example: Google_Karla_400
+    required:
+      - type
+      - label
+      - id
+      - options
   select:
     type: object
     properties: {}
