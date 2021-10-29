@@ -102,9 +102,45 @@ definitions:
       - id
   imageDimension:
     type: object
-    properties: {}
     title: imageDimension
-    description: Used to set image ratio on theme setting
+    description: >-
+      Used to set image ratio on theme setting
+
+
+      Required fields: `type`, `label`, `id`, and `options`.
+
+
+      Note: "custom" value option will allow users to specify the width/height.
+      Else, use values set by the theme developer.
+    properties:
+      type:
+        type: string
+        example: imageDimension
+      id:
+        type: string
+        example: blog_size
+      force_reload:
+        type: boolean
+        example: true
+      label:
+        type: string
+        example: i18n.SizeOfImages
+      options:
+        type: array
+        items:
+          type: object
+          properties:
+            value:
+              type: string
+              example: 190x250
+            label:
+              type: string
+              example: i18n.OptimizedForTheme
+    required:
+      - type
+      - id
+      - label
+      - options
   text:
     type: object
     properties: {}
@@ -112,8 +148,15 @@ definitions:
     description: Used to set string value for theme settings
   heading:
     type: object
-    properties: {}
     title: heading
+    description: 'Required fields: `type` and  `content`'
+    properties:
+      type:
+        type: string
+        example: heading
+      content:
+        type: string
+        example: i18n.BackgroundAndLines
   reference:
     type: object
     properties: {}
