@@ -1,299 +1,338 @@
-swagger: '2.0'
-info:
-  title: Big Commerce Theme Styles Oas 2 Yml API
-  version: '1.0'
-host: example.com
-paths: {}
-definitions:
-  _context:
-    type: object
-    title: _context
-    description: >-
-      The combined context styles for all Stencil theme pages for quick
-      reference. 
-    properties:
-      color:
-        $ref: '#/definitions/color'
-      font:
-        $ref: '#/definitions/font'
-      select:
-        $ref: '#/definitions/select'
-      checkbox:
-        $ref: '#/definitions/checkbox'
-      imageDimension:
-        $ref: '#/definitions/imageDimension'
-      text:
-        $ref: '#/definitions/text'
-      heading:
-        $ref: '#/definitions/heading'
-      reference:
-        $ref: '#/definitions/reference'
-  font:
-    type: object
-    title: font
-    description: |-
-      Used to select font value on theme setting
-
-      Required fields: `type`, `label`, `id`, and `options`
-
-      Optional field: `force_reload`
-    properties:
-      type:
-        type: string
-        example: font
-      label:
-        type: string
-        example: i18n.BodyTextFontFamily
-      id:
-        type: string
-        example: body-font
-      options:
-        type: array
-        items:
-          type: object
-          properties:
-            group:
-              type: string
-              example: i18n.Karla
-            label:
-              type: string
-              example: i18n.Karla
-            value:
-              type: string
-              example: Google_Karla_400
-    required:
-      - type
-      - label
-      - id
-      - options
-  select:
-    type: object
-    title: select
-    description: |-
-      Used to select custom value on theme settings. 
-
-      Note: Option types should all be the same (i.e., string, number, etc.).
-
-      Required fields: `type`, `label`, `id`, and `options`
-
-      Optional field: `force_reload`
-    properties:
-      type:
-        type: string
-        example: select
-      label:
-        type: string
-        example: i18n.BodyTextFontSize
-      id:
-        type: string
-        example: fontSize-root
-      options:
-        type: array
-        items:
-          type: object
-          properties:
-            value:
-              type: string
-              example: 12
-            label:
-              type: string
-              example: 12px
-    required:
-      - type
-      - label
-      - id
-      - options
-  checkbox:
-    type: object
-    title: checkbox
-    description: |
-      Used to toggle on theme settings (boolean value)
-
-      Required fields: `type`, `label`, and `id`
-
-      Optional field: `force_reload`
-    properties:
-      type:
-        type: string
-        example: checkbox
-      label:
-        type: string
-        example: i18n.HideBreadcrumbs
-      force_reload:
-        type: boolean
-        example: true
-      id:
-        type: string
-        example: hide_breadcrumbs
-    required:
-      - type
-      - label
-      - id
-  imageDimension:
-    type: object
-    title: imageDimension
-    description: >-
-      Used to set image ratio on theme setting
-
-
-      Required fields: `type`, `label`, `id`, and `options`.
-
-
-      Note: "custom" value option will allow users to specify the width/height.
-      Else, use values set by the theme developer.
-    properties:
-      type:
-        type: string
-        example: imageDimension
-      id:
-        type: string
-        example: blog_size
-      force_reload:
-        type: boolean
-        example: true
-      label:
-        type: string
-        example: i18n.SizeOfImages
-      options:
-        type: array
-        items:
-          type: object
-          properties:
-            value:
-              type: string
-              example: 190x250
-            label:
-              type: string
-              example: i18n.OptimizedForTheme
-    required:
-      - type
-      - id
-      - label
-      - options
-  text:
-    type: object
-    title: text
-    description: |-
-      Used to set string value for theme settings
-
-      Required fields: `type`, `label`, and `id`.
-
-      Optional field: `force_reload`
-    properties:
-      type:
-        type: string
-        example: text
-      label:
-        type: string
-        example: i18n.ProductPriceLabelSale
-      force_reload:
-        type: boolean
-        example: true
-      id:
-        type: string
-        example: pdp-sale-price-label
-    required:
-      - type
-      - label
-      - id
-  heading:
-    type: object
-    title: heading
-    description: 'Required fields: `type` and  `content`'
-    properties:
-      type:
-        type: string
-        example: heading
-      content:
-        type: string
-        example: i18n.BackgroundAndLines
-  reference:
-    title: reference
-    description: >-
-      The reference field on a setting can show additional settings based on the
-      value of another setting. For example, we may want to hide the `Product
-      Sale Badge Label` setting if `Show product sale badges` setting equals
-      none.
-
-
-
-      In `ProductSaleBadgeLabel` setting example, you can see that when
-      `ShowProductSaleBadges` equals none, the `ProductSaleBadgeLabel` text
-      setting is hidden. But when `ShowProductSaleBadges` has a value other than
-      none, `ProductSaleBadgeLabel` text setting displays.
-
-
-      The `reference` field is added to the setting you want to toggle the
-      display of based on a value (so in this example `ProductSaleBadgeLabel`).
-      The value for `reference` should be the `id` of whichever setting you are
-      referencing (so in this example `product_sale_badges`).
-
-
-      The `reference_default` field should be set to the value the setting wants
-      to reference. In this case, `none` will set the `ProductSaleBadgeLabel`
-      hidden until `ShowProductSaleBadges` changes in value.
-    oneOf:
-      - properties:
-          type:
-            type: string
-            example: select
-          label:
-            type: string
-            example: i18n.ShowProductSaleBadges
-          id:
-            type: string
-            example: product_sale_badges
-          force_reload:
-            type: boolean
-            example: true
-          options:
-            type: array
-            items:
-              type: object
-              properties:
-                value:
-                  type: string
-                  example: none
-                label:
-                  type: string
-                  example: i18n.None
-      - properties:
-          type:
-            type: string
-            example: text
-          label:
-            type: string
-            example: i18n.ProductSaleBadgeLabel
-          force_reload:
-            type: boolean
-            example: true
-          id:
-            type: string
-            example: pdp_sale_badge_label
-          reference:
-            type: string
-            example: product_sale_badges
-          reference_default:
-            type: string
-            example: none
-    type: object
-  color:
-    type: object
-    properties:
-      type:
-        type: string
-        example: color
-      label:
-        type: string
-        example: i18n.BannerBackground
-      id:
-        type: string
-        example: color-primary
-    required:
-      - type
-      - label
-      - id
-    description: |-
-      Used to set color value on theme setting (hex value)
-
-      Required fields: `type`, `label`, and  `id`
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Theme Styles",
+    "version": "1.0"
+  },
+  "host": "example.com",
+  "paths": {},
+  "definitions": {
+    "_context": {
+      "type": "object",
+      "title": "_context",
+      "description": "The combined context styles for all Stencil theme pages for quick reference. ",
+      "properties": {
+        "color": {
+          "$ref": "#/definitions/color"
+        },
+        "font": {
+          "$ref": "#/definitions/font"
+        },
+        "select": {
+          "$ref": "#/definitions/select"
+        },
+        "checkbox": {
+          "$ref": "#/definitions/checkbox"
+        },
+        "imageDimension": {
+          "$ref": "#/definitions/imageDimension"
+        },
+        "text": {
+          "$ref": "#/definitions/text"
+        },
+        "heading": {
+          "$ref": "#/definitions/heading"
+        },
+        "reference": {
+          "$ref": "#/definitions/reference"
+        }
+      }
+    },
+    "font": {
+      "type": "object",
+      "title": "font",
+      "description": "Used to select font value on theme setting\n\nRequired fields: `type`, `label`, `id`, and `options`\n\nOptional field: `force_reload`",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "font"
+        },
+        "label": {
+          "type": "string",
+          "example": "i18n.BodyTextFontFamily"
+        },
+        "id": {
+          "type": "string",
+          "example": "body-font"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "group": {
+                "type": "string",
+                "example": "i18n.Karla"
+              },
+              "label": {
+                "type": "string",
+                "example": "i18n.Karla"
+              },
+              "value": {
+                "type": "string",
+                "example": "Google_Karla_400"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "id",
+        "options"
+      ]
+    },
+    "select": {
+      "type": "object",
+      "title": "select",
+      "description": "Used to select custom value on theme settings. \n\nNote: Option types should all be the same (i.e., string, number, etc.).\n\nRequired fields: `type`, `label`, `id`, and `options`\n\nOptional field: `force_reload`",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "select"
+        },
+        "label": {
+          "type": "string",
+          "example": "i18n.BodyTextFontSize"
+        },
+        "id": {
+          "type": "string",
+          "example": "fontSize-root"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "example": 12
+              },
+              "label": {
+                "type": "string",
+                "example": "12px"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "id",
+        "options"
+      ]
+    },
+    "checkbox": {
+      "type": "object",
+      "title": "checkbox",
+      "description": "Used to toggle on theme settings (boolean value)\n\nRequired fields: `type`, `label`, and `id`\n\nOptional field: `force_reload`\n",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "checkbox"
+        },
+        "label": {
+          "type": "string",
+          "example": "i18n.HideBreadcrumbs"
+        },
+        "force_reload": {
+          "type": "boolean",
+          "example": true
+        },
+        "id": {
+          "type": "string",
+          "example": "hide_breadcrumbs"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "id"
+      ]
+    },
+    "imageDimension": {
+      "type": "object",
+      "title": "imageDimension",
+      "description": "Used to set image ratio on theme setting\n\nRequired fields: `type`, `label`, `id`, and `options`.\n\nNote: \"custom\" value option will allow users to specify the width/height. Else, use values set by the theme developer.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "imageDimension"
+        },
+        "id": {
+          "type": "string",
+          "example": "blog_size"
+        },
+        "force_reload": {
+          "type": "boolean",
+          "example": true
+        },
+        "label": {
+          "type": "string",
+          "example": "i18n.SizeOfImages"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "example": "190x250"
+              },
+              "label": {
+                "type": "string",
+                "example": "i18n.OptimizedForTheme"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "label",
+        "options"
+      ]
+    },
+    "text": {
+      "type": "object",
+      "title": "text",
+      "description": "Used to set string value for theme settings\n\nRequired fields: `type`, `label`, and `id`.\n\nOptional field: `force_reload`",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "text"
+        },
+        "label": {
+          "type": "string",
+          "example": "i18n.ProductPriceLabelSale"
+        },
+        "force_reload": {
+          "type": "boolean",
+          "example": true
+        },
+        "id": {
+          "type": "string",
+          "example": "pdp-sale-price-label"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "id"
+      ]
+    },
+    "heading": {
+      "type": "object",
+      "title": "heading",
+      "description": "Required fields: `type` and  `content`",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "heading"
+        },
+        "content": {
+          "type": "string",
+          "example": "i18n.BackgroundAndLines"
+        }
+      }
+    },
+    "reference": {
+      "title": "reference",
+      "description": "The reference field on a setting can show additional settings based on the value of another setting. For example, we may want to hide the `Product Sale Badge Label` setting if `Show product sale badges` setting equals none.\n\n\nIn `ProductSaleBadgeLabel` setting example, you can see that when `ShowProductSaleBadges` equals none, the `ProductSaleBadgeLabel` text setting is hidden. But when `ShowProductSaleBadges` has a value other than none, `ProductSaleBadgeLabel` text setting displays.\n\nThe `reference` field is added to the setting you want to toggle the display of based on a value (so in this example `ProductSaleBadgeLabel`). The value for `reference` should be the `id` of whichever setting you are referencing (so in this example `product_sale_badges`).\n\nThe `reference_default` field should be set to the value the setting wants to reference. In this case, `none` will set the `ProductSaleBadgeLabel` hidden until `ShowProductSaleBadges` changes in value.",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "example": "select"
+            },
+            "label": {
+              "type": "string",
+              "example": "i18n.ShowProductSaleBadges"
+            },
+            "id": {
+              "type": "string",
+              "example": "product_sale_badges"
+            },
+            "force_reload": {
+              "type": "boolean",
+              "example": true
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "none"
+                  },
+                  "label": {
+                    "type": "string",
+                    "example": "i18n.None"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "example": "text"
+            },
+            "label": {
+              "type": "string",
+              "example": "i18n.ProductSaleBadgeLabel"
+            },
+            "force_reload": {
+              "type": "boolean",
+              "example": true
+            },
+            "id": {
+              "type": "string",
+              "example": "pdp_sale_badge_label"
+            },
+            "reference": {
+              "type": "string",
+              "example": "product_sale_badges"
+            },
+            "reference_default": {
+              "type": "string",
+              "example": "none"
+            }
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "color": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "color"
+        },
+        "label": {
+          "type": "string",
+          "example": "i18n.BannerBackground"
+        },
+        "id": {
+          "type": "string",
+          "example": "color-primary"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "id"
+      ],
+      "description": "Used to set color value on theme setting (hex value)\n\nRequired fields: `type`, `label`, and  `id`"
+    }
+  }
+}
