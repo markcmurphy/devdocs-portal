@@ -4293,6 +4293,118 @@
                           ]
                         }
                       },
+                      {
+                        "title": "imageDimension",
+                        "route": {
+                          "path": "/imageDimension"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "text",
+                              "data": "# imageDimension \nUsed to set image ratio on theme setting \n\n ## JSON Schema"
+                            },
+                            {
+                              "type": "jsonSchema",
+                              "data": {
+                                "$ref": "./BigCommerce_Theme_Styles.oas2.yml.oas2.yml#/definitions/imageDimension"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "Required fields: `type`, `label`, `id`, and `options`.\n\nNote: `custom` value option will allow users to specify the width/height. Else, use values set by the theme developer (example image below)."
+                            },
+                            {
+                              "type": "image",
+                              "data": "![https://storage.googleapis.com/bigcommerce-production-dev-center/images/theme_styles_imageDimension.png](https://storage.googleapis.com/bigcommerce-production-dev-center/images/theme_styles_imageDimension.png)"
+                            }
+                          ]
+                        }
+                      },
+                        {
+                        "title": "reference",
+                        "route": {
+                          "path": "/reference"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "text",
+                              "data": "# reference \nUThe reference field on a setting can show additional settings based on the value of another setting. For example, we may want to hide the `Product Sale Badge Label` setting if `Show product sale badges` setting equals none.\n\n ## ShowProductSaleBadges setting example"
+                            },
+                            {
+                              "type": "jsonSchema",
+                              "data": {
+                                "$ref": "./BigCommerce_Theme_Styles.oas2.yml.oas2.yml#/definitions/reference"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "In this example, you can see that when `ShowProductSaleBadges` equals none, the `ProductSaleBadgeLabel` text setting is hidden. But when `ShowProductSaleBadges` has a value other than none, `ProductSaleBadgeLabel` text setting displays.\n\nThe `reference` field is added to the setting you want to toggle the display of based on a value (so in this example `ProductSaleBadgeLabel`). The value for `reference` should be the `id` of whichever setting you are referencing (so in this example `product_sale_badges`).\n\nThe `reference_default` field should be set to the value the setting wants to reference. In this case, `none` will set the `ProductSaleBadgeLabel` hidden until `ShowProductSaleBadges` changes in value."
+                            },
+                            {
+                              "type": "image",
+                              "data": "![https://storage.googleapis.com/bigcommerce-production-dev-center/images/theme_styles_reference.png](https://storage.googleapis.com/bigcommerce-production-dev-center/images/theme_styles_reference.png)"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "select",
+                        "route": {
+                          "path": "/select"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "text",
+                              "data": "# select \nUsed to select custom value on theme settings.\nNote: Option types should all be the same (i.e., string, number, etc.). \n\n ## JSON Schema"
+                            },
+                            {
+                              "type": "jsonSchema",
+                              "data": {
+                                "$ref": "./BigCommerce_Theme_Styles.oas2.yml.oas2.yml#/definitions/select"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "Required fields: `type`, `label`, `id`, and `options`\n\n Optional field: `force_reload`"
+                            },
+                            {
+                              "type": "image",
+                              "data": "![https://storage.googleapis.com/bigcommerce-production-dev-center/images/theme_styles_select.png](https://storage.googleapis.com/bigcommerce-production-dev-center/images/theme_styles_select.png)"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "text",
+                        "route": {
+                          "path": "/text"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "text",
+                              "data": "# text \nUsed to set string value for theme settings \n\n ## JSON Schema"
+                            },
+                            {
+                              "type": "jsonSchema",
+                              "data": {
+                                "$ref": "./BigCommerce_Theme_Styles.oas2.yml.oas2.yml#/definitions/text"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "Required fields: `type`, `label`, and `id`.\n\n Optional field: `force_reload`"
+                            },
+                            {
+                              "type": "image",
+                              "data": "![https://storage.googleapis.com/bigcommerce-production-dev-center/images/theme_styles_text.png](https://storage.googleapis.com/bigcommerce-production-dev-center/images/theme_styles_text.png)"
+                            }
+                          ]
+                        }
+                      }
                     ]
                   }
                 },
